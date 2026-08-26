@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import type { CountdownProps } from './CountdownProps'
-import { Countdown, CountdownFormat } from './index'
+import type { CountdownProps } from '@/components/countdown/CountdownProps'
+import { Countdown, CountdownFormat } from '@/components/countdown/index'
 
 const meta: Meta<CountdownProps> = {
   title: 'Components/Countdown',

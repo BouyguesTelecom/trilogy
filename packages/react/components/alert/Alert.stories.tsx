@@ -1,13 +1,13 @@
 import { Button, ButtonVariant } from '@/components/button'
 import { IconName } from '@/components/icon'
-import { StatusState } from '@/objects/facets/Status'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import AlertComponent, { ToasterAlertProvider } from './Alert'
-import { AlertMarkup } from './AlertEnum'
-import { AlertProps, ToasterAlertFloat, ToasterAlertPosition } from './AlertProps'
-import ToasterDocsComponent from './ToasterDocs'
-import ToasterContext from './context'
+import AlertComponent, { ToasterAlertProvider } from '@/components/alert/Alert'
+import { AlertMarkup } from '@/components/alert/AlertEnum'
+import { AlertProps, ToasterAlertFloat, ToasterAlertPosition } from '@/components/alert/AlertProps'
+import ToasterDocsComponent from '@/components/alert/ToasterDocs'
+import ToasterContext from '@/components/alert/context/index'
+import { StatusState } from "@/interfaces/Status";
 
 type AlertStoryArgs = AlertProps & {
   toastTitle: string
@@ -194,10 +194,34 @@ export const AllStatuses: Story = {
   },
   render: ({ title, description, markup, banner }) => (
     <div style={{ display: 'grid', gap: '0.75rem' }}>
-      <AlertComponent status={StatusState.INFO} title={title} description={description} markup={markup} banner={banner} />
-      <AlertComponent status={StatusState.SUCCESS} title={title} description={description} markup={markup} banner={banner} />
-      <AlertComponent status={StatusState.WARNING} title={title} description={description} markup={markup} banner={banner} />
-      <AlertComponent status={StatusState.ERROR} title={title} description={description} markup={markup} banner={banner} />
+      <AlertComponent
+        status={StatusState.INFO}
+        title={title}
+        description={description}
+        markup={markup}
+        banner={banner}
+      />
+      <AlertComponent
+        status={StatusState.SUCCESS}
+        title={title}
+        description={description}
+        markup={markup}
+        banner={banner}
+      />
+      <AlertComponent
+        status={StatusState.WARNING}
+        title={title}
+        description={description}
+        markup={markup}
+        banner={banner}
+      />
+      <AlertComponent
+        status={StatusState.ERROR}
+        title={title}
+        description={description}
+        markup={markup}
+        banner={banner}
+      />
     </div>
   ),
 }

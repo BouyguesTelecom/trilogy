@@ -6,16 +6,17 @@ import {
   InputKeyboardType,
   InputTextContentType,
 } from '@/components/input/InputEnum'
-import { TypographyColor } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { StatusState } from '@/objects/facets/Status'
+import { getColorStyle, getRadiusStyle } from '@/helpers'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import { SpacerSize } from '../spacer'
-import { Text as TrilogyText } from '../text'
-import { TextLevels } from '../text/TextEnum'
-import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { SpacerSize } from '@/components/spacer/index'
+import { Text as TrilogyText } from '@/components/text/index'
+import { TextLevels } from '@/components/text/TextEnum'
+import { TextareaNativeProps, TextareaNativeRef } from '@/components/textarea/TextareaProps'
+import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TrilogyColor } from "@/interfaces/Color";
+import { StatusState } from "@/interfaces/Status";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Textarea Component

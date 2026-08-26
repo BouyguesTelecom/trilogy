@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
-import Stepper from '../Stepper'
-import Step from '../step'
+import Stepper from '@/components/stepper/Stepper'
+import Step from '@/components/stepper/step/index'
 
 describe('Stepper', () => {
   it('should render without error', () => {

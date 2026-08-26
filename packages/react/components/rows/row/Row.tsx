@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { RowProps, RowRef } from './RowProps'
-import { is } from '@/services/classify'
+import { RowProps, RowRef } from '@/components/rows/row/RowProps'
+import { is } from '@/helpers/classify'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'

@@ -1,6 +1,6 @@
-import { CommonProps } from '@/objects/facets/CommonProps'
-import { Dev } from '@/objects/facets/Dev'
-import { DatePickerStatus, DatePickerStatusValues } from './DatePickerEnum'
+import { DatePickerStatus, DatePickerStatusValues } from '@/components/datepicker/DatePickerEnum'
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 export type SegmentType = 'day' | 'month' | 'year'
 

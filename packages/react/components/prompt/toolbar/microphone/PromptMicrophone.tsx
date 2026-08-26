@@ -1,11 +1,11 @@
 import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconName } from '@/components/icon'
-import { OnClickEvent } from '@/events/OnClickEvent'
 import clsx from 'clsx'
 import React, { useContext } from 'react'
-import { PromptContext } from '../../context'
-import { PromptMicrophoneProps, PromptMicrophoneRef } from './PromptMicrophoneProps'
+import { PromptContext } from '@/components/prompt/context/index'
+import { PromptMicrophoneProps, PromptMicrophoneRef } from '@/components/prompt/toolbar/microphone/PromptMicrophoneProps'
+import { OnClickEvent } from "@/interfaces/OnClickEvent";
 
 /**
  * PromptMicrophone component - Voice recording button for prompt input

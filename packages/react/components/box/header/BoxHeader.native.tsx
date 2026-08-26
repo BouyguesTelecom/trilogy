@@ -1,12 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
-import { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { BoxContext } from '../context/boxContext'
-import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { BoxContext } from '@/components/box/context/boxContext'
+import { BoxHeaderNativeRef, BoxHeaderProps } from '@/components/box/header/BoxHeaderProps'
+import { getColorStyle } from '@/helpers/color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Box Header Component
@@ -17,8 +18,8 @@ import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
  */
 const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
   ({ children, variant, testId, ...others }, ref): JSX.Element => {
-    const statesContext = useContext(StatesContext)
-    const boxContext = useContext(BoxContext)
+    const statesContext = React.useContext(StatesContext)
+    const boxContext = React.useContext(BoxContext)
     const centered = false
     const pulledLeft = false
     const pulledRight = false

@@ -1,7 +1,7 @@
-import { Dev } from '@/objects/facets/Dev'
-import { AlignableProps } from '@/objects/facets/Alignable'
-import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
+import { Dev } from "@/interfaces/Dev";
+import { AlignableProps } from "@/interfaces/Alignable";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 export interface FlexSize {
   mobile?: FlexItemSize

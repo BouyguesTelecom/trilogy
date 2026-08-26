@@ -3,8 +3,8 @@ import { Textarea } from '@/components/textarea'
 import { TextareaChangeEvent } from '@/components/textarea/TextareaProps'
 import clsx from 'clsx'
 import React, { useContext, useEffect } from 'react'
-import { PromptContext } from '../context'
-import { PromptTextareaProps, PromptTextareaRef } from './PromptTextareaProps'
+import { PromptContext } from '@/components/prompt/context/index'
+import { PromptTextareaProps, PromptTextareaRef } from '@/components/prompt/textarea/PromptTextareaProps'
 
 /**
  * PromptTextarea component - Auto-resizing textarea for prompt input

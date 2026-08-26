@@ -2,10 +2,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { TimelineMarkerRef, TimelineMarkerWebProps } from './TimelineMarkerProps'
+import { TimelineMarkerRef, TimelineMarkerWebProps } from '@/components/timeline/marker/TimelineMarkerProps'
 
 /**
  * Timeline Marker Component

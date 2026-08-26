@@ -1,10 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import { TypographyBold, TypographyColor } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { StepperNativeRef, StepperProps } from './StepperProps'
+import { StepperNativeRef, StepperProps } from '@/components/stepper/StepperProps'
+import { TypographyBold } from "@/interfaces/TypographyBold";
+import { TypographyColor } from "@/interfaces/TypographyColor";
 
 interface ICurrentStep {
   step: number

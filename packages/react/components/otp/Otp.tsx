@@ -1,13 +1,13 @@
 import { Text, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { TypographyColor } from '@/objects/Typography'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 import translation from '@trilogy-ds/locales/lib/otp'
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { OtpProps, OtpRef } from './OtpProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { OtpProps, OtpRef } from '@/components/otp/OtpProps'
+import { TypographyColor } from "@/interfaces/TypographyColor";
 
 type NumberOrNull = number | null
 
@@ -184,7 +184,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
         >
           {codeInput.map((digit, idx) => (
             <input
-              data-testid={testId ? `${testId}-item`: undefined}
+              data-testid={testId ? `${testId}-item` : undefined}
               aria-disabled={disabled}
               key={idx}
               type={'tel'} // To display the numeric keypad and avoid showing the plus/minus arrows.

@@ -1,13 +1,15 @@
-import { TypographyAlign } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import translation from '@trilogy-ds/locales/lib/calendar'
 import React from 'react'
 import { Modal, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { ComponentName } from '../enumsComponentsName'
-import { Icon } from '../icon'
-import { Text } from '../text'
-import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon/index'
+import { Text } from '@/components/text/index'
+import { CalendarProps, ChangeEventCalendar } from '@/components/calendar/CalendarProps'
+import { TypographyAlign } from "@/interfaces/TypographyAlign";
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 const days = [
   translation.days[1],

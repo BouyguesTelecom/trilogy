@@ -1,14 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getJustifiedClassName } from '@/objects'
-import { is } from '@/services'
+import { hashClass, is } from '@/helpers'
 import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
 import * as React from 'react'
-import { CheckboxListRef, CheckboxListWebProps } from './CheckboxListProps'
+import { CheckboxListRef, CheckboxListWebProps } from '@/components/checkbox/list/CheckboxListProps'
 import { Text, TextMarkup } from '@/components/text'
-import { TypographyColor } from '@/objects/Typography'
+import { getJustifiedClassName } from "@/helpers/justifiable";
+import { TypographyColor } from "@/interfaces/TypographyColor";
 
 /**
  * Checkbox List Component
@@ -24,7 +23,21 @@ import { TypographyColor } from '@/objects/Typography'
  * @param testId {string} Test Id for Test Integration
  */
 const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
-  ({ className, id, align, horizontalMobile, verticalDesktop, accessibilityLabelledBy, children, label, testId, ...others }, ref): JSX.Element => {
+  (
+    {
+      className,
+      id,
+      align,
+      horizontalMobile,
+      verticalDesktop,
+      accessibilityLabelledBy,
+      children,
+      label,
+      testId,
+      ...others
+    },
+    ref,
+  ): JSX.Element => {
     const { styled } = useTrilogyContext()
     const groupLabelClasses = hashClass(styled, 'group-label')
 
@@ -35,7 +48,8 @@ const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
             {label}
             {isRequiredChild(children) && (
               <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
-                {' '}*
+                {' '}
+                *
               </Text>
             )}
           </p>

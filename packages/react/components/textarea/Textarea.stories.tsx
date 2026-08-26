@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { IconName } from '../icon'
+import { IconName } from '@/components/icon/index'
 import {
   InputAutoCapitalize,
   InputAutoCompleteType,
@@ -8,9 +8,9 @@ import {
   InputKeyboardType,
   InputStatus,
   InputTextContentType,
-} from '../input/InputEnum'
-import TextareaComponent from './Textarea'
-import type { TextareaProps } from './TextareaProps'
+} from '@/components/input/InputEnum'
+import TextareaComponent from '@/components/textarea/Textarea'
+import type { TextareaProps } from '@/components/textarea/TextareaProps'
 
 TextareaComponent.displayName = 'Textarea'
 

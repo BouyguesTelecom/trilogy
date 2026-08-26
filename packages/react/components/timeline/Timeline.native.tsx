@@ -1,6 +1,6 @@
 import * as React from "react"
 import { StyleSheet, View } from "react-native"
-import { TimelineNativeRef, TimelineProps } from "./TimelineProps"
+import { TimelineNativeRef, TimelineProps } from "@/components/timeline/TimelineProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 interface IContext {

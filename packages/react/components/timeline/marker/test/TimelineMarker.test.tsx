@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
-import TimelineMarker from "../TimelineMarker";
-import { IconName } from "../../../icon";
+import TimelineMarker from "@/components/timeline/marker/TimelineMarker";
+import { IconName } from "@/components/icon/index";
 
 describe("TimelineMarker component", () => {
   it("should render without errors", () => {

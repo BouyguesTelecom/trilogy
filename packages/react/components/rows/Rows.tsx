@@ -1,10 +1,9 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { has, is } from '@/services'
+import { hashClass, has, is } from '@/helpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { RowsProps, RowsRef } from './RowsProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { RowsProps, RowsRef } from '@/components/rows/RowsProps'
 
 /**
  * Rows Component

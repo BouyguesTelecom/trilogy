@@ -1,6 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getStatusStyle } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle, getStatusStyle, getRadiusStyle } from '@/helpers'
 import React, { useEffect, useState } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 import Animated, {
@@ -10,8 +9,9 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated'
-import { SwitchNativeRef, SwitchProps } from './SwitchProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { SwitchNativeRef, SwitchProps } from '@/components/switch/SwitchProps'
+import { TrilogyColor } from "@/interfaces/Color";
+import { Radius } from "@/interfaces/Radius";
 
 const TRACK_WIDTH = 44
 const TRACK_HEIGHT = 22

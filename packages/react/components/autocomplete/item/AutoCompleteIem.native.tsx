@@ -2,7 +2,7 @@ import { getLabel } from '@/components/autocomplete/Autocomplete.helpers'
 import { Text } from '@/components/text'
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { AutoCompleteItemProps } from './AutoCompleteItemProps'
+import { AutoCompleteItemProps } from '@/components/autocomplete/item/AutoCompleteItemProps'
 
 /**
  * AutoCompleteItem Component

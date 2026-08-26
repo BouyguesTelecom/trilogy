@@ -1,0 +1,47 @@
+/**
+ * Returns alignement classname depending on align type
+ * @param alignType {Alignable|string} - Alert type
+ * @returns {string} - Align value
+ */
+export const getAlignClassName = (alignType?: string): string => {
+  switch (alignType) {
+    case 'ALIGNED_CENTER':
+      return 'aligned-center'
+    case 'CENTER':
+      return 'aligned-center'
+    case 'ALIGNED_START':
+      return 'aligned-start'
+    case 'START':
+      return 'aligned-start'
+    case 'ALIGNED_END':
+      return 'aligned-end'
+    case 'END':
+      return 'aligned-end'
+    case 'STRETCH':
+      return 'aligned-stretch'
+    case 'ALIGNED_STRETCH':
+      return 'aligned-stretch'
+    default:
+      return 'aligned-start'
+  }
+}
+
+/**
+ * Returns alignement classname depending on align type
+ * @param alignType {Alignable|string} - Align type
+ * @returns {string} - Align value
+ */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const getAlignStyle = (alignType?: string) => {
+  if (!alignType) return 'flex-start'
+  switch (true) {
+    case ['ALIGNED_CENTER', 'CENTER'].includes(alignType):
+      return 'center'
+    case ['START', 'ALIGNED_START'].includes(alignType):
+      return 'flex-start'
+    case ['ALIGNED_END', 'END'].includes(alignType):
+      return 'flex-end'
+    default:
+      return 'flex-start'
+  }
+}

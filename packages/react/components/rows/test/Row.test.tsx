@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
-import Rows from "../Rows";
-import Row from "../row";
+import Rows from "@/components/rows/Rows";
+import Row from "@/components/rows/row/index";
 
 describe("Rows", () => {
   it("renders children", () => {

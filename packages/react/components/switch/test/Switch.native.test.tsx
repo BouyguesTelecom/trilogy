@@ -1,8 +1,9 @@
 import { fireEvent, render } from '@testing-library/react-native'
 
 import * as React from 'react'
-import { StatusState, getStatusStyle } from '../../../objects'
-import Switch from '../Switch.native'
+import { getStatusStyle } from '@/helpers'
+import Switch from '@/components/switch/Switch.native'
+import { StatusState } from "@/interfaces/Status";
 
 describe('Switch component', () => {
   const colors = [StatusState.ERROR, StatusState.INFO, StatusState.SUCCESS, StatusState.WARNING]

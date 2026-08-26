@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { RowsNativeRef, RowsProps } from './RowsProps'
+import { RowsNativeRef, RowsProps } from '@/components/rows/RowsProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 

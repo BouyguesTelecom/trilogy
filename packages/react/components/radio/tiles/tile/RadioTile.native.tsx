@@ -4,14 +4,17 @@ import { RadioTileNativeProps, RadioTileNativeRef } from '@/components/radio/til
 import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
-import { VariantState } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TypographyAlign, TypographyColor } from '@/objects/Typography'
-import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { RadioTilesContext } from '../context'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { RadioTilesContext } from '@/components/radio/tiles/context/index'
+import { VariantState } from "@/interfaces/Variant";
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { TypographyAlign } from "@/interfaces/TypographyAlign";
+import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyBold } from "@/interfaces/TypographyBold";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * radioTile Component

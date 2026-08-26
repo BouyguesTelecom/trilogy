@@ -1,3 +1,3 @@
-import Image from './Image'
+import Image from '@/components/image/Image'
 
 export { Image }

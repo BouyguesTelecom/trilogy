@@ -1,10 +1,10 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services'
+import { is } from '@/helpers'
 import clsx from 'clsx'
 import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { ChipsProps, ChipsRef } from './ChipsProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ChipsProps, ChipsRef } from '@/components/chips/ChipsProps'
 
 /**
  * Chips Component - has to be in a ChipsList component

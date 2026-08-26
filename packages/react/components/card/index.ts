@@ -1,6 +1,6 @@
-import Card from './Card'
-import CardImage from './image'
-import CardContent from './content'
+import Card from '@/components/card/Card'
+import CardImage from '@/components/card/image/index'
+import CardContent from '@/components/card/content/index'
 
 export * from './image/CardImageEnum'
 

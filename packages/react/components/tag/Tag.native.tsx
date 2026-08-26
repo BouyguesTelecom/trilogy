@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconSize } from '@/components/icon'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { getStatusStyle } from '@/objects/facets/Status'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { TagNativeRef, TagProps } from './TagProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { TagNativeRef, TagProps } from '@/components/tag/TagProps'
+import { getRadiusStyle, getColorStyle, getStatusStyle } from '@/helpers'
+import { TrilogyColor } from "@/interfaces/Color";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Tag Component

@@ -5,7 +5,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { TimelineContentRef, TimelineContentWebProps } from './TimelineContentProps'
+import { TimelineContentRef, TimelineContentWebProps } from '@/components/timeline/content/TimelineContentProps'
 
 /**
  * Timeline Content Component

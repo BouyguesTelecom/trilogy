@@ -7,7 +7,7 @@ import { Input } from '@/components/input'
 import { SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { SelectContext } from '../context'
+import { SelectContext } from '@/components/select/context/index'
 
 const OPTION_SIZE = 48
 

@@ -3,8 +3,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useDropdownContext } from '../context'
-import { DropdownTriggerProps, DropdownTriggerRef } from './DropdownTriggerProps'
+import { useDropdownContext } from '@/components/dropdown/context/index'
+import { DropdownTriggerProps, DropdownTriggerRef } from '@/components/dropdown/trigger/DropdownTriggerProps'
 
 /**
  * DropdownTrigger Component

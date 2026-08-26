@@ -18,7 +18,7 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/objects'
+import { Alignable, TrilogyColor, TypographyAlign } from '@trilogy-ds/react/interfaces'
 import * as React from 'react'
 
 export const BoxScreen = (): JSX.Element => {

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ListItemDescriptionProps, ListItemDescriptionRef } from "./ListItemDescriptionProps"
+import { ListItemDescriptionProps, ListItemDescriptionRef } from "@/components/list/item/description/ListItemDescriptionProps"
 import clsx from "clsx"
 import { hashClass } from "@/helpers"
 import { useTrilogyContext } from "@/context"

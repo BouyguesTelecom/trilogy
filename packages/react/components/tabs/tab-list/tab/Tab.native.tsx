@@ -3,10 +3,11 @@ import { Icon } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
 import { TabNativeRef, TabProps } from '@/components/tabs/tab-list/tab/TabProps'
 import { Text } from '@/components/text'
-import { TypographyAlign } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle } from '@/helpers'
 import React from 'react'
 import { GestureResponderEvent, Linking, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { TrilogyColor } from "@/interfaces/Color";
+import { TypographyAlign } from "@/interfaces/TypographyAlign";
 
 /**
  * Tabs Item Component
@@ -56,7 +57,7 @@ const Tab = React.forwardRef<TabNativeRef, TabProps>(
       },
       text: {
         textAlign: 'center',
-        color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN)
+        color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN),
       },
     })
 

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { Alignable } from '../../objects/facets/Alignable'
-import TagComponent from './Tag'
-import { TagVariant } from './TagEnum'
-import type { TagProps } from './TagProps'
-import TagList from './list'
+import TagComponent from '@/components/tag/Tag'
+import { TagVariant } from '@/components/tag/TagEnum'
+import type { TagProps } from '@/components/tag/TagProps'
+import TagList from '@/components/tag/list/index'
+import { Alignable } from "@/interfaces/Alignable";
 
 TagComponent.displayName = 'Tag'
 TagList.displayName = 'TagList'

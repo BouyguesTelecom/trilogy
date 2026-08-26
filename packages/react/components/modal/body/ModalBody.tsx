@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ModalBodyProps, ModalBodyRef } from './ModalBodyProps'
+import { ModalBodyProps, ModalBodyRef } from '@/components/modal/body/ModalBodyProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'

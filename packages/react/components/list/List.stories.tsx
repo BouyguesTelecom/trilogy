@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { IconName } from '../icon'
-import ListComponent from './List'
-import ListItem from './item/ListItem'
-import { ListIconStatus } from './item/ListItemProps'
-import { ListItemDescription } from './item/description'
+import { IconName } from '@/components/icon/index'
+import ListComponent from '@/components/list/List'
+import ListItem from '@/components/list/item/ListItem'
+import { ListIconStatus } from '@/components/list/item/ListItemProps'
+import { ListItemDescription } from '@/components/list/item/description/index'
 
 ListComponent.displayName = 'List'
 

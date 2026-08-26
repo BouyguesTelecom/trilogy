@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getAlignStyle } from '@/objects/facets/Alignable'
-import { getJustifyStyle } from '@/objects/facets/Justifiable'
+import { getAlignStyle } from '@/helpers/alignable'
 import React, { useState } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
-import { ColumnsGapValue } from '../columns'
-import { FlexBoxNativeRef, FlexBoxProps } from './FlexBoxProps'
-import { FlexBoxContext } from './context'
+import { ColumnsGapValue } from '@/components/columns/index'
+import { FlexBoxNativeRef, FlexBoxProps } from '@/components/flex-box/FlexBoxProps'
+import { FlexBoxContext } from '@/components/flex-box/context/index'
+import { getJustifyStyle } from "@/helpers/justifiable";
 
 /**
  * @beta
@@ -22,7 +22,10 @@ import { FlexBoxContext } from './context'
  * @param fullBleed {boolean} Extend to full screen width (ignores container padding)
  */
 const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
-  ({ id, gap, direction = 'row', align, justify, scrollable, fullBleed, children, fullheight, testId, ...others }, ref) => {
+  (
+    { id, gap, direction = 'row', align, justify, scrollable, fullBleed, children, fullheight, testId, ...others },
+    ref,
+  ) => {
     const [width, setWidth] = useState(0)
     const [enlarge, setEnlarge] = useState(0)
     const isValueDirection = typeof direction === 'string'

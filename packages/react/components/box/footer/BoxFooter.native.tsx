@@ -1,10 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { BoxContext } from '../context/boxContext'
-import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { BoxContext } from '@/components/box/context/boxContext'
+import { BoxFooterNativeRef, BoxFooterProps } from '@/components/box/footer/BoxFooterProps'
+import { getColorStyle } from "@/helpers/color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Box Footer Component

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { TableTdProps, TableTdRef } from './TableTdProps'
+import { TableTdProps, TableTdRef } from '@/components/table/td/TableTdProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useTrilogyContext } from '@/context/index'
 import { ComponentName } from '@/components/enumsComponentsName'

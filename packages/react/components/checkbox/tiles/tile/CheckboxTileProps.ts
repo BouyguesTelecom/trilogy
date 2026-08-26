@@ -1,9 +1,10 @@
 import { TouchableOpacity } from 'react-native'
-import { CheckboxProps } from '../../../../components/checkbox/CheckboxProps'
-import { IconName, IconNameValues } from '../../../../components/icon'
-import { CommonProps } from '../../../../objects/facets/CommonProps'
-import { Dev, VariantProps } from '@/objects'
+import { CheckboxProps } from '@/components/checkbox/CheckboxProps'
+import { IconName, IconNameValues } from '@/components/icon/index'
 import { ReactNode } from 'react'
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
+import { VariantProps } from "@/interfaces/Variant";
 
 export interface CheckboxTileProps extends Omit<CheckboxProps, 'label'>, CommonProps, Dev {
   horizontal?: boolean

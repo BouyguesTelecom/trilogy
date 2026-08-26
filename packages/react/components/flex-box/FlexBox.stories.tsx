@@ -1,9 +1,11 @@
-import { Align, DirectionEnum, Justify } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { GapSize } from '../columns'
-import type { FlexItemProps } from './flex-item/FlexItemProps'
-import { FlexBox as Flexbox, FlexItem } from './index'
+import { GapSize } from '@/components/columns/index'
+import type { FlexItemProps } from '@/components/flex-box/flex-item/FlexItemProps'
+import { FlexBox as Flexbox, FlexItem } from '@/components/flex-box/index'
+import { Align } from "@/interfaces/Alignable";
+import { DirectionEnum } from "@/interfaces/Direction";
+import { Justify } from "@/interfaces/Justifiable";
 
 Flexbox.displayName = 'FlexBox'
 FlexItem.displayName = 'FlexItem'

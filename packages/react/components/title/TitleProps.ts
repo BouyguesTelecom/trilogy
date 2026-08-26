@@ -1,21 +1,15 @@
-import {
-  Accessibility,
-  Clickable,
-  Dev,
-  Invertable,
-  Marginless,
-  TypographyAlign,
-  TypographyAlignValues,
-  TypographyBold,
-  TypographyBoldValues,
-  TypographyColor,
-  TypographyColorValues,
-  TypographyTransform,
-  TypographyTransformValues,
-} from '../../objects'
-import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from '@/components/title/TitleEnum'
 import { Text } from 'react-native'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Clickable } from "@/interfaces/Clickable";
+import { Dev } from "@/interfaces/Dev";
+import { Invertable } from "@/interfaces/Invertable";
+import { Marginless } from "@/interfaces/Marginless";
+import { TypographyAlign, TypographyAlignValues } from "@/interfaces/TypographyAlign";
+import { TypographyBold, TypographyBoldValues } from "@/interfaces/TypographyBold";
+import { TypographyColor, TypographyColorValues } from "@/interfaces/TypographyColor";
+import { TypographyTransform, TypographyTransformValues } from "@/interfaces/TypographyTransform";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 type Styles = { [key: string]: unknown }
 

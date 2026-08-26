@@ -1,5 +1,5 @@
 import React from 'react'
-import { ToasterShowContext } from './ToasterContextProps'
+import { ToasterShowContext } from '@/components/alert/context/ToasterContextProps'
 
 const emptyFn = () => 0
 

@@ -18,7 +18,7 @@ import {
   TitleLevels,
   View,
 } from '@trilogy-ds/react/components'
-import { TypographyAlign } from '@trilogy-ds/react/objects'
+import { TypographyAlign } from '@trilogy-ds/react/interfaces'
 import * as React from 'react'
 import * as Screens from '../screens'
 

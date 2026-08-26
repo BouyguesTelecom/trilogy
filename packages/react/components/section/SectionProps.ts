@@ -1,6 +1,8 @@
 import type { View } from 'react-native'
-import type { BackgroundProps, ChildrenWithNoText, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { type BackgroundProps } from "@/interfaces/Background";
+import { type ChildrenWithNoText } from "@/interfaces/ChildrenWithNoText";
+import { type Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }

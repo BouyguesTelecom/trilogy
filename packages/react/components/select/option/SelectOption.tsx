@@ -2,12 +2,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { SelectContext } from '../context'
-import { SelectedValue } from '../SelectProps'
-import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
+import { SelectContext } from '@/components/select/context/index'
+import { SelectedValue } from '@/components/select/SelectProps'
+import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/SelectOptionProps'
 
 /**
  * Select Option Component

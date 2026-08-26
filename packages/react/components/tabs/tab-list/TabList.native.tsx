@@ -3,7 +3,7 @@ import { Icon } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
 import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListNativeRef, TabListProps } from '@/components/tabs/tab-list/TabListProps'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { getColorStyle } from '@/helpers'
 import React from 'react'
 import {
   LayoutChangeEvent,
@@ -14,6 +14,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
+import { TrilogyColor } from "@/interfaces/Color";
 
 /**
  * Tabs Nav Component

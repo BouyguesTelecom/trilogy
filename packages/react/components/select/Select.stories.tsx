@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import SelectComponent from './Select'
-import { SelectStatus } from './SelectEnum'
-import type { SelectProps } from './SelectProps'
-import SelectOption from './option'
+import SelectComponent from '@/components/select/Select'
+import { SelectStatus } from '@/components/select/SelectEnum'
+import type { SelectProps } from '@/components/select/SelectProps'
+import SelectOption from '@/components/select/option/index'
 
 SelectComponent.displayName = 'Select'
 SelectOption.displayName = 'SelectOption'

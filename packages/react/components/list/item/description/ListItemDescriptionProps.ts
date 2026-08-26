@@ -1,9 +1,6 @@
-/**
- * ListItem Interface
- */
-import { Dev } from '@/objects/facets/Dev'
 import { ReactNode } from 'react'
 import { View } from 'react-native'
+import { Dev } from "@/interfaces/Dev";
 
 export interface ListItemDescriptionProps extends Dev {
   children?: ReactNode

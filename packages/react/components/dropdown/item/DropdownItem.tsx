@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
 import { Icon, IconSize } from '@/components/icon'
-import { DropdownItemProps, DropdownItemRef } from './DropdownItemProps'
+import { DropdownItemProps, DropdownItemRef } from '@/components/dropdown/item/DropdownItemProps'
 
 /**
  * DropdownItem Component
@@ -16,27 +16,10 @@ import { DropdownItemProps, DropdownItemRef } from './DropdownItemProps'
  * @param onSelect {Function} Callback called when item is selected
  */
 const DropdownItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
-  (
-    {
-      children,
-      iconName,
-      active,
-      disabled,
-      onSelect,
-      ...others
-    },
-    ref,
-  ): JSX.Element => {
+  ({ children, iconName, active, disabled, onSelect, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
-    const classes = hashClass(
-      styled,
-      clsx(
-        'dropdown-item',
-        active && is('active'),
-        disabled && is('disabled'),
-      ),
-    )
+    const classes = hashClass(styled, clsx('dropdown-item', active && is('active'), disabled && is('disabled')))
 
     const handleClick = (e: React.MouseEvent) => {
       if (disabled) {
@@ -63,19 +46,17 @@ const DropdownItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
     return (
       <button
         ref={ref as React.RefObject<HTMLButtonElement>}
-        type="button"
+        type='button'
         className={classes}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         aria-disabled={disabled}
-        role="menuitem"
+        role='menuitem'
         tabIndex={disabled ? -1 : 0}
         {...others}
       >
-        {iconName && (
-          <Icon name={iconName} size={IconSize.SMALLER} />
-        )}
+        {iconName && <Icon name={iconName} size={IconSize.SMALLER} />}
         {children}
       </button>
     )

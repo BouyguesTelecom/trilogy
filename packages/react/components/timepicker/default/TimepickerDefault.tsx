@@ -6,11 +6,13 @@ import { Text } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { useClickOutside } from '@/helpers/clickOutside'
-import { Align, Justify, TypographyAlign } from '@/objects'
 import clsx from 'clsx'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { TimepickerSelector } from './selector'
-import { TimepickerDefaultProps } from './TimepickerDefaultProps'
+import { TimepickerSelector } from '@/components/timepicker/default/selector/index'
+import { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
+import { Align } from "@/interfaces/Alignable";
+import { Justify } from "@/interfaces/Justifiable";
+import { TypographyAlign } from "@/interfaces/TypographyAlign";
 
 const APPROXIMATIVE_HEIGHT_TIMEPICKER = 300
 

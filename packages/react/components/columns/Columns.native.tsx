@@ -2,9 +2,10 @@ import { ColumnsNativeRef, ColumnsProps } from '@/components/columns/ColumnsProp
 import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 import { ColumnsContext, ColumnsContextType } from '@/components/columns/context'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Alignable, getAlignStyle } from '@/objects/facets/Alignable'
+import { getAlignStyle } from '@/helpers/alignable'
 import React, { useState, useMemo, useCallback } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
+import { Alignable } from "@/interfaces/Alignable";
 
 const staticStyles = StyleSheet.create({
   centered: {

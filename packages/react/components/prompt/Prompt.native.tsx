@@ -1,11 +1,12 @@
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { getRadiusStyle } from '@/objects/facets/Radius'
 import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ComponentName } from '../enumsComponentsName'
-import { Radius } from '@/objects/facets/Radius'
-import { PromptNativeRef, PromptProps } from './PromptProps'
-import { PromptContext, PromptProvider } from './context'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { PromptNativeRef, PromptProps } from '@/components/prompt/PromptProps'
+import { PromptContext, PromptProvider } from '@/components/prompt/context/index'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {
   const { isFocused, isDisabled } = useContext(PromptContext)

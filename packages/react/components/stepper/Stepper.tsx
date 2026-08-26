@@ -1,15 +1,15 @@
 import { Text } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { Align } from '@/objects'
-import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { FlexBox } from '../flex-box'
-import { Icon, IconName } from '../icon'
-import { Title } from '../title'
-import { StepperProps, StepperRef } from './StepperProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { FlexBox } from '@/components/flex-box/index'
+import { Icon, IconName } from '@/components/icon/index'
+import { Title } from '@/components/title/index'
+import { StepperProps, StepperRef } from '@/components/stepper/StepperProps'
+import { Align } from "@/interfaces/Alignable";
+import { TypographyColor } from "@/interfaces/TypographyColor";
 
 type CurrentStepType = { label: number | null; step: number; icon: IconName | null }
 

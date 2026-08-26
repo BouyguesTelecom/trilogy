@@ -1,5 +1,5 @@
-import Tag from './Tag'
-import TagList from './list'
+import Tag from '@/components/tag/Tag'
+import TagList from '@/components/tag/list/index'
 
 export * from './TagEnum'
 

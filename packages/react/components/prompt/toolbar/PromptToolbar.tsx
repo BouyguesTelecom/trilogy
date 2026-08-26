@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
-import { PromptToolbarProps, PromptToolbarRef } from './PromptToolbarProps'
+import { PromptToolbarProps, PromptToolbarRef } from '@/components/prompt/toolbar/PromptToolbarProps'
 
 /**
  * PromptToolbar component - Container for prompt action buttons and tools

@@ -1,14 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { Align, getAlignClassName } from '@/objects/facets/Alignable'
-import { Justify } from '@/objects/facets/Justifiable'
-import { has, is } from '@/services'
+import { getAlignClassName } from '@/helpers/alignable'
+import { has, is } from '@/helpers'
 import clsx from 'clsx'
 import React from 'react'
-import { AlignProps, Direction, FlexBoxProps, FlexBoxRef, FlexBoxSize, JustifyProps, WrapProps } from './FlexBoxProps'
-import { DirectionEnum, DirectionEnumValues } from '@/objects'
+import { AlignProps, Direction, FlexBoxProps, FlexBoxRef, FlexBoxSize, JustifyProps, WrapProps } from '@/components/flex-box/FlexBoxProps'
 import { GapSize } from '@/components/columns'
+import { Align } from "@/interfaces/Alignable";
+import { Justify } from "@/interfaces/Justifiable";
+import { DirectionEnum, DirectionEnumValues } from "@/interfaces/Direction";
 
 interface GetResponsiveClassesProp {
   value:

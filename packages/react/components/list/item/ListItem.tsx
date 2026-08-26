@@ -1,12 +1,12 @@
 import clsx from 'clsx'
 import * as React from 'react'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getColorClassName, TrilogyColor } from '@/objects'
-import { is } from '@/services'
+import { hashClass, is } from '@/helpers'
 import { Icon, IconSize } from '@/components/icon'
-import { ListItemProps, ListItemRef } from './ListItemProps'
+import { ListItemProps, ListItemRef } from '@/components/list/item/ListItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorClassName } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
 
 /**
  * ListItem Component
@@ -18,23 +18,25 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const ListItem = React.forwardRef<ListItemRef, ListItemProps>(({ className, id, children, iconName, status, testId }, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const classes = clsx('list-item', className, status && is(getColorClassName(TrilogyColor[status])))
+const ListItem = React.forwardRef<ListItemRef, ListItemProps>(
+  ({ className, id, children, iconName, status, testId }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    const classes = clsx('list-item', className, status && is(getColorClassName(TrilogyColor[status])))
 
-  return (
-    <li ref={ref} id={id} className={hashClass(styled, clsx(classes))} data-testid={testId}>
-      {iconName && (
-        <Icon
-          className={status && clsx(is(getColorClassName(TrilogyColor[status])))}
-          name={iconName}
-          size={IconSize.SMALL}
-        />
-      )}
-      <div className={hashClass(styled, clsx('list-item-content'))}>{children}</div>
-    </li>
-  )
-})
+    return (
+      <li ref={ref} id={id} className={hashClass(styled, clsx(classes))} data-testid={testId}>
+        {iconName && (
+          <Icon
+            className={status && clsx(is(getColorClassName(TrilogyColor[status])))}
+            name={iconName}
+            size={IconSize.SMALL}
+          />
+        )}
+        <div className={hashClass(styled, clsx('list-item-content'))}>{children}</div>
+      </li>
+    )
+  },
+)
 
 ListItem.displayName = ComponentName.ListItem
 export default ListItem

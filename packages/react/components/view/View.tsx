@@ -1,10 +1,9 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getAlignClassName, getBackgroundClassName, getJustifyClassName, getLoadingClassName } from '@/objects'
-import { has, is } from '@/services'
+import { hashClass, getBackgroundClassName, getJustifyClassName, getLoadingClassName, has, is } from '@/helpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from './ViewProps'
+import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from '@/components/view/ViewProps'
+import { getAlignClassName } from '@/helpers/alignable'
 
 /**
  * View Component (DIV equivalent)

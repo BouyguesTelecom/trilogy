@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react-native'
 import * as React from 'react'
-import { IconName } from '../../icon'
-import Timeline from '../Timeline'
-import TimelineContent from '../content'
-import TimelineItem from '../item'
-import TimelineMarker from '../marker'
+import { IconName } from '@/components/icon/index'
+import Timeline from '@/components/timeline/Timeline'
+import TimelineContent from '@/components/timeline/content/index'
+import TimelineItem from '@/components/timeline/item/index'
+import TimelineMarker from '@/components/timeline/marker/index'
 
 describe('Timeline component', () => {
   it('renders without crashing', () => {

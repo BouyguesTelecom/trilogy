@@ -1,12 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { getAlignClassName } from '@/objects/facets/Alignable'
-import { has, is } from '@/services/classify'
+import { getAlignClassName } from '@/helpers/alignable'
+import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { BoxHeaderProps, BoxHeaderRef } from './BoxHeaderProps'
+import { BoxHeaderProps, BoxHeaderRef } from '@/components/box/header/BoxHeaderProps'
+import { getBackgroundClassName } from "@/helpers/background";
 
 /**
  * Box Header Component

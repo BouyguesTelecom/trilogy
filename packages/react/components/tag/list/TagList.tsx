@@ -1,10 +1,8 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { TagListProps, TagListRef } from './TagListProps'
-import { hashClass } from '@/helpers'
+import { TagListProps, TagListRef } from '@/components/tag/list/TagListProps'
 import { useTrilogyContext } from '@/context'
-import { is } from '@/services'
-import { getJustifiedClassName } from '@/objects'
+import { getJustifiedClassName, hashClass, is } from '@/helpers'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -17,22 +15,24 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param align {string} Alignment of the tags
  * @param testId {string} Test Id for Test Integration
  */
-const TagList = React.forwardRef<TagListRef, TagListProps>(({ className, id, align, marginless, testId, ...others }, ref) => {
-  const { styled } = useTrilogyContext()
+const TagList = React.forwardRef<TagListRef, TagListProps>(
+  ({ className, id, align, marginless, testId, ...others }, ref) => {
+    const { styled } = useTrilogyContext()
 
-  return (
-    <div
-      data-testid={testId}
-      ref={ref}
-      id={id}
-      className={hashClass(
-        styled,
-        clsx('tags', align && is(getJustifiedClassName(align)), marginless && is('marginless'), className),
-      )}
-      {...others}
-    />
-  )
-})
+    return (
+      <div
+        data-testid={testId}
+        ref={ref}
+        id={id}
+        className={hashClass(
+          styled,
+          clsx('tags', align && is(getJustifiedClassName(align)), marginless && is('marginless'), className),
+        )}
+        {...others}
+      />
+    )
+  },
+)
 
 TagList.displayName = ComponentName.TagList
 export default TagList

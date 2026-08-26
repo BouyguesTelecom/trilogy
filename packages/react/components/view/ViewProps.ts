@@ -1,13 +1,11 @@
-import {
-  Accessibility,
-  AlignableProps,
-  BackgroundProps,
-  Clickable,
-  Dev,
-  Fullwidth,
-  JustifiableProps,
-  Loadable,
-} from '../../objects'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { AlignableProps } from "@/interfaces/Alignable";
+import { BackgroundProps } from "@/interfaces/Background";
+import { Clickable } from "@/interfaces/Clickable";
+import { Dev } from "@/interfaces/Dev";
+import { Fullwidth } from "@/interfaces/Fullwidth";
+import { JustifiableProps } from "@/interfaces/Justifiable";
+import { Loadable } from "@/interfaces/Loadable";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
@@ -44,7 +42,8 @@ export interface ViewProps
     Fullwidth,
     AlignableProps,
     BackgroundProps,
-    Accessibility, Dev {
+    Accessibility,
+    Dev {
   children?: React.ReactNode
   className?: string
   style?: Styles

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import CardComponent from './Card'
-import type { CardProps } from './CardProps'
-import CardContent from './content/CardContent'
-import type { CardContentProps } from './content/CardContentProps'
-import CardImage from './image/CardImage'
-import { CardImageSize } from './image/CardImageEnum'
-import type { CardImageProps } from './image/CardImageProps'
+import CardComponent from '@/components/card/Card'
+import type { CardProps } from '@/components/card/CardProps'
+import CardContent from '@/components/card/content/CardContent'
+import type { CardContentProps } from '@/components/card/content/CardContentProps'
+import CardImage from '@/components/card/image/CardImage'
+import { CardImageSize } from '@/components/card/image/CardImageEnum'
+import type { CardImageProps } from '@/components/card/image/CardImageProps'
 
 interface CardStoryArgs extends CardProps, CardContentProps {
   content: string

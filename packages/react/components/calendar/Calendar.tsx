@@ -1,14 +1,13 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
+import { hashClass, is } from '@/helpers'
 import translation from '@trilogy-ds/locales/lib/calendar'
 import clsx from 'clsx'
 import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { Icon } from '../icon'
-import { Select, SelectOption } from '../select'
-import { Text } from '../text'
-import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon/index'
+import { Select, SelectOption } from '@/components/select/index'
+import { Text } from '@/components/text/index'
+import { CalendarProps, ChangeEventCalendar } from '@/components/calendar/CalendarProps'
 
 const days = [
   translation.days[1],

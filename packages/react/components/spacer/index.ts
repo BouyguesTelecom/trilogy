@@ -1,4 +1,4 @@
-import Spacer from './Spacer'
+import Spacer from '@/components/spacer/Spacer'
 
 export * from './SpacerEnum'
 

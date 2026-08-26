@@ -1,8 +1,8 @@
-import { ClickEvent } from '@/events/OnClickEvent'
-import { Accessibility } from '@/objects/facets/Accessibility'
-import { CommonProps } from '@/objects/facets/CommonProps'
-import { Dev } from '@/objects/facets/Dev'
 import { View } from 'react-native'
+import { ClickEvent } from "@/interfaces/OnClickEvent";
+import { Accessibility } from "@/interfaces/Accessibility";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 export interface PromptFileProps extends Accessibility, Dev, CommonProps {
   type?: 'image' | string

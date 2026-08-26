@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { IconName } from '../icon'
-import type { InputProp } from './Input'
-import InputComponent from './Input'
+import { IconName } from '@/components/icon/index'
+import InputComponent, { type InputProp } from '@/components/input/Input'
 import {
   InputAutoCapitalize,
   InputAutoCompleteType,
@@ -11,7 +10,7 @@ import {
   InputStatus,
   InputTextContentType,
   InputType,
-} from './InputEnum'
+} from '@/components/input/InputEnum'
 
 const meta: Meta<InputProp> = {
   title: 'Components/Input',
@@ -70,8 +69,7 @@ const meta: Meta<InputProp> = {
         type: 'dynamic',
       },
       description: {
-        component:
-          ' ',
+        component: ' ',
       },
     },
   },

@@ -8,8 +8,8 @@ import { ParamEventSelectFocus, SelectProps, SelectRef } from '@/components/sele
 import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { TypographyColor } from '@/objects/Typography/TypographyColor'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
+import { TypographyColor } from "@/interfaces/TypographyColor";
 
 const SelectNative = React.forwardRef<SelectRef, SelectProps>(
   (

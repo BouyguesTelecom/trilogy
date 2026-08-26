@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
-import { getAlignStyle } from '@/objects/facets/Alignable'
+import { getAlignStyle } from '@/helpers/alignable'
 import React, { ReactNode, RefObject, useCallback, useMemo } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-import { CheckboxTilesNativeRef, CheckboxTilesProps } from './CheckboxTilesProps'
-import { CheckboxTilesContext } from './context'
+import { CheckboxTilesNativeRef, CheckboxTilesProps } from '@/components/checkbox/tiles/CheckboxTilesProps'
+import { CheckboxTilesContext } from '@/components/checkbox/tiles/context/index'
 
 /**
  * CheckboxTiles

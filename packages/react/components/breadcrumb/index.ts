@@ -1,4 +1,4 @@
-import Breadcrumb from './Breadcrumb'
-import BreadcrumbItem from './item'
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb'
+import BreadcrumbItem from '@/components/breadcrumb/item/index'
 
 export { Breadcrumb, BreadcrumbItem }

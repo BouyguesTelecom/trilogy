@@ -2,15 +2,15 @@
 import * as React from 'react'
 // @ts-ignore
 import renderer from 'react-test-renderer'
-import { is } from '../../../services/index'
+import { is } from '@/helpers'
 
 // Testing methods
 import { fireEvent, render, screen } from '@testing-library/react'
 
 // Component to test
-import { getEnumNames } from '../../../helpers'
-import { getButtonVariantClassName } from '../../../objects'
-import { Button, ButtonMarkup, ButtonVariant } from '../'
+import { getEnumNames } from '@/helpers/index'
+import { Button, ButtonMarkup, ButtonVariant } from '@/components/button/index'
+import { getButtonVariantClassName } from "@/helpers/color";
 
 describe('Button component', () => {
   test('should have "button" className', () => {

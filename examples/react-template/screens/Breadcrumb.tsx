@@ -14,7 +14,7 @@ import {
   Section,
   Text,
 } from '@trilogy-ds/react/components'
-import { TrilogyColor, TypographyBold } from '@trilogy-ds/react/objects'
+import { TrilogyColor, TypographyBold } from '@trilogy-ds/react/interfaces'
 import { Spacer, SpacerSize } from '@trilogy-ds/react'
 
 export const BreadcrumScreen = (): JSX.Element => {
@@ -75,11 +75,11 @@ export const BreadcrumScreen = (): JSX.Element => {
       </Card>
 
       <Text typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>Breadcrumb in rows</Text>
-      <Container >
+      <Container>
         <Rows>
           <Row></Row>
           <Row>
-            <Container >
+            <Container>
               <Breadcrumb>
                 <BreadcrumbItem href='https://Home.fr'>Home</BreadcrumbItem>
                 <BreadcrumbItem to='#anchor'>Catalog</BreadcrumbItem>

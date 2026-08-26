@@ -1,16 +1,16 @@
 import translation from '@trilogy-ds/locales/lib/input'
 import clsx from 'clsx'
 import React, { useCallback, useEffect, useId, useState } from 'react'
-import { Text, TextLevels, TextMarkup } from '../../components/text'
-import { useTrilogyContext } from '../../context'
-import { hashClass } from '../../helpers'
-import { Accessibility, TypographyColor } from '../../objects'
-import { has, is } from '../../services'
-import { ComponentName } from '../enumsComponentsName'
-import { Icon, IconColor, IconName, IconNameValues, IconSize } from '../icon'
-import { InputStatus, InputStatusValues, InputType, InputTypeValues } from './InputEnum'
-import { InputProps, InputRef, InputWebEvents } from './InputProps'
-import InputGauge from './gauge/InputGauge'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
+import { useTrilogyContext } from '@/context'
+import { hashClass, has, is } from '@/helpers'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon, IconColor, IconName, IconNameValues, IconSize } from '@/components/icon/index'
+import { InputStatus, InputStatusValues, InputType, InputTypeValues } from '@/components/input/InputEnum'
+import { InputProps, InputRef, InputWebEvents } from '@/components/input/InputProps'
+import InputGauge from '@/components/input/gauge/InputGauge'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { TypographyColor } from "@/interfaces/TypographyColor";
 
 export interface InputProp extends Accessibility, InputProps, InputWebEvents {}
 

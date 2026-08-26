@@ -1,11 +1,12 @@
 import { View } from 'react-native'
-import { AlignableProps, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
-import { GridItemSize, GridSize } from '@/objects/facets/Grid'
+import { AlignableProps } from "@/interfaces/Alignable";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { GridItemSize, GridSize } from "@/interfaces/Grid";
 
 export interface RadioTilesProps extends AlignableProps, CommonProps, Dev {
-  children: React.ReactNode;
-  accessibilityLabelledBy?: string;
+  children: React.ReactNode
+  accessibilityLabelledBy?: string
   numberCols?: GridSize | GridItemSize
 }
 

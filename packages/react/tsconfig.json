@@ -26,6 +26,11 @@
     "preserveConstEnums": true,
     "forceConsistentCasingInFileNames": false,
     "experimentalDecorators": true,
+    "types": [
+      "jest",
+      "node",
+      "@testing-library/jest-dom"
+    ],
     "paths": {
       "@/*": ["./*"]
     }
@@ -34,7 +39,7 @@
     "./**/*.json",
     "./**/*.ts",
     "./**/*.tsx"
-  ],
+],
   "exclude": [
     "node_modules",
     "./jest*",

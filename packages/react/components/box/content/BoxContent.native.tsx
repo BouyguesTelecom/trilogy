@@ -1,10 +1,11 @@
 import { BoxContentNativeRef, BoxContentProps } from '@/components/box/content/BoxContentProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { getColorStyle } from "@/helpers/color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Box Content
