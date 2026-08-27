@@ -1,4 +1,4 @@
-import Calendar from './Calendar'
+import Calendar from '@/components/calendar/Calendar'
 
 export * from './CalendarProps'
 

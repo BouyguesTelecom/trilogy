@@ -1,11 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects'
 import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'
-import { ProgressNativeRef, ProgressProps } from './ProgressProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { ProgressNativeRef, ProgressProps } from '@/components/progress/ProgressProps'
+import { getColorStyle } from "@/helpers/color";
+import { getStatusStyle } from "@/helpers/status";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Progress Component

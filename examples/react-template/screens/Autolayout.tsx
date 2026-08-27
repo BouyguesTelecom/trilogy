@@ -24,7 +24,6 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
 
 export const AutolayoutScreen = (): JSX.Element => {
   return (

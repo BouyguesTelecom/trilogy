@@ -1,11 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { createContext, PropsWithChildren } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Skeleton } from '../skeleton'
-import { CardNativeRef, CardProps } from './CardProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { Skeleton } from '@/components/skeleton'
+import { CardNativeRef, CardProps } from '@/components/card/CardProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 export const CardContext = createContext({
   floating: false,

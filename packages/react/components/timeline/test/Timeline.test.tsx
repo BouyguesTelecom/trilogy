@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
-import Timeline from '../Timeline'
-import TimelineItem from '../item'
-import TimelineMarker from '../marker'
-import { IconName } from '../../icon'
-import TimelineContent from '../content'
+import Timeline from '@/components/timeline/Timeline'
+import TimelineItem from '@/components/timeline/item'
+import TimelineMarker from '@/components/timeline/marker'
+import { IconName } from '@/components/icon'
+import TimelineContent from '@/components/timeline/content'
 
 describe('Timeline component', () => {
   it('renders without crashing', () => {

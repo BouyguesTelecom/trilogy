@@ -1,9 +1,9 @@
-import { Alignable } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import ImageComponent from './Image'
-import type { ImageProps } from './ImageProps'
-import { Radius } from '@/objects/facets/Radius'
+import ImageComponent from '@/components/image/Image'
+import type { ImageProps } from '@/components/image/ImageProps'
+import { Alignable } from "@/interfaces/Alignable";
+import { Radius } from "@/interfaces/Radius";
 
 ImageComponent.displayName = 'Image'
 

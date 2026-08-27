@@ -2,7 +2,8 @@ import { AccordionNativeRef, AccordionProps } from '@/components/accordion/Accor
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Accordion Component

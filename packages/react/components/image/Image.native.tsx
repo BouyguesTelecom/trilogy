@@ -1,8 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { Image as ImageNative, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { ImageCache, ImageNativeRef, ImageProps } from './ImageProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { ImageCache, ImageNativeRef, ImageProps } from '@/components/image/ImageProps'
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Image Component

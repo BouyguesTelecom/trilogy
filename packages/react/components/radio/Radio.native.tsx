@@ -1,10 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioNativeProps, RadioNativeRef } from '@/components/radio/RadioProps'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Radio Component

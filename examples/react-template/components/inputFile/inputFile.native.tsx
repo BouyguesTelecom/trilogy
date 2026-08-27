@@ -10,7 +10,7 @@ import {
   Text,
   View,
 } from '@trilogy-ds/react/components'
-import { Align, DirectionEnum, TypographyBold } from '@trilogy-ds/react/objects'
+import { Align, DirectionEnum, TypographyBold } from '@trilogy-ds/react/interfaces'
 import { useState } from 'react'
 import { IInputFile } from './interface'
 

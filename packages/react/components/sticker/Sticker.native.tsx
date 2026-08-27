@@ -2,11 +2,15 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, getVariantStyle, TrilogyColor, TypographyBold } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { StickerNativeRef, StickerProps } from './StickerProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { StickerNativeRef, StickerProps } from '@/components/sticker/StickerProps'
+import { getRadiusStyle } from '@/helpers/radius'
+import { getColorStyle } from '@/helpers/color'
+import { getVariantStyle } from '@/helpers/variant'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Sticker Component

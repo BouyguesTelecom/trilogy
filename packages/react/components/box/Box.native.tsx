@@ -2,11 +2,13 @@ import { BoxNativeRef, BoxProps } from '@/components/box/BoxProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import React, { useState } from 'react'
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Skeleton } from '../skeleton'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { Skeleton } from '@/components/skeleton'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Box Component

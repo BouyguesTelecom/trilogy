@@ -2,11 +2,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Calendar, ChangeEventCalendar } from '@/components/calendar'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { forwardRef, useCallback, useEffect, useState, useRef } from 'react'
 import { StyleSheet, TextInput, TouchableOpacity, View, Platform, Modal } from 'react-native'
-import { DatePickerProps } from './DatePickerProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { DatePickerProps } from '@/components/datepicker/DatePickerProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * DatePicker Component

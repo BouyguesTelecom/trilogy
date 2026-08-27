@@ -1,7 +1,7 @@
 import React, { Dispatch, ReactNode, SetStateAction } from 'react'
-import { ITrilogyTheme } from './interfaces'
-import { DEFAULT_TRILOGY_COLORS } from '@/objects/facets/defaultColors'
-import { DEFAULT_TRILOGY_RADIUS } from '@/objects/facets/defaultRadius'
+import { ITrilogyTheme } from '@/context/interfaces'
+import { DEFAULT_TRILOGY_COLORS } from '@/interfaces/defaultColors'
+import { DEFAULT_TRILOGY_RADIUS } from '@/interfaces/defaultRadius'
 
 export interface ITrilogyThemeProvider {
   children?: ReactNode

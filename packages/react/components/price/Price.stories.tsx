@@ -1,9 +1,9 @@
-import { Align } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
-import PriceComponent from './Price'
-import { PriceLevel } from './PriceEnum'
-import type { PriceProps } from './PriceProps'
+import PriceComponent from '@/components/price/Price'
+import { PriceLevel } from '@/components/price/PriceEnum'
+import type { PriceProps } from '@/components/price/PriceProps'
 import React from 'react'
+import { Align } from "@/interfaces/Alignable";
 
 PriceComponent.displayName = 'Price'
 
@@ -97,7 +97,7 @@ const meta: Meta<PriceProps> = {
     id: '',
     className: '',
     testId: 'price-default',
-    verticalAlign: Align.START
+    verticalAlign: Align.START,
   },
 }
 

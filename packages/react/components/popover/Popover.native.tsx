@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { PopoverNativeRef, PopoverProps } from './PopoverProps'
+import { PopoverNativeRef, PopoverProps } from '@/components/popover/PopoverProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StyleSheet, View } from 'react-native'
-import { getColorStyle, TrilogyColor } from '@/objects'
-import { PopoverDirection } from './PopoverEnum'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { PopoverDirection } from '@/components/popover/PopoverEnum'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Popover Component

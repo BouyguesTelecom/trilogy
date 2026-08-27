@@ -1,13 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useContext, useEffect, useState } from 'react'
 import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
-import { Icon, IconColor, IconName, IconSize } from '../icon'
-import { ChipsNativeRef, ChipsProps } from './ChipsProps'
-import { ChipsContext } from './list/ChipsList.native'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
+import { ChipsNativeRef, ChipsProps } from '@/components/chips/ChipsProps'
+import { ChipsContext } from '@/components/chips/list/ChipsList.native'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Chips Component - has to be in a ChipsList component

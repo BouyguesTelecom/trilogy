@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TagListNativeRef, TagListProps } from './TagListProps'
+import { TagListNativeRef, TagListProps } from '@/components/tag/list/TagListProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioTilesProps, RadioTilesRef } from '@/components/radio/tiles/RadioTilesProps'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/helpers/classify'
 import { isRequiredChild } from '@/helpers/require'
-import { getAlignClassName } from '@/objects'
-import { is } from '@/services'
+import { getAlignClassName } from '@/helpers/alignable'
 import clsx from 'clsx'
 import * as React from 'react'
 

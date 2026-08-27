@@ -3,8 +3,8 @@ import { InputStatus, InputType } from '@/components/input/InputEnum'
 import { Text } from '@/components/text'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import AutoComplete from './AutoComplete'
-import { AutoCompletePropsWeb, Item } from './AutoCompleteProps'
+import AutoComplete from '@/components/autocomplete/AutoComplete'
+import { AutoCompletePropsWeb, Item } from '@/components/autocomplete/AutoCompleteProps'
 
 interface CustomData {
   info: number

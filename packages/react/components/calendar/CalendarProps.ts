@@ -1,4 +1,4 @@
-import { Dev } from "@/objects/facets/Dev"
+import { Dev } from "@/interfaces/Dev";
 
 export type ChangeEventCalendar = Date | [Date, Date] | [Date] | []
 

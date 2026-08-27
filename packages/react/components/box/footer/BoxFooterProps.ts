@@ -1,8 +1,8 @@
-import { Accessibility } from '@/objects/facets/Accessibility'
-import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { Dev } from '@/objects/facets/Dev'
 import { View } from 'react-native'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 /**
  * Box Footer Interface

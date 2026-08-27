@@ -1,13 +1,16 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text as TextNative, View } from 'react-native'
-import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography'
-import { CountdownFormat, CountdownUnite } from './CountdownEnum'
-import { CountdownNativeRef, CountdownProps } from './CountdownProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { CountdownFormat, CountdownUnite } from '@/components/countdown/CountdownEnum'
+import { CountdownNativeRef, CountdownProps } from '@/components/countdown/CountdownProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getTypographyBoldStyle } from "@/helpers/typography";
+import { TypographyBold } from "@/interfaces/TypographyBold";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)

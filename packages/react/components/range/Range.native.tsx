@@ -1,11 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Text, TextLevels } from '../text'
-import { RangeNativeProps, RangeNativeRef } from './RangeProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { Text, TextLevels } from '@/components/text'
+import { RangeNativeProps, RangeNativeRef } from '@/components/range/RangeProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { TypographyBold } from "@/interfaces/TypographyBold";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Range Component

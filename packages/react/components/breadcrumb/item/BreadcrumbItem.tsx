@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { BreadcrumbItemPropsWeb, BreadcrumbItemRef } from './BreadcrumbItemProps'
+import { BreadcrumbItemPropsWeb, BreadcrumbItemRef } from '@/components/breadcrumb/item/BreadcrumbItemProps'
 
 /**
  * Breadcrumb Item Component

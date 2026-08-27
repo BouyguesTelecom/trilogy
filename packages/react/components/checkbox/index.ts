@@ -1,7 +1,7 @@
-import Checkbox from './Checkbox'
-import CheckboxList from './list/CheckboxList'
-import CheckboxTiles from './tiles/CheckboxTiles'
-import CheckboxTile from './tiles/tile/CheckboxTile'
+import Checkbox from '@/components/checkbox/Checkbox'
+import CheckboxList from '@/components/checkbox/list/CheckboxList'
+import CheckboxTiles from '@/components/checkbox/tiles/CheckboxTiles'
+import CheckboxTile from '@/components/checkbox/tiles/tile/CheckboxTile'
 
 export * from './CheckboxProps'
 

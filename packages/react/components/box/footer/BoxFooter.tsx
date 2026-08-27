@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { has } from '@/services/classify'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { BoxFooterProps, BoxFooterRef } from './BoxFooterProps'
+import { BoxFooterProps, BoxFooterRef } from '@/components/box/footer/BoxFooterProps'
+import { getBackgroundClassName } from '@/helpers/background'
 
 /**
  * Box Footer Component

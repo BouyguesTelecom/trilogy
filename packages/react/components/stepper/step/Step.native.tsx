@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { Animated, ColorValue, Easing, StyleSheet } from 'react-native'
-import { StepNativeRef, StepProps } from './StepProps'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { StepNativeRef, StepProps } from '@/components/stepper/step/StepProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { getRadiusStyle } from '@/helpers/radius'
+import { getColorStyle } from '@/helpers/color'
+import { Radius } from '@/interfaces/Radius'
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * Stepper Step Component

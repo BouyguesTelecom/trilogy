@@ -1,6 +1,6 @@
-import { CommonProps } from '@/objects/facets/CommonProps'
-import { Dev } from '@/objects/facets/Dev'
 import { type TextInput, type View } from 'react-native'
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 interface BaseTimepickerProps extends CommonProps, Dev {
   value?: string

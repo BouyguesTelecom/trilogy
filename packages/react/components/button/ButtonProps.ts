@@ -1,10 +1,5 @@
 import { TouchableOpacity } from 'react-native'
-import { IconName, IconNameValues } from '../../components/icon'
-import { Accessibility } from '../../objects/facets/Accessibility'
-import { Clickable } from '../../objects/facets/Clickable'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { Dev } from '../../objects/facets/Dev'
-import { Fullwidth } from '../../objects/facets/Fullwidth'
+import { IconName, IconNameValues } from '@/components/icon'
 import {
   ButtonMarkup,
   ButtonMarkupValues,
@@ -12,7 +7,12 @@ import {
   ButtonTypeValues,
   ButtonVariant,
   ButtonVariantValues,
-} from './ButtonEnum'
+} from '@/components/button/ButtonEnum'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Clickable } from "@/interfaces/Clickable";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
+import { Fullwidth } from "@/interfaces/Fullwidth";
 
 /**
  * Button Interface

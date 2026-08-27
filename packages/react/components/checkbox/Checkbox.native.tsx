@@ -2,11 +2,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { CheckboxNativeRef, CheckboxProps } from '@/components/checkbox/CheckboxProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Checkbox Component

@@ -1,7 +1,9 @@
-import { AlignableProps, Clickable, Dev } from '../../objects'
 import { DimensionValue, type Image } from 'react-native'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { Radius, RadiusValues } from '../../objects/facets/Radius'
+import { AlignableProps } from "@/interfaces/Alignable";
+import { Clickable } from "@/interfaces/Clickable";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Radius, RadiusValues } from "@/interfaces/Radius";
 
 export type ImageCache = 'immutable' | 'web' | 'cacheOnly'
 

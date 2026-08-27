@@ -1,4 +1,4 @@
-import Input from './Input'
+import Input from '@/components/input/Input'
 
 export * from './InputEnum'
 export * from './InputProps'

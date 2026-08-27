@@ -1,6 +1,6 @@
 ---
 name: migration-v5
-description: "Use when migrating a Trilogy Design System project from v4 to v5, especially when replacing TrilogyProviderStyled theme props and moving default or mangled CSS loading into the HTML head."
+description: "Use when migrating a Trilogy Design System project from v4 to v5, including consumer import paths, TrilogyProviderStyled theme props, and CSS loading."
 metadata:
   author: bouygues-telecom
   version: "1.0.0"
@@ -13,8 +13,17 @@ Ce skill coordonne les migrations d’un projet Trilogy Design System de la v4 v
 ## Règles de migration
 
 - [provider-styled.md](rules/provider-styled.md) : remplacement de la prop `theme` et déplacement du CSS vers le `<head>`.
+- [path-remapping-v5.md](rules/path-remapping-v5.md) : migration des imports consommateurs `@trilogy-ds/react` (`objects`/`facets`/`atoms` supprimés, interfaces sous `interfaces`, fonctions utilitaires sous `helpers`).
 
 Ajouter chaque futur changement dans un fichier séparé sous `rules/`, puis le référencer ici. Une règle doit décrire le contexte, les transformations avant/après, les exceptions et les contrôles associés.
+
+## Agents
+
+- [discovery.md](agents/discovery.md) : identifie le type de projet, les points d'entrée et les règles applicables, sans modifier les fichiers.
+- [remapper.md](agents/remapper.md) : applique les transformations v4 vers v5 en conservant le style d'import du consommateur.
+- [reviewer.md](agents/reviewer.md) : vérifie les imports, API et validations restantes après migration, en lecture seule.
+
+Ordre recommandé : `discovery` -> `remapper` -> `reviewer`.
 
 ## Déroulement obligatoire
 

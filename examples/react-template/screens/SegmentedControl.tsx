@@ -1,6 +1,5 @@
-import * as React from 'react'
 import { Section, SegmentControl, SegmentControlItem } from '@trilogy-ds/react/components'
-import { Alignable, TrilogyColor } from '@trilogy-ds/react'
+import { TrilogyColor } from '@trilogy-ds/react'
 
 export const SegmentedControlScreen = (): JSX.Element => {
   return (

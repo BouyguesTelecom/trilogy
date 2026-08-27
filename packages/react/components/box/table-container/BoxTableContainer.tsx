@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { BoxTableContainerProps, BoxTableContainerRef } from './BoxTableContainerProps'
+import { BoxTableContainerProps, BoxTableContainerRef } from '@/components/box/table-container/BoxTableContainerProps'
 
 /**
  * Box Table Component

@@ -1,7 +1,8 @@
-import { Dev, Marginless } from '@/objects'
 import { IconName, IconNameValues } from '@/components/icon'
-import { CommonProps } from '../../objects/facets/CommonProps'
 import { View } from 'react-native'
+import { Dev } from "@/interfaces/Dev";
+import { Marginless } from "@/interfaces/Marginless";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 /**
  * Divider Interface
