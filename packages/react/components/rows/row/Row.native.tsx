@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { RowNativeRef, RowProps } from './RowProps'
+import { RowNativeRef, RowProps } from '@/components/rows/row/RowProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

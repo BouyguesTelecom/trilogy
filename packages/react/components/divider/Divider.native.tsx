@@ -1,11 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor } from '@/components/icon'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { DividerNativeRef, DividerProps } from './DividerProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { DividerNativeRef, DividerProps } from '@/components/divider/DividerProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Divider Component

@@ -1,7 +1,8 @@
-import { AlignableProps, Dev } from '@/objects'
 import type { View } from 'react-native'
-import { Clickable } from '../../objects/facets/Clickable'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { AlignableProps } from "@/interfaces/Alignable";
+import { Dev } from "@/interfaces/Dev";
+import { Clickable } from "@/interfaces/Clickable";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 /**
  * SegmentedControl Interface

@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { AccordionHeaderProps, AccordionHeaderRef } from './AccordionHeaderProps'
+import { AccordionHeaderProps, AccordionHeaderRef } from '@/components/accordion/item/header/AccordionHeaderProps'
 
 /**
  * Accordion Header

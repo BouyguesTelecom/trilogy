@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
-import ChipsList from "../ChipsList";
+import ChipsList from "@/components/chips/list/ChipsList";
 
 describe("ChipsList", () => {
   it("should render with correct classes and props", () => {

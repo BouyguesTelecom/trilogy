@@ -1,8 +1,8 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useEffect, useRef } from 'react'
-import TimepickerSelectorItem from './item/TimepickerSelectorItem'
+import TimepickerSelectorItem from '@/components/timepicker/default/selector/item/TimepickerSelectorItem'
 
 interface SelectItem {
   label: string

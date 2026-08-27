@@ -3,10 +3,12 @@ import React, { useId } from 'react'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
 import { Text } from '@/components/text'
-import { TrilogyColor, getColorStyle } from '@/objects'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 import { DimensionValue, StyleSheet, View } from 'react-native'
-import { useGauge } from './hook/useGauge'
+import { useGauge } from '@/components/input/gauge/hook/useGauge'
+import { TrilogyColor } from "@/interfaces/Color";
+import { getColorStyle } from "@/helpers/color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 interface InputGaugeProps {
   validationRules?: IValidationRules

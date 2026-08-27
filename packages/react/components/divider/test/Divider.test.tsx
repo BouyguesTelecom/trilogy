@@ -1,44 +1,36 @@
 // Dependencies
-import * as React from "react";
+import * as React from 'react'
 
 // Testing methods
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react'
 // @ts-ignore
-import renderer from "react-test-renderer";
-import { is } from "../../../services"; // Component to test
-import { Divider } from "..";
+import renderer from 'react-test-renderer'
+import { is } from '@/helpers/classify' // Component to test
+import { Divider } from '@/components/divider'
 
-describe("Divider component", () => {
-  test("should have a separator in document", () => {
-    render(<Divider testId="separator" />);
+describe('Divider component', () => {
+  test('should have a separator in document', () => {
+    render(<Divider testId='separator' />)
 
-    expect(screen.getByTestId("separator")).toBeInTheDocument();
-    expect(screen.getByTestId("separator")).toHaveClass("divider");
-  });
+    expect(screen.getByTestId('separator')).toBeInTheDocument()
+    expect(screen.getByTestId('separator')).toHaveClass('divider')
+  })
 
   test('should have "is-unboxed" className', () => {
-    render(<Divider unboxed={true} />);
+    render(<Divider unboxed={true} />)
 
-    expect(screen.getByTestId("separator")).toHaveClass(is("unboxed"));
-  });
+    expect(screen.getByTestId('separator')).toHaveClass(is('unboxed'))
+  })
 
   test('should not have "is-unboxed" className', () => {
-    render(<Divider unboxed={false} />);
+    render(<Divider unboxed={false} />)
 
-    expect(screen.getByTestId("separator")).not.toHaveClass(is("unboxed"));
-  });
+    expect(screen.getByTestId('separator')).not.toHaveClass(is('unboxed'))
+  })
 
-  test("snapshot", () => {
-    const tree = renderer
-      .create(
-        <Divider
-          className={"className"}
-          content={"content"}
-          unboxed={true}
-        />
-      )
-      .toJSON();
+  test('snapshot', () => {
+    const tree = renderer.create(<Divider className={'className'} content={'content'} unboxed={true} />).toJSON()
 
-    expect(tree).toMatchSnapshot();
-  });
-});
+    expect(tree).toMatchSnapshot()
+  })
+})

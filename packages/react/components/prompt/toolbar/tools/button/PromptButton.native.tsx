@@ -1,11 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptContext } from '@/components/prompt/context'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { getRadiusStyle } from '@/objects/facets/Radius'
-import { Radius } from '@/objects/facets/Radius'
 import React, { useContext } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
-import { PromptButtonNativeRef, PromptButtonProps } from './PromptButtonProps'
+import { PromptButtonNativeRef, PromptButtonProps } from '@/components/prompt/toolbar/tools/button/PromptButtonProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
   ({ disabled, active, onClick, rounded, readOnly, ...others }, ref) => {

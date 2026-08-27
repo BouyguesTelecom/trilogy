@@ -1,3 +1,3 @@
-import Link from './Link'
+import Link from '@/components/link/Link'
 
 export { Link }

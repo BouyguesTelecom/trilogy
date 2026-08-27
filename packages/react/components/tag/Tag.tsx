@@ -1,12 +1,13 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { is } from '@/services/classify'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getColorClassName } from '@/helpers/color'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { Icon } from '../icon'
-import { TagProps, TagRef } from './TagProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
+import { TagProps, TagRef } from '@/components/tag/TagProps'
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
 
 /**
  * Tag Component

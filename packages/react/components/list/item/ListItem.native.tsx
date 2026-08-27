@@ -3,10 +3,13 @@ import { Icon, IconName } from '@/components/icon'
 import { ListContext } from '@/components/list/context'
 import { ListItemNativeRef, ListItemProps } from '@/components/list/item/ListItemProps'
 import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
 import React, { useContext, useEffect, useId, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { TypographyBold } from "@/interfaces/TypographyBold";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * ListItem Component

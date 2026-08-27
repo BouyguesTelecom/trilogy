@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 import * as React from 'react'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
-import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/helpers/classify'
+import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
 
 /**
  * AutoCompleteMenu Component
@@ -18,7 +18,14 @@ import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
  * @param suggestions {Array} Suggestions list for AutoComplete
  * @param handleSelectItem {Function} Callback when selecting an item
  */
-const AutoCompleteMenu = ({ children, className, id, absolute, fullwidth, testId }: AutoCompleteMenuProps): JSX.Element => {
+const AutoCompleteMenu = ({
+  children,
+  className,
+  id,
+  absolute,
+  fullwidth,
+  testId,
+}: AutoCompleteMenuProps): JSX.Element => {
   const { styled } = useTrilogyContext()
 
   return (

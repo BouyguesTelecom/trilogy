@@ -2,11 +2,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { isValidElement, useEffect, useRef, useState } from 'react'
 import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
-import { AccordionItemNativeRef, AccordionItemProps } from './AccordionItemProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 interface AccordionChild {
   header?: React.ReactNode

@@ -3,9 +3,10 @@
  */
 import { ReactNode } from 'react'
 import { Animated, type View } from 'react-native'
-import { IconName, IconNameValues } from '../../../components/icon'
-import { Accessibility, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 export enum ListIconStatus {
   SUCCESS = 'SUCCESS',

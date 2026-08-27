@@ -2,13 +2,13 @@ import { Badge } from '@/components/badge'
 import { FlexBox } from '@/components/flex-box'
 import { Icon, IconName } from '@/components/icon'
 import { Section } from '@/components/section'
-import { StatusState } from '@/objects/facets/Status'
 import type { Meta, StoryObj } from '@storybook/react'
-import { TrilogyColor } from '../../objects'
-import { IconSize } from '../icon'
-import { BadgePositionEnum } from './BadgeEnum'
-import { BadgeProps, BadgeVariant } from './BadgeProps'
+import { IconSize } from '@/components/icon'
+import { BadgePositionEnum } from '@/components/badge/BadgeEnum'
+import { BadgeProps, BadgeVariant } from '@/components/badge/BadgeProps'
 import React from 'react'
+import { StatusState } from "@/interfaces/Status";
+import { TrilogyColor } from "@/interfaces/Color";
 
 const meta: Meta<BadgeProps> = {
   title: 'Components/Badge',

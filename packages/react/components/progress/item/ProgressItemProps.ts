@@ -1,5 +1,7 @@
-import { Accessibility, Dev, StatusProps } from '@/objects/facets'
 import { View } from 'react-native'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Dev } from "@/interfaces/Dev";
+import { StatusProps } from "@/interfaces/Status";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }

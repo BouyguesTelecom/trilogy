@@ -13,12 +13,11 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
 
 export const AccordionScreen = (): JSX.Element => {
   return (
     <Section>
-      <Spacer size={3} />
+      <Spacer size={SpacerSize.ONE} />
       <Title level={TitleLevels.TWO}>Base</Title>
       <Spacer size={SpacerSize.THREE} />
       <Accordion id='accordion-1'>

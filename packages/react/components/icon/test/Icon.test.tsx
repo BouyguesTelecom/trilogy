@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
-import Icon from '../Icon'
-import { IconName } from '../IconNameEnum'
-import { IconPosition } from '../IconEnum'
-import { IconProps } from '../IconProps'
-import { Alignable, TrilogyColor } from '../../../objects'
+import Icon from '@/components/icon/Icon'
+import { IconName } from '@/components/icon/IconNameEnum'
+import { IconPosition } from '@/components/icon/IconEnum'
+import { IconProps } from '@/components/icon/IconProps'
+import { Alignable } from "@/interfaces/Alignable";
+import { TrilogyColor } from "@/interfaces/Color";
 
 const defaultProps: IconProps = {
   size: 'medium',

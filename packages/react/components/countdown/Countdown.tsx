@@ -1,11 +1,11 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { CountdownFormat, CountdownUnite } from './CountdownEnum'
-import { CountdownProps, CountdownRef } from './CountdownProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { CountdownFormat, CountdownUnite } from '@/components/countdown/CountdownEnum'
+import { CountdownProps, CountdownRef } from '@/components/countdown/CountdownProps'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)

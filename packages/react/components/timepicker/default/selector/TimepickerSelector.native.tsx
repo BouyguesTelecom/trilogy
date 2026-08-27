@@ -1,9 +1,10 @@
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { NativeScrollEvent, NativeSyntheticEvent, Pressable, ScrollView, StyleSheet, View } from 'react-native'
-import TimepickerSelectorItem from './item/TimepickerSelectorItem.native'
-import { getRadiusStyle } from '@/objects/facets/Radius'
-import { Radius } from '@/objects/facets/Radius'
+import TimepickerSelectorItem from '@/components/timepicker/default/selector/item/TimepickerSelectorItem.native'
+import { getRadiusStyle } from '@/helpers/radius'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
 
 interface SelectItem {
   label: string

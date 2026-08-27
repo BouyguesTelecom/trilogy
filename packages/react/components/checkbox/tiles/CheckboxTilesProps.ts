@@ -1,12 +1,12 @@
 import { View } from 'react-native'
-import { AlignableProps } from '../../../objects/facets/Alignable'
-import { CommonProps } from '../../../objects/facets/CommonProps'
-import { GridItemSize, GridSize } from '@/objects/facets/Grid'
-import { Dev } from '@/objects/facets/Dev'
+import { AlignableProps } from "@/interfaces/Alignable";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { GridItemSize, GridSize } from "@/interfaces/Grid";
+import { Dev } from "@/interfaces/Dev";
 
 export interface CheckboxTilesProps extends AlignableProps, CommonProps, Dev {
-  children: React.ReactNode;
-  accessibilityLabelledBy?: string;
+  children: React.ReactNode
+  accessibilityLabelledBy?: string
   numberCols?: GridSize | GridItemSize
 }
 

@@ -1,12 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Pager } from './PaginationEnum'
-import { PaginationNativeProps, PaginationNativeRef } from './PaginationProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { Pager } from '@/components/pagination/PaginationEnum'
+import { PaginationNativeProps, PaginationNativeRef } from '@/components/pagination/PaginationProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Pagination Component

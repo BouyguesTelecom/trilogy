@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import RangeComponent from './Range'
+import RangeComponent from '@/components/range/Range'
 
 RangeComponent.displayName = 'Range'
 

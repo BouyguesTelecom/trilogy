@@ -1,9 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { SegmentControlItemNativeRef, SegmentControlItemProps } from './SegmentControlItemProps'
-import { getRadiusStyle, Radius } from '@/objects/facets/Radius'
+import { SegmentControlItemNativeRef, SegmentControlItemProps } from '@/components/segment-control/item/SegmentControlItemProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * SegmentControlItem Item Component

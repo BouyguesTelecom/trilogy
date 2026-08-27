@@ -1,6 +1,8 @@
 import { View } from 'react-native'
-import { AlignableProps, Dev, Marginless } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { AlignableProps } from "@/interfaces/Alignable";
+import { Dev } from "@/interfaces/Dev";
+import { Marginless } from "@/interfaces/Marginless";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 /**
  * Tag list Interface

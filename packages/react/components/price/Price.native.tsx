@@ -3,10 +3,14 @@ import { Spacer, SpacerSize } from '@/components/spacer'
 import { StatesContext } from '@/context/providerStates'
 import React, { useContext, useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Alignable, getColorStyle, getTypographyBoldStyle, TrilogyColor, TypographyBold } from '../../objects'
-import { PriceLevel } from './PriceEnum'
-import { checkCents } from './PriceHelpers'
-import { PriceNativeRef, PriceProps } from './PriceProps'
+import { PriceLevel } from '@/components/price/PriceEnum'
+import { checkCents } from '@/components/price/PriceHelpers'
+import { PriceNativeRef, PriceProps } from '@/components/price/PriceProps'
+import { Alignable } from "@/interfaces/Alignable";
+import { getColorStyle } from "@/helpers/color";
+import { getTypographyBoldStyle } from "@/helpers/typography";
+import { TrilogyColor } from "@/interfaces/Color";
+import { TypographyBold } from "@/interfaces/TypographyBold";
 
 /**
  * Price Component

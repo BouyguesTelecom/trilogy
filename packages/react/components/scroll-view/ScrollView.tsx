@@ -1,11 +1,11 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { ScrollDirectionEnum } from '@/objects'
-import { is } from '@/services'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { ScrollViewProps, ScrollViewRef } from './ScrollViewProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ScrollViewProps, ScrollViewRef } from '@/components/scroll-view/ScrollViewProps'
+import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
 
 /**
  * ScrollView Component

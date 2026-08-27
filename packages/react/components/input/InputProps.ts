@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
-import { Accessibility, Dev } from '../../objects/facets'
-
 import { type ChangeEvent, FocusEventHandler, ReactNode } from 'react'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconName, IconNameValues } from '../icon'
+import { IconName, IconNameValues } from '@/components/icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
@@ -20,7 +17,10 @@ import {
   InputTextContentTypeValues,
   InputType,
   InputTypeValues,
-} from './InputEnum'
+} from '@/components/input/InputEnum'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 export interface InputChangeEventWeb {
   inputName: string
