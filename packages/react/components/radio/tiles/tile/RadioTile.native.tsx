@@ -6,7 +6,7 @@ import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { RadioTilesContext } from '@/components/radio/tiles/context/index'
+import { RadioTilesContext } from '@/components/radio/tiles/context'
 import { VariantState } from "@/interfaces/Variant";
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor } from "@/interfaces/Color";

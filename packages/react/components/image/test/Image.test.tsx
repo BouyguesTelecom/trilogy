@@ -8,7 +8,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 // Component to test
-import { Image } from '@/components/image/index'
+import { Image } from '@/components/image'
 
 describe('Image component', () => {
   test('should have "image" className', () => {

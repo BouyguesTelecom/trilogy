@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Button } from '@/components/button/index'
-import { IconName } from '@/components/icon/index'
+import { Button } from '@/components/button'
+import { IconName } from '@/components/icon'
 import DropdownComponent from '@/components/dropdown/Dropdown'
 import type { DropdownProps } from '@/components/dropdown/DropdownProps'
 import DropdownItem from '@/components/dropdown/item/DropdownItem'

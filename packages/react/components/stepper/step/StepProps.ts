@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { IconName, IconNameValues } from '@/components/icon/index'
+import { IconName, IconNameValues } from '@/components/icon'
 import { CommonProps } from "@/interfaces/CommonProps";
 import { Dev } from "@/interfaces/Dev";
 

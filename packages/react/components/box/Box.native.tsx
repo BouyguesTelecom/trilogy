@@ -4,7 +4,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import React, { useState } from 'react'
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Skeleton } from '@/components/skeleton/index'
+import { Skeleton } from '@/components/skeleton'
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
 import { getRadiusStyle } from "@/helpers/radius";

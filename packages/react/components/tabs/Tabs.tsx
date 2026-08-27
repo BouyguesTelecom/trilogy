@@ -1,6 +1,6 @@
 import { TabsProps, TabsRef } from '@/components/tabs/TabsProps'
 import { TabsContext } from '@/components/tabs/context'
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'

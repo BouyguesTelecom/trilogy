@@ -3,7 +3,8 @@ import * as React from 'react'
 
 // Testing methods
 import { render, screen } from '@testing-library/react'
-import { getEnumNames, getColorClassName } from '@/helpers/index'
+import { getEnumNames } from '@/helpers/enumHelpers'
+import { getColorClassName } from '@/helpers/color'
 import { is } from '@/helpers/classify'
 
 // Component to test

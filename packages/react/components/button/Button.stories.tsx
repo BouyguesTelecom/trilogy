@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import ButtonComponent from '@/components/button/Button'
 import { ButtonMarkup, ButtonType, ButtonVariant } from '@/components/button/ButtonEnum'
 import type { ButtonProps } from '@/components/button/ButtonProps'
-import { ButtonList } from '@/components/button/list/index'
+import { ButtonList } from '@/components/button/list'
 import { ButtonListDirectionEnum } from '@/components/button/list/ButtonListEnum'
 import React from 'react'
 import { Alignable } from "@/interfaces/Alignable";

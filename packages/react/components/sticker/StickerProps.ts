@@ -1,4 +1,4 @@
-import { IconName, IconNameValues } from '@/components/icon/index'
+import { IconName, IconNameValues } from '@/components/icon'
 import { View } from 'react-native'
 import { Small } from "@/interfaces/Small";
 import { Accessibility } from "@/interfaces/Accessibility";

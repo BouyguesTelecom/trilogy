@@ -4,7 +4,7 @@ import * as React from 'react'
 // Testing methods
 import { render } from '@testing-library/react'
 import Modal from '@/components/modal/Modal'
-import { ModalBody } from '@/components/modal/index'
+import { ModalBody } from '@/components/modal'
 
 // Component to test
 

@@ -3,7 +3,7 @@ import { Title, TitleLevels } from '@/components/title'
 import { isIOS } from '@/helpers/device.native'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ModalContext } from '@/components/modal/context/index'
+import { ModalContext } from '@/components/modal/context'
 import { ModalFooterProps, ModalFooterNativeRef } from '@/components/modal/footer/ModalFooterProps'
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor } from "@/interfaces/Color";

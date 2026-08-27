@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
-import TableTr from '@/components/table/tr/index'
+import TableTr from '@/components/table/tr'
 import { has, is } from '@/helpers/classify'
 import { getBackgroundClassName } from '@/helpers/background'
 import { getColorClassName } from '@/helpers/color'
 import Table from '@/components/table/Table'
-import TableHead from '@/components/table/head/index'
-import TableTd from '@/components/table/td/index'
+import TableHead from '@/components/table/head'
+import TableTd from '@/components/table/td'
 import { TrilogyColor } from '@/interfaces/Color'
 
 describe('TableHead', () => {

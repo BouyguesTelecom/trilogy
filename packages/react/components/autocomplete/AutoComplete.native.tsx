@@ -7,7 +7,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { AutocompleteNativeRef, AutoCompletePropsNative } from '@/components/autocomplete/AutoCompleteProps'
 import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplete.helpers'
 import AutoCompleteMenuNative from '@/components/autocomplete/menu/AutoCompleteMenu.native'
-import { debounce } from '@/components/autocomplete/utils/index'
+import { debounce } from '@/components/autocomplete/utils'
 
 /**
  * AutoComplete Component

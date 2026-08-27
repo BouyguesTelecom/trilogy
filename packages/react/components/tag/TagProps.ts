@@ -1,4 +1,4 @@
-import { IconName } from '@/components/icon/index'
+import { IconName } from '@/components/icon'
 import { TagVariant, TagVariantValues } from '@/components/tag/TagEnum'
 import { View } from 'react-native'
 import { Accessibility } from "@/interfaces/Accessibility";

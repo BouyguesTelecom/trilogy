@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { IconName } from '@/components/icon/index'
+import { IconName } from '@/components/icon'
 import InputComponent, { type InputProp } from '@/components/input/Input'
 import {
   InputAutoCapitalize,

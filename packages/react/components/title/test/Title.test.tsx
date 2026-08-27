@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react'
-import { getEnumNames } from '@/helpers/index'
+import { getEnumNames } from '@/helpers/enumHelpers'
 import { is } from '@/helpers/classify'
 
 // Testing methods
@@ -9,7 +9,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 // Component to test
-import { Title, TitleLevels } from '@/components/title/index'
+import { Title, TitleLevels } from '@/components/title'
 import { TitleMarkup } from '@/components/title/TitleEnum'
 import { TypographyAlign } from '@/interfaces/TypographyAlign'
 import { TypographyBold } from '@/interfaces/TypographyBold'

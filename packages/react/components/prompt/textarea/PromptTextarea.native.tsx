@@ -4,7 +4,7 @@ import Textarea from '@/components/textarea/Textarea.native'
 import { TextareaChangeEvent } from '@/components/textarea/TextareaProps'
 import React, { useContext, useEffect, useImperativeHandle } from 'react'
 import { StyleSheet, TextInput } from 'react-native'
-import { PromptContext } from '@/components/prompt/context/index'
+import { PromptContext } from '@/components/prompt/context'
 import { PromptTextareaNativeRef, PromptTextareaProps } from '@/components/prompt/textarea/PromptTextareaProps'
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor } from "@/interfaces/Color";

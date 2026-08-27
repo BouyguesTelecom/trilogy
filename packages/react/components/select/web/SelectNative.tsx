@@ -6,7 +6,7 @@ import { Icon } from '@/components/icon'
 import { SelectOption } from '@/components/select'
 import { ParamEventSelectFocus, SelectProps, SelectRef } from '@/components/select/SelectProps'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import { TypographyColor } from "@/interfaces/TypographyColor";

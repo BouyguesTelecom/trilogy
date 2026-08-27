@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import React, { createContext, PropsWithChildren } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Skeleton } from '@/components/skeleton/index'
+import { Skeleton } from '@/components/skeleton'
 import { CardNativeRef, CardProps } from '@/components/card/CardProps'
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor } from "@/interfaces/Color";

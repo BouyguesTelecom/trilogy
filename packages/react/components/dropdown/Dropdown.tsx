@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { DropdownProvider, useDropdownContext } from '@/components/dropdown/context/index'
+import { DropdownProvider, useDropdownContext } from '@/components/dropdown/context'
 import { DropdownProps, DropdownRef } from '@/components/dropdown/DropdownProps'
 import DropdownTrigger from '@/components/dropdown/trigger/DropdownTrigger'
 

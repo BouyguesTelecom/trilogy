@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import { Accordion, AccordionHeader, AccordionItem } from '@/components/accordion/index'
-import AccordionBody from '@/components/accordion/item/body/index'
+import { Accordion, AccordionHeader, AccordionItem } from '@/components/accordion'
+import AccordionBody from '@/components/accordion/item/body'
 
 describe('AccordionItem', () => {
   it('should render correctly', () => {

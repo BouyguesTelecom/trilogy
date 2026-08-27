@@ -3,7 +3,7 @@ import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import React, { useContext, useEffect, useState } from 'react'
 import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
-import { Icon, IconColor, IconName, IconSize } from '@/components/icon/index'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ChipsNativeRef, ChipsProps } from '@/components/chips/ChipsProps'
 import { ChipsContext } from '@/components/chips/list/ChipsList.native'
 import { getColorStyle } from "@/helpers/color";

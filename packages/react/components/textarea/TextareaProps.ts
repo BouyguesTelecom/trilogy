@@ -1,7 +1,7 @@
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TextInput } from 'react-native'
-import { IconStatus } from '@/components/icon/index'
+import { IconStatus } from '@/components/icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,

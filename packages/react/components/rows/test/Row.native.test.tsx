@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react-native'
 import * as React from 'react'
-import { Text } from '@/components/text/index'
+import { Text } from '@/components/text'
 import Rows from '@/components/rows/Rows'
-import Row from '@/components/rows/row/index'
+import Row from '@/components/rows/row'
 
 describe('Rows', () => {
   it('renders children', () => {

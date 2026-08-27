@@ -14,7 +14,7 @@ import {
   ToasterAlertPosition,
   ToasterStatusProps,
 } from '@/components/alert/AlertProps'
-import ToasterContext from '@/components/alert/context/index'
+import ToasterContext from '@/components/alert/context'
 import { getStatusClassName, getStatusIconName } from '@/helpers/status'
 
 /**

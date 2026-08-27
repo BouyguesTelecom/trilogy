@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { GapSize } from '@/components/columns/index'
+import { GapSize } from '@/components/columns'
 import { Align } from "@/interfaces/Alignable";
 import { DirectionEnum, DirectionEnumValues } from "@/interfaces/Direction";
 import { Justify } from "@/interfaces/Justifiable";

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
-import TableTr from '@/components/table/tr/index'
+import TableTr from '@/components/table/tr'
 import { is } from '@/helpers/classify'
 import Table from '@/components/table/Table'
-import TableBody from '@/components/table/body/index'
-import TableTd from '@/components/table/td/index'
+import TableBody from '@/components/table/body'
+import TableTd from '@/components/table/td'
 
 describe('TableTr', () => {
   it('renders without error', () => {

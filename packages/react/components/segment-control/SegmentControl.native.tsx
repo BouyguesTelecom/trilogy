@@ -3,7 +3,7 @@ import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import SegmentedControlItem from '@/components/segment-control/item/index'
+import SegmentedControlItem from '@/components/segment-control/item'
 import { SegmentControlNativeRef, SegmentControlProps } from '@/components/segment-control/SegmentControlProps'
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor } from "@/interfaces/Color";

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
 import List from '@/components/list/List'
-import { ListItem, ListItemDescription } from '@/components/list/item/index'
+import { ListItem, ListItemDescription } from '@/components/list/item'
 
 describe('List', () => {
   test('renders without errors', () => {

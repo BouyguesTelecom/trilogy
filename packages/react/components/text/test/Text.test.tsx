@@ -1,6 +1,6 @@
 // Dependencies
 import * as React from 'react'
-import { getEnumNames } from '@/helpers/index'
+import { getEnumNames } from '@/helpers/enumHelpers'
 import { is } from '@/helpers/classify'
 
 // Testing methods

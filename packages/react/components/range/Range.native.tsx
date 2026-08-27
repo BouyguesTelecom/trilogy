@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Text, TextLevels } from '@/components/text/index'
+import { Text, TextLevels } from '@/components/text'
 import { RangeNativeProps, RangeNativeRef } from '@/components/range/RangeProps'
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor } from "@/interfaces/Color";

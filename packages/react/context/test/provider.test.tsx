@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { render } from '@testing-library/react'
 import { TrilogyProvider } from '@/context/provider'
-import { TrilogyContext } from '@/context/index'
+import { TrilogyContext } from '@/context'
 
 describe('TrilogyProvider', () => {
   it('should render children', () => {

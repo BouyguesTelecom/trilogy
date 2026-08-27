@@ -2,9 +2,9 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from '@/helpers/alignable'
 import React, { useState } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
-import { ColumnsGapValue } from '@/components/columns/index'
+import { ColumnsGapValue } from '@/components/columns'
 import { FlexBoxNativeRef, FlexBoxProps } from '@/components/flex-box/FlexBoxProps'
-import { FlexBoxContext } from '@/components/flex-box/context/index'
+import { FlexBoxContext } from '@/components/flex-box/context'
 import { getJustifyStyle } from "@/helpers/justifiable";
 
 /**

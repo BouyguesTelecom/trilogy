@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { IconName } from '@/components/icon/index'
-import TimelineContent from '@/components/timeline/content/index'
-import TimelineItem from '@/components/timeline/item/index'
-import TimelineMarker from '@/components/timeline/marker/index'
+import { IconName } from '@/components/icon'
+import TimelineContent from '@/components/timeline/content'
+import TimelineItem from '@/components/timeline/item'
+import TimelineMarker from '@/components/timeline/marker'
 import TimelineComponent from '@/components/timeline/Timeline'
 import type { TimelineProps } from '@/components/timeline/TimelineProps'
 

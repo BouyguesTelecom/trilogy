@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptNativeRef, PromptProps } from '@/components/prompt/PromptProps'
-import { PromptContext, PromptProvider } from '@/components/prompt/context/index'
+import { PromptContext, PromptProvider } from '@/components/prompt/context'
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor } from "@/interfaces/Color";
 import { getRadiusStyle } from "@/helpers/radius";

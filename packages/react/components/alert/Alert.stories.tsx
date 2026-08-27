@@ -6,7 +6,7 @@ import AlertComponent, { ToasterAlertProvider } from '@/components/alert/Alert'
 import { AlertMarkup } from '@/components/alert/AlertEnum'
 import { AlertProps, ToasterAlertFloat, ToasterAlertPosition } from '@/components/alert/AlertProps'
 import ToasterDocsComponent from '@/components/alert/ToasterDocs'
-import ToasterContext from '@/components/alert/context/index'
+import ToasterContext from '@/components/alert/context'
 import { StatusState } from "@/interfaces/Status";
 
 type AlertStoryArgs = AlertProps & {

@@ -3,7 +3,7 @@ import { Textarea } from '@/components/textarea'
 import { TextareaChangeEvent } from '@/components/textarea/TextareaProps'
 import clsx from 'clsx'
 import React, { useContext, useEffect } from 'react'
-import { PromptContext } from '@/components/prompt/context/index'
+import { PromptContext } from '@/components/prompt/context'
 import { PromptTextareaProps, PromptTextareaRef } from '@/components/prompt/textarea/PromptTextareaProps'
 
 /**

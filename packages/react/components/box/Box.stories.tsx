@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 import BoxComponent from '@/components/box/Box'
-import BoxContent from '@/components/box/content/index'
-import BoxFooter from '@/components/box/footer/index'
-import BoxHeader from '@/components/box/header/index'
-import BoxItem from '@/components/box/item/index'
+import BoxContent from '@/components/box/content'
+import BoxFooter from '@/components/box/footer'
+import BoxHeader from '@/components/box/header'
+import BoxItem from '@/components/box/item'
 import type { BoxProps } from '@/components/box/BoxProps'
 import { TrilogyColor } from "@/interfaces/Color";
 

@@ -2,7 +2,7 @@ import * as React from 'react'
 import clsx from 'clsx'
 import { TableTdProps, TableTdRef } from '@/components/table/td/TableTdProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

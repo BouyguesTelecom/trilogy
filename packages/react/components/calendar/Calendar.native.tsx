@@ -2,8 +2,8 @@ import translation from '@trilogy-ds/locales/lib/calendar'
 import React from 'react'
 import { Modal, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon/index'
-import { Text } from '@/components/text/index'
+import { Icon } from '@/components/icon'
+import { Text } from '@/components/text'
 import { CalendarProps, ChangeEventCalendar } from '@/components/calendar/CalendarProps'
 import { TypographyAlign } from "@/interfaces/TypographyAlign";
 import { getColorStyle } from "@/helpers/color";

@@ -3,7 +3,7 @@ import React from 'react'
 import SelectComponent from '@/components/select/Select'
 import { SelectStatus } from '@/components/select/SelectEnum'
 import type { SelectProps } from '@/components/select/SelectProps'
-import SelectOption from '@/components/select/option/index'
+import SelectOption from '@/components/select/option'
 
 SelectComponent.displayName = 'Select'
 SelectOption.displayName = 'SelectOption'

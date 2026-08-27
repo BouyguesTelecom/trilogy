@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
 import Progress from '@/components/progress/Progress'
-import ProgressRadial from '@/components/progress/radial/index'
+import ProgressRadial from '@/components/progress/radial'
 
 describe('Progress', () => {
   it('renders correctly with percent value', () => {

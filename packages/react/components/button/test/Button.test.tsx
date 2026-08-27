@@ -8,8 +8,8 @@ import { is } from '@/helpers/classify'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 // Component to test
-import { getEnumNames } from '@/helpers/index'
-import { Button, ButtonMarkup, ButtonVariant } from '@/components/button/index'
+import { getEnumNames } from '@/helpers/enumHelpers'
+import { Button, ButtonMarkup, ButtonVariant } from '@/components/button'
 import { getButtonVariantClassName } from '@/helpers/color'
 
 describe('Button component', () => {

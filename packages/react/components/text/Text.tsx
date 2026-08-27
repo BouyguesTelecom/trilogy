@@ -4,7 +4,7 @@ import { TextProps, TextRef } from '@/components/text/TextProps'
 import { TextLevels, TextMarkup, TextMarkupValues } from '@/components/text/TextEnum'
 import { is } from '@/helpers/classify'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
 import { type ChangeEvent, FocusEventHandler, ReactNode } from 'react'
-import { IconName, IconNameValues } from '@/components/icon/index'
+import { IconName, IconNameValues } from '@/components/icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,

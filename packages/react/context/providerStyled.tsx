@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import versionJSON from '@/version.json'
-import { TrilogyContext } from '@/context/index'
+import { TrilogyContext } from '@/context'
 
 interface TrilogyProviderStyledProps {
   children: React.ReactNode

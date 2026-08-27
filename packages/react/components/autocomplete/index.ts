@@ -1,6 +1,6 @@
 import AutoComplete from '@/components/autocomplete/AutoComplete'
-import AutoCompleteItem from '@/components/autocomplete/item/index'
-import AutoCompleteMenu from '@/components/autocomplete/menu/index'
+import AutoCompleteItem from '@/components/autocomplete/item'
+import AutoCompleteMenu from '@/components/autocomplete/menu'
 
 export * from './AutoCompleteProps'
 

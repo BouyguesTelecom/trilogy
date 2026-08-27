@@ -17,8 +17,8 @@ import React, {
   useState,
 } from 'react'
 import ReactDOM from 'react-dom'
-import { Modal, ModalBody } from '@/components/modal/index'
-import { Text, TextLevels, TextMarkup } from '@/components/text/index'
+import { Modal, ModalBody } from '@/components/modal'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from '@/components/datepicker/DatePickerProps'
 import { TypographyColor } from '@/interfaces/TypographyColor'
 

@@ -4,7 +4,7 @@ import { TableTrProps, TableTrRef } from '@/components/table/tr/TableTrProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getColorClassName } from '@/helpers/color'
 import { is } from '@/helpers/classify'
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

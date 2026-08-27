@@ -5,7 +5,7 @@ import * as React from 'react'
 import { render } from '@testing-library/react'
 
 // Component to test
-import { Badge } from '@/components/badge/index'
+import { Badge } from '@/components/badge'
 
 describe('Badge component', () => {
   test('should contain toto as text', () => {

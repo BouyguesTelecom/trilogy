@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { Button, ButtonVariant } from '@/components/button/index'
+import { Button, ButtonVariant } from '@/components/button'
 import ModalBody from '@/components/modal/body/ModalBody'
 import ModalFooter from '@/components/modal/footer/ModalFooter'
 import ModalComponent from '@/components/modal/Modal'

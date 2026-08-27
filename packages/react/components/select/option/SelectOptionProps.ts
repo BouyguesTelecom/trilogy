@@ -1,4 +1,4 @@
-import { IconName, IconNameValues } from '@/components/icon/index'
+import { IconName, IconNameValues } from '@/components/icon'
 import { TouchableOpacity } from 'react-native'
 import { ClickEvent } from "@/interfaces/OnClickEvent";
 import { Accessibility } from "@/interfaces/Accessibility";

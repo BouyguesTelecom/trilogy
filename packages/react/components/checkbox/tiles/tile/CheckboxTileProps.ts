@@ -1,6 +1,6 @@
 import { TouchableOpacity } from 'react-native'
 import { CheckboxProps } from '@/components/checkbox/CheckboxProps'
-import { IconName, IconNameValues } from '@/components/icon/index'
+import { IconName, IconNameValues } from '@/components/icon'
 import { ReactNode } from 'react'
 import { CommonProps } from "@/interfaces/CommonProps";
 import { Dev } from "@/interfaces/Dev";

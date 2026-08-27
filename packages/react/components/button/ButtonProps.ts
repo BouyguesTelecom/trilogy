@@ -1,5 +1,5 @@
 import { TouchableOpacity } from 'react-native'
-import { IconName, IconNameValues } from '@/components/icon/index'
+import { IconName, IconNameValues } from '@/components/icon'
 import {
   ButtonMarkup,
   ButtonMarkupValues,

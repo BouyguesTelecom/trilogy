@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SegmentControlItem from '@/components/segment-control/item/index'
+import SegmentControlItem from '@/components/segment-control/item'
 import { SegmentControlProps, SegmentControlRef } from '@/components/segment-control/SegmentControlProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'

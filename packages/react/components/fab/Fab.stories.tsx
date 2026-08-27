@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconName } from '@/components/icon/index'
+import { IconName } from '@/components/icon'
 import FabComponent from '@/components/fab/Fab'
 import type { FabProps } from '@/components/fab/FabProps'
 import React from 'react'

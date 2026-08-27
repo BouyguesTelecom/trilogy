@@ -3,7 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useDropdownContext } from '@/components/dropdown/context/index'
+import { useDropdownContext } from '@/components/dropdown/context'
 import { DropdownTriggerProps, DropdownTriggerRef } from '@/components/dropdown/trigger/DropdownTriggerProps'
 
 /**

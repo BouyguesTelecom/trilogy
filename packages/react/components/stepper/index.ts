@@ -1,5 +1,5 @@
 import Stepper from '@/components/stepper/Stepper'
-import Step from '@/components/stepper/step/index'
+import Step from '@/components/stepper/step'
 
 export * from './step/StepEnum'
 

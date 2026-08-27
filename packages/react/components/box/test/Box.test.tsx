@@ -1,8 +1,8 @@
 import { fireEvent, render } from '@testing-library/react'
 import * as React from 'react'
 import Box from '@/components/box/Box'
-import { BoxContent, BoxFooter, BoxHeader, BoxTableContainer } from '@/components/box/index'
-import BoxItem from '@/components/box/item/index'
+import { BoxContent, BoxFooter, BoxHeader, BoxTableContainer } from '@/components/box'
+import BoxItem from '@/components/box/item'
 
 describe('Box component', () => {
   test('renders without crashing', () => {

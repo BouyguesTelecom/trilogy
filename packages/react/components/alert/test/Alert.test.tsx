@@ -2,8 +2,8 @@ import { fireEvent, render } from '@testing-library/react'
 import * as React from 'react'
 // @ts-ignore
 import renderer from 'react-test-renderer'
-import { IconName } from '@/components/icon/index'
-import { Alert } from '@/components/alert/index'
+import { IconName } from '@/components/icon'
+import { Alert } from '@/components/alert'
 import { StatusState } from "@/interfaces/Status";
 
 describe('Alert', () => {

@@ -10,9 +10,9 @@ import { is } from '@/helpers/classify'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { AutoCompletePropsWeb, AutocompleteRef, Item } from '@/components/autocomplete/AutoCompleteProps'
 import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplete.helpers'
-import AutoCompleteItem from '@/components/autocomplete/item/index'
-import AutoCompleteMenu from '@/components/autocomplete/menu/index'
-import { debounce } from '@/components/autocomplete/utils/index'
+import AutoCompleteItem from '@/components/autocomplete/item'
+import AutoCompleteMenu from '@/components/autocomplete/menu'
+import { debounce } from '@/components/autocomplete/utils'
 
 const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   {

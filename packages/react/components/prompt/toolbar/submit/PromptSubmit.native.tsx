@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { PromptContext } from '@/components/prompt/context/index'
+import { PromptContext } from '@/components/prompt/context'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
 import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
 import { getColorStyle } from "@/helpers/color";

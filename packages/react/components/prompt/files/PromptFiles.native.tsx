@@ -2,7 +2,7 @@ import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import React, { useContext, useEffect, useMemo } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
-import { PromptContext } from '@/components/prompt/context/index'
+import { PromptContext } from '@/components/prompt/context'
 import { PromptFilesNativeRef, PromptFilesProps } from '@/components/prompt/files/PromptFilesProps'
 
 const PromptFiles = React.forwardRef<PromptFilesNativeRef, PromptFilesProps>(({ children }, ref) => {

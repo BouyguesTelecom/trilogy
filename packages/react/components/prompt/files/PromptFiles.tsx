@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useContext, useEffect, useMemo } from 'react'
-import { PromptContext } from '@/components/prompt/context/index'
+import { PromptContext } from '@/components/prompt/context'
 import { PromptFilesProps, PromptFilesRef } from '@/components/prompt/files/PromptFilesProps'
 
 /**

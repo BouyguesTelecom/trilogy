@@ -15,9 +15,9 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler'
-import { Column, Columns } from '@/components/columns/index'
-import { Icon, IconName, IconSize } from '@/components/icon/index'
-import { Title } from '@/components/title/index'
+import { Column, Columns } from '@/components/columns'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { Title } from '@/components/title'
 import { ModalNativeRef, ModalProps } from '@/components/modal/ModalProps'
 import { ModalContext } from '@/components/modal/context/ModalContext'
 import { Alignable } from "@/interfaces/Alignable";

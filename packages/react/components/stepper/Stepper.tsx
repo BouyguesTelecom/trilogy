@@ -4,9 +4,9 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { FlexBox } from '@/components/flex-box/index'
-import { Icon, IconName } from '@/components/icon/index'
-import { Title } from '@/components/title/index'
+import { FlexBox } from '@/components/flex-box'
+import { Icon, IconName } from '@/components/icon'
+import { Title } from '@/components/title'
 import { StepperProps, StepperRef } from '@/components/stepper/StepperProps'
 import { Align } from "@/interfaces/Alignable";
 import { TypographyColor } from "@/interfaces/TypographyColor";

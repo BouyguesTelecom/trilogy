@@ -4,7 +4,7 @@ import { Title, TitleLevels } from '@/components/title'
 import { getAlignStyle } from '@/helpers/alignable'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Skeleton } from '@/components/skeleton/index'
+import { Skeleton } from '@/components/skeleton'
 import { ProgressRadialNativeRef, ProgressRadialProps } from '@/components/progress/radial/ProgressRadialProps'
 import { AnimatedCircularProgress } from '@/components/progress/radial/react-native-circular-progress/index.js'
 import { TypographyAlign } from "@/interfaces/TypographyAlign";

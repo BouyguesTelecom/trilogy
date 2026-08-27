@@ -4,7 +4,7 @@ import { Modal, ModalBody } from '@/components/modal'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Pressable, View } from 'react-native'
 import { SelectNativeProps, SelectNativeRef, SelectedValue } from '@/components/select/SelectProps'
-import SelectOption from '@/components/select/option/index'
+import SelectOption from '@/components/select/option'
 
 /**
  * Select Component

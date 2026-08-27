@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { Spacer, SpacerSize } from '@/components/spacer/index'
+import { Spacer, SpacerSize } from '@/components/spacer'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,

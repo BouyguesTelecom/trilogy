@@ -3,7 +3,7 @@ import { FlexItemNativeRef, FlexItemProps } from '@/components/flex-box/flex-ite
 import { getAlignStyle } from '@/helpers/alignable'
 import React from 'react'
 import { View, ViewStyle } from 'react-native'
-import { FlexBoxContext } from '@/components/flex-box/context/index'
+import { FlexBoxContext } from '@/components/flex-box/context'
 
 /**
  * FlexItem Component - FlexBox Child

@@ -5,7 +5,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { PromptContext } from '@/components/prompt/context/index'
+import { PromptContext } from '@/components/prompt/context'
 import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
 
 /**

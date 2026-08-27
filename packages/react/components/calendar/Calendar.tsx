@@ -5,9 +5,9 @@ import translation from '@trilogy-ds/locales/lib/calendar'
 import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon/index'
-import { Select, SelectOption } from '@/components/select/index'
-import { Text } from '@/components/text/index'
+import { Icon } from '@/components/icon'
+import { Select, SelectOption } from '@/components/select'
+import { Text } from '@/components/text'
 import { CalendarProps, ChangeEventCalendar } from '@/components/calendar/CalendarProps'
 
 const days = [

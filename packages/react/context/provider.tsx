@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useLayoutEffect } from 'react'
-import { TrilogyContext } from '@/context/index'
+import { TrilogyContext } from '@/context'
 import { version } from '@/version'
 import versionJSON from '@/version.json'
 

@@ -5,7 +5,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { SelectContext } from '@/components/select/context/index'
+import { SelectContext } from '@/components/select/context'
 import { SelectedValue } from '@/components/select/SelectProps'
 import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/SelectOptionProps'
 

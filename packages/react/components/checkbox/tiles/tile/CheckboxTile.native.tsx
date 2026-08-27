@@ -6,7 +6,7 @@ import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import React, { useContext, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
-import { CheckboxTilesContext } from '@/components/checkbox/tiles/context/index'
+import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor } from "@/interfaces/Color";

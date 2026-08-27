@@ -8,7 +8,7 @@ import { getAlignClassName } from '@/helpers/alignable'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, { useMemo } from 'react'
-import { TabsContext } from '@/components/tabs/context/index'
+import { TabsContext } from '@/components/tabs/context'
 
 /**
  * Tabs Nav Component

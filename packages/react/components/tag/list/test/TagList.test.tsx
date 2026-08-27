@@ -7,7 +7,7 @@ import { render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 // Component to test
-import { Tag, TagList } from '@/components/tag/index'
+import { Tag, TagList } from '@/components/tag'
 import { is } from '@/helpers/classify'
 
 describe('TagList component', () => {
