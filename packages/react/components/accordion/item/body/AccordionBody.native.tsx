@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { AccordionBodyNativeRef, AccordionBodyProps } from './AccordionBodyProps'
+import { AccordionBodyNativeRef, AccordionBodyProps } from '@/components/accordion/item/body/AccordionBodyProps'
 
 /**
  * Accordion Body Component
@@ -11,12 +11,8 @@ import { AccordionBodyNativeRef, AccordionBodyProps } from './AccordionBodyProps
  */
 const AccordionBody = React.forwardRef<AccordionBodyNativeRef, AccordionBodyProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const styles = StyleSheet.create({
-      accordionBody: {},
-    })
-
     return (
-      <View ref={ref} style={[styles.accordionBody]} testID={testId} {...others}>
+      <View ref={ref} testID={testId} {...others}>
         {children}
       </View>
     )

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import CalendarComponent from './Calendar'
-import type { CalendarProps, ChangeEventCalendar } from './CalendarProps'
+import CalendarComponent from '@/components/calendar/Calendar'
+import type { CalendarProps, ChangeEventCalendar } from '@/components/calendar/CalendarProps'
 import React from 'react'
 
 CalendarComponent.displayName = 'Calendar'

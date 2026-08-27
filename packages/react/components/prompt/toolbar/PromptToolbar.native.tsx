@@ -3,8 +3,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import React, { useContext } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
-import { PromptContext } from '../context'
-import { PromptToolbarNativeRef, PromptToolbarProps } from './PromptToolbarProps'
+import { PromptContext } from '@/components/prompt/context'
+import { PromptToolbarNativeRef, PromptToolbarProps } from '@/components/prompt/toolbar/PromptToolbarProps'
 
 const PromptToolbar = React.forwardRef<PromptToolbarNativeRef, PromptToolbarProps>(({ ...others }, ref) => {
   const { textareaRef } = useContext(PromptContext)

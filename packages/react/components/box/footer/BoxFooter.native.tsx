@@ -1,9 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle } from '@/objects'
 import * as React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { BoxContext } from '../context/boxContext'
-import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
+import { BoxContext } from '@/components/box/context/boxContext'
+import { BoxFooterNativeRef, BoxFooterProps } from '@/components/box/footer/BoxFooterProps'
+import { getColorStyle } from "@/helpers/color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Box Footer Component
@@ -14,7 +16,7 @@ import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
  */
 const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
   ({ children, backgroundColor, testId, ...others }, ref): JSX.Element => {
-    const boxRadius = 6
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
     const { highlighted } = React.useContext(BoxContext)
 
     const styles = StyleSheet.create({
@@ -22,8 +24,8 @@ const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
         padding: 12,
         justifyContent: 'center',
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : 'transparent',
-        borderBottomLeftRadius: highlighted ? 0 : boxRadius,
-        borderBottomRightRadius: boxRadius,
+        borderBottomLeftRadius: highlighted ? 0 : borderSmallRadius,
+        borderBottomRightRadius: borderSmallRadius,
         marginLeft: highlighted ? 4 : 0,
       },
     })

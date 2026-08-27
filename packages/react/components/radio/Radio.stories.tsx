@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import RadioComponent from './Radio'
-import type { RadioProps } from './RadioProps'
-import RadioList from './list/RadioList'
-import type { RadioListWebProps } from './list/RadioListProps'
+import RadioComponent from '@/components/radio/Radio'
+import type { RadioProps } from '@/components/radio/RadioProps'
+import RadioList from '@/components/radio/list/RadioList'
+import type { RadioListWebProps } from '@/components/radio/list/RadioListProps'
 
 RadioComponent.displayName = 'Radio'
 RadioList.displayName = 'RadioList'

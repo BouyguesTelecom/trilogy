@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Container,
   Divider,
@@ -10,7 +9,7 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import {Column, Columns, TrilogyColor} from '@trilogy-ds/react'
+import { Column, Columns, TrilogyColor } from '@trilogy-ds/react'
 
 export const TagScreen = (): JSX.Element => {
   return (
@@ -18,12 +17,7 @@ export const TagScreen = (): JSX.Element => {
       <Columns>
         <Column>
           <TagList>
-            <Tag
-              iconName={IconName.CHECK_CIRCLE}
-              label={'With icon'}
-              small
-              variant={TagVariant.SUCCESS}
-            />
+            <Tag iconName={IconName.CHECK_CIRCLE} label={'With icon'} small variant={TagVariant.SUCCESS} />
             <Tag label={'Without icon'} small variant={'SUCCESS'} />
             <Tag label={'Without icon'} small />
           </TagList>

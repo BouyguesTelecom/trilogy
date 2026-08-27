@@ -1,7 +1,7 @@
 import { View } from 'react-native'
-import { CommonProps } from '../../../objects/facets/CommonProps'
-import { BoxItemSize, BoxItemSizeValues } from './BoxItemEnum'
-import { Dev } from '@/objects/facets/Dev'
+import { BoxItemSize, BoxItemSizeValues } from '@/components/box/item/BoxItemEnum'
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 export interface BoxItemProps extends CommonProps, Dev {
   children?: React.ReactNode

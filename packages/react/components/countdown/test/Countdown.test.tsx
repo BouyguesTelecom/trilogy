@@ -1,8 +1,8 @@
 import * as React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import Countdown from "../Countdown";
-import { CountdownFormat, getFormatWidth } from "../CountdownEnum";
+import Countdown from "@/components/countdown/Countdown";
+import { CountdownFormat, getFormatWidth } from "@/components/countdown/CountdownEnum";
 
 describe("Countdown", () => {
   let container: HTMLDivElement | null = null;

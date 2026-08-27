@@ -1,12 +1,16 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text as TextNative, View } from 'react-native'
-import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography'
-import { CountdownFormat, CountdownUnite } from './CountdownEnum'
-import { CountdownNativeRef, CountdownProps } from './CountdownProps'
+import { CountdownFormat, CountdownUnite } from '@/components/countdown/CountdownEnum'
+import { CountdownNativeRef, CountdownProps } from '@/components/countdown/CountdownProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getTypographyBoldStyle } from "@/helpers/typography";
+import { TypographyBold } from "@/interfaces/TypographyBold";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -36,6 +40,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
     const [timer, setTimer] = useState(initialTimer)
     const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
     const parsedFormat = format?.split('-')
+    const borderMediumRadius = getRadiusStyle(Radius.MEDIUM)
 
     const centered = false
 
@@ -128,7 +133,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
       countdown: {
         alignSelf: centered ? 'center' : 'flex-start',
         backgroundColor: getColorStyle(TrilogyColor.ACCENT_FADE),
-        borderRadius: small ? 8 : 8,
+        borderRadius: borderMediumRadius,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 12,

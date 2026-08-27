@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
-import TimelineItem from "../TimelineItem";
+import TimelineItem from "@/components/timeline/item/TimelineItem";
 
 describe("TimelineItem", () => {
   it("renders with correct classNames when done prop is true", () => {

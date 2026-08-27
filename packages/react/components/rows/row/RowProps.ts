@@ -1,6 +1,6 @@
 import { View } from 'react-native'
-import { CommonProps } from '../../../objects/facets/CommonProps'
-import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 /**
  * Rows Interface
@@ -12,4 +12,3 @@ export interface RowProps extends CommonProps, Dev {
 
 export type RowRef = HTMLDivElement
 export type RowNativeRef = View
-

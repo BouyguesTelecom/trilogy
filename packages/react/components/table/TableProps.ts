@@ -1,7 +1,7 @@
-import { Fullwidth } from '../../objects/facets/Fullwidth'
-import { CommonProps } from '../../objects/facets/CommonProps'
 import { View } from 'react-native'
-import { Dev } from '@/objects/facets/Dev'
+import { Fullwidth } from "@/interfaces/Fullwidth";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 export enum TableBorderEnum {
   ALL = 'all',

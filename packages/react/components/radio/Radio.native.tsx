@@ -1,9 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioNativeProps, RadioNativeRef } from '@/components/radio/RadioProps'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects'
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Radio Component
@@ -18,6 +21,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
  */
 const Radio = React.forwardRef<RadioNativeRef, RadioNativeProps>(
   ({ id = React.useId(), checked, name, onChange, disabled, readonly, label, value }, ref): JSX.Element => {
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
     const styles = StyleSheet.create({
       container: {
         flexDirection: 'row',
@@ -32,11 +36,11 @@ const Radio = React.forwardRef<RadioNativeRef, RadioNativeProps>(
         borderWidth: 1,
         width: 18,
         height: 18,
-        borderRadius: 10,
+        borderRadius: borderFullRadius,
         marginRight: 10,
       },
       icon: {
-        borderRadius: 12,
+        borderRadius: borderFullRadius,
         width: 12,
         height: 12,
         backgroundColor: getColorStyle(TrilogyColor.MAIN),

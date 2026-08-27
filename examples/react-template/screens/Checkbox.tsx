@@ -13,7 +13,7 @@ import {
   Text,
   Title,
 } from '@trilogy-ds/react/components'
-import { Alignable } from '@trilogy-ds/react/objects'
+import { Alignable } from '@trilogy-ds/react/interfaces'
 
 export const CheckboxScreen = (): JSX.Element => {
   return (

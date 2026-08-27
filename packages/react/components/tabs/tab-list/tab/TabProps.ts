@@ -1,7 +1,9 @@
 import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility, Clickable, Dev } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
 import { TouchableOpacity } from 'react-native'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Clickable } from "@/interfaces/Clickable";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 /**
  * Tabs Item Interface

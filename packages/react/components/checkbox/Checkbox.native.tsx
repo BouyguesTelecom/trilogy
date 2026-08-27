@@ -2,10 +2,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
-import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
+import { CheckboxNativeRef, CheckboxProps } from '@/components/checkbox/CheckboxProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Checkbox Component
@@ -21,6 +24,7 @@ import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
 const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
   ({ id = React.useId(), checked, name, onChange, disabled, readonly, label, testId }, ref): JSX.Element => {
     const [_checked, setChecked] = useState(checked || false)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     useEffect(() => {
       setChecked(checked || false)
@@ -40,7 +44,7 @@ const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
         borderWidth: 0.6,
         width: 19,
         height: 19,
-        borderRadius: 4,
+        borderRadius: borderSmallerRadius,
         marginRight: 10,
         marginLeft: 0,
         backgroundColor: getColorStyle(

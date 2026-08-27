@@ -1,11 +1,13 @@
-import { TypographyAlign, TypographyAlignValues } from '../../objects/Typography/TypographyAlign'
-import { TypographyBold, TypographyBoldValues } from '../../objects/Typography/TypographyBold'
-import { TypographyColor, TypographyColorValues } from '../../objects/Typography/TypographyColor'
-import { TypographyTransform, TypographyTransformValues } from '../../objects/Typography/TypographyTransform'
-import { Accessibility, Dev, Invertable } from '../../objects/facets'
-import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './TextEnum'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from '@/components/text/TextEnum'
 import { Text } from 'react-native'
+import { TypographyAlign, TypographyAlignValues } from "@/interfaces/TypographyAlign";
+import { TypographyBold, TypographyBoldValues } from "@/interfaces/TypographyBold";
+import { TypographyColor, TypographyColorValues } from "@/interfaces/TypographyColor";
+import { TypographyTransform, TypographyTransformValues } from "@/interfaces/TypographyTransform";
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Dev } from "@/interfaces/Dev";
+import { Invertable } from "@/interfaces/Invertable";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
@@ -36,4 +38,3 @@ export interface TextProps extends Invertable, Accessibility, Dev, CommonProps {
 
 export type TextRef = HTMLParagraphElement
 export type TextNativeRef = Text
-

@@ -1,7 +1,7 @@
-import { Accessibility } from '@/objects/facets/Accessibility'
-import { CommonProps } from '@/objects/facets/CommonProps'
-import { Dev } from '@/objects/facets/Dev'
 import { View } from 'react-native'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 export interface PromptToolbarProps extends Accessibility, Dev, CommonProps {
   children?: React.ReactNode

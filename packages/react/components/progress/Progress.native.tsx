@@ -1,10 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects'
 import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'
-import { ProgressNativeRef, ProgressProps } from './ProgressProps'
+import { ProgressNativeRef, ProgressProps } from '@/components/progress/ProgressProps'
+import { getColorStyle } from "@/helpers/color";
+import { getStatusStyle } from "@/helpers/status";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Progress Component
@@ -25,6 +29,8 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
     ref,
   ): JSX.Element => {
     const animation = useRef(new Animated.Value(0)).current
+    const borderLargeRadius = getRadiusStyle(Radius.LARGE)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     useEffect(() => {
       if (typeof value === 'number') {
@@ -49,21 +55,21 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
         width: '100%',
         height: height,
         backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
-        borderRadius: 15,
+        borderRadius: borderLargeRadius,
       },
       percent: {
         alignSelf: 'flex-start',
         height: height,
         backgroundColor: getStatusStyle(status).color,
-        borderRadius: 15,
+        borderRadius: borderLargeRadius,
       },
       progressItemFirst: {
-        borderTopStartRadius: 6,
-        borderBottomLeftRadius: 6,
+        borderTopStartRadius: borderSmallRadius,
+        borderBottomLeftRadius: borderSmallRadius,
       },
       progressItemLast: {
-        borderTopEndRadius: 6,
-        borderBottomRightRadius: 6,
+        borderTopEndRadius: borderSmallRadius,
+        borderBottomRightRadius: borderSmallRadius,
       },
       legendCenter: {
         textAlign: 'center',

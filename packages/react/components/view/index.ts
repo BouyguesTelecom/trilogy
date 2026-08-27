@@ -1,4 +1,4 @@
-import View from './View'
+import View from '@/components/view/View'
 
 export * from './ViewEnum'
 

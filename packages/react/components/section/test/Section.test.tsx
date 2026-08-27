@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import * as React from 'react'
-import { TrilogyColor } from '../../../objects'
-import Section from '../Section'
+import Section from '@/components/section/Section'
+import { TrilogyColor } from "@/interfaces/Color";
 
 describe('Section', () => {
   it('renders with all props', () => {

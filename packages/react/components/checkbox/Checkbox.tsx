@@ -2,8 +2,8 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { CheckboxProps, CheckboxRef } from './CheckboxProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { CheckboxProps, CheckboxRef } from '@/components/checkbox/CheckboxProps'
 
 /**
  * Checkbox Component

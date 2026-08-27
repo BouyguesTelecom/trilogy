@@ -1,11 +1,12 @@
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { getRadiusStyle } from '@/objects/facets/Radius'
 import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ComponentName } from '../enumsComponentsName'
-import { RadiusValues } from '../image'
-import { PromptNativeRef, PromptProps } from './PromptProps'
-import { PromptContext, PromptProvider } from './context'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { PromptNativeRef, PromptProps } from '@/components/prompt/PromptProps'
+import { PromptContext, PromptProvider } from '@/components/prompt/context'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {
   const { isFocused, isDisabled } = useContext(PromptContext)
@@ -13,7 +14,7 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ..
   const styles = StyleSheet.create({
     view: {
       borderWidth: isFocused ? 2 : 1,
-      borderRadius: getRadiusStyle(RadiusValues.SMALL),
+      borderRadius: getRadiusStyle(Radius.SMALL),
       borderColor: getColorStyle(TrilogyColor[isFocused ? 'MAIN' : isDisabled ? 'DISABLED' : 'STROKE']),
       margin: isFocused ? -1 : undefined,
       backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),

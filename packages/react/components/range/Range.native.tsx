@@ -1,10 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Text, TextLevels } from '../text'
-import { RangeNativeProps, RangeNativeRef } from './RangeProps'
+import { Text, TextLevels } from '@/components/text'
+import { RangeNativeProps, RangeNativeRef } from '@/components/range/RangeProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { TypographyBold } from "@/interfaces/TypographyBold";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Range Component
@@ -21,11 +25,13 @@ const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
     const [values, setValues] = React.useState<number[]>(value || simple ? [0] : [0, 100])
     const [width, setWidth] = React.useState<number>(0)
 
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
+
     const styles = StyleSheet.create({
       marker: {
         width: 20,
         height: 20,
-        borderRadius: 20,
+        borderRadius: borderFullRadius,
         backgroundColor: 'white',
         shadowColor: '#000',
         shadowOffset: {

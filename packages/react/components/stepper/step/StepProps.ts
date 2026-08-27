@@ -1,7 +1,7 @@
 import { View } from 'react-native'
-import { IconName, IconNameValues } from '../../../components/icon'
-import { CommonProps } from '../../../objects/facets/CommonProps'
-import { Dev } from '@/objects/facets/Dev'
+import { IconName, IconNameValues } from '@/components/icon'
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 /**
  * Stepper Step Interface

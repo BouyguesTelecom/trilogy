@@ -1,7 +1,7 @@
 import { Text } from '@/components/text'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
 

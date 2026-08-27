@@ -2,11 +2,14 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { TypographyAlign } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
-import { OtpNativeRef, OtpProps } from './OtpProps'
+import { OtpNativeRef, OtpProps } from '@/components/otp/OtpProps'
+import { TypographyAlign } from "@/interfaces/TypographyAlign";
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * OTP Code Component
@@ -28,10 +31,10 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
     ref,
   ): JSX.Element => {
     const [codeInput, setCodeInput] = useState<string>(value || '')
-    // eslint-disable-next-line prefer-spread
     const [codeDigitsArray] = useState([...Array(length).keys()])
     const [focused, setFocused] = useState(false)
     const color = getColorStyle(disabled ? TrilogyColor.DISABLED : error ? TrilogyColor.ERROR : TrilogyColor.MAIN)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     useEffect(() => {
       if (/^-?\d*\.?\d*$/.test(codeInput) && !disabled) {
@@ -85,7 +88,7 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
       inputSelectedContainer: {
         borderColor: color,
         borderWidth: 1,
-        borderRadius: 4,
+        borderRadius: borderSmallerRadius,
         marginHorizontal: 5,
         justifyContent: 'center',
         alignContent: 'center',
@@ -98,10 +101,6 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
         height: 1,
         width: 1,
         opacity: 0,
-      },
-      icon: {
-        marginHorizontal: 8,
-        marginBottom: 8,
       },
       currentInput: {
         width: 15,
