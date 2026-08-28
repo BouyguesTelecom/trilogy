@@ -99,7 +99,7 @@ export default {
   platforms: {
     scss: {
       transformGroup: 'scss',
-      buildPath: 'framework/src/',
+      buildPath: 'framework/src/base',
       files: [
         {
           destination: 'primitives.scss',
