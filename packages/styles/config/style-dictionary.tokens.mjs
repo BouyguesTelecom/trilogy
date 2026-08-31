@@ -1,4 +1,15 @@
 import StyleDictionary from 'style-dictionary'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const configDirectory = path.dirname(fileURLToPath(import.meta.url))
+const breakpointFiles = [
+  { name: 'sm', minimumWidth: '$breakpoint-sm-min' },
+  { name: 'md', minimumWidth: '$breakpoint-md-min' },
+  { name: 'lg', minimumWidth: '$breakpoint-lg-min' },
+  { name: 'xl', minimumWidth: '$breakpoint-xl-min' },
+]
 
 const getCssVariableName = (token) => {
   const syntax = token.original?.$extensions?.['com.figma.codeSyntax']?.WEB
@@ -12,7 +23,15 @@ const toVariableSegment = (value) =>
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
 
-const getScssVariableName = (tokenPath) => `$${tokenPath.map(toVariableSegment).filter(Boolean).join('-')}`
+const getScssVariableName = (tokenPath) => {
+  const segments = tokenPath.map(toVariableSegment).filter(Boolean)
+  const normalizedSegments = segments.map((segment, index) => {
+    const parent = segments[index - 1]
+    return parent && segment.startsWith(`${parent}-`) ? segment.slice(parent.length + 1) : segment
+  })
+
+  return `$${normalizedSegments.join('-')}`
+}
 
 const getPrimitiveReference = (token) => {
   const targetName = token.original?.$extensions?.['com.figma.aliasData']?.targetVariableName
@@ -35,6 +54,44 @@ const getTokenValue = (token, value) => {
 
   return undefined
 }
+
+const findTokens = (value, tokens = []) => {
+  if (!value || typeof value !== 'object') {
+    return tokens
+  }
+
+  if (Object.prototype.hasOwnProperty.call(value, '$value')) {
+    tokens.push(value)
+    return tokens
+  }
+
+  for (const child of Object.values(value)) {
+    findTokens(child, tokens)
+  }
+
+  return tokens
+}
+
+const getBreakpointDeclarations = (primitiveNames) =>
+  breakpointFiles.map(({ name, minimumWidth }) => {
+    const filePath = path.join(configDirectory, '..', 'figma', 'breakpoints', `${name}.tokens.json`)
+    const payload = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+    const declarations = new Map()
+
+    for (const token of findTokens(payload)) {
+      const variableName = getCssVariableName({ original: token })
+      const value = getTokenValue({ original: token }, token.$value)
+      const candidateReference = getPrimitiveReference({ original: token })
+      const primitiveReference =
+        candidateReference && primitiveNames.has(candidateReference) ? candidateReference : undefined
+
+      if (variableName && (primitiveReference || value !== undefined)) {
+        declarations.set(variableName, primitiveReference || value)
+      }
+    }
+
+    return { minimumWidth, name, declarations }
+  })
 
 StyleDictionary.registerFormat({
   name: 'scss/primitives/figma',
@@ -90,6 +147,26 @@ StyleDictionary.registerFormat({
     }
 
     lines.push('}', '')
+
+    for (const breakpoint of getBreakpointDeclarations(primitiveNames)) {
+      if (breakpoint.declarations.size === 0) {
+        continue
+      }
+
+      lines.push(`@media (min-width: #{${breakpoint.minimumWidth}}px) {`)
+
+      lines.push(':root {')
+      for (const [variableName, value] of breakpoint.declarations) {
+        const outputValue = value.startsWith('$') ? `#{${value}}` : value
+        lines.push(`  ${variableName}: ${outputValue};`)
+      }
+      lines.push('}')
+
+      lines.push('}')
+
+      lines.push('')
+    }
+
     return lines.join('\n')
   },
 })
