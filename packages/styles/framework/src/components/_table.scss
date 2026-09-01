@@ -21,7 +21,7 @@
   * @deprecated "Use multiples <tr><th> instead"
   */
   tbody .is-body-header {
-    background-color: getColor('neutral-fade');
+    background-color: var(--bg-primary-subtle);
   }
 
   td,
@@ -39,7 +39,7 @@
     }
 
     &.is-selected {
-      background-color: getColor('main');
+      background-color: var(--bg-selected); //CHECK
       color: getColor('background');
 
       a,
@@ -50,7 +50,7 @@
   }
 
   th {
-    color: getColor('font');
+    color: var(--text-primary);
   }
 
   tr {
@@ -61,12 +61,12 @@
     }
 
     th {
-      background-color: getColor('background');
+      background-color: var(--bg-primary);
     }
 
     th,
     td {
-      color: getColor('font');
+      color: var(--text-primary);
       vertical-align: middle;
     }
 
@@ -79,7 +79,7 @@
     }
 
     &.is-selected {
-      background-color: getColor('main');
+      background-color: var(--bg-selected); //CHECK
       color: getColor('background');
 
       a,
@@ -129,7 +129,7 @@
     td,
     th {
       border-width: 0 0 1px;
-      color: getColor('font');
+      color: var(--text-primary);
     }
 
     &[class*="has-background"] {
@@ -151,7 +151,7 @@
     td,
     th {
       border-width: 2px 0 0;
-      color: getColor('font');
+      color: var(--text-primary);
     }
   }
 
@@ -209,15 +209,15 @@
     tbody {
       tr:not(.is-selected) {
         &:nth-child(even) {
-          background-color: getColor('neutral-fade');
+          background-color: var(--bg-primary-subtle);
         }
       }
     }
   }
 
   .subtable {
-    background-color: getColor('neutral-fade');
-    border-radius: var(--radius);
+    background-color: var(--bg-primary-subtle);
+    border-radius: var(--radius-sm);
     padding: 25px;
 
     @include mobile() {

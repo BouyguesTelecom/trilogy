@@ -20,7 +20,7 @@ To be used when standalone namespaced builds are used
     text-size-adjust: 100%;
     font-family: $body-family;
     box-sizing: border-box;
-    color: getColor('font');
+    color: var(--text-primary);
     font-size: 10px;
     font-weight: $body-weight;
     line-height: $body-line-height;

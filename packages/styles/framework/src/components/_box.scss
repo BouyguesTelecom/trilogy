@@ -2,9 +2,9 @@
 @import "../utilities/spacing";
 
 :root {
-  --padding-box: #{$spacing-5};
+  --padding-box: #{var(--spacing-lg)};
   @include mobile {
-    --padding-box: #{$spacing-4};
+    --padding-box: #{var(--spacing-md)};
   }
 }
 
@@ -23,9 +23,9 @@ a.box {
 }
 
 .box {
-  background-color: getColor('background');
+  background-color: var(--bg-primary);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -92,14 +92,14 @@ a.box {
 
     > .box-header {
       margin-left: calc(var(--padding-box) * -1 - $highlighted-border-width);
-      border-radius: $highlighted-border-width var(--radius) 0 0;
+      border-radius: $highlighted-border-width var(--radius-sm) 0 0;
 
     }
   }
 
   .box-header {
     z-index: inherit;
-    background-color: getColor('main');
+    background-color: var(--bg-secondary);
     color: getColor('background');
     margin-top: calc(var(--padding-box) * -1);
     margin-left: calc(var(--padding-box) * -1);
@@ -113,7 +113,7 @@ a.box {
     flex-direction: column;
     align-items: center;
     font-weight: $weight-semibold;
-    border-radius: var(--radius) var(--radius) 0 0;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     height: 40px;
 
     @include tablet {
@@ -144,14 +144,14 @@ a.box {
 
     &:first-child {
       margin-top: calc(var(--padding-box) * -1);
-      border-top-left-radius: var(--radius);
-      border-top-right-radius: var(--radius);
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
     }
 
     &:last-child {
       margin-bottom: calc(var(--padding-box) * -1);
-      border-bottom-left-radius: var(--radius);
-      border-bottom-right-radius: var(--radius);
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
     }
 
     > .is-unboxed {
@@ -169,8 +169,8 @@ a.box {
     margin-right: calc(var(--padding-box) * -1);
     margin-bottom: calc(var(--padding-box) * -1);
     padding: var(--padding-box);
-    border-bottom-left-radius: var(--radius);
-    border-bottom-right-radius: var(--radius);
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
   }
 
   .box-footer:not(.is-borderless):not([class*="has-background"])::before {

@@ -25,9 +25,9 @@
 @mixin input {
   @include control;
   height: $size-inputs;
-  background-color: getColor('background');
+  background-color: var(--bg-primary);
   border: var(--border);
-  color: getColor('font');
+  color: var(--text-primary);
 
   @include placeholder {
     color: getColor('font-placeholder') !important;
@@ -137,7 +137,7 @@
         }
 
         &:after {
-          background-color: getColor('main');
+          background-color: var(--bg-secondary);
         }
       }
 
@@ -151,13 +151,13 @@
         & ~ label.checkbox-label,
         & ~ .checkbox-container {
           &:after {
-            background-color: getColor('disabled-fade');
+            background-color: var(--bg-disabled);
           }
         }
         & ~ label.radio-label,
         & ~ .radio-container {
           &:after {
-            background-color: getColor('disabled');
+            background-color: var(--bg-disabled);
           }
         }
       }
@@ -173,7 +173,7 @@
     }
     .divider {
       &:not(.is-marginless) {
-        margin: $spacing-3 0;
+        margin: var(--spacing-sm) 0;
       }
     }
   }
@@ -192,7 +192,7 @@
     }
 
     label.#{$type}-label {
-      padding-left: calc(18px + $spacing-3);
+      padding-left: calc(18px + var(--spacing-sm));
 
       &:before,
       &:after {
@@ -250,9 +250,9 @@
       position: relative;
       padding: 40px 16px 16px;
       border: var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--radius-sm);
       box-sizing: border-box;
-      background-color: getColor('background');
+      background-color: var(--bg-primary);
       height: 100%;
 
       &:before {
@@ -341,7 +341,7 @@
       input {
         &:checked:not(:disabled) ~ label.#{$type}-label,
         &:checked:not(:disabled) ~ .#{$type}-container {
-          padding: ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-4 - 1px) ($spacing-8 - 1px);
+          padding: (var(--spacing-md) - 1px) (var(--spacing-md) - 1px) (var(--spacing-md) - 1px) ($spacing-space08 - 1px);
         }
 
       }
@@ -353,7 +353,7 @@
         align-items: center;
         justify-content: flex-start;
         text-align: left;
-        padding: $spacing-4 $spacing-4 $spacing-4 $spacing-8;
+        padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) $spacing-space08;
 
 
         &:before,
@@ -362,7 +362,7 @@
           transform: translateY(-50%);
         }
         > .icon {
-          margin-right: $spacing-4;
+          margin-right: var(--spacing-md);
         }
 
       }

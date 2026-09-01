@@ -71,9 +71,9 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
       className?: string,
     ) => {
       return clsx(
-        'button',
+        'Button',
         loading && is('loading'),
-        variant && is(getButtonVariantClassName(variant)),
+        variant && `Button-${getButtonVariantClassName(variant)}`,
         fullwidth && is('fullwidth'),
         className,
       )

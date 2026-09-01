@@ -1,4 +1,4 @@
-$file-radius: var(--radius);
+$file-radius: var(--radius-sm);
 $file-name-max-width: 16em;
 $field-margin: 20px;
 $help-size: $size-small;
@@ -194,7 +194,7 @@ $label-weight: $weight-bold;
     .select {
       &:focus {
         & ~ .icon {
-          color: getColor('font');
+          color: var(--text-primary);
         }
       }
 
@@ -207,7 +207,7 @@ $label-weight: $weight-bold;
     }
 
     .icon {
-      color: getColor('font');
+      color: var(--text-primary);
       position: absolute;
       top: 0;
       height: 100%;
@@ -255,8 +255,8 @@ $label-weight: $weight-bold;
 
     .icon {
       left: 0;
-      border-top-left-radius: var(--radius);
-      border-bottom-left-radius: var(--radius);
+      border-top-left-radius: var(--radius-sm);
+      border-bottom-left-radius: var(--radius-sm);
       padding: 0 24px;
     }
 
@@ -266,7 +266,7 @@ $label-weight: $weight-bold;
 
     & .textarea + label + .icon {
       display: inherit;
-      padding-top: $spacing-4;
+      padding-top: var(--spacing-md);
       margin: 0 16px;
       width: auto;
     }
@@ -292,8 +292,8 @@ $label-weight: $weight-bold;
 
     .icon {
       right: 0;
-      border-top-right-radius: var(--radius);
-      border-bottom-right-radius: var(--radius);
+      border-top-right-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
       padding: 0 24px;
     }
   }
@@ -307,7 +307,7 @@ $label-weight: $weight-bold;
 
 
     textarea:not(:placeholder-shown) {
-      padding-top: $spacing-5;
+      padding-top: var(--spacing-lg);
     }
 
 
@@ -316,7 +316,7 @@ $label-weight: $weight-bold;
     }
 
     .icon {
-      color: getColor('font');
+      color: var(--text-primary);
     }
 
     label {
@@ -325,7 +325,7 @@ $label-weight: $weight-bold;
       left: 16px;
       border-left: transparent 1px solid;
       font-size: $text-12;
-      color: getColor('font');
+      color: var(--text-primary);
       filter: grayscale(1);
       transform: translateY(0);
       transition: all 0.2s ease-out;
@@ -360,8 +360,8 @@ $label-weight: $weight-bold;
     }
 
     textarea {
-      padding-top: $spacing-4;
-      padding-bottom: $spacing-2 !important;
+      padding-top: var(--spacing-md);
+      padding-bottom: var(--spacing-xs) !important;
     }
 
     input:placeholder-shown ~ label,
@@ -407,8 +407,8 @@ $label-weight: $weight-bold;
 
   .is-searching {
     background-color: transparent;
-    border-top-right-radius: var(--radius);
-    border-bottom-right-radius: var(--radius);
+    border-top-right-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
     height: 100%;
     position: absolute;
     right: 0;

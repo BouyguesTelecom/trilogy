@@ -5,7 +5,7 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: $spacing-2;
+  gap: var(--spacing-xs);
 
   // centrage des chips
   &.is-centered {
@@ -41,29 +41,29 @@
     align-items: center;
     background-color: white;
     border-radius: 9999px;
-    color: getColor('font');
+    color: var(--text-primary);
     display: inline-flex;
     font-size: $size-normal;
     height: 32px;
     justify-content: center;
     line-height: 2;
-    padding: 6px $spacing-4;
+    padding: 6px var(--spacing-md);
     white-space: nowrap;
     cursor: pointer;
     border: var(--border);
     &:not(.is-disabled) {
       &.is-active {
-        background-color: getColor('main');
+        background-color: var(--bg-secondary);
         color: white;
         border: var(--border-active);
-        padding: 5px ($spacing-4 - 1px);
+        padding: 5px (var(--spacing-md) - 1px);
         #{$hoverSelector} {
-          background-color: getColor('main');
+          background-color: var(--bg-secondary);
           color: white;
         }
       }
       #{$hoverSelector} {
-        background-color: getColor('neutral-fade');
+        background-color: var(--input-hover);
       }
     }
 
@@ -76,7 +76,7 @@
       &:focus,
       &:focus-visible,
       &.is-active {
-        background-color: getColor('accent') !important;
+        background-color: var(--bg-accent) !important;
         color: getColor('background') !important;
       }
     }

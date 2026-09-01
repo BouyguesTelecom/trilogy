@@ -32,14 +32,14 @@
 
   &.is-filled {
     .otp {
-      color: getColor('font')
+      color: var(--text-primary)
     }
   }
 
   &.is-focus {
     .otp {
       border: 1px solid getColor('font');;
-      color: getColor('font')
+      color: var(--text-primary)
     }
   }
 
@@ -47,7 +47,7 @@
   &.is-error {
     .otp {
       border: 1px solid getColor('error');
-      color: getColor('font')
+      color: var(--text-primary)
     }
   }
 
@@ -56,14 +56,14 @@
 .otp-list:focus-within {
   .otp {
     border: 1px solid getColor('font');;
-    color: getColor('font');
+    color: var(--text-primary);
   }
 }
 
 .otp-list.is-error:focus-within {
   .otp {
     border: 1px solid getColor('error');
-    color: getColor('font');
+    color: var(--text-primary);
   }
 }
 

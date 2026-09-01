@@ -1,5 +1,5 @@
 @mixin hoverRules {
-  background-color: getColor('main-fade');
+  background-color: var(--bg-secondary-subtle);
 }
 
 @mixin hover {
@@ -20,6 +20,6 @@
 }
 
 @mixin disabledRules {
-  background-color: getColor('disabled-fade') !important;
+  background-color: var(--bg-disabled) !important;
   @include disabledRulesWithoutBG;
 }

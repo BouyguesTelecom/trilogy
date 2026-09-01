@@ -47,7 +47,7 @@
     }
     
   a.link {
-    color: getColor('font');
+    color: var(--text-primary);
     cursor: pointer;
     text-decoration: none;
 

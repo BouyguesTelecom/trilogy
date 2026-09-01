@@ -72,14 +72,14 @@
   .popover-content {
     @include position-top();
 
-    background-color: getColor('font');
+    background-color: var(--bg-secondary);
     border-radius: var(--radius-small);
     box-shadow: $shadow;
     color: getColor('background');
     display: inline-block;
     font-size: 12px;
     visibility: hidden;
-    padding: $spacing-2;
+    padding: var(--spacing-xs);
     font-weight: 500;
     position: absolute;
     text-align: center;

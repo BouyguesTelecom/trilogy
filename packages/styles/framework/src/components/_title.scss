@@ -129,7 +129,7 @@ $title-levels-mobile: (
 }
 
 .subtitle {
-  color: getColor('font');
+  color: var(--text-primary);
   font-size: $subtitle-size;
   font-weight: $subtitle-weight;
   line-height: $subtitle-line-height;
@@ -140,7 +140,7 @@ $title-levels-mobile: (
 }
 
 .overline {
-  color: getColor('font');
+  color: var(--text-primary);
   font-size: $overline-size;
   font-weight: $overline-weight;
   line-height: $overline-line-height;

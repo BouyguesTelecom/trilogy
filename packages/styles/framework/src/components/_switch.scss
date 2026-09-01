@@ -20,7 +20,7 @@
       cursor: not-allowed;
 
       &:before {
-        background-color: getColor('disabled');
+        background-color: var(--bg-disabled);
       }
     }
 
@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: $spacing-1;
+    padding: var(--spacing-xxs);
     padding-right: 60px;
 
     &:before {
@@ -56,7 +56,7 @@
       border-radius: 9999px;
       width: 44px;
       height: 22px;
-      background-color: getColor('neutral');
+      background-color: var(--bg-inactive); //CHECK
     }
 
     &:after {
@@ -69,7 +69,7 @@
       border-radius: 9999px;
       width: 18px;
       height: 18px;
-      background-color: getColor('background');
+      background-color: var(--bg-primary);
       transition: 0.3s;
     }
   }
@@ -79,14 +79,14 @@
       font-weight: bold;
 
       &:before {
-        background-color: getColor('main');
+        background-color: var(--bg-secondary);
       }
 
       &:after {
         right: 2px;
         $colorSvg: encodecolor(getColor('main'));
         content: url('data:image/svg+xml; utf8, <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#{$colorSvg}" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="none"><path d="M11.3 22.4L18.1 29.3L32.7 14.7"/></svg>');
-        background-color: getColor('background');
+        background-color: var(--bg-primary);
       }
     }
   }

@@ -89,18 +89,18 @@ $status-select: (
   }
 
   .select-options {
-    background-color: getColor('background');
+    background-color: var(--bg-primary);
 
     li.option {
-      padding: $spacing-3 $spacing-4;
+      padding: var(--spacing-sm) var(--spacing-md);
       cursor: pointer;
       display: flex;
-      gap: $spacing-2;
+      gap: var(--spacing-xs);
       @include hover;
 
       &.is-disabled {
         color: getColor('disabled');
-        background-color: getColor('disabled-fade');
+        background-color: var(--bg-disabled);
         cursor: not-allowed;
       }
 
@@ -110,7 +110,7 @@ $status-select: (
         &:after {
           content: "" !important;
           mask-image: url('./assets/icons/all/check.svg') !important;
-          background-color: getColor('main') !important;
+          background-color: var(--bg-secondary) !important;
           mask-size: 18px !important;
           right: 18px !important;
           height: 18px !important;

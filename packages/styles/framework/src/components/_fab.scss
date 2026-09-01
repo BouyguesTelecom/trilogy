@@ -1,9 +1,9 @@
 .fab {
-  background-color: getColor('font');
+  background-color: var(--bg-secondary);
   border-radius: var(--radius-large);
   cursor: pointer;
   height: 56px;
-  padding: $spacing-4;
+  padding: var(--spacing-md);
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;

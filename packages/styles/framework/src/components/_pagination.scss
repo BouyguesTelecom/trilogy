@@ -25,7 +25,7 @@
   .pagination-link,
   .pagination-ellipsis {
     @include hover();
-    color: getColor('font');
+    color: var(--text-primary);
     min-width: 2.25em;
     height: 35px;
     width: 35px;
@@ -62,7 +62,7 @@
 
   .pagination-link {
     &[aria-current] {
-      background-color: getColor('font');
+      background-color: var(--bg-secondary);
       color: getColor('background');
       #{$hoverSelector}, &:focus, &:focus-within {
         background: linear-gradient(

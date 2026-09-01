@@ -1,7 +1,7 @@
 .segmented-control {
   border-radius: var(--radius-small);
-  padding: $spacing-1;
-  background-color: getColor('background');
+  padding: var(--spacing-xxs);
+  background-color: var(--bg-primary);
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -26,13 +26,13 @@
   }
 
   .segmented-control-item {
-    padding: $spacing-3 $spacing-4;
+    padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--radius-small);
     font-size: 16px;
     text-align: center;
     border: 2px solid transparent;
-    color: getColor('font');
-    background-color: getColor('background');
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
 
     &:not(:last-child) {
       margin-right: 4px;
@@ -51,7 +51,7 @@
     }
 
     &.is-active {
-      background-color: getColor('main');
+      background-color: var(--bg-secondary);
       color: invertColor('main');
     }
 

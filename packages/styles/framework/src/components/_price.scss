@@ -86,7 +86,7 @@ $price-levels: (
   // the details : cents + period
 
   .price-details {
-    padding-left: $spacing-1;
+    padding-left: var(--spacing-xxs);
 
     .cents,
     .centimes,

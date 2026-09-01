@@ -41,7 +41,7 @@ $dropdown-item-padding-horizontal: 16px;
   z-index: 1000;
   display: none;
   margin-top: 15px;
-  background-color: getColor('background');
+  background-color: var(--bg-primary);
   border-radius: $dropdown-border-radius;
   box-shadow: $dropdown-shadow;
   overflow: hidden;
@@ -87,7 +87,7 @@ $dropdown-item-padding-horizontal: 16px;
   display: flex;
   align-items: center;
   padding: $dropdown-item-padding-vertical $dropdown-item-padding-horizontal;
-  color: getColor('font');
+  color: var(--text-primary);
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -113,17 +113,17 @@ $dropdown-item-padding-horizontal: 16px;
   &:not(:disabled):not([aria-disabled="true"]) {
     #{$hoverSelector},
     &:focus {
-      background-color: getColor('main-fade');
+      background-color: var(--bg-secondary-subtle);
       outline: none;
     }
 
     &:active {
-      background-color: getColor('main-fade');
+      background-color: var(--bg-secondary-subtle);
     }
   }
 
   &.is-active {
-    background-color: getColor('main-fade');
+    background-color: var(--bg-secondary-subtle);
     font-weight: $weight-semibold;
   }
 

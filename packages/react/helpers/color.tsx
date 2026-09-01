@@ -1,6 +1,7 @@
 import { TrilogyThemeContext } from '@/context/providerTheme'
 import { useContext } from 'react'
-import { colors, TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { colors, TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { ButtonVariant, ButtonVariantValues } from '@/components/button/ButtonEnum'
 
 /**
  * Returns color's className depending on Trilogy Color
@@ -17,7 +18,7 @@ export const getColorClassName = (trilogyColor: TrilogyColor | TrilogyColorValue
  * @param trilogyColor {string} - Trilogy Color
  * @returns {string} - Variant Button value
  */
-export const getButtonVariantClassName = (trilogyColor?: string): string => {
+export const getButtonVariantClassName = (trilogyColor?: ButtonVariant | ButtonVariantValues): string => {
   switch (trilogyColor) {
     case 'CONVERSION':
       return 'conversion'
@@ -27,16 +28,6 @@ export const getButtonVariantClassName = (trilogyColor?: string): string => {
       return 'secondary'
     case 'GHOST':
       return 'ghost'
-    case 'SUCCESS':
-      return 'success'
-    case 'INFO':
-      return 'info'
-    case 'WARNING':
-      return 'warning'
-    case 'ERROR':
-      return 'error'
-    case 'DISABLED':
-      return 'disabled'
     default:
       return 'primary'
   }

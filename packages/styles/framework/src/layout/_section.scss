@@ -1,8 +1,8 @@
 .section {
-  padding: $spacing-6 $spacing-4;
+  padding: var(--spacing-xl) var(--spacing-md);
 
   @include desktop {
-    padding: $spacing-8 $spacing-5;
+    padding: var(--spacing-lg);
   }
 
   &.has-background {
@@ -11,15 +11,15 @@
   }
 
   &.has-overlap > .container {
-    margin-top: -$spacing-6 - $spacing-4;
+    margin-top: - var(--spacing-xl) - var(--spacing-md);
 
     @include desktop {
-      margin-top: -$spacing-8 - $spacing-4;
+      margin-top: - var(--spacing-lg) - var(--spacing-md);
     }
   }
 
   &.is-info {
-    background-color: getColor('info');
+    background-color: var(--bg-information);
     color: getColor('background');
   }
 

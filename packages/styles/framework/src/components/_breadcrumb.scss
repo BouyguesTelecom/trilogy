@@ -6,7 +6,7 @@
   ol {
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-2;
+    gap: var(--spacing-xs);
   }
 
   li {
@@ -24,7 +24,7 @@
       mask-repeat: no-repeat;
       mask-size: cover;
       background-color: #1b3650;
-      margin-right: $spacing-2;
+      margin-right: var(--spacing-xs);
     }
   }
 

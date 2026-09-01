@@ -7,7 +7,7 @@ $body-line-height: 1.5 !default;
 .html-wrap {
     margin: 0;
     padding: 0;
-    background-color: getColor('background');
+    background-color: var(--bg-primary);
     font-size: $body-size;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -22,7 +22,7 @@ $body-line-height: 1.5 !default;
 .main-wrap {
     margin: 0;
     padding: 0;
-    color: getColor('font');
+    color: var(--text-primary);
     font-weight: $body-weight;
     line-height: $body-line-height;
     font-size: 16px;

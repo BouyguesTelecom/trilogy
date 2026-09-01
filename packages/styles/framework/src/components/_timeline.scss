@@ -39,7 +39,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     display: -webkit-flex;
     position: relative;
     margin-left: 0;
-    padding-bottom: $spacing-2;
+    padding-bottom: var(--spacing-xs);
 
     &::before {
       content: '';
@@ -135,11 +135,11 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
     .timeline-content {
       margin-left: 3.7em;
-      padding: $spacing-3 0 $spacing-4 $spacing-4;
+      padding: var(--spacing-sm) 0 var(--spacing-md) var(--spacing-md);
 
       .heading {
         font-size: $text-12;
-        color: getColor('font');
+        color: var(--text-primary);
         font-family: $family-primary;
         text-transform: none;
         letter-spacing: 0;

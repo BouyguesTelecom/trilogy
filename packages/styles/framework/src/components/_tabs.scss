@@ -22,7 +22,7 @@ $height-arrow-small:30px;
     top: 0px;
     transition: opacity 0.3s ease;
     opacity: 1;
-    background-color: getColor('background');
+    background-color: var(--bg-primary);
   }
 
   .arrow-prev {
@@ -41,7 +41,7 @@ $height-arrow-small:30px;
   }
 
   &.is-inverted {
-    background-color: getColor('font');
+    background-color: var(--bg-secondary);
 
     .tab-list > .tab {
       color: getColor('background') !important;
@@ -62,7 +62,7 @@ $height-arrow-small:30px;
     }
 
     .arrow-prev, .arrow-next {
-      background-color: getColor('font');
+      background-color: var(--bg-secondary);
     }
 
   }
@@ -119,7 +119,7 @@ $height-arrow-small:30px;
       font-family: $family-primary;
       height: calc(100% - 4px);
       background-color: transparent;
-      color: getColor('font');
+      color: var(--text-primary);
       text-decoration: none;
       outline: none;
       padding: 12px 24px;
@@ -193,8 +193,8 @@ $height-arrow-small:30px;
 
 
   .tab-panels {
-    padding-top: $spacing-3;
-    padding-bottom: $spacing-3;
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
 
     .tab-panel {
       transition: opacity 2s ease-in-out;

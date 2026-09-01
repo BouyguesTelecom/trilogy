@@ -93,12 +93,12 @@ $size: (
     &.is-stretched {
         transform: skewX(-#{$icon-stretching-level});
         border-radius: 0 9px 0 0;
-        background-color: getColor('font');
+        background-color: var(--bg-secondary);
 
       [class^="tri-"],
       [class*=" tri-"]  {
             transform: skewX($icon-stretching-level);
-            background-color: getColor('background');
+            background-color: var(--bg-primary);
         }
     }
 
@@ -242,7 +242,7 @@ $size: (
             width: $icon-dimensions-default;
             height: $icon-dimensions-default;
             border-radius: 9999px;
-            background-color: getColor('main');
+            background-color: var(--bg-secondary);
         }
 
         &.is-bordered {

@@ -12,8 +12,8 @@
 .textarea {
   @include input;
 
-  padding-left: $spacing-4;
-  padding-right: $spacing-4;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
   font-size: $size-medium;
   max-width: 100%;
   width: 100%;
@@ -86,7 +86,7 @@
     background-size : 20px;
     -webkit-appearance: none;
     background-repeat: no-repeat;
-    background-color: getColor('background') ;
+    background-color: var(--bg-primary) ;
     background-position: center;
   }
 
@@ -94,7 +94,7 @@
     padding-right: 45px;
     &:hover:not(:focus){
       &::-webkit-search-cancel-button {
-        background-color: getColor('main-fade');
+        background-color: var(--bg-secondary-subtle);
       }
     }
     &:focus{

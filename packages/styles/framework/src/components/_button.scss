@@ -1,39 +1,22 @@
-$button-border-width: 2px !default;
 $noDisabled: ":not(:disabled):not([aria-disabled=true]):not(.is-loading)";
+$button-variants: (
+  conversion: accent,
+  primary: primary,
+  secondary: secondary,
+  ghost: ghost,
+);
 
-/*
-Colors for buttons
-  @string slug name used in classname (You can use your brand name)
-  @color-background The name of the color in the color map for the background
-  @color-text The name of the color in the color map for the text
-  */
-$button-colors: (
-  'accent':['conversion', 'accent', 'background'],
-  'primary': ['primary', 'main', 'background'],
-  'secondary': ['secondary', 'main-fade', 'font'],
-  'ghost': ['ghost', 'transparent', 'font']
-) !default;
 
 %buttons-states {
-  #{$hoverSelector} {
-    filter: brightness(0.8);
-    &.is-primary {
-      filter: brightness(1.2);
-    }
-  }
-  &:active:not(:disabled) {
-    filter: brightness(0.7);
-  }
-
   &:focus-visible,
   &:focus:focus-visible {
-    outline: 2px solid getColor('font') !important;
+    outline: 2px solid var(--border) !important;//CHECK
     outline-offset: 2px;
   }
 }
 
 
-.buttons {
+.Buttons {
   display: flex;
   width: 100%;
   gap: 16px;
@@ -51,55 +34,91 @@ $button-colors: (
   }
 }
 
-.button {
+.Button {
   @include control;
   @include unselectable;
   @extend %buttons-states;
 
   background-color: white;
-  border-width: $button-border-width;
-  border-radius: var(--radius-small);
+  border-width: var(--border-width-md);//CHECK
+  border-radius: var(--radius-sm);//CHECK
   cursor: pointer;
   justify-content: center;
   text-align: center;
   white-space: nowrap;
-  padding: 0 $spacing-4;
+  padding: 0 var(--spacing-md);//CHECK
   text-decoration: inherit;
-  font-weight: $weight-semibold;
+  font-weight: var(--font-weight-body-1-bold);//CHECK
   height: $size-inputs;
 
   @include mobile {
     width: 100%;
   }
 
-  @each $name, $pair in $button-colors {
-    $variantName: nth($pair, 1);
-    $colorBG: getColor(#{nth($pair, 2)});
-    $colorText: getColor(nth($pair, 3));
+  //CHECK
+  // @each $variant, $token in $button-variants {
+  //   &.Button-#{$variant} {
+  //     border-color: var(--btn-bg-#{$token});
+  //     background-color: var(--btn-bg-#{$token});
+  //     color: var(--btn-text-#{$token});
 
-    &.is-#{$variantName} {
-      background-color: $colorBG;
-      color: $colorText;
+  //     &:hover {
+  //       border-color: var(--btn-bg-#{$token}-hover);
+  //       background-color: var(--btn-bg-#{$token}-hover);
+  //     }
+  //   }
+  // }
+
+  &.Button-conversion {
+    border-color: var(--btn-bg-accent);//CHECK
+    background-color: var(--btn-bg-accent);//CHECK
+    color: var( --btn-text-accent);//CHECK
+    &:hover {
+      border-color: var(--btn-bg-accent-hover);//CHECK
+      background-color: var(--btn-bg-accent-hover);//CHECK
     }
   }
 
-  &.is-ghost:hover:not([disabled]) {
-    background-color: var(--color-main-fade);
-    filter: none !important;
+  &.Button-primary {
+    border-color: var(--btn-bg-primary);//CHECK
+    background-color: var(--btn-bg-primary);//CHECK
+    color: var( --btn-text-primary);//CHECK
+    &:hover {
+      border-color: var(--btn-bg-primary-hover);//CHECK
+      background-color: var(--btn-bg-primary-hover);//CHECK
+    }
+  }
+
+  &.Button-secondary {
+    border-color: var(--btn-border-secondary);//CHECK
+    background-color: var(--btn-bg-secondary);//CHECK
+    color: var( --btn-text-secondary);//CHECK
+    &:hover {
+      background-color: var(--btn-bg-secondary-hover);//CHECK
+    }
+  }
+  
+  &.Button-ghost {
+    border-color: var(--btn-bg-ghost);//CHECK
+    background-color: var(--btn-bg-ghost);//CHECK
+    color: var( --btn-text-ghost);//CHECK
+    &:hover {
+      background-color: var(--btn-bg-ghost-hover);//CHECK
+    }
   }
 
   &[disabled],
   &[aria-disabled=true] {
     border-color: transparent !important;
-    background-color: getColor('main-fade') !important;
-    color: getColor('disabled') !important
+    background-color: var(--bg-disabled) !important;//CHECK
+    color: var(--text-disabled) !important;//CHECK
   }
 
   [aria-disabled=true] {
     pointer-events: none;
   }
   &:has(.icon) {
-    gap: $spacing-2;
+    gap: var(--spacing-xs);//CHECK
   }
 
   .icon:not([class*='has-background-']) {
@@ -107,7 +126,7 @@ $button-colors: (
   }
 
   &.is-loading {
-    background-color: getColor('neutral');
+    //background-color: getColor('neutral');//CHECK
     &::after {
       @include spinner('neutral-fade');
     }

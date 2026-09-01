@@ -9,7 +9,7 @@ $sticker-height: 35px;
   color: getColor('background') !important;
   line-height: 20px;
   flex-shrink: 0;
-  background-color: getColor('main');
+  background-color: var(--bg-secondary);
   font-weight: 600;
   max-height: 36px;
 
@@ -17,12 +17,12 @@ $sticker-height: 35px;
     font-size: 20px;
     width: auto;
     height: auto;
-    margin-right: $spacing-2;
+    margin-right: var(--spacing-xs);
   }
 
   &.is-small {
     .icon {
-      margin-right: $spacing-1;
+      margin-right: var(--spacing-xxs);
     }
   }
 
@@ -30,23 +30,23 @@ $sticker-height: 35px;
     width: fit-content;
     @include mobile {
       font-size: 12px;
-      padding: $spacing-1 $spacing-2;
+      padding: var(--spacing-xxs) var(--spacing-xs);
       height: auto;
       line-height: 15px;
       .icon {
         font-size: 16px;
-        margin-right: $spacing-1;
+        margin-right: var(--spacing-xxs);
       }
     }
   }
 
   &.is-accent {
-    background-color: getColor('accent');
+    background-color: var(--bg-accent);
     color: getColor('background') !important;
   }
 
   &.is-info {
-    background-color: getColor('info');
+    background-color: var(--bg-information);
     color: getColor('background') !important;
   }
 
@@ -60,19 +60,19 @@ $sticker-height: 35px;
 
   &.is-small {
     font-size: 12px;
-    padding: $spacing-1 $spacing-2;
+    padding: var(--spacing-xxs) var(--spacing-xs);
     height: auto;
     line-height: 15px;
     .icon {
       font-size: 16px;
       height: 15px;
-      margin-right: $spacing-1;
+      margin-right: var(--spacing-xxs);
     }
   }
 
   // deprecated
   &.is-stretched {
-    border-radius: var(--radius) 0;
+    border-radius: var(--radius-sm) 0;
     padding: 0 10px;
     position: relative;
     margin-right: 10px;
@@ -92,12 +92,12 @@ $sticker-height: 35px;
     }
 
     &::before {
-      border-radius: var(--radius) 0 0 var(--radius);
+      border-radius: var(--radius-sm) 0 0 var(--radius-sm);
       left: -6px;
     }
 
     &::after {
-      border-radius: 0 var(--radius) var(--radius) 0;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       right: -7px;
     }
   }
@@ -116,7 +116,7 @@ $sticker-height: 35px;
 .has-hat-mobile {
   .is-hat {
     display: inline-block;
-    border-radius: var(--radius) var(--radius) 0 0;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     position: absolute;
     top: -$sticker-height;
     left: 0;

@@ -30,12 +30,12 @@
 
   .counter {
     position: absolute;
-    bottom: $spacing-2;
-    right: $spacing-4;
+    bottom: var(--spacing-xs);
+    right: var(--spacing-md);
     font-size: 10px;
   }
 
   .help ~ .counter {
-    bottom: $spacing-6;
+    bottom: var(--spacing-xl);
   }
 }

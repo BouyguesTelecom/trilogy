@@ -16,26 +16,26 @@
       .autocomplete-menu {
         display: block;
         border: var(--border);
-        padding: calc($spacing-1 + 1px) calc($spacing-2 + 2px);
+        padding: calc(var(--spacing-xxs) + 1px) calc(var(--spacing-xs) + 2px);
         border-radius: 4px;
         max-height: 220px;
         overflow-y: auto;
-        background-color: getColor('background');
+        background-color: var(--bg-primary);
         z-index: 10000;
-        margin-top: $spacing-2;
+        margin-top: var(--spacing-xs);
       }
 
       .autocomplete-item {
         cursor: pointer;
-        padding: calc($spacing-1 - 0.25px) calc($spacing-1 + 1px);
+        padding: calc(var(--spacing-xxs) - 0.25px) calc(var(--spacing-xxs) + 1px);
 
         &.is-active, &[data-autocomplete-item-hover] {
           @include hoverRules();
-          margin-left: calc(2px - $spacing-3);
-          margin-right: calc(2px - $spacing-3);
+          margin-left: calc(2px - var(--spacing-sm));
+          margin-right: calc(2px - var(--spacing-sm));
           border-top: 1px solid getColor('neutral-fade');
           border-bottom: 1px solid getColor('neutral-fade');
-          padding: calc($spacing-1 - 1.25px) calc($spacing-4 - 1px);
+          padding: calc(var(--spacing-xxs) - 1.25px) calc(var(--spacing-md) - 1px);
         }
       }
     }

@@ -3,11 +3,11 @@
     z-index: zindex('modal');
     visibility: hidden;
     opacity: 0;
-    background-color: getColor('background');
-    border-radius: var(--radius);
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-sm);
     box-shadow: $shadow;
     width: 350px;
-    padding: $spacing-3 * 2;
+    padding: var(--spacing-sm) * 2;
 
     @include mobile {
         max-width: inherit;

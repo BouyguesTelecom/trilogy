@@ -16,10 +16,10 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: getColor('background');
+    background-color: var(--bg-primary);
     font-size: $size-normal;
     border: 1px solid #{getColor('stroke-fade')};
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
     margin: 8px 0;
     min-height: 56px;
     max-height: max-content;
@@ -30,7 +30,7 @@
     }
 
     .accordion-body {
-      padding: $spacing-4;
+      padding: var(--spacing-md);
       padding-top: 0 !important;
       box-sizing: border-box;
     }
@@ -66,7 +66,7 @@
     }
 
     .accordion-header {
-        border-radius: var(--radius);
+        border-radius: var(--radius-sm);
       transition: margin 300ms ease-out;
 
       &:focus-visible{
@@ -93,7 +93,7 @@
       position: relative;
       height: auto;
       cursor: pointer;
-      padding: $spacing-4 calc($spacing-4 * 2 + $arrow-size) $spacing-4 $spacing-4;
+      padding: var(--spacing-md) calc(var(--spacing-md) * 2 + $arrow-size) var(--spacing-md) var(--spacing-md);
 
       &.is-grouped {
         > *:first-child {
@@ -123,7 +123,7 @@
         overflow-y: hidden;
 
         .accordion-content {
-          border-radius: var(--radius);
+          border-radius: var(--radius-sm);
           margin-bottom: 10px;
 
           @include mobile() {
