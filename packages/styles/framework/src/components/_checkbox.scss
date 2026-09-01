@@ -49,7 +49,7 @@
   .checkbox-container {
     &:before,
     &:after {
-      border-radius: var(--radius-small);
+      border-radius: var(--radius-sm);
     }
   }
 }

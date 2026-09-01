@@ -227,7 +227,7 @@ $label-weight: $weight-bold;
       }
 
       &.is-error {
-        border-color: getColor('error');
+        border-color: var(--border-error);
       }
     }
 
@@ -241,7 +241,7 @@ $label-weight: $weight-bold;
       }
 
       &.is-error {
-        border-color: getColor('error');
+        border-color: var(--border-error);
       }
     }
   }

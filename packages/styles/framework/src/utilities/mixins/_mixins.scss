@@ -130,10 +130,10 @@
 
       &:checked ~ label.#{$type}-label,  
       &:checked ~ .#{$type}-container {
-        border-color: getColor('main');
+        border-color: var(--border-selected);
 
         &:before {
-          border-color: getColor('main');
+          border-color: var(--border-selected);
         }
 
         &:after {
@@ -212,7 +212,7 @@
 
     &:focus {
       border: 2px;
-      border-color: getColor('main');
+      border-color: var(--border-selected);
     }
   }
 
@@ -286,7 +286,7 @@
 
       &:checked:not(:disabled) ~ label.#{$type}-label,
        &:checked:not(:disabled) ~ .#{$type}-container {
-        border-color: getColor('main');
+        border-color: var(--border-selected);
         border-width: 2px;
         padding: 15px;
         padding-top: 39px;
@@ -306,7 +306,7 @@
         & ~ label.#{$type}-label,
         & ~ .#{$type}-container  {
           &:before {
-            border-color: getColor('disabled') !important;
+            border-color: var(--border-disabled) !important;
           }
         }
       }

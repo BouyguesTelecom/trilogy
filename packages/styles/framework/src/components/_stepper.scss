@@ -21,7 +21,7 @@
     content: "";
     display: block;
     height: 4px;
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-sm);
     background-size: 200% !important;
     background-color: var(--bg-inactive); //CHECK
   }
@@ -131,7 +131,7 @@
 .step-bars {
   height: 4px;
   background: getColor('disabled');
-  border-radius: var(--radius-small);
+  border-radius: var(--radius-sm);
   display: none;
 }
 

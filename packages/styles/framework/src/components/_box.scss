@@ -54,7 +54,7 @@ a.box {
 
   &.is-flat {
     box-shadow: none;
-    border: 1px solid #{getColor('stroke-fade')};
+    border: var(--border-style);//CHECK
 
     .box-header {
       margin-top: calc(var(--padding-box) * -1 - 1px);
@@ -67,7 +67,7 @@ a.box {
     border-left: $highlighted-border-width solid transparent;
     border-top-left-radius: $highlighted-border-width;
     border-bottom-left-radius: $highlighted-border-width;
-    border-left-color: getColor('main');
+    border-left-color: var(--border);//CHECK
     @each $name, $pair in $colors-brand-functionnal {
       $color: getColor($name);
       $brandName: getColorBrandName($name);

@@ -32,7 +32,7 @@
       bottom: 0;
       @include mobile {
         height: 4px;
-        border-radius: var(--radius-small);
+        border-radius: var(--radius-sm);
       }
     }
 

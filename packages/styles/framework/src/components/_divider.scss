@@ -3,7 +3,7 @@
   flex: 1;
   height: 1px;
   background-color: var(--bg-inactive); //CHECK
-  border: 1px solid #{getColor('stroke-fade')};
+  border: 1px solid var(--border-inactive);//CHECK
 }
 
 .divider {

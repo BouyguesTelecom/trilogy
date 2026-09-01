@@ -45,7 +45,7 @@
 
 .badge {
   display: inline-flex;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   color: getColor('background');
   background: getColor('main');
   font-size: $text-10;
@@ -82,6 +82,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
   }
 }

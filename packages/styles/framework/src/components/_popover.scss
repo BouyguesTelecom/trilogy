@@ -73,7 +73,7 @@
     @include position-top();
 
     background-color: var(--bg-secondary);
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-sm);
     box-shadow: $shadow;
     color: getColor('background');
     display: inline-block;
@@ -95,8 +95,8 @@
     &::before {
       content: '';
       border-color: transparent;
-      border-bottom-color: getColor('font');
-      border-left-color: getColor('font');
+      border-bottom-color: var(--border);
+      border-left-color: var(--border);
       border-style: solid;
       border-width: 4px;
       pointer-events: none;

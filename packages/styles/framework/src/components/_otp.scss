@@ -6,7 +6,7 @@
     @include hover();
     outline: none;
     border: var(--border-style);
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-sm);
     background: transparent;
     width: 33px;
     height: 48px;
@@ -26,7 +26,7 @@
 
   &.is-danger {
     .otp {
-      border: 1px solid getColor('error');
+      border: 1px solid var(--border-error);
     }
   }
 
@@ -38,7 +38,7 @@
 
   &.is-focus {
     .otp {
-      border: 1px solid getColor('font');;
+      border: 1px solid var(--border);
       color: var(--text-primary)
     }
   }
@@ -46,7 +46,7 @@
 
   &.is-error {
     .otp {
-      border: 1px solid getColor('error');
+      border: 1px solid var(--border-error);
       color: var(--text-primary)
     }
   }
@@ -55,14 +55,14 @@
 
 .otp-list:focus-within {
   .otp {
-    border: 1px solid getColor('font');;
+    border: 1px solid var(--border);
     color: var(--text-primary);
   }
 }
 
 .otp-list.is-error:focus-within {
   .otp {
-    border: 1px solid getColor('error');
+    border: 1px solid var(--border-error);
     color: var(--text-primary);
   }
 }

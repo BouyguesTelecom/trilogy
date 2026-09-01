@@ -171,8 +171,8 @@ $price-levels: (
       top: 50%;
       right: 0;
       border-top: 2px solid;
-      border-color: getColor('font-placeholder');
-      border-radius: var(--radius-small);
+      border-color: var(--border-disabled); //CHECK
+      border-radius: var(--radius-sm);
       transform: rotate(-20deg);
     }
 
@@ -180,7 +180,7 @@ $price-levels: (
       color: getColor('background');
 
       &::before {
-        border-color: getColor('background');
+        border-color: var(--border-inverse);
       }
     }
   }

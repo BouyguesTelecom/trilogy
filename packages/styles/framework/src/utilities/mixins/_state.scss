@@ -12,7 +12,7 @@
 }
 
 @mixin disabledRulesWithoutBG {
-  border-color: getColor('disabled') !important;
+  border-color: var(--border-disabled) !important;
   box-shadow: none !important;
   color: getColor('disabled') !important;
   cursor: not-allowed !important;

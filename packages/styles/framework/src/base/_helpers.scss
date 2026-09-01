@@ -425,7 +425,7 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 .is-rounded {
-  border-radius: 9999px !important;
+  border-radius: var(--radius-full) !important;
 }
 
 .is-bordered {

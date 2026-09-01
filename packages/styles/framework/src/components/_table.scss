@@ -26,7 +26,7 @@
 
   td,
   th {
-    border: 1px solid #{getColor('stroke-fade')};
+    border: var(--border-style);//CHECK
     border-width: 0;
     padding: 20px;
     vertical-align: top;
@@ -71,7 +71,7 @@
     }
 
     td {
-      border-bottom: 1px solid #{getColor('stroke-fade')};
+      border-bottom: var(--border-style);//CHECK
 
       > p {
         margin: 0;
@@ -167,15 +167,15 @@
   }
 
   &.has-border-all {
-    border: 1px solid #{getColor('stroke-fade')};
+    border: var(--border-style);//CHECK
 
     th {
-      border-right: 1px solid #{getColor('stroke-fade')};
+      border-right: var(--border-style);//CHECK
     }
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid #{getColor('stroke-fade')};
+        border-right: var(--border-style);//CHECK
       }
     }
   }
@@ -183,13 +183,13 @@
   &.has-border-inner {
     th {
       &:not(:last-child) {
-        border-right: 1px solid #{getColor('stroke-fade')};
+        border-right: var(--border-style);//CHECK
       }
     }
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid #{getColor('stroke-fade')};
+        border-right: var(--border-style);//CHECK
       }
     }
   }
@@ -229,7 +229,7 @@
 
       tr:not(:first-child) {
         td {
-          border-top: 1px solid #{getColor('stroke-fade')};
+          border-top: var(--border-style);//CHECK
         }
       }
 

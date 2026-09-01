@@ -42,7 +42,7 @@ $basis-values: (
   }
 
   .card-footer {
-    border-top: 1px solid getColor('neutral');
+    border-top: 1px solid var(--border);//CHECK
   }
 
   .mention {
@@ -67,7 +67,7 @@ $basis-values: (
 
   &.is-flat {
     box-shadow: none;
-    border: 1px solid #{getColor('stroke-fade')};
+    border: 1px solid var(--border);//CHECK
 
     .card-content {
       padding-left: 20px;

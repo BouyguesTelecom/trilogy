@@ -14,7 +14,7 @@ $link-colors: 'info' !default;
   &:focus-visible,
   &:focus:focus-visible {
     outline: 2px solid currentColor;
-    border-radius: var(--radius-smaller);
+    border-radius: var(--radius-xs);
     padding: 0 4px;
   }
 }

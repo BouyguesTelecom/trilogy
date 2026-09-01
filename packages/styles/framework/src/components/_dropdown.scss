@@ -1,7 +1,7 @@
 @use 'sass:math';
 @import "../utilities/spacing";
 
-$dropdown-border-radius: var(--radius-small);
+$dropdown-border-radius: var(--radius-sm);
 $dropdown-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 $dropdown-item-padding-vertical: 12px;
 $dropdown-item-padding-horizontal: 16px;
@@ -75,7 +75,7 @@ $dropdown-item-padding-horizontal: 16px;
 
   &::-webkit-scrollbar-thumb {
     background: getColor('main-fade');
-    border-radius: var(--radius-smaller);
+    border-radius: var(--radius-xs);
   }
 }
 
@@ -145,7 +145,7 @@ $dropdown-item-padding-horizontal: 16px;
 
 .dropdown-group {
   &:not(:first-child) {
-    border-top: 2px solid getColor('neutral-fade');
+    border-top: 2px solid var(--border);//CHECK
   }
 
   &:not(:last-child) {

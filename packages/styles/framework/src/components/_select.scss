@@ -44,7 +44,7 @@ $status-select: (
 
   &-options {
     box-shadow: 0 0 8px #0000001a;
-    border-radius: var(--radius-smaller);
+    border-radius: var(--radius-xs);
     overflow: hidden;
     position: absolute;
     z-index: 1001;

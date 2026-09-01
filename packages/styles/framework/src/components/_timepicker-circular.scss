@@ -29,7 +29,7 @@ $CURSOR_SIZE: 32px;
       height: $CURSOR_SIZE;
       border-radius: 50%;
       background-color: var(--bg-primary-subtle);
-      border: 2px solid getColor('main');
+      border: 2px solid var(--border-selected);
       z-index: 20;
     }
 

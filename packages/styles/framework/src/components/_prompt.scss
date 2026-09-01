@@ -2,12 +2,12 @@ $height-prompt-item: 64px;
 
 .prompt {
     box-shadow: 0 0 0 1px var(--color-stroke);
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-sm);
     overflow: hidden;
     background-color: var(--bg-primary);
     &[aria-disabled=true] {
         background-color: var(--bg-disabled) !important;
-        border: 1px solid getColor('disabled');
+        border: 1px solid var(--border-disabled);
     }
     * {
         margin-bottom: 0px !important;
@@ -152,6 +152,6 @@ $height-prompt-item: 64px;
         background-color: var(--bg-primary);
         height: 16px;
         width: 16px;
-        border-radius: var(--radius-smaller);
+        border-radius: var(--radius-xs);
     }
 }
