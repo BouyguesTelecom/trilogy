@@ -176,7 +176,7 @@ a.box {
   .box-footer:not(.is-borderless):not([class*="has-background"])::before {
     content: '';
     display: block;
-    border-top: var(--border);
+    border-top: var(--border-style);
     position: relative;
     top: calc(var(--padding-box) * -1);
   }

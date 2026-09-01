@@ -1,0 +1,4 @@
+:root {
+    --border-style: #{$border-width-100} solid var(--border);//CHECK
+    --border-active: var(--border-width-sm) solid var(--border-selected);
+}

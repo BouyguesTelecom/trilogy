@@ -429,7 +429,7 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 .is-bordered {
-  border: var(--border);
+  border: var(--border-style);
 }
 
 .is-vertical-paddingless {

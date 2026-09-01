@@ -50,7 +50,7 @@
     padding: 6px var(--spacing-md);
     white-space: nowrap;
     cursor: pointer;
-    border: var(--border);
+    border: var(--border-style);
     &:not(.is-disabled) {
       &.is-active {
         background-color: var(--bg-secondary);

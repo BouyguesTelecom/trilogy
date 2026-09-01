@@ -55,7 +55,7 @@ ol.list {
 
   &.has-divider {
     li {
-      border-bottom: var(--border);
+      border-bottom: var(--border-style);
       padding-bottom: var(--spacing-sm);
       &:last-child {
         border-bottom: none;

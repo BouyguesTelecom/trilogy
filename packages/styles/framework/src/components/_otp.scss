@@ -5,7 +5,7 @@
   .otp {
     @include hover();
     outline: none;
-    border: var(--border);
+    border: var(--border-style);
     border-radius: var(--radius-small);
     background: transparent;
     width: 33px;
