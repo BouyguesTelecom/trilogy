@@ -29,6 +29,6 @@ To be used when standalone namespaced builds are used
     text-rendering: $body-rendering;
 
     > * {
-        font-size: $text-16;
+        font-size: var(--body-1-size);
     }
 }

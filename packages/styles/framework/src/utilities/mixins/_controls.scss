@@ -10,7 +10,7 @@ $control-padding-horizontal: 16px;
   border: $control-border-width solid transparent;
   border-radius: var(--radius-small);
   display: inline-flex;
-  font-size: $size-normal;
+  font-size: var(--body-1-size);
   height: 46px;
   justify-content: flex-start;
   line-height: 1.4;
@@ -44,13 +44,13 @@ $control-padding-horizontal: 16px;
 
 @mixin control-small {
   border-radius: var(--radius-small);
-  font-size: $size-small;
+  font-size: var(--body-2-size);
 }
 
 @mixin control-medium {
-  font-size: $size-medium;
+  font-size: var(--body-1-size);
 }
 
 @mixin control-large {
-  font-size: $size-large;
+  font-size: $font-size-700;//CHECK
 }

@@ -7,7 +7,7 @@
 
   .count {
     font-family: $family-primary;
-    font-size: $text-12;
+    font-size: var(--body-3-size);
     font-weight: 400;
     list-style-type: none;
     text-align: center;
@@ -21,13 +21,13 @@
       right: -3px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: $text-12;
+      font-size: var(--body-3-size);
       font-weight: 600;
       width: 6px;
     }
 
     .value {
-      font-size: $text-20;
+      font-size: $font-size-400;
       list-style: 28px;
       font-weight: 600;
     }
@@ -38,7 +38,7 @@
     border-radius: var(--radius-sm);
 
     .count {
-      font-size: $text-12;
+      font-size: var(--body-3-size);
       font-weight: 500;
       min-width: 42px;
 

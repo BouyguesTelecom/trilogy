@@ -38,8 +38,8 @@
   }
 
   .badge-icon {
-    width: $text-20;
-    height: $text-20;
+    width: $font-size-400;
+    height: $font-size-400;
   }
 }
 
@@ -48,15 +48,15 @@
   border-radius: var(--radius-full);
   color: var(--text-inverse);
   background: var(--bg-secondary);
-  font-size: $text-10;
-  min-height: $text-20;
-  min-width: $text-20;
+  font-size: var(--body-4-size);
+  min-height: $font-size-400;
+  min-width: $font-size-400;
   justify-content: center;
   align-items: center;
 
   &:empty {
-    min-width: $text-10;
-    min-height: $text-10;
+    min-width: var(--body-4-size);
+    min-height: var(--body-4-size);
   }
 
   &.is-inverted {
@@ -76,9 +76,9 @@
     color: var(--text-inverse);
     left: 100%;
     background: var(--bg-secondary);
-    font-size: $text-10;
-    min-height: $text-20;
-    min-width: $text-20;
+    font-size: var(--body-4-size);
+    min-height: $font-size-400;
+    min-width: $font-size-400;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -9,7 +9,7 @@ ol.list {
         content: counter(customCounter) ". ";
         margin-right:var(--spacing-md);
         font-weight: $weight-bold;
-        font-size: $text-14 !important;
+        font-size: var(--body-2-size) !important;
         font-family: $family-secondary;
         line-height: 1.5 !important;
 

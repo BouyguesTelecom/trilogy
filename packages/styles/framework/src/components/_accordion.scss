@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     background-color: var(--bg-primary);
-    font-size: $size-normal;
+    font-size: var(--body-1-size);
     border: var(--border-style);//CHECK
     border-radius: var(--radius-sm);
     margin: 8px 0;

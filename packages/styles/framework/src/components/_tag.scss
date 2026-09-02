@@ -82,7 +82,7 @@ $tag-delete-margin: 1px !default;
   border-radius: 9999px;
   color: var(--text-primary);
   display: inline-flex;
-  font-size: $size-medium;
+  font-size: var(--body-1-size);
   font-weight: $weight-medium;
   height: 28px;
   justify-content: center;
@@ -91,7 +91,7 @@ $tag-delete-margin: 1px !default;
   white-space: nowrap;
 
   &.is-small {
-    font-size: $text-12;
+    font-size: var(--body-3-size);
     line-height: 15px;
     height: 23px;
   }

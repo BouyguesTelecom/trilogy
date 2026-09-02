@@ -31,7 +31,7 @@
         line-height: normal;
       }
        &-description {
-          font-size: $text-10;
+          font-size: var(--body-4-size);
        }
     }
   }

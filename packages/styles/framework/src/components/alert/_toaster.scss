@@ -117,7 +117,7 @@ a.toaster {
     .title,
     .text,
     .paragraph {
-        font-size: $text-14;
+        font-size: var(--body-2-size);
         text-align: left;
     }
 

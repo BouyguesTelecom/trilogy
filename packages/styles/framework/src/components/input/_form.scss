@@ -1,7 +1,7 @@
 $file-radius: var(--radius-sm);
 $file-name-max-width: 16em;
 $field-margin: 20px;
-$help-size: $size-small;
+$help-size: var(--body-2-size);
 $label-weight: $weight-bold;
 
 .field {
@@ -183,7 +183,7 @@ $label-weight: $weight-bold;
 }
 
 .control {
-  font-size: $size-normal;
+  font-size: var(--body-1-size);
   position: relative;
   text-align: left;
 
@@ -275,7 +275,7 @@ $label-weight: $weight-bold;
       position: absolute;
       bottom: 5px;
       right: 16px;
-      font-size: $text-10;
+      font-size: var(--body-4-size);
     }
 
     .is-error ~ .textarea-counter {
@@ -324,7 +324,7 @@ $label-weight: $weight-bold;
       top: 10px;
       left: 16px;
       border-left: transparent 1px solid;
-      font-size: $text-12;
+      font-size: var(--body-3-size);
       color: var(--text-primary);
       filter: grayscale(1);
       transform: translateY(0);
@@ -368,14 +368,14 @@ $label-weight: $weight-bold;
     textarea:placeholder-shown ~ label {
       visibility: hidden;
       opacity: 0;
-      font-size: $size-normal;
+      font-size: var(--body-1-size);
       transform: translateY(10px);
     }
 
     input:-ms-input-placeholder ~ label {
       visibility: hidden;
       opacity: 0;
-      font-size: $size-normal;
+      font-size: var(--body-1-size);
       transform: translateY(10px);
     }
   }
@@ -401,7 +401,7 @@ $label-weight: $weight-bold;
   }
 
   + .help {
-    font-size: $text-12;
+    font-size: var(--body-3-size);
     font-weight: $weight-medium;
   }
 
@@ -432,11 +432,11 @@ $label-weight: $weight-bold;
     }
 
     &.is-small::after {
-      font-size: $size-small;
+      font-size: var(--body-2-size);
     }
 
     &.is-large::after {
-      font-size: $size-large;
+      font-size: $font-size-700;//CHECK
     }
   }
 
@@ -465,7 +465,7 @@ $label-weight: $weight-bold;
     text-align: right;
 
     &.is-small {
-      font-size: $size-small;
+      font-size: var(--body-2-size);
       padding-top: 0.375em;
     }
 
@@ -474,7 +474,7 @@ $label-weight: $weight-bold;
     }
 
     &.is-large {
-      font-size: $size-large;
+      font-size: $font-size-700;//CHECK
       padding-top: 0.375em;
     }
   }
@@ -519,11 +519,11 @@ $label-weight: $weight-bold;
 
   // Sizes
   &.is-small {
-    font-size: $size-small;
+    font-size: var(--body-2-size);
   }
 
   &.is-large {
-    font-size: $size-large;
+    font-size: $font-size-700;//CHECK
   }
 
   &.is-centered {
@@ -562,7 +562,7 @@ $label-weight: $weight-bold;
 .label {
   color: var(--text-disabled); //CHECK
   display: block;
-  font-size: $size-normal;
+  font-size: var(--body-1-size);
   font-weight: $label-weight;
 
   &:not(:last-child) {
@@ -571,11 +571,11 @@ $label-weight: $weight-bold;
 
   // Sizes
   &.is-small {
-    font-size: $size-small;
+    font-size: var(--body-2-size);
   }
 
   &.is-large {
-    font-size: $size-large;
+    font-size: $font-size-700;//CHECK
   }
 }
 

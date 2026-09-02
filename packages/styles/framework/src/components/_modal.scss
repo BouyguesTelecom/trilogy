@@ -110,7 +110,7 @@ body:has(.modal.is-active) {
       padding: var(--spacing-lg);
       color: var(--text-primary);
       font-family: $family-primary;
-      font-size: $size-3;
+      font-size: $font-size-600;
       font-weight: $weight-semibold;
       line-height: 1.1;
       background-color: var(--bg-primary);
@@ -131,7 +131,7 @@ body:has(.modal.is-active) {
       }
 
       @include desktop {
-        font-size: $size-3-desktop;
+        font-size: $font-size-700;
       }
 
       .modal-close {

@@ -25,7 +25,7 @@
   }
 
   &.is-small {
-    font-size: $size-6;
+    font-size: var(--body-2-size);
   }
 }
 

@@ -2,10 +2,10 @@ $price-levels: (
   [$text-64, $text-44, $text-28, $text-16, $text-16],
   [$text-56, $text-32, $text-22, $text-16, $text-16],
   [$text-48, $text-28, $text-16, $text-16, $text-16],
-  [$text-40, $text-24, $text-10, $text-10, $text-14],
-  [$text-36, $text-20, $text-10, $text-10, $text-14],
-  [$text-24, $text-20, $text-10, $text-10, $text-10],
-  [$text-20, $text-20, $text-10, $text-10, $text-10],
+  [$text-40, $text-24, var(--body-4-size), var(--body-4-size), var(--body-2-size)],
+  [$text-36, $font-size-400, var(--body-4-size), var(--body-4-size), var(--body-2-size)],
+  [$text-24, $font-size-400, var(--body-4-size), var(--body-4-size), var(--body-4-size)],
+  [$font-size-400, $font-size-400, var(--body-4-size), var(--body-4-size), var(--body-4-size)],
 );
 
 .price-container {

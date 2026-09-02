@@ -184,7 +184,7 @@ $height-arrow-small:30px;
 
     .tab-list {
       & > .tab {
-        font-size: $text-14 ;
+        font-size: var(--body-2-size) ;
         padding: 12px 16px;
       }
     }
