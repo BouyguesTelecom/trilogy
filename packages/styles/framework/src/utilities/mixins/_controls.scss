@@ -8,7 +8,7 @@ $control-padding-horizontal: 16px;
   -webkit-appearance: none;
   align-items: center;
   border: $control-border-width solid transparent;
-  border-radius: var(--radius-small);
+  border-radius: var(--radius-sm);
   display: inline-flex;
   font-size: var(--body-1-size);
   height: 46px;
@@ -43,7 +43,7 @@ $control-padding-horizontal: 16px;
 }
 
 @mixin control-small {
-  border-radius: var(--radius-small);
+  border-radius: var(--radius-sm);
   font-size: var(--body-2-size);
 }
 
