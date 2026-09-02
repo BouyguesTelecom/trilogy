@@ -1,28 +1,50 @@
+// SliderEnum.ts
+
 /**
  * Default configuration values for the Slider component.
  * Centralised so the web and native implementations stay in sync.
  */
+
 export enum SliderDefaults {
   AUTOPLAY_DELAY = 3000,
-  SLIDES_PER_VIEW = 1,
   SPACE_BETWEEN = 0,
-  /** Transition duration for slide movement, in ms */
   TRANSITION_MS = 350,
-  /** Minimum pointer travel (px) before a drag direction is locked */
   DRAG_THRESHOLD = 5,
 }
 
-/**
- * Min-width (px) for each Trilogy named breakpoint, mobile-first.
- * Matches `$tablet`, `$desktop`, `$widescreen` and `$fullhd` from the styles
- * package (`utilities/variables/_responsiveness.scss`, with `$gap: 24px`).
- */
 export const SLIDER_BREAKPOINT_PX = {
   mobile: 0,
   tablet: 768,
-  desktop: 1024, // 976 + 2 * 24
-  widescreen: 1240, // 1192 + 2 * 24
-  fullhd: 1388, // 1340 + 2 * 24
+  desktop: 1024,
+  widescreen: 1240,
+  fullhd: 1388,
 } as const
 
 export type SliderBreakpointName = keyof typeof SLIDER_BREAKPOINT_PX
+
+export enum SlidesNum {
+  ONE = 1,
+  TWO = 2,
+  THREE = 3,
+}
+
+export type SlidesNumConfig = {
+  mobile?: SlidesNum.ONE | SlidesNum.TWO
+  tablet?: SlidesNum.ONE | SlidesNum.TWO | SlidesNum.THREE
+  desktop?: SlidesNum.ONE | SlidesNum.TWO | SlidesNum.THREE
+}
+
+/**
+ * Corner radius values for Slider.
+ */
+export enum SliderRadiusValues {
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+}
+
+export const SLIDER_RADIUS_PIXELS: Record<SliderRadiusValues, number> = {
+  [SliderRadiusValues.SMALL]: 8,
+  [SliderRadiusValues.MEDIUM]: 16,
+  [SliderRadiusValues.LARGE]: 24,
+}

@@ -1,50 +1,60 @@
+// Slider.tsx
+import * as React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName } from '@/components/icon'
+import { Icon, IconName, IconSize } from '@/components'
 import { SliderContext } from '@/components/slider/context'
-import { SLIDER_BREAKPOINT_PX, SliderDefaults } from '@/components/slider/SliderEnum'
+import {
+  SliderRadiusValues,
+  SLIDER_RADIUS_PIXELS,
+  SliderDefaults,
+  SLIDER_BREAKPOINT_PX,
+  SlidesNum,
+  SlidesNumConfig,
+} from '@/components/slider/SliderEnum'
 import { SliderProps, SliderRef } from '@/components/slider/SliderProps'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
+import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 import clsx from 'clsx'
-import React from 'react'
+
+const FIXED_HEIGHT = 350
+const FULLBLEED_PEEK = 32 // px visible from previous/next slide when fullBleed is enabled
 
 /**
- * Slider (carousel) Component
+ * Slider Component
  *
- * A self-contained carousel supporting drag/swipe, autoplay, infinite loop,
- * responsive breakpoints, pagination dots and prev/next navigation.
- *
- * @param children {ReactNode} Slider items (`<SliderItem>`)
- * @param autoplay {boolean} Auto-advance slides
- * @param autoplayDelay {number} Delay between transitions (ms)
- * @param slidesPerView {number} Number of slides visible at once
- * @param spaceBetween {number} Gap between slides (px)
- * @param breakpoints {SliderResponsive} Responsive overrides keyed by named breakpoints (mobile/tablet/desktop/widescreen/fullhd)
- * @param loop {boolean} Infinite loop
- * @param rounded {boolean} Round the viewport corners (24px). Default true.
- * @param onSlideChange {(index:number)=>void} Fired when the active slide changes
- * @param accessibilityLabel {string} Accessible label for the carousel region
+ * @param id {string} Slider section id
+ * @param children {React.ReactNode} Slides to display
+ * @param autoplay {boolean} Automatically advance slides
+ * @param autoplayDelay {number} Delay between slides when autoplay is enabled
+ * @param gap {GapSize} Space between slides
+ * @param loop {boolean} Loop slides when reaching the end
+ * @param radius {SliderRadiusValues} Border radius of the viewport
+ * @param fullBleed {boolean} Slides peek outside viewport on the sides
+ * @param onSlideChange {(index: number) => void} Callback when active slide changes
+ * @param slidesPerView {SlidesNum | SlidesNumConfig} Responsive slides per view (ignored when fullBleed)
+ * @param accessibilityLabel {string} Accessibility label for the slider region
  * - -------------------------- WEB PROPERTIES -------------------------------
- * @param className {string} Additional CSS Classes
- * @param id {string} Custom id attribute
- * @param testId {string} Test id for integration tests
+ * @param testId {string} Testing identifier
+ * @param className {string} Additional CSS classes
  */
+
 const Slider = React.forwardRef<SliderRef, SliderProps>(
   (
     {
       children,
       autoplay = false,
       autoplayDelay = SliderDefaults.AUTOPLAY_DELAY,
-      slidesPerView = SliderDefaults.SLIDES_PER_VIEW,
-      spaceBetween = SliderDefaults.SPACE_BETWEEN,
-      breakpoints,
+      gap,
       loop = true,
-      rounded = true,
+      radius = SliderRadiusValues.LARGE,
+      fullBleed = false,
       onSlideChange,
       className,
       id,
       accessibilityLabel,
       testId,
+      slidesPerView,
     },
     ref,
   ) => {
@@ -53,56 +63,100 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
     const viewportRef = React.useRef<HTMLDivElement | null>(null)
     const wrapperRef = React.useRef<HTMLDivElement | null>(null)
     const slideRefs = React.useRef<Array<HTMLDivElement | null>>([])
-    // Navigation actions, populated by the effect and called by the controls.
-    const controlsRef = React.useRef<{ next: () => void; prev: () => void; goTo: (i: number) => void } | null>(null)
+    const controlsRef = React.useRef<{
+      next: () => void
+      prev: () => void
+      goTo: (i: number) => void
+    } | null>(null)
 
     const slidesArray = React.Children.toArray(children)
     const total = slidesArray.length
 
-    const isLoop = loop && total > 1
-
-    // The largest slides-per-view the slider can ever show, taking responsive
-    // breakpoints into account. If a breakpoint can widen the view beyond 1, the
-    // single-clone loop is never valid (it only works for a strict 1-up view).
-    const maxPossiblePerView = Math.max(
-      slidesPerView,
-      ...(breakpoints ? Object.values(breakpoints).map((b) => b?.slidesPerView ?? 0) : [0]),
-    )
-
-    // Normalise the named breakpoints ({ tablet, desktop, ... }) into an ascending
-    // list of { minWidth, slidesPerView, spaceBetween } the responsive engine reads.
-    const pxBreakpoints = React.useMemo(() => {
-      if (!breakpoints) return [] as Array<{ minWidth: number; slidesPerView?: number; spaceBetween?: number }>
-      return (Object.keys(breakpoints) as Array<keyof typeof breakpoints>)
-        .filter((name) => name in SLIDER_BREAKPOINT_PX)
-        .map((name) => ({
-          minWidth: SLIDER_BREAKPOINT_PX[name as keyof typeof SLIDER_BREAKPOINT_PX],
-          slidesPerView: breakpoints[name]?.slidesPerView,
-          spaceBetween: breakpoints[name]?.spaceBetween,
-        }))
-        .sort((a, b) => a.minWidth - b.minWidth)
-    }, [JSON.stringify(breakpoints)])
-
-    // The seamless single-clone loop (clone last before first, first after last)
-    // only yields a gap-free wrap for a single-slide view. Multi-slide views loop
-    // by wrapping the index instead, so no clones are rendered.
-    const useClones = isLoop && maxPossiblePerView <= 1
-
-    const rendered = useClones
-      ? [slidesArray[total - 1], ...slidesArray, slidesArray[0]]
-      : slidesArray
-    const totalWithClones = rendered.length
-
+    const [slidesPerViewResolved, setSlidesPerViewResolved] = React.useState<number>(1)
+    const [cloneCount, setCloneCount] = React.useState<number>(1)
     const [activeIndex, setActiveIndex] = React.useState<number>(0)
-    // Live slides-per-view (may change with responsive breakpoints). Drives the
-    // number of pagination dots so no more dots than reachable pages are rendered.
-    const [currentPerView, setCurrentPerView] = React.useState<number>(Math.max(1, Math.floor(slidesPerView)))
+    const [pageCount] = React.useState<number>(Math.max(1, total))
 
-    // Keep the latest onSlideChange without re-running the main effect.
     const onSlideChangeRef = React.useRef(onSlideChange)
     React.useEffect(() => {
       onSlideChangeRef.current = onSlideChange
     }, [onSlideChange])
+
+    const resolveSlidesPerViewForWidth = React.useCallback(
+      (width: number): number => {
+        if (fullBleed) return 1
+
+        const asNumber =
+          typeof slidesPerView === 'number'
+            ? (slidesPerView as SlidesNum)
+            : undefined
+        const asConfig: SlidesNumConfig | undefined =
+          typeof slidesPerView === 'object' && slidesPerView !== null
+            ? (slidesPerView as SlidesNumConfig)
+            : undefined
+
+        const desktopBase: number =
+          asConfig?.desktop ??
+          (asNumber === SlidesNum.THREE
+            ? 3
+            : asNumber === SlidesNum.TWO
+            ? 2
+            : 1)
+
+        const tabletBase: number =
+          asConfig?.tablet ??
+          (desktopBase === 3 ? 2 : desktopBase)
+
+        const mobileBase: number =
+          asConfig?.mobile ?? 1
+
+        if (width >= SLIDER_BREAKPOINT_PX.desktop) return desktopBase
+        if (width >= SLIDER_BREAKPOINT_PX.tablet) return tabletBase
+        return mobileBase
+      },
+      [slidesPerView, fullBleed],
+    )
+
+    const computeCloneCount = React.useCallback(
+      (perView: number): number => {
+        if (!loop || total <= 1) return 0
+        if (fullBleed) return 1
+        return Math.max(1, Math.min(3, perView || 1))
+      },
+      [loop, fullBleed, total],
+    )
+
+    React.useEffect(() => {
+      const viewport = viewportRef.current
+      const wrapper = wrapperRef.current
+      if (!viewport || !wrapper) return
+
+      const updateSlidesPerView = () => {
+        const width = window.innerWidth || viewport.clientWidth
+        const perView = resolveSlidesPerViewForWidth(width)
+        setSlidesPerViewResolved(perView)
+        setCloneCount(computeCloneCount(perView))
+      }
+      updateSlidesPerView()
+      window.addEventListener('resize', updateSlidesPerView)
+
+      return () => {
+        window.removeEventListener('resize', updateSlidesPerView)
+      }
+    }, [resolveSlidesPerViewForWidth, computeCloneCount])
+
+    const useClones = loop && total > 1 && cloneCount > 0
+
+    let rendered = slidesArray
+    if (useClones) {
+      const n = Math.min(cloneCount, total)
+      const head = slidesArray.slice(0, n)
+      const tail = slidesArray.slice(total - n)
+      rendered = [...tail, ...slidesArray, ...head]
+    }
+    const totalWithClones = rendered.length
+
+    const isLoop = loop && total > 1
 
     React.useEffect(() => {
       const viewport = viewportRef.current
@@ -114,17 +168,11 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       if (totalSlides === 0) return
 
       const realTotal = total
-      const baseSlidesPerView = slidesPerView
-      const baseSpaceBetween = spaceBetween
-
-      let perView = baseSlidesPerView
-      let gap = baseSpaceBetween
-
-      // Whether to use the single-clone loop. Kept in sync with the rendered
-      // clones; the effect re-runs when perView changes via breakpoints.
       const cloneLoop = useClones
+      const localCloneCount = useClones ? Math.min(cloneCount, total) : 0
 
-      let currentIndex = cloneLoop ? 1 : 0
+      let gapPx = SliderDefaults.SPACE_BETWEEN
+      let currentIndex = cloneLoop ? localCloneCount : 0
 
       let isDragging = false
       let wasDragged = false
@@ -141,33 +189,16 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       let slideStep = 0
 
       const getRealIndex = () => {
-        // With the single-clone loop, real slides start at DOM index 1.
-        if (cloneLoop) return (currentIndex - 1 + realTotal) % realTotal
-        return currentIndex
+        if (!cloneLoop) return currentIndex
+        return (currentIndex - localCloneCount + realTotal) % realTotal
       }
 
-      // Highest valid page-start index so a full `perView` of slides stays visible
-      // (prevents scrolling into empty trailing slots when slidesPerView > 1).
-      const maxIndex = () => Math.max(0, realTotal - Math.max(1, Math.floor(perView)))
+      const maxIndex = () => Math.max(0, realTotal - 1)
 
       const emitChange = () => {
-        setActiveIndex(getRealIndex())
-        onSlideChangeRef.current?.(getRealIndex())
-      }
-
-      const updateResponsiveConfig = () => {
-        perView = baseSlidesPerView
-        gap = baseSpaceBetween
-        const width = window.innerWidth
-        // pxBreakpoints is pre-sorted ascending; the largest matching one wins.
-        pxBreakpoints.forEach((bp) => {
-          if (width >= bp.minWidth) {
-            if (bp.slidesPerView !== undefined) perView = bp.slidesPerView
-            if (bp.spaceBetween !== undefined) gap = bp.spaceBetween
-          }
-        })
-        // Sync live perView to render state so the dot count stays correct.
-        setCurrentPerView(Math.max(1, Math.floor(perView)))
+        const idx = getRealIndex()
+        setActiveIndex(idx)
+        onSlideChangeRef.current?.(idx)
       }
 
       const recomputeSlideStep = () => {
@@ -176,32 +207,63 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
           return
         }
         const first = slides[0].getBoundingClientRect()
-        slideStep = slides.length > 1 ? slides[1].getBoundingClientRect().left - first.left : first.width
+        slideStep =
+          slides.length > 1 ? slides[1].getBoundingClientRect().left - first.left : first.width
       }
 
       const applyLayoutStyles = () => {
-        updateResponsiveConfig()
+        gapPx = gap ? ColumnsGapValue[gap as GapSize] ?? 0 : 0
 
         wrapper.style.display = 'flex'
-        wrapper.style.gap = `${gap}px`
+        wrapper.style.gap = `${gapPx}px`
         wrapper.style.width = '100%'
 
-        viewport.style.overflow = 'hidden'
+        if (fullBleed) {
+          wrapper.style.paddingInline = `${FULLBLEED_PEEK}px`
+          viewport.style.overflow = 'visible'
+        } else {
+          wrapper.style.paddingInline = '0px'
+          viewport.style.overflow = 'hidden'
+        }
+
         viewport.style.width = '100%'
         viewport.style.cursor = 'grab'
         viewport.style.userSelect = 'none'
 
-        slides.forEach((slide) => {
-          slide.style.flexShrink = '0'
-          slide.style.boxSizing = 'border-box'
-          slide.style.width = `calc(${100 / perView}% - ${(gap * (perView - 1)) / perView}px)`
+        if (fullBleed) {
+          slides.forEach((slide) => {
+            slide.style.flexShrink = '0'
+            slide.style.boxSizing = 'border-box'
+            slide.style.width = '100%'
 
-          slide.querySelectorAll('img').forEach((img) => {
-            img.style.pointerEvents = 'none'
-            img.style.userSelect = 'none'
-            img.setAttribute('draggable', 'false')
+            slide.querySelectorAll('img').forEach((img) => {
+              img.style.pointerEvents = 'none'
+              img.style.userSelect = 'none'
+              img.setAttribute('draggable', 'false')
+            })
           })
-        })
+        } else {
+          const perView = Math.max(1, slidesPerViewResolved || 1)
+          const viewportWidth = viewport.clientWidth
+
+          const totalGapWidth = gapPx * (perView - 1)
+          const targetSlideWidth =
+            perView > 0 && viewportWidth > 0
+              ? Math.max(0, (viewportWidth - totalGapWidth) / perView)
+              : viewportWidth
+
+          slides.forEach((slide) => {
+            slide.style.flexShrink = '0'
+            slide.style.boxSizing = 'border-box'
+            slide.style.width = `${targetSlideWidth}px`
+
+            slide.querySelectorAll('img').forEach((img) => {
+              img.style.pointerEvents = 'none'
+              img.style.userSelect = 'none'
+              img.setAttribute('draggable', 'false')
+            })
+          })
+        }
 
         recomputeSlideStep()
       }
@@ -212,12 +274,18 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
 
       const jumpToRealSlide = () => {
         if (!cloneLoop || isDragging) return
-        let targetIndex = -1
-        if (currentIndex === 0) targetIndex = realTotal
-        else if (currentIndex === totalSlides - 1) targetIndex = 1
-        else return
 
-        currentIndex = targetIndex
+        const firstRealIndex = localCloneCount
+        const lastRealIndex = localCloneCount + realTotal - 1
+
+        if (currentIndex < firstRealIndex) {
+          currentIndex += realTotal
+        } else if (currentIndex > lastRealIndex) {
+          currentIndex -= realTotal
+        } else {
+          return
+        }
+
         currentTranslate = -currentIndex * slideStep
         prevTranslate = currentTranslate
         wrapper.style.transition = 'none'
@@ -267,13 +335,10 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
 
       const nextSlide = () => {
         if (cloneLoop) {
-          // move onto the trailing clone; scheduleLoopJump snaps back seamlessly
           currentIndex = Math.min(currentIndex + 1, totalSlides - 1)
         } else if (isLoop) {
-          // multi-view loop: wrap back to the first page after the last full page
           currentIndex = currentIndex >= maxIndex() ? 0 : Math.min(currentIndex + 1, maxIndex())
         } else {
-          // no loop: stop at the last full page, never on empty trailing slots
           currentIndex = Math.min(currentIndex + 1, maxIndex())
         }
         updateSliderPosition()
@@ -292,9 +357,8 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
 
       const goToSlide = (index: number) => {
         if (cloneLoop) {
-          currentIndex = index + 1
+          currentIndex = localCloneCount + Math.min(Math.max(index, 0), maxIndex())
         } else {
-          // bullets map to real slides; clamp so the last bullet shows a full page
           currentIndex = Math.min(Math.max(index, 0), maxIndex())
         }
         updateSliderPosition()
@@ -316,7 +380,6 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       }
 
       const dragStart = (e: PointerEvent) => {
-        // Ignore drags that start on an interactive control (e.g. a link/button)
         if ((e.target as HTMLElement)?.closest('a,button')) return
         if (activePointerId !== null) return
         cancelPendingJump?.()
@@ -326,7 +389,7 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
           const t = window.getComputedStyle(wrapper).transform
           if (t && t !== 'none') currentTranslate = new DOMMatrix(t).m41
         } catch {
-          /* noop */
+          // ignore transform parsing errors
         }
 
         prevTranslate = currentTranslate
@@ -370,8 +433,6 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         cleanup(false)
 
         if (didDrag && direction === 'horizontal') {
-          // Reuse the same bounded navigation as the arrows so dragging can never
-          // land on empty trailing slots and wraps correctly when looping.
           if (movedBy < -threshold) {
             nextSlide()
             lastTick = Date.now()
@@ -383,7 +444,6 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
             return
           }
         }
-        // Not a committed swipe: snap back to the current slide.
         updateSliderPosition()
         lastTick = Date.now()
       }
@@ -423,7 +483,6 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         updateSliderPosition(false)
       }
 
-      // Expose navigation actions to the rendered controls.
       controlsRef.current = {
         next: () => {
           wasDragged = false
@@ -443,18 +502,33 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       }
 
       viewport.addEventListener('pointerdown', dragStart)
+
+      const onTouchMove = (e: TouchEvent) => {
+        if (!isDragging) return
+        if (dragDirection === 'horizontal') {
+          e.preventDefault()
+        }
+      }
+      viewport.addEventListener('touchmove', onTouchMove, { passive: false })
+
       viewport.addEventListener('click', preventClickOnDrag, true)
       const onNativeDragStart = (e: Event) => e.preventDefault()
       viewport.addEventListener('dragstart', onNativeDragStart)
 
-      // Keyboard navigation: Left/Right (and Home/End) move slides when focus is
-      // anywhere within the carousel region.
       const section = viewport.parentElement
       const onKeyDown = (e: KeyboardEvent) => {
         if (realTotal <= 1) return
 
         const target = e.target as HTMLElement | null
-        if (target && target !== section && target.closest('input, select, textarea, [role="slider"], [role="spinbutton"], [role="combobox"]')) return
+        if (
+          target &&
+          target !== section &&
+          target.closest(
+            'input, select, textarea, [role="slider"], [role="spinbutton"], [role="combobox"]',
+          )
+        )
+          return
+
         switch (e.key) {
           case 'ArrowLeft':
             e.preventDefault()
@@ -496,7 +570,6 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         ro.observe(wrapper)
       }
 
-      // Re-layout when images finish loading (they may change slide widths).
       const imgLoadCleanups: Array<() => void> = []
       slides.forEach((slide) => {
         slide.querySelectorAll('img').forEach((img) => {
@@ -507,7 +580,6 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         })
       })
 
-      // Initial layout after fonts/images settle.
       let rafId = 0
       const initialInit = () => {
         relayoutAndPosition()
@@ -531,6 +603,7 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         window.removeEventListener('load', onWindowLoad)
         ro?.disconnect()
         viewport.removeEventListener('pointerdown', dragStart)
+        viewport.removeEventListener('touchmove', onTouchMove as any)
         viewport.removeEventListener('click', preventClickOnDrag, true)
         viewport.removeEventListener('dragstart', onNativeDragStart)
         section?.removeEventListener('keydown', onKeyDown)
@@ -539,15 +612,11 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         document.removeEventListener('pointercancel', onDragCancel)
         imgLoadCleanups.forEach((fn) => fn())
       }
-      // Re-run when structural inputs change.
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [total, isLoop, slidesPerView, spaceBetween, autoplay, autoplayDelay, JSON.stringify(breakpoints)])
+    }, [total, loop, isLoop, gap, autoplay, autoplayDelay, slidesPerViewResolved, cloneCount])
 
     const classes = hashClass(styled, clsx('slider', className))
-
-    // One dot per reachable page: with N slides showing `perView` at a time there
-    // are (N - perView + 1) pages. Clamped to at least 1.
-    const pageCount = Math.max(1, total - Math.min(total, Math.max(1, currentPerView)) + 1)
+    const borderRadius = SLIDER_RADIUS_PIXELS[radius]
 
     if (total === 0) return null
 
@@ -557,22 +626,34 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
           ref={ref}
           id={id}
           className={classes}
-          role='region'
+          role="region"
           aria-label={accessibilityLabel ?? 'Content slider'}
-          aria-roledescription='carousel'
+          aria-roledescription="carousel"
           tabIndex={total > 1 ? 0 : undefined}
           data-testid={testId}
         >
           <div
             ref={viewportRef}
             className={hashClass(styled, 'viewport')}
-            style={rounded ? { borderRadius: 24 } : undefined}
+            style={{
+              height: FIXED_HEIGHT,
+              width: '100%',
+              borderRadius,
+              overflow: fullBleed ? 'visible' : 'hidden',
+            }}
           >
-            <div ref={wrapperRef} className={hashClass(styled, 'wrapper')}>
+            <div
+              ref={wrapperRef}
+              className={hashClass(styled, 'wrapper')}
+              style={{ height: '100%' }}
+            >
               {rendered.map((child, i) => {
-                const isClone = useClones && (i === 0 || i === totalWithClones - 1)
-                const realIndex = useClones ? i - 1 : i
-                const displayIndex = realIndex < 0 ? total : realIndex >= total ? 1 : realIndex + 1
+                const isClone =
+                  useClones &&
+                  (i < cloneCount || i >= totalWithClones - cloneCount)
+                const realIndex = useClones ? i - cloneCount : i
+                const displayIndex =
+                  realIndex < 0 ? total : realIndex >= total ? 1 : realIndex + 1
                 return (
                   <div
                     key={i}
@@ -580,9 +661,10 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
                       slideRefs.current[i] = el
                     }}
                     className={hashClass(styled, 'slide')}
-                    aria-roledescription='slide'
+                    aria-roledescription="slide"
                     aria-label={`Slide ${displayIndex} of ${total}`}
                     aria-hidden={isClone ? 'true' : undefined}
+                    style={{ height: '100%' }}
                   >
                     {child}
                   </div>
@@ -594,34 +676,41 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
           {total > 1 && (
             <div className={hashClass(styled, 'controls')}>
               <button
-                type='button'
-                aria-label='Previous slide'
+                type="button"
+                aria-label="Previous slide"
                 className={hashClass(styled, 'nav')}
                 onClick={() => controlsRef.current?.prev()}
               >
-                <Icon circled size='small' name={IconName.ARROW_LEFT} />
+                <Icon circled size={IconSize.SMALL} name={IconName.ARROW_LEFT} />
               </button>
 
-              <div role='group' aria-label='Choose slide to display' className={hashClass(styled, 'dots')}>
+              <div
+                role="group"
+                aria-label="Choose slide to display"
+                className={hashClass(styled, 'dots')}
+              >
                 {Array.from({ length: pageCount }).map((_, i) => (
                   <button
                     key={i}
-                    type='button'
+                    type="button"
                     aria-label={`Go to slide ${i + 1}`}
                     aria-current={i === activeIndex ? 'true' : undefined}
-                    className={hashClass(styled, clsx('bullet', { 'is-active': i === activeIndex }))}
+                    className={hashClass(
+                      styled,
+                      clsx('bullet', { 'is-active': i === activeIndex }),
+                    )}
                     onClick={() => controlsRef.current?.goTo(i)}
                   />
                 ))}
               </div>
 
               <button
-                type='button'
-                aria-label='Next slide'
+                type="button"
+                aria-label="Next slide"
                 className={hashClass(styled, 'nav')}
                 onClick={() => controlsRef.current?.next()}
               >
-                <Icon circled size='small' name={IconName.ARROW_RIGHT} />
+                <Icon circled size={IconSize.SMALL} name={IconName.ARROW_RIGHT} />
               </button>
             </div>
           )}
