@@ -46,8 +46,8 @@
 .badge {
   display: inline-flex;
   border-radius: var(--radius-full);
-  color: getColor('background');
-  background: getColor('main');
+  color: var(--text-inverse);
+  background: var(--bg-secondary);
   font-size: $text-10;
   min-height: $text-20;
   min-width: $text-20;
@@ -60,8 +60,8 @@
   }
 
   &.is-inverted {
-    color: getColor('main') !important;
-    background: getColor('background') !important;
+    color: var(--text-primary) !important;
+    background: var(--background-primary) !important;
   }
 }
 
@@ -73,9 +73,9 @@
     position: absolute;
     margin-left: -15px;
     top: -7px;
-    color: getColor('background');
+    color: var(--text-inverse);
     left: 100%;
-    background: getColor('main');
+    background: var(--bg-secondary);
     font-size: $text-10;
     min-height: $text-20;
     min-width: $text-20;

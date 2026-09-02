@@ -11,11 +11,11 @@ $CURSOR_SIZE: 32px;
   }
 
   &_progress {
-    stroke: getColor('main');
+    stroke: var(--border-selected);//CHECK
   }
 
   &_progress-container {
-    stroke: getColor('main-fade');
+    stroke: var(--bg-secondary-subtle);//CHECK
   }
 
   .circle_container {

@@ -200,25 +200,25 @@ $alignments: (
   font-weight: $weight-semibold !important;
 }
 
-@mixin typography-colors() {
-  @each $name, $color in $colors {
-    $brandName: nth($color, 2);
-    $color: nth($color, 1);
-    $color-invert: invertColor($name);
+// @mixin typography-colors() {
+//   @each $name, $color in $colors {
+//     $brandName: nth($color, 2);
+//     $color: nth($color, 1);
+//     $color-invert: invertColor($name);
 
-    .has-text-#{$brandName} {
-      color: $color !important;
-    }
-    .has-text-#{$brandName}-invert {
-      color: $color-invert !important;
-    }
-    .has-background-#{$brandName} {
-      background-color: getColor($name) !important;
-    }
-  }
-}
+//     .has-text-#{$brandName} {
+//       color: $color !important;
+//     }
+//     .has-text-#{$brandName}-invert {
+//       color: $color-invert !important;
+//     }
+//     .has-background-#{$brandName} {
+//       background-color: getColor($name) !important;
+//     }
+//   }
+// }
 
-@include typography-colors;
+// @include typography-colors;
 
 // Visibility
 $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';

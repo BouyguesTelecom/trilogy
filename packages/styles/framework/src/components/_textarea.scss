@@ -17,9 +17,8 @@
 
   // Colors
   @each $name, $pair in $colors-brand-functionnal {
-    $color: getColor($name);
-    $color-invert: invertColor($name);
-    $brandName: getColorBrandName($name);
+    $color: $pair;
+    $brandName: $name;
     &.is-#{$brandName} {
       textarea.textarea {
         border-color: $color;

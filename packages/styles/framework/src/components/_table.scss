@@ -11,7 +11,7 @@
   @include block;
 
   background-color: transparent;
-  color: getColor('neutral');
+  color: var(--text-disabled);//CHECK
 
   &:not(:last-child) {
     margin-bottom: 30px;
@@ -40,7 +40,7 @@
 
     &.is-selected {
       background-color: var(--bg-selected); //CHECK
-      color: getColor('background');
+      color: var(--text-inverse);//CHECK
 
       a,
       strong {
@@ -54,9 +54,9 @@
   }
 
   tr {
-    @each $name in $colors-feedback {
+    @each $name, $colors in $colors-feedback {
       &.is-#{$name} {
-        background-color: fadeColor($name);
+        background-color: map-get($colors, subtle);
       }
     }
 
@@ -80,7 +80,7 @@
 
     &.is-selected {
       background-color: var(--bg-selected); //CHECK
-      color: getColor('background');
+      color: var(--text-inverse);//CHECK
 
       a,
       strong {
@@ -96,7 +96,7 @@
     &.is-expanded,
     &.is-expandable:hover {
       td {
-        color: getColor('accent');
+        color: var(--text-accent);
         cursor: pointer;
       }
     }
@@ -138,13 +138,14 @@
       }
     }
     
-    @each $name in $colors-all {
-      &.is-#{$name} tr {
-        th {
-          color: getColor($name);
-        }
-      }
-    }
+    //CHECK
+    // @each $name in $colors-all {
+    //   &.is-#{$name} tr {
+    //     th {
+    //       color: getColor($name);
+    //     }
+    //   }
+    // }
   }
 
   tfoot {

@@ -121,7 +121,7 @@ $price-levels: (
   }
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 
   &.has-description {
@@ -162,7 +162,7 @@ $price-levels: (
 
   &.strike {
     position: relative;
-    color: getColor('font-placeholder');
+    color: var(--text-placeholder);
 
     &::before {
       position: absolute;
@@ -177,7 +177,7 @@ $price-levels: (
     }
 
     &.is-inverted {
-      color: getColor('background');
+      color: var(--text-inverse);
 
       &::before {
         border-color: var(--border-inverse);

@@ -221,7 +221,7 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: fadeColor($name);
+            color: map-get($pair, color);
           }
         }
       }
@@ -235,7 +235,7 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: fadeColor($name);
+            color: map-get($pair, color);
           }
         }
       }
@@ -387,14 +387,14 @@ $label-weight: $weight-bold;
   &.has-password-discover {
     .input {
       ~ .icon:not(:last-child) {
-        color: getColor('neutral');
+        color: var(--text-disabled); //CHECK
         background-color: transparent;
         right: 45px;
         cursor: pointer;
 
         &:hover,
         &:focus {
-          color: getColor('neutral');
+          color: var(--text-disabled); //CHECK
         }
       }
     }
@@ -443,7 +443,7 @@ $label-weight: $weight-bold;
   &:has(input[disabled]), &:has(select[disabled]), &:has(textarea[disabled]) {
     @include disabledRulesWithoutBG;
     .icon {
-      color: getColor('disabled');
+      color: var(--text-disabled);
     }
   }
 }
@@ -560,7 +560,7 @@ $label-weight: $weight-bold;
 }
 
 .label {
-  color: getColor('neutral');
+  color: var(--text-disabled); //CHECK
   display: block;
   font-size: $size-normal;
   font-weight: $label-weight;
@@ -585,8 +585,8 @@ $label-weight: $weight-bold;
   margin-top: 2.5px;
 
   @each $name, $pair in $colors-brand-functionnal {
-    $color: getColor($name);
-    $brandName: getColorBrandName($name);
+    $color: $pair;
+    $brandName: $name;
 
     &.is-#{$brandName} {
       color: $color;

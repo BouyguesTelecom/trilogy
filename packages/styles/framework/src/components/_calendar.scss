@@ -22,7 +22,7 @@
     .calendar-week-day:not(.calendar-date-in-range) {
       button:focus-visible:not(.is-disabled, .is-active), button:hover:not(.is-disabled, .is-active){
         background-color: var(--bg-secondary);
-        color: getColor('background');
+        color: var(--text-inverse);
       }
     } 
   }
@@ -68,7 +68,7 @@
     vertical-align: middle;
     &-disabled {
       button {
-        color: getColor('disabled');
+        color: var(--text-disabled);
         background-color: var(--bg-disabled);
       }
     }
@@ -76,7 +76,7 @@
       padding: 4px;
       text-align: center !important;
       width: 36px;
-      color: getColor('font-placeholder');
+      color: var(--text-placeholder);
     } 
     button {
       display: block;
@@ -102,7 +102,7 @@
 
   &-active-date button {
     background-color: var(--bg-secondary);
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 
   &-header-dropdown {

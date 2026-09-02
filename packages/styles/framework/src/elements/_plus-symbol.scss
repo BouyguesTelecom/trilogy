@@ -1,6 +1,7 @@
 $plus-symbol-size: 40px;
 
-@mixin plus-symbol($color: getColor('neutral-fade'), $text-color: getColor('neutral')) {
+//CHECK neutral-fade , neutral
+@mixin plus-symbol($color: var(--bg-secondary-subtle), $text-color: var(--text-primary)) {
     &::after {
         content: "+";
         display: inline-block;
@@ -20,12 +21,11 @@ $plus-symbol-size: 40px;
 
     display: inline-block;
 
-    @each $name in $colors-brand {
-      $brandName: getColorBrandName($name);
-      $color: getColor($name);
-      $color-invert: invertColor($name);
+        @each $name, $colors in $colors-brand {
+            $color: map-get($colors, color);
+            $color-invert: map-get($colors, text);
 
-        &.is-#{$brandName} {
+                &.is-#{$name} {
             @include plus-symbol($color, $color-invert);
         }
     }

@@ -19,10 +19,8 @@
   width: 100%;
 
   // Colors
-  @each $name in $colors-brand-functionnal {
-    $color: getColor($name);
-    $color-invert: invertColor($name);
-    $brandName: getColorBrandName($name);
+  @each $name, $color in $colors-brand-functionnal {
+    $brandName: $name;
 
     &.is-#{$brandName} {
       border: 1px solid $color;
@@ -74,7 +72,7 @@
   }
 
   &::-webkit-search-cancel-button{
-    $colorSvg: encodecolor(getColorValue('main'));
+    $colorSvg: encodecolor(var(--bg-secondary));
     position:absolute;
     right: 0px;
     bottom : 0px;

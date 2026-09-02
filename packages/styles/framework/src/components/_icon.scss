@@ -73,8 +73,8 @@ $size: (
     }
 
     @each $name, $pair in $colors-brand-functionnal {
-      $color: getColor($name);
-      $brandName: getColorBrandName($name);
+            $color: $pair;
+            $brandName: $name;
 
         &.is-circled-#{$brandName} {
             background-color: $color;

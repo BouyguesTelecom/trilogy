@@ -75,7 +75,7 @@
     background-color: var(--bg-secondary);
     border-radius: var(--radius-sm);
     box-shadow: $shadow;
-    color: getColor('background');
+    color: var(--text-inverse);
     display: inline-block;
     font-size: 12px;
     visibility: hidden;
@@ -113,7 +113,7 @@
     .paragraph,
     .text,
     p {
-      color: getColor('background');
+      color: var(--text-inverse);
     }
   }
 

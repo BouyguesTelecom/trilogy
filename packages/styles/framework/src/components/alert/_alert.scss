@@ -53,13 +53,13 @@ a.alert {
     color: currentColor;
   }
 
-  @each $name in $colors-feedback {
+  @each $name, $colors in $colors-feedback {
     &.is-#{$name} {
-      background-color: fadeColor($name);
-      border: 1px solid getColor($name);
+      background-color: map-get($colors, subtle);
+      border: 1px solid map-get($colors, color);
 
       .alert-icon {
-        color: getColor($name);
+        color: map-get($colors, color);
       }
     }
   }

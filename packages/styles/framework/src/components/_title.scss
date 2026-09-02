@@ -83,12 +83,12 @@ $title-levels-mobile: (
     }
 
     &.is-inverted {
-      color: getColor('background');
+      color: var(--text-inverse);
     }
 
     .details {
       font-size: 80%;
-      color: getColor('neutral');
+      color: var(--text-disabled);
       font-weight: $weight-normal;
     }
 
@@ -135,7 +135,7 @@ $title-levels-mobile: (
   line-height: $subtitle-line-height;
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 }
 
@@ -146,6 +146,6 @@ $title-levels-mobile: (
   line-height: $overline-line-height;
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 }

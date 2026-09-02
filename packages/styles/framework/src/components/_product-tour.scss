@@ -122,7 +122,7 @@
 
 .product-tour-target {
     &-active {
-        outline: 999em solid getColor('main') !important;
+        outline: 999em solid var(--bg-primary) !important;
         outline-offset: 10px !important;
         z-index: zindex('modal');
     }

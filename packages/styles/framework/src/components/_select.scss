@@ -1,5 +1,8 @@
+@use "sass:map";
+
 $status-select: (
-  'success', 'error'
+  'success': map.get($colors-feedback, 'success', color),
+  'error': map.get($colors-feedback, 'error', color)
 );
 
 .select {
@@ -21,12 +24,9 @@ $status-select: (
       opacity: 1 !important;
     }
 
-    @each $name in $status-select {
-      $color: getColor($name);
-      $color-invert: invertColor($name);
-      $brandName: getColorBrandName($name);
+    @each $name, $color in $status-select {
   
-      &.is-#{$brandName} {
+      &.is-#{$name} {
         border: 1px solid $color;
       }
     }
@@ -99,7 +99,7 @@ $status-select: (
       @include hover;
 
       &.is-disabled {
-        color: getColor('disabled');
+        color: var(--text-disabled);
         background-color: var(--bg-disabled);
         cursor: not-allowed;
       }

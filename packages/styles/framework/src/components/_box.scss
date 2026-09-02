@@ -69,8 +69,8 @@ a.box {
     border-bottom-left-radius: $highlighted-border-width;
     border-left-color: var(--border);//CHECK
     @each $name, $pair in $colors-brand-functionnal {
-      $color: getColor($name);
-      $brandName: getColorBrandName($name);
+      $color: $pair;
+      $brandName: $name;
 
       &.is-#{$brandName} {
         border-left-color: $color;
@@ -100,7 +100,7 @@ a.box {
   .box-header {
     z-index: inherit;
     background-color: var(--bg-secondary);
-    color: getColor('background');
+    color: var(--text-inverse);
     margin-top: calc(var(--padding-box) * -1);
     margin-left: calc(var(--padding-box) * -1);
     margin-right: calc(var(--padding-box) * -1);

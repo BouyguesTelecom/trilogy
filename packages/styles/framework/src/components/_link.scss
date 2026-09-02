@@ -1,4 +1,3 @@
-$link-colors: 'info' !default;
 
 %link-over {
   &:hover {
@@ -35,7 +34,7 @@ $link-colors: 'info' !default;
 
   position: relative;
   font-weight: $weight-normal;
-  color: getColor($link-colors);
+  color: var(--text-link);
   box-decoration-break: clone;
   text-decoration: underline;
   text-decoration-thickness : 2px;
@@ -57,11 +56,11 @@ $link-colors: 'info' !default;
   }
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
 
     &.has-icon {
       > .icon {
-        color: getColor('background');
+        color: var(--text-inverse);
       }
     }
   }

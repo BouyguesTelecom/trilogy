@@ -40,7 +40,7 @@
     }
 
     .step-bars {
-      background: getColor('error') !important;
+      background: var(--bg-error) !important;
     }
 
     color: var(--text-primary);
@@ -72,7 +72,7 @@
     }
 
     .step-bars {
-      background: getColor('font');
+      background: var(--bg-secondary);
       transition: background-color 1s ease-in-out;
     }
 
@@ -100,7 +100,7 @@
     }
 
     .step-bars {
-      background: getColor('main');
+      background: var(--bg-secondary);
     }
 
     .step-label {
@@ -130,7 +130,7 @@
 
 .step-bars {
   height: 4px;
-  background: getColor('disabled');
+  background: var(--bg-disabled);
   border-radius: var(--radius-sm);
   display: none;
 }
@@ -234,7 +234,7 @@
 
 @keyframes progress {
   0%, 100% {
-    background-image: linear-gradient(to right, transparent 0, transparent 50%, getColor('neutral') 50%, getColor('neutral') 100%);
+    background-image: linear-gradient(to right, transparent 0, transparent 50%, var(--bg-secondary-subtle) 50%, var(--bg-secondary-subtle) 100%); //CHECK
   }
   0% {
     background-position: 100% 0;

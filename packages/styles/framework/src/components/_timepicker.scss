@@ -63,7 +63,7 @@ $CURSOR_SIZE: 30px;
       
       &.is-active {
         background-color: var(--bg-secondary);
-        color: getColor('background');
+        color: var(--text-inverse);
       }
 
       &:hover:not(.is-active) {

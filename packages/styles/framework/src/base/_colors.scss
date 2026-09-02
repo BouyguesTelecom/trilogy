@@ -1,0 +1,50 @@
+
+$colors-brand-functionnal: (
+  'background': var(--background),
+  'main': var(--bg-secondary),
+  'accent': var(--bg-accent),
+  'info': var(--bg-information),
+  'success': var(--bg-success),
+  'error': var(--bg-error),
+  'warning': var(--bg-warning),
+  'neutral': var(--bg-primary)
+);
+
+$colors-feedback: (
+  'success': (
+    color: var(--bg-success),
+    subtle: var(--bg-success-subtle),
+    inverse: var(--bg-primary)
+  ),
+  'error': (
+    color: var(--bg-error),
+    subtle: var(--bg-error-subtle),
+    inverse: var(--bg-primary)
+  ),
+  'warning': (
+    color: var(--bg-warning),
+    subtle: var(--bg-warning-subtle),
+    inverse: var(--bg-primary)
+  ),
+  'info': (
+    color: var(--bg-information),
+    subtle: var(--bg-information-subtle),
+    inverse: var(--bg-primary)
+  )
+);
+
+
+$colors-brand: (
+  'background': (
+    color: var(--background),
+    text: var(--text-primary)
+  ),
+  'main': (
+    color: var(--bg-secondary),
+    text: var(--text-inverse)
+  ),
+  'accent': (
+    color: var(--bg-accent),
+    text: var(--text-inverse)
+  )
+);

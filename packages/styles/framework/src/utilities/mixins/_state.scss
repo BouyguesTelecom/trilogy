@@ -14,7 +14,7 @@
 @mixin disabledRulesWithoutBG {
   border-color: var(--border-disabled) !important;
   box-shadow: none !important;
-  color: getColor('disabled') !important;
+  color: var(--text-disabled) !important;
   cursor: not-allowed !important;
   filter: grayscale(1);
 }

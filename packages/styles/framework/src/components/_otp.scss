@@ -12,7 +12,7 @@
     height: 48px;
     margin: 4px 4px 0 4px;
     text-align: center;
-    color: getColor('main');
+    color: var(--text-primary);
 
     &:first-child {
       margin: 4px 4px 0 0;

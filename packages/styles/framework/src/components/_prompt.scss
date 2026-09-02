@@ -16,7 +16,7 @@ $height-prompt-item: 64px;
         box-shadow: 0 0 0 2px currentColor;
     }
     &.is-disabled {
-        box-shadow: 0 0 0 1px getColor('disabled') !important;
+        box-shadow: 0 0 0 1px var(--border-disabled) !important; //CHECK
     }
     &-textarea {
         textarea {

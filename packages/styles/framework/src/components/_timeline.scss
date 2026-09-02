@@ -1,9 +1,9 @@
 @use 'sass:math';
 @import "../utilities/spacing";
 
-$timeline-marker-color: getColor('neutral-fade') !default;
+$timeline-marker-color: var(--bg-secondary-subtle) !default;//CHECK
 $timeline-marker-icon-size: 2.85em !default;
-$timeline-line-color: getColor('neutral-fade') !default;
+$timeline-line-color: var(--bg-secondary-subtle) !default;//CHECK
 $timeline-marker-size: 0.8em !default;
 $timeline-marker-border-size: 0.1em !default;
 $timeline-marker-border: $timeline-marker-border-size solid $timeline-marker-color !default;
@@ -32,8 +32,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
   }
 
   .timeline-item {
-    --font-color: #{getColor('neutral')};
-    --bg-color: #{getColor('background')};
+    --font-color: #{var(--text-disabled)};//CHECK
+    --bg-color: #{var(--bg-primary)};//CHECK
     display: flex;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -60,8 +60,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     }
 
     &.active, &.done {
-      --font-color: #{getColor('main')};
-      --bg-color: #{getColor('background')};
+      --font-color: #{var(--text-primary)};
+      --bg-color: #{var(--bg-primary)};
     }
 
     &.active {
@@ -73,8 +73,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     }
 
     &.cancel {
-      --font-color: #{getColor('neutral')};
-      --bg-color: #{getColor('neutral-fade')};
+      --font-color: #{var(--text-disabled)};//CHECK
+      --bg-color: #{var(--bg-secondary-subtle)};//CHECK
     }
 
     .timeline-marker {
@@ -120,11 +120,11 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
       &.is-outlined {
         .image {
-          background: getColor('background');
+          background: var(--bg-primary);
         }
 
         &.is-icon {
-          background: getColor('background');
+          background: var(--bg-primary);
 
           > i {
             color: $timeline-marker-color;
@@ -152,9 +152,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       }
     }
 
-    @each $name in $colors-brand-functionnal {
-      $color: getColor($name);
-      $brandName: getColorBrandName($name);
+    @each $name, $color in $colors-brand-functionnal {
+      $brandName: $name;
 
       &.is-#{$brandName} {
         &::before {
@@ -233,8 +232,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       }
 
       @each $name, $pair in $colors-brand-functionnal {
-        $color: getColor($name);
-        $brandName: getColorBrandName($name);
+        $color: $pair;
+        $brandName: $name;
 
         &.is-#{$brandName} {
           &::before {

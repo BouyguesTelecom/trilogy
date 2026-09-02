@@ -6,7 +6,7 @@ $sticker-height: 35px;
   flex-grow: 0;
   display: inline-flex;
   padding: 8px 16px;
-  color: getColor('background') !important;
+  color: var(--text-inverse) !important;
   line-height: 20px;
   flex-shrink: 0;
   background-color: var(--bg-secondary);
@@ -42,12 +42,12 @@ $sticker-height: 35px;
 
   &.is-accent {
     background-color: var(--bg-accent);
-    color: getColor('background') !important;
+    color: var(--text-inverse) !important;
   }
 
   &.is-info {
     background-color: var(--bg-information);
-    color: getColor('background') !important;
+    color: var(--text-inverse) !important;
   }
 
   &.is-inverted {

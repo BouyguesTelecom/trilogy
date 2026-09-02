@@ -154,7 +154,7 @@ body:has(.modal.is-active) {
 
         &:focus-visible,
         &:focus:focus-visible {
-          outline: 2px solid getColor('font') !important;
+          outline: 2px solid var(--bg-secondary) !important;
           outline-offset: 2px;
         }
         &:focus{
@@ -174,7 +174,7 @@ body:has(.modal.is-active) {
       padding: var(--spacing-lg);
       position: sticky;
       width: 100%;
-      background: getColor('background');
+      background: var(--bg-primary);
       bottom: 0;
 
       .buttons {

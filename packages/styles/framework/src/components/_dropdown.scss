@@ -74,7 +74,7 @@ $dropdown-item-padding-horizontal: 16px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: getColor('main-fade');
+    background: var(--bg-secondary-subtle);
     border-radius: var(--radius-xs);
   }
 }
@@ -129,7 +129,7 @@ $dropdown-item-padding-horizontal: 16px;
 
   &:disabled,
   &[aria-disabled="true"] {
-    color: getColor('disabled');
+    color: var(--text-disabled);
     cursor: not-allowed;
     background-color: transparent;
 

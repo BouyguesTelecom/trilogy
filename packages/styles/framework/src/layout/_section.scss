@@ -20,13 +20,13 @@
 
   &.is-info {
     background-color: var(--bg-information);
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 
   &.has-overlay {
     position: relative;
     z-index: zindex('void');
-    color: getColor('background');
+    color: var(--text-inverse);
 
     &::before {
       @include overlay;

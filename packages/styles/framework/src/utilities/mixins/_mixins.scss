@@ -30,7 +30,7 @@
   color: var(--text-primary);
 
   @include placeholder {
-    color: getColor('font-placeholder') !important;
+    color: var(--text-placeholder) !important;
     opacity: 1 !important;
     transition: all 0.2s ease-out;
   }
@@ -298,7 +298,7 @@
 
         span.#{$type}-title,
         label.#{$type}-title  {
-          color: getColor('main');
+          color: var(--text-primary);
         }
       }
 
@@ -314,7 +314,7 @@
       &:disabled:checked ~ label.#{$type}-label,
       &:disabled:checked ~ .#{$type}-container {
         .checkbox-title {
-          color: getColor('disabled');
+          color: var(--text-disabled);
         }
       }
     }

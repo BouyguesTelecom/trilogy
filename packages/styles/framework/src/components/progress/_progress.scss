@@ -38,9 +38,8 @@ $progressbar-small: 5px;
   }
 
   // Colors
-  @each $name in $colors-brand-functionnal {
-    $brandName: getColorBrandName($name);
-    $color: getColor($name);
+  @each $name, $color in $colors-brand-functionnal {
+    $brandName: $name;
 
     &.is-#{$brandName} {
       &::-webkit-progress-value {
@@ -79,10 +78,8 @@ $progressbar-small: 5px;
       border-radius: 0 $progressbar-height $progressbar-height 0;
     }
 
-    @each $name in $colors-brand-functionnal {
-      $color: getColor($name);
-      $color-invert: invertColor($name);
-      $brandName: getColorBrandName($name);
+    @each $name, $color in $colors-brand-functionnal {
+      $brandName: $name;
 
       &.is-#{$brandName} {
         background-color: $color;
@@ -93,10 +90,10 @@ $progressbar-small: 5px;
 
 // Progress Bar circle
 $progress-circle-slices: (
-  secondary: getColor('info'),
-  tertiary: getColor('font'),
-  warning: getColor('warning'),
-  empty: getColor('main-fade')
+  secondary: var(--bg-information),
+  tertiary: var(--bg-secondary),
+  warning: var(--bg-warning),
+  empty: var(--bg-secondary-subtle)
 );
 
 .progress-circle {
@@ -124,7 +121,7 @@ $progress-circle-slices: (
 }
 
 .progress-circle-title {
-  color: rgba(getColor('font'), 0.7);
+  color: rgba(var(--text-primary), 0.7);
   font-size: 28px;
   font-weight: $weight-semibold;
 }

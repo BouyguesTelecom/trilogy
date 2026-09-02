@@ -44,14 +44,14 @@ $height-arrow-small:30px;
     background-color: var(--bg-secondary);
 
     .tab-list > .tab {
-      color: getColor('background') !important;
+      color: var(--text-inverse) !important;
 
       &.is-active {
         border-bottom-color: currentColor;
       }
 
       #{$hoverSelector} {
-        color: getColor('background') !important;
+        color: var(--text-inverse) !important;
         cursor: pointer;
       }
 
@@ -132,14 +132,14 @@ $height-arrow-small:30px;
       }
 
       &.is-active {
-        color: getColor('main');
+        color: var(--text-primary);
         position: relative;
         font-weight: $weight-bold;
         border: var(--border-active)
       }
 
       &:hover:not([disabled]) {
-        color: getColor('main');
+        color: var(--text-primary);
         border-bottom-color: currentColor;
         cursor: pointer;
         border-bottom-width: 2px;
@@ -152,7 +152,7 @@ $height-arrow-small:30px;
 
       &:focus-visible {
         border-color: currentColor;
-        color: getColor('main');
+        color: var(--text-primary);
       }
 
       .icon {

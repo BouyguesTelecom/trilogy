@@ -5,7 +5,7 @@
 }
 
 @mixin pattern-dark ($size, $x-pos: top, $y-pos: center) {
-    background: linear-gradient(#1b3650, getColor('alternate'));
+    //background: linear-gradient(#1b3650, getColor('alternate'));//CHECK
     background-size: auto, $size, auto;
     background-position: top left, $x-pos $y-pos, top left;
 }

@@ -52,20 +52,20 @@ a.toaster {
 
     code,
     pre {
-        background: getColor('background');
+        background: var(--bg-primary);
     }
 
     pre code {
         background: transparent;
     }
 
-  @each $name in $colors-feedback {
+    @each $name, $colors in $colors-feedback {
     &.is-#{$name} {
-      background-color: fadeColor($name);
-      border: 2px solid getColor($name);
+            background-color: map-get($colors, subtle);
+            border: 2px solid map-get($colors, color);
 
       .icon {
-        color: getColor($name);
+                color: map-get($colors, color);
       }
     }
   }

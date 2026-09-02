@@ -29,7 +29,7 @@
   }
 
   a {
-    color: getColor('main');
+    color: var(--text-link);
     text-decoration: underline 2px solid;
     text-underline-offset: 4px;
   }
