@@ -896,3 +896,41 @@ $align-values: (
     background-color: transparent;
   }
 }
+
+
+$plus-symbol-size: 40px;
+
+//CHECK neutral-fade , neutral
+@mixin plus-symbol($color: var(--bg-secondary-subtle), $text-color: var(--text-primary)) {
+    &::after {
+        content: "+";
+        display: inline-block;
+        width: $plus-symbol-size;
+        height: $plus-symbol-size;
+        border-radius: $plus-symbol-size;
+        font-size: 24px;
+        text-align: center;
+        line-height: $plus-symbol-size;
+        background-color: $color;
+        color: $text-color;
+    }
+}
+
+.plus-symbol {
+    @include plus-symbol();
+
+    display: inline-block;
+
+        @each $name, $colors in $colors-brand {
+            $color: map-get($colors, color);
+            $color-invert: map-get($colors, text);
+
+                &.is-#{$name} {
+            @include plus-symbol($color, $color-invert);
+        }
+    }
+}
+
+.delete {
+    @include delete;
+}

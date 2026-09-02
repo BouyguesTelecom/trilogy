@@ -3,11 +3,7 @@
 // You must build fonts before
 // Base framework
 @import "./framework/src/variables/all";
-@import "./themes/default/src/utilities/pre";
-@import "./framework/src/utilities/pre";
-
-@import "./framework/src/utilities/post";
-@import "./themes/default/src/utilities/post";
+@import "./framework/src/utilities/all";
 
 /* All Base Without reset */
 $body-background-color: #f6f6f6;
@@ -16,12 +12,8 @@ $body-rendering: optimizeLegibility !default;
 $body-family: $font-family-1 !default;
 $body-line-height: 1.5 !default;
 
-@import "./framework/src/base/reset";
-@import "./framework/src/base/generic";
-@import "./framework/src/base/helpers";
-@import "./framework/src/base/loading";
 
-@import "./framework/src/elements";
+@import "./framework/src/base/all";
 
 
 @import './framework/src/components/autocomplete';
@@ -71,9 +63,6 @@ $body-line-height: 1.5 !default;
 
 // Icons
 @import "../../assets/icons/all";
-
-// Assets and theme (common + default)
-@import "./themes/default/src/_all";
 
 .partial {
   @extend .main-wrap;
