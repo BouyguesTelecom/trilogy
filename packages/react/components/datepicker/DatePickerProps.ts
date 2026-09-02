@@ -1,3 +1,4 @@
+import { CalendarYearsOrder, CalendarYearsOrderValues } from '@/components/calendar/CalendarEnum'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
 import { DatePickerStatus, DatePickerStatusValues } from './DatePickerEnum'
@@ -22,6 +23,7 @@ export interface DatePickerProps extends Dev, CommonProps {
   disabled?: boolean
   disabledDates?: Date[]
   name?: string
+  yearsOrder?: CalendarYearsOrder | CalendarYearsOrderValues
 }
 
 export interface Segment {

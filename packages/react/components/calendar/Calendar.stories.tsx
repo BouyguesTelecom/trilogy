@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import CalendarComponent from './Calendar'
+import { CalendarYearsOrder } from './CalendarEnum'
 import type { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 import React from 'react'
 
@@ -15,6 +16,7 @@ interface CalendarStoryArgs {
   disabled: boolean
   readOnly: boolean
   disabledDates: Date[]
+  yearsOrder: CalendarYearsOrder
 }
 
 const meta: Meta<CalendarStoryArgs> = {
@@ -65,6 +67,13 @@ const meta: Meta<CalendarStoryArgs> = {
       description: 'List of disabled dates',
       table: { category: 'Calendar' },
     },
+    yearsOrder: {
+      control: 'select',
+      options: [CalendarYearsOrder.ASC, CalendarYearsOrder.DESC],
+      name: 'yearsOrder',
+      description: 'Order of years in the year selector (asc: oldest to most recent, desc: most recent to oldest)',
+      table: { category: 'Calendar' },
+    },
   },
   args: {
     value: new Date(),
@@ -73,8 +82,9 @@ const meta: Meta<CalendarStoryArgs> = {
     disabled: false,
     readOnly: false,
     disabledDates: [],
+    yearsOrder: CalendarYearsOrder.ASC,
   },
-  render: ({ value, minDate, maxDate, disabled, readOnly, disabledDates }) => (
+  render: ({ value, minDate, maxDate, disabled, readOnly, disabledDates, yearsOrder }) => (
     <Calendar
       value={value}
       minDate={minDate}
@@ -82,6 +92,7 @@ const meta: Meta<CalendarStoryArgs> = {
       disabled={disabled}
       readOnly={readOnly}
       disabledDates={disabledDates}
+      yearsOrder={yearsOrder}
       onChange={() => {}}
       onMonthChange={() => {}}
     />

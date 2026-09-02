@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { CalendarYearsOrder } from '@/components/calendar/CalendarEnum'
 import type { DatePickerProps } from './DatePickerProps'
 import { DatePicker } from './index'
 
@@ -70,6 +71,12 @@ const meta: Meta<DatePickerProps> = {
       description: 'DatePicker status',
       table: { category: 'Validation' },
     },
+    yearsOrder: {
+      control: 'select',
+      options: [CalendarYearsOrder.ASC, CalendarYearsOrder.DESC],
+      description: 'Order of years in the calendar year selector (asc: oldest to most recent, desc: most recent to oldest)',
+      table: { category: 'Main' },
+    },
     onChange: { table: { disable: true } },
     disabledDates: { table: { disable: true } },
   },
@@ -110,5 +117,14 @@ export const Required: StoryObj<DatePickerProps> = {
   args: {
     ...Default.args,
     required: true,
+  },
+}
+
+export const YearsOrderDesc: StoryObj<DatePickerProps> = {
+  args: {
+    ...Default.args,
+    minDate: '1906-01-01',
+    maxDate: '2026-12-31',
+    yearsOrder: CalendarYearsOrder.DESC,
   },
 }
