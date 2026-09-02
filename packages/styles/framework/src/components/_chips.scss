@@ -54,7 +54,7 @@
         background-color: var(--bg-secondary);
         color: white;
         border: var(--border-active);
-        padding: 5px (var(--spacing-md) - 1px);
+        padding: 5px calc(var(--spacing-md) - 1px);
         #{$hoverSelector} {
           background-color: var(--bg-secondary);
           color: white;

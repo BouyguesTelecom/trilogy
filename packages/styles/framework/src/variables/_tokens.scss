@@ -29,7 +29,7 @@
   --bg-primary: #{$color-neutral-50};
   --bg-primary-subtle: #{$color-neutral-100};
   --bg-secondary: #{$color-main-500};
-  --bg-secondary-subtle: #{$color-main-50};
+  --bg-secondary-subtle: #{$color-neutral-50};
   --bg-success: #{$color-success-500};
   --bg-success-subtle: #{$color-success-50};
   --bg-warning: #{$color-warning-500};
@@ -56,10 +56,10 @@
   --icon-error: #{$color-error-500};
   --icon-information: #{$color-information-500};
   --icon-brand: #{$color-brand-500};
-  --icon-size-xs: 16;
-  --icon-size-sm: 20;
-  --icon-size-md: 32;
-  --icon-size-lg: 66;
+  --icon-size-xs: 16px;
+  --icon-size-sm: 20px;
+  --icon-size-md: 32px;
+  --icon-size-lg: 66px;
   --text-link: #{$color-main-500};
   --text-link-hover: #{$color-main-700};
   --text-link-visited: #{$color-main-700};
@@ -99,10 +99,10 @@
   --input-bg: #{$color-neutral-50};
   --input-pressed: #{$color-main-100};
   --focus-border: #{$color-main-500};
-  --focus-ring-width: 2;
+  --focus-ring-width: 2px;
 }
 
-@media (min-width: #{$breakpoint-sm-min}px) {
+@media (min-width: #{$breakpoint-sm-min}) {
 :root {
   --size-title-1: #{$font-size-700};
   --line-height-title-1: #{$font-line-height-900};
@@ -151,7 +151,7 @@
 }
 }
 
-@media (min-width: #{$breakpoint-md-min}px) {
+@media (min-width: #{$breakpoint-md-min}) {
 :root {
   --size-title-1: #{$font-size-700};
   --line-height-title-1: #{$font-line-height-900};
@@ -200,7 +200,7 @@
 }
 }
 
-@media (min-width: #{$breakpoint-lg-min}px) {
+@media (min-width: #{$breakpoint-lg-min}) {
 :root {
   --size-title-1: #{$font-size-900};
   --line-height-title-1: #{$font-line-height-1100};
@@ -249,7 +249,7 @@
 }
 }
 
-@media (min-width: #{$breakpoint-xl-min}px) {
+@media (min-width: #{$breakpoint-xl-min}) {
 :root {
   --size-title-1: #{$font-size-900};
   --line-height-title-1: #{$font-line-height-1100};

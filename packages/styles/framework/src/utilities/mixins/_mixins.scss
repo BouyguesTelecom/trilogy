@@ -340,7 +340,7 @@
       input {
         &:checked:not(:disabled) ~ label.#{$type}-label,
         &:checked:not(:disabled) ~ .#{$type}-container {
-          padding: (var(--spacing-md) - 1px) (var(--spacing-md) - 1px) (var(--spacing-md) - 1px) ($spacing-space08 - 1px);
+          padding: calc(var(--spacing-md) - 1px) calc(var(--spacing-md) - 1px) calc(var(--spacing-md) - 1px) calc($spacing-space08 - 1px);
         }
 
       }

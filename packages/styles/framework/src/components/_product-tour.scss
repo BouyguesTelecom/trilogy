@@ -7,7 +7,7 @@
     border-radius: var(--radius-sm);
     box-shadow: $shadow;
     width: 350px;
-    padding: var(--spacing-sm) * 2;
+    padding: calc(var(--spacing-sm) * 2);
 
     @include mobile {
         max-width: inherit;

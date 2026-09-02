@@ -112,7 +112,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         width: $timeline-marker-icon-size;
         left: -($timeline-marker-icon-size * 0.5 -
         $timeline-marker-border-size * 0.5);
-        line-height: size(0.75rem);
+        line-height: 0.75rem;
         padding: math.div($timeline-icon-size, 3);
         border-radius: 9999px;
       }

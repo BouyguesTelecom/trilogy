@@ -43,11 +43,11 @@
       min-width: 42px;
 
       &:not(:last-child)::after {
-        font-size: $text-16;
+        font-size: var(--body-1-size);
       }
 
       .value {
-        font-size: $text-16;
+        font-size: var(--body-1-size);
         line-height: 21px;
         font-weight: 600;
       }

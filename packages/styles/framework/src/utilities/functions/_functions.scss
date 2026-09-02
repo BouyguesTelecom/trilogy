@@ -33,29 +33,6 @@ $zindex: (
     @return $value;
 }
 
-@function num($input) {
-    @if type-of($input) != number {
-        @return null;
-    }
-
-    @return math.div($input, $input*0+1);
-}
-
-@function size($size) {
-    @if $font-convert-to-px {
-        /* stylelint-disable */
-        $pxSize: num($size * $font-ratio * 10) + 0px;
-
-        @return $pxSize;
-    }
-
-    @else {
-        $remSize: $size * $font-ratio;
-
-        @return $remSize;
-    }
-}
-
 @function zindex($key) {
     @return map-get($zindex, $key);
 }

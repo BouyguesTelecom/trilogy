@@ -1,11 +1,12 @@
+// 64/56/44/40/32px have no matching primitive, kept as literal values
 $price-levels: (
-  [64px, 44px, #{$font-size-700}px, #{$font-size-200}px, #{$font-size-200}px],
-  [56px, 32px, #{$font-size-500}px, #{$font-size-200}px, #{$font-size-200}px],
-  [#{$font-size-900}px, #{$font-size-700}px, #{$font-size-200}px, #{$font-size-200}px, #{$font-size-200}px],
-  [40px, #{$font-size-600}px, #{$font-size-25}px, #{$font-size-25}px, #{$font-size-100}px],
-  [#{$font-size-800}px, #{$font-size-400}px, #{$font-size-25}px, #{$font-size-25}px, #{$font-size-100}px],
-  [#{$font-size-600}px, #{$font-size-400}px, #{$font-size-25}px, #{$font-size-25}px, #{$font-size-25}px],
-  [#{$font-size-400}px, #{$font-size-400}px, #{$font-size-25}px, #{$font-size-25}px, #{$font-size-25}px],
+  [64px, 44px, $font-size-700, $font-size-200, $font-size-200],
+  [56px, 32px, $font-size-500, $font-size-200, $font-size-200],
+  [$font-size-900, $font-size-700, $font-size-200, $font-size-200, $font-size-200],
+  [40px, $font-size-600, $font-size-25, $font-size-25, $font-size-100],
+  [$font-size-800, $font-size-400, $font-size-25, $font-size-25, $font-size-100],
+  [$font-size-600, $font-size-400, $font-size-25, $font-size-25, $font-size-25],
+  [$font-size-400, $font-size-400, $font-size-25, $font-size-25, $font-size-25],
 );
 
 .price-container {

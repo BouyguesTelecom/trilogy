@@ -43,12 +43,19 @@ const getPrimitiveReference = (token) => {
   return getScssVariableName(targetName.split('/'))
 }
 
-const getTokenValue = (token, value) => {
+// Font weights are the only numeric tokens that must stay unitless.
+const isUnitlessNumber = (tokenPath) => tokenPath.some((segment) => String(segment).toLowerCase() === 'weight')
+
+const getTokenValue = (token, value, tokenPath = []) => {
   if (value && typeof value === 'object' && typeof value.hex === 'string') {
     return value.hex
   }
 
-  if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+  if (typeof value === 'number') {
+    return isUnitlessNumber(tokenPath) ? String(value) : `${value}px`
+  }
+
+  if (typeof value === 'string' || typeof value === 'boolean') {
     return String(value)
   }
 
@@ -80,7 +87,7 @@ const getBreakpointDeclarations = (primitiveNames) =>
 
     for (const token of findTokens(payload)) {
       const variableName = getCssVariableName({ original: token })
-      const value = getTokenValue({ original: token }, token.$value)
+      const value = getTokenValue({ original: token }, token.$value, [variableName ?? ''])
       const candidateReference = getPrimitiveReference({ original: token })
       const primitiveReference =
         candidateReference && primitiveNames.has(candidateReference) ? candidateReference : undefined
@@ -100,7 +107,7 @@ StyleDictionary.registerFormat({
     const lines = ['// Generated from figma/primitives.json. Do not edit directly.', '']
 
     for (const token of primitiveTokens) {
-      const value = getTokenValue(token, token.original?.$value ?? token.value)
+      const value = getTokenValue(token, token.original?.$value ?? token.value, token.path)
       if (value !== undefined) {
         lines.push(`${getScssVariableName(token.path)}: ${value};`)
       }
@@ -123,7 +130,7 @@ StyleDictionary.registerFormat({
     for (const token of themeTokens) {
       const variableName = getCssVariableName(token)
       const rawValue = token.original?.$value ?? token.value
-      const value = getTokenValue(token, rawValue)
+      const value = getTokenValue(token, rawValue, token.path)
       const candidateReference = getPrimitiveReference(token)
       const primitiveReference =
         candidateReference && primitiveNames.has(candidateReference) ? candidateReference : undefined
@@ -153,7 +160,7 @@ StyleDictionary.registerFormat({
         continue
       }
 
-      lines.push(`@media (min-width: #{${breakpoint.minimumWidth}}px) {`)
+      lines.push(`@media (min-width: #{${breakpoint.minimumWidth}}) {`)
 
       lines.push(':root {')
       for (const [variableName, value] of breakpoint.declarations) {
@@ -176,14 +183,14 @@ export default {
   platforms: {
     scss: {
       transformGroup: 'scss',
-      buildPath: 'framework/src/base',
+      buildPath: 'framework/src/variables',
       files: [
         {
-          destination: 'primitives.scss',
+          destination: '_primitives.scss',
           format: 'scss/primitives/figma',
         },
         {
-          destination: 'tokens.scss',
+          destination: '_tokens.scss',
           format: 'scss/theme/figma',
         },
       ],

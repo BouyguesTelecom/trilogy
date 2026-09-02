@@ -2,6 +2,7 @@
 
 // You must build fonts before
 // Base framework
+@import "./framework/src/variables/all";
 @import "./themes/default/src/utilities/pre";
 @import "./framework/src/utilities/pre";
 
@@ -17,8 +18,6 @@ $body-line-height: 1.5 !default;
 
 @import "./framework/src/base/reset";
 @import "./framework/src/base/generic";
-@import "./framework/src/base/color";
-@import "./framework/src/base/fonts";
 @import "./framework/src/base/helpers";
 @import "./framework/src/base/loading";
 
