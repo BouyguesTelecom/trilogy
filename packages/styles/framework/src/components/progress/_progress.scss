@@ -123,13 +123,13 @@ $progress-circle-slices: (
 .progress-circle-title {
   color: rgba(var(--text-primary), 0.7);
   font-size: 28px;
-  font-weight: $weight-semibold;
+  font-weight: var(--font-weight-body-1-bold);
 }
 
 .progress-circle-sub {
   color: var(--text-primary);
   font-size: 15px;
-  font-weight: $weight-semibold;
+  font-weight: var(--font-weight-body-1-bold);
   letter-spacing: 0.05em;
 }
 

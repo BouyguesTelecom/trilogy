@@ -1,5 +1,4 @@
 @use "sass:string";
-@import "../initial-variables";
 
 @mixin center($width, $height: 0) {
   position: absolute;

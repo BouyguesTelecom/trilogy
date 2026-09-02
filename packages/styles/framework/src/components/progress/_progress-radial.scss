@@ -27,7 +27,7 @@
 
     .progress-radial-content {
       &-label {
-        font-size: $text-16;
+        font-size: var(--body-1-size);
         line-height: normal;
       }
        &-description {

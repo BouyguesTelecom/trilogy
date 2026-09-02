@@ -1,5 +1,4 @@
 @use 'sass:math';
-@import "../utilities/spacing";
 
 $dropdown-border-radius: var(--radius-sm);
 $dropdown-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -124,7 +123,7 @@ $dropdown-item-padding-horizontal: 16px;
 
   &.is-active {
     background-color: var(--bg-secondary-subtle);
-    font-weight: $weight-semibold;
+    font-weight: var(--font-weight-body-1-bold);
   }
 
   &:disabled,

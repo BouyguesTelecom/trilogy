@@ -1,6 +1,6 @@
 a.toaster {
     cursor: pointer;
-    transition: box-shadow $animation-duration;
+    transition: box-shadow 0.3s;
 
     &:hover,
     &:active,
@@ -24,7 +24,7 @@ a.toaster {
 
     .text:first-child,
     .title:first-child {
-        font-size: $text-16 !important;
+        font-size: var(--body-1-size) !important;
         line-height: normal;
     }
 

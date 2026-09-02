@@ -1,4 +1,10 @@
 // Responsiveness
+$gap: 24px !default;
+$tablet: $breakpoint-md-min !default;
+$desktop: $breakpoint-lg-min !default;
+$widescreen: 1192px + 2 * $gap !default;
+$fullhd: 1340px + 2 * $gap !default;
+
 @mixin from($device) {
   @media screen and (min-width: $device) {
     @content;

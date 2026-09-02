@@ -109,9 +109,9 @@ body:has(.modal.is-active) {
     .modal-header {
       padding: var(--spacing-lg);
       color: var(--text-primary);
-      font-family: $family-primary;
+      font-family: $font-family-1;
       font-size: $font-size-600;
-      font-weight: $weight-semibold;
+      font-weight: var(--font-weight-body-1-bold);
       line-height: 1.1;
       background-color: var(--bg-primary);
       z-index: zindex('medium');

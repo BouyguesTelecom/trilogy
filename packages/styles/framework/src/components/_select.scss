@@ -105,7 +105,7 @@ $status-select: (
       }
 
       &[data-selected="true"] {
-        font-weight: $weight-black;
+        font-weight: var(--font-weight-body-1-bold);
 
         &:after {
           content: "" !important;

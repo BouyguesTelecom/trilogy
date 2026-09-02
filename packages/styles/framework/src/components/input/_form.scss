@@ -2,7 +2,7 @@ $file-radius: var(--radius-sm);
 $file-name-max-width: 16em;
 $field-margin: 20px;
 $help-size: var(--body-2-size);
-$label-weight: $weight-bold;
+$label-weight: var(--font-weight-body-1-bold);
 
 .field {
   &.is-fullwidth {
@@ -402,7 +402,7 @@ $label-weight: $weight-bold;
 
   + .help {
     font-size: var(--body-3-size);
-    font-weight: $weight-medium;
+    font-weight: $font-weight-medium;
   }
 
   .is-searching {

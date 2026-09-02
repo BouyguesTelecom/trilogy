@@ -3,12 +3,12 @@ $height-arrow-default:48px;
 $height-arrow-small:30px;
 
 .tabs {
-  @include overflow-touch;
+  -webkit-overflow-scrolling: touch;
   @include unselectable;
 
   align-items: stretch;
   justify-content: space-between;
-  font-weight: $weight-normal;
+  font-weight: var(--font-weight-body-1);
   width: 100%;
   text-align: center;
   overflow: hidden;
@@ -116,14 +116,14 @@ $height-arrow-small:30px;
     > .tab {
       display: inline-block;
       line-height: normal;
-      font-family: $family-primary;
+      font-family: $font-family-1;
       height: calc(100% - 4px);
       background-color: transparent;
       color: var(--text-primary);
       text-decoration: none;
       outline: none;
       padding: 12px 24px;
-      font-size: $text-16;
+      font-size: var(--body-1-size);
       border: 0px solid transparent;
       border-bottom: var(--border-style);
 
@@ -134,7 +134,7 @@ $height-arrow-small:30px;
       &.is-active {
         color: var(--text-primary);
         position: relative;
-        font-weight: $weight-bold;
+        font-weight: var(--font-weight-body-1-bold);
         border: var(--border-active)
       }
 

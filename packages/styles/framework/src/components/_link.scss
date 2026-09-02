@@ -33,7 +33,7 @@
   @extend %link-states;
 
   position: relative;
-  font-weight: $weight-normal;
+  font-weight: var(--font-weight-body-1);
   color: var(--text-link);
   box-decoration-break: clone;
   text-decoration: underline;
@@ -77,7 +77,7 @@
   text-decoration: underline;
   text-decoration-thickness : 1px;
   &:hover {
-    font-weight: $weight-normal;
+    font-weight: var(--font-weight-body-1);
     filter: brightness(0.8);
   }
 }

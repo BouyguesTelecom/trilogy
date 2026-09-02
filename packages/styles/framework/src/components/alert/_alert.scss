@@ -1,7 +1,7 @@
 /* @todo validate a.alert exist */
 a.alert {
   cursor: pointer;
-  transition: box-shadow $animation-duration;
+  transition: box-shadow 0.3s;
 
   &:hover,
   &:active,

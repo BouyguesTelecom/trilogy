@@ -1,11 +1,11 @@
 $price-levels: (
-  [$text-64, $text-44, $text-28, $text-16, $text-16],
-  [$text-56, $text-32, $text-22, $text-16, $text-16],
-  [$text-48, $text-28, $text-16, $text-16, $text-16],
-  [$text-40, $text-24, var(--body-4-size), var(--body-4-size), var(--body-2-size)],
-  [$text-36, $font-size-400, var(--body-4-size), var(--body-4-size), var(--body-2-size)],
-  [$text-24, $font-size-400, var(--body-4-size), var(--body-4-size), var(--body-4-size)],
-  [$font-size-400, $font-size-400, var(--body-4-size), var(--body-4-size), var(--body-4-size)],
+  [64px, 44px, #{$font-size-700}px, #{$font-size-200}px, #{$font-size-200}px],
+  [56px, 32px, #{$font-size-500}px, #{$font-size-200}px, #{$font-size-200}px],
+  [#{$font-size-900}px, #{$font-size-700}px, #{$font-size-200}px, #{$font-size-200}px, #{$font-size-200}px],
+  [40px, #{$font-size-600}px, #{$font-size-25}px, #{$font-size-25}px, #{$font-size-100}px],
+  [#{$font-size-800}px, #{$font-size-400}px, #{$font-size-25}px, #{$font-size-25}px, #{$font-size-100}px],
+  [#{$font-size-600}px, #{$font-size-400}px, #{$font-size-25}px, #{$font-size-25}px, #{$font-size-25}px],
+  [#{$font-size-400}px, #{$font-size-400}px, #{$font-size-25}px, #{$font-size-25}px, #{$font-size-25}px],
 );
 
 .price-container {
@@ -13,8 +13,8 @@ $price-levels: (
   align-items: baseline;
   column-gap: 12px;
   flex-wrap: wrap;
-  --font-size: #{$text-64};
-  --overline-size: #{$text-16};
+  --font-size: #{64px};
+  --overline-size: #{16px};
 
   @each $price-level in $price-levels {
     $i: index($price-levels, $price-level);
@@ -55,7 +55,7 @@ $price-levels: (
 
 .price {
   display: inline-flex;
-  font-weight: $weight-semibold;
+  font-weight: var(--font-weight-body-1-bold);
   line-height: 0.8;
   margin-bottom: 0;
   font-size: var(--font-size);
@@ -104,7 +104,7 @@ $price-levels: (
       text-align: left;
 
       sup {
-        font-weight: $weight-medium;
+        font-weight: $font-weight-medium;
         padding-left: 2px;
         top: -0.3em;
       }
@@ -116,7 +116,7 @@ $price-levels: (
       margin-top: 0;
       padding-left: 0.1em;
       text-align: left;
-        font-weight: $weight-normal;
+        font-weight: var(--font-weight-body-1);
     }
   }
 

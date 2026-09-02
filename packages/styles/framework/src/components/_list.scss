@@ -8,9 +8,9 @@ ol.list {
       &::before{
         content: counter(customCounter) ". ";
         margin-right:var(--spacing-md);
-        font-weight: $weight-bold;
+        font-weight: var(--font-weight-body-1-bold);
         font-size: var(--body-2-size) !important;
-        font-family: $family-secondary;
+        font-family: $font-family-2;
         line-height: 1.5 !important;
 
       }
@@ -25,7 +25,7 @@ ul.list {
         content:'.';
         margin-right:var(--spacing-md);
         font-weight: 900;
-        font-size: $text-24;
+        font-size: var(--title-4-size);//CHECK
         line-height: 8px;
       }
     }

@@ -1,7 +1,6 @@
 $body-size: 10px;
 $body-rendering: optimizeLegibility !default;
-$body-family: $family-primary !default;
-$body-weight: $weight-normal !default;
+$body-family: $font-family-1 !default;
 $body-line-height: 1.5 !default;
 
 .html-wrap {
@@ -23,7 +22,7 @@ $body-line-height: 1.5 !default;
     margin: 0;
     padding: 0;
     color: var(--text-primary);
-    font-weight: $body-weight;
+    font-weight: var(--font-weight-body-1);
     line-height: $body-line-height;
     font-size: 16px;
     display: flex;

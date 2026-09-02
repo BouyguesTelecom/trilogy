@@ -1,0 +1,25 @@
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -46.8px 0;
+    }
+
+    100% {
+        background-position: 46.8px 0;
+    }
+}
+
+@mixin animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #e1e1e1 8%, #ddd 18%, #e1e1e1 33%) !important;
+    background-size: 800px 104px;
+    position: relative;
+}
+
+@mixin disable-animation {
+    animation: none;
+}

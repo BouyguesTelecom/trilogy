@@ -4,10 +4,6 @@
   }
 }
 
-@mixin overflow-touch {
-  -webkit-overflow-scrolling: touch;
-}
-
 @mixin placeholder {
   $placeholders: ':-moz' ':-webkit-input' '-moz' '-ms-input';
   @each $placeholder in $placeholders {

@@ -1,5 +1,4 @@
 @use 'sass:math';
-@import "../utilities/spacing";
 
 $timeline-marker-color: var(--bg-secondary-subtle) !default;//CHECK
 $timeline-marker-icon-size: 2.85em !default;
@@ -140,7 +139,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       .heading {
         font-size: var(--body-3-size);
         color: var(--text-primary);
-        font-family: $family-primary;
+        font-family: $font-family-1;
         text-transform: none;
         letter-spacing: 0;
         line-height: 15px;

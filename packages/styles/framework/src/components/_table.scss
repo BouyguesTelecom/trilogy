@@ -251,8 +251,7 @@
 
 .table-container {
   @include block;
-  @include overflow-touch;
-
+  -webkit-overflow-scrolling: touch;
   overflow: auto;
   overflow-y: hidden;
   max-width: 100%;

@@ -6,7 +6,7 @@ body {
     @extend .main-wrap;
     @extend .body-wrap;
     @extend .reset-wrap;
-    font-family: $family-primary;
+    font-family: $font-family-1;
 }
 
 header {
@@ -22,7 +22,7 @@ To be used when standalone namespaced builds are used
     box-sizing: border-box;
     color: var(--text-primary);
     font-size: 10px;
-    font-weight: $body-weight;
+    font-weight: var(--font-weight-body-1);
     line-height: $body-line-height;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;

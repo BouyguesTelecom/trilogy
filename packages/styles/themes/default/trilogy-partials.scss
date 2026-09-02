@@ -1,9 +1,6 @@
 @charset "utf-8";
 
 // You must build fonts before
-// Base tools (functions)
-@import "./framework/src/utilities/tools";
-
 // Base framework
 @import "./themes/default/src/utilities/pre";
 @import "./framework/src/utilities/pre";
@@ -15,8 +12,7 @@
 $body-background-color: #f6f6f6;
 $body-size: 10px;
 $body-rendering: optimizeLegibility !default;
-$body-family: $family-primary !default;
-$body-weight: $weight-normal !default;
+$body-family: $font-family-1 !default;
 $body-line-height: 1.5 !default;
 
 @import "./framework/src/base/reset";

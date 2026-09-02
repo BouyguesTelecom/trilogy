@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-$title-weight: $weight-semibold;
+$title-weight: var(--font-weight-body-1-bold);
 $title-high-weight: 550;
 $title-line-height: 1.1;
 $title-strong-color: inherit;
@@ -8,24 +8,24 @@ $title-strong-weight: inherit;
 $title-sub-size: 0.5em;
 $title-sup-size: 0.5em;
 
-$subtitle-size: $text-16;
-$subtitle-weight: $weight-medium;
-$subtitle-size-tablet: $text-15;
+$subtitle-size: var(--body-1-size);
+$subtitle-weight: $font-weight-medium;
+$subtitle-size-tablet: var(--body-1-size);
 $subtitle-line-height: 1.2;
-$subtitle-strong-weight: $weight-semibold;
+$subtitle-strong-weight: var(--font-weight-body-1-bold);
 
 $overline-size: var(--body-2-size);
-$overline-weight: $weight-semibold;
+$overline-weight: var(--font-weight-body-1-bold);
 $overline-line-height: 1.2;
-$overline-size-tablet: $text-15;
+$overline-size-tablet: var(--body-1-size);
 
 $title-levels: (
-    (var(--size-title-1), var(--line-height-title-1), $family-secondary),
-    (var(--size-title-2), var(--line-height-title-2), $family-secondary),
-    (var(--size-title-3), var(--line-height-title-3), $family-primary),
-    (var(--size-title-4), var(--line-height-title-4), $family-primary),
-    (var(--size-title-5), var(--line-height-title-5), $family-primary),
-    (var(--size-title-6), var(--line-height-title-6), $family-primary)
+    (var(--size-title-1), var(--line-height-title-1), $font-family-2),
+    (var(--size-title-2), var(--line-height-title-2), $font-family-2),
+    (var(--size-title-3), var(--line-height-title-3), $font-family-1),
+    (var(--size-title-4), var(--line-height-title-4), $font-family-1),
+    (var(--size-title-5), var(--line-height-title-5), $font-family-1),
+    (var(--size-title-6), var(--line-height-title-6), $font-family-1)
 );
 
 
@@ -45,9 +45,9 @@ $title-levels: (
 }
 
 .title {
-  font-size: $text-32;
-  font-weight: $title-weight;
-  line-height: $title-line-height;
+  font-size: var(--title-1-size);
+  font-weight: var(--font-weight-title-1);
+  line-height: var(--line-height-title-1);
 
   // new typography
   @each $title-level in $title-levels {
@@ -72,7 +72,7 @@ $title-levels: (
     }
 
     &.is-medium {
-      font-weight: $weight-medium;
+      font-weight: $font-weight-medium;
     }
 
     &.is-inverted {
@@ -82,7 +82,7 @@ $title-levels: (
     .details {
       font-size: 80%;
       color: var(--text-disabled);
-      font-weight: $weight-normal;
+      font-weight: var(--font-weight-body-1);
     }
 
     &.is-section-title {
@@ -90,7 +90,7 @@ $title-levels: (
     }
 
     @include tablet {
-      font-size: $text-40;
+      font-size: 40px//CHECK;
     }
 
     sup {
