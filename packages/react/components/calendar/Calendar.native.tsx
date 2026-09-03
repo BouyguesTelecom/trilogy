@@ -374,7 +374,9 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         }
       })
       if (currentYear && !isCurrentYearInclude) {
-        years = [{ value: currentYear, disabled: true }, ...years]
+        const currentYearEntry = { value: currentYear, disabled: true }
+        const shouldPrepend = isDesc ? currentYear > maxYear : currentYear < minYear
+        years = shouldPrepend ? [currentYearEntry, ...years] : [...years, currentYearEntry]
       }
       return years
     }, [minDate, maxDate, value, yearsOrder])
