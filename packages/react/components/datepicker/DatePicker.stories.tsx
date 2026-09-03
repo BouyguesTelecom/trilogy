@@ -87,7 +87,7 @@ export default meta
 export const Default: StoryObj<DatePickerProps> = {
   args: {
     value: '2026-05-15',
-    minDate: '2026-01-01',
+    minDate: '1970-01-01',
     maxDate: '2026-12-31',
     label: 'Date',
     help: 'Pick a date',
