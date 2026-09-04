@@ -22,10 +22,10 @@ $overline-size-tablet: var(--body-1-size);
 $title-levels: (
     (var(--size-title-1), var(--line-height-title-1), $font-family-2),
     (var(--size-title-2), var(--line-height-title-2), $font-family-2),
-    (var(--size-title-3), var(--line-height-title-3), $font-family-1),
-    (var(--size-title-4), var(--line-height-title-4), $font-family-1),
-    (var(--size-title-5), var(--line-height-title-5), $font-family-1),
-    (var(--size-title-6), var(--line-height-title-6), $font-family-1)
+    (var(--size-title-3), var(--line-height-title-3), var(--font-title-1)),
+    (var(--title-4-size), var(--line-height-title-4), var(--font-title-1)),
+    (var(--size-title-5), var(--line-height-title-5), var(--font-title-1)),
+    (var(--size-title-6), var(--line-height-title-6), var(--font-title-1))
 );
 
 
@@ -46,7 +46,7 @@ $title-levels: (
 
 .title {
   font-size: var(--title-1-size);
-  font-weight: var(--font-weight-title-1);
+  font-weight: var(--font-weight-body-1-bold);
   line-height: var(--line-height-title-1);
 
   // new typography
@@ -90,7 +90,7 @@ $title-levels: (
     }
 
     @include tablet {
-      font-size: 40px//CHECK;
+      font-size: 40px;
     }
 
     sup {

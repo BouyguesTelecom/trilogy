@@ -53,7 +53,7 @@ a.box {
 
   &.is-flat {
     box-shadow: none;
-    border: var(--border-style);//CHECK
+    border: var(--border-style);
 
     .box-header {
       margin-top: calc(var(--padding-box) * -1 - 1px);
@@ -66,7 +66,7 @@ a.box {
     border-left: $highlighted-border-width solid transparent;
     border-top-left-radius: $highlighted-border-width;
     border-bottom-left-radius: $highlighted-border-width;
-    border-left-color: var(--border);//CHECK
+    border-left-color: var(--border);
     @each $name, $pair in $colors-brand-functionnal {
       $color: $pair;
       $brandName: $name;

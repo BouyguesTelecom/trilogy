@@ -6,7 +6,7 @@ body {
     @extend .main-wrap;
     @extend .body-wrap;
     @extend .reset-wrap;
-    font-family: $font-family-1;
+    font-family: var(--font-title-1);
 }
 
 header {

@@ -200,25 +200,18 @@ $alignments: (
   font-weight: var(--font-weight-body-1-bold) !important;
 }
 
-// @mixin typography-colors() {
-//   @each $name, $color in $colors {
-//     $brandName: nth($color, 2);
-//     $color: nth($color, 1);
-//     $color-invert: invertColor($name);
+@mixin typography-colors() {
+  @each $name, $color in map-get($colors, 'text') {
+    .has-text-#{$name} {
+      color: $color !important;
+    }
+    .has-background-#{$name} {
+      background-color: map-get(map-get($colors, 'bg'), $name) !important;
+    }
+  }
+}
 
-//     .has-text-#{$brandName} {
-//       color: $color !important;
-//     }
-//     .has-text-#{$brandName}-invert {
-//       color: $color-invert !important;
-//     }
-//     .has-background-#{$brandName} {
-//       background-color: getColor($name) !important;
-//     }
-//   }
-// }
-
-// @include typography-colors;
+@include typography-colors;
 
 // Visibility
 $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
@@ -905,7 +898,6 @@ $align-values: (
 
 $plus-symbol-size: 40px;
 
-//CHECK neutral-fade , neutral
 @mixin plus-symbol($color: var(--bg-secondary-subtle), $text-color: var(--text-primary)) {
     &::after {
         content: "+";
@@ -938,4 +930,13 @@ $plus-symbol-size: 40px;
 
 .delete {
     @include delete;
+}
+
+
+.animate-from-right {
+    animation-name: from-right;
+}
+
+.animate-from-top {
+    animation-name: from-top;
 }

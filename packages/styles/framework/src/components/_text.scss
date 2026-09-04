@@ -15,7 +15,7 @@ $text-levels: (
     &.is-level-#{$i} {
       font-size: $font-size;
       line-height: $line-height;
-      font-family: $font-family-1;
+      font-family: var(--font-title-1);
     }
   }
 

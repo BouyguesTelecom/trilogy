@@ -34,7 +34,7 @@ body:has(.modal.is-active) {
     @include overlay;
 
     content: '';
-    background-color: rgba(#000, 0.86);
+    background-color: var(--bg-overlay);
   }
 
   &.is-active {
@@ -60,7 +60,7 @@ body:has(.modal.is-active) {
   }
 
   // spécificité pour le bouton en position: relative par défaut
-  .button {
+  .Button {
     position: static;
   }
 
@@ -109,7 +109,7 @@ body:has(.modal.is-active) {
     .modal-header {
       padding: var(--spacing-lg);
       color: var(--text-primary);
-      font-family: $font-family-1;
+      font-family: var(--font-title-1);
       font-size: $font-size-600;
       font-weight: var(--font-weight-body-1-bold);
       line-height: 1.1;
@@ -177,7 +177,7 @@ body:has(.modal.is-active) {
       background: var(--bg-primary);
       bottom: 0;
 
-      .buttons {
+      .Buttons {
         display: flex;
         flex-direction: column-reverse;
       }
@@ -186,7 +186,7 @@ body:has(.modal.is-active) {
         display: flex;
         justify-content: flex-end;
 
-        .buttons {
+        .Buttons {
           flex-direction: row;
         }
       }

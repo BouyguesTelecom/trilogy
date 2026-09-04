@@ -95,8 +95,8 @@
     &::before {
       content: '';
       border-color: transparent;
-      border-bottom-color: var(--border);
-      border-left-color: var(--border);
+      border-bottom-color: var(--bg-secondary);
+      border-left-color: var(--bg-secondary);
       border-style: solid;
       border-width: 4px;
       pointer-events: none;

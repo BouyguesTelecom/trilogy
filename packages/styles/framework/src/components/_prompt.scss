@@ -16,7 +16,7 @@ $height-prompt-item: 64px;
         box-shadow: 0 0 0 2px currentColor;
     }
     &.is-disabled {
-        box-shadow: 0 0 0 1px var(--border-disabled) !important; //CHECK
+        box-shadow: 0 0 0 1px var(--border-disabled) !important; 
     }
     &-textarea {
         textarea {
@@ -131,17 +131,18 @@ $height-prompt-item: 64px;
             padding: 0;
         }
         &-tool-submit:not(.active):not(:disabled) {
-            background-color: var(--bg-disabled) !important;
+            background-color: var(--bg-secondary-subtle) !important;
+            border-color: var(--bg-secondary-subtle) !important;
             &:hover {
                 filter: brightness(1) !important;
                 cursor: default !important;
             }
             i {
-                background-color: var(--bg-disabled) !important;
+                background-color: var(--text-disabled) !important;
             }
         }
         &-tool-submit:disabled {
-            background-color: var(--bg-disabled) !important;
+            background-color: var(--text-disabled) !important;
             i {
                 background-color: var(--bg-disabled) !important;
             }

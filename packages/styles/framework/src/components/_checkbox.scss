@@ -49,7 +49,7 @@
   .checkbox-container {
     &:before,
     &:after {
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-xs);
     }
   }
 }
@@ -58,8 +58,8 @@
   input:checked ~ label.checkbox-label,
   input:checked ~ .checkbox-container {
     &:after {
-      top: 15px;
-      left: 15px;
+      top: 16px;
+      left: 16px;
     }
   }
 }

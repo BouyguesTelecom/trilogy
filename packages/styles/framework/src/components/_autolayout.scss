@@ -2,7 +2,7 @@ body:not(.is-tight) {
   .accordion:not(.flex-box > .accordion):not(:last-child) {
     margin-bottom: 24px;
   }
-  .buttons:not(.flex-box > .buttons):not(:last-child) {
+  .Buttons:not(.flex-box > .Buttons):not(:last-child) {
     margin-bottom: 24px;
   }
   .card:not(.flex-box > .card):not(:last-child) {
@@ -47,7 +47,7 @@ body:not(.is-tight) {
   .price-container:not(.flex-box > .price-container):not(:last-child) {
     margin-bottom: 12px;
   }
-  :not(.buttons) > .button:not(.flex-box > .button):not(:last-child) {
+  :not(.Buttons) > .Button:not(.flex-box > .Button):not(:last-child) {
     margin-bottom: 24px;
   }
   .countdown:not(.flex-box > .countdown):not(:last-child) {
@@ -171,7 +171,7 @@ body:not(.is-tight) {
     .accordion:not(.flex-box > .accordion):not(:last-child) {
       margin-bottom: 16px;
     }
-  .buttons:not(.flex-box > .buttons):not(:last-child) {
+  .Buttons:not(.flex-box > .Buttons):not(:last-child) {
       margin-bottom: 16px;
     }
   .card:not(.flex-box > .card):not(:last-child) {
@@ -216,7 +216,7 @@ body:not(.is-tight) {
   .price-container:not(.flex-box > .price-container):not(:last-child) {
       margin-bottom: 8px;
     }
-  :not(.buttons) > .button:not(.flex-box > .button):not(:last-child) {
+  :not(.Buttons) > .Button:not(.flex-box > .Button):not(:last-child) {
       margin-bottom: 16px;
     }
   .countdown:not(.flex-box > .countdown):not(:last-child) {

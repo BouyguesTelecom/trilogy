@@ -23,7 +23,7 @@
     height: 4px;
     border-radius: var(--radius-sm);
     background-size: 200% !important;
-    background-color: var(--bg-inactive); //CHECK
+    background-color: var(--bg-secondary-subtle); 
   }
 
   &.is-error {
@@ -234,7 +234,7 @@
 
 @keyframes progress {
   0%, 100% {
-    background-image: linear-gradient(to right, transparent 0, transparent 50%, var(--bg-secondary-subtle) 50%, var(--bg-secondary-subtle) 100%); //CHECK
+    background-image: linear-gradient(to right, transparent 0, transparent 50%, var(--bg-secondary-subtle) 50%, var(--bg-secondary-subtle) 100%); 
   }
   0% {
     background-position: 100% 0;

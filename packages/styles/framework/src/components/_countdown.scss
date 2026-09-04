@@ -1,12 +1,12 @@
 .countdown {
-  background-color: var(--color-accent-fade);
+  background-color: var(--bg-accent-subtle);
   border-radius: var(--radius-sm);
   display: inline-flex;
   padding: var(--spacing-xs);
   color: var(--text-primary);
 
   .count {
-    font-family: $font-family-1;
+    font-family: var(--font-title-1);
     font-size: var(--body-3-size);
     font-weight: 400;
     list-style-type: none;

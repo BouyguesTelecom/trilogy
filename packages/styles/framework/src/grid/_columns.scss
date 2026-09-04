@@ -347,7 +347,7 @@ $gap: 4px,
       }
 
       &::-webkit-scrollbar-track {
-        background-color: var(--bg-inactive); //CHECK
+        background-color: var(--bg-inactive); 
         border-radius: var(--radius-sm);
         margin: 0 8px;
       }

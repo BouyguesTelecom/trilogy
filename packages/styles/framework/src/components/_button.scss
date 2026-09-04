@@ -10,7 +10,7 @@ $button-variants: (
 %buttons-states {
   &:focus-visible,
   &:focus:focus-visible {
-    outline: 2px solid var(--border-style) !important;//CHECK
+    outline: 2px solid var(--border) !important;
     outline-offset: 2px;
   }
 }
@@ -40,85 +40,71 @@ $button-variants: (
   @extend %buttons-states;
 
   background-color: white;
-  border-width: var(--border-width-md);//CHECK
-  border-radius: var(--radius-sm);//CHECK
+  border-width: var(--border-width-md);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   justify-content: center;
   text-align: center;
   white-space: nowrap;
-  padding: 0 var(--spacing-md);//CHECK
+  padding: 0 var(--spacing-md);
   text-decoration: inherit;
-  font-weight: var(--font-weight-body-1-bold);//CHECK
+  font-weight: var(--font-weight-body-1-bold);
   height: $size-inputs;
 
   @include mobile {
     width: 100%;
   }
 
-  //CHECK
-  // @each $variant, $token in $button-variants {
-  //   &.Button-#{$variant} {
-  //     border-color: var(--btn-bg-#{$token});
-  //     background-color: var(--btn-bg-#{$token});
-  //     color: var(--btn-text-#{$token});
-
-  //     &:hover {
-  //       border-color: var(--btn-bg-#{$token}-hover);
-  //       background-color: var(--btn-bg-#{$token}-hover);
-  //     }
-  //   }
-  // }
-
   &.Button-conversion {
-    border-color: var(--btn-bg-accent);//CHECK
-    background-color: var(--btn-bg-accent);//CHECK
-    color: var( --btn-text-accent);//CHECK
+    border-color: var(--btn-bg-accent);
+    background-color: var(--btn-bg-accent);
+    color: var( --btn-text-accent);
     &:hover {
-      border-color: var(--btn-bg-accent-hover);//CHECK
-      background-color: var(--btn-bg-accent-hover);//CHECK
+      border-color: var(--btn-bg-accent-hover);
+      background-color: var(--btn-bg-accent-hover);
     }
   }
 
   &.Button-primary {
-    border-color: var(--btn-bg-primary);//CHECK
-    background-color: var(--btn-bg-primary);//CHECK
-    color: var( --btn-text-primary);//CHECK
+    border-color: var(--btn-bg-primary);
+    background-color: var(--btn-bg-primary);
+    color: var( --btn-text-primary);
     &:hover {
-      border-color: var(--btn-bg-primary-hover);//CHECK
-      background-color: var(--btn-bg-primary-hover);//CHECK
+      border-color: var(--btn-bg-primary-hover);
+      background-color: var(--btn-bg-primary-hover);
     }
   }
 
   &.Button-secondary {
-    border-color: var(--btn-border-secondary);//CHECK
-    background-color: var(--btn-bg-secondary);//CHECK
-    color: var( --btn-text-secondary);//CHECK
+    border-color: var(--btn-border-secondary);
+    background-color: var(--btn-bg-secondary);
+    color: var( --btn-text-secondary);
     &:hover {
-      background-color: var(--btn-bg-secondary-hover);//CHECK
+      background-color: var(--btn-bg-secondary-hover);
     }
   }
   
   &.Button-ghost {
-    border-color: var(--btn-bg-ghost);//CHECK
-    background-color: var(--btn-bg-ghost);//CHECK
-    color: var( --btn-text-ghost);//CHECK
+    border-color: var(--btn-bg-ghost);
+    background-color: var(--btn-bg-ghost);
+    color: var( --btn-text-ghost);
     &:hover {
-      background-color: var(--btn-bg-ghost-hover);//CHECK
+      background-color: var(--btn-bg-ghost-hover);
     }
   }
 
   &[disabled],
   &[aria-disabled=true] {
     border-color: transparent !important;
-    background-color: var(--bg-disabled) !important;//CHECK
-    color: var(--text-disabled) !important;//CHECK
+    background-color: var(--bg-disabled) !important;
+    color: var(--text-disabled) !important;
   }
 
   [aria-disabled=true] {
     pointer-events: none;
   }
   &:has(.icon) {
-    gap: var(--spacing-xs);//CHECK
+    gap: var(--spacing-xs);
   }
 
   .icon:not([class*='has-background-']) {
@@ -126,7 +112,8 @@ $button-variants: (
   }
 
   &.is-loading {
-    //background-color: getColor('neutral');//CHECK
+    background-color: var(--bg-disabled);
+    border-color: var(--bg-disabled);
     &::after {
       @include spinner('neutral-fade');
     }

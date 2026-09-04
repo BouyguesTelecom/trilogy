@@ -116,7 +116,7 @@ $height-arrow-small:30px;
     > .tab {
       display: inline-block;
       line-height: normal;
-      font-family: $font-family-1;
+      font-family: var(--font-title-1);
       height: calc(100% - 4px);
       background-color: transparent;
       color: var(--text-primary);
@@ -134,8 +134,9 @@ $height-arrow-small:30px;
       &.is-active {
         color: var(--text-primary);
         position: relative;
+        border-bottom-color: var(--border-selected);
         font-weight: var(--font-weight-body-1-bold);
-        border: var(--border-active)
+        border-bottom-width: 2px;      
       }
 
       &:hover:not([disabled]) {
@@ -165,7 +166,7 @@ $height-arrow-small:30px;
 
       &[disabled], &[aria-disabled=true] {
         background-color: transparent !important;
-        border-bottom-color: var(--border-disabled) !important;//CHECK
+        border-bottom-color: var(--border-disabled) !important;
         &.is-active{
           border-bottom-color: currentColor !important;
         }

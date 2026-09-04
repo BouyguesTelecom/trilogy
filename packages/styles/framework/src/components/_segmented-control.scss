@@ -52,7 +52,7 @@
 
     &.is-active {
       background-color: var(--bg-secondary);
-      color: invertColor('main');
+      color: var(--text-inverse);
     }
 
     &:disabled{

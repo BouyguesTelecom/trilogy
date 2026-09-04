@@ -11,7 +11,7 @@
   @include block;
 
   background-color: transparent;
-  color: var(--text-disabled);//CHECK
+  color: var(--text-disabled);
 
   &:not(:last-child) {
     margin-bottom: 30px;
@@ -26,7 +26,7 @@
 
   td,
   th {
-    border: var(--border-style);//CHECK
+    border: var(--border-style);
     border-width: 0;
     padding: 20px;
     vertical-align: top;
@@ -39,8 +39,8 @@
     }
 
     &.is-selected {
-      background-color: var(--bg-selected); //CHECK
-      color: var(--text-inverse);//CHECK
+      background-color: var(--bg-selected); 
+      color: var(--text-inverse);
 
       a,
       strong {
@@ -71,7 +71,7 @@
     }
 
     td {
-      border-bottom: var(--border-style);//CHECK
+      border-bottom: var(--border-style);
 
       > p {
         margin: 0;
@@ -79,8 +79,8 @@
     }
 
     &.is-selected {
-      background-color: var(--bg-selected); //CHECK
-      color: var(--text-inverse);//CHECK
+      background-color: var(--bg-selected); 
+      color: var(--text-inverse);
 
       a,
       strong {
@@ -138,7 +138,7 @@
       }
     }
     
-    //CHECK
+    
     // @each $name in $colors-all {
     //   &.is-#{$name} tr {
     //     th {
@@ -168,15 +168,15 @@
   }
 
   &.has-border-all {
-    border: var(--border-style);//CHECK
+    border: var(--border-style);
 
     th {
-      border-right: var(--border-style);//CHECK
+      border-right: var(--border-style);
     }
 
     td {
       &:not(:last-child) {
-        border-right: var(--border-style);//CHECK
+        border-right: var(--border-style);
       }
     }
   }
@@ -184,13 +184,13 @@
   &.has-border-inner {
     th {
       &:not(:last-child) {
-        border-right: var(--border-style);//CHECK
+        border-right: var(--border-style);
       }
     }
 
     td {
       &:not(:last-child) {
-        border-right: var(--border-style);//CHECK
+        border-right: var(--border-style);
       }
     }
   }
@@ -230,7 +230,7 @@
 
       tr:not(:first-child) {
         td {
-          border-top: var(--border-style);//CHECK
+          border-top: var(--border-style);
         }
       }
 

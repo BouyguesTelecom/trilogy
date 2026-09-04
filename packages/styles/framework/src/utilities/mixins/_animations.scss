@@ -1,3 +1,13 @@
+@keyframes spinAround {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
 @keyframes placeHolderShimmer {
     0% {
         background-position: -46.8px 0;
@@ -22,4 +32,27 @@
 
 @mixin disable-animation {
     animation: none;
+}
+
+
+@keyframes from-right {
+    0% {
+        transform: scaleX(0);
+    }
+
+    0%,
+    100% {
+        transform-origin: 100% 100%;
+    }
+}
+
+@keyframes from-top {
+    0% {
+        transform: scaleY(0);
+    }
+
+    0%,
+    100% {
+        transform-origin: 0% 0%;
+    }
 }

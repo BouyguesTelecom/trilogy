@@ -65,7 +65,7 @@ $label-weight: var(--font-weight-body-1-bold);
       }
 
       &:not(:first-child):not(:last-child) {
-        .button,
+        .Button,
         .input,
         .select select {
           border-radius: 0;
@@ -73,7 +73,7 @@ $label-weight: var(--font-weight-body-1-bold);
       }
 
       &:first-child {
-        .button,
+        .Button,
         .input,
         .select select {
           border-bottom-right-radius: 0;
@@ -82,7 +82,7 @@ $label-weight: var(--font-weight-body-1-bold);
       }
 
       &:last-child {
-        .button,
+        .Button,
         .input,
         .select select {
           border-bottom-left-radius: 0;
@@ -90,7 +90,7 @@ $label-weight: var(--font-weight-body-1-bold);
         }
       }
 
-      .button,
+      .Button,
       .input,
       .textarea,
       .select select {
@@ -387,14 +387,14 @@ $label-weight: var(--font-weight-body-1-bold);
   &.has-password-discover {
     .input {
       ~ .icon:not(:last-child) {
-        color: var(--text-disabled); //CHECK
+        color: var(--text-disabled); 
         background-color: transparent;
         right: 45px;
         cursor: pointer;
 
         &:hover,
         &:focus {
-          color: var(--text-disabled); //CHECK
+          color: var(--text-disabled); 
         }
       }
     }
@@ -436,7 +436,7 @@ $label-weight: var(--font-weight-body-1-bold);
     }
 
     &.is-large::after {
-      font-size: $font-size-700;//CHECK
+      font-size: $font-size-700;
     }
   }
 
@@ -474,7 +474,7 @@ $label-weight: var(--font-weight-body-1-bold);
     }
 
     &.is-large {
-      font-size: $font-size-700;//CHECK
+      font-size: $font-size-700;
       padding-top: 0.375em;
     }
   }
@@ -523,7 +523,7 @@ $label-weight: var(--font-weight-body-1-bold);
   }
 
   &.is-large {
-    font-size: $font-size-700;//CHECK
+    font-size: $font-size-700;
   }
 
   &.is-centered {
@@ -560,7 +560,7 @@ $label-weight: var(--font-weight-body-1-bold);
 }
 
 .label {
-  color: var(--text-disabled); //CHECK
+  color: var(--text-disabled); 
   display: block;
   font-size: var(--body-1-size);
   font-weight: $label-weight;
@@ -575,7 +575,7 @@ $label-weight: var(--font-weight-body-1-bold);
   }
 
   &.is-large {
-    font-size: $font-size-700;//CHECK
+    font-size: $font-size-700;
   }
 }
 

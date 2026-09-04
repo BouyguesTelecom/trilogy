@@ -29,7 +29,7 @@
   --bg-primary: #{$color-neutral-50};
   --bg-primary-subtle: #{$color-neutral-100};
   --bg-secondary: #{$color-main-500};
-  --bg-secondary-subtle: #{$color-neutral-50};
+  --bg-secondary-subtle: #{$color-main-50};
   --bg-success: #{$color-success-500};
   --bg-success-subtle: #{$color-success-50};
   --bg-warning: #{$color-warning-500};
@@ -88,7 +88,7 @@
   --btn-border-secondary: #{$color-main-100};
   --btn-text-primary: #{$color-neutral-50};
   --btn-text-secondary: #{$color-main-500};
-  --btn-bg-ghost: #000000;
+  --btn-bg-ghost: #FFF;
   --btn-bg-ghost-hover: #{$color-main-50};
   --btn-bg-ghost-pressed: #{$color-main-100};
   --btn-text-ghost: #{$color-main-500};

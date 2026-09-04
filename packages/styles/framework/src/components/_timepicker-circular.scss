@@ -4,18 +4,18 @@ $CURSOR_SIZE: 32px;
 .timepicker-circular {
 
   &_dot-hour {
-    background-color: var(--bg-inactive); //CHECK
+    background-color: var(--bg-inactive); 
     &.is-filled {
         background-color: var(--bg-secondary);
     }
   }
 
   &_progress {
-    stroke: var(--border-selected);//CHECK
+    stroke: var(--border-selected);
   }
 
   &_progress-container {
-    stroke: var(--bg-secondary-subtle);//CHECK
+    stroke: var(--bg-secondary-subtle);
   }
 
   .circle_container {

@@ -9,7 +9,7 @@
 $body-background-color: #f6f6f6;
 $body-size: 10px;
 $body-rendering: optimizeLegibility !default;
-$body-family: $font-family-1 !default;
+$body-family: var(--font-title-1) !default;
 $body-line-height: 1.5 !default;
 
 

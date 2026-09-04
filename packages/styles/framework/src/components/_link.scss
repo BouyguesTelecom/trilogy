@@ -33,7 +33,7 @@
   @extend %link-states;
 
   position: relative;
-  font-weight: var(--font-weight-body-1);
+  font-weight: 500;
   color: var(--text-link);
   box-decoration-break: clone;
   text-decoration: underline;

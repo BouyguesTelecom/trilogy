@@ -1,8 +1,8 @@
 @use 'sass:math';
 
-$timeline-marker-color: var(--bg-secondary-subtle) !default;//CHECK
+$timeline-marker-color: var(--bg-secondary-subtle) !default;
 $timeline-marker-icon-size: 2.85em !default;
-$timeline-line-color: var(--bg-secondary-subtle) !default;//CHECK
+$timeline-line-color: var(--bg-secondary-subtle) !default;
 $timeline-marker-size: 0.8em !default;
 $timeline-marker-border-size: 0.1em !default;
 $timeline-marker-border: $timeline-marker-border-size solid $timeline-marker-color !default;
@@ -31,8 +31,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
   }
 
   .timeline-item {
-    --font-color: #{var(--text-disabled)};//CHECK
-    --bg-color: #{var(--bg-primary)};//CHECK
+    --font-color: #{var(--text-disabled)};
+    --bg-color: #{var(--bg-primary)};
     display: flex;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -72,8 +72,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     }
 
     &.cancel {
-      --font-color: #{var(--text-disabled)};//CHECK
-      --bg-color: #{var(--bg-secondary-subtle)};//CHECK
+      --font-color: #{var(--text-disabled)};
+      --bg-color: #{var(--bg-secondary-subtle)};
     }
 
     .timeline-marker {
@@ -139,7 +139,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       .heading {
         font-size: var(--body-3-size);
         color: var(--text-primary);
-        font-family: $font-family-1;
+        font-family: var(--font-title-1);
         text-transform: none;
         letter-spacing: 0;
         line-height: 15px;

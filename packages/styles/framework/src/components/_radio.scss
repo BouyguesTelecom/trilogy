@@ -77,7 +77,7 @@
   input:checked:disabled ~ label.radio-label,
   input:checked:disabled ~ .radio-container {
     &:after {
-      background-color: var(--bg-disabled); //CHECK
+      background-color: var(--text-selected); 
       top: 19px;
       left: 19px;
     }

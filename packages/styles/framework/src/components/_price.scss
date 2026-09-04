@@ -163,7 +163,7 @@ $price-levels: (
 
   &.strike {
     position: relative;
-    color: var(--text-placeholder);
+    color: var(--text-disabled);
 
     &::before {
       position: absolute;
@@ -172,7 +172,7 @@ $price-levels: (
       top: 50%;
       right: 0;
       border-top: 2px solid;
-      border-color: var(--border-disabled); //CHECK
+      border-color: var(--border-disabled); 
       border-radius: var(--radius-sm);
       transform: rotate(-20deg);
     }

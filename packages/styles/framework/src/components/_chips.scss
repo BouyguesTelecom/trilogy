@@ -45,7 +45,7 @@
     height: 32px;
     justify-content: center;
     line-height: 2;
-    padding: 6px var(--spacing-md);
+    padding: 6px 16px;
     white-space: nowrap;
     cursor: pointer;
     border: var(--border-style);
@@ -54,7 +54,8 @@
         background-color: var(--bg-secondary);
         color: white;
         border: var(--border-active);
-        padding: 5px calc(var(--spacing-md) - 1px);
+        // -2px per side offsets the active border's +2px so the chip size doesn't shift
+        padding: 4px 14px;
         #{$hoverSelector} {
           background-color: var(--bg-secondary);
           color: white;

@@ -2,8 +2,8 @@
   content:'';
   flex: 1;
   height: 1px;
-  background-color: var(--bg-inactive); //CHECK
-  border: 1px solid var(--border-inactive);//CHECK
+  background-color: var(--bg-secondary-subtle); 
+  border: 1px solid var(--bg-secondary-subtle);
 }
 
 .divider {

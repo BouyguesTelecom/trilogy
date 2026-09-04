@@ -144,7 +144,7 @@ $dropdown-item-padding-horizontal: 16px;
 
 .dropdown-group {
   &:not(:first-child) {
-    border-top: 2px solid var(--border);//CHECK
+    border-top: 2px solid var(--border);
   }
 
   &:not(:last-child) {
