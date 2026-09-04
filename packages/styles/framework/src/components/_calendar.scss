@@ -2,14 +2,14 @@
   border-collapse: separate;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 24px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   border-spacing: 0 8px;
-  background-color: getColor('background');
+  background-color: var(--bg-primary);
 
   button {
     all: unset;
     &:focus-visible:not(.is-disabled, .is-active), &:hover:not(.is-disabled, .is-active){
-      background-color: getColor('main-fade');
+      background-color: var(--bg-secondary-subtle);
     }
     
     &.is-active:hover, &.is-active:focus-visible,
@@ -21,31 +21,31 @@
   &-range.calendar-range-init {
     .calendar-week-day:not(.calendar-date-in-range) {
       button:focus-visible:not(.is-disabled, .is-active), button:hover:not(.is-disabled, .is-active){
-        background-color: getColor('main');
-        color: getColor('background');
+        background-color: var(--bg-secondary);
+        color: var(--text-inverse);
       }
     } 
   }
 
   &-date-in-range {
     button:not(.is-disabled, .is-active){
-      background-color: getColor('main-fade');
+      background-color: var(--bg-secondary-subtle);
       border-radius: 0px;
       &:hover {
         filter: brightness(95%) ;
-        border-radius: var(--radius-smaller);
+        border-radius: var(--radius-xs);
       }
     }
 
     &.calendar-date-rounded-left {
       button:not(.is-disabled, .is-active){
-        border-radius: var(--radius) 0 0 var(--radius);
+        border-radius: var(--radius-sm) 0 0 var(--radius-sm);
       }
     }
 
     &.calendar-date-rounded-right {
       button:not(.is-disabled, .is-active){
-        border-radius: 0 var(--radius) var(--radius) 0;
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       }
     }
   }
@@ -54,7 +54,7 @@
     padding-bottom: 16px;
     button {
       text-align: center;
-      border-radius: var(--radius-smaller);
+      border-radius: var(--radius-xs);
       width: 36px;
       height: 36px;
       i {
@@ -68,21 +68,21 @@
     vertical-align: middle;
     &-disabled {
       button {
-        color: getColor('disabled');
-        background-color: getColor('disabled-fade');
+        color: var(--text-disabled);
+        background-color: var(--bg-disabled);
       }
     }
     &-label {
       padding: 4px;
       text-align: center !important;
       width: 36px;
-      color: getColor('font-placeholder');
+      color: var(--text-placeholder);
     } 
     button {
       display: block;
       width: 36px;
       height: 36px;
-      border-radius: var(--radius-smaller);
+      border-radius: var(--radius-xs);
     }
   }
 
@@ -96,18 +96,18 @@
     }
     button {
       padding: 2px 6px;
-      border-radius: var(--radius-smaller);
+      border-radius: var(--radius-xs);
     }
   }
 
   &-active-date button {
-    background-color: getColor('main');
-    color: getColor('background');
+    background-color: var(--bg-secondary);
+    color: var(--text-inverse);
   }
 
   &-header-dropdown {
     display: flex;
-    gap: $spacing-3;
+    gap: var(--spacing-sm);
     justify-content: center;
     .select{
       margin-bottom: 0 !important;

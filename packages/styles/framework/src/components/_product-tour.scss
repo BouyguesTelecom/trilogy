@@ -3,11 +3,11 @@
     z-index: zindex('modal');
     visibility: hidden;
     opacity: 0;
-    background-color: getColor('background');
-    border-radius: var(--radius);
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-sm);
     box-shadow: $shadow;
     width: 350px;
-    padding: $spacing-3 * 2;
+    padding: calc(var(--spacing-sm) * 2);
 
     @include mobile {
         max-width: inherit;
@@ -122,7 +122,7 @@
 
 .product-tour-target {
     &-active {
-        outline: 999em solid getColor('main') !important;
+        outline: 999em solid var(--bg-primary) !important;
         outline-offset: 10px !important;
         z-index: zindex('modal');
     }

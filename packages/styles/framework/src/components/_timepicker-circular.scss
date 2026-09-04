@@ -4,18 +4,18 @@ $CURSOR_SIZE: 32px;
 .timepicker-circular {
 
   &_dot-hour {
-    background-color: getColor('neutral');
+    background-color: var(--bg-inactive); 
     &.is-filled {
-        background-color: getColor('main');
+        background-color: var(--bg-secondary);
     }
   }
 
   &_progress {
-    stroke: getColor('main');
+    stroke: var(--border-selected);
   }
 
   &_progress-container {
-    stroke: getColor('main-fade');
+    stroke: var(--bg-secondary-subtle);
   }
 
   .circle_container {
@@ -28,8 +28,8 @@ $CURSOR_SIZE: 32px;
       width: $CURSOR_SIZE;
       height: $CURSOR_SIZE;
       border-radius: 50%;
-      background-color: getColor('neutral-fade');
-      border: 2px solid getColor('main');
+      background-color: var(--bg-primary-subtle);
+      border: 2px solid var(--border-selected);
       z-index: 20;
     }
 
@@ -47,14 +47,14 @@ $CURSOR_SIZE: 32px;
       transform: translate(-50%, -50%);
       cursor:default;
       pointer-events:none;
-      gap: $spacing-1;
+      gap: var(--spacing-xxs);
 
       &-wrapper {
         display: flex;
         align-items: center;
         flex-direction: column;
         width: 40px;
-        gap: $spacing-1;
+        gap: var(--spacing-xxs);
         pointer-events: auto
       }
 

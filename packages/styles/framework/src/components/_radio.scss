@@ -2,8 +2,8 @@
 
 .radios {
   width: 100%;
-  column-gap: $spacing-5;
-  row-gap: $spacing-3;
+  column-gap: var(--spacing-lg);
+  row-gap: var(--spacing-sm);
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -77,7 +77,7 @@
   input:checked:disabled ~ label.radio-label,
   input:checked:disabled ~ .radio-container {
     &:after {
-      background-color: getColor('neutral');
+      background-color: var(--text-selected); 
       top: 19px;
       left: 19px;
     }

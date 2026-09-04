@@ -1,6 +1,22 @@
-$button-border-width: 2px !default;
+$noDisabled: ":not(:disabled):not([aria-disabled=true]):not(.is-loading)";
+$button-variants: (
+  conversion: accent,
+  primary: primary,
+  secondary: secondary,
+  ghost: ghost,
+);
 
-.buttons {
+
+%buttons-states {
+  &:focus-visible,
+  &:focus:focus-visible {
+    outline: 2px solid var(--border) !important;
+    outline-offset: 2px;
+  }
+}
+
+
+.Buttons {
   display: flex;
   width: 100%;
   gap: 16px;
@@ -18,55 +34,77 @@ $button-border-width: 2px !default;
   }
 }
 
-.button {
+.Button {
   @include control;
   @include unselectable;
   @extend %buttons-states;
 
   background-color: white;
-  border-width: $button-border-width;
-  border-radius: var(--radius-small);
+  border-width: var(--border-width-md);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   justify-content: center;
   text-align: center;
   white-space: nowrap;
-  padding: 0 $spacing-4;
+  padding: 0 var(--spacing-md);
   text-decoration: inherit;
-  font-weight: $weight-semibold;
+  font-weight: var(--font-weight-body-1-bold);
   height: $size-inputs;
 
   @include mobile {
     width: 100%;
   }
 
-  @each $name, $pair in $button-colors {
-    $variantName: nth($pair, 1);
-    $colorBG: getColor(#{nth($pair, 2)});
-    $colorText: getColor(nth($pair, 3));
-
-    &.is-#{$variantName} {
-      background-color: $colorBG;
-      color: $colorText;
+  &.Button-conversion {
+    border-color: var(--btn-bg-accent);
+    background-color: var(--btn-bg-accent);
+    color: var( --btn-text-accent);
+    &:hover {
+      border-color: var(--btn-bg-accent-hover);
+      background-color: var(--btn-bg-accent-hover);
     }
   }
 
-  &.is-ghost:hover:not([disabled]) {
-    background-color: var(--color-main-fade);
-    filter: none !important;
+  &.Button-primary {
+    border-color: var(--btn-bg-primary);
+    background-color: var(--btn-bg-primary);
+    color: var( --btn-text-primary);
+    &:hover {
+      border-color: var(--btn-bg-primary-hover);
+      background-color: var(--btn-bg-primary-hover);
+    }
+  }
+
+  &.Button-secondary {
+    border-color: var(--btn-border-secondary);
+    background-color: var(--btn-bg-secondary);
+    color: var( --btn-text-secondary);
+    &:hover {
+      background-color: var(--btn-bg-secondary-hover);
+    }
+  }
+  
+  &.Button-ghost {
+    border-color: var(--btn-bg-ghost);
+    background-color: var(--btn-bg-ghost);
+    color: var( --btn-text-ghost);
+    &:hover {
+      background-color: var(--btn-bg-ghost-hover);
+    }
   }
 
   &[disabled],
   &[aria-disabled=true] {
     border-color: transparent !important;
-    background-color: getColor('main-fade') !important;
-    color: getColor('disabled') !important
+    background-color: var(--bg-disabled) !important;
+    color: var(--text-disabled) !important;
   }
 
   [aria-disabled=true] {
     pointer-events: none;
   }
   &:has(.icon) {
-    gap: $spacing-2;
+    gap: var(--spacing-xs);
   }
 
   .icon:not([class*='has-background-']) {
@@ -74,7 +112,8 @@ $button-border-width: 2px !default;
   }
 
   &.is-loading {
-    background-color: getColor('neutral');
+    background-color: var(--bg-disabled);
+    border-color: var(--bg-disabled);
     &::after {
       @include spinner('neutral-fade');
     }

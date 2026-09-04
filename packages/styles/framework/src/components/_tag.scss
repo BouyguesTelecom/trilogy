@@ -6,7 +6,7 @@ $tag-delete-margin: 1px !default;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  gap: $spacing-3;
+  gap: var(--spacing-sm);
   // multi-tags : ajout d'une marge à droite de chaque tag
 
   // centrage des tags
@@ -69,7 +69,7 @@ $tag-delete-margin: 1px !default;
 
     &.is-inverted {
       .tag {
-        background-color: getColor('background');
+        background-color: var(--bg-primary);
       }
     }
 
@@ -78,20 +78,20 @@ $tag-delete-margin: 1px !default;
 
 .tag {
   align-items: center;
-  background-color: getColor('neutral-fade');
+  background-color: var(--bg-primary-subtle);
   border-radius: 9999px;
-  color: getColor('font');
+  color: var(--text-primary);
   display: inline-flex;
-  font-size: $size-medium;
-  font-weight: $weight-medium;
+  font-size: var(--body-1-size);
+  font-weight: $font-weight-medium;
   height: 28px;
   justify-content: center;
   line-height: 20px;
-  padding: $spacing-1 $spacing-2;
+  padding: var(--spacing-xxs) var(--spacing-xs);
   white-space: nowrap;
 
   &.is-small {
-    font-size: $text-12;
+    font-size: var(--body-3-size);
     line-height: 15px;
     height: 23px;
   }
@@ -102,13 +102,13 @@ $tag-delete-margin: 1px !default;
     line-height: 15px;
   }
 
-  @each $name in $colors-feedback {
+  @each $name, $colors in $colors-feedback {
     &.is-#{$name}:not(.is-inverted) {
-      background-color: fadeColor($name);
+      background-color: map-get($colors, subtle);
     }
     &.is-inverted.is-#{$name} {
-      color: getColor($name);
-      background-color: invertColor($name);
+      color: map-get($colors, color);
+      background-color: map-get($colors, inverse);
     }
   }
 }

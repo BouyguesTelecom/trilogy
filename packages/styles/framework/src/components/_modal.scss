@@ -34,7 +34,7 @@ body:has(.modal.is-active) {
     @include overlay;
 
     content: '';
-    background-color: rgba(#000, 0.86);
+    background-color: var(--bg-overlay);
   }
 
   &.is-active {
@@ -60,14 +60,14 @@ body:has(.modal.is-active) {
   }
 
   // spécificité pour le bouton en position: relative par défaut
-  .button {
+  .Button {
     position: static;
   }
 
   .modal-content {
-    background-color: getColor('background');
-    border-radius: var(--radius) var(--radius) 0 0;
-    color: getColor('font');
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    color: var(--text-primary);
     overflow: auto;
     position: relative;
     margin: 0 $modal-content-margin-mobile;
@@ -80,7 +80,7 @@ body:has(.modal.is-active) {
     @include tablet {
       max-height: calc(100vh - 120px);
       width: $modal-content-width;
-      border-radius: var(--radius);
+      border-radius: var(--radius-sm);
     }
 
     // Annulation des propriétés du composant box, se trouvant dans une modal
@@ -107,13 +107,13 @@ body:has(.modal.is-active) {
     }
 
     .modal-header {
-      padding: $spacing-5;
-      color: getColor('font');
-      font-family: $family-primary;
-      font-size: $size-3;
-      font-weight: $weight-semibold;
+      padding: var(--spacing-lg);
+      color: var(--text-primary);
+      font-family: var(--font-title-1);
+      font-size: $font-size-600;
+      font-weight: var(--font-weight-body-1-bold);
       line-height: 1.1;
-      background-color: getColor('background');
+      background-color: var(--bg-primary);
       z-index: zindex('medium');
       position: sticky;
       top: 0;
@@ -131,30 +131,30 @@ body:has(.modal.is-active) {
       }
 
       @include desktop {
-        font-size: $size-3-desktop;
+        font-size: $font-size-700;
       }
 
       .modal-close {
         @include delete;
 
-        background-color: getColor('background');
+        background-color: var(--bg-primary);
         display: block;
         height: $modal-close-dimensions;
         width: $modal-close-dimensions;
         z-index: zindex('large');
 
         #{$hoverSelector} {
-          background-color: getColor('neutral-fade');
+          background-color: var(--input-hover)
         }
 
         &::after,
         &::before {
-          background-color: getColor('font');
+          background-color: var(--bg-secondary);
         }
 
         &:focus-visible,
         &:focus:focus-visible {
-          outline: 2px solid getColor('font') !important;
+          outline: 2px solid var(--bg-secondary) !important;
           outline-offset: 2px;
         }
         &:focus{
@@ -164,20 +164,20 @@ body:has(.modal.is-active) {
     }
 
     .modal-body {
-      padding: 0 $spacing-5 $spacing-5 ;
+      padding: 0 var(--spacing-lg) var(--spacing-lg) ;
     }
     &:has(>.modal-footer) > .modal-body {
       padding-bottom: 0;
     }
 
     .modal-footer {
-      padding: $spacing-5;
+      padding: var(--spacing-lg);
       position: sticky;
       width: 100%;
-      background: getColor('background');
+      background: var(--bg-primary);
       bottom: 0;
 
-      .buttons {
+      .Buttons {
         display: flex;
         flex-direction: column-reverse;
       }
@@ -186,7 +186,7 @@ body:has(.modal.is-active) {
         display: flex;
         justify-content: flex-end;
 
-        .buttons {
+        .Buttons {
           flex-direction: row;
         }
       }
