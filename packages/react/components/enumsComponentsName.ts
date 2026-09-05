@@ -117,6 +117,8 @@ export enum ComponentName {
   Select = 'Select',
   SelectOption = 'SelectOption',
   SelectorIOtem = 'SelectorIOtem',
+  Slider = 'Slider',
+  SliderItem = 'SliderItem',
   Spacer = 'Spacer',
   SpacerSize = 'SpacerSize',
   StatusIcon = 'StatusIcon',
