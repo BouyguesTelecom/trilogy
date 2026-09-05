@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { Image as ImageNative, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Image as ImageNative, TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { ImageCache, ImageNativeRef, ImageProps } from './ImageProps'
 
 /**
@@ -17,13 +18,12 @@ import { ImageCache, ImageNativeRef, ImageProps } from './ImageProps'
  */
 const Image = React.forwardRef<ImageNativeRef, ImageProps>(
   ({ src, alt = '', circled, width, height, onClick, cache, testId, ...others }, ref): JSX.Element => {
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       image: {
         width: width ? width : '100%',
         height: height ? height : '100%',
         borderRadius: circled ? 100 : 0,
         overflow: circled ? 'hidden' : 'visible',
-        resizeMode: circled ? undefined : 'contain',
       },
     })
 
@@ -53,7 +53,7 @@ const Image = React.forwardRef<ImageNativeRef, ImageProps>(
           }
 
     const image = (
-      <ImageNative testID={testId} ref={ref} style={styles.image} accessibilityLabel={alt} source={imageSource} {...others} alt={alt} />
+      <ImageNative testID={testId} ref={ref} resizeMode={circled ? undefined : 'contain'} style={styles.image} accessibilityLabel={alt} source={imageSource} {...others} alt={alt} />
     )
 
     return onClick ? (

@@ -3,7 +3,8 @@ import { Icon, IconColor, IconSize } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getStatusStyle } from '@/objects/facets/Status'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { TagNativeRef, TagProps } from './TagProps'
 
 /**
@@ -21,7 +22,7 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(
 
     const backgroundColor = variant && getStatusStyle(variant).backgroundColor
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       tag: {
         flexDirection: 'row',
         justifyContent: 'center',

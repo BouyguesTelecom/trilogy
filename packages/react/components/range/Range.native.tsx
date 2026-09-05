@@ -2,7 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Text, TextLevels } from '../text'
 import { RangeNativeProps, RangeNativeRef } from './RangeProps'
 
@@ -21,7 +22,7 @@ const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
     const [values, setValues] = React.useState<number[]>(value || simple ? [0] : [0, 100])
     const [width, setWidth] = React.useState<number>(0)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       marker: {
         width: 20,
         height: 20,

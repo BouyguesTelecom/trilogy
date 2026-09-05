@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { FlatList, StyleSheet } from 'react-native'
+import { FlatList } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { TrilogyColor, getColorStyle } from '@/objects'
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
 import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
@@ -13,7 +14,7 @@ import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
  * @param handleSelectItem {Function} Callback when selecting an item
  */
 const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteMenuProps): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     list: {
       marginTop: 6,
       marginBottom: 6,

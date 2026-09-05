@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { AccordionHeaderNativeRef, AccordionHeaderProps } from './AccordionHeaderProps'
 
 /**
@@ -11,7 +12,7 @@ import { AccordionHeaderNativeRef, AccordionHeaderProps } from './AccordionHeade
  */
 const AccordionHeader = React.forwardRef<AccordionHeaderNativeRef, AccordionHeaderProps>(
   ({ children }, ref): JSX.Element => {
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       header: {
         maxWidth: '95%',
         minWidth: '95%',

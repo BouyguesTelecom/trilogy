@@ -3,7 +3,8 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { PromptContext } from '@/components/prompt/context'
 import { TrilogyColor } from '@/objects'
 import React, { useContext } from 'react'
-import { StyleSheet } from 'react-native'
+import {  } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import PromptButton from '../button/PromptButton.native'
 import { PromptInputFileNativeRef, PromptInputFileProps } from './PromptInputFileProps'
 
@@ -12,7 +13,7 @@ const PromptInputFile = React.forwardRef<PromptInputFileNativeRef, PromptInputFi
     const { isDisabled } = useContext(PromptContext)
     const isDisable = isDisabled || disabled
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       icon: {
         flexDirection: 'row',
         justifyContent: 'center',

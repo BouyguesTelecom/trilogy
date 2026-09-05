@@ -1,5 +1,6 @@
 import * as React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { TableBodyNativeRef, TableBodyProps } from "./TableBodyProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
@@ -8,7 +9,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param children {ReactNode} Children of Table Body
  */
 const TableBody = React.forwardRef<TableBodyNativeRef, TableBodyProps>(({ children, ...others }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     body: {
       display: "flex",
       flexDirection: "column",

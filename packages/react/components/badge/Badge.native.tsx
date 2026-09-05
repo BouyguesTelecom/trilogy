@@ -5,7 +5,8 @@ import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { StatusState } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Badge Component
@@ -24,7 +25,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
     const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flexDirection: 'row',
       },

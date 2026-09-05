@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { RowsNativeRef, RowsProps } from './RowsProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
@@ -11,7 +12,7 @@ import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
  */
 const Rows = React.forwardRef<RowsNativeRef, RowsProps>(({ children, gap, ...others }, ref): JSX.Element => {
   const realGap = (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize]
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     rows: {
       display: 'flex',
       flexDirection: 'column',
