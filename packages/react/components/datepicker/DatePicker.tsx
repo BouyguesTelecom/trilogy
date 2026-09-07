@@ -53,6 +53,7 @@ const getFirstDayFocusable = () => {
  * @param status {DatePickerStatus} DatePicker status (SUCCESS | WARNING | ERROR | DEFAULT)
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
+ * @param yearsOrder {CalendarYearsOrder} Order of years in the calendar year selector (asc by default, desc from most recent to oldest)
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param name {string} Name attribute
@@ -75,6 +76,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       id = React.useId(),
       testId,
       name,
+      yearsOrder,
       ...others
     },
     ref,
@@ -365,6 +367,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           onChange={handleChangeCalendar}
           ref={refCalendar}
           value={calendarValue}
+          yearsOrder={yearsOrder}
           onMonthChange={() => {
             if (isOpenCalendar && refCalendar.current) {
               const calendar = refCalendar.current
@@ -391,6 +394,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       calendarValue,
       isOpenCalendar,
       refsFocusable,
+      yearsOrder,
     ])
 
     useEffect(() => {

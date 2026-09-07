@@ -1,6 +1,7 @@
 import { DatePickerStatus, DatePickerStatusValues } from '@/components/datepicker/DatePickerEnum'
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
+import { CalendarYearsOrder, CalendarYearsOrderValues } from '@/components/calendar/CalendarEnum'
 
 export type SegmentType = 'day' | 'month' | 'year'
 
@@ -22,6 +23,7 @@ export interface DatePickerProps extends Dev, CommonProps {
   disabled?: boolean
   disabledDates?: Date[]
   name?: string
+  yearsOrder?: CalendarYearsOrder | CalendarYearsOrderValues
 }
 
 export interface Segment {
