@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from '@/helpers/alignable'
 import React, { useState } from 'react'
-import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
+import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View, ViewStyle } from 'react-native'
 import { ColumnsGapValue } from '@/components/columns'
 import { FlexBoxNativeRef, FlexBoxProps } from '@/components/flex-box/FlexBoxProps'
 import { FlexBoxContext } from '@/components/flex-box/context'
-import { getJustifyStyle } from "@/helpers/justifiable";
+import { getJustifyStyle } from '@/helpers/justifiable'
 
 /**
  * @beta
@@ -21,9 +21,22 @@ import { getJustifyStyle } from "@/helpers/justifiable";
  * @param id {string} Custom id attribute
  * @param fullBleed {boolean} Extend to full screen width (ignores container padding)
  */
-const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
+const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps & { style?: ViewStyle | ViewStyle[] }>(
   (
-    { id, gap, direction = 'row', align, justify, scrollable, fullBleed, children, fullheight, testId, ...others },
+    {
+      id,
+      gap,
+      direction = 'row',
+      align,
+      justify,
+      scrollable,
+      fullBleed,
+      children,
+      fullheight,
+      testId,
+      style,
+      ...others
+    },
     ref,
   ) => {
     const [width, setWidth] = useState(0)
@@ -75,7 +88,14 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
         }}
       >
         {!scrollable && (
-          <View testID={testId} id={id} ref={ref} onLayout={onLayoutHandler} style={[styles.columns]} {...others}>
+          <View
+            testID={testId}
+            id={id}
+            ref={ref}
+            onLayout={onLayoutHandler}
+            style={[styles.columns, style]}
+            {...others}
+          >
             {children}
           </View>
         )}
@@ -85,9 +105,12 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
             testID={testId}
             id={id}
             onLayout={onLayoutHandler}
-            style={{
-              marginHorizontal: -enlarge,
-            }}
+            style={[
+              {
+                marginHorizontal: -enlarge,
+              },
+              style,
+            ]}
           >
             <ScrollView
               horizontal

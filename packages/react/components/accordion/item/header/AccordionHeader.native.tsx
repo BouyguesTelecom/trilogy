@@ -11,14 +11,6 @@ import { AccordionHeaderNativeRef, AccordionHeaderProps } from '@/components/acc
  */
 const AccordionHeader = React.forwardRef<AccordionHeaderNativeRef, AccordionHeaderProps>(
   ({ children }, ref): JSX.Element => {
-    const styles = StyleSheet.create({
-      header: {
-        maxWidth: '95%',
-        minWidth: '95%',
-        width: '95%',
-      },
-    })
-
     return (
       <View ref={ref} style={styles.header}>
         {children}
@@ -28,5 +20,12 @@ const AccordionHeader = React.forwardRef<AccordionHeaderNativeRef, AccordionHead
 )
 
 AccordionHeader.displayName = ComponentName.AccordionHeader
-
 export default AccordionHeader
+
+const styles = StyleSheet.create({
+  header: {
+    maxWidth: '95%',
+    minWidth: '95%',
+    width: '95%',
+  },
+})

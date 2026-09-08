@@ -1,41 +1,20 @@
-import { Column, Columns } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import { Title, TitleLevels } from '@/components/title'
-import { View } from '@/components/view'
 import * as React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import LibToast from 'react-native-toast-message'
-import { Row, Rows } from '@/components/rows'
 import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
 import ToasterContext from '@/components/alert/context'
 import { ToasterShowContext } from '@/components/alert/context/ToasterContextProps'
 import { getRadiusStyle } from '@/helpers/radius'
 import { getStatusIconName, getStatusStyle } from '@/helpers/status'
-import { Alignable } from '@/interfaces/Alignable'
 import { TrilogyColor } from '@/interfaces/Color'
 import { Radius } from '@/interfaces/Radius'
 import { TypographyBold } from '@/interfaces/TypographyBold'
-
-/**
- * Function call by context for showing toast
- * @param params {ToasterShowContext}
- */
-const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
-  const { position, duration, offset, title, description, onClick, closable, onHide, iconName, status } = params
-
-  LibToast.show({
-    type: 'tomatoToast',
-    position: position || ToasterAlertPosition.BOTTOM,
-    bottomOffset: offset || 10,
-    topOffset: offset || 10,
-    visibilityTime: duration || 5000,
-    onHide,
-    props: { title, description, closable, iconName, alert, onClick, status },
-  })
-}
+import FlexBox from '@/components/flex-box/FlexBox.native'
+import FlexItem from '@/components/flex-box/flex-item/FlexItem.native'
 
 /**
  * Alert Component
@@ -50,79 +29,70 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
 const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {
     const { color, backgroundColor } = getStatusStyle(status)
-    let alertView: JSX.Element
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
+    const isClosable = (others as any).closable
 
-    const styles = StyleSheet.create({
-      container: {
-        width: '100%',
-        paddingTop: 12,
-        borderColor: status !== undefined ? color : backgroundColor,
-        paddingBottom: 12,
-        borderWidth: banner ? 0 : 1,
-        backgroundColor: backgroundColor,
-        borderRadius: banner ? 0 : borderSmallRadius,
-        alignItems: 'baseline',
-        textAlign: banner ? 'center' : 'left',
-        paddingLeft: 12,
-        paddingRight: 12,
-      },
-      description: {
-        justifyContent: 'center',
-        textAlignVertical: 'center',
-        paddingLeft: 8,
-      },
-      containerTitle: {
-        paddingLeft: 8,
-        fontWeight: 'bold',
-      },
-    })
-
-    // eslint-disable-next-line prefer-const
-    alertView = (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <View style={[styles.container, (others as any).style]} ref={ref}>
-        <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>
-          <Column narrow>
-            <View style={{ marginTop: -2 }}>
-              <Icon name={iconName ? iconName : getStatusIconName(status)} color={status || TrilogyColor.MAIN} />
-            </View>
-          </Column>
-          <Column>
-            <Rows {...{ style: { flexGrow: 1 } }} gap={description ? 2 : 0}>
-              <Row>
-                <Text style={[styles.containerTitle]} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
-                  {title}
-                </Text>
-              </Row>
-              {description && <Spacer size={SpacerSize.ONE} />}
-              <Row>
-                {description && typeof description.valueOf() === 'string' ? (
-                  <Text level={TextLevels.TWO} style={styles.description}>
-                    {description}
-                  </Text>
-                ) : (
-                  <View style={styles.description}>{description}</View>
-                )}
-              </Row>
-            </Rows>
-          </Column>
-        </Columns>
-      </View>
+    const styles = React.useMemo(
+      () =>
+        StyleSheet.create({
+          container: {
+            width: '100%',
+            borderColor: status !== undefined ? color : backgroundColor,
+            borderWidth: banner ? 0 : 1,
+            backgroundColor: backgroundColor,
+            borderRadius: banner ? 0 : borderSmallRadius,
+            textAlign: banner ? 'center' : 'left',
+            padding: 12,
+            pointerEvents: onClick ? 'auto' : 'none',
+          },
+          description: {
+            justifyContent: 'center',
+            textAlignVertical: 'center',
+            paddingLeft: 8,
+          },
+          containerTitle: {
+            paddingLeft: 8,
+            fontWeight: 'bold',
+          },
+          icon: {
+            marginTop: -2,
+          },
+        }),
+      [banner, status, color, backgroundColor, borderSmallRadius, onClick],
     )
 
-    if (onClick && display)
-      return (
-        <View>
-          <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
-            {alertView}
-          </TouchableOpacity>
-        </View>
-      )
+    return (
+      <TouchableOpacity
+        onPress={onClick}
+        activeOpacity={onClick ? 0.85 : 1}
+        style={[styles.container, (others as any).style]}
+      >
+        <FlexBox ref={ref}>
+          <View style={styles.icon}>
+            <Icon name={iconName ? iconName : getStatusIconName(status)} color={status || TrilogyColor.MAIN} />
+          </View>
 
-    if (!onClick && display) return alertView
-
-    return <View />
+          <FlexItem>
+            <Text style={[styles.containerTitle]} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+              {title}
+            </Text>
+            {description && <Spacer size={SpacerSize.ONE} />}
+            {description && typeof description.valueOf() === 'string' ? (
+              <Text level={TextLevels.TWO} style={styles.description}>
+                {description}
+              </Text>
+            ) : (
+              <View style={styles.description}>{description}</View>
+            )}
+          </FlexItem>
+          {isClosable && (
+            <TouchableOpacity onPress={(others as any).closable}>
+              <Icon name={IconName.TIMES} size={IconSize.SMALL} />
+            </TouchableOpacity>
+          )}
+        </FlexBox>
+      </TouchableOpacity>
+    )
   },
 )
 
@@ -137,49 +107,31 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
  */
 export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props }) => {
   const { title, description, iconName, status, closable, onClick } = props
-  const { color, backgroundColor } = getStatusStyle(status)
-
-  const styles = StyleSheet.create({
-    toaster: {
-      padding: 24,
-    },
-    toasterContainer: {
-      borderWidth: 1,
-      borderColor: color,
-      backgroundColor: backgroundColor,
-      padding: 14,
-      borderRadius: getRadiusStyle(Radius.SMALL),
-    },
-  })
+  const styles = React.useMemo(
+    () =>
+      StyleSheet.create({
+        toaster: {
+          padding: 24,
+        },
+      }),
+    [],
+  )
 
   return (
     <View style={styles.toaster}>
-      <TouchableOpacity style={styles.toasterContainer} onPress={onClick}>
-        <Columns>
-          <Column size={1}>{iconName && <Icon name={iconName} color={status || TrilogyColor.MAIN} />}</Column>
-          <Column>
-            {title && <Title level={TitleLevels.SIX}>{title}</Title>}
-            {description && (
-              <>
-                <Spacer size={SpacerSize.TWO} />
-                <Text level={TextLevels.THREE}>{description}</Text>
-              </>
-            )}
-          </Column>
-          {closable && (
-            <Column size={1}>
-              <TouchableOpacity
-                onPress={(e) => {
-                  LibToast.hide()
-                  closable(e)
-                }}
-              >
-                <Icon name={IconName.TIMES} size={IconSize.SMALL} />
-              </TouchableOpacity>
-            </Column>
-          )}
-        </Columns>
-      </TouchableOpacity>
+      <Alert
+        title={title}
+        description={description}
+        iconName={iconName}
+        status={status}
+        onClick={onClick}
+        {...{
+          closable: (e: any) => {
+            LibToast.hide()
+            closable && closable(e)
+          },
+        }}
+      />
     </View>
   )
 }
@@ -195,6 +147,19 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
   const toastConfig = {
     tomatoToast: ToasterAlert,
   }
+
+  const showToast: ToasterShowContext = React.useCallback((params: ToasterStatusProps) => {
+    const { position, duration, offset, title, description, onClick, closable, onHide, iconName, status } = params
+    LibToast.show({
+      type: 'tomatoToast',
+      position: position || ToasterAlertPosition.BOTTOM,
+      bottomOffset: offset || 10,
+      topOffset: offset || 10,
+      visibilityTime: duration || 5000,
+      onHide,
+      props: { title, description, closable, iconName, onClick, status },
+    })
+  }, [])
 
   return (
     <ToasterContext.Provider value={{ show: showToast, hide: LibToast.hide }}>

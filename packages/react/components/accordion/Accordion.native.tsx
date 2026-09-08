@@ -1,9 +1,10 @@
 import { AccordionNativeRef, AccordionProps } from '@/components/accordion/AccordionProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
+import { useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Accordion Component
@@ -13,13 +14,19 @@ import { Radius } from "@/interfaces/Radius";
  * @param id {string} Custom id attribute
  */
 const Accordion = React.forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...others }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
-    accordion: {
-      width: '100%',
-      minHeight: 10,
-      borderRadius: getRadiusStyle(Radius.SMALL),
-    },
-  })
+  const radius = getRadiusStyle(Radius.SMALL)
+
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        accordion: {
+          width: '100%',
+          minHeight: 10,
+          borderRadius: radius,
+        },
+      }),
+    [radius],
+  )
 
   return <View ref={ref} testID={testId} style={styles.accordion} {...others} />
 })

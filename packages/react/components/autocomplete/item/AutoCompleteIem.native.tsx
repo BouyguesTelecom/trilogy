@@ -17,10 +17,11 @@ const AutoCompleteItemNative = ({ item, testId, onSelect }: AutoCompleteItemProp
     </TouchableOpacity>
   )
 }
+
+export default AutoCompleteItemNative
+
 const styles = StyleSheet.create({
   itemList: {
     padding: 10,
   },
 })
-
-export default AutoCompleteItemNative
