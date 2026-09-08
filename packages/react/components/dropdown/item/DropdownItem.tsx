@@ -63,13 +63,13 @@ const DropdownItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
     return (
       <button
         ref={ref as React.RefObject<HTMLButtonElement>}
-        type="button"
+        type='button'
         className={classes}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         aria-disabled={disabled}
-        role="menuitem"
+        role='menuitem'
         tabIndex={disabled ? -1 : 0}
         {...others}
       >

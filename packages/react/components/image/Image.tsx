@@ -32,7 +32,6 @@ const Image = React.forwardRef<ImageRef, ImageProps>(
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('image', className, align && is(getJustifiedClassName(align))))
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const styles: React.CSSProperties | any = {
       image: {
         width: width,

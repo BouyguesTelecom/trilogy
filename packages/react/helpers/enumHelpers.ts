@@ -1,7 +1,6 @@
 export const getEnumNamesAndValues = (e: enumType): objectType[] =>
   getEnumNames(e).map((n) => ({ name: n, value: e[n] }))
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getEnumNames = (e: enumType): any[] => getEnumObjValues(e).filter((v) => typeof v === 'string') as string[]
 
 export const getEnumValues = (e: enumType): number[] =>

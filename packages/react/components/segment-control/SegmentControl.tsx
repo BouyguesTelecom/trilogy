@@ -46,7 +46,7 @@ const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
     <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
       {children &&
         Array.isArray(children) &&
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
         children.map((child: any, index: number) => {
           const props = {
             active: Boolean(isActive(index, child.props.active)) || false,

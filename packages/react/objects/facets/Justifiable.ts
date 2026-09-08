@@ -37,7 +37,7 @@ export interface JustifiableProps {
  * @param justifyContent {Justifiable|string} - justify type
  * @returns {string} - Justify value
  */
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+
 export const getJustifyStyle = (justifyContent?: string) => {
   if (!justifyContent) return 'flex-start'
   switch (true) {
