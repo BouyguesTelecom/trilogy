@@ -3,9 +3,9 @@ import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
-import { getColorStyle } from "@/helpers/color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Box Content
@@ -19,33 +19,37 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
     const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = React.useContext(BoxContext)
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
+    const backgroundStyle = getColorStyle(backgroundColor || 'transparent')
 
-    const styles = StyleSheet.create({
-      boxContent: {
-        padding: 16,
-        backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
-        borderRadius: borderSmallRadius,
-        flex: fullHeight ? 1 : undefined,
-        marginLeft: highlighted ? 4 : 0,
-        borderTopLeftRadius: (highlighted && numberOfContent > 1) || header ? 0 : borderSmallRadius,
-        borderTopRightRadius: header ? 0 : borderSmallRadius,
-        borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : borderSmallRadius,
-        borderBottomRightRadius: numberOfContent > 1 ? 0 : borderSmallRadius,
-      },
-    })
+    const styles = React.useMemo(
+      () =>
+        StyleSheet.create({
+          boxContent: {
+            padding: 16,
+            backgroundColor: backgroundStyle,
+            borderRadius: borderSmallRadius,
+            flex: fullHeight ? 1 : undefined,
+            marginLeft: highlighted ? 4 : 0,
+            borderTopLeftRadius: (highlighted && numberOfContent > 1) || header ? 0 : borderSmallRadius,
+            borderTopRightRadius: header ? 0 : borderSmallRadius,
+            borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : borderSmallRadius,
+            borderBottomRightRadius: numberOfContent > 1 ? 0 : borderSmallRadius,
+          },
+        }),
+      [backgroundStyle, borderSmallRadius, fullHeight, highlighted, header, numberOfContent],
+    )
 
-    const content = (
-      <View
-        testID={testId}
-        ref={ref}
-        style={[styles.boxContent]}
-        {...others}
-        onLayout={() => {
-          setNumberOfContent((prev) => prev + 1)
-        }}
-      >
-        {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
-      </View>
+    const onLayout = React.useCallback(() => {
+      setNumberOfContent((prev) => prev + 1)
+    }, [setNumberOfContent])
+
+    const content = React.useMemo(
+      () => (
+        <View testID={testId} ref={ref} style={[styles.boxContent]} {...others} onLayout={onLayout}>
+          {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
+        </View>
+      ),
+      [testId, ref, styles.boxContent, others, onLayout, children],
     )
 
     if (backgroundSrc) {
@@ -58,9 +62,8 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
           {content}
         </ImageBackground>
       )
-    } else {
-      return content
     }
+    return content
   },
 )
 
