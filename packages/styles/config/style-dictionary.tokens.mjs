@@ -62,6 +62,71 @@ const getTokenValue = (token, value, tokenPath = []) => {
   return undefined
 }
 
+const getReactTokenValue = (token) => {
+  const value = token.original?.$value ?? token.value
+
+  if (value && typeof value === 'object' && typeof value.hex === 'string') {
+    return value.hex
+  }
+
+  return value
+}
+
+const toTypeScriptKey = (value) => {
+  const segments = String(value)
+    .replace(/^--/, '')
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+
+  return segments
+    .map((segment, index) => {
+      const normalized = segment.charAt(0).toLowerCase() + segment.slice(1)
+      return index === 0 ? normalized : normalized.charAt(0).toUpperCase() + normalized.slice(1)
+    })
+    .join('')
+}
+
+const getReactTokenKey = (token) => {
+  if (token.path[0] === 'Font') {
+    return toTypeScriptKey(token.path.slice(1).join('-'))
+  }
+
+  const syntax = token.original?.$extensions?.['com.figma.codeSyntax']?.WEB
+  const variableName = typeof syntax === 'string' ? syntax.match(/^var\((--[A-Za-z0-9_-]+)\)$/)?.[1] : undefined
+
+  return toTypeScriptKey(variableName ?? token.path[token.path.length - 1])
+}
+
+const getReactTokens = (dictionary, predicate) => {
+  const keys = new Set()
+  const entries = []
+
+  for (const token of dictionary.allTokens.filter(predicate)) {
+    const value = getReactTokenValue(token)
+    const initialKey = getReactTokenKey(token)
+    let key = initialKey
+
+    if (keys.has(key)) {
+      key = `token${toTypeScriptKey(token.path.join('-'))}`
+      while (keys.has(key)) {
+        key = `${key}Value`
+      }
+    }
+
+    if (key && value !== undefined) {
+      keys.add(key)
+      entries.push({ key, value })
+    }
+  }
+
+  return entries
+}
+
+const formatReactObject = (entries, indent = '  ') => {
+  const lines = entries.map(({ key, value }) => `${indent}${JSON.stringify(key)}: ${JSON.stringify(value)},`)
+  return ['{', ...lines, '}'].join('\n')
+}
+
 const findTokens = (value, tokens = []) => {
   if (!value || typeof value !== 'object') {
     return tokens
@@ -178,6 +243,17 @@ StyleDictionary.registerFormat({
   },
 })
 
+StyleDictionary.registerFormat({
+  name: 'typescript/theme/react',
+  format: ({ dictionary, options }) => {
+    const entries = getReactTokens(dictionary, options.filter)
+    const object = formatReactObject(entries)
+    const value = options.modeAware ? `{\n  light: ${object.replace(/\n/g, '\n  ')},\n  dark: {},\n}` : object
+
+    return `// Generated from figma tokens. Do not edit directly.\n\nexport const ${options.name} = ${value} as const\n`
+  },
+})
+
 export default {
   source: ['figma/primitives.json', 'figma/theme.json'],
   platforms: {
@@ -192,6 +268,46 @@ export default {
         {
           destination: '_tokens.scss',
           format: 'scss/theme/figma',
+        },
+      ],
+    },
+    react: {
+      transformGroup: 'js',
+      buildPath: path.join(configDirectory, '../../react/theme/'),
+      files: [
+        {
+          destination: 'colors.ts',
+          format: 'typescript/theme/react',
+          options: {
+            name: 'THEME_COLORS_TRILOGY',
+            modeAware: true,
+            filter: (token) =>
+              token.filePath?.endsWith('/theme.json') && token.path[0] !== 'Radius' && token.path[0] !== 'Spacing',
+          },
+        },
+        {
+          destination: 'fonts.ts',
+          format: 'typescript/theme/react',
+          options: {
+            name: 'THEME_FONTS_TRILOGY',
+            filter: (token) => token.filePath?.endsWith('/primitives.json') && token.path[0] === 'Font',
+          },
+        },
+        {
+          destination: 'radius.ts',
+          format: 'typescript/theme/react',
+          options: {
+            name: 'THEME_RADIUS_TRILOGY',
+            filter: (token) => token.filePath?.endsWith('/theme.json') && token.path[0] === 'Radius',
+          },
+        },
+        {
+          destination: 'spacings.ts',
+          format: 'typescript/theme/react',
+          options: {
+            name: 'THEME_SPACINGS_TRILOGY',
+            filter: (token) => token.filePath?.endsWith('/theme.json') && token.path[0] === 'Spacing',
+          },
         },
       ],
     },

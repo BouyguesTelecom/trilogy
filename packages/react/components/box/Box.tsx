@@ -5,8 +5,8 @@ import clsx from 'clsx'
 import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { BoxProps, BoxRef } from '@/components/box/BoxProps'
-import { getBackgroundClassName } from "@/helpers/background";
-import { getColorClassName } from "@/helpers/color";
+import { getBackgroundClassName } from '@/helpers/background'
+import { getColorClassName } from '@/helpers/color'
 
 /**
  * Box Component
@@ -91,7 +91,6 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
             target: '_blank',
           })}
         onClick={(e) => {
-
           onClick?.(e)
         }}
         className={classes}

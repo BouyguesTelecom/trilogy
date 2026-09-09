@@ -2,8 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { ImageBackground, StyleSheet, View } from 'react-native'
 import { SectionNativeRef, SectionProps } from '@/components/section/SectionProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.

@@ -1,5 +1,5 @@
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
-import { Invertable } from "@/interfaces/Invertable";
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { Invertable } from '@/interfaces/Invertable'
 
 /**
  * Background props

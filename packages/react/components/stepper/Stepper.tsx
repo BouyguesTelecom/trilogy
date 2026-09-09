@@ -8,8 +8,8 @@ import { FlexBox } from '@/components/flex-box'
 import { Icon, IconName } from '@/components/icon'
 import { Title } from '@/components/title'
 import { StepperProps, StepperRef } from '@/components/stepper/StepperProps'
-import { Align } from "@/interfaces/Alignable";
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { Align } from '@/interfaces/Alignable'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 type CurrentStepType = { label: number | null; step: number; icon: IconName | null }
 

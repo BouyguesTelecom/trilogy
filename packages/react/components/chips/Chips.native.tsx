@@ -6,10 +6,10 @@ import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-nativ
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ChipsNativeRef, ChipsProps } from '@/components/chips/ChipsProps'
 import { ChipsContext } from '@/components/chips/list/ChipsList.native'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Chips Component - has to be in a ChipsList component

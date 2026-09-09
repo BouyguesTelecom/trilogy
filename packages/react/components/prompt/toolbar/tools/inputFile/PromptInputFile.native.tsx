@@ -4,8 +4,11 @@ import { PromptContext } from '@/components/prompt/context'
 import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
-import { PromptInputFileNativeRef, PromptInputFileProps } from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
-import { TrilogyColor } from "@/interfaces/Color";
+import {
+  PromptInputFileNativeRef,
+  PromptInputFileProps,
+} from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
+import { TrilogyColor } from '@/interfaces/Color'
 
 const PromptInputFile = React.forwardRef<PromptInputFileNativeRef, PromptInputFileProps>(
   ({ onChange, disabled, readOnly, ...others }, ref) => {

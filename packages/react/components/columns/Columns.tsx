@@ -6,7 +6,7 @@ import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { getJustifiedClassName } from "@/helpers/justifiable";
+import { getJustifiedClassName } from '@/helpers/justifiable'
 
 /**
  * Columns Component

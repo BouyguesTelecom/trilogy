@@ -1,7 +1,7 @@
 import React from 'react'
 import { AlertMarkup } from '@/components/alert/AlertEnum'
 import { ToasterAlertFloat, ToasterAlertPosition } from '@/components/alert/AlertProps'
-import { StatusState } from "@/interfaces/Status";
+import { StatusState } from '@/interfaces/Status'
 
 export interface ToasterDocsProps {
   title?: string

@@ -11,8 +11,8 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
 import { PromptFileProps, PromptFileRef } from '@/components/prompt/files/file/PromptFileProps'
-import { Align } from "@/interfaces/Alignable";
-import { TypographyBold } from "@/interfaces/TypographyBold";
+import { Align } from '@/interfaces/Alignable'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 /**
  * PromptFile component - Displays an individual file attachment with preview and delete option

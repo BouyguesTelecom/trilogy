@@ -5,7 +5,7 @@ import { HeroProps, HeroRef } from '@/components/hero/HeroProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
-import { getBackgroundClassName } from "@/helpers/background";
+import { getBackgroundClassName } from '@/helpers/background'
 
 /**
  * Hero Component

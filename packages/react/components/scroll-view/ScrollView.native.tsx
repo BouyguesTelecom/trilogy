@@ -3,8 +3,8 @@ import { isAndroid, isIOS } from '@/helpers/device.native'
 import * as React from 'react'
 import { RefreshControl, ScrollView as ScrollViewNative, StyleSheet, View } from 'react-native'
 import { ScrollViewNativeRef, ScrollViewProps } from '@/components/scroll-view/ScrollViewProps'
-import { getColorStyle } from "@/helpers/color";
-import { ScrollDirectionEnum } from "@/interfaces/ScrollDirection";
+import { getColorStyle } from '@/helpers/color'
+import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
 
 /**
  * ScrollView Component

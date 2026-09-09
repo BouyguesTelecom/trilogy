@@ -4,7 +4,7 @@ import { SpacerSize } from '@/components/spacer'
 import React, { ReactNode, RefObject, useCallback, useMemo } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { RadioTilesContext } from '@/components/radio/tiles/context'
-import { Alignable } from "@/interfaces/Alignable";
+import { Alignable } from '@/interfaces/Alignable'
 
 /**
  * RadioTiles

@@ -1,5 +1,5 @@
 import { getColorStyle } from '@/helpers/color'
-import { TrilogyColor } from "@/interfaces/Color";
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * Returns variant's classname depending on variant type

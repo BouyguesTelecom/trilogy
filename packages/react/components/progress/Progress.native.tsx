@@ -4,11 +4,11 @@ import { View } from '@/components/view'
 import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet } from 'react-native'
 import { ProgressNativeRef, ProgressProps } from '@/components/progress/ProgressProps'
-import { getColorStyle } from "@/helpers/color";
-import { getStatusStyle } from "@/helpers/status";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { getStatusStyle } from '@/helpers/status'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Progress Component
@@ -91,7 +91,6 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
         <View style={styles.progress} {...others}>
           {Array.isArray(children) &&
             children.map(
-
               (child: any, index: number) =>
                 (child &&
                   child.type.render.displayName === 'ProgressItem' &&

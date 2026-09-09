@@ -8,11 +8,11 @@ import {
   ButtonVariant,
   ButtonVariantValues,
 } from '@/components/button/ButtonEnum'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Clickable } from "@/interfaces/Clickable";
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
-import { Fullwidth } from "@/interfaces/Fullwidth";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Clickable } from '@/interfaces/Clickable'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
+import { Fullwidth } from '@/interfaces/Fullwidth'
 
 /**
  * Button Interface

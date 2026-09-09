@@ -23,13 +23,13 @@ import {
 } from '@/components/input/InputEnum'
 import { InputNativeEvents, InputNativeRef, InputProps } from '@/components/input/InputProps'
 import InputGauge from '@/components/input/gauge/InputGauge.native'
-import { TypographyColor } from "@/interfaces/TypographyColor";
-import { Align } from "@/interfaces/Alignable";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { StatusState } from "@/interfaces/Status";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { TypographyColor } from '@/interfaces/TypographyColor'
+import { Align } from '@/interfaces/Alignable'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { StatusState } from '@/interfaces/Status'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 

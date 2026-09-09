@@ -6,11 +6,11 @@ import { StyleSheet, Text, View } from 'react-native'
 import { PriceLevel } from '@/components/price/PriceEnum'
 import { checkCents } from '@/components/price/PriceHelpers'
 import { PriceNativeRef, PriceProps } from '@/components/price/PriceProps'
-import { Alignable } from "@/interfaces/Alignable";
-import { getColorStyle } from "@/helpers/color";
-import { getTypographyBoldStyle } from "@/helpers/typography";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyBold } from "@/interfaces/TypographyBold";
+import { Alignable } from '@/interfaces/Alignable'
+import { getColorStyle } from '@/helpers/color'
+import { getTypographyBoldStyle } from '@/helpers/typography'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 /**
  * Price Component

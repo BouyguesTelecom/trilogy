@@ -20,11 +20,11 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Title } from '@/components/title'
 import { ModalNativeRef, ModalProps } from '@/components/modal/ModalProps'
 import { ModalContext } from '@/components/modal/context/ModalContext'
-import { Alignable } from "@/interfaces/Alignable";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { Alignable } from '@/interfaces/Alignable'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height
 const DISMISS_THRESHOLD = 150

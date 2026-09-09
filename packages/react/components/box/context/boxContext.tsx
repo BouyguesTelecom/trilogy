@@ -1,5 +1,5 @@
 import React from 'react'
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
 
 interface BoxContextValue {
   fullHeight: boolean

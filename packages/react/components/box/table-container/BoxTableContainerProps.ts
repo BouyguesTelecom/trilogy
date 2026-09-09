@@ -1,6 +1,6 @@
 import { View } from 'react-native'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Dev } from "@/interfaces/Dev";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Dev } from '@/interfaces/Dev'
 
 /**
  * Box Table Container Interface

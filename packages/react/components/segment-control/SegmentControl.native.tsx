@@ -5,10 +5,10 @@ import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import SegmentedControlItem from '@/components/segment-control/item'
 import { SegmentControlNativeRef, SegmentControlProps } from '@/components/segment-control/SegmentControlProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * SegmentControl Component
@@ -59,7 +59,6 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
         <View style={styles.segmentedControl} {...others}>
           {children &&
             Array.isArray(children) &&
-
             children.map((child: any, index: number) => {
               const props = {
                 active: Boolean(isActive(index, child.props.active)) || false,

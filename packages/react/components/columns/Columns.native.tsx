@@ -5,7 +5,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from '@/helpers/alignable'
 import React, { useState, useMemo, useCallback } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
-import { Alignable } from "@/interfaces/Alignable";
+import { Alignable } from '@/interfaces/Alignable'
 
 const staticStyles = StyleSheet.create({
   centered: {

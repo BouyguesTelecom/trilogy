@@ -5,11 +5,11 @@ import { ListItemNativeRef, ListItemProps } from '@/components/list/item/ListIte
 import { Text, TextLevels } from '@/components/text'
 import React, { useContext, useEffect, useId, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * ListItem Component

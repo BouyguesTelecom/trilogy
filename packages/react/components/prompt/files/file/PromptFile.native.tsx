@@ -7,11 +7,11 @@ import { Text, TextLevels } from '@/components/text'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { PromptFileNativeRef, PromptFileProps } from '@/components/prompt/files/file/PromptFileProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { Radius } from '@/interfaces/Radius'
 
 const HEIGHT_ITEM = 64
 const HEIGHT_IMG_FILE = 40

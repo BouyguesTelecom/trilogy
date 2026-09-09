@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { OtpProps, OtpRef } from '@/components/otp/OtpProps'
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 type NumberOrNull = number | null
 

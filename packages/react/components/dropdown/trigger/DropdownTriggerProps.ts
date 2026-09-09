@@ -1,7 +1,7 @@
 import { TouchableOpacity, View } from 'react-native'
-import { Clickable } from "@/interfaces/Clickable";
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { Clickable } from '@/interfaces/Clickable'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
 
 /**
  * DropdownTrigger Interface

@@ -1,7 +1,7 @@
 import { View } from 'react-native'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Dev } from "@/interfaces/Dev";
-import { StatusProps } from "@/interfaces/Status";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Dev } from '@/interfaces/Dev'
+import { StatusProps } from '@/interfaces/Status'
 
 type Styles = { [key: string]: any }
 

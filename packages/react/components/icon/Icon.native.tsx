@@ -9,8 +9,8 @@ import React, { useContext } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { WithLocalSvg } from 'react-native-svg/css'
 import { Skeleton } from '@/components/skeleton'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
 
 /**
  * Icon Component

@@ -5,12 +5,12 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text as TextNative, View } from 'react-native'
 import { CountdownFormat, CountdownUnite } from '@/components/countdown/CountdownEnum'
 import { CountdownNativeRef, CountdownProps } from '@/components/countdown/CountdownProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getTypographyBoldStyle } from "@/helpers/typography";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getTypographyBoldStyle } from '@/helpers/typography'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)

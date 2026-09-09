@@ -4,8 +4,8 @@ import { Text } from '@/components/text'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { StepperNativeRef, StepperProps } from '@/components/stepper/StepperProps'
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 interface ICurrentStep {
   step: number

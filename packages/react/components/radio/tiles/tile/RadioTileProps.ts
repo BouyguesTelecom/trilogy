@@ -2,8 +2,8 @@ import { TouchableOpacity } from 'react-native'
 import { IconName, IconNameValues } from '@/components/icon'
 import { RadioNativeProps, RadioProps } from '@/components/radio/RadioProps'
 import { ReactNode } from 'react'
-import { Dev } from "@/interfaces/Dev";
-import { VariantProps } from "@/interfaces/Variant";
+import { Dev } from '@/interfaces/Dev'
+import { VariantProps } from '@/interfaces/Variant'
 
 interface RadioTilePropsCommon extends Dev {
   horizontal?: boolean

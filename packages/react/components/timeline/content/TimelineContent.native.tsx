@@ -6,7 +6,7 @@ import { TimelineContentNativeRef, TimelineContentProps } from '@/components/tim
 import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
 import React, { useContext } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 /**
  * Timeline Content Component

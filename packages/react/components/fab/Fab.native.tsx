@@ -4,13 +4,13 @@ import { FabNativeRef, FabProps } from '@/components/fab/FabProps'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text } from '@/components/text'
-import { Alignable } from "@/interfaces/Alignable";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { TypographyColor } from "@/interfaces/TypographyColor";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { Alignable } from '@/interfaces/Alignable'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { TypographyColor } from '@/interfaces/TypographyColor'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Fab Component - Floating Action Button

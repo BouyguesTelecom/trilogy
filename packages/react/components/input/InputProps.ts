@@ -1,4 +1,3 @@
-
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
 import { type ChangeEvent, FocusEventHandler, ReactNode } from 'react'
 import { IconName, IconNameValues } from '@/components/icon'
@@ -18,9 +17,9 @@ import {
   InputType,
   InputTypeValues,
 } from '@/components/input/InputEnum'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Dev } from '@/interfaces/Dev'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 export interface InputChangeEventWeb {
   inputName: string

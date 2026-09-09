@@ -11,10 +11,10 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { Pressable, TextInput, View } from 'react-native'
 import { TimepickerSelector } from '@/components/timepicker/default/selector/TimepickerSelector.native'
 import { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
-import { Align } from "@/interfaces/Alignable";
-import { Justify } from "@/interfaces/Justifiable";
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { TypographyBold } from "@/interfaces/TypographyBold";
+import { Align } from '@/interfaces/Alignable'
+import { Justify } from '@/interfaces/Justifiable'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 const generateItems = (count: number) =>
   Array.from({ length: count }, (_, i) => ({

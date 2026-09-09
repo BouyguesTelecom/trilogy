@@ -3,9 +3,9 @@ import { Text } from '@/components/text'
 import * as React from 'react'
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native'
 import { BreadcrumbItemNativeRef, BreadcrumbItemProps } from '@/components/breadcrumb/item/BreadcrumbItemProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyBold } from "@/interfaces/TypographyBold";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 /**
  * Breadcrumb Item Component

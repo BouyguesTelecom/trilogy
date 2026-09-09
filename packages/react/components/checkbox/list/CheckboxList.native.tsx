@@ -7,7 +7,7 @@ import * as React from 'react'
 import type { CheckboxListNativeRef, CheckboxListProps } from '@/components/checkbox/list/CheckboxListProps'
 import { StyleSheet } from 'react-native'
 import { isRequiredChild } from '@/helpers/require'
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode

@@ -4,10 +4,10 @@ import { Text } from '@/components/text'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { DividerNativeRef, DividerProps } from '@/components/divider/DividerProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Divider Component
