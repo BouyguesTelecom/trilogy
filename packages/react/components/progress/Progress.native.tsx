@@ -91,7 +91,7 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
         <View style={styles.progress} {...others}>
           {Array.isArray(children) &&
             children.map(
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
               (child: any, index: number) =>
                 (child &&
                   child.type.render.displayName === 'ProgressItem' &&
