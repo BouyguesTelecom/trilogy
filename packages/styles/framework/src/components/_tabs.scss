@@ -3,12 +3,12 @@ $height-arrow-default:48px;
 $height-arrow-small:30px;
 
 .tabs {
-  @include overflow-touch;
+  -webkit-overflow-scrolling: touch;
   @include unselectable;
 
   align-items: stretch;
   justify-content: space-between;
-  font-weight: $weight-normal;
+  font-weight: var(--font-weight-body-1);
   width: 100%;
   text-align: center;
   overflow: hidden;
@@ -22,7 +22,7 @@ $height-arrow-small:30px;
     top: 0px;
     transition: opacity 0.3s ease;
     opacity: 1;
-    background-color: getColor('background');
+    background-color: var(--bg-primary);
   }
 
   .arrow-prev {
@@ -41,28 +41,28 @@ $height-arrow-small:30px;
   }
 
   &.is-inverted {
-    background-color: getColor('font');
+    background-color: var(--bg-secondary);
 
     .tab-list > .tab {
-      color: getColor('background') !important;
+      color: var(--text-inverse) !important;
 
       &.is-active {
         border-bottom-color: currentColor;
       }
 
       #{$hoverSelector} {
-        color: getColor('background') !important;
+        color: var(--text-inverse) !important;
         cursor: pointer;
       }
 
       &:focus-visible {
-        border-color: getColor('background');
+        border-color: var(--border-inverse);
       }
 
     }
 
     .arrow-prev, .arrow-next {
-      background-color: getColor('font');
+      background-color: var(--bg-secondary);
     }
 
   }
@@ -116,31 +116,31 @@ $height-arrow-small:30px;
     > .tab {
       display: inline-block;
       line-height: normal;
-      font-family: $family-primary;
+      font-family: var(--font-title-1);
       height: calc(100% - 4px);
       background-color: transparent;
-      color: getColor('font');
+      color: var(--text-primary);
       text-decoration: none;
       outline: none;
       padding: 12px 24px;
-      font-size: $text-16;
+      font-size: var(--body-1-size);
       border: 0px solid transparent;
-      border-bottom: 1px solid getColor('neutral');
+      border-bottom: var(--border-style);
 
       .tab-icon {
         margin-top: 2px;
       }
 
       &.is-active {
-        color: getColor('main');
+        color: var(--text-primary);
         position: relative;
-        border-bottom-color: getColor('main');
-        font-weight: $weight-bold;
-        border-bottom-width: 2px;
+        border-bottom-color: var(--border-selected);
+        font-weight: var(--font-weight-body-1-bold);
+        border-bottom-width: 2px;      
       }
 
       &:hover:not([disabled]) {
-        color: getColor('main');
+        color: var(--text-primary);
         border-bottom-color: currentColor;
         cursor: pointer;
         border-bottom-width: 2px;
@@ -153,7 +153,7 @@ $height-arrow-small:30px;
 
       &:focus-visible {
         border-color: currentColor;
-        color: getColor('main');
+        color: var(--text-primary);
       }
 
       .icon {
@@ -166,7 +166,7 @@ $height-arrow-small:30px;
 
       &[disabled], &[aria-disabled=true] {
         background-color: transparent !important;
-        border-bottom-color: getColor('neutral') !important;
+        border-bottom-color: var(--border-disabled) !important;
         &.is-active{
           border-bottom-color: currentColor !important;
         }
@@ -185,7 +185,7 @@ $height-arrow-small:30px;
 
     .tab-list {
       & > .tab {
-        font-size: $text-14 ;
+        font-size: var(--body-2-size) ;
         padding: 12px 16px;
       }
     }
@@ -193,8 +193,8 @@ $height-arrow-small:30px;
 
 
   .tab-panels {
-    padding-top: $spacing-3;
-    padding-bottom: $spacing-3;
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
 
     .tab-panel {
       transition: opacity 2s ease-in-out;

@@ -65,7 +65,7 @@ p.is-loading,
     // make the text elements like subtle animated lines
     @include text-tags {
         display: inline;
-        border-radius: 9999px;
+        border-radius: var(--radius-full);
         background: currentColor !important;
         box-decoration-break: clone;
         font-size: 70%;
@@ -97,8 +97,8 @@ p.is-loading,
     as quick as possible. This should enhance the speed index
     */
     @include text-tags {
-        transition-duration: math.div($animation-duration, 2);
-        transition-timing-function: $animation-timing-function;
+        transition-duration: math.div(0.3s, 2);
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
         transition-property: font-size, letter-spacing;
 
         /**

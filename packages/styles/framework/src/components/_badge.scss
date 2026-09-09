@@ -38,30 +38,30 @@
   }
 
   .badge-icon {
-    width: $text-20;
-    height: $text-20;
+    width: $font-size-400;
+    height: $font-size-400;
   }
 }
 
 .badge {
   display: inline-flex;
-  border-radius: 9999px;
-  color: getColor('background');
-  background: getColor('main');
-  font-size: $text-10;
-  min-height: $text-20;
-  min-width: $text-20;
+  border-radius: var(--radius-full);
+  color: var(--text-inverse);
+  background: var(--bg-secondary);
+  font-size: var(--body-4-size);
+  min-height: $font-size-400;
+  min-width: $font-size-400;
   justify-content: center;
   align-items: center;
 
   &:empty {
-    min-width: $text-10;
-    min-height: $text-10;
+    min-width: var(--body-4-size);
+    min-height: var(--body-4-size);
   }
 
   &.is-inverted {
-    color: getColor('main') !important;
-    background: getColor('background') !important;
+    color: var(--text-primary) !important;
+    background: var(--background-primary) !important;
   }
 }
 
@@ -73,15 +73,15 @@
     position: absolute;
     margin-left: -15px;
     top: -7px;
-    color: getColor('background');
+    color: var(--text-inverse);
     left: 100%;
-    background: getColor('main');
-    font-size: $text-10;
-    min-height: $text-20;
-    min-width: $text-20;
+    background: var(--bg-secondary);
+    font-size: var(--body-4-size);
+    min-height: $font-size-400;
+    min-width: $font-size-400;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
   }
 }

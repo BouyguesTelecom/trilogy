@@ -175,45 +175,38 @@ $alignments: (
 
 // rétrocompatibilité, cette classe ne doit plus être utilisée
 .has-text-weight-light {
-  font-weight: $weight-normal !important;
+  font-weight: var(--font-weight-body-1) !important;
 }
 
 .has-text-weight-normal {
-  font-weight: $weight-normal !important;
+  font-weight: var(--font-weight-body-1) !important;
 }
 
 .has-text-weight-medium {
-  font-weight: $weight-medium !important;
+  font-weight: $font-weight-medium !important;
 }
 
 .has-text-weight-semibold {
-  font-weight: $weight-semibold !important;
+  font-weight: var(--font-weight-body-1-bold) !important;
 }
 
 // rétrocompatibilité, cette classe ne doit plus être utilisée
 .has-text-weight-bold {
-  font-weight: $weight-semibold !important;
+  font-weight: var(--font-weight-body-1-bold) !important;
 }
 
 // rétrocompatibilité, cette classe ne doit plus être utilisée
 .has-text-weight-extrabold {
-  font-weight: $weight-semibold !important;
+  font-weight: var(--font-weight-body-1-bold) !important;
 }
 
 @mixin typography-colors() {
-  @each $name, $color in $colors {
-    $brandName: nth($color, 2);
-    $color: nth($color, 1);
-    $color-invert: invertColor($name);
-
-    .has-text-#{$brandName} {
+  @each $name, $color in map-get($colors, 'text') {
+    .has-text-#{$name} {
       color: $color !important;
     }
-    .has-text-#{$brandName}-invert {
-      color: $color-invert !important;
-    }
-    .has-background-#{$brandName} {
-      background-color: getColor($name) !important;
+    .has-background-#{$name} {
+      background-color: map-get(map-get($colors, 'bg'), $name) !important;
     }
   }
 }
@@ -425,11 +418,11 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 .is-rounded {
-  border-radius: 9999px !important;
+  border-radius: var(--radius-full) !important;
 }
 
 .is-bordered {
-  border: var(--border);
+  border: var(--border-style);
 }
 
 .is-vertical-paddingless {
@@ -438,11 +431,16 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 // Radius
-$radius-list: ['radius-large', 'radius-medium', 'radius-small', 'radius'];
+$radius-list: (
+  'radius-large': 'lg',
+  'radius-medium': 'md',
+  'radius-small': 'sm',
+  'radius': 'xs',
+);
 
-@each $label in $radius-list {
+@each $label, $token in $radius-list {
   .has-border-#{$label} {
-    border-radius: var(--#{$label});
+    border-radius: var(--radius-#{$token});
   }
 }
 
@@ -872,4 +870,73 @@ $align-values: (
   word-break: break-word;
   -webkit-box-orient: vertical;
   display: -webkit-box;
+}
+
+
+.is-inverted {
+  color: var(--text-inverse);
+}
+
+.is-inverted {
+  .box, .section, .view, .hero {
+    &:not(.is-inverted) {
+      color: var(--text-primary);
+    }
+  }
+}
+
+.has-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .box-content {
+    background-color: transparent;
+  }
+}
+
+
+$plus-symbol-size: 40px;
+
+@mixin plus-symbol($color: var(--bg-secondary-subtle), $text-color: var(--text-primary)) {
+    &::after {
+        content: "+";
+        display: inline-block;
+        width: $plus-symbol-size;
+        height: $plus-symbol-size;
+        border-radius: $plus-symbol-size;
+        font-size: 24px;
+        text-align: center;
+        line-height: $plus-symbol-size;
+        background-color: $color;
+        color: $text-color;
+    }
+}
+
+.plus-symbol {
+    @include plus-symbol();
+
+    display: inline-block;
+
+        @each $name, $colors in $colors-brand {
+            $color: map-get($colors, color);
+            $color-invert: map-get($colors, text);
+
+                &.is-#{$name} {
+            @include plus-symbol($color, $color-invert);
+        }
+    }
+}
+
+.delete {
+    @include delete;
+}
+
+
+.animate-from-right {
+    animation-name: from-right;
+}
+
+.animate-from-top {
+    animation-name: from-top;
 }

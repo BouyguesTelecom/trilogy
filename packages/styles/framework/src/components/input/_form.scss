@@ -1,8 +1,8 @@
-$file-radius: var(--radius);
+$file-radius: var(--radius-sm);
 $file-name-max-width: 16em;
 $field-margin: 20px;
-$help-size: $size-small;
-$label-weight: $weight-bold;
+$help-size: var(--body-2-size);
+$label-weight: var(--font-weight-body-1-bold);
 
 .field {
   &.is-fullwidth {
@@ -65,7 +65,7 @@ $label-weight: $weight-bold;
       }
 
       &:not(:first-child):not(:last-child) {
-        .button,
+        .Button,
         .input,
         .select select {
           border-radius: 0;
@@ -73,7 +73,7 @@ $label-weight: $weight-bold;
       }
 
       &:first-child {
-        .button,
+        .Button,
         .input,
         .select select {
           border-bottom-right-radius: 0;
@@ -82,7 +82,7 @@ $label-weight: $weight-bold;
       }
 
       &:last-child {
-        .button,
+        .Button,
         .input,
         .select select {
           border-bottom-left-radius: 0;
@@ -90,7 +90,7 @@ $label-weight: $weight-bold;
         }
       }
 
-      .button,
+      .Button,
       .input,
       .textarea,
       .select select {
@@ -183,7 +183,7 @@ $label-weight: $weight-bold;
 }
 
 .control {
-  font-size: $size-normal;
+  font-size: var(--body-1-size);
   position: relative;
   text-align: left;
 
@@ -194,7 +194,7 @@ $label-weight: $weight-bold;
     .select {
       &:focus {
         & ~ .icon {
-          color: getColor('font');
+          color: var(--text-primary);
         }
       }
 
@@ -207,7 +207,7 @@ $label-weight: $weight-bold;
     }
 
     .icon {
-      color: getColor('font');
+      color: var(--text-primary);
       position: absolute;
       top: 0;
       height: 100%;
@@ -221,13 +221,13 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: fadeColor($name);
+            color: map-get($pair, color);
           }
         }
       }
 
       &.is-error {
-        border-color: getColor('error');
+        border-color: var(--border-error);
       }
     }
 
@@ -235,13 +235,13 @@ $label-weight: $weight-bold;
       @each $name, $pair in $colors-feedback {
         &.is-#{$name} {
           ~ .icon {
-            color: fadeColor($name);
+            color: map-get($pair, color);
           }
         }
       }
 
       &.is-error {
-        border-color: getColor('error');
+        border-color: var(--border-error);
       }
     }
   }
@@ -255,8 +255,8 @@ $label-weight: $weight-bold;
 
     .icon {
       left: 0;
-      border-top-left-radius: var(--radius);
-      border-bottom-left-radius: var(--radius);
+      border-top-left-radius: var(--radius-sm);
+      border-bottom-left-radius: var(--radius-sm);
       padding: 0 24px;
     }
 
@@ -266,7 +266,7 @@ $label-weight: $weight-bold;
 
     & .textarea + label + .icon {
       display: inherit;
-      padding-top: $spacing-4;
+      padding-top: var(--spacing-md);
       margin: 0 16px;
       width: auto;
     }
@@ -275,7 +275,7 @@ $label-weight: $weight-bold;
       position: absolute;
       bottom: 5px;
       right: 16px;
-      font-size: $text-10;
+      font-size: var(--body-4-size);
     }
 
     .is-error ~ .textarea-counter {
@@ -292,8 +292,8 @@ $label-weight: $weight-bold;
 
     .icon {
       right: 0;
-      border-top-right-radius: var(--radius);
-      border-bottom-right-radius: var(--radius);
+      border-top-right-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
       padding: 0 24px;
     }
   }
@@ -307,7 +307,7 @@ $label-weight: $weight-bold;
 
 
     textarea:not(:placeholder-shown) {
-      padding-top: $spacing-5;
+      padding-top: var(--spacing-lg);
     }
 
 
@@ -316,7 +316,7 @@ $label-weight: $weight-bold;
     }
 
     .icon {
-      color: getColor('font');
+      color: var(--text-primary);
     }
 
     label {
@@ -324,8 +324,8 @@ $label-weight: $weight-bold;
       top: 10px;
       left: 16px;
       border-left: transparent 1px solid;
-      font-size: $text-12;
-      color: getColor('font');
+      font-size: var(--body-3-size);
+      color: var(--text-primary);
       filter: grayscale(1);
       transform: translateY(0);
       transition: all 0.2s ease-out;
@@ -360,22 +360,22 @@ $label-weight: $weight-bold;
     }
 
     textarea {
-      padding-top: $spacing-4;
-      padding-bottom: $spacing-2 !important;
+      padding-top: var(--spacing-md);
+      padding-bottom: var(--spacing-xs) !important;
     }
 
     input:placeholder-shown ~ label,
     textarea:placeholder-shown ~ label {
       visibility: hidden;
       opacity: 0;
-      font-size: $size-normal;
+      font-size: var(--body-1-size);
       transform: translateY(10px);
     }
 
     input:-ms-input-placeholder ~ label {
       visibility: hidden;
       opacity: 0;
-      font-size: $size-normal;
+      font-size: var(--body-1-size);
       transform: translateY(10px);
     }
   }
@@ -387,28 +387,28 @@ $label-weight: $weight-bold;
   &.has-password-discover {
     .input {
       ~ .icon:not(:last-child) {
-        color: getColor('neutral');
+        color: var(--text-disabled); 
         background-color: transparent;
         right: 45px;
         cursor: pointer;
 
         &:hover,
         &:focus {
-          color: getColor('neutral');
+          color: var(--text-disabled); 
         }
       }
     }
   }
 
   + .help {
-    font-size: $text-12;
-    font-weight: $weight-medium;
+    font-size: var(--body-3-size);
+    font-weight: $font-weight-medium;
   }
 
   .is-searching {
     background-color: transparent;
-    border-top-right-radius: var(--radius);
-    border-bottom-right-radius: var(--radius);
+    border-top-right-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
     height: 100%;
     position: absolute;
     right: 0;
@@ -432,18 +432,18 @@ $label-weight: $weight-bold;
     }
 
     &.is-small::after {
-      font-size: $size-small;
+      font-size: var(--body-2-size);
     }
 
     &.is-large::after {
-      font-size: $size-large;
+      font-size: $font-size-700;
     }
   }
 
   &:has(input[disabled]), &:has(select[disabled]), &:has(textarea[disabled]) {
     @include disabledRulesWithoutBG;
     .icon {
-      color: getColor('disabled');
+      color: var(--text-disabled);
     }
   }
 }
@@ -465,7 +465,7 @@ $label-weight: $weight-bold;
     text-align: right;
 
     &.is-small {
-      font-size: $size-small;
+      font-size: var(--body-2-size);
       padding-top: 0.375em;
     }
 
@@ -474,7 +474,7 @@ $label-weight: $weight-bold;
     }
 
     &.is-large {
-      font-size: $size-large;
+      font-size: $font-size-700;
       padding-top: 0.375em;
     }
   }
@@ -519,11 +519,11 @@ $label-weight: $weight-bold;
 
   // Sizes
   &.is-small {
-    font-size: $size-small;
+    font-size: var(--body-2-size);
   }
 
   &.is-large {
-    font-size: $size-large;
+    font-size: $font-size-700;
   }
 
   &.is-centered {
@@ -560,9 +560,9 @@ $label-weight: $weight-bold;
 }
 
 .label {
-  color: getColor('neutral');
+  color: var(--text-disabled); 
   display: block;
-  font-size: $size-normal;
+  font-size: var(--body-1-size);
   font-weight: $label-weight;
 
   &:not(:last-child) {
@@ -571,11 +571,11 @@ $label-weight: $weight-bold;
 
   // Sizes
   &.is-small {
-    font-size: $size-small;
+    font-size: var(--body-2-size);
   }
 
   &.is-large {
-    font-size: $size-large;
+    font-size: $font-size-700;
   }
 }
 
@@ -585,8 +585,8 @@ $label-weight: $weight-bold;
   margin-top: 2.5px;
 
   @each $name, $pair in $colors-brand-functionnal {
-    $color: getColor($name);
-    $brandName: getColorBrandName($name);
+    $color: $pair;
+    $brandName: $name;
 
     &.is-#{$brandName} {
       color: $color;

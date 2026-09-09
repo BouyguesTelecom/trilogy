@@ -30,7 +30,7 @@ const ButtonList = React.forwardRef<ButtonListRef, ButtonListWebProps>(
         className={hashClass(
           styled,
           clsx(
-            'buttons',
+            'Buttons',
             className,
             align && is(getJustifiedClassName(align)),
             direction === ButtonListDirectionEnum.COLUMN && is('vertical'),

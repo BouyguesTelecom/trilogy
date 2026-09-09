@@ -1,11 +1,12 @@
+// 64/56/44/40/32px have no matching primitive, kept as literal values
 $price-levels: (
-  [$text-64, $text-44, $text-28, $text-16, $text-16],
-  [$text-56, $text-32, $text-22, $text-16, $text-16],
-  [$text-48, $text-28, $text-16, $text-16, $text-16],
-  [$text-40, $text-24, $text-10, $text-10, $text-14],
-  [$text-36, $text-20, $text-10, $text-10, $text-14],
-  [$text-24, $text-20, $text-10, $text-10, $text-10],
-  [$text-20, $text-20, $text-10, $text-10, $text-10],
+  [64px, 44px, $font-size-700, $font-size-200, $font-size-200],
+  [56px, 32px, $font-size-500, $font-size-200, $font-size-200],
+  [$font-size-900, $font-size-700, $font-size-200, $font-size-200, $font-size-200],
+  [40px, $font-size-600, $font-size-25, $font-size-25, $font-size-100],
+  [$font-size-800, $font-size-400, $font-size-25, $font-size-25, $font-size-100],
+  [$font-size-600, $font-size-400, $font-size-25, $font-size-25, $font-size-25],
+  [$font-size-400, $font-size-400, $font-size-25, $font-size-25, $font-size-25],
 );
 
 .price-container {
@@ -13,8 +14,8 @@ $price-levels: (
   align-items: baseline;
   column-gap: 12px;
   flex-wrap: wrap;
-  --font-size: #{$text-64};
-  --overline-size: #{$text-16};
+  --font-size: #{64px};
+  --overline-size: #{16px};
 
   @each $price-level in $price-levels {
     $i: index($price-levels, $price-level);
@@ -55,7 +56,7 @@ $price-levels: (
 
 .price {
   display: inline-flex;
-  font-weight: $weight-semibold;
+  font-weight: var(--font-weight-body-1-bold);
   line-height: 0.8;
   margin-bottom: 0;
   font-size: var(--font-size);
@@ -86,7 +87,7 @@ $price-levels: (
   // the details : cents + period
 
   .price-details {
-    padding-left: $spacing-1;
+    padding-left: var(--spacing-xxs);
 
     .cents,
     .centimes,
@@ -104,7 +105,7 @@ $price-levels: (
       text-align: left;
 
       sup {
-        font-weight: $weight-medium;
+        font-weight: $font-weight-medium;
         padding-left: 2px;
         top: -0.3em;
       }
@@ -116,12 +117,12 @@ $price-levels: (
       margin-top: 0;
       padding-left: 0.1em;
       text-align: left;
-        font-weight: $weight-normal;
+        font-weight: var(--font-weight-body-1);
     }
   }
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 
   &.has-description {
@@ -162,7 +163,7 @@ $price-levels: (
 
   &.strike {
     position: relative;
-    color: getColor('font-placeholder');
+    color: var(--text-disabled);
 
     &::before {
       position: absolute;
@@ -171,16 +172,16 @@ $price-levels: (
       top: 50%;
       right: 0;
       border-top: 2px solid;
-      border-color: getColor('font-placeholder');
-      border-radius: var(--radius-small);
+      border-color: var(--border-disabled); 
+      border-radius: var(--radius-sm);
       transform: rotate(-20deg);
     }
 
     &.is-inverted {
-      color: getColor('background');
+      color: var(--text-inverse);
 
       &::before {
-        border-color: getColor('background');
+        border-color: var(--border-inverse);
       }
     }
   }

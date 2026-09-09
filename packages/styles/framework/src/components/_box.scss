@@ -1,10 +1,9 @@
 @use 'sass:math';
-@import "../utilities/spacing";
 
 :root {
-  --padding-box: #{$spacing-5};
+  --padding-box: #{var(--spacing-lg)};
   @include mobile {
-    --padding-box: #{$spacing-4};
+    --padding-box: #{var(--spacing-md)};
   }
 }
 
@@ -13,7 +12,7 @@ $highlighted-border-width: 4px;
 
 a.box {
   cursor: pointer;
-  transition: box-shadow $animation-duration;
+  transition: box-shadow 0.3s;
 
   #{$hoverSelector},
   &:active,
@@ -23,9 +22,9 @@ a.box {
 }
 
 .box {
-  background-color: getColor('background');
+  background-color: var(--bg-primary);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -54,7 +53,7 @@ a.box {
 
   &.is-flat {
     box-shadow: none;
-    border: 1px solid #{getColor('stroke-fade')};
+    border: var(--border-style);
 
     .box-header {
       margin-top: calc(var(--padding-box) * -1 - 1px);
@@ -67,10 +66,10 @@ a.box {
     border-left: $highlighted-border-width solid transparent;
     border-top-left-radius: $highlighted-border-width;
     border-bottom-left-radius: $highlighted-border-width;
-    border-left-color: getColor('main');
+    border-left-color: var(--border);
     @each $name, $pair in $colors-brand-functionnal {
-      $color: getColor($name);
-      $brandName: getColorBrandName($name);
+      $color: $pair;
+      $brandName: $name;
 
       &.is-#{$brandName} {
         border-left-color: $color;
@@ -92,15 +91,15 @@ a.box {
 
     > .box-header {
       margin-left: calc(var(--padding-box) * -1 - $highlighted-border-width);
-      border-radius: $highlighted-border-width var(--radius) 0 0;
+      border-radius: $highlighted-border-width var(--radius-sm) 0 0;
 
     }
   }
 
   .box-header {
     z-index: inherit;
-    background-color: getColor('main');
-    color: getColor('background');
+    background-color: var(--bg-secondary);
+    color: var(--text-inverse);
     margin-top: calc(var(--padding-box) * -1);
     margin-left: calc(var(--padding-box) * -1);
     margin-right: calc(var(--padding-box) * -1);
@@ -112,8 +111,8 @@ a.box {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    font-weight: $weight-semibold;
-    border-radius: var(--radius) var(--radius) 0 0;
+    font-weight: var(--font-weight-body-1-bold);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     height: 40px;
 
     @include tablet {
@@ -144,14 +143,14 @@ a.box {
 
     &:first-child {
       margin-top: calc(var(--padding-box) * -1);
-      border-top-left-radius: var(--radius);
-      border-top-right-radius: var(--radius);
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
     }
 
     &:last-child {
       margin-bottom: calc(var(--padding-box) * -1);
-      border-bottom-left-radius: var(--radius);
-      border-bottom-right-radius: var(--radius);
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
     }
 
     > .is-unboxed {
@@ -169,14 +168,14 @@ a.box {
     margin-right: calc(var(--padding-box) * -1);
     margin-bottom: calc(var(--padding-box) * -1);
     padding: var(--padding-box);
-    border-bottom-left-radius: var(--radius);
-    border-bottom-right-radius: var(--radius);
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
   }
 
   .box-footer:not(.is-borderless):not([class*="has-background"])::before {
     content: '';
     display: block;
-    border-top: var(--border);
+    border-top: var(--border-style);
     position: relative;
     top: calc(var(--padding-box) * -1);
   }
