@@ -4,7 +4,6 @@ import { type ChildrenWithNoText } from "@/interfaces/ChildrenWithNoText";
 import { type Dev } from "@/interfaces/Dev";
 import { CommonProps } from "@/interfaces/CommonProps";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
 
 /**

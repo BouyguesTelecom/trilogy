@@ -47,6 +47,7 @@
     "./fileTransformer.cjs",
     "./package.json",
     "./coverage",
+    "**/*.native.test.tsx",
   ],
   "ts-node": {
     "compilerOptions": {

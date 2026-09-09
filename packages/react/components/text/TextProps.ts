@@ -9,7 +9,6 @@ import { Dev } from "@/interfaces/Dev";
 import { Invertable } from "@/interfaces/Invertable";
 import { CommonProps } from "@/interfaces/CommonProps";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
 
 type Typo =

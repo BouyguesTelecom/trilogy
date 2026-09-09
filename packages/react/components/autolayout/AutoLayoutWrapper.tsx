@@ -17,7 +17,6 @@ const AutoLayoutWrapper: React.FC<{
   } else if (autolayout) {
     return <AutoLayout matrix={autolayout}>{children}</AutoLayout>
   } else {
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     return <>{children}</>
   }
 }

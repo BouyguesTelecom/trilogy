@@ -5,11 +5,11 @@ import { Title, TitleLevels } from '@/components/title'
 import React, { useEffect, useRef, useState } from 'react'
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
 import { OtpNativeRef, OtpProps } from '@/components/otp/OtpProps'
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * OTP Code Component

@@ -7,7 +7,6 @@ import { Fullwidth } from "@/interfaces/Fullwidth";
 import { JustifiableProps } from "@/interfaces/Justifiable";
 import { Loadable } from "@/interfaces/Loadable";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
 
 export enum ViewMarkup {

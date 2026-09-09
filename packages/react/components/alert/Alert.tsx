@@ -89,7 +89,7 @@ const ToasterAlert = ({
       id={id}
       style={positionStyles}
       onClick={(e) => {
-        // eslint-disable-next-line no-unused-expressions
+
         onClick?.(e)
         e.stopPropagation()
       }}
@@ -158,7 +158,7 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
           ref={ref}
           id={id}
           onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
+
             onClick?.(e)
             e.stopPropagation()
           }}

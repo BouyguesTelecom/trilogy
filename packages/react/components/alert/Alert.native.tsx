@@ -80,7 +80,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
 
     // eslint-disable-next-line prefer-const
     alertView = (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
       <View style={[styles.container, (others as any).style]} ref={ref}>
         <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>
           <Column narrow>
