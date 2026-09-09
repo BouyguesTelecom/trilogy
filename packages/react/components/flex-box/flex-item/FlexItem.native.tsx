@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { FlexItemNativeRef, FlexItemProps } from '@/components/flex-box/flex-item/FlexItemProps'
-import { getAlignStyle } from '@/objects/facets/Alignable'
+import { getAlignStyle } from '@/helpers/alignable'
 import React from 'react'
 import { View, ViewStyle } from 'react-native'
-import { FlexBoxContext } from '../context'
+import { FlexBoxContext } from '@/components/flex-box/context'
 
 /**
  * FlexItem Component - FlexBox Child

@@ -1,10 +1,10 @@
-import Box from './Box'
-import BoxContent from './content'
-import BoxFooter from './footer'
-import BoxHeader from './header'
-import BoxTableContainer from './table-container'
-import BoxItem from './item'
-import { BoxItemSize } from './item/BoxItemEnum'
+import Box from '@/components/box/Box'
+import BoxContent from '@/components/box/content'
+import BoxFooter from '@/components/box/footer'
+import BoxHeader from '@/components/box/header'
+import BoxTableContainer from '@/components/box/table-container'
+import BoxItem from '@/components/box/item'
+import { BoxItemSize } from '@/components/box/item/BoxItemEnum'
 
 export * from './BoxProps'
 

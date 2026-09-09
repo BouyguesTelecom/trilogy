@@ -3,9 +3,12 @@ import React, { useId } from 'react'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
 import { Text } from '@/components/text'
-import { TrilogyColor, getColorStyle } from '@/objects'
 import { DimensionValue, StyleSheet, View } from 'react-native'
-import { useGauge } from './hook/useGauge'
+import { useGauge } from '@/components/input/gauge/hook/useGauge'
+import { TrilogyColor } from "@/interfaces/Color";
+import { getColorStyle } from "@/helpers/color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 interface InputGaugeProps {
   validationRules?: IValidationRules
@@ -35,10 +38,22 @@ const InputGauge = ({ validationRules, inputValue, securityRules }: InputGaugePr
     rules,
   } = useGauge({ validationRules, inputValue, securityRules })
 
+  const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
+
   return (
     <View>
-      <View style={[styles.containerGauge, { backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE) }]}>
-        <View style={[styles.gauge, { width: widthGauge as DimensionValue, backgroundColor: colorGauge() }]} />
+      <View
+        style={[
+          styles.containerGauge,
+          { backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE), borderRadius: borderSmallerRadius },
+        ]}
+      >
+        <View
+          style={[
+            styles.gauge,
+            { width: widthGauge as DimensionValue, backgroundColor: colorGauge(), borderRadius: borderSmallerRadius },
+          ]}
+        />
       </View>
       <View style={styles.verifies}>
         {validationRules && (
@@ -132,11 +147,9 @@ const styles = StyleSheet.create({
   containerGauge: {
     height: 4,
     width: '100%',
-    borderRadius: 4,
     marginVertical: 8,
   },
   gauge: {
     height: 4,
-    borderRadius: 4,
   },
 })

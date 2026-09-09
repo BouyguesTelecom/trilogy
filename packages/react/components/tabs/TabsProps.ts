@@ -1,6 +1,9 @@
-import { Accessibility, AlignableProps, Clickable, Dev } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { AlignableProps } from "@/interfaces/Alignable";
+import { Clickable } from "@/interfaces/Clickable";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 /**
  * Tabs Interface

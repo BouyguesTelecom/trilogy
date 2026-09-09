@@ -1,7 +1,7 @@
 import { getDefaultNormalizer, render, screen } from '@testing-library/react-native'
 import * as React from 'react'
-import { Text } from '../../text'
-import ProductTour from '../ProductTour'
+import { Text } from '@/components/text'
+import ProductTour from '@/components/product-tour/ProductTour'
 
 describe('ProductTour', () => {
   it('should render the product tour content', () => {

@@ -2,10 +2,13 @@ import { BadgePositionEnum } from '@/components/badge/BadgeEnum'
 import { BadgeNativeRef, BadgeProps } from '@/components/badge/BadgeProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
-import { StatusState } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StatusState } from "@/interfaces/Status";
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Badge Component
@@ -25,15 +28,12 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
     const styles = StyleSheet.create({
-      container: {
-        flexDirection: 'row',
-      },
       badge: {
         alignSelf: 'baseline',
         minWidth: label ? 20 : 10,
         height: label ? 20 : 10,
         backgroundColor: !inverted ? badgeColor : getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 30,
+        borderRadius: getRadiusStyle(Radius.FULL),
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -41,19 +41,13 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
         color: !inverted ? textColor : getColorStyle(variant || TrilogyColor.MAIN),
         fontSize: 10,
       },
-      textContent: {
-        fontSize: 15,
-        marginRight: 5,
-        marginLeft: 5,
-        color: getColorStyle(TrilogyColor.MAIN),
-      },
       iconStatus: {
         position: 'absolute',
         zIndex: 1000,
         backgroundColor: 'white',
         width: 16,
         minHeight: 16,
-        borderRadius: 15,
+        borderRadius: getRadiusStyle(Radius.FULL),
       },
       iconStatusPositionTopLeft: {
         top: -4,

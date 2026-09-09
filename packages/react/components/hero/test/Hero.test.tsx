@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react'
 import React from 'react'
 
 import Hero from '@/components/hero/Hero'
-import { VariantState } from '@/objects'
+import { VariantState } from "@/interfaces/Variant";
 
 describe('Hero', () => {
   it('renders children', () => {
@@ -20,9 +20,7 @@ describe('Hero', () => {
   it('sets background image if backgroundSrc is provided', () => {
     const { container } = render(<Hero backgroundSrc='/path/to/image.jpg'>My Hero Content</Hero>)
     const heroElement = container.querySelector('.hero')
-    expect(heroElement).toHaveStyle({
-      backgroundImage: 'url(/path/to/image.jpg)',
-    })
+    expect((heroElement as HTMLElement).style.backgroundImage).toContain('/path/to/image.jpg')
   })
 
   it('adds variant class to the root element if variant is provided', () => {

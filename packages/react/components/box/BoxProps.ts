@@ -1,11 +1,11 @@
 import { TouchableOpacity, type View } from 'react-native'
-import { BackgroundProps } from '../../objects/atoms/Background'
-import { Accessibility } from '../../objects/facets/Accessibility'
-import { Clickable } from '../../objects/facets/Clickable'
-import { TrilogyColor, TrilogyColorValues } from '../../objects/facets/Color'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { Dev } from '../../objects/facets/Dev'
-import { Fullheight } from '../../objects/facets/Fullheight'
+import { BackgroundProps } from "@/interfaces/Background";
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Clickable } from "@/interfaces/Clickable";
+import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
+import { Fullheight } from "@/interfaces/Fullheight";
 
 /**
  * Box Interface

@@ -1,8 +1,8 @@
 import { type View } from 'react-native'
-import { ClickEvent } from '../../events/OnClickEvent'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { CountdownFormat } from './CountdownEnum'
-import { Dev } from '@/objects/facets/Dev'
+import { CountdownFormat } from '@/components/countdown/CountdownEnum'
+import { ClickEvent } from "@/interfaces/OnClickEvent";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 /**
  * Countdown Interface

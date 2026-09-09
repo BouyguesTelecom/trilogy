@@ -3,12 +3,12 @@ import * as React from 'react'
 
 // Testing methods
 import { render, screen } from '@testing-library/react'
-import { getColorClassName } from '../../../objects'
-import { getEnumNames } from '../../../helpers'
-import { is } from '../../../services'
+import { getEnumNames } from '@/helpers/enumHelpers'
+import { getColorClassName } from '@/helpers/color'
+import { is } from '@/helpers/classify'
 
 // Component to test
-import { Tag, TagVariant } from '..'
+import { Tag, TagVariant } from '@/components/tag'
 
 describe('Tag component', () => {
   test('should contain toto as text', () => {

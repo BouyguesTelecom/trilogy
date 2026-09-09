@@ -35,7 +35,7 @@ $height-prompt-item: 64px;
         padding: 16px 16px 0px 16px !important;
         margin:0 !important;
         &-img {
-            border-radius: 8px;
+            border-radius: var(--radius);
             overflow: hidden;
         }
         &-file {
@@ -152,6 +152,6 @@ $height-prompt-item: 64px;
         background-color: getColor('background');
         height: 16px;
         width: 16px;
-        border-radius: 3px;
+        border-radius: var(--radius-smaller);
     }
 }

@@ -1,14 +1,18 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { View } from '@/components/view'
-import { getTypographyBoldStyle, TypographyBold } from '@/objects/Typography/TypographyBold'
-import { getButtonColorStyle, getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { getLoadingClassName } from '@/objects/facets/Loadable'
-import { getVariantClassName } from '@/objects/facets/Variant'
 import * as React from 'react'
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { ButtonVariant } from './ButtonEnum'
-import { ButtonNativeRef, ButtonProps } from './ButtonProps'
+import { ButtonVariant } from '@/components/button/ButtonEnum'
+import { ButtonNativeRef, ButtonProps } from '@/components/button/ButtonProps'
+import { getButtonColorStyle, getColorStyle } from '@/helpers/color'
+import { getLoadingClassName } from '@/helpers/loadable'
+import { getRadiusStyle } from '@/helpers/radius'
+import { getTypographyBoldStyle } from '@/helpers/typography'
+import { getVariantClassName } from '@/helpers/variant'
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 /**
  * Button Component
@@ -69,7 +73,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: getColorStyle(background),
-        borderRadius: 4,
+        borderRadius: getRadiusStyle(Radius.SMALLER),
         minHeight: 45,
         height: loading ? 52 : 'auto',
         borderColor: getColorStyle(borderColor),

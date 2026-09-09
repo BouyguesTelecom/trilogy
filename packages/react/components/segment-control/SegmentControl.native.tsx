@@ -1,11 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import SegmentedControlItem from './item'
-import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlProps'
+import SegmentedControlItem from '@/components/segment-control/item'
+import { SegmentControlNativeRef, SegmentControlProps } from '@/components/segment-control/SegmentControlProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * SegmentControl Component
@@ -16,6 +19,7 @@ import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlPr
 const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlProps>(
   ({ children, onClick, activeIndex, ...others }, ref): JSX.Element => {
     const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
+    const smallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const isActive = (index: number, childPropsActive: React.ReactNode) => {
       if (typeof childPropsActive !== 'undefined' && !activateIndex) {
@@ -42,7 +46,7 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
         flexDirection: 'row',
         width: '100%',
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 4,
+        borderRadius: smallerRadius,
         padding: 4,
         paddingRight: -4,
         borderWidth: 1,

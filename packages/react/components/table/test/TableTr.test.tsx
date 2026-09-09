@@ -1,18 +1,13 @@
-import * as React from "react";
-import { render } from "@testing-library/react";
-import TableTr from "../tr";
-import {
-  getBackgroundClassName,
-  getColorClassName,
-  TrilogyColor,
-} from "../../../objects";
-import { has, is } from "../../../services";
-import Table from "../Table";
-import TableBody from "../body";
-import TableTd from "../td";
+import * as React from 'react'
+import { render } from '@testing-library/react'
+import TableTr from '@/components/table/tr'
+import { is } from '@/helpers/classify'
+import Table from '@/components/table/Table'
+import TableBody from '@/components/table/body'
+import TableTd from '@/components/table/td'
 
-describe("TableTr", () => {
-  it("renders without error", () => {
+describe('TableTr', () => {
+  it('renders without error', () => {
     render(
       <Table>
         <TableBody>
@@ -20,25 +15,25 @@ describe("TableTr", () => {
             <TableTd>tr</TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-  });
+      </Table>,
+    )
+  })
 
-  it("renders with additional CSS classes", () => {
+  it('renders with additional CSS classes', () => {
     const { container } = render(
       <Table>
         <TableBody>
-          <TableTr className="custom-class">
+          <TableTr className='custom-class'>
             <TableTd>tr</TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-    const tr = container.querySelector("tr");
-    expect(tr).toHaveClass("custom-class");
-  });
+      </Table>,
+    )
+    const tr = container.querySelector('tr')
+    expect(tr).toHaveClass('custom-class')
+  })
 
-  it("renders with expandable class when expandable prop is true", () => {
+  it('renders with expandable class when expandable prop is true', () => {
     const { container } = render(
       <Table>
         <TableBody>
@@ -46,13 +41,13 @@ describe("TableTr", () => {
             <TableTd>tr</TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-    const tr = container.querySelector("tr");
-    expect(tr).toHaveClass(is("expandable"));
-  });
+      </Table>,
+    )
+    const tr = container.querySelector('tr')
+    expect(tr).toHaveClass(is('expandable'))
+  })
 
-  it("renders with expanded class when expanded prop is true", () => {
+  it('renders with expanded class when expanded prop is true', () => {
     const { container } = render(
       <Table>
         <TableBody>
@@ -60,13 +55,13 @@ describe("TableTr", () => {
             <TableTd>tr</TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-    const tr = container.querySelector("tr");
-    expect(tr).toHaveClass(is("expanded"));
-  });
+      </Table>,
+    )
+    const tr = container.querySelector('tr')
+    expect(tr).toHaveClass(is('expanded'))
+  })
 
-  it("renders with expansion class when expansion prop is true", () => {
+  it('renders with expansion class when expansion prop is true', () => {
     const { container } = render(
       <Table>
         <TableBody>
@@ -74,9 +69,9 @@ describe("TableTr", () => {
             <TableTd>tr</TableTd>
           </TableTr>
         </TableBody>
-      </Table>
-    );
-    const tr = container.querySelector("tr");
-    expect(tr).toHaveClass(is("expansion"));
-  });
-});
+      </Table>,
+    )
+    const tr = container.querySelector('tr')
+    expect(tr).toHaveClass(is('expansion'))
+  })
+})

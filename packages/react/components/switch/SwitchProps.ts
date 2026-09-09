@@ -1,7 +1,7 @@
-import { StatusProps } from '../../objects/facets/Status'
-import { CommonProps } from '../../objects/facets/CommonProps'
 import { Switch } from 'react-native'
-import { Dev } from '@/objects/facets/Dev'
+import { StatusProps } from "@/interfaces/Status";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 export interface SwitchChangeEvent {
   switchState: boolean

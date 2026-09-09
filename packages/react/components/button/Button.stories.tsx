@@ -1,12 +1,12 @@
 import { IconName } from '@/components/icon'
-import { Alignable } from '@/objects/facets/Alignable'
 import type { Meta, StoryObj } from '@storybook/react'
-import ButtonComponent from './Button'
-import { ButtonMarkup, ButtonType, ButtonVariant } from './ButtonEnum'
-import type { ButtonProps } from './ButtonProps'
-import { ButtonList } from './list'
-import { ButtonListDirectionEnum } from './list/ButtonListEnum'
+import ButtonComponent from '@/components/button/Button'
+import { ButtonMarkup, ButtonType, ButtonVariant } from '@/components/button/ButtonEnum'
+import type { ButtonProps } from '@/components/button/ButtonProps'
+import { ButtonList } from '@/components/button/list'
+import { ButtonListDirectionEnum } from '@/components/button/list/ButtonListEnum'
 import React from 'react'
+import { Alignable } from "@/interfaces/Alignable";
 
 ButtonComponent.displayName = 'Button'
 

@@ -1,12 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useContext, useEffect, useState } from 'react'
 import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
-import { Icon, IconColor, IconName, IconSize } from '../icon'
-import { ChipsNativeRef, ChipsProps } from './ChipsProps'
-import { ChipsContext } from './list/ChipsList.native'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
+import { ChipsNativeRef, ChipsProps } from '@/components/chips/ChipsProps'
+import { ChipsContext } from '@/components/chips/list/ChipsList.native'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -21,6 +24,7 @@ const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
   ({ children, onClick, disabled, active, testId, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const chipsContext = useContext(ChipsContext)
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
 
     useEffect(() => {
       setActiveItem(active || false)
@@ -32,7 +36,7 @@ const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
           (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
           (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
           getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 30,
+        borderRadius: borderFullRadius,
         paddingLeft: 12,
         paddingRight: 12,
         paddingTop: 6,

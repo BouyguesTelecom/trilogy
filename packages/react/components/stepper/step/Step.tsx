@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services/classify'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { StepProps, StepRef } from './StepProps'
+import { StepProps, StepRef } from '@/components/stepper/step/StepProps'
 
 /**
  * Stepper Step Component

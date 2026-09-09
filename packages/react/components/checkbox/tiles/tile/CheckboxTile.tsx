@@ -2,13 +2,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Sticker } from '@/components/sticker'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { VariantState } from '@/objects'
-import { is } from '@/services/classify'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { useEffect, useState } from 'react'
-import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
+import { CheckboxTileProps, CheckboxTileRef } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
+import { VariantState } from '@/interfaces/Variant'
 
 /**
  * CheckboxTile
@@ -55,10 +54,10 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const [_checked, setChecked] = useState<boolean>(checked || false)
+    const [_checked, setChecked] = React.useState<boolean>(checked || false)
     const refInput = React.useRef<HTMLInputElement>(null)
 
-    useEffect(() => {
+    React.useEffect(() => {
       if (!readonly) {
         setChecked(checked || false)
       }

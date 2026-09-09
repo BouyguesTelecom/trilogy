@@ -1,9 +1,9 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { RangeProps, RangeRef } from './RangeProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { RangeProps, RangeRef } from '@/components/range/RangeProps'
 
 /**
  * Range Component

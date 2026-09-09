@@ -7,7 +7,7 @@ import { render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 // Component to test
-import { Breadcrumb } from '..'
+import { Breadcrumb } from '@/components/breadcrumb'
 
 describe('Breadcrumb component', () => {
   test('should have a Breadcrumb in document', () => {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
-import ProductTour from "../ProductTour";
+import ProductTour from "@/components/product-tour/ProductTour";
 
 describe("ProductTour", () => {
   it("should render the product tour content", () => {

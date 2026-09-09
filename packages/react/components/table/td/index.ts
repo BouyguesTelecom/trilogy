@@ -1,3 +1,3 @@
-import TableTd from './TableTd'
+import TableTd from '@/components/table/td/TableTd'
 
 export default TableTd

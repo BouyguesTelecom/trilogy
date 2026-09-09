@@ -1,6 +1,6 @@
 import * as React from "react"
 import { StyleSheet, Text, View } from "react-native"
-import { TableBodyNativeRef, TableBodyProps } from "./TableBodyProps"
+import { TableBodyNativeRef, TableBodyProps } from "@/components/table/body/TableBodyProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**

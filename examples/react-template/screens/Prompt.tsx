@@ -1,4 +1,4 @@
-import { TrilogyColor } from '@/objects'
+import { TrilogyColor } from '@/interfaces'
 import {
   Prompt,
   PromptFile,

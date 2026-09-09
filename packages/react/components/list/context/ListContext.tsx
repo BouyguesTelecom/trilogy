@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListContextProps } from './ListContextProps'
+import { ListContextProps } from '@/components/list/context/ListContextProps'
 
 export const ListContext = React.createContext<ListContextProps>({
   divider: false,

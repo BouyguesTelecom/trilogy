@@ -3,10 +3,14 @@ import { Spacer, SpacerSize } from '@/components/spacer'
 import { StatesContext } from '@/context/providerStates'
 import React, { useContext, useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Alignable, getColorStyle, getTypographyBoldStyle, TrilogyColor, TypographyBold } from '../../objects'
-import { PriceLevel } from './PriceEnum'
-import { checkCents } from './PriceHelpers'
-import { PriceNativeRef, PriceProps } from './PriceProps'
+import { PriceLevel } from '@/components/price/PriceEnum'
+import { checkCents } from '@/components/price/PriceHelpers'
+import { PriceNativeRef, PriceProps } from '@/components/price/PriceProps'
+import { Alignable } from "@/interfaces/Alignable";
+import { getColorStyle } from "@/helpers/color";
+import { getTypographyBoldStyle } from "@/helpers/typography";
+import { TrilogyColor } from "@/interfaces/Color";
+import { TypographyBold } from "@/interfaces/TypographyBold";
 
 /**
  * Price Component
@@ -47,14 +51,18 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
     const isNegative = amount ? amount < 0 : false
     const absoluteAmount = amount ? Math.abs(amount) : 0
     const absoluteWhole = Math.floor(absoluteAmount)
-    const whole = isNegative ? (absoluteWhole === 0 ? "-0" : -absoluteWhole) : absoluteWhole
+    const whole = isNegative ? (absoluteWhole === 0 ? '-0' : -absoluteWhole) : absoluteWhole
 
     const cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
 
     const isNegativeStriked = oldAmount && oldAmount < 0
     const absoluteAmountStriked = oldAmount && Math.abs(oldAmount)
     const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
-    const wholeStriked = isNegativeStriked ? (absoluteWholeStriked === 0 ? "-0": -(absoluteWholeStriked as number)) : absoluteWholeStriked
+    const wholeStriked = isNegativeStriked
+      ? absoluteWholeStriked === 0
+        ? '-0'
+        : -(absoluteWholeStriked as number)
+      : absoluteWholeStriked
 
     const centsStriked =
       absoluteAmountStriked && checkCents(absoluteAmountStriked.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
@@ -202,11 +210,6 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
       periodFontSizeStriked: {
         fontSize: centsLevelStriked,
       },
-      inlinePeriod: {
-        color: color,
-        fontSize: priceLevel,
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
-      },
       striked: {
         position: 'absolute',
         height: 1,
@@ -223,47 +226,7 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
         marginBottom: -3,
         color: color,
         textAlign:
-          (align === Alignable.ALIGNED_CENTER && 'center') ||
-          (align === Alignable.ALIGNED_END && 'right') ||
-          'left',
-      },
-      tag: {
-        paddingTop:
-          (level && level > 3 && 1) ||
-          (level && level == 1 && 16) ||
-          (level && level == 2 && 12) ||
-          (level && level == 3 && 10) ||
-          10,
-        paddingBottom:
-          (level && level > 3 && 1) ||
-          (level && level == 1 && 16) ||
-          (level && level == 2 && 12) ||
-          (level && level == 3 && 10) ||
-          10,
-        paddingRight: level && level < 4 ? 10 : 6,
-        paddingLeft: level && level < 4 ? 10 : 6,
-        padding: level && level > 3 ? 4 : 8,
-        borderRadius: 6,
-        backgroundColor: getColorStyle(TrilogyColor.ACCENT),
-        flexDirection: 'row',
-      },
-      tagArrow: {
-        width: level && level > 3 ? 8 : 10,
-        height: level && level > 3 ? 8 : 10,
-        backgroundColor: getColorStyle(TrilogyColor.ACCENT),
-        borderRadius: level && level > 3 ? 2 : 3,
-        transform: [{ rotate: '45deg' }],
-        marginRight: level && level > 3 ? -5 : -6,
-      },
-      tagTextAmount: {
-        lineHeight: 0,
-        fontSize: (level && level == 1 && 24) || (level && level == 2 && 18) || (level && level == 3 && 16) || 11,
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
-      },
-      tagTextPeriod: {
-        alignSelf: level && level < 4 ? 'flex-end' : 'center',
-        fontSize: (level && level == 1 && 13) || (level && level == 2 && 10) || (level && level == 3 && 8) || 11,
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+          (align === Alignable.ALIGNED_CENTER && 'center') || (align === Alignable.ALIGNED_END && 'right') || 'left',
       },
     })
 

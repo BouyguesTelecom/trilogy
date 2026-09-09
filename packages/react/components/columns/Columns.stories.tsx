@@ -1,10 +1,10 @@
-import { Alignable } from '@/objects/facets/Alignable'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import Column from './column/Column'
-import ColumnsComponent from './Columns'
-import type { ColumnsProps } from './ColumnsProps'
-import { ColumnsSize, GapSize } from './ColumnsTypes'
+import Column from '@/components/columns/column/Column'
+import ColumnsComponent from '@/components/columns/Columns'
+import type { ColumnsProps } from '@/components/columns/ColumnsProps'
+import { ColumnsSize, GapSize } from '@/components/columns/ColumnsTypes'
+import { Alignable } from "@/interfaces/Alignable";
 
 ColumnsComponent.displayName = 'Columns'
 Column.displayName = 'Column'

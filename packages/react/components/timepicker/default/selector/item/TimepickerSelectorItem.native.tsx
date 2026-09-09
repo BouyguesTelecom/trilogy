@@ -1,8 +1,8 @@
 import { Text } from '@/components/text'
-import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
-import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import React, { useMemo } from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
+import { TypographyAlign } from "@/interfaces/TypographyAlign";
+import { TypographyColor } from "@/interfaces/TypographyColor";
 
 interface SelectItem {
   label: string

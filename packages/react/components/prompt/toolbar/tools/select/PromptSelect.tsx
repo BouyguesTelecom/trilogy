@@ -5,7 +5,7 @@ import { SelectProps } from '@/components/select/SelectProps'
 import { useTrilogyContext } from '@/context'
 import clsx from 'clsx'
 import React, { useContext, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { PromptSelectRef } from './PromptSelectProps'
+import { PromptSelectRef } from '@/components/prompt/toolbar/tools/select/PromptSelectProps'
 
 const PADDING_SELECT_OPTION = 58
 

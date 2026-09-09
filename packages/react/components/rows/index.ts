@@ -1,4 +1,4 @@
-import Rows from './Rows'
-import Row from './row'
+import Rows from '@/components/rows/Rows'
+import Row from '@/components/rows/row'
 
 export { Rows, Row }

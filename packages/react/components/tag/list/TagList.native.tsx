@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TagListNativeRef, TagListProps } from './TagListProps'
+import { TagListNativeRef, TagListProps } from '@/components/tag/list/TagListProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -14,14 +14,7 @@ const TagList = React.forwardRef<TagListNativeRef, TagListProps>(({ children, ..
       width: '100%',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      gap: 4
-    },
-    centered: {
-      alignSelf: 'center',
-    },
-    gapless: {
-      margin: 0,
-      padding: 0,
+      gap: 4,
     },
   })
 

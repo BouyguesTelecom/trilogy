@@ -2,11 +2,11 @@ import { ColumnsProps, ColumnsRef } from '@/components/columns/ColumnsProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getAlignClassName } from '@/objects/facets/Alignable'
-import { getJustifiedClassName } from '@/objects/facets/Justifiable'
-import { has, is } from '@/services/classify'
+import { getAlignClassName } from '@/helpers/alignable'
+import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
+import { getJustifiedClassName } from "@/helpers/justifiable";
 
 /**
  * Columns Component
@@ -27,7 +27,21 @@ import React from 'react'
  */
 const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(
   (
-    { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, fullheight, testId, ...others },
+    {
+      className,
+      id,
+      multiline,
+      scrollable,
+      mobile,
+      gap,
+      fullBleed,
+      marginless,
+      align,
+      verticalAlign,
+      fullheight,
+      testId,
+      ...others
+    },
     ref,
   ) => {
     const { styled } = useTrilogyContext()

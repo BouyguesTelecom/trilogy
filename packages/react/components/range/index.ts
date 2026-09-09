@@ -1,3 +1,3 @@
-import Range from './Range'
+import Range from '@/components/range/Range'
 
 export { Range }

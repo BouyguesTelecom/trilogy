@@ -348,7 +348,7 @@ $gap: 4px,
 
       &::-webkit-scrollbar-track {
         background-color: getColor('neutral');
-        border-radius: 8px;
+        border-radius: var(--radius);
         margin: 0 8px;
       }
 

@@ -1,10 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { createContext, PropsWithChildren } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Skeleton } from '../skeleton'
-import { CardNativeRef, CardProps } from './CardProps'
+import { Skeleton } from '@/components/skeleton'
+import { CardNativeRef, CardProps } from '@/components/card/CardProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 export const CardContext = createContext({
   floating: false,
@@ -33,7 +36,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
     ref,
   ): JSX.Element => {
     const borderColor = getColorStyle(TrilogyColor.STROKE_FADE)
-    const cardRadius = 6
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
     const styles = StyleSheet.create({
       card: {
         width: '100%',
@@ -44,7 +47,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
           (active && getColorStyle(TrilogyColor.MAIN)) ||
           (active === false && getColorStyle(TrilogyColor.NEUTRAL)) ||
           'transparent',
-        borderRadius: cardRadius,
+        borderRadius: borderSmallRadius,
         flex: fullheight ? 1 : 0,
         overflow: 'hidden',
         backgroundColor: getColorStyle(floating ? 'transparent' : TrilogyColor.BACKGROUND),
@@ -54,7 +57,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
         maxWidth: '100%',
       },
       shadow: {
-        borderRadius: cardRadius,
+        borderRadius: borderSmallRadius,
         backgroundColor: getColorStyle(floating ? 'transparent' : TrilogyColor.BACKGROUND),
         shadowColor: Platform.OS === 'android' ? 'rgba(0, 0, 0, 0.45)' : 'rgba(0,0,0,0.1)',
         shadowOffset: { width: 0, height: 0 },
@@ -67,7 +70,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
         minHeight: 50,
         backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
         overflow: 'hidden',
-        borderRadius: cardRadius,
+        borderRadius: borderSmallRadius,
       },
       reversed: {
         flexDirection: 'column-reverse',
@@ -75,7 +78,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
     })
 
     const CardSkeleton = () => (
-      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={cardRadius} testID='skeleton-id'>
+      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={borderSmallRadius} testID='skeleton-id'>
         {children}
       </Skeleton>
     )

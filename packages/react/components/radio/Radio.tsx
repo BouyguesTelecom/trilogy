@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Radio Component

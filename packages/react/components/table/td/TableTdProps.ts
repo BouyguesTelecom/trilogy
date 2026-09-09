@@ -1,6 +1,7 @@
 import { View } from 'react-native'
-import { Clickable, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { Clickable } from "@/interfaces/Clickable";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 export interface TableTdProps extends Clickable, CommonProps, Dev {
   children: React.ReactNode

@@ -4,8 +4,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroProps, HeroRef } from '@/components/hero/HeroProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { has, is } from '@/services/classify'
+import { has, is } from '@/helpers/classify'
+import { getBackgroundClassName } from "@/helpers/background";
 
 /**
  * Hero Component

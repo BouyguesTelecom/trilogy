@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { BoxTableContainerNativeRef, BoxTableContainerProps } from './BoxTableContainerProps'
+import { BoxTableContainerNativeRef, BoxTableContainerProps } from '@/components/box/table-container/BoxTableContainerProps'
 
 /**
  * Box Table Component
@@ -10,12 +10,8 @@ import { BoxTableContainerNativeRef, BoxTableContainerProps } from './BoxTableCo
  */
 const boxTableContainer = React.forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const styles = StyleSheet.create({
-      boxTableContainer: {},
-    })
-
     return (
-      <View ref={ref} style={[styles.boxTableContainer]} {...others} testID={testId}>
+      <View ref={ref} {...others} testID={testId}>
         {children}
       </View>
     )

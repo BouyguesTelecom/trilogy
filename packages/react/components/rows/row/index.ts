@@ -1,3 +1,3 @@
-import Row from './Row'
+import Row from '@/components/rows/row/Row'
 
 export default Row

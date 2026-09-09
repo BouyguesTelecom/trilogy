@@ -1,6 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid } from '@/helpers/device.native'
-import { Alignable, getColorStyle, TrilogyColor } from '@/objects'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Dimensions,
@@ -16,11 +15,16 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler'
-import { Column, Columns } from '../columns'
-import { Icon, IconName, IconSize } from '../icon'
-import { Title } from '../title'
-import { ModalNativeRef, ModalProps } from './ModalProps'
-import { ModalContext } from './context/ModalContext'
+import { Column, Columns } from '@/components/columns'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { Title } from '@/components/title'
+import { ModalNativeRef, ModalProps } from '@/components/modal/ModalProps'
+import { ModalContext } from '@/components/modal/context/ModalContext'
+import { Alignable } from "@/interfaces/Alignable";
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height
 const DISMISS_THRESHOLD = 150
@@ -61,6 +65,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
 
     const translateY = useSharedValue(SCREEN_HEIGHT)
     const backdropOpacity = useSharedValue(0)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     const onCloseRef = useRef(onClose)
     onCloseRef.current = onClose
@@ -159,7 +164,16 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
             </Animated.View>
             <Animated.View
               ref={ref}
-              style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }, animatedStyle, isAndroid ? { paddingBottom: bottomInset } : {}]}
+              style={[
+                styles.body,
+                {
+                  backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+                  borderTopLeftRadius: borderSmallRadius,
+                  borderTopRightRadius: borderSmallRadius,
+                },
+                animatedStyle,
+                isAndroid ? { paddingBottom: bottomInset } : {},
+              ]}
               {...others}
             >
               <GestureDetector gesture={panGesture}>
@@ -207,7 +221,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
   },
 })

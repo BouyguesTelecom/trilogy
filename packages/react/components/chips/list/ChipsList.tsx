@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ChipsListProps, ChipsListRef } from './ChipsListProps'
+import { ChipsListProps, ChipsListRef } from '@/components/chips/list/ChipsListProps'
 
 /**
  * ChipsList Component - Container for Chips
@@ -27,7 +27,15 @@ const ChipsList = React.forwardRef<ChipsListRef, ChipsListProps>(
     )
 
     return (
-      <div ref={ref} id={id} role='group' aria-labelledby={accessibilityLabelledBy} className={classes} data-testid={testId} {...others}>
+      <div
+        ref={ref}
+        id={id}
+        role='group'
+        aria-labelledby={accessibilityLabelledBy}
+        className={classes}
+        data-testid={testId}
+        {...others}
+      >
         {children}
       </div>
     )

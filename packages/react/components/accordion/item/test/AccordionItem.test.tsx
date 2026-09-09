@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
-import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from '../../index'
+import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from '@/components/accordion'
 
 describe('AccordionItem', () => {
   it('should render correctly', () => {

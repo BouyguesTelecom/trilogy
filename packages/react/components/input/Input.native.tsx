@@ -2,10 +2,6 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import { TypographyColor } from '@/objects'
-import { Align } from '@/objects/facets/Alignable'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { StatusState } from '@/objects/facets/Status'
 import React, { useCallback, useEffect, useState } from 'react'
 import {
   Keyboard,
@@ -16,7 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { Spacer, SpacerSize } from '../spacer'
+import { Spacer, SpacerSize } from '@/components/spacer'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
@@ -24,9 +20,16 @@ import {
   InputStatus,
   InputTextContentType,
   InputType,
-} from './InputEnum'
-import { InputNativeEvents, InputNativeRef, InputProps } from './InputProps'
-import InputGauge from './gauge/InputGauge.native'
+} from '@/components/input/InputEnum'
+import { InputNativeEvents, InputNativeRef, InputProps } from '@/components/input/InputProps'
+import InputGauge from '@/components/input/gauge/InputGauge.native'
+import { TypographyColor } from "@/interfaces/TypographyColor";
+import { Align } from "@/interfaces/Alignable";
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { StatusState } from "@/interfaces/Status";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
@@ -112,6 +115,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
     inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
     inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
     inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const [value, setValue] = useState<string>(defaultValue || '')
     const [email, setEmail] = useState<string>('')
@@ -196,7 +200,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
         alignSelf: 'stretch',
         backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
         borderWidth: isFocused ? 2 : 1,
-        borderRadius: 3,
+        borderRadius: borderSmallerRadius,
         borderColor:
           (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
           (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||

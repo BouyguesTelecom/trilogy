@@ -4,11 +4,11 @@ import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListProps, TabListRef } from '@/components/tabs/tab-list/TabListProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getAlignClassName } from '@/objects/facets/Alignable'
-import { is } from '@/services'
+import { getAlignClassName } from '@/helpers/alignable'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, { useMemo } from 'react'
-import { TabsContext } from '../context'
+import { TabsContext } from '@/components/tabs/context'
 
 /**
  * Tabs Nav Component

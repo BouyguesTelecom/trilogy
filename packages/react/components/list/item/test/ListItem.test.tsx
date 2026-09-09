@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
-import ListItem from '../ListItem'
-import { ListIconStatus } from '../ListItemProps'
+import ListItem from '@/components/list/item/ListItem'
+import { ListIconStatus } from '@/components/list/item/ListItemProps'
 
 describe('ListItem', () => {
   it('should render correctly with description', () => {

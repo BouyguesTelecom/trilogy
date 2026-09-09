@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { BoxItemNativeRef, BoxItemProps } from './BoxItemProps'
+import { BoxItemNativeRef, BoxItemProps } from '@/components/box/item/BoxItemProps'
 
 /**
  * Box Item Component

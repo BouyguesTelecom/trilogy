@@ -1,7 +1,6 @@
 import { Row, Rows, Spacer, SpacerSize } from '@trilogy-ds/react'
 import { Box, BoxContent, Divider, IconName, Section, Text } from '@trilogy-ds/react/components'
 import { GapSize } from '@trilogy-ds/react/lib/components/columns/ColumnsTypes'
-import * as React from 'react'
 
 export const DividerScreen = (): JSX.Element => {
   return (
@@ -18,7 +17,7 @@ export const DividerScreen = (): JSX.Element => {
       <Spacer size={SpacerSize.EIGHT} />
 
       <Box>
-        <Divider iconName={IconName.EYE_SLASH}  />
+        <Divider iconName={IconName.EYE_SLASH} />
         <Text>Lorem ipsum dolor sit amet</Text>
       </Box>
       <Box>

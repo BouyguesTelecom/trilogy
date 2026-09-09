@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ProductTourNativeRef, ProductTourProps } from "./ProductTourProps"
+import { ProductTourNativeRef, ProductTourProps } from "@/components/product-tour/ProductTourProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 import { View } from "react-native"
 

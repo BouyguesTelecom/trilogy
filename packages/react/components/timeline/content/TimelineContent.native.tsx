@@ -4,9 +4,9 @@ import { Link } from '@/components/link'
 import { Text, TextLevels } from '@/components/text'
 import { TimelineContentNativeRef, TimelineContentProps } from '@/components/timeline/content/TimelineContentProps'
 import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
-import { TypographyColor } from '@/objects'
 import React, { useContext } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { TypographyColor } from "@/interfaces/TypographyColor";
 
 /**
  * Timeline Content Component

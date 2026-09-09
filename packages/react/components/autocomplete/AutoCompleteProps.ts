@@ -5,8 +5,8 @@ import {
   InputChangeEventWeb,
   InputClickEvent,
   InputProps,
-} from '../../components/input/InputProps'
-import { CommonProps } from '../../objects/facets/CommonProps'
+} from '@/components/input/InputProps'
+import { CommonProps } from "@/interfaces/CommonProps";
 
 /**
  * AutoComplete Interface

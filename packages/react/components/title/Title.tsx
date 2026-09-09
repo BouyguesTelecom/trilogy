@@ -1,11 +1,11 @@
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
-import { TitleProps, TitleRef } from './TitleProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from '@/components/title/TitleEnum'
+import { TitleProps, TitleRef } from '@/components/title/TitleProps'
 
 const getTitleLevel = (level: TitleLevelValues | TitleLevels) => {
   if (level) {

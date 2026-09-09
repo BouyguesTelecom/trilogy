@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { AccordionBodyProps, AccordionBodyRef } from './AccordionBodyProps'
+import { AccordionBodyProps, AccordionBodyRef } from '@/components/accordion/item/body/AccordionBodyProps'
 
 /**
  * Accordion Body Component

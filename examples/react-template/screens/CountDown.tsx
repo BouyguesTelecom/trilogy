@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Box, BoxContent, Countdown, CountdownFormat, Section, Spacer, SpacerSize } from '@trilogy-ds/react/components'
 import { TrilogyColor } from '@trilogy-ds/react'
 

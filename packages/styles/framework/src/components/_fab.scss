@@ -1,6 +1,6 @@
 .fab {
   background-color: getColor('font');
-  border-radius: 16px;
+  border-radius: var(--radius-large);
   cursor: pointer;
   height: 56px;
   padding: $spacing-4;

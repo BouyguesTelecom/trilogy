@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
-import Otp from '../Otp'
+import Otp from '@/components/otp/Otp'
 
 describe('Otp', () => {
   const defaultProps = {

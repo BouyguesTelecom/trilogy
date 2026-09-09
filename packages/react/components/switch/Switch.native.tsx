@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getStatusStyle } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getColorStyle } from '@/helpers/color'
+import { getStatusStyle } from '@/helpers/status'
+import { getRadiusStyle } from '@/helpers/radius'
 import React, { useEffect, useState } from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 import Animated, {
@@ -10,7 +11,9 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated'
-import { SwitchNativeRef, SwitchProps } from './SwitchProps'
+import { SwitchNativeRef, SwitchProps } from '@/components/switch/SwitchProps'
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
 
 const TRACK_WIDTH = 44
 const TRACK_HEIGHT = 22
@@ -35,6 +38,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
     const backgroundColorDisabled = getColorStyle(TrilogyColor.DISABLED)
     const thumbColor = getColorStyle(TrilogyColor.BACKGROUND)
     const statusColor = getStatusStyle(status).color
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
     const trackColorOff = disabled ? backgroundColorDisabled : backgroundColorOff
     const trackColorOn = disabled ? backgroundColorDisabled : statusColor
 
@@ -43,7 +47,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
       const colorValue = withTiming(color, { duration: 200 })
       return {
         backgroundColor: colorValue,
-        borderRadius: height.value / 2,
+        borderRadius: borderFullRadius,
       }
     })
 
@@ -52,7 +56,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
       const translateValue = withTiming(moveValue, { duration: 200 })
       return {
         transform: [{ translateX: translateValue }],
-        borderRadius: height.value / 2,
+        borderRadius: borderFullRadius,
       }
     })
 

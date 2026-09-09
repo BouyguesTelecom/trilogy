@@ -1,11 +1,11 @@
 import { TabsProps, TabsRef } from '@/components/tabs/TabsProps'
 import { TabsContext } from '@/components/tabs/context'
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Tabs Component

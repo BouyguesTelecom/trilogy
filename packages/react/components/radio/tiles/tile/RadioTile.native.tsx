@@ -4,13 +4,17 @@ import { RadioTileNativeProps, RadioTileNativeRef } from '@/components/radio/til
 import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
-import { VariantState } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TypographyAlign, TypographyColor } from '@/objects/Typography'
-import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { RadioTilesContext } from '../context'
+import { RadioTilesContext } from '@/components/radio/tiles/context'
+import { VariantState } from "@/interfaces/Variant";
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { TypographyAlign } from "@/interfaces/TypographyAlign";
+import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyBold } from "@/interfaces/TypographyBold";
+import { getRadiusStyle } from "@/helpers/radius";
+import { Radius } from "@/interfaces/Radius";
 
 /**
  * radioTile Component
@@ -50,6 +54,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
   ): JSX.Element => {
     const { isGrid } = useContext(RadioTilesContext)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     const styles = StyleSheet.create({
       container: {
@@ -59,7 +64,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
         borderWidth: checked ? 2 : 1,
         alignItems: 'center',
         gap: SpacerSize.THREE,
-        borderRadius: 6,
+        borderRadius: borderSmallRadius,
         padding: !checked ? SpacerSize.FOUR : SpacerSize.FOUR - 1,
         maxWidth: horizontal || isGrid ? undefined : '50%',
         backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),
@@ -143,13 +148,15 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
 )
 
 const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boolean }): JSX.Element => {
+  const borderFullRadius = getRadiusStyle(Radius.FULL)
+
   const styles = StyleSheet.create({
     input: {
       marginRight: 'auto',
       width: 18,
       height: 18,
       borderWidth: 1,
-      borderRadius: 18,
+      borderRadius: borderFullRadius,
       justifyContent: 'center',
       alignItems: 'center',
       borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.STROKE),
@@ -157,7 +164,7 @@ const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boole
     inputRadio: {
       width: 12,
       height: 12,
-      borderRadius: 12,
+      borderRadius: borderFullRadius,
       backgroundColor: getColorStyle(
         disabled && checked
           ? TrilogyColor.DISABLED

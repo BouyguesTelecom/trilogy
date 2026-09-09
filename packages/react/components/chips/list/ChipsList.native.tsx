@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import React, { createContext } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
-import { ChipsListNativeRef, ChipsListProps } from './ChipsListProps'
+import { ChipsListNativeRef, ChipsListProps } from '@/components/chips/list/ChipsListProps'
 
 export const ChipsContext = createContext({ isMultiple: false })
 

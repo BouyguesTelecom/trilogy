@@ -1,11 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
-import { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { BoxContext } from '../context/boxContext'
-import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
+import { BoxContext } from '@/components/box/context/boxContext'
+import { BoxHeaderNativeRef, BoxHeaderProps } from '@/components/box/header/BoxHeaderProps'
+import { getColorStyle } from '@/helpers/color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Box Header Component
@@ -16,8 +18,8 @@ import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
  */
 const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
   ({ children, variant, testId, ...others }, ref): JSX.Element => {
-    const statesContext = useContext(StatesContext)
-    const boxContext = useContext(BoxContext)
+    const statesContext = React.useContext(StatesContext)
+    const boxContext = React.useContext(BoxContext)
     const centered = false
     const pulledLeft = false
     const pulledRight = false
@@ -25,6 +27,8 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
 
     const headerBgc = variant ? getColorStyle(variant) : getColorStyle(TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const styles = StyleSheet.create({
       boxHeader: {
@@ -32,8 +36,8 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
         backgroundColor: headerBgc,
         padding: 10,
         paddingLeft: 16,
-        borderTopLeftRadius: boxContext?.highlighted ? 4 : 6,
-        borderTopRightRadius: 6,
+        borderTopLeftRadius: boxContext?.highlighted ? borderSmallerRadius : borderSmallRadius,
+        borderTopRightRadius: borderSmallRadius,
         marginTop: (statesContext.active && -2) || (statesContext.flat && -1) || 0,
         justifyContent: 'space-between',
         alignItems:

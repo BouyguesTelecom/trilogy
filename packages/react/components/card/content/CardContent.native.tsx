@@ -2,7 +2,7 @@ import { CardContext } from '@/components/card/Card.native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { CardContentNativeRef, CardContentProps } from './CardContentProps'
+import { CardContentNativeRef, CardContentProps } from '@/components/card/content/CardContentProps'
 
 /**
  * Card Content Component

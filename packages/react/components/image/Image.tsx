@@ -1,11 +1,11 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getJustifiedClassName } from '@/objects'
-import { has, is } from '@/services'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { ImageProps, ImageRef } from './ImageProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ImageProps, ImageRef } from '@/components/image/ImageProps'
+import { getJustifiedClassName } from '@/helpers/justifiable'
 
 /**
  * Image Component
@@ -19,7 +19,7 @@ import { ImageProps, ImageRef } from './ImageProps'
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param radius {RadiusValues} Image border radius size
+ * @param radius {Radius} Image border radius size
  * @param align {Alignable} Image alignment
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param cache {ImageCache} Caching strategy for the image

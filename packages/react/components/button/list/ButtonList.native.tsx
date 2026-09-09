@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { View } from 'react-native'
-import type { ButtonListNativeRef, ButtonListProps } from './ButtonListProps'
+import type { ButtonListNativeRef, ButtonListProps } from '@/components/button/list/ButtonListProps'
 
 /**
  * Button List Component

@@ -1,6 +1,6 @@
 import { View } from 'react-native'
-import { CommonProps } from '../../../../objects/facets/CommonProps'
-import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 /**
  * AccordionHeader Interface

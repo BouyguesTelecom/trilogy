@@ -1,12 +1,12 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { getColorClassName } from '@/objects/facets/Color'
-import { has, is } from '@/services/classify'
+import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { BoxProps, BoxRef } from './BoxProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { BoxProps, BoxRef } from '@/components/box/BoxProps'
+import { getBackgroundClassName } from "@/helpers/background";
+import { getColorClassName } from "@/helpers/color";
 
 /**
  * Box Component
