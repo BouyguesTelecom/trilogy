@@ -1,15 +1,9 @@
 import * as React from 'react'
-
-interface ITrilogyContext {
-  styled: boolean
-  setStyled: (e: boolean) => void
-  hash?: string
-  setHash?: React.Dispatch<React.SetStateAction<string | undefined>>
-}
+import type { ITrilogyContext } from './interfaces'
 
 const TrilogyContext = React.createContext<ITrilogyContext>({
-  styled: false,
-  setStyled: () => undefined,
+  mangled: false,
+  setMangled: () => undefined,
 })
 
 const useTrilogyContext = () => {

@@ -8,10 +8,9 @@ import LibToast from 'react-native-toast-message'
 import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
 import ToasterContext from '@/components/alert/context'
 import { ToasterShowContext } from '@/components/alert/context/ToasterContextProps'
-import { getRadiusStyle } from '@/helpers/radius'
-import { getStatusIconName, getStatusStyle } from '@/helpers/status'
+import { getStatusIconName } from '@/helpers/status'
+import { useThemeRadius, useThemeStatus } from '@/helpers/useTheme'
 import { TrilogyColor } from '@/interfaces/Color'
-import { Radius } from '@/interfaces/Radius'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import FlexBox from '@/components/flex-box/FlexBox.native'
 import FlexItem from '@/components/flex-box/flex-item/FlexItem.native'
@@ -28,9 +27,9 @@ import FlexItem from '@/components/flex-box/flex-item/FlexItem.native'
  */
 const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {
-    const { color, backgroundColor } = getStatusStyle(status)
-    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
-    const isClosable = (others as any).closable
+    const { color, backgroundColor } = useThemeStatus(status)
+    const { radiusSm } = useThemeRadius()
+    const isClosable = React.useMemo(() => (others as any).closable, [others])
 
     const styles = React.useMemo(
       () =>
@@ -40,7 +39,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
             borderColor: status !== undefined ? color : backgroundColor,
             borderWidth: banner ? 0 : 1,
             backgroundColor: backgroundColor,
-            borderRadius: banner ? 0 : borderSmallRadius,
+            borderRadius: banner ? 0 : radiusSm,
             textAlign: banner ? 'center' : 'left',
             padding: 12,
             pointerEvents: onClick ? 'auto' : 'none',
@@ -58,7 +57,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
             marginTop: -2,
           },
         }),
-      [banner, status, color, backgroundColor, borderSmallRadius, onClick],
+      [banner, status, color, backgroundColor, radiusSm, onClick],
     )
 
     return (

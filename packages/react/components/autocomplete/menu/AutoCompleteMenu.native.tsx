@@ -6,6 +6,7 @@ import { TrilogyColor } from '@/interfaces/Color'
 import { getColorStyle } from '@/helpers/color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
+import { useTheme } from '@/helpers/useTheme'
 
 /**
  * AutoCompleteMenu Component
@@ -16,9 +17,7 @@ import { Radius } from '@/interfaces/Radius'
  * @param handleSelectItem {Function} Callback when selecting an item
  */
 const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteMenuProps): JSX.Element => {
-  const radiusStyle = getRadiusStyle(Radius.SMALLER)
-  const colorStyle = getColorStyle(TrilogyColor.STROKE)
-  const backgroundColorStyle = getColorStyle(TrilogyColor.BACKGROUND)
+  const { radius, colors } = useTheme()
 
   const styles = React.useMemo(
     () =>
@@ -26,16 +25,16 @@ const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteM
         list: {
           marginTop: 6,
           marginBottom: 6,
-          backgroundColor: backgroundColorStyle,
+          backgroundColor: colors.bgPrimary,
           borderWidth: 1,
-          borderRadius: radiusStyle,
-          borderColor: colorStyle,
+          borderRadius: radius.radiusXs,
+          borderColor: colors.border,
           width: '100%',
           maxHeight: 165,
           flexGrow: 1,
         },
       }),
-    [radiusStyle, colorStyle, backgroundColorStyle],
+    [radius.radiusXs, colors.bgPrimary, colors.border],
   )
 
   const renderItem = React.useCallback(

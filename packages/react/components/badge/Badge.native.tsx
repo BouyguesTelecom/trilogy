@@ -9,6 +9,7 @@ import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
+import { useTheme } from '@/helpers/useTheme'
 
 /**
  * Badge Component
@@ -28,6 +29,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
     const whiteColor = getColorStyle(TrilogyColor.BACKGROUND)
     const radiusFull = getRadiusStyle(Radius.FULL)
     const variantColor = getColorStyle(variant || TrilogyColor.MAIN)
+    const { radius, colors } = useTheme()
 
     const styles = useMemo(
       () =>

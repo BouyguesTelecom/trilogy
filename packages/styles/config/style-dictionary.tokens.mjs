@@ -248,7 +248,9 @@ StyleDictionary.registerFormat({
   format: ({ dictionary, options }) => {
     const entries = getReactTokens(dictionary, options.filter)
     const object = formatReactObject(entries)
-    const value = options.modeAware ? `{\n  light: ${object.replace(/\n/g, '\n  ')},\n  dark: {},\n}` : object
+    const value = options.modeAware
+      ? `{\n  light: ${object.replace(/\n/g, '\n  ')},\n  dark: ${object.replace(/\n/g, '\n  ')},\n}`
+      : object
 
     return `// Generated from figma tokens. Do not edit directly.\n\nexport const ${options.name} = ${value} as const\n`
   },

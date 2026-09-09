@@ -3,19 +3,10 @@ import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import React, { isValidElement, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import {
-  Animated,
-  Easing,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  TouchableWithoutFeedbackProps,
-  View,
-} from 'react-native'
+import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
-import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
-import { getRadiusStyle } from '@/helpers/radius'
-import { Radius } from '@/interfaces/Radius'
+import { useTheme } from '@/helpers/useTheme'
 
 interface AccordionChild {
   header?: React.ReactNode
@@ -34,6 +25,7 @@ interface AccordionChild {
  */
 const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProps>(
   ({ open, id, onClick, disabled, children, testId, ...others }, ref): JSX.Element => {
+    const { radius, colors } = useTheme()
     const [isActive, setIsActive] = useState<boolean>(Boolean(typeof open !== 'undefined' ? open : false))
     const animatedController = useRef(new Animated.Value(0)).current
     const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
@@ -42,25 +34,20 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
       body: undefined,
     })
 
-    const smallRadius = getRadiusStyle(Radius.SMALL)
-    const disabledFade = getColorStyle(TrilogyColor.DISABLED_FADE)
-    const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
-    const strokeFade = getColorStyle(TrilogyColor.STROKE_FADE)
-
     const styles = useMemo(
       () =>
         StyleSheet.create({
           item: {
             width: '100%',
             padding: 5,
-            borderRadius: smallRadius,
-            backgroundColor: disabled ? disabledFade : backgroundColor,
+            borderRadius: radius.radiusSm,
+            backgroundColor: disabled ? colors.bgDisabled : colors.bgPrimary,
             borderWidth: 1,
-            borderColor: (disabled && disabledFade) || strokeFade,
+            borderColor: (disabled && colors.borderDisabled) || colors.border,
           },
           bodyBackground: {
-            borderRadius: smallRadius,
-            backgroundColor: backgroundColor,
+            borderRadius: radius.radiusSm,
+            backgroundColor: colors.bgPrimary,
             overflow: 'hidden',
           },
           titleContainer: {
@@ -73,7 +60,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
             paddingRight: 5,
             paddingTop: 5,
             paddingBottom: 5,
-            borderColor: backgroundColor,
+            borderColor: colors.bgPrimary,
           },
           bodyContainer: {
             padding: 10,
@@ -81,12 +68,12 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
             paddingRight: 10,
             position: 'absolute',
             bottom: 0,
-            borderRadius: smallRadius,
+            borderRadius: radius.radiusSm,
             left: 0,
             right: 0,
           },
         }),
-      [smallRadius, disabledFade, backgroundColor, strokeFade, disabled],
+      [radius, disabled, colors],
     )
 
     const bodyHeight = animatedController.interpolate({

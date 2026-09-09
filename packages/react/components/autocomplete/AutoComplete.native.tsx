@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Keyboard, StyleSheet, View } from 'react-native'
-
 import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
 import { ComponentName } from '@/components/enumsComponentsName'
