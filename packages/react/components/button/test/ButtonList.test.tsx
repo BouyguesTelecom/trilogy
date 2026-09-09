@@ -12,6 +12,6 @@ describe('ButtonList component', () => {
     )
 
     expect(screen.getByRole('button').closest('div')).toBeInTheDocument()
-    expect(screen.getByRole('button').closest('div')).toHaveClass('buttons')
+    expect(screen.getByRole('button').closest('div')).toHaveClass('Buttons')
   })
 })

@@ -2,8 +2,8 @@
   content:'';
   flex: 1;
   height: 1px;
-  background-color: getColor('neutral');
-  border: 1px solid #{getColor('stroke-fade')};
+  background-color: var(--bg-secondary-subtle); 
+  border: 1px solid var(--bg-secondary-subtle);
 }
 
 .divider {
@@ -27,21 +27,21 @@
 
     &:not(:empty) {
       &::before {
-        margin-right: $spacing-4;
+        margin-right: var(--spacing-md);
       }
       &::after {
-        margin-left: $spacing-4;
+        margin-left: var(--spacing-md);
       }
     }
   }
 
   &:not(.is-marginless) {
-    margin: $spacing-5 0;
+    margin: var(--spacing-lg) 0;
   }
 
   @include mobile {
     &:not(.is-marginless) {
-      margin: $spacing-4 0;
+      margin: var(--spacing-md) 0;
     }
   }
 }

@@ -59,11 +59,11 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
     React.useEffect(() => {
       if (refTrack.current) {
         const track = refTrack.current as HTMLElement
-        track.style.background = `linear-gradient(to right, var(--color-main-fade) ${
+        track.style.background = `linear-gradient(to right, var(--bg-secondary-subtle) ${
           (cursorMin / max) * 100
-        }% , var(--color-main) ${(cursorMin / max) * 100}% , var(--color-main) ${
+        }% , var(--bg-secondary) ${(cursorMin / max) * 100}% , var(--bg-secondary) ${
           (cursorMax / max) * 100
-        }%, var(--color-main-fade) ${(cursorMax / max) * 100}%) `
+        }%, var(--bg-secondary-subtle) ${(cursorMax / max) * 100}%) `
       }
     }, [cursorMin, cursorMax])
 

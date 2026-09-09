@@ -5,14 +5,14 @@
   .otp {
     @include hover();
     outline: none;
-    border: var(--border);
-    border-radius: var(--radius-small);
+    border: var(--border-style);
+    border-radius: var(--radius-sm);
     background: transparent;
     width: 33px;
     height: 48px;
     margin: 4px 4px 0 4px;
     text-align: center;
-    color: getColor('main');
+    color: var(--text-primary);
 
     &:first-child {
       margin: 4px 4px 0 0;
@@ -26,28 +26,28 @@
 
   &.is-danger {
     .otp {
-      border: 1px solid getColor('error');
+      border: 1px solid var(--border-error);
     }
   }
 
   &.is-filled {
     .otp {
-      color: getColor('font')
+      color: var(--text-primary)
     }
   }
 
   &.is-focus {
     .otp {
-      border: 1px solid getColor('font');;
-      color: getColor('font')
+      border: 1px solid var(--border);
+      color: var(--text-primary)
     }
   }
 
 
   &.is-error {
     .otp {
-      border: 1px solid getColor('error');
-      color: getColor('font')
+      border: 1px solid var(--border-error);
+      color: var(--text-primary)
     }
   }
 
@@ -55,19 +55,19 @@
 
 .otp-list:focus-within {
   .otp {
-    border: 1px solid getColor('font');;
-    color: getColor('font');
+    border: 1px solid var(--border);
+    color: var(--text-primary);
   }
 }
 
 .otp-list.is-error:focus-within {
   .otp {
-    border: 1px solid getColor('error');
-    color: getColor('font');
+    border: 1px solid var(--border-error);
+    color: var(--text-primary);
   }
 }
 
 .help {
-  font-size: $text-12;
+  font-size: var(--body-3-size);
   margin-top: 4px;
 }

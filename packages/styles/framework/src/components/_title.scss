@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-$title-weight: $weight-semibold;
+$title-weight: var(--font-weight-body-1-bold);
 $title-high-weight: 550;
 $title-line-height: 1.1;
 $title-strong-color: inherit;
@@ -8,33 +8,26 @@ $title-strong-weight: inherit;
 $title-sub-size: 0.5em;
 $title-sup-size: 0.5em;
 
-$subtitle-size: $text-16;
-$subtitle-weight: $weight-medium;
-$subtitle-size-tablet: $text-15;
+$subtitle-size: var(--body-1-size);
+$subtitle-weight: $font-weight-medium;
+$subtitle-size-tablet: var(--body-1-size);
 $subtitle-line-height: 1.2;
-$subtitle-strong-weight: $weight-semibold;
+$subtitle-strong-weight: var(--font-weight-body-1-bold);
 
-$overline-size: $text-14;
-$overline-weight: $weight-semibold;
+$overline-size: var(--body-2-size);
+$overline-weight: var(--font-weight-body-1-bold);
 $overline-line-height: 1.2;
-$overline-size-tablet: $text-15;
+$overline-size-tablet: var(--body-1-size);
 
 $title-levels: (
-    ($text-48, $text-58, $family-secondary),
-    ($text-36, $text-44, $family-secondary),
-    ($text-28, $text-32, $family-primary),
-    ($text-24, $text-28, $family-primary),
-    ($text-20, $text-24, $family-primary),
-    ($text-16, $text-20, $family-primary)
+    (var(--size-title-1), var(--line-height-title-1), $font-family-2),
+    (var(--size-title-2), var(--line-height-title-2), $font-family-2),
+    (var(--size-title-3), var(--line-height-title-3), var(--font-title-1)),
+    (var(--title-4-size), var(--line-height-title-4), var(--font-title-1)),
+    (var(--size-title-5), var(--line-height-title-5), var(--font-title-1)),
+    (var(--size-title-6), var(--line-height-title-6), var(--font-title-1))
 );
-$title-levels-mobile: (
-    ($text-28, $text-34),
-    ($text-24, $text-28),
-    ($text-22, $text-26),
-    ($text-20, $text-24),
-    ($text-18, $text-22),
-    ($text-16, $text-20)
-);
+
 
 .title,
 .subtitle,
@@ -52,9 +45,9 @@ $title-levels-mobile: (
 }
 
 .title {
-  font-size: $text-32;
-  font-weight: $title-weight;
-  line-height: $title-line-height;
+  font-size: var(--title-1-size);
+  font-weight: var(--font-weight-body-1-bold);
+  line-height: var(--line-height-title-1);
 
   // new typography
   @each $title-level in $title-levels {
@@ -63,14 +56,14 @@ $title-levels-mobile: (
     $line-height: nth($title-level, 2);
     $font-family: nth($title-level, 3);
 
-    // Avoid Safari font weight issues
-    &.is-level-1 {
-      font-weight: $title-high-weight;
-    }
+    // // Avoid Safari font weight issues
+    // &.is-level-1 {
+    //   font-weight: $title-high-weight;
+    // }
 
-    &.is-level-2 {
-      font-weight: $title-high-weight;
-    }
+    // &.is-level-2 {
+    //   font-weight: $title-high-weight;
+    // }
 
     &.is-level-#{$i} {
       font-size: $font-size;
@@ -79,17 +72,17 @@ $title-levels-mobile: (
     }
 
     &.is-medium {
-      font-weight: $weight-medium;
+      font-weight: $font-weight-medium;
     }
 
     &.is-inverted {
-      color: getColor('background');
+      color: var(--text-inverse);
     }
 
     .details {
       font-size: 80%;
-      color: getColor('neutral');
-      font-weight: $weight-normal;
+      color: var(--text-disabled);
+      font-weight: var(--font-weight-body-1);
     }
 
     &.is-section-title {
@@ -97,7 +90,7 @@ $title-levels-mobile: (
     }
 
     @include tablet {
-      font-size: $text-40;
+      font-size: 40px;
     }
 
     sup {
@@ -114,38 +107,26 @@ $title-levels-mobile: (
       text-align: center;
     }
   }
-
-  @include mobile {
-    @each $title-level-mobile in $title-levels-mobile {
-      $i: index($title-levels-mobile, $title-level-mobile);
-      $font-size-mobile: nth($title-level-mobile, 1);
-      $line-height-mobile: nth($title-level-mobile, 2);
-      &.is-level-#{$i} {
-        font-size: $font-size-mobile;
-        line-height: $line-height-mobile;
-      }
-    }
-  }
 }
 
 .subtitle {
-  color: getColor('font');
+  color: var(--text-primary);
   font-size: $subtitle-size;
   font-weight: $subtitle-weight;
   line-height: $subtitle-line-height;
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 }
 
 .overline {
-  color: getColor('font');
+  color: var(--text-primary);
   font-size: $overline-size;
   font-weight: $overline-weight;
   line-height: $overline-line-height;
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 }

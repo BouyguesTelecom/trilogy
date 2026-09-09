@@ -1,17 +1,17 @@
 .countdown {
-  background-color: var(--color-accent-fade);
-  border-radius: var(--radius);
+  background-color: var(--bg-accent-subtle);
+  border-radius: var(--radius-sm);
   display: inline-flex;
-  padding: $spacing-2;
-  color: getColor('font');
+  padding: var(--spacing-xs);
+  color: var(--text-primary);
 
   .count {
-    font-family: $family-primary;
-    font-size: $text-12;
+    font-family: var(--font-title-1);
+    font-size: var(--body-3-size);
     font-weight: 400;
     list-style-type: none;
     text-align: center;
-    padding: 0 $spacing-1;
+    padding: 0 var(--spacing-xxs);
     position: relative;
     min-width: 46px;
 
@@ -21,33 +21,33 @@
       right: -3px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: $text-12;
+      font-size: var(--body-3-size);
       font-weight: 600;
       width: 6px;
     }
 
     .value {
-      font-size: $text-20;
+      font-size: $font-size-400;
       list-style: 28px;
       font-weight: 600;
     }
   }
 
   &.is-small {
-    padding: $spacing-2 $spacing-1;
-    border-radius: var(--radius);
+    padding: var(--spacing-xs) var(--spacing-xxs);
+    border-radius: var(--radius-sm);
 
     .count {
-      font-size: $text-12;
+      font-size: var(--body-3-size);
       font-weight: 500;
       min-width: 42px;
 
       &:not(:last-child)::after {
-        font-size: $text-16;
+        font-size: var(--body-1-size);
       }
 
       .value {
-        font-size: $text-16;
+        font-size: var(--body-1-size);
         line-height: 21px;
         font-weight: 600;
       }
