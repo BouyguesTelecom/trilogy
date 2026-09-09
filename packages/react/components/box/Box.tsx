@@ -91,7 +91,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
             target: '_blank',
           })}
         onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
+
           onClick?.(e)
         }}
         className={classes}

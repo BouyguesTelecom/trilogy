@@ -9,7 +9,6 @@ import {
   Loadable,
 } from '../../objects'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
 
 export enum ViewMarkup {

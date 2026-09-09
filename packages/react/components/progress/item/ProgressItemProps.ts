@@ -1,7 +1,6 @@
 import { Accessibility, Dev, StatusProps } from '@/objects/facets'
 import { View } from 'react-native'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
 
 /**

@@ -129,7 +129,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
           <TouchableOpacity
             ref={ref as React.Ref<TouchableOpacity>}
             onPress={(e?: unknown) => onClick?.(e)}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
             style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
             onLayout={(event) => {
               const { height } = event.nativeEvent.layout
@@ -171,7 +171,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
             const { height } = event.nativeEvent.layout
             setBoxHeight(height)
           }}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
           style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
           testID={boxTestId}
         >

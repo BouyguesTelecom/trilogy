@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Icon } from '@/components/icon'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
