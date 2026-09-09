@@ -305,7 +305,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
                 })
               }
               // ---------------------------------------
-              // eslint-disable-next-line no-console
+
               if (!forceControl) setValue(formatted)
               if (onChange) {
                 onChange({

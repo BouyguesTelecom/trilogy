@@ -53,7 +53,6 @@ const Fab = React.forwardRef<FabRef, FabProps>(
       setIsExtended(extended || false)
     }, [isExtended])
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const positionStyle: React.CSSProperties | any =
       top || bottom || left || right
         ? {

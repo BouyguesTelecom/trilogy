@@ -31,7 +31,7 @@ export const getAlignClassName = (alignType?: string): string => {
  * @param alignType {Alignable|string} - Align type
  * @returns {string} - Align value
  */
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+
 export const getAlignStyle = (alignType?: string) => {
   if (!alignType) return 'flex-start'
   switch (true) {

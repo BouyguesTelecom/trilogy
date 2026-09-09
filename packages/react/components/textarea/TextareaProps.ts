@@ -1,5 +1,5 @@
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { TextInput } from 'react-native'
 import { IconStatus } from '@/components/icon'
 import {
@@ -16,10 +16,10 @@ import {
   InputTextContentType,
   InputTextContentTypeValues,
 } from '@/components/input/InputEnum'
-import { Referenceable, ReferenceableNative } from "@/interfaces/Referenceable";
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Referenceable, ReferenceableNative } from '@/interfaces/Referenceable'
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Dev } from '@/interfaces/Dev'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 export interface TextareaChangeEvent {
   textareaName: string
