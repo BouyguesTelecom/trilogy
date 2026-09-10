@@ -10,12 +10,6 @@ const getMode = () => {
   return themeMode
 }
 
-export const useThemeColor = () => {
-  const { theme } = useContext(TrilogyThemeContext)
-  const themeMode = getMode()
-  return theme?.colors[themeMode] || THEME_COLORS_TRILOGY.light
-}
-
 export const useThemeRadius = () => {
   const { theme } = useContext(TrilogyThemeContext)
   return theme?.radius || THEME_RADIUS_TRILOGY
@@ -44,50 +38,4 @@ export const useTheme = () => {
         spacings: THEME_SPACINGS_TRILOGY,
         fonts: THEME_FONTS_TRILOGY,
       }
-}
-
-export const useThemeStatus = (
-  statusType?: 'INFO' | 'SUCCESS' | 'WARNING' | 'ERROR' | 'MAIN' | 'ACCENT',
-): { color: string; backgroundColor: string } => {
-  const { theme } = useContext(TrilogyThemeContext)
-  const themeMode = getMode()
-  const colors = theme?.colors[themeMode]
-
-  switch (statusType) {
-    case 'INFO':
-      return {
-        color: colors.textInformation,
-        backgroundColor: colors.bgInformationSubtle,
-      }
-    case 'SUCCESS':
-      return {
-        color: colors.textSuccess,
-        backgroundColor: colors.bgSuccessSubtle,
-      }
-    case 'WARNING':
-      return {
-        color: colors.textWarning,
-        backgroundColor: colors.bgWarningSubtle,
-      }
-    case 'ERROR':
-      return {
-        color: colors.textError,
-        backgroundColor: colors.bgErrorSubtle,
-      }
-    case 'MAIN':
-      return {
-        color: colors.textPrimary,
-        backgroundColor: colors.bgPrimarySubtle,
-      }
-    case 'ACCENT':
-      return {
-        color: colors.textAccent,
-        backgroundColor: colors.bgAccentSubtle,
-      }
-    default:
-      return {
-        color: colors.textPrimary,
-        backgroundColor: colors.bgSecondarySubtle,
-      }
-  }
 }

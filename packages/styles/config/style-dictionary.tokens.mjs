@@ -87,14 +87,18 @@ const toTypeScriptKey = (value) => {
 }
 
 const getReactTokenKey = (token) => {
+  const syntax = token.original?.$extensions?.['com.figma.codeSyntax']?.WEB
+  const variableName = typeof syntax === 'string' ? syntax.match(/^var\((--[A-Za-z0-9_-]+)\)$/)?.[1] : undefined
+
+  if (variableName) {
+    return toTypeScriptKey(variableName)
+  }
+
   if (token.path[0] === 'Font') {
     return toTypeScriptKey(token.path.slice(1).join('-'))
   }
 
-  const syntax = token.original?.$extensions?.['com.figma.codeSyntax']?.WEB
-  const variableName = typeof syntax === 'string' ? syntax.match(/^var\((--[A-Za-z0-9_-]+)\)$/)?.[1] : undefined
-
-  return toTypeScriptKey(variableName ?? token.path[token.path.length - 1])
+  return toTypeScriptKey(token.path[token.path.length - 1])
 }
 
 const getReactTokens = (dictionary, predicate) => {
@@ -257,7 +261,11 @@ StyleDictionary.registerFormat({
 })
 
 export default {
-  source: ['figma/primitives.json', 'figma/theme.json'],
+  source: [
+    'figma/primitives.json',
+    'figma/theme.json',
+    'figma/breakpoints/sm.tokens.json',
+  ],
   platforms: {
     scss: {
       transformGroup: 'scss',
@@ -292,7 +300,7 @@ export default {
           format: 'typescript/theme/react',
           options: {
             name: 'THEME_FONTS_TRILOGY',
-            filter: (token) => token.filePath?.endsWith('/primitives.json') && token.path[0] === 'Font',
+            filter: (token) => token.filePath?.includes('sm.tokens') && token.path[0] === 'Font',
           },
         },
         {
