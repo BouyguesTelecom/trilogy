@@ -40,4 +40,22 @@ describe('Pagination component', () => {
     // Check if the third page link has the correct href attribute
     expect(getByLabelText('Aller à la page 3').getAttribute('href')).toBe('?page=3')
   })
+
+  it('should not navigate or call onClick when navigating beyond the boundaries', () => {
+    const handleClick = jest.fn()
+    const { container, getByLabelText } = render(
+      <Pagination length={2} onClick={handleClick} href={(page) => `?page=${page}`} />,
+    )
+
+    const previous = container.querySelector('.pagination-previous') as HTMLAnchorElement
+    const next = container.querySelector('.pagination-next') as HTMLAnchorElement
+
+    fireEvent.click(previous)
+    expect(handleClick).not.toHaveBeenCalled()
+
+    fireEvent.click(getByLabelText('Aller à la page 2'))
+    fireEvent.click(next)
+    expect(handleClick).toHaveBeenCalledTimes(1)
+    expect(next).toHaveAttribute('aria-disabled', 'true')
+  })
 })
