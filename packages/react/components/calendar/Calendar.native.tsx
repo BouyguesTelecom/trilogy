@@ -1,5 +1,5 @@
 import translation from '@trilogy-ds/locales/lib/calendar'
-import React from 'react'
+import { forwardRef, useState, useMemo, useCallback, useEffect } from 'react'
 import { Modal, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
@@ -11,6 +11,7 @@ import { TrilogyColor } from '@/interfaces/Color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
 import { CalendarYearsOrder } from './CalendarEnum'
+import { useTheme } from '@/hooks/useTheme'
 
 const days = [
   translation.days[1],
@@ -41,7 +42,7 @@ const checkIsRange = (date: ChangeEventCalendar): date is [Date, Date] | [Date] 
  * @param yearsOrder {CalendarYearsOrder} Order of years in the year selector (asc by default, desc from most recent to oldest)
  * @param testId {string} Test Id for Test Integration
  */
-const Calendar = React.forwardRef<View, CalendarProps>(
+const Calendar = forwardRef<View, CalendarProps>(
   (
     {
       value = currentDate,
@@ -57,37 +58,27 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     },
     ref,
   ) => {
-    const [visibleMonth, setVisibleMonth] = React.useState<Date>(
-      value instanceof Date ? value : value[0] || currentDate,
-    )
-    const [activeDate, setActiveDate] = React.useState<ChangeEventCalendar>(value)
-    const [dateEndHovered, setDateEndHovered] = React.useState<Date>()
-    const [showMonthPicker, setShowMonthPicker] = React.useState<boolean>(false)
-    const [showYearPicker, setShowYearPicker] = React.useState<boolean>(false)
+    const { colors, radius } = useTheme()
+    const [visibleMonth, setVisibleMonth] = useState<Date>(value instanceof Date ? value : value[0] || currentDate)
+    const [activeDate, setActiveDate] = useState<ChangeEventCalendar>(value)
+    const [dateEndHovered, setDateEndHovered] = useState<Date>()
+    const [showMonthPicker, setShowMonthPicker] = useState<boolean>(false)
+    const [showYearPicker, setShowYearPicker] = useState<boolean>(false)
 
-    const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
-    const shadowColor = getColorStyle(TrilogyColor.DISABLED)
-    const disabledFadeColor = getColorStyle(TrilogyColor.DISABLED_FADE)
-    const mainColor = getColorStyle(TrilogyColor.MAIN)
-    const mainFadeColor = getColorStyle(TrilogyColor.MAIN_FADE)
-    const disabledColor = getColorStyle(TrilogyColor.DISABLED)
-    const borderMediumRadius = getRadiusStyle(Radius.MEDIUM)
-    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
-
-    const styles = React.useMemo(
+    const styles = useMemo(
       () =>
         StyleSheet.create({
           calendar: {
-            backgroundColor,
-            borderRadius: borderMediumRadius,
+            backgroundColor: colors.bgPrimary,
+            borderRadius: radius.radiusMd,
             padding: 24,
-            shadowColor,
+            shadowColor: colors.bgDisabled,
             shadowOffset: {
               width: 0,
               height: 2,
             },
             shadowOpacity: 0.2,
-            shadowRadius: borderMediumRadius,
+            shadowRadius: radius.radiusMd,
             elevation: 4,
             width: '85%',
             alignSelf: 'center',
@@ -108,7 +99,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             height: 36,
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: borderSmallerRadius,
+            borderRadius: radius.radiusXs,
             backgroundColor: 'transparent',
           },
           iconWrapper: {
@@ -131,10 +122,10 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           monthSelector: {
             paddingHorizontal: 8,
             paddingVertical: 4,
-            backgroundColor,
-            borderRadius: borderSmallerRadius,
+            backgroundColor: colors.bgPrimary,
+            borderRadius: radius.radiusSm,
             borderWidth: 1,
-            borderColor: disabledFadeColor,
+            borderColor: colors.borderDisabled,
             width: 80,
             alignItems: 'center',
             height: 30,
@@ -143,10 +134,10 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           yearSelector: {
             paddingHorizontal: 8,
             paddingVertical: 4,
-            backgroundColor,
-            borderRadius: borderSmallerRadius,
+            backgroundColor: colors.bgPrimary,
+            borderRadius: radius.radiusXs,
             borderWidth: 1,
-            borderColor: disabledFadeColor,
+            borderColor: colors.borderDisabled,
             width: 80,
             alignItems: 'center',
             height: 30,
@@ -214,7 +205,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             height: Platform.OS === 'android' ? 42 : 36,
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: borderSmallerRadius,
+            borderRadius: radius.radiusXs,
             backgroundColor: 'transparent',
             maxWidth: Platform.OS === 'android' ? 42 : 36,
             minWidth: Platform.OS === 'android' ? 42 : 36,
@@ -226,46 +217,46 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             width: '100%',
           },
           activeDay: {
-            backgroundColor: mainColor,
+            backgroundColor: colors.bgSecondary,
           },
           activeDayText: {
-            color: backgroundColor,
+            color: colors.textInverse,
             fontWeight: '600',
             width: '100%',
           },
           disabledDay: {
-            backgroundColor: disabledFadeColor,
+            backgroundColor: colors.bgDisabled,
             opacity: 0.6,
           },
           disabledDayText: {
-            color: disabledColor,
+            color: colors.textDisabled,
             width: '100%',
           },
           dateStart: {
-            backgroundColor: mainColor,
-            borderTopLeftRadius: borderMediumRadius,
-            borderBottomLeftRadius: borderMediumRadius,
-            borderTopRightRadius: borderSmallerRadius,
-            borderBottomRightRadius: borderSmallerRadius,
+            backgroundColor: colors.bgSecondary,
+            borderTopLeftRadius: radius.radiusMd,
+            borderBottomLeftRadius: radius.radiusMd,
+            borderTopRightRadius: radius.radiusXs,
+            borderBottomRightRadius: radius.radiusXs,
           },
           dateEnd: {
-            backgroundColor: mainColor,
-            borderTopRightRadius: borderMediumRadius,
-            borderBottomRightRadius: borderMediumRadius,
-            borderTopLeftRadius: borderSmallerRadius,
-            borderBottomLeftRadius: borderSmallerRadius,
+            backgroundColor: colors.bgSecondary,
+            borderTopRightRadius: radius.radiusMd,
+            borderBottomRightRadius: radius.radiusMd,
+            borderTopLeftRadius: radius.radiusXs,
+            borderBottomLeftRadius: radius.radiusXs,
           },
           dateInRange: {
-            backgroundColor: mainFadeColor,
+            backgroundColor: colors.bgSelected,
             borderRadius: 0,
           },
           roundedLeft: {
-            borderTopLeftRadius: borderMediumRadius,
-            borderBottomLeftRadius: borderMediumRadius,
+            borderTopLeftRadius: radius.radiusMd,
+            borderBottomLeftRadius: radius.radiusMd,
           },
           roundedRight: {
-            borderTopRightRadius: borderMediumRadius,
-            borderBottomRightRadius: borderMediumRadius,
+            borderTopRightRadius: radius.radiusMd,
+            borderBottomRightRadius: radius.radiusMd,
           },
           todayButton: {
             borderWidth: 0,
@@ -273,7 +264,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           },
           todayText: {
             fontWeight: '600',
-            color: mainColor,
+            color: colors.textPrimary,
           },
           modalOverlay: {
             flex: 1,
@@ -282,8 +273,8 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             alignItems: 'center',
           },
           pickerContainer: {
-            backgroundColor,
-            borderRadius: borderMediumRadius,
+            backgroundColor: colors.bgPrimary,
+            borderRadius: radius.radiusMd,
             maxHeight: 300,
             width: 200,
             shadowColor: '#000',
@@ -292,7 +283,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
               height: 2,
             },
             shadowOpacity: 0.25,
-            shadowRadius: borderMediumRadius,
+            shadowRadius: radius.radiusMd,
             elevation: 5,
           },
           pickerScrollView: {
@@ -305,10 +296,10 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             paddingHorizontal: 16,
             paddingVertical: 12,
             borderBottomWidth: 1,
-            borderBottomColor: backgroundColor,
+            borderBottomColor: colors.bgPrimary,
           },
           pickerItemSelected: {
-            backgroundColor: mainColor,
+            backgroundColor: colors.bgSecondary,
           },
           pickerItemDisabled: {
             opacity: 0.5,
@@ -327,26 +318,36 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             color: '#6c757d',
           },
         }),
-      [backgroundColor, shadowColor, disabledFadeColor, mainColor, mainFadeColor, disabledColor],
+      [
+        colors.textInverse,
+        colors.bgPrimary,
+        colors.bgDisabled,
+        colors.borderDisabled,
+        colors.bgSecondary,
+        colors.bgSecondary,
+        colors.textDisabled,
+        radius.radiusMd,
+        radius.radiusXs,
+      ],
     )
 
     const isRange = checkIsRange(activeDate)
 
-    const isNextDisabled = React.useMemo(
+    const isNextDisabled = useMemo(
       () =>
         disabled ||
         (maxDate?.getMonth() === visibleMonth?.getMonth() && maxDate?.getFullYear() === visibleMonth?.getFullYear()),
       [maxDate, visibleMonth, disabled],
     )
 
-    const isPrevDisabled = React.useMemo(
+    const isPrevDisabled = useMemo(
       () =>
         disabled ||
         (minDate?.getMonth() === visibleMonth?.getMonth() && minDate?.getFullYear() === visibleMonth?.getFullYear()),
       [minDate, visibleMonth, disabled],
     )
 
-    const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
+    const getAllDaysInMonth = useCallback((year: number, month: number) => {
       const date = new Date(year, month, 1)
       const days: Array<Date | null> = []
       const firstDayOfMonth = (date.getDay() + 6) % 7
@@ -365,7 +366,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       return allDays
     }, [])
 
-    const yearsBetween = React.useMemo(() => {
+    const yearsBetween = useMemo(() => {
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
       const currentYear = value instanceof Date && value?.getFullYear()
@@ -386,7 +387,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       return years
     }, [minDate, maxDate, value, yearsOrder])
 
-    const availableMonths = React.useMemo(() => {
+    const availableMonths = useMemo(() => {
       const currentYear = visibleMonth.getFullYear()
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
@@ -401,19 +402,19 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       })
     }, [minDate, maxDate, visibleMonth])
 
-    const availableYear = React.useMemo(() => {
+    const availableYear = useMemo(() => {
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
       return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
     }, [minDate, maxDate, visibleMonth])
 
-    const allDaysInMonth = React.useMemo(() => {
+    const allDaysInMonth = useMemo(() => {
       const activeYear = visibleMonth.getFullYear()
       const activeMonth = visibleMonth.getMonth()
       return getAllDaysInMonth(activeYear, activeMonth)
     }, [visibleMonth])
 
-    const handleClickNextPrevMonth = React.useCallback(
+    const handleClickNextPrevMonth = useCallback(
       (month: number) => {
         const nextMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + month, visibleMonth.getDate())
         setVisibleMonth(nextMonth)
@@ -422,7 +423,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       [visibleMonth, onMonthChange],
     )
 
-    const handleMonthSelect = React.useCallback(
+    const handleMonthSelect = useCallback(
       (selectedMonth: number) => {
         const newDate = new Date(visibleMonth.getFullYear(), selectedMonth, visibleMonth.getDate())
         setVisibleMonth(newDate)
@@ -431,7 +432,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       [visibleMonth, onMonthChange, minDate, maxDate],
     )
 
-    const handleYearSelect = React.useCallback(
+    const handleYearSelect = useCallback(
       (selectedYear: number) => {
         const newDate = new Date(selectedYear, visibleMonth.getMonth(), visibleMonth.getDate())
 
@@ -452,7 +453,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       [visibleMonth, onMonthChange, minDate, maxDate],
     )
 
-    const handlePressDay = React.useCallback(
+    const handlePressDay = useCallback(
       (day: Date) => {
         if (readOnly) return
 
@@ -471,7 +472,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       [onChange, readOnly, activeDate, isRange],
     )
 
-    React.useEffect(() => {
+    useEffect(() => {
       setActiveDate(value)
       if (value instanceof Date) return setVisibleMonth(value)
       if (!(value instanceof Date) && value[0]) {

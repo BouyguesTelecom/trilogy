@@ -1,5 +1,4 @@
-import React from 'react'
-
+import { createContext } from 'react'
 export interface ColumnsContextType {
   scrollable: boolean
   width: number
@@ -14,4 +13,4 @@ const defaultContextValue: ColumnsContextType = {
   childrensLength: 1,
 }
 
-export const ColumnsContext = React.createContext<ColumnsContextType>(defaultContextValue)
+export const ColumnsContext = createContext<ColumnsContextType>(defaultContextValue)

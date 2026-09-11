@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Text } from '@/components/text'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef, useId } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { CheckboxNativeRef, CheckboxProps } from '@/components/checkbox/CheckboxProps'
 import { getColorStyle } from '@/helpers/color'
@@ -21,8 +21,8 @@ import { Radius } from '@/interfaces/Radius'
  * @param name {string} Name for checkbox
  * @param testId {string} Test Id for Test Integration
  */
-const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
-  ({ id = React.useId(), checked, name, onChange, disabled, readonly, label, testId }, ref): JSX.Element => {
+const Checkbox = forwardRef<CheckboxNativeRef, CheckboxProps>(
+  ({ id = useId(), checked, name, onChange, disabled, readonly, label, testId }, ref): JSX.Element => {
     const [_checked, setChecked] = useState(checked || false)
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 

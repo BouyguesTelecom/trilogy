@@ -3,7 +3,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import translation from '@trilogy-ds/locales/lib/calendar'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef, useState, useRef, useId, useMemo, useCallback, useEffect } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { Select, SelectOption } from '@/components/select'
@@ -42,7 +42,7 @@ function checkIsRange(date: ChangeEventCalendar): date is [Date, Date] | [Date] 
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
+const Calendar = forwardRef<HTMLTableElement, CalendarProps>(
   (
     {
       value = currentDate,
@@ -59,18 +59,16 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
     ref,
   ) => {
     const { styled } = useTrilogyContext()
-    const [visibleMonth, setVisibleMonth] = React.useState<Date>(
-      value instanceof Date ? value : value[0] || currentDate,
-    )
-    const [activeDate, setActiveDate] = React.useState<ChangeEventCalendar>(value)
-    const [dateEndHovered, setDateEndHovered] = React.useState<Date>()
+    const [visibleMonth, setVisibleMonth] = useState<Date>(value instanceof Date ? value : value[0] || currentDate)
+    const [activeDate, setActiveDate] = useState<ChangeEventCalendar>(value)
+    const [dateEndHovered, setDateEndHovered] = useState<Date>()
 
-    const refsDays = React.useRef<HTMLButtonElement[]>([])
-    const refDayFocused = React.useRef<HTMLButtonElement>()
-    const refs = React.useRef<HTMLElement[]>([])
+    const refsDays = useRef<HTMLButtonElement[]>([])
+    const refDayFocused = useRef<HTMLButtonElement>()
+    const refs = useRef<HTMLElement[]>([])
 
-    const weeksId = React.useId()
-    const daysId = React.useId()
+    const weeksId = useId()
+    const daysId = useId()
 
     const calendarClasses = hashClass(styled, clsx('calendar'))
     const calendarheaderClasses = hashClass(styled, clsx('calendar-header'))
@@ -95,21 +93,21 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
 
     const isRange = checkIsRange(activeDate)
 
-    const isNextDisabled = React.useMemo(
+    const isNextDisabled = useMemo(
       () =>
         disabled ||
         (maxDate?.getMonth() === visibleMonth?.getMonth() && maxDate?.getFullYear() === visibleMonth?.getFullYear()),
       [maxDate, visibleMonth, disabled],
     )
 
-    const isPrevDisabled = React.useMemo(
+    const isPrevDisabled = useMemo(
       () =>
         disabled ||
         (minDate?.getMonth() === visibleMonth?.getMonth() && minDate?.getFullYear() === visibleMonth?.getFullYear()),
       [minDate, visibleMonth, disabled],
     )
 
-    const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
+    const getAllDaysInMonth = useCallback((year: number, month: number) => {
       const date = new Date(year, month, 1)
       const days: Array<Date | null> = []
       const firstDayOfMonth = (date.getDay() + 6) % 7
@@ -121,7 +119,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       return allDays
     }, [])
 
-    const yearsBetween = React.useMemo(() => {
+    const yearsBetween = useMemo(() => {
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
       const currentYear = value instanceof Date && value?.getFullYear()
@@ -142,7 +140,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       return years
     }, [minDate, maxDate, value, yearsOrder])
 
-    const availableMonths = React.useMemo(() => {
+    const availableMonths = useMemo(() => {
       const currentYear = visibleMonth.getFullYear()
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
@@ -157,20 +155,20 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       })
     }, [minDate, maxDate, visibleMonth])
 
-    const availableYear = React.useMemo(() => {
+    const availableYear = useMemo(() => {
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
       return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
     }, [minDate, maxDate, visibleMonth])
 
-    const allDaysInMonth = React.useMemo(() => {
+    const allDaysInMonth = useMemo(() => {
       refsDays.current = []
       const activeYear = visibleMonth.getFullYear()
       const activeMonth = visibleMonth.getMonth()
       return getAllDaysInMonth(activeYear, activeMonth)
     }, [visibleMonth])
 
-    const handleClickNextPrevMonth = React.useCallback(
+    const handleClickNextPrevMonth = useCallback(
       (month: number) => {
         const nextMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + month, visibleMonth.getDate())
         setVisibleMonth(nextMonth)
@@ -179,7 +177,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       [visibleMonth, onMonthChange],
     )
 
-    const handleMonthSelect = React.useCallback(
+    const handleMonthSelect = useCallback(
       (selectedMonth: number) => {
         const newDate = new Date(visibleMonth.getFullYear(), selectedMonth, visibleMonth.getDate())
         setVisibleMonth(newDate)
@@ -188,7 +186,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       [visibleMonth, onMonthChange, minDate, maxDate],
     )
 
-    const handleYearSelect = React.useCallback(
+    const handleYearSelect = useCallback(
       (selectedYear: number) => {
         const newDate = new Date(selectedYear, visibleMonth.getMonth(), visibleMonth.getDate())
 
@@ -209,7 +207,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       [visibleMonth, onMonthChange, minDate, maxDate],
     )
 
-    const navigateInDaysWithKeyboard = React.useCallback(
+    const navigateInDaysWithKeyboard = useCallback(
       (currentIndex: number, nextIndex: number) => {
         const nextRef = refsDays.current[currentIndex + nextIndex]
 
@@ -246,7 +244,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       [refsDays.current, refDayFocused.current, isNextDisabled, isPrevDisabled],
     )
 
-    const handlePressEnterInDays = React.useCallback(
+    const handlePressEnterInDays = useCallback(
       (e: React.KeyboardEvent | React.MouseEvent) => {
         if (readOnly) return
         const elm = e.target as HTMLButtonElement
@@ -269,7 +267,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       [refsDays.current, onChange, readOnly, activeDate, isRange],
     )
 
-    const onKeyDownDay = React.useCallback(
+    const onKeyDownDay = useCallback(
       (e: React.KeyboardEvent, index: number, isDisabled: boolean) => {
         switch (e.key) {
           case 'ArrowRight':
@@ -289,7 +287,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       [handlePressEnterInDays, navigateInDaysWithKeyboard],
     )
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (refsDays.current) {
         const activeDateIndex = refsDays.current.findIndex((day) => day.tabIndex === 0)
         if (activeDateIndex === -1 && refsDays?.current[0]?.tabIndex) {
@@ -305,7 +303,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       }
     }, [refsDays.current, refDayFocused.current])
 
-    React.useEffect(() => {
+    useEffect(() => {
       const prevActiveDate = activeDate
       setActiveDate(value)
       if (value instanceof Date) return setVisibleMonth(value)

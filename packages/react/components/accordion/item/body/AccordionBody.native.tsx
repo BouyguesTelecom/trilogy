@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { AccordionBodyNativeRef, AccordionBodyProps } from '@/components/accordion/item/body/AccordionBodyProps'
 
@@ -9,7 +9,7 @@ import { AccordionBodyNativeRef, AccordionBodyProps } from '@/components/accordi
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const AccordionBody = React.forwardRef<AccordionBodyNativeRef, AccordionBodyProps>(
+const AccordionBody = forwardRef<AccordionBodyNativeRef, AccordionBodyProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
     return (
       <View ref={ref} testID={testId} {...others}>

@@ -1,4 +1,4 @@
-import { TouchableOpacity } from 'react-native'
+import { View } from 'react-native'
 import { IconName, IconNameValues } from '@/components/icon'
 import {
   ButtonMarkup,
@@ -32,4 +32,4 @@ export interface ButtonProps extends Accessibility, Fullwidth, Clickable, Dev, C
 }
 
 export type ButtonRef = HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement
-export type ButtonNativeRef = TouchableOpacity
+export type ButtonNativeRef = View

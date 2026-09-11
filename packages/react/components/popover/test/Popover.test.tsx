@@ -1,5 +1,4 @@
 // Dependencies
-import * as React from 'react'
 
 // Testing methods
 import { render } from '@testing-library/react'
@@ -11,7 +10,7 @@ import { Link } from '@/components/link'
 describe('Popover component', () => {
   test('should have "popover" className', () => {
     const { getByTestId } = render(
-      <Popover testId="popover-id" trigger={<Link>Hello</Link>}>
+      <Popover testId='popover-id' trigger={<Link>Hello</Link>}>
         DEFAULT
       </Popover>,
     )

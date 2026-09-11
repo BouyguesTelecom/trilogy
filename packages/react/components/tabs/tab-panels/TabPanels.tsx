@@ -4,8 +4,7 @@ import { TabPanelsProps, TabPanelsRef } from '@/components/tabs/tab-panels/TabPa
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
-
+import { forwardRef, Children, isValidElement } from 'react'
 /**
  * Tabs Nav Component
  * @param children {ReactChild} React Child Element
@@ -14,14 +13,14 @@ import React from 'react'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const TabPanels = React.forwardRef<TabPanelsRef, TabPanelsProps>(({ children, className, id, testId, ...others }, ref) => {
+const TabPanels = forwardRef<TabPanelsRef, TabPanelsProps>(({ children, className, id, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('tab-panels', className))
 
   return (
     <div ref={ref} id={id} data-testid={testId} className={classes} {...others}>
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) return false
+      {Children.map(children, (child, index) => {
+        if (!isValidElement(child)) return false
         return <TabPanel {...child.props} index={index} />
       })}
     </div>

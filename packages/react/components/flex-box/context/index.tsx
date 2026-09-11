@@ -1,6 +1,5 @@
-import React from 'react'
-
-export const FlexBoxContext = React.createContext({
+import { createContext } from 'react'
+export const FlexBoxContext = createContext({
   scrollable: false,
   width: 0,
   realGap: 16,

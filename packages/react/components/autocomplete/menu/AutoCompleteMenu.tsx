@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import * as React from 'react'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'

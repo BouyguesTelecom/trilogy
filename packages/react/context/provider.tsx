@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useLayoutEffect } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { TrilogyContext } from '@/context'
 import { version } from '@/version'
 import versionJSON from '@/version.json'
@@ -47,8 +47,8 @@ const TrilogyProvider = ({
   hash?: string
   assetUrl?: string
 }): JSX.Element => {
-  const [styled, setStyled] = React.useState<boolean>(mangled)
-  const [hash, setHash] = React.useState<string | undefined>(HASH)
+  const [styled, setStyled] = useState<boolean>(mangled)
+  const [hash, setHash] = useState<string | undefined>(HASH)
 
   useLayoutEffect(() => {
     injectTrilogyAssets && injectTrilogy(mangled, id, theme, assetUrl)

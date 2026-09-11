@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { RowNativeRef, RowProps } from '@/components/rows/row/RowProps'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -8,7 +8,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param narrow {boolean} Align same elements horizontaly
  * @param children {React.ReactNode}
  */
-const Row = React.forwardRef<RowNativeRef, RowProps>(({ children, narrow, ...others }, ref): JSX.Element => {
+const Row = forwardRef<RowNativeRef, RowProps>(({ children, narrow, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     row: {
       flexGrow: (narrow && 0) || 1,

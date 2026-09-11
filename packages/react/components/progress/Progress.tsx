@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ProgressProps, ProgressRef } from '@/components/progress/ProgressProps'
 import { getStatusClassName } from '@/helpers/status'
@@ -24,7 +24,7 @@ import { getStatusClassName } from '@/helpers/status'
  * @param className {string} Additional CSS Classes
  * @param small {boolean} Small progress bar
  */
-const Progress = React.forwardRef<ProgressRef, ProgressProps>(
+const Progress = forwardRef<ProgressRef, ProgressProps>(
   (
     {
       children,

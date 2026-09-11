@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
 import Stepper from '@/components/stepper/Stepper'
 import Step from '@/components/stepper/step'
 

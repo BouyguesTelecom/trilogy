@@ -6,8 +6,7 @@ import { Text } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
-
+import { forwardRef, useContext, useMemo, useCallback, useEffect } from 'react'
 /**
  * Tabs Item Component
  * @param active {boolean} active tab item
@@ -23,21 +22,21 @@ import React from 'react'
  * @param testId {string} Test Id for Test Integration
  * @param routerLink Custom Router Link as props
  */
-const Tab = React.forwardRef<TabRef, TabProps>(
+const Tab = forwardRef<TabRef, TabProps>(
   (
     { active, className, onClick, routerLink = 'a', iconName, label, disabled, testId, ariaControls, ...others },
     ref,
   ) => {
     const { styled } = useTrilogyContext()
     const { index, ...props } = others as any
-    const { activeIndex, setActiveIndex, small } = React.useContext(TabsContext)
+    const { activeIndex, setActiveIndex, small } = useContext(TabsContext)
 
     const Tag = others.href || others.to ? routerLink : 'button'
 
-    const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
+    const isActive = useMemo(() => activeIndex === index, [activeIndex, index])
     const classes = hashClass(styled, clsx('tab', className, { 'is-active': isActive }))
 
-    const handleClick = React.useCallback(
+    const handleClick = useCallback(
       (e: React.MouseEvent) => {
         if (!disabled) {
           if (!others.href && !others.to) setActiveIndex(index)
@@ -47,7 +46,7 @@ const Tab = React.forwardRef<TabRef, TabProps>(
       [disabled, onClick, index, setActiveIndex],
     )
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (active) setActiveIndex(index)
     }, [active, setActiveIndex, index])
 

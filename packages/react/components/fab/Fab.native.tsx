@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { FabNativeRef, FabProps } from '@/components/fab/FabProps'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
@@ -27,7 +27,7 @@ import { Radius } from '@/interfaces/Radius'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Fab = React.forwardRef<FabNativeRef, FabProps>(
+const Fab = forwardRef<FabNativeRef, FabProps>(
   (
     { children, accessibilityLabel, iconName, extended, onClick, top, bottom, left, right, disabled, testId },
     ref,

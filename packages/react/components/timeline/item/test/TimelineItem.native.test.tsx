@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react-native'
 import { IconName } from '@trilogy-ds/assets'
-import * as React from 'react'
 import Timeline from '@/components/timeline/Timeline'
 import TimelineContent from '@/components/timeline/content'
 import TimelineMarker from '@/components/timeline/marker'

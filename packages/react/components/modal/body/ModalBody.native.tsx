@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isIOS } from '@/helpers/device.native'
-import * as React from 'react'
+import { forwardRef, useContext } from 'react'
 import { ScrollView, View } from 'react-native'
 import { ModalContext } from '@/components/modal/context/ModalContext'
 import { ModalBodyNativeRef, ModalBodyProps } from '@/components/modal/body/ModalBodyProps'
@@ -13,9 +13,9 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const ModalBody = React.forwardRef<ModalBodyNativeRef, ModalBodyProps>(
+const ModalBody = forwardRef<ModalBodyNativeRef, ModalBodyProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const { handleOnScroll, scrollViewRef, isFooter } = React.useContext(ModalContext)
+    const { handleOnScroll, scrollViewRef, isFooter } = useContext(ModalContext)
 
     return (
       <ScrollView

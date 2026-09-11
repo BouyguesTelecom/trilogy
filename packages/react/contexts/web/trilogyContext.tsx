@@ -1,13 +1,13 @@
-import * as React from 'react'
+import { createContext, useContext } from 'react'
 import type { ITrilogyContext } from './interfaces'
 
-const TrilogyContext = React.createContext<ITrilogyContext>({
+const TrilogyContext = createContext<ITrilogyContext>({
   mangled: false,
   setMangled: () => undefined,
 })
 
 const useTrilogyContext = () => {
-  const context = React.useContext(TrilogyContext)
+  const context = useContext(TrilogyContext)
   if (context === undefined) {
     throw new Error('useTrilogyContext must be used within a TrilogyProvider')
   }

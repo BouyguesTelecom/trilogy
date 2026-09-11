@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, forwardRef } from 'react'
 import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ChipsNativeRef, ChipsProps } from '@/components/chips/ChipsProps'
@@ -20,7 +20,7 @@ import { Radius } from '@/interfaces/Radius'
  * @param disabled {boolean} Disabled chips
  * @param testId {string} Test Id for Test Integration
  */
-const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
+const Chips = forwardRef<ChipsNativeRef, ChipsProps>(
   ({ children, onClick, disabled, active, testId, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const chipsContext = useContext(ChipsContext)

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import SectionComponent from '@/components/section/Section'
 import { TrilogyColor } from "@/interfaces/Color";
 

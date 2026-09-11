@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import React, { useState } from 'react'
+import { useState, forwardRef, cloneElement } from 'react'
 import { StyleSheet } from 'react-native'
 import SegmentedControlItem from '@/components/segment-control/item'
 import { SegmentControlNativeRef, SegmentControlProps } from '@/components/segment-control/SegmentControlProps'
@@ -16,7 +16,7 @@ import { Radius } from '@/interfaces/Radius'
  * @param onClick {Function} onClick Event
  * @param activeIndex {number} Default active SegmentControl index
  */
-const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlProps>(
+const SegmentControl = forwardRef<SegmentControlNativeRef, SegmentControlProps>(
   ({ children, onClick, activeIndex, ...others }, ref): JSX.Element => {
     const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
     const smallerRadius = getRadiusStyle(Radius.SMALLER)
@@ -84,7 +84,7 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
                     <Text level={TextLevels.ONE}>{String(child)}</Text>
                   </SegmentedControlItem>
                 ) : (
-                  React.cloneElement(child, props)
+                  cloneElement(child, props)
                 )
               }
             })}

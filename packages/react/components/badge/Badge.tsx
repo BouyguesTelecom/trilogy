@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { BadgeProps, BadgeRef } from '@/components/badge/BadgeProps'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -25,7 +25,7 @@ import { getVariantClassName } from '@/helpers/variant'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Badge = React.forwardRef<BadgeRef, BadgeProps>(
+const Badge = forwardRef<BadgeRef, BadgeProps>(
   (
     { className, children, id, label, inverted, onClick, variant, position, status, testId, ...others },
     ref,
@@ -59,7 +59,7 @@ const Badge = React.forwardRef<BadgeRef, BadgeProps>(
         iconName = IconName.TIMES_CIRCLE
         iconColor = IconColor.ERROR
         break
-      case StatusState.INFO:
+      case StatusState.INFORMATION:
         iconName = IconName.INFOS_CIRCLE
         iconColor = IconColor.INFO
         break

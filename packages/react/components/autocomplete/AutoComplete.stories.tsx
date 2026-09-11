@@ -2,7 +2,7 @@ import { IconName } from '@/components/icon'
 import { InputStatus, InputType } from '@/components/input/InputEnum'
 import { Text } from '@/components/text'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import { useState } from 'react'
 import AutoComplete from '@/components/autocomplete/AutoComplete'
 import { AutoCompletePropsWeb, Item } from '@/components/autocomplete/AutoCompleteProps'
 
@@ -214,7 +214,7 @@ const customData: Item<CustomData>[] = [
 
 export const CustomData: Story = {
   render: ({ placeholder, disabled, required, iconNameLeft, displayMenu = true, value, label }) => {
-    const [inputValue, setInputValue] = React.useState(value || '')
+    const [inputValue, setInputValue] = useState(value || '')
 
     return (
       <AutoComplete<Item<CustomData>>
@@ -239,7 +239,7 @@ export const CustomData: Story = {
 
 export const WithGetSuggestions: Story = {
   render: ({ placeholder, disabled, required, iconNameLeft, label }) => {
-    const [inputValue, setInputValue] = React.useState('')
+    const [inputValue, setInputValue] = useState('')
 
     const getSuggestions = async (search: string) => {
       return new Promise<Item<CustomData>[]>((resolve) => {
@@ -376,7 +376,7 @@ export const Playground: Story = {
     forceControl,
     securityGauge,
   }) => {
-    const [inputValue, setInputValue] = React.useState(value || '')
+    const [inputValue, setInputValue] = useState(value || '')
 
     return (
       <AutoComplete<Item<CustomData>>

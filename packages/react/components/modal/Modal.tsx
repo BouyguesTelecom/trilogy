@@ -5,7 +5,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import translation from '@trilogy-ds/locales/lib/modal'
 import clsx from 'clsx'
-import React, { KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react'
+import { KeyboardEvent, useCallback, useEffect, useId, useRef, useState, forwardRef, cloneElement } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ModalProps, ModalRef } from '@/components/modal/ModalProps'
 import { ClickEvent, OnClickEvent } from '@/interfaces/OnClickEvent'
@@ -29,7 +29,7 @@ import { ClickEvent, OnClickEvent } from '@/interfaces/OnClickEvent'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param onModalHide {Function} Callback after modal is fully hidden
  */
-const Modal = React.forwardRef<ModalRef, ModalProps>(
+const Modal = forwardRef<ModalRef, ModalProps>(
   (
     {
       children,
@@ -58,7 +58,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
     const focusableElementsRef = useRef<NodeListOf<HTMLElement> | null>(null)
     const currentFocusIndexRef = useRef<number>(0)
 
-    const handleClose = React.useCallback(
+    const handleClose = useCallback(
       (onCloseFunc: ClickEvent | undefined, e: OnClickEvent) => {
         if (!unClosable) {
           setDisplay(false)
@@ -125,7 +125,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
 
     return (
       <div onKeyDown={onKeyDown} ref={refModal}>
-        {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
+        {trigger && cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
         <div
           data-testid={testId}
           ref={ref}

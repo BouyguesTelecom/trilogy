@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { View, ViewStyle, Animated } from 'react-native'
 import { SkeletonProps } from '@/components/skeleton/SkeletonProps'
 
@@ -26,7 +26,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   testID,
 }) => {
   const shimmerValue = useRef(new Animated.Value(0)).current
-  const [containerWidth, setContainerWidth] = React.useState(200)
+  const [containerWidth, setContainerWidth] = useState(200)
 
   useEffect(() => {
     const shimmerAnimation = Animated.loop(

@@ -1,12 +1,8 @@
-import * as React from 'react'
+import { useMemo, useCallback } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
 import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
-import { TrilogyColor } from '@/interfaces/Color'
-import { getColorStyle } from '@/helpers/color'
-import { getRadiusStyle } from '@/helpers/radius'
-import { Radius } from '@/interfaces/Radius'
-import { useTheme } from '@/helpers/useTheme'
+import { useTheme } from '@/hooks/useTheme'
 
 /**
  * AutoCompleteMenu Component
@@ -19,7 +15,7 @@ import { useTheme } from '@/helpers/useTheme'
 const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteMenuProps): JSX.Element => {
   const { radius, colors } = useTheme()
 
-  const styles = React.useMemo(
+  const styles = useMemo(
     () =>
       StyleSheet.create({
         list: {
@@ -37,7 +33,7 @@ const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteM
     [radius.radiusXs, colors.bgPrimary, colors.border],
   )
 
-  const renderItem = React.useCallback(
+  const renderItem = useCallback(
     ({ item }: { item: string }) =>
       AutoCompleteItemNative({
         item: item,

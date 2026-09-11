@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid } from '@/helpers/device.native'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, forwardRef } from 'react'
 import {
   Dimensions,
   GestureResponderEvent,
@@ -43,7 +43,7 @@ const ANIMATION_DURATION = 300
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param onModalHide {Function} Callback after modal is fully hidden
  */
-const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
+const Modal = forwardRef<ModalNativeRef, ModalProps>(
   (
     {
       children,

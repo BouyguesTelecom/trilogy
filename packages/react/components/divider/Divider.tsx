@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -19,7 +19,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param iconName {IconName} Custom icon for Divider
  * @param inverted {boolean} Inverted divider color
  */
-const Divider = React.forwardRef<DividerRef, DividerProps>(
+const Divider = forwardRef<DividerRef, DividerProps>(
   ({ className, id, unboxed, content, marginless, iconName, inverted, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

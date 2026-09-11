@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { TabsContext } from '@/components/tabs/context'
 import TabPanel from '@/components/tabs/tab-panels/tab-panel'
 import { TabPanelsNativeRef, TabPanelsProps } from '@/components/tabs/tab-panels/TabPanelsProps'
-import React from 'react'
+import { forwardRef, useContext, Children, isValidElement } from 'react'
 import { getColorStyle } from '@/helpers/color'
 import { StyleSheet, View } from 'react-native'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -13,8 +13,8 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param className
  * @param id {string} Custom id attribute
  */
-const TabPanels = React.forwardRef<TabPanelsNativeRef, TabPanelsProps>(({ children, ...others }, ref) => {
-  const { inverted } = React.useContext(TabsContext)
+const TabPanels = forwardRef<TabPanelsNativeRef, TabPanelsProps>(({ children, ...others }, ref) => {
+  const { inverted } = useContext(TabsContext)
 
   const styles = StyleSheet.create({
     tabPanels: {
@@ -24,8 +24,8 @@ const TabPanels = React.forwardRef<TabPanelsNativeRef, TabPanelsProps>(({ childr
   })
   return (
     <View ref={ref} style={styles.tabPanels} {...others}>
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) return false
+      {Children.map(children, (child, index) => {
+        if (!isValidElement(child)) return false
         return <TabPanel {...child.props} index={index} />
       })}
     </View>

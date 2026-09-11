@@ -5,7 +5,7 @@ import { isRequiredChild } from '@/helpers/require'
 import { getAlignClassName } from '@/helpers/alignable'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { CheckboxTilesProps, CheckboxTilesRef } from '@/components/checkbox/tiles/CheckboxTilesProps'
 
 /**
@@ -20,7 +20,7 @@ import { CheckboxTilesProps, CheckboxTilesRef } from '@/components/checkbox/tile
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
+const CheckboxTiles = forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
   (
     { id, className, children, align, verticalAlign, accessibilityLabelledBy, numberCols, testId, ...others },
     ref,

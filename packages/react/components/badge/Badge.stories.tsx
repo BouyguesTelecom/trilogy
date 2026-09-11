@@ -6,9 +6,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { IconSize } from '@/components/icon'
 import { BadgePositionEnum } from '@/components/badge/BadgeEnum'
 import { BadgeProps, BadgeVariant } from '@/components/badge/BadgeProps'
-import React from 'react'
-import { StatusState } from "@/interfaces/Status";
-import { TrilogyColor } from "@/interfaces/Color";
+import { StatusState } from '@/interfaces/Status'
+import { TrilogyColor } from '@/interfaces/Color'
 
 const meta: Meta<BadgeProps> = {
   title: 'Components/Badge',
@@ -85,7 +84,7 @@ export const WithStatus: Story = {
   render: () => (
     <FlexBox>
       <Badge status={StatusState.SUCCESS} />
-      <Badge status={StatusState.INFO} />
+      <Badge status={StatusState.INFORMATION} />
       <Badge status={StatusState.WARNING} />
       <Badge status={StatusState.ERROR} />
     </FlexBox>

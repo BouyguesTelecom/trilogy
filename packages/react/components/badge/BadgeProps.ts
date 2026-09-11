@@ -20,10 +20,12 @@ export type BadgeNativeRef = View
 
 export enum BadgeVariant {
   SUCCESS = 'SUCCESS',
-  INFO = 'INFO',
+  INFO = 'INFORMATION',
   WARNING = 'WARNING',
   ERROR = 'ERROR',
-  MAIN = 'MAIN',
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
+  BRAND = 'BRAND',
   ACCENT = 'ACCENT',
 }
 

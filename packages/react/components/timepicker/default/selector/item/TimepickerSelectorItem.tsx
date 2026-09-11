@@ -3,7 +3,6 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
 
 interface SelectItem {
   label: string

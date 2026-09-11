@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
 import Chips from '@/components/chips/Chips.native'
 import ChipsList from '@/components/chips/list/ChipsList.native'
 

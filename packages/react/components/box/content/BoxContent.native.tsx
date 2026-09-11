@@ -1,11 +1,11 @@
 import { BoxContentNativeRef, BoxContentProps } from '@/components/box/content/BoxContentProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef, useContext, useMemo, useCallback } from 'react'
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
-import { getColorStyle } from '@/helpers/color'
-import { getRadiusStyle } from '@/helpers/radius'
+import { useThemeRadiusBySize } from '@/hooks/useThemeRadius'
 import { Radius } from '@/interfaces/Radius'
+import { useThemeBackground } from '@/hooks/useThemeBackground'
 
 /**
  * Box Content
@@ -15,13 +15,13 @@ import { Radius } from '@/interfaces/Radius'
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
+const BoxContent = forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
-    const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = React.useContext(BoxContext)
-    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
-    const backgroundStyle = getColorStyle(backgroundColor || 'transparent')
+    const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = useContext(BoxContext)
+    const borderSmallRadius = useThemeRadiusBySize(Radius.SMALL)
+    const backgroundStyle = useThemeBackground(backgroundColor || 'TRANSPARENT')
 
-    const styles = React.useMemo(
+    const styles = useMemo(
       () =>
         StyleSheet.create({
           boxContent: {
@@ -39,11 +39,11 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
       [backgroundStyle, borderSmallRadius, fullHeight, highlighted, header, numberOfContent],
     )
 
-    const onLayout = React.useCallback(() => {
+    const onLayout = useCallback(() => {
       setNumberOfContent((prev) => prev + 1)
     }, [setNumberOfContent])
 
-    const content = React.useMemo(
+    const content = useMemo(
       () => (
         <View testID={testId} ref={ref} style={[styles.boxContent]} {...others} onLayout={onLayout}>
           {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}

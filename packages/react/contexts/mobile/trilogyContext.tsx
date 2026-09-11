@@ -1,8 +1,7 @@
 import { THEME_COLORS_TRILOGY, THEME_FONTS_TRILOGY, THEME_RADIUS_TRILOGY, THEME_SPACINGS_TRILOGY } from '@/theme'
 import type { ITrilogyThemeContext } from './interfaces'
-import * as React from 'react'
-
-const TrilogyThemeContext = React.createContext<ITrilogyThemeContext>({
+import { createContext, useContext } from 'react'
+const TrilogyThemeContext = createContext<ITrilogyThemeContext>({
   theme: {
     icons: {},
     colors: THEME_COLORS_TRILOGY,
@@ -16,7 +15,7 @@ const TrilogyThemeContext = React.createContext<ITrilogyThemeContext>({
 })
 
 const useTrilogyThemeContext = () => {
-  const context = React.useContext(TrilogyThemeContext)
+  const context = useContext(TrilogyThemeContext)
   if (context === undefined) throw new Error('useTrilogyThemeContext must be used within a TrilogyThemeProvider')
   return context
 }

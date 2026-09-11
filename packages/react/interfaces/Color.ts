@@ -32,6 +32,52 @@ export enum TrilogyColor {
 export type TrilogyColorValues = `${TrilogyColor}`
 
 /**
+ * Trilogy background color, based on the theme background tokens
+ */
+export enum TrilogyBackgroundColor {
+  PRIMARY = 'PRIMARY',
+  PRIMARY_SUBTLE = 'PRIMARY_SUBTLE',
+  SECONDARY = 'SECONDARY',
+  SECONDARY_SUBTLE = 'SECONDARY_SUBTLE',
+  SUCCESS = 'SUCCESS',
+  SUCCESS_SUBTLE = 'SUCCESS_SUBTLE',
+  WARNING = 'WARNING',
+  WARNING_SUBTLE = 'WARNING_SUBTLE',
+  ERROR = 'ERROR',
+  ERROR_SUBTLE = 'ERROR_SUBTLE',
+  INFORMATION = 'INFORMATION',
+  INFORMATION_SUBTLE = 'INFORMATION_SUBTLE',
+  ACCENT = 'ACCENT',
+  ACCENT_SUBTLE = 'ACCENT_SUBTLE',
+  BRAND = 'BRAND',
+  BRAND_SUBTLE = 'BRAND_SUBTLE',
+  DISABLED = 'DISABLED',
+  INACTIVE = 'INACTIVE',
+}
+
+export type TrilogyBackgroundColorValues = `${TrilogyBackgroundColor}`
+
+/**
+ * Trilogy text color, based on the theme text tokens
+ */
+export enum TrilogyTextColor {
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
+  SUCCESS = 'SUCCESS',
+  WARNING = 'WARNING',
+  ERROR = 'ERROR',
+  INFORMATION = 'INFORMATION',
+  ACCENT = 'ACCENT',
+  BRAND = 'BRAND',
+  DISABLED = 'DISABLED',
+  PLACEHOLDER = 'PLACEHOLDER',
+  SELECTED = 'SELECTED',
+  INVERSE = 'INVERSE',
+}
+
+export type TrilogyTextColorValues = `${TrilogyTextColor}`
+
+/**
  * Trilogy color values
  */
 export const colors: Record<TrilogyColor, string[]> = DEFAULT_TRILOGY_COLORS as unknown as Record<

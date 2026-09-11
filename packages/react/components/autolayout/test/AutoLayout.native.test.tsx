@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
 import Text from '@/components/text/Text.native'
 import AutoLayout from '@/components/autolayout/AutoLayout'
 import AutoLayoutWrapper from '@/components/autolayout/AutoLayoutWrapper'

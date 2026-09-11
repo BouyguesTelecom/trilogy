@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactNode, SetStateAction } from 'react'
+import { Dispatch, ReactNode, SetStateAction, createContext, useState } from 'react'
 import { ITrilogyTheme } from '@/context/interfaces'
 import { DEFAULT_TRILOGY_COLORS } from '@/interfaces/defaultColors'
 import { DEFAULT_TRILOGY_RADIUS } from '@/interfaces/defaultRadius'
@@ -26,10 +26,10 @@ export const defaultContextValue = {
   theme: defaultTheme,
   setTheme: () => undefined,
 }
-export const TrilogyThemeContext = React.createContext<ITrilogyThemeContext>(defaultContextValue)
+export const TrilogyThemeContext = createContext<ITrilogyThemeContext>(defaultContextValue)
 
 export const TrilogyThemeProvider = ({ children, theme }: ITrilogyThemeProvider): JSX.Element => {
-  const [trilogyTheme, setTrilogyTheme] = React.useState<ITrilogyTheme>(theme || defaultTheme)
+  const [trilogyTheme, setTrilogyTheme] = useState<ITrilogyTheme>(theme || defaultTheme)
 
   return (
     <TrilogyThemeContext.Provider value={{ theme: trilogyTheme, setTheme: setTrilogyTheme }}>

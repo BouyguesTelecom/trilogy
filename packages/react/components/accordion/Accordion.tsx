@@ -3,8 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
-
+import { forwardRef } from 'react'
 /**
  * Accordion Component
  * @param children {React.ReactNode} Accordion items (AccordionItem components)
@@ -14,17 +13,15 @@ import * as React from 'react'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Accordion = React.forwardRef<AccordionRef, AccordionProps>(
-  ({ id, className, children, testId, ...others }, ref) => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('accordion', className))
+const Accordion = forwardRef<AccordionRef, AccordionProps>(({ id, className, children, testId, ...others }, ref) => {
+  const { styled } = useTrilogyContext()
+  const classes = hashClass(styled, clsx('accordion', className))
 
-    return (
-      <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
-        {children}
-      </div>
-    )
-  },
-)
+  return (
+    <div ref={ref} id={id} className={classes} data-testid={testId} {...others}>
+      {children}
+    </div>
+  )
+})
 Accordion.displayName = ComponentName.Accordion
 export default Accordion

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { getColorStyle } from '@/helpers/color'
 import { TableBorderEnum, TableNativeRef, TableProps } from '@/components/table/TableProps'
@@ -10,7 +10,7 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param children {ReactNode}
  * @param bordered {boolean} bordered table
  */
-const Table = React.forwardRef<TableNativeRef, TableProps>(({ children, border, ...others }, ref): JSX.Element => {
+const Table = forwardRef<TableNativeRef, TableProps>(({ children, border, ...others }, ref): JSX.Element => {
   const borderColor = getColorStyle(TrilogyColor.STROKE_FADE)
 
   const styles = StyleSheet.create({

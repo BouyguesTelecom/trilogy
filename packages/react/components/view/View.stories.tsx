@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import ViewComponent from '@/components/view/View'
 import { ViewMarkup } from '@/components/view/ViewProps'
 import { Align } from "@/interfaces/Alignable";

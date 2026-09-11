@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 import { TableBodyProps, TableBodyRef } from '@/components/table/body/TableBodyProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -16,7 +16,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param color {TrilogyColor} text color
  * @param backgroundColor {TrilogyColor} background color
  */
-const TableBody = React.forwardRef<TableBodyRef, TableBodyProps>(
+const TableBody = forwardRef<TableBodyRef, TableBodyProps>(
   ({ className, id, color, backgroundColor, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(

@@ -1,7 +1,7 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef, useId } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { CheckboxProps, CheckboxRef } from '@/components/checkbox/CheckboxProps'
 
@@ -21,14 +21,14 @@ import { CheckboxProps, CheckboxRef } from '@/components/checkbox/CheckboxProps'
  * @param className {string} Additional CSS Classes
  * @param required {boolean} Required checkbox
  */
-const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(
+const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
   (
     {
       checked,
       className,
       disabled,
       readonly,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,

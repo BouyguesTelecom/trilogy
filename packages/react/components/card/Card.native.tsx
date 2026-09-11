@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import React, { createContext, PropsWithChildren } from 'react'
+import { createContext, PropsWithChildren, forwardRef } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from '@/components/skeleton'
 import { CardNativeRef, CardProps } from '@/components/card/CardProps'
@@ -30,7 +30,7 @@ export const CardContext = createContext({
  * @param children {React.ReactNode} Card content
  * @param fullheight {boolean} Full height card
  */
-const Card = React.forwardRef<CardNativeRef, CardProps>(
+const Card = forwardRef<CardNativeRef, CardProps>(
   (
     { children, flat, horizontal, floating, onClick, skeleton, reversed, fullheight, active, ...others },
     ref,

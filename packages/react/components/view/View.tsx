@@ -5,7 +5,7 @@ import { getJustifyClassName } from '@/helpers/justifiable'
 import { getLoadingClassName } from '@/helpers/loadable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from '@/components/view/ViewProps'
 import { getAlignClassName } from '@/helpers/alignable'
 
@@ -30,7 +30,7 @@ import { getAlignClassName } from '@/helpers/alignable'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param bottom {boolean} Bottom position
  */
-const View = React.forwardRef<ViewRef, ViewProps>(
+const View = forwardRef<ViewRef, ViewProps>(
   (
     {
       children,

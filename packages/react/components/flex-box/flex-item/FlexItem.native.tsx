@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { FlexItemNativeRef, FlexItemProps } from '@/components/flex-box/flex-item/FlexItemProps'
 import { getAlignStyle } from '@/helpers/alignable'
-import React from 'react'
+import { forwardRef, useContext, useMemo } from 'react'
 import { View, ViewStyle } from 'react-native'
 import { FlexBoxContext } from '@/components/flex-box/context'
 
@@ -14,12 +14,12 @@ import { FlexBoxContext } from '@/components/flex-box/context'
  * @param narrow {boolean} Narrow item
  * @param verticalAlign { 'start' | 'end' | 'center' | 'stretch' | 'baseline' } Vertical alignment of the item
  */
-const FlexItem = React.forwardRef<FlexItemNativeRef, FlexItemProps>(
+const FlexItem = forwardRef<FlexItemNativeRef, FlexItemProps>(
   ({ id, size, narrow, verticalAlign, children, testId, ...others }, ref) => {
-    const { width, realGap, scrollable, childrenLength } = React.useContext(FlexBoxContext)
+    const { width, realGap, scrollable, childrenLength } = useContext(FlexBoxContext)
     const realSize = (size && typeof size === 'number' && size) || (size && size?.mobile) || 0
 
-    const scrollableStyle: ViewStyle = React.useMemo(
+    const scrollableStyle: ViewStyle = useMemo(
       () => ({
         width: realSize
           ? (realSize / 12) * width - realGap * ((childrenLength - 1) / childrenLength)
@@ -30,7 +30,7 @@ const FlexItem = React.forwardRef<FlexItemNativeRef, FlexItemProps>(
       [realSize, narrow, width, realGap, childrenLength, realSize],
     )
 
-    const noScrollableStyle: ViewStyle = React.useMemo(
+    const noScrollableStyle: ViewStyle = useMemo(
       () => ({
         flex: narrow ? 0 : 1,
         flexGrow: realSize || narrow ? 0 : 1,

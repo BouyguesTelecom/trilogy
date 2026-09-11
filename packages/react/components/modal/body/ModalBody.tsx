@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ModalBodyProps, ModalBodyRef } from '@/components/modal/body/ModalBodyProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
@@ -13,16 +13,14 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes
  */
-const ModalBody = React.forwardRef<ModalBodyRef, ModalBodyProps>(
-  ({ children, className, id, testId }, ref): JSX.Element => {
-    const { styled } = useTrilogyContext()
-    return (
-      <div ref={ref} id={id} className={hashClass(styled, clsx('modal-body', className))} data-testid={testId}>
-        {children}
-      </div>
-    )
-  },
-)
+const ModalBody = forwardRef<ModalBodyRef, ModalBodyProps>(({ children, className, id, testId }, ref): JSX.Element => {
+  const { styled } = useTrilogyContext()
+  return (
+    <div ref={ref} id={id} className={hashClass(styled, clsx('modal-body', className))} data-testid={testId}>
+      {children}
+    </div>
+  )
+})
 
 ModalBody.displayName = ComponentName.ModalBody
 export default ModalBody

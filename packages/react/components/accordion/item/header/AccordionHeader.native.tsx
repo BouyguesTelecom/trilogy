@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { AccordionHeaderNativeRef, AccordionHeaderProps } from '@/components/accordion/item/header/AccordionHeaderProps'
 
@@ -9,15 +9,13 @@ import { AccordionHeaderNativeRef, AccordionHeaderProps } from '@/components/acc
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const AccordionHeader = React.forwardRef<AccordionHeaderNativeRef, AccordionHeaderProps>(
-  ({ children }, ref): JSX.Element => {
-    return (
-      <View ref={ref} style={styles.header}>
-        {children}
-      </View>
-    )
-  },
-)
+const AccordionHeader = forwardRef<AccordionHeaderNativeRef, AccordionHeaderProps>(({ children }, ref): JSX.Element => {
+  return (
+    <View ref={ref} style={styles.header}>
+      {children}
+    </View>
+  )
+})
 
 AccordionHeader.displayName = ComponentName.AccordionHeader
 export default AccordionHeader

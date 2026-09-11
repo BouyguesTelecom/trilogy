@@ -2,14 +2,13 @@ import { BadgePositionEnum } from '@/components/badge/BadgeEnum'
 import { BadgeNativeRef, BadgeProps } from '@/components/badge/BadgeProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
-import React, { useMemo } from 'react'
+import { useMemo, forwardRef } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { StatusState } from '@/interfaces/Status'
-import { getColorStyle } from '@/helpers/color'
-import { TrilogyColor } from '@/interfaces/Color'
-import { getRadiusStyle } from '@/helpers/radius'
-import { Radius } from '@/interfaces/Radius'
-import { useTheme } from '@/helpers/useTheme'
+import { TrilogyBackgroundColor, TrilogyColor, TrilogyTextColor } from '@/interfaces/Color'
+import { useTheme } from '@/hooks/useTheme'
+import { useThemeBackground } from '@/hooks/useThemeBackground'
+import { useThemeTextColor } from '@/hooks/useThemeTextColor'
 
 /**
  * Badge Component
@@ -23,13 +22,11 @@ import { useTheme } from '@/helpers/useTheme'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
+const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
   ({ children, label, onClick, testId, variant, inverted, position, status, ...others }, ref): JSX.Element => {
-    const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
-    const whiteColor = getColorStyle(TrilogyColor.BACKGROUND)
-    const radiusFull = getRadiusStyle(Radius.FULL)
-    const variantColor = getColorStyle(variant || TrilogyColor.MAIN)
     const { radius, colors } = useTheme()
+    const backgroundColor = useThemeBackground(variant || TrilogyBackgroundColor.PRIMARY)
+    const textColor = useThemeTextColor(variant || TrilogyTextColor.PRIMARY)
 
     const styles = useMemo(
       () =>
@@ -38,13 +35,13 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
             alignSelf: 'baseline',
             minWidth: label ? 20 : 10,
             height: label ? 20 : 10,
-            backgroundColor: !inverted ? badgeColor : whiteColor,
-            borderRadius: radiusFull,
+            backgroundColor: !inverted ? backgroundColor : colors.bgPrimary,
+            borderRadius: radius.radiusFull,
             justifyContent: 'center',
             alignItems: 'center',
           },
           text: {
-            color: !inverted ? whiteColor : variantColor,
+            color: !inverted ? colors.bgPrimary : textColor,
             fontSize: 10,
           },
           iconStatus: {
@@ -53,7 +50,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
             backgroundColor: 'white',
             width: 16,
             minHeight: 16,
-            borderRadius: radiusFull,
+            borderRadius: radius.radiusFull,
           },
           iconStatusPositionTopLeft: {
             top: -4,
@@ -72,7 +69,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
             left: 17,
           },
         }),
-      [badgeColor, whiteColor, radiusFull, variantColor],
+      [backgroundColor, colors.bgPrimary, radius.radiusFull, textColor],
     )
 
     const icon = useMemo(() => {
@@ -92,7 +89,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
             iconName: IconName.TIMES_CIRCLE,
             iconColor: IconColor.ERROR,
           }
-        case StatusState.INFO:
+        case StatusState.INFORMATION:
           return {
             iconName: IconName.INFOS_CIRCLE,
             iconColor: IconColor.INFO,

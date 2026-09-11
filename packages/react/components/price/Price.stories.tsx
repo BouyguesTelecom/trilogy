@@ -2,8 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import PriceComponent from '@/components/price/Price'
 import { PriceLevel } from '@/components/price/PriceEnum'
 import type { PriceProps } from '@/components/price/PriceProps'
-import React from 'react'
-import { Align } from "@/interfaces/Alignable";
+import { Align } from '@/interfaces/Alignable'
 
 PriceComponent.displayName = 'Price'
 

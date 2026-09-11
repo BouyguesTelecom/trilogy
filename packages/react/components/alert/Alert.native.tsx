@@ -2,14 +2,16 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import * as React from 'react'
+import { forwardRef, useMemo, useCallback } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import LibToast from 'react-native-toast-message'
 import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
 import ToasterContext from '@/components/alert/context'
 import { ToasterShowContext } from '@/components/alert/context/ToasterContextProps'
 import { getStatusIconName } from '@/helpers/status'
-import { useThemeRadius, useThemeStatus } from '@/helpers/useTheme'
+import { useThemeRadius } from '@/hooks/useThemeRadius'
+import { useThemeBackgroundSubtle } from '@/hooks/useThemeBackground'
+import { useThemeTextColor } from '@/hooks/useThemeTextColor'
 import { TrilogyColor } from '@/interfaces/Color'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import FlexBox from '@/components/flex-box/FlexBox.native'
@@ -25,13 +27,14 @@ import FlexItem from '@/components/flex-box/flex-item/FlexItem.native'
  * @param onClick {Function} onClick Event for all alert
  * @param display {boolean} Display Alert component
  */
-const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
+const Alert = forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {
-    const { color, backgroundColor } = useThemeStatus(status)
+    const backgroundColor = useThemeBackgroundSubtle(status)
     const { radiusSm } = useThemeRadius()
-    const isClosable = React.useMemo(() => (others as any).closable, [others])
+    const color = useThemeTextColor(status)
+    const isClosable = useMemo(() => (others as any).closable, [others])
 
-    const styles = React.useMemo(
+    const styles = useMemo(
       () =>
         StyleSheet.create({
           container: {
@@ -106,7 +109,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
  */
 export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props }) => {
   const { title, description, iconName, status, closable, onClick } = props
-  const styles = React.useMemo(
+  const styles = useMemo(
     () =>
       StyleSheet.create({
         toaster: {
@@ -147,7 +150,7 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
     tomatoToast: ToasterAlert,
   }
 
-  const showToast: ToasterShowContext = React.useCallback((params: ToasterStatusProps) => {
+  const showToast: ToasterShowContext = useCallback((params: ToasterStatusProps) => {
     const { position, duration, offset, title, description, onClick, closable, onHide, iconName, status } = params
     LibToast.show({
       type: 'tomatoToast',

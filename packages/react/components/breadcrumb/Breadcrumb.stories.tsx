@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import BreadcrumbComponent from '@/components/breadcrumb/Breadcrumb'
 import type { BreadcrumbWebProps } from '@/components/breadcrumb/BreadcrumbProps'
 import BreadcrumbItem from '@/components/breadcrumb/item/BreadcrumbItem'
-import React from 'react'
 
 BreadcrumbComponent.displayName = 'Breadcrumb'
 

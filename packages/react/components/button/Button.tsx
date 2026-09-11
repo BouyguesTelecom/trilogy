@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from '@/components/button/ButtonEnum'
 import { ButtonProps, ButtonRef } from '@/components/button/ButtonProps'
@@ -31,7 +31,7 @@ import { Loading, LoadingValues } from '@/interfaces/Loadable'
  * @param routerLink {React.ElementType} Custom Router Link component
  * @param type {ButtonType} Button type (button|reset|submit)
  */
-const Button = React.forwardRef<ButtonRef, ButtonProps>(
+const Button = forwardRef<ButtonRef, ButtonProps>(
   (
     {
       markup,
@@ -93,7 +93,6 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
           disabled={isDisabled}
           name={name}
           onClick={(e) => {
-
             !isDisabled && onClick?.(e)
             e.stopPropagation()
           }}
@@ -116,7 +115,6 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
           aria-label={accessibilityLabel}
           name={name}
           onClick={(e) => {
-
             !isDisabled && onClick?.(e)
             e.stopPropagation()
           }}
@@ -154,7 +152,6 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
         className={classes}
         href={href}
         onClick={(e) => {
-
           !isDisabled && onClick?.(e)
           e.stopPropagation()
         }}

@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, forwardRef } from 'react'
 import {
   Keyboard,
   NativeSyntheticEvent,
@@ -69,7 +69,7 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param keyType {KeyType} Key type for submit button
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
+const Input = forwardRef<InputNativeRef, InputNativeProps>(
   (
     {
       defaultValue,

@@ -5,7 +5,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef, useMemo, useState, useRef, useCallback, useEffect } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import {
   AlertProps,
@@ -89,7 +89,6 @@ const ToasterAlert = ({
       id={id}
       style={positionStyles}
       onClick={(e) => {
-
         onClick?.(e)
         e.stopPropagation()
       }}
@@ -134,7 +133,7 @@ const ToasterAlert = ({
  * @param markup {string} Title markup (h2 | h3 | h4 | h5 | h6 | p)
 
  */
-const Alert = React.forwardRef<AlertRef, AlertProps>(
+const Alert = forwardRef<AlertRef, AlertProps>(
   (
     { banner, status, className, id, iconName, title, description, onClick, display = true, markup, testId, ...others },
     ref,
@@ -146,7 +145,7 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
       clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
     )
 
-    const iconAlert = React.useMemo(() => {
+    const iconAlert = useMemo(() => {
       if (iconName != null) return iconName
       else if (status) return getStatusIconName(status) ?? IconName.INFOS_CIRCLE
       else return IconName.INFOS_CIRCLE
@@ -158,7 +157,6 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
           ref={ref}
           id={id}
           onClick={(e) => {
-
             onClick?.(e)
             e.stopPropagation()
           }}
@@ -198,11 +196,11 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
  * @param others
  */
 export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Element => {
-  const [toasterState, setToasterState] = React.useState<ToasterStatusProps | null>(null)
-  const [duration, setDuration] = React.useState(5000)
-  const timeRef = React.useRef<ReturnType<typeof setInterval> | null>(null)
+  const [toasterState, setToasterState] = useState<ToasterStatusProps | null>(null)
+  const [duration, setDuration] = useState(5000)
+  const timeRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const showToast = React.useCallback(
+  const showToast = useCallback(
     (params: ToasterStatusProps) => {
       setToasterState(params)
       params.onShow?.()
@@ -212,7 +210,7 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
     [timeRef],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     timeRef.current = setTimeout(() => {
       toasterState?.onHide?.()
       setToasterState(null)

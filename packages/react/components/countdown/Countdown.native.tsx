@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { StyleSheet, Text as TextNative, View } from 'react-native'
 import { CountdownFormat, CountdownUnite } from '@/components/countdown/CountdownEnum'
 import { CountdownNativeRef, CountdownProps } from '@/components/countdown/CountdownProps'
@@ -31,7 +31,7 @@ const calculateTimer = (timeDifference: number) => {
  * @param id {string} Custom id attribute
  * @param small {boolean} Small countdown
  */
-const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
+const Countdown = forwardRef<CountdownNativeRef, CountdownProps>(
   ({ deadline, format, event, small, inverted, testId, ...others }, ref): JSX.Element => {
     const [init, setInit] = useState(false)
     const [timeLeft, setTimeLeft] = useState(deadline)

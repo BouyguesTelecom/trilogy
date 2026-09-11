@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getVariantClassName } from '@/helpers/variant'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StickerProps, StickerRef } from '@/components/sticker/StickerProps'
 
@@ -21,7 +21,7 @@ import { StickerProps, StickerRef } from '@/components/sticker/StickerProps'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const Sticker = React.forwardRef<StickerRef, StickerProps>(
+const Sticker = forwardRef<StickerRef, StickerProps>(
   (
     { className, id, variant, small, label, outlined, iconName, accessibilityLabel, testId, ...others },
     ref,

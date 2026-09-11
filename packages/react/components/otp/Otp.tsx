@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import translation from '@trilogy-ds/locales/lib/otp'
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { OtpProps, OtpRef } from '@/components/otp/OtpProps'
 import { TypographyColor } from '@/interfaces/TypographyColor'
@@ -96,7 +96,7 @@ const formatTranslation = (translation: string, x: string, y: string) => {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param activated {boolean} Activated OTP
  */
-const Otp = React.forwardRef<OtpRef, OtpProps>(
+const Otp = forwardRef<OtpRef, OtpProps>(
   (
     {
       className,

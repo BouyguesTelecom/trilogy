@@ -2,7 +2,7 @@ import { TouchableOpacity, type View } from 'react-native'
 import { BackgroundProps } from '@/interfaces/Background'
 import { Accessibility } from '@/interfaces/Accessibility'
 import { Clickable } from '@/interfaces/Clickable'
-import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { TrilogyBackgroundColor, TrilogyBackgroundColorValues } from '@/interfaces/Color'
 import { CommonProps } from '@/interfaces/CommonProps'
 import { Dev } from '@/interfaces/Dev'
 import { Fullheight } from '@/interfaces/Fullheight'
@@ -14,7 +14,7 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   children?: React.ReactNode
   skeleton?: boolean
   href?: string
-  highlighted?: TrilogyColor | TrilogyColorValues
+  highlighted?: TrilogyBackgroundColor | TrilogyBackgroundColorValues
   shadowless?: boolean
   backgroundSrc?: string
   headerOffset?: boolean

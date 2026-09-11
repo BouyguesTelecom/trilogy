@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
 import { isIOS } from '@/helpers/device.native'
-import * as React from 'react'
+import { forwardRef, useContext, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ModalContext } from '@/components/modal/context'
 import { ModalFooterProps, ModalFooterNativeRef } from '@/components/modal/footer/ModalFooterProps'
@@ -14,11 +14,11 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(
+const ModalFooter = forwardRef<ModalFooterNativeRef, ModalFooterProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const { setIsFooter } = React.useContext(ModalContext)
+    const { setIsFooter } = useContext(ModalContext)
 
-    React.useEffect(() => {
+    useEffect(() => {
       setIsFooter(true)
 
       return () => {

@@ -1,26 +1,26 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef, useContext, useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { BoxFooterNativeRef, BoxFooterProps } from '@/components/box/footer/BoxFooterProps'
-import { getColorStyle } from '@/helpers/color'
-import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
+import { useThemeRadiusBySize } from '@/hooks/useThemeRadius'
+import { useThemeBackground } from '@/hooks/useThemeBackground'
 
 /**
  * Box Footer Component
  * @param children {React.ReactNode} Children
- * @param backgroundColor {TrilogyColor} Background for BoxFooter
+ * @param backgroundColor {TrilogyBackgroundColor} Background for BoxFooter
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
+const BoxFooter = forwardRef<BoxFooterNativeRef, BoxFooterProps>(
   ({ children, backgroundColor, testId, ...others }, ref): JSX.Element => {
-    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
-    const { highlighted } = React.useContext(BoxContext)
-    const backgroundStyle = getColorStyle(backgroundColor || 'transparent')
+    const borderSmallRadius = useThemeRadiusBySize(Radius.SMALL)
+    const { highlighted } = useContext(BoxContext)
+    const backgroundStyle = useThemeBackground(backgroundColor)
 
-    const styles = React.useMemo(
+    const styles = useMemo(
       () =>
         StyleSheet.create({
           boxFooter: {

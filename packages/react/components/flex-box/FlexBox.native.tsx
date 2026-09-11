@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from '@/helpers/alignable'
-import React, { useState } from 'react'
+import { useState, forwardRef, useCallback, useMemo, Children } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View, ViewStyle } from 'react-native'
 import { ColumnsGapValue } from '@/components/columns'
 import { FlexBoxNativeRef, FlexBoxProps } from '@/components/flex-box/FlexBoxProps'
@@ -21,7 +21,7 @@ import { getJustifyStyle } from '@/helpers/justifiable'
  * @param id {string} Custom id attribute
  * @param fullBleed {boolean} Extend to full screen width (ignores container padding)
  */
-const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps & { style?: ViewStyle | ViewStyle[] }>(
+const FlexBox = forwardRef<FlexBoxNativeRef, FlexBoxProps & { style?: ViewStyle | ViewStyle[] }>(
   (
     {
       id,
@@ -45,7 +45,7 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps & { style?: View
     const isValueAlign = typeof align === 'string'
     const isValueJustify = typeof justify === 'string'
 
-    const onLayoutHandler = React.useCallback(
+    const onLayoutHandler = useCallback(
       (event: LayoutChangeEvent) => {
         if (!width) {
           const { width } = event.nativeEvent.layout
@@ -57,7 +57,7 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps & { style?: View
     )
 
     const gapIndex = (gap && typeof gap === 'number' && gap) || (gap && gap?.mobile) || 0
-    const realGap = React.useMemo(() => (typeof gap === 'undefined' ? 8 : ColumnsGapValue[gapIndex]), [gap])
+    const realGap = useMemo(() => (typeof gap === 'undefined' ? 8 : ColumnsGapValue[gapIndex]), [gap])
 
     const styles = StyleSheet.create({
       columns: {
@@ -84,7 +84,7 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps & { style?: View
           width,
           realGap,
           scrollable: scrollable || false,
-          childrenLength: React.Children.count(children),
+          childrenLength: Children.count(children),
         }}
       >
         {!scrollable && (

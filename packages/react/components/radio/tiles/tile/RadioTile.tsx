@@ -6,7 +6,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef, useId, useRef } from 'react'
 import { VariantState } from '@/interfaces/Variant'
 
 /**
@@ -28,14 +28,14 @@ import { VariantState } from '@/interfaces/Variant'
  * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required radio
  */
-const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
+const RadioTile = forwardRef<RadioTileRef, RadioTileProps>(
   (
     {
       checked,
       className,
       disabled,
       readonly,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,
@@ -52,7 +52,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const refInput = React.useRef<HTMLInputElement>(null)
+    const refInput = useRef<HTMLInputElement>(null)
 
     return (
       <div

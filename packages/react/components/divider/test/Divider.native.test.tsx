@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
 import Divider from '@/components/divider/Divider.native'
 
 jest.useFakeTimers()

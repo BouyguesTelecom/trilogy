@@ -7,7 +7,7 @@ import ModalFooter from '@/components/modal/footer/ModalFooter.native'
 import Modal from '@/components/modal/Modal.native'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import React, { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState, forwardRef, useEffect } from 'react'
 import { Pressable, TextInput, View } from 'react-native'
 import { TimepickerSelector } from '@/components/timepicker/default/selector/TimepickerSelector.native'
 import { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
@@ -22,7 +22,7 @@ const generateItems = (count: number) =>
     label: i.toString().padStart(2, '0'),
   }))
 
-const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'circular'>>(
+const TimepickerDefault = forwardRef<View, Omit<TimepickerDefaultProps, 'circular'>>(
   (
     { disabled, id, value = '00:00', onChange, step = 1, label, sample, help, required, testId, ...others },
     ref,
@@ -70,7 +70,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
       setDisplay(false)
     }, [hours, minutes])
 
-    React.useEffect(() => {
+    useEffect(() => {
       const { hours: h, minutes: m } = parseTime(value)
       setSelectedHours(h)
       setSelectedMinutes(m)

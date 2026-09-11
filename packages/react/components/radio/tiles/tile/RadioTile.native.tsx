@@ -4,7 +4,7 @@ import { RadioTileNativeProps, RadioTileNativeRef } from '@/components/radio/til
 import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useMemo, useState, forwardRef, useId } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { RadioTilesContext } from '@/components/radio/tiles/context'
 import { VariantState } from '@/interfaces/Variant'
@@ -32,12 +32,12 @@ import { Radius } from '@/interfaces/Radius'
  * @param sticker {string} sticker label
  * @param stickerVariant {VariantState} Sticker variant
  */
-const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
+const RadioTile = forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
   (
     {
       checked,
       disabled,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,

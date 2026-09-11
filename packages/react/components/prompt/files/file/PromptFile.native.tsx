@@ -4,7 +4,7 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Image } from '@/components/image'
 import { SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { PromptFileNativeRef, PromptFileProps } from '@/components/prompt/files/file/PromptFileProps'
 import { getColorStyle } from '@/helpers/color'
@@ -17,7 +17,7 @@ const HEIGHT_ITEM = 64
 const HEIGHT_IMG_FILE = 40
 const MAX_WIDTH_FILE = 264
 
-const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
+const PromptFile = forwardRef<PromptFileNativeRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
   const backgroundTimes = getColorStyle(TrilogyColor.MAIN_FADE)
   const borderSmallRadius = getRadiusStyle(Radius.SMALL)
   const borderFullRadius = getRadiusStyle(Radius.FULL)

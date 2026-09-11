@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TimelineItemNativeRef, TimelineItemProps } from '@/components/timeline/item/TimelineItemProps'
 import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
-import React, { createContext, useContext } from 'react'
+import { createContext, useContext, forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 export const TimelineItemContext = createContext({ done: false, active: false, cancel: false })
@@ -14,7 +14,7 @@ export const TimelineItemContext = createContext({ done: false, active: false, c
  * @param undone {boolean} Undone Timeline Item
  * @param cancel {boolean} Cancel Timeline Item
  */
-const TimelineItem = React.forwardRef<TimelineItemNativeRef, TimelineItemProps>(({ children, done, active, cancel }, ref): JSX.Element => {
+const TimelineItem = forwardRef<TimelineItemNativeRef, TimelineItemProps>(({ children, done, active, cancel }, ref): JSX.Element => {
   const { height, setHeight } = useContext(TimelineHeightContext)
 
   const styles = StyleSheet.create({

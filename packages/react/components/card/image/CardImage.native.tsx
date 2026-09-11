@@ -1,6 +1,6 @@
 import { CardContext } from '@/components/card/Card.native'
 import { ComponentName } from '@/components/enumsComponentsName'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, forwardRef } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { CardImageNativeRef, CardImageProps } from '@/components/card/image/CardImageProps'
 
@@ -14,7 +14,7 @@ import { CardImageNativeRef, CardImageProps } from '@/components/card/image/Card
  * @param testId {string} Test Id for Test Integration
  * @param contain {boolean} Resize mode contain
  */
-const CardImage = React.forwardRef<CardImageNativeRef, CardImageProps>(
+const CardImage = forwardRef<CardImageNativeRef, CardImageProps>(
   ({ src, size, alt, onClick, contain, ...others }, ref): JSX.Element => {
     const { horizontal } = useContext(CardContext)
     const maxSize = horizontal ? '50%' : '100%'

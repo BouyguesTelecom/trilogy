@@ -5,7 +5,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TextareaProps, TextareaRef } from '@/components/textarea/TextareaProps'
 import { TypographyColor } from '@/interfaces/TypographyColor'
@@ -33,7 +33,7 @@ import { TypographyColor } from '@/interfaces/TypographyColor'
  * @param minLength {number} Textarea min length
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
+const Textarea = forwardRef<TextareaRef, TextareaProps>(
   (
     {
       className,

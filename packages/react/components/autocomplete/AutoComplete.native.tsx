@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState, forwardRef } from 'react'
 import { Keyboard, StyleSheet, View } from 'react-native'
 import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
@@ -30,7 +30,7 @@ import { debounce } from '@/components/autocomplete/utils'
  * @param loading {boolean} Loading input
  * @param id {string} Custom id attribute
  */
-const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNative>(
+const AutoComplete = forwardRef<AutocompleteNativeRef, AutoCompletePropsNative>(
   (
     {
       value,

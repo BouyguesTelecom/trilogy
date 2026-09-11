@@ -1,9 +1,9 @@
 import { AccordionNativeRef, AccordionProps } from '@/components/accordion/AccordionProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { useThemeRadius } from '@/helpers/useTheme'
+import { useThemeRadius } from '@/hooks/useThemeRadius'
 
 /**
  * Accordion Component
@@ -12,7 +12,7 @@ import { useThemeRadius } from '@/helpers/useTheme'
  * @param accessibilityLabel {string} Accessibility label
  * @param id {string} Custom id attribute
  */
-const Accordion = React.forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...others }, ref): JSX.Element => {
+const Accordion = forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...others }, ref): JSX.Element => {
   const { radiusSm } = useThemeRadius()
 
   const styles = useMemo(

@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor } from '@/components/icon'
 import { Text } from '@/components/text'
-import * as React from 'react'
+import { forwardRef, useState, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { DividerNativeRef, DividerProps } from '@/components/divider/DividerProps'
 import { getColorStyle } from '@/helpers/color'
@@ -18,10 +18,10 @@ import { Radius } from '@/interfaces/Radius'
  * @param id {string} Custom id attribute
  * @param iconName {IconName} Custom icon for Divider
  */
-const Divider = React.forwardRef<DividerNativeRef, DividerProps>(
+const Divider = forwardRef<DividerNativeRef, DividerProps>(
   ({ content, unboxed, marginless, iconName, testId, ...others }, ref): JSX.Element => {
-    const [textWidth, setTextWidth] = React.useState(0)
-    const [containerWidth, setContainerWidth] = React.useState(0)
+    const [textWidth, setTextWidth] = useState(0)
+    const [containerWidth, setContainerWidth] = useState(0)
     const dividerColor = getColorStyle(TrilogyColor.NEUTRAL)
     const borderFullRadius = getRadiusStyle(Radius.FULL)
 
@@ -59,7 +59,7 @@ const Divider = React.forwardRef<DividerNativeRef, DividerProps>(
       },
     })
 
-    const ContentDivider = React.useMemo(() => {
+    const ContentDivider = useMemo(() => {
       if (content) return <Text style={styles.textContent}>{content}</Text>
       if (iconName && !content) return <Icon name={iconName} color={IconColor.MAIN} testId='icon-id' />
     }, [content, iconName])

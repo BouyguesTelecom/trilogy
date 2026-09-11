@@ -2,11 +2,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
-import React, { isValidElement, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { isValidElement, useCallback, useEffect, useMemo, useRef, useState, forwardRef } from 'react'
 import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
 import { TrilogyColor } from '@/interfaces/Color'
-import { useTheme } from '@/helpers/useTheme'
+import { useTheme } from '@/hooks/useTheme'
 
 interface AccordionChild {
   header?: React.ReactNode
@@ -23,7 +23,7 @@ interface AccordionChild {
  * @param testId {string} Test Id for Test Integration
  * @param open {boolean} Open state of the AccordionItem (for controlled behavior)
  */
-const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProps>(
+const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
   ({ open, id, onClick, disabled, children, testId, ...others }, ref): JSX.Element => {
     const { radius, colors } = useTheme()
     const [isActive, setIsActive] = useState<boolean>(Boolean(typeof open !== 'undefined' ? open : false))

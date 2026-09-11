@@ -1,6 +1,5 @@
 import clsx from 'clsx'
-import React from 'react'
-
+import { forwardRef } from 'react'
 import { ContainerProps, ContainerRef } from '@/components/container/ContainerProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
@@ -16,7 +15,7 @@ import { is } from '@/helpers/classify'
  * @param className {string} Additional CSS Classes
  * @param medium {boolean} Set medium container width
  */
-const Container = React.forwardRef<ContainerRef, ContainerProps>(
+const Container = forwardRef<ContainerRef, ContainerProps>(
   ({ className, id, medium, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('container', medium && is('medium'), className))
