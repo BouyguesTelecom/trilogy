@@ -52,6 +52,8 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
     )
 
     const [pages, setPages] = useState(() => getPages(defaultPage).pages)
+    const isFirstPage = currentPage === 1
+    const isLastPage = currentPage === length
 
     useEffect(() => {
       setCurrentPage(defaultPage)
@@ -64,6 +66,10 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
           className={hashClass(styled, clsx('pagination-previous'))}
           {...(currentPage === 1 ? { 'aria-disabled': true } : {})}
           onClick={(e) => {
+            if (isFirstPage) {
+              e.preventDefault()
+              return
+            }
             const nextPage = currentPage - 1
             const nextPages = getPages(nextPage)
             if (onClick) onClick(Object.assign(e, nextPages, { currentPage: nextPage, length }))
@@ -110,6 +116,10 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
           className={hashClass(styled, clsx('pagination-next'))}
           {...(currentPage === Math.max(length) ? { 'aria-disabled': true } : {})}
           onClick={(e) => {
+            if (isLastPage) {
+              e.preventDefault()
+              return
+            }
             const nextPage = currentPage + 1
             const nextPages = getPages(nextPage)
             if (onClick) onClick(Object.assign(e, nextPages, { currentPage: nextPage, length }))
