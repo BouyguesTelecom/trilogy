@@ -2,7 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { TimelineItemNativeRef, TimelineItemProps } from '@/components/timeline/item/TimelineItemProps'
 import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import React, { createContext, useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 export const TimelineItemContext = createContext({ done: false, active: false, cancel: false })
 
@@ -17,7 +18,7 @@ export const TimelineItemContext = createContext({ done: false, active: false, c
 const TimelineItem = React.forwardRef<TimelineItemNativeRef, TimelineItemProps>(({ children, done, active, cancel }, ref): JSX.Element => {
   const { height, setHeight } = useContext(TimelineHeightContext)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     item: {
       width: '100%',
       flexDirection: 'row',

@@ -4,7 +4,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import React, { useState } from 'react'
-import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, Platform, TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../skeleton'
 
 /**
@@ -50,7 +51,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     const [header, setHeader] = useState<boolean>(false)
 
     const boxRadius = 6
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       box: {
         width: '100%',
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,

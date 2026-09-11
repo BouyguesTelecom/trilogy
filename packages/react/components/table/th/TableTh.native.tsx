@@ -1,5 +1,6 @@
 import * as React from "react"
-import { StyleSheet } from "react-native"
+import {  } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { TableThNativeRef, TableThProps } from "./TableThProps"
 import { View } from "@/components/view"
 import { Text } from "@/components/text"
@@ -11,7 +12,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param children {ReactNode} children of table TH
  */
 const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     tableTh: {
       flexDirection: "column",
       flex: 1,

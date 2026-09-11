@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import React, { createContext } from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { ChipsListNativeRef, ChipsListProps } from './ChipsListProps'
 
 export const ChipsContext = createContext({ isMultiple: false })
@@ -15,7 +16,7 @@ export const ChipsContext = createContext({ isMultiple: false })
  */
 const ChipsList = React.forwardRef<ChipsListNativeRef, ChipsListProps>(
   ({ children, multiple, scrollable = true, testId, ...others }, ref): JSX.Element => {
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flexWrap: 'wrap',
         flexDirection: 'row',

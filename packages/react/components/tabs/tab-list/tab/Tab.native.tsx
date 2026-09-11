@@ -6,7 +6,8 @@ import { Text } from '@/components/text'
 import { TypographyAlign } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React from 'react'
-import { GestureResponderEvent, Linking, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { GestureResponderEvent, Linking, TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Tabs Item Component
@@ -36,7 +37,7 @@ const Tab = React.forwardRef<TabNativeRef, TabProps>(
       [disabled, onClick, index, setActiveIndex, to, href],
     )
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       tab: {
         flex: fullwidth ? 1 : undefined,
         flexBasis: fullwidth ? 0 : undefined,

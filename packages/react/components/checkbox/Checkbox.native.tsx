@@ -4,7 +4,8 @@ import { IconName } from '@/components/icon/IconNameEnum'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
 
 /**
@@ -26,7 +27,7 @@ const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
       setChecked(checked || false)
     }, [checked])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flexDirection: 'row',
         justifyContent: 'flex-start',

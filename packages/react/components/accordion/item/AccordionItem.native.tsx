@@ -4,7 +4,8 @@ import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { isValidElement, useEffect, useRef, useState } from 'react'
-import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
+import { Animated, Easing, TouchableWithoutFeedback, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { AccordionItemNativeRef, AccordionItemProps } from './AccordionItemProps'
 
 interface AccordionChild {
@@ -32,7 +33,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
       body: undefined,
     })
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       item: {
         width: '100%',
         padding: 5,

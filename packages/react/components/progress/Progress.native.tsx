@@ -3,7 +3,8 @@ import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects'
 import React, { useEffect, useRef } from 'react'
-import { Animated, StyleSheet } from 'react-native'
+import { Animated } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { ProgressNativeRef, ProgressProps } from './ProgressProps'
 
 /**
@@ -43,7 +44,7 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
       extrapolate: 'clamp',
     })
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       progress: {
         flexDirection: 'row',
         width: '100%',

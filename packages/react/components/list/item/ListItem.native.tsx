@@ -5,7 +5,8 @@ import { ListItemNativeRef, ListItemProps } from '@/components/list/item/ListIte
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
 import React, { useContext, useEffect, useId, useMemo } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * ListItem Component
@@ -24,7 +25,7 @@ const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
       setChildIndexes((prev) => [...prev, id])
     }, [id])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       text: {
         paddingHorizontal: 16,
       },

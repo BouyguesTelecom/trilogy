@@ -3,7 +3,8 @@ import { Icon } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { useState } from 'react'
-import { Linking, StyleSheet, Text, View } from 'react-native'
+import { Linking, Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { LinkNativeRef, LinkPropsNative } from './LinkProps'
 
 /**
@@ -20,7 +21,7 @@ const Link = React.forwardRef<LinkNativeRef, LinkPropsNative>(
   ({ children, to, onClick, testId, accessibilityLabel, iconName, inverted, ...others }, ref): JSX.Element => {
     const [pressedLink, setPressedLink] = useState(false)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       link: {
         color: getColorStyle(
           (pressedLink && TrilogyColor.MAIN_FADE) || (inverted && TrilogyColor.BACKGROUND) || TrilogyColor.MAIN,

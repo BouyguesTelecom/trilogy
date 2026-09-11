@@ -6,7 +6,8 @@ import { getButtonColorStyle, getColorStyle, TrilogyColor } from '@/objects/face
 import { getLoadingClassName } from '@/objects/facets/Loadable'
 import { getVariantClassName } from '@/objects/facets/Variant'
 import * as React from 'react'
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { ButtonVariant } from './ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from './ButtonProps'
 
@@ -58,7 +59,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         ? TrilogyColor.INFO_FADE
         : TrilogyColor.BACKGROUND
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       button: {
         maxWidth: '100%',
         minWidth: '100%',

@@ -6,7 +6,8 @@ import { Alignable } from '@/objects'
 import { TypographyBold } from '@/objects/Typography'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { SelectOptionNativeRef, SelectOptionProps } from './SelectOptionProps'
 
 /**
@@ -18,7 +19,7 @@ import { SelectOptionNativeRef, SelectOptionProps } from './SelectOptionProps'
 const SelectOption = React.forwardRef<SelectOptionNativeRef, SelectOptionProps>(({ disabled, children, onClick, label, iconName, ...others }, ref): JSX.Element => {
   const { checked } = others as { checked: string }
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
         container: {
           backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
           width: '100%',

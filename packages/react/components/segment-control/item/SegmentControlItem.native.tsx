@@ -1,7 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { SegmentControlItemNativeRef, SegmentControlItemProps } from './SegmentControlItemProps'
 
 /**
@@ -21,7 +22,7 @@ const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, Segment
 }, ref): JSX.Element => {
   const [activeItem, setActiveItem] = useState<boolean>(active || false)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     tabsItem: {
       flexDirection: 'column',
       flex: 1,

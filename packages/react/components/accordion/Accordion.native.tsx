@@ -1,7 +1,8 @@
 import { AccordionNativeRef, AccordionProps } from '@/components/accordion/AccordionProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Accordion Component
@@ -11,7 +12,7 @@ import { StyleSheet, View } from 'react-native'
  * @param id {string} Custom id attribute
  */
 const Accordion = React.forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...others }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     accordion: {
       width: '100%',
       minHeight: 10,

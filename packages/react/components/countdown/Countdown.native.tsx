@@ -3,7 +3,8 @@ import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text as TextNative, View } from 'react-native'
+import { Text as TextNative, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography'
 import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import { CountdownNativeRef, CountdownProps } from './CountdownProps'
@@ -124,7 +125,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
       }
     }, [timer, event, init])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       countdown: {
         alignSelf: centered ? 'center' : 'flex-start',
         backgroundColor: getColorStyle(TrilogyColor.ACCENT_FADE),

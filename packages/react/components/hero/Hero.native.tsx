@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Box } from '@/components/box'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroNativeRef, HeroProps } from '@/components/hero/HeroProps'
@@ -30,7 +31,7 @@ const Hero = React.forwardRef<HeroNativeRef, HeroProps>(
     const overlapMargin = backgroundHeight ? overlapHeight - backgroundHeight / 2 : overlapHeight - 60
     const marginBottomOverlap = isSecondOverlapNotEmpty ? 70 : 60
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       hero: {
         width: '100%',
         minHeight: 150,

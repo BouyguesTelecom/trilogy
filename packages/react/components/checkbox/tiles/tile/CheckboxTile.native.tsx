@@ -6,7 +6,8 @@ import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, VariantState } from '@/objects'
 import React, { useContext, useState } from 'react'
-import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
+import { TouchableOpacity, View as ViewRN } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { CheckboxTilesContext } from '../context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps'
 
@@ -52,7 +53,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     const [stickerHeight, setStickerHeight] = useState<number>(0)
     const { isGrid } = useContext(CheckboxTilesContext)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flexDirection: 'row',
         paddingBottom: 5,

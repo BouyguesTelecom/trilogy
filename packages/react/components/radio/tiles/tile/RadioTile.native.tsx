@@ -9,7 +9,8 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyAlign, TypographyColor } from '@/objects/Typography'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { RadioTilesContext } from '../context'
 
 /**
@@ -51,7 +52,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
     const { isGrid } = useContext(RadioTilesContext)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flex: isGrid ? 1 : undefined,
         flexDirection: horizontal ? 'row' : 'column',
@@ -143,7 +144,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
 )
 
 const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boolean }): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     input: {
       marginRight: 'auto',
       width: 18,

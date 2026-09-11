@@ -2,7 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { PromptContext } from '../../context'
 import PromptButton from '../tools/button/PromptButton.native'
 import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './PromptSubmitProps'
@@ -38,7 +39,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
       [statusSubmit, text, files],
     )
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       icon: {
         flexDirection: 'row',
         justifyContent: 'center',

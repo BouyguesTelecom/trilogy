@@ -3,7 +3,8 @@ import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useState } from 'react'
-import { StyleSheet } from 'react-native'
+import {  } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import SegmentedControlItem from './item'
 import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlProps'
 
@@ -33,7 +34,7 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
       }
     }
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       padding: {
         paddingLeft: 10,
         paddingRight: 10,

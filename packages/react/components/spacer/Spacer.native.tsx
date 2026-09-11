@@ -1,5 +1,6 @@
 import * as React from "react"
-import { StyleSheet, View } from "react-native"
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { SpacerNativeRef, SpacerProps } from "./SpacerProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
@@ -9,7 +10,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param horizontal {Boolean} If horizontal margin
  */
 const Spacer = React.forwardRef<SpacerNativeRef, SpacerProps>(({ size, horizontal }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     spacer: {
       marginLeft: (horizontal && parseInt(size.toString())) || 0,
       marginTop: (!horizontal && parseInt(size.toString())) || 0,

@@ -8,7 +8,8 @@ import { View } from '@/components/view'
 import { Alignable, TrilogyColor, TypographyBold } from '@/objects'
 import { getStatusIconName, getStatusStyle } from '@/objects/facets/Status'
 import * as React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import LibToast from 'react-native-toast-message'
 import { Row, Rows } from '../rows'
 import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
@@ -48,7 +49,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
     const { color, backgroundColor } = getStatusStyle(status)
     let alertView: JSX.Element
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         width: '100%',
         paddingTop: 12,
@@ -134,7 +135,7 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
   const { title, description, iconName, status, closable, onClick } = props
   const { color, backgroundColor } = getStatusStyle(status)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     toaster: {
       padding: 24,
     },

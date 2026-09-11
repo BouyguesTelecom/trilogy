@@ -1,11 +1,12 @@
 import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { PromptToolsNativeRef, PromptToolsProps } from './PromptToolsProps'
 
 const PromptTools = React.forwardRef<PromptToolsNativeRef, PromptToolsProps>(({ ...others }, ref) => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     view: {
       flexDirection: 'row',
       gap: GapSize.EIGHT,

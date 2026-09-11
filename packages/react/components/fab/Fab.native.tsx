@@ -1,5 +1,6 @@
 import * as React from "react"
-import { StyleSheet, TouchableOpacity } from "react-native"
+import { TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { FabNativeRef, FabProps } from "./FabProps"
 import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "@/objects"
 import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
@@ -34,7 +35,7 @@ const Fab =  React.forwardRef<FabNativeRef, FabProps>(({
                disabled,
                testId
              }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     button: {
       backgroundColor: getColorStyle(TrilogyColor.MAIN),
       justifyContent: "center",

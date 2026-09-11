@@ -3,7 +3,8 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Pager } from './PaginationEnum'
 import { PaginationNativeProps, PaginationNativeRef } from './PaginationProps'
 
@@ -69,7 +70,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
       }
     }, [currentPage])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flexDirection: 'row',
         alignItems: 'center',

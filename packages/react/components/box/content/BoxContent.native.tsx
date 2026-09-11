@@ -3,7 +3,8 @@ import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { ImageBackground, Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Box Content
@@ -17,7 +18,7 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
     const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = React.useContext(BoxContext)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       boxContent: {
         padding: 16,
         backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
