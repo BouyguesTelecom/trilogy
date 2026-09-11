@@ -5,8 +5,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
-
+import { forwardRef } from 'react'
 /**
  * Columns Item Component - Columns Child
  * @param size {ColumnsSize} Size 1-12
@@ -31,7 +30,7 @@ import React from 'react'
  * @param widescreenOffset {ColumnsSize} Apply => is-offset-widescreen
  * @param fullhdOffset {ColumnsSize} Apply => is-offset-fullhd
  */
-const Column = React.forwardRef<ColumnRef, ColumnProps>(
+const Column = forwardRef<ColumnRef, ColumnProps>(
   (
     {
       className,

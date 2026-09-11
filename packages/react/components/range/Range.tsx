@@ -1,7 +1,7 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef, useId, useRef, useState, useEffect, useCallback } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { RangeProps, RangeRef } from '@/components/range/RangeProps'
 
@@ -28,11 +28,11 @@ import { RangeProps, RangeRef } from '@/components/range/RangeProps'
  * @param value {number[]} Current values array [min, max]
  * @param onChange {InputChangeEventHandlerNative} Callback for cursor changes
  */
-const Range = React.forwardRef<RangeRef, RangeProps>(
+const Range = forwardRef<RangeRef, RangeProps>(
   (
     {
       className,
-      id = React.useId(),
+      id = useId(),
       min,
       max,
       label,
@@ -51,49 +51,49 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const refTrack = React.useRef(null)
+    const refTrack = useRef(null)
 
-    const [cursorMin, setCursorMin] = React.useState<number>(valueMin ?? 0)
-    const [cursorMax, setCursorMax] = React.useState<number>(simple ? value || 0 : valueMax ?? max)
+    const [cursorMin, setCursorMin] = useState<number>(valueMin ?? 0)
+    const [cursorMax, setCursorMax] = useState<number>(simple ? value || 0 : valueMax ?? max)
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (refTrack.current) {
         const track = refTrack.current as HTMLElement
-        track.style.background = `linear-gradient(to right, var(--color-main-fade) ${
+        track.style.background = `linear-gradient(to right, var(--bg-secondary-subtle) ${
           (cursorMin / max) * 100
-        }% , var(--color-main) ${(cursorMin / max) * 100}% , var(--color-main) ${
+        }% , var(--bg-secondary) ${(cursorMin / max) * 100}% , var(--bg-secondary) ${
           (cursorMax / max) * 100
-        }%, var(--color-main-fade) ${(cursorMax / max) * 100}%) `
+        }%, var(--bg-secondary-subtle) ${(cursorMax / max) * 100}%) `
       }
     }, [cursorMin, cursorMax])
 
-    React.useEffect(() => {
+    useEffect(() => {
       setCursorMin(valueMin || 0)
     }, [valueMin])
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (!simple) setCursorMax(valueMax || max)
     }, [valueMax, simple])
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (simple && value !== undefined) setCursorMax(value)
     }, [value, simple])
 
-    const handleChangeCursorMin = React.useCallback(
+    const handleChangeCursorMin = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value) < cursorMax - gap) setCursorMin(Number(e.target.value))
       },
       [cursorMax, cursorMin],
     )
 
-    const handleChangeCursorMax = React.useCallback(
+    const handleChangeCursorMax = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value) >= cursorMin + gap) setCursorMax(Number(e.target.value))
       },
       [cursorMax, cursorMin],
     )
 
-    const handleMouseUpMin = React.useCallback(() => {
+    const handleMouseUpMin = useCallback(() => {
       if (onChangeMin) {
         onChangeMin({
           inputName: name,
@@ -102,7 +102,7 @@ const Range = React.forwardRef<RangeRef, RangeProps>(
       }
     }, [onChangeMin, name, cursorMin])
 
-    const handleMouseUpMax = React.useCallback(() => {
+    const handleMouseUpMax = useCallback(() => {
       if (onChangeMax && !simple) {
         onChangeMax({
           inputName: name,

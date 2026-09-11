@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react'
-import * as React from 'react'
 import Pagination from '@/components/pagination/Pagination'
 
 describe('Pagination component', () => {

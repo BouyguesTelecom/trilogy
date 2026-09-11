@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, forwardRef } from 'react'
 import {
   Keyboard,
   NativeSyntheticEvent,
@@ -23,13 +23,13 @@ import {
 } from '@/components/input/InputEnum'
 import { InputNativeEvents, InputNativeRef, InputProps } from '@/components/input/InputProps'
 import InputGauge from '@/components/input/gauge/InputGauge.native'
-import { TypographyColor } from "@/interfaces/TypographyColor";
-import { Align } from "@/interfaces/Alignable";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { StatusState } from "@/interfaces/Status";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { TypographyColor } from '@/interfaces/TypographyColor'
+import { Align } from '@/interfaces/Alignable'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { StatusState } from '@/interfaces/Status'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
@@ -69,7 +69,7 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param keyType {KeyType} Key type for submit button
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
+const Input = forwardRef<InputNativeRef, InputNativeProps>(
   (
     {
       defaultValue,

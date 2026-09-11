@@ -5,12 +5,12 @@ import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme.native'
 import { isIOS } from '@/helpers/device.native'
 import { getAlignStyle } from '@/helpers/alignable'
-import React, { useContext } from 'react'
+import { useContext, forwardRef } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { WithLocalSvg } from 'react-native-svg/css'
 import { Skeleton } from '@/components/skeleton'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
 
 /**
  * Icon Component
@@ -25,7 +25,7 @@ import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
  * @param testId {string} Test Id for Test Integration
  * @param align {Alignable | AlignableValues} Align content
  */
-const Icon = React.forwardRef<IconNativeRef, IconProps>(
+const Icon = forwardRef<IconNativeRef, IconProps>(
   (
     { size, name, circled, stretched, color, backgroundColor, onClick, align, skeleton, testId, ...others },
     ref,

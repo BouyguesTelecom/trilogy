@@ -1,5 +1,4 @@
 // Dependencies
-import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 import { Button, ButtonList } from '@/components/button'
 
@@ -12,6 +11,6 @@ describe('ButtonList component', () => {
     )
 
     expect(screen.getByRole('button').closest('div')).toBeInTheDocument()
-    expect(screen.getByRole('button').closest('div')).toHaveClass('buttons')
+    expect(screen.getByRole('button').closest('div')).toHaveClass('Buttons')
   })
 })

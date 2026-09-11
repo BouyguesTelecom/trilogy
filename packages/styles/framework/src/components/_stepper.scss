@@ -5,10 +5,10 @@
   position: relative;
   justify-content: space-between;
   min-height: 44px;
-  gap: $spacing-4;
+  gap: var(--spacing-md);
 
   @include touch {
-    gap : $spacing-2;
+    gap : var(--spacing-xs);
   }
 }
 
@@ -21,15 +21,15 @@
     content: "";
     display: block;
     height: 4px;
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-sm);
     background-size: 200% !important;
-    background-color: getColor('neutral');
+    background-color: var(--bg-secondary-subtle); 
   }
 
   &.is-error {
 
     &:before {
-      background-color: getColor('error') !important;
+      background-color: var(--bg-error) !important;
 
     }
     &.is-current{
@@ -40,17 +40,17 @@
     }
 
     .step-bars {
-      background: getColor('error') !important;
+      background: var(--bg-error) !important;
     }
 
-    color: getColor('font');
+    color: var(--text-primary);
 
     .step-label {
 
       &::before {
         content: "";
         mask-image: url('./assets/icons/all/times.svg') !important;
-        background-color: getColor('error') !important;
+        background-color: var(--bg-error) !important;
         border-width: 0;
         mask-size: 20px;
         width: 20px;
@@ -68,11 +68,11 @@
   &.is-done {
 
     &:before {
-      background-color: getColor('font');
+      background-color: var(--bg-secondary);
     }
 
     .step-bars {
-      background: getColor('font');
+      background: var(--bg-secondary);
       transition: background-color 1s ease-in-out;
     }
 
@@ -80,7 +80,7 @@
       &::before {
         content: "";
         mask-image: url('./assets/icons/all/check-circle.svg');
-        background-color: getColor('success');
+        background-color: var(bg-success);
         border-width: 0;
         min-width: 20px;
         mask-size: 20px;
@@ -95,12 +95,12 @@
   &.is-active {
 
     &:before {
-      background-color: getColor('main');
+      background-color: var(--bg-secondary);
       animation: progress 1s;
     }
 
     .step-bars {
-      background: getColor('main');
+      background: var(--bg-secondary);
     }
 
     .step-label {
@@ -130,20 +130,20 @@
 
 .step-bars {
   height: 4px;
-  background: getColor('disabled');
-  border-radius: var(--radius-small);
+  background: var(--bg-disabled);
+  border-radius: var(--radius-sm);
   display: none;
 }
 
 .step-label {
   display: flex;
   align-items: center;
-  color: getColor('font');
+  color: var(--text-primary);
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  gap: $spacing-1;
+  gap: var(--spacing-xxs);
   .icon {
     font-size: 20px;
     height: auto;
@@ -151,7 +151,7 @@
 }
 
 .stepper-wrapper > .stepper-item > .step-label {
-  padding-top: $spacing-2;
+  padding-top: var(--spacing-xs);
     @include touch {
       position: absolute;
       top: 10px;
@@ -165,11 +165,11 @@
 }
 
 .stepper-content {
-  margin-bottom: $spacing-3 !important;
+  margin-bottom: var(--spacing-sm) !important;
 }
 
 .stepper-steps {
-  margin-bottom: $spacing-2 !important;
+  margin-bottom: var(--spacing-xs) !important;
 }
 
 
@@ -234,7 +234,7 @@
 
 @keyframes progress {
   0%, 100% {
-    background-image: linear-gradient(to right, transparent 0, transparent 50%, getColor('neutral') 50%, getColor('neutral') 100%);
+    background-image: linear-gradient(to right, transparent 0, transparent 50%, var(--bg-secondary-subtle) 50%, var(--bg-secondary-subtle) 100%); 
   }
   0% {
     background-position: 100% 0;

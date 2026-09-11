@@ -2,13 +2,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
-import React, { isValidElement, useEffect, useRef, useState } from 'react'
+import { isValidElement, useCallback, useEffect, useMemo, useRef, useState, forwardRef } from 'react'
 import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { TrilogyColor } from '@/interfaces/Color'
+import { useTheme } from '@/hooks/useTheme'
 
 interface AccordionChild {
   header?: React.ReactNode
@@ -25,8 +23,9 @@ interface AccordionChild {
  * @param testId {string} Test Id for Test Integration
  * @param open {boolean} Open state of the AccordionItem (for controlled behavior)
  */
-const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProps>(
+const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
   ({ open, id, onClick, disabled, children, testId, ...others }, ref): JSX.Element => {
+    const { radius, colors } = useTheme()
     const [isActive, setIsActive] = useState<boolean>(Boolean(typeof open !== 'undefined' ? open : false))
     const animatedController = useRef(new Animated.Value(0)).current
     const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
@@ -35,43 +34,47 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
       body: undefined,
     })
 
-    const styles = StyleSheet.create({
-      item: {
-        width: '100%',
-        padding: 5,
-        borderRadius: getRadiusStyle(Radius.SMALL),
-        backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
-        borderWidth: 1,
-        borderColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.STROKE_FADE),
-      },
-      bodyBackground: {
-        borderRadius: getRadiusStyle(Radius.SMALL),
-        backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-        overflow: 'hidden',
-      },
-      titleContainer: {
-        minWidth: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingLeft: 10,
-        paddingRight: 5,
-        paddingTop: 5,
-        paddingBottom: 5,
-        borderColor: getColorStyle(TrilogyColor.BACKGROUND),
-      },
-      bodyContainer: {
-        padding: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
-        position: 'absolute',
-        bottom: 0,
-        borderRadius: getRadiusStyle(Radius.SMALL),
-        left: 0,
-        right: 0,
-      },
-    })
+    const styles = useMemo(
+      () =>
+        StyleSheet.create({
+          item: {
+            width: '100%',
+            padding: 5,
+            borderRadius: radius.radiusSm,
+            backgroundColor: disabled ? colors.bgDisabled : colors.bgPrimary,
+            borderWidth: 1,
+            borderColor: (disabled && colors.borderDisabled) || colors.border,
+          },
+          bodyBackground: {
+            borderRadius: radius.radiusSm,
+            backgroundColor: colors.bgPrimary,
+            overflow: 'hidden',
+          },
+          titleContainer: {
+            minWidth: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingLeft: 10,
+            paddingRight: 5,
+            paddingTop: 5,
+            paddingBottom: 5,
+            borderColor: colors.bgPrimary,
+          },
+          bodyContainer: {
+            padding: 10,
+            paddingLeft: 10,
+            paddingRight: 10,
+            position: 'absolute',
+            bottom: 0,
+            borderRadius: radius.radiusSm,
+            left: 0,
+            right: 0,
+          },
+        }),
+      [radius, disabled, colors],
+    )
 
     const bodyHeight = animatedController.interpolate({
       inputRange: [0, 1],
@@ -87,24 +90,33 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
       setIsActive(open || false)
     }, [open])
 
-    const toggleListItem = () => {
-      if (isActive) {
-        Animated.timing(animatedController, {
-          duration: 300,
-          toValue: 0,
-          easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-          useNativeDriver: false,
-        }).start()
-      } else {
-        Animated.timing(animatedController, {
-          duration: 300,
-          toValue: 1,
-          easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-          useNativeDriver: false,
-        }).start()
-      }
-      setIsActive(!isActive)
-    }
+    const toggleListItem = useCallback(
+      (e: any) => {
+        if (disabled) return
+        if (isActive) {
+          Animated.timing(animatedController, {
+            duration: 300,
+            toValue: 0,
+            easing: Easing.bezier(0.4, 0.0, 0.2, 1),
+            useNativeDriver: false,
+          }).start()
+        } else {
+          Animated.timing(animatedController, {
+            duration: 300,
+            toValue: 1,
+            easing: Easing.bezier(0.4, 0.0, 0.2, 1),
+            useNativeDriver: false,
+          }).start()
+        }
+        if (onClick) onClick(e)
+        setIsActive((prev) => !prev)
+      },
+      [isActive, animatedController, disabled],
+    )
+
+    const onLayoutBody = useCallback((e: any) => {
+      setBodySectionHeight(e.nativeEvent.layout.height)
+    }, [])
 
     useEffect(() => {
       open ? animatedController.setValue(1) : animatedController.setValue(0)
@@ -144,13 +156,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
           <TouchableWithoutFeedback
             style={styles.item}
             testID={id || testId || ''}
-
-            onPress={(e: any) => {
-              if (!disabled) {
-                toggleListItem()
-                if (onClick) onClick(e)
-              }
-            }}
+            onPress={toggleListItem}
             {...others}
           >
             <View style={styles.titleContainer}>
@@ -165,13 +171,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
             </View>
           </TouchableWithoutFeedback>
           <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
-            <View
-              style={styles.bodyContainer}
-
-              onLayout={(e: any) => {
-                setBodySectionHeight(e.nativeEvent.layout.height)
-              }}
-            >
+            <View style={styles.bodyContainer} onLayout={onLayoutBody}>
               {childs.body && <View>{childs.body}</View>}
             </View>
           </Animated.View>

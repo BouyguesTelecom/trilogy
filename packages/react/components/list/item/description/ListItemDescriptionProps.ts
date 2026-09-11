@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { View } from 'react-native'
-import { Dev } from "@/interfaces/Dev";
+import { Dev } from '@/interfaces/Dev'
 
 export interface ListItemDescriptionProps extends Dev {
   children?: ReactNode

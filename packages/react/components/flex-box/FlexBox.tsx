@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import {
   AlignProps,
   Direction,
@@ -117,7 +117,7 @@ const getJustifyClassName = (justifyContent?: string) => {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param fullBleed {boolean} Extend to full screen width (ignores container padding)
  */
-const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
+const FlexBox = forwardRef<FlexBoxRef, FlexBoxProps>(
   ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, mobile, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

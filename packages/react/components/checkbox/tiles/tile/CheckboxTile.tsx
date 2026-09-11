@@ -5,7 +5,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef, useId, useState, useRef, useEffect } from 'react'
 import { CheckboxTileProps, CheckboxTileRef } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
 import { VariantState } from '@/interfaces/Variant'
 
@@ -30,14 +30,14 @@ import { VariantState } from '@/interfaces/Variant'
  * @param value {string} Value attribute for the checkbox input
  * @param required {boolean} Required input checkboxes
  */
-const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
+const CheckboxTile = forwardRef<CheckboxTileRef, CheckboxTileProps>(
   (
     {
       checked,
       className,
       disabled,
       readonly,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,
@@ -54,10 +54,10 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const [_checked, setChecked] = React.useState<boolean>(checked || false)
-    const refInput = React.useRef<HTMLInputElement>(null)
+    const [_checked, setChecked] = useState<boolean>(checked || false)
+    const refInput = useRef<HTMLInputElement>(null)
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (!readonly) {
         setChecked(checked || false)
       }

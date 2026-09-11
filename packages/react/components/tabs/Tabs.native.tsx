@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TabsNativeRef, TabsProps } from '@/components/tabs/TabsProps'
 import { TabsContext } from '@/components/tabs/context'
-import React from 'react'
+import { forwardRef, useState, useEffect } from 'react'
 import { View } from 'react-native'
 
 /**
@@ -11,15 +11,15 @@ import { View } from 'react-native'
  * @param inverted {boolean} Inverted style
  * @param fullwidth {boolean} Fullwidth tabs
  */
-const Tabs = React.forwardRef<TabsNativeRef, TabsProps>(({ children, activeIndex, inverted, fullwidth }, ref) => {
-  const [currentIndex, setCurrentIndex] = React.useState<number>(activeIndex || 0)
-  const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
+const Tabs = forwardRef<TabsNativeRef, TabsProps>(({ children, activeIndex, inverted, fullwidth }, ref) => {
+  const [currentIndex, setCurrentIndex] = useState<number>(activeIndex || 0)
+  const [isInverted, setIsInverted] = useState<boolean>(inverted || false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     activeIndex !== undefined && setCurrentIndex(activeIndex)
   }, [activeIndex])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsInverted(inverted || false)
   }, [inverted])
 

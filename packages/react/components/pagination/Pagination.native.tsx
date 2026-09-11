@@ -1,14 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, forwardRef } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Pager } from '@/components/pagination/PaginationEnum'
 import { PaginationNativeProps, PaginationNativeRef } from '@/components/pagination/PaginationProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Pagination Component
@@ -18,7 +18,7 @@ import { Radius } from "@/interfaces/Radius";
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
+const Pagination = forwardRef<PaginationNativeRef, PaginationNativeProps>(
   ({ length, defaultPage = 1, onClick, testId, ...others }, ref): JSX.Element => {
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
     const [arrayPage] = useState<Array<number>>(Array.from(Array(length + 1).keys()))

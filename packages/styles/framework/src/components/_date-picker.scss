@@ -4,10 +4,10 @@
     text-align: center;
     caret-color: transparent;
     &:focus-visible {
-      background-color: getColor('main-fade')
+      background-color: var(--bg-secondary-subtle)
     }
     &::selection {
-      background-color: getColor('main-fade')
+      background-color: var(--bg-secondary-subtle)
     }
   }
 
@@ -15,7 +15,7 @@
     &.is-focused {
       border: 2px solid  currentColor;
       padding-left: 15px !important;
-      background-color: getColor('background') !important;
+      background-color: var(--bg-primary) !important;
     }
     &:active {
       padding-left: 15px !important;

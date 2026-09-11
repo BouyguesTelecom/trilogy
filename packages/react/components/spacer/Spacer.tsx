@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { SpacerProps, SpacerRef } from '@/components/spacer/SpacerProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
@@ -14,7 +14,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const Spacer = React.forwardRef<SpacerRef, SpacerProps>(({ size, horizontal, className, id, testId }, ref): JSX.Element => {
+const Spacer = forwardRef<SpacerRef, SpacerProps>(({ size, horizontal, className, id, testId }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const styles = {
     spacer: {

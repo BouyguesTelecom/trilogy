@@ -1,18 +1,16 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { View } from '@/components/view'
-import * as React from 'react'
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { forwardRef, useMemo } from 'react'
+import { ActivityIndicator, Pressable, StyleSheet, Text } from 'react-native'
 import { ButtonVariant } from '@/components/button/ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from '@/components/button/ButtonProps'
-import { getButtonColorStyle, getColorStyle } from '@/helpers/color'
 import { getLoadingClassName } from '@/helpers/loadable'
-import { getRadiusStyle } from '@/helpers/radius'
 import { getTypographyBoldStyle } from '@/helpers/typography'
-import { getVariantClassName } from '@/helpers/variant'
 import { TrilogyColor } from '@/interfaces/Color'
-import { Radius } from '@/interfaces/Radius'
 import { TypographyBold } from '@/interfaces/TypographyBold'
+import { useThemeButtonVariant } from '@/hooks/useThemeBackground'
+import { useTheme } from '@/hooks/useTheme'
 
 /**
  * Button Component
@@ -26,116 +24,100 @@ import { TypographyBold } from '@/interfaces/TypographyBold'
  * @param testId {string} Test Id for Test Integration
  * @param iconName {IconName} Icon displayed inside the button
  */
-const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
+const Button = forwardRef<ButtonNativeRef, ButtonProps>(
   (
     { children, variant, onClick, disabled, loading, fullwidth, testId, accessibilityLabel, iconName, ...others },
     ref,
   ): JSX.Element => {
-    const loaderColor = getColorStyle(TrilogyColor.BACKGROUND)
-    const isLoading = typeof loading === 'string' && getLoadingClassName(loading) === 'loading'
+    const { colors, radius, fonts } = useTheme()
+    const { backgroundColor, textColor, borderColor, pressedBackgroundColor } = useThemeButtonVariant(
+      disabled ? 'DISABLED' : variant,
+    )
 
-    const background = disabled
-      ? TrilogyColor.NEUTRAL_FADE
-      : isLoading
-      ? getButtonColorStyle(TrilogyColor.BACKGROUND)
-      : typeof loading === 'boolean' && loading
-      ? TrilogyColor.NEUTRAL
-      : variant === ButtonVariant.SECONDARY
-      ? TrilogyColor.MAIN_FADE
-      : variant === ButtonVariant.CONVERSION
-      ? TrilogyColor.ACCENT
-      : variant === ButtonVariant.GHOST
-      ? 'transparent'
-      : TrilogyColor.MAIN
+    const styles = useMemo(
+      () =>
+        StyleSheet.create({
+          button: {
+            maxWidth: '100%',
+            minWidth: '100%',
+            paddingTop: variant === ButtonVariant.PRIMARY ? 13 : 15,
+            paddingBottom: variant === ButtonVariant.PRIMARY ? 13 : 15,
+            paddingLeft: variant === ButtonVariant.PRIMARY ? 13 : 15,
+            paddingRight: variant === ButtonVariant.PRIMARY ? 13 : 15,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: backgroundColor,
+            borderRadius: radius.radiusXs,
+            minHeight: 45,
+            height: loading ? 52 : 'auto',
+            borderColor: borderColor,
+          },
+          text: {
+            fontFamily: fonts.fontTitle1,
+            color: textColor,
+            alignSelf: 'center',
+            alignItems: 'center',
+            fontWeight: 'bold',
+            justifyContent: 'center',
+          },
+          textDisabled: {
+            color: colors.textDisabled,
+            alignSelf: 'center',
+            alignItems: 'center',
+            fontWeight: 'bold',
+            justifyContent: 'center',
+          },
+          textDisabledIcon: {
+            color: colors.textDisabled,
+            alignSelf: 'center',
+            alignItems: 'center',
+            fontWeight: 'bold',
+            justifyContent: 'center',
+            marginLeft: 12,
+          },
+          fullwidth: {
+            alignSelf: 'stretch',
+          },
+          buttonIconContainer: {
+            flexDirection: 'row',
+            alignSelf: 'center',
+            alignItems: 'center',
+            fontWeight: 'bold',
+            justifyContent: 'center',
+          },
+          buttonIconText: {
+            color: textColor,
+            alignSelf: 'center',
+            alignItems: 'center',
+            fontWeight: 'bold',
+            justifyContent: 'center',
+            marginLeft: 8,
+          },
+        }),
+      [colors.textDisabled, radius.radiusXs, fonts.fontTitle1, backgroundColor, textColor, borderColor],
+    )
 
-    const color =
-      variant && ['secondary', 'ghost'].includes(getVariantClassName(variant))
-        ? TrilogyColor.FONT
-        : TrilogyColor.BACKGROUND
-
-    const borderColor =
-      disabled && variant === ButtonVariant.PRIMARY
-        ? TrilogyColor.DISABLED
-        : !disabled && !!loading && variant === ButtonVariant.PRIMARY
-        ? TrilogyColor.DISABLED
-        : !disabled && variant === ButtonVariant.PRIMARY
-        ? TrilogyColor.INFO_FADE
-        : TrilogyColor.BACKGROUND
-
-    const styles = StyleSheet.create({
-      button: {
-        maxWidth: '100%',
-        minWidth: '100%',
-        paddingTop: variant === ButtonVariant.PRIMARY ? 13 : 15,
-        paddingBottom: variant === ButtonVariant.PRIMARY ? 13 : 15,
-        paddingLeft: variant === ButtonVariant.PRIMARY ? 13 : 15,
-        paddingRight: variant === ButtonVariant.PRIMARY ? 13 : 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: getColorStyle(background),
-        borderRadius: getRadiusStyle(Radius.SMALLER),
-        minHeight: 45,
-        height: loading ? 52 : 'auto',
-        borderColor: getColorStyle(borderColor),
-      },
-      text: {
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
-        color: getColorStyle(color),
-        alignSelf: 'center',
-        alignItems: 'center',
-        fontWeight: 'bold',
-        justifyContent: 'center',
-      },
-      textDisabled: {
-        color: getColorStyle(TrilogyColor.DISABLED),
-        alignSelf: 'center',
-        alignItems: 'center',
-        fontWeight: 'bold',
-        justifyContent: 'center',
-      },
-      textDisabledIcon: {
-        color: getColorStyle(TrilogyColor.DISABLED),
-        alignSelf: 'center',
-        alignItems: 'center',
-        fontWeight: 'bold',
-        justifyContent: 'center',
-        marginLeft: 12,
-      },
-      fullwidth: {
-        alignSelf: 'stretch',
-      },
-      buttonIconContainer: {
-        flexDirection: 'row',
-        alignSelf: 'center',
-        alignItems: 'center',
-        fontWeight: 'bold',
-        justifyContent: 'center',
-      },
-      buttonIconText: {
-        color: getColorStyle(color),
-        alignSelf: 'center',
-        alignItems: 'center',
-        fontWeight: 'bold',
-        justifyContent: 'center',
-        marginLeft: 8,
-      },
-    })
-
-    const buttonTestId = testId ? testId : typeof children === 'string' ? children : 'NotSpecified'
-    const buttonAccessibilityLabel = accessibilityLabel
-      ? accessibilityLabel
-      : typeof children === 'string'
-      ? children
-      : 'NotSpecified'
+    const buttonTestId = useMemo(
+      () => (testId ? testId : typeof children === 'string' ? children : 'NotSpecified'),
+      [testId, children],
+    )
+    const buttonAccessibilityLabel = useMemo(
+      () => (accessibilityLabel ? accessibilityLabel : typeof children === 'string' ? children : 'NotSpecified'),
+      [accessibilityLabel, children],
+    )
 
     return (
-      <TouchableOpacity
+      <Pressable
         ref={ref}
         accessible={!!buttonAccessibilityLabel}
         accessibilityLabel={buttonAccessibilityLabel}
         testID={buttonTestId}
         disabled={disabled || loading}
-        style={[styles.button, fullwidth && styles.fullwidth]}
+        style={({ pressed }) => [
+          styles.button,
+          fullwidth && styles.fullwidth,
+          pressed && { backgroundColor: pressedBackgroundColor },
+        ]}
         onPress={(e?: unknown) => onClick?.(e)}
         {...others}
       >
@@ -147,7 +129,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
               height: 45,
             }}
           >
-            <ActivityIndicator color={loaderColor} testID='activity-indicator' />
+            <ActivityIndicator color={colors.bgPrimary} testID='activity-indicator' />
           </View>
         )}
         {loading && typeof loading === 'boolean' && loading === true && (
@@ -158,7 +140,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
               justifyContent: 'center',
             }}
           >
-            <ActivityIndicator color={loaderColor} testID='activity-indicator' />
+            <ActivityIndicator color={colors.bgPrimary} testID='activity-indicator' />
           </View>
         )}
         {loading && typeof loading === 'string' && getLoadingClassName(loading) === 'loaded' && (
@@ -169,24 +151,13 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         )}
         {!loading && iconName && (
           <View style={styles.buttonIconContainer}>
-            <Icon
-              name={iconName}
-              size={IconSize.SMALL}
-              color={
-                disabled
-                  ? TrilogyColor.DISABLED
-                  : variant === 'SECONDARY' || variant === 'GHOST'
-                  ? TrilogyColor.MAIN
-                  : TrilogyColor.BACKGROUND
-              }
-              testId='button-icon'
-            />
+            <Icon name={iconName} size={IconSize.SMALL} color={textColor} testId='button-icon' />
             <Text style={(!disabled && styles.buttonIconText) || (disabled && styles.textDisabledIcon)}>
               {children}
             </Text>
           </View>
         )}
-      </TouchableOpacity>
+      </Pressable>
     )
   },
 )

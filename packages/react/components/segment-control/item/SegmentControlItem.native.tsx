@@ -1,11 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { SegmentControlItemNativeRef, SegmentControlItemProps } from '@/components/segment-control/item/SegmentControlItemProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import {
+  SegmentControlItemNativeRef,
+  SegmentControlItemProps,
+} from '@/components/segment-control/item/SegmentControlItemProps'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * SegmentControlItem Item Component
@@ -15,7 +18,7 @@ import { Radius } from "@/interfaces/Radius";
  * @param disabled {boolean} disable onClick on item
  * @param id {string} Custom id attribute
  */
-const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(
+const SegmentControlItem = forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(
   ({ active, children, onClick, disabled, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)

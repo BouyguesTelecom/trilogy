@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import ImageComponent from '@/components/image/Image'
 import type { ImageProps } from '@/components/image/ImageProps'
-import { Alignable } from "@/interfaces/Alignable";
-import { Radius } from "@/interfaces/Radius";
+import { Alignable } from '@/interfaces/Alignable'
+import { Radius } from '@/interfaces/Radius'
 
 ImageComponent.displayName = 'Image'
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, forwardRef, useEffect, cloneElement } from 'react'
 import SegmentControlItem from '@/components/segment-control/item'
 import { SegmentControlProps, SegmentControlRef } from '@/components/segment-control/SegmentControlProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -18,7 +18,7 @@ import { getJustifiedClassName } from '@/helpers/justifiable'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
+const SegmentControl = forwardRef<SegmentControlRef, SegmentControlProps>(
   ({ className, id, onClick, children, activeIndex, align, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
@@ -39,7 +39,7 @@ const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
       if (onClick) onClick(e)
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
       setActivateIndex(activateIndex)
     }, [activateIndex])
 
@@ -72,7 +72,7 @@ const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
                 {child}
               </SegmentControlItem>
             ) : (
-              React.cloneElement(child, props)
+              cloneElement(child, props)
             )
           })}
       </div>

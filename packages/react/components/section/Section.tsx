@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SectionProps, SectionRef } from '@/components/section/SectionProps'
 import { getBackgroundClassName } from '@/helpers/background'
@@ -19,7 +19,7 @@ import { getBackgroundClassName } from '@/helpers/background'
  * @param skeleton {boolean} Loading skeleton state
  * @param testId {string} Test Id for Test Integration
  */
-const Section = React.forwardRef<SectionRef, SectionProps>(
+const Section = forwardRef<SectionRef, SectionProps>(
   ({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

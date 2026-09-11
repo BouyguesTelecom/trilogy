@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import { useState, forwardRef } from 'react'
 import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Box } from '@/components/box'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroNativeRef, HeroProps } from '@/components/hero/HeroProps'
 import { StatesContext } from '@/context/providerStates'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * Hero Component
@@ -17,7 +17,7 @@ import { TrilogyColor } from "@/interfaces/Color";
  * @param overlap {ReactNode[]|boolean} Hero overlap components (need to add key for each element)
  * @param testId {string} Test Id for Test Integration
  */
-const Hero = React.forwardRef<HeroNativeRef, HeroProps>(
+const Hero = forwardRef<HeroNativeRef, HeroProps>(
   (
     { children, backgroundSrc, onClick, overlap, inverted, backgroundColor, backgroundHeight, testId, ...others },
     ref,

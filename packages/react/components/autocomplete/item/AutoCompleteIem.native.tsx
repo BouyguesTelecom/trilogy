@@ -1,6 +1,5 @@
 import { getLabel } from '@/components/autocomplete/Autocomplete.helpers'
 import { Text } from '@/components/text'
-import * as React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { AutoCompleteItemProps } from '@/components/autocomplete/item/AutoCompleteItemProps'
 
@@ -17,10 +16,11 @@ const AutoCompleteItemNative = ({ item, testId, onSelect }: AutoCompleteItemProp
     </TouchableOpacity>
   )
 }
+
+export default AutoCompleteItemNative
+
 const styles = StyleSheet.create({
   itemList: {
     padding: 10,
   },
 })
-
-export default AutoCompleteItemNative

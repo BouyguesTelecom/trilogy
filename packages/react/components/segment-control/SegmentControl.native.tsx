@@ -1,14 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import React, { useState } from 'react'
+import { useState, forwardRef, cloneElement } from 'react'
 import { StyleSheet } from 'react-native'
 import SegmentedControlItem from '@/components/segment-control/item'
 import { SegmentControlNativeRef, SegmentControlProps } from '@/components/segment-control/SegmentControlProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * SegmentControl Component
@@ -16,7 +16,7 @@ import { Radius } from "@/interfaces/Radius";
  * @param onClick {Function} onClick Event
  * @param activeIndex {number} Default active SegmentControl index
  */
-const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlProps>(
+const SegmentControl = forwardRef<SegmentControlNativeRef, SegmentControlProps>(
   ({ children, onClick, activeIndex, ...others }, ref): JSX.Element => {
     const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
     const smallerRadius = getRadiusStyle(Radius.SMALLER)
@@ -59,7 +59,6 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
         <View style={styles.segmentedControl} {...others}>
           {children &&
             Array.isArray(children) &&
-
             children.map((child: any, index: number) => {
               const props = {
                 active: Boolean(isActive(index, child.props.active)) || false,
@@ -85,7 +84,7 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
                     <Text level={TextLevels.ONE}>{String(child)}</Text>
                   </SegmentedControlItem>
                 ) : (
-                  React.cloneElement(child, props)
+                  cloneElement(child, props)
                 )
               }
             })}

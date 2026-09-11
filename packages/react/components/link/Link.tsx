@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { LinkProps, LinkRef } from '@/components/link/LinkProps'
 
@@ -25,7 +25,7 @@ import { LinkProps, LinkRef } from '@/components/link/LinkProps'
  * @param href {string} Link URL
  * @param title {string} Title attribute
  */
-const Link = React.forwardRef<LinkRef, LinkProps>(
+const Link = forwardRef<LinkRef, LinkProps>(
   (
     {
       children,

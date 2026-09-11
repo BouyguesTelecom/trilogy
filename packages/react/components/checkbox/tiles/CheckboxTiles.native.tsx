@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import { getAlignStyle } from '@/helpers/alignable'
-import React, { ReactNode, RefObject, useCallback, useMemo } from 'react'
+import { ReactNode, RefObject, useCallback, useMemo, forwardRef, Children, isValidElement } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { CheckboxTilesNativeRef, CheckboxTilesProps } from '@/components/checkbox/tiles/CheckboxTilesProps'
 import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
@@ -16,9 +16,9 @@ import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
  * @param children {React.ReactNode} CheckboxTile components as children
  * @param testId {string} Test Id for Test Integration
  */
-const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProps>(
+const CheckboxTiles = forwardRef<CheckboxTilesNativeRef, CheckboxTilesProps>(
   ({ children, align, verticalAlign, numberCols, id, testId, ...others }, ref): JSX.Element => {
-    const childArray = useMemo(() => React.Children.toArray(children).filter(React.isValidElement), [children])
+    const childArray = useMemo(() => Children.toArray(children).filter(isValidElement), [children])
 
     const columnCount = useMemo(() => {
       if (!numberCols || numberCols === 1) return null

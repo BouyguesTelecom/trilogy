@@ -3,7 +3,7 @@ import { Link } from '@/components/link'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { BreadcrumbItemPropsWeb, BreadcrumbItemRef } from '@/components/breadcrumb/item/BreadcrumbItemProps'
 
 /**
@@ -19,7 +19,7 @@ import { BreadcrumbItemPropsWeb, BreadcrumbItemRef } from '@/components/breadcru
  * @param href {string} Url. Use native-old <a> tag (only when the `to` property is not filled)
  * @param className {string} Additional CSS Classes
  */
-const BreadcrumbItem = React.forwardRef<BreadcrumbItemRef, BreadcrumbItemPropsWeb>(
+const BreadcrumbItem = forwardRef<BreadcrumbItemRef, BreadcrumbItemPropsWeb>(
   ({ children, active, id, href, to, routerLink, testId, onClick, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

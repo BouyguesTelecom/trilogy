@@ -1,5 +1,3 @@
-@import "./../initial-variables";
-
 @mixin arrow( $direction: 'down') {
   background-color: currentColor;
   content: "";

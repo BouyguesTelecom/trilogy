@@ -1,5 +1,4 @@
 // Dependencies
-import * as React from 'react'
 // @ts-ignore
 import renderer from 'react-test-renderer'
 import { is } from '@/helpers/classify'
@@ -17,7 +16,7 @@ describe('Button component', () => {
     const { getByRole } = render(<Button />)
     const button = getByRole('button')
     expect(button).toBeInTheDocument()
-    expect(button).toHaveClass('button')
+    expect(button).toHaveClass('Button')
   })
 
   test('should contain toto as text', () => {
@@ -54,7 +53,7 @@ describe('Button component', () => {
   test('should have a correct variant className', () => {
     getEnumNames(ButtonVariant).forEach((element) => {
       render(<Button variant={element}>{element}</Button>)
-      expect(screen.getByText(element)).toHaveClass(is(getButtonVariantClassName(element)))
+      expect(screen.getByText(element)).toHaveClass(`Button-${getButtonVariantClassName(element)}`)
     })
   })
 

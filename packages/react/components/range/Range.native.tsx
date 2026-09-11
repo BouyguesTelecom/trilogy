@@ -1,14 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
-import * as React from 'react'
+import { forwardRef, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text, TextLevels } from '@/components/text'
 import { RangeNativeProps, RangeNativeRef } from '@/components/range/RangeProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Range Component
@@ -20,10 +20,10 @@ import { Radius } from "@/interfaces/Radius";
  * @param simple {boolean} Display one cursor
  * @param unit {string} Display unit of values
  */
-const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
+const Range = forwardRef<RangeNativeRef, RangeNativeProps>(
   ({ min, max, label, unit, onChange, value, simple }, ref): JSX.Element => {
-    const [values, setValues] = React.useState<number[]>(value || simple ? [0] : [0, 100])
-    const [width, setWidth] = React.useState<number>(0)
+    const [values, setValues] = useState<number[]>(value || simple ? [0] : [0, 100])
+    const [width, setWidth] = useState<number>(0)
 
     const borderFullRadius = getRadiusStyle(Radius.FULL)
 

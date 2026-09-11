@@ -9,12 +9,12 @@ $basis-values: (
 .card {
   max-width: 100%;
   display: flex;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   flex-direction: column;
   position: relative;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  background-color: getColor('background');
+  background-color: var(--bg-primary);
 
   &:not(.is-reversed) .card-image {
     order: 1;
@@ -33,16 +33,16 @@ $basis-values: (
   }
 
   .card-content {
-    padding: $spacing-5;
+    padding: var(--spacing-lg);
     flex-grow: 1;
 
     @include mobile {
-      padding: $spacing-4;
+      padding: var(--spacing-md);
     }
   }
 
   .card-footer {
-    border-top: 1px solid getColor('neutral');
+    border-top: 1px solid var(--border);
   }
 
   .mention {
@@ -60,22 +60,22 @@ $basis-values: (
 
   &.is-strong {
     .title {
-      font-family: $family-secondary;
+      font-family: $font-family-2;
       font-size: 24px !important;
     }
   }
 
   &.is-flat {
     box-shadow: none;
-    border: 1px solid #{getColor('stroke-fade')};
+    border: 1px solid var(--border);
 
     .card-content {
       padding-left: 20px;
       padding-right: 20px;
 
       @include desktop {
-        padding-left: $spacing-5;
-        padding-right: $spacing-5;
+        padding-left: var(--spacing-lg);
+        padding-right: var(--spacing-lg);
       }
     }
   }
@@ -189,8 +189,8 @@ $basis-values: (
       padding-right: 20px;
 
       @include desktop {
-        padding-left: $spacing-5;
-        padding-right: $spacing-5;
+        padding-left: var(--spacing-lg);
+        padding-right: var(--spacing-lg);
       }
     }
 
@@ -205,7 +205,7 @@ $basis-values: (
     background: transparent;
 
     .card-image .image img {
-      border-radius: var(--radius);
+      border-radius: var(--radius-sm);
     }
 
     .card-content {
@@ -224,8 +224,8 @@ $basis-values: (
         }
 
         @include desktop {
-          padding-left: $spacing-5;
-          padding-right: $spacing-5;
+          padding-left: var(--spacing-lg);
+          padding-right: var(--spacing-lg);
         }
       }
     }

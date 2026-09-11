@@ -1,13 +1,13 @@
-import * as React from "react"
-import { ProductTourNativeRef, ProductTourProps } from "@/components/product-tour/ProductTourProps"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { View } from "react-native"
+import { forwardRef } from 'react'
+import { ProductTourNativeRef, ProductTourProps } from '@/components/product-tour/ProductTourProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { View } from 'react-native'
 
 /**
  * Product Tour Component
  * @param children {React.ReactNode} Title child
  */
-const ProductTour = React.forwardRef<ProductTourNativeRef, ProductTourProps>(({ children }, ref): JSX.Element => {
+const ProductTour = forwardRef<ProductTourNativeRef, ProductTourProps>(({ children }, ref): JSX.Element => {
   return <View ref={ref}>{children}</View>
 })
 

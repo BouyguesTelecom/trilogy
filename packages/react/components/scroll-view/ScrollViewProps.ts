@@ -1,7 +1,7 @@
 import { ScrollView } from 'react-native'
-import { Dev } from "@/interfaces/Dev";
-import { ScrollDirectionEnum, ScrollDirectionEnumValues } from "@/interfaces/ScrollDirection";
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { Dev } from '@/interfaces/Dev'
+import { ScrollDirectionEnum, ScrollDirectionEnumValues } from '@/interfaces/ScrollDirection'
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
 
 /**
  * ScroView Interface

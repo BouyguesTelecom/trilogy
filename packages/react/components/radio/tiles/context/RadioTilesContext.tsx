@@ -1,6 +1,6 @@
-import React from 'react'
+import { createContext } from 'react'
 import { RadioTilesContextProps } from '@/components/radio/tiles/context/RadioTilesContextProps'
 
-export const RadioTilesContext = React.createContext<RadioTilesContextProps>({
+export const RadioTilesContext = createContext<RadioTilesContextProps>({
   isGrid: false,
 })

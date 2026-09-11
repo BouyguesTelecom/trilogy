@@ -1,11 +1,11 @@
 import { BoxContentNativeRef, BoxContentProps } from '@/components/box/content/BoxContentProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef, useContext, useMemo, useCallback } from 'react'
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
-import { getColorStyle } from "@/helpers/color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { useThemeRadiusBySize } from '@/hooks/useThemeRadius'
+import { Radius } from '@/interfaces/Radius'
+import { useThemeBackground } from '@/hooks/useThemeBackground'
 
 /**
  * Box Content
@@ -15,37 +15,41 @@ import { Radius } from "@/interfaces/Radius";
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
+const BoxContent = forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
-    const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = React.useContext(BoxContext)
-    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
+    const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = useContext(BoxContext)
+    const borderSmallRadius = useThemeRadiusBySize(Radius.SMALL)
+    const backgroundStyle = useThemeBackground(backgroundColor || 'TRANSPARENT')
 
-    const styles = StyleSheet.create({
-      boxContent: {
-        padding: 16,
-        backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
-        borderRadius: borderSmallRadius,
-        flex: fullHeight ? 1 : undefined,
-        marginLeft: highlighted ? 4 : 0,
-        borderTopLeftRadius: (highlighted && numberOfContent > 1) || header ? 0 : borderSmallRadius,
-        borderTopRightRadius: header ? 0 : borderSmallRadius,
-        borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : borderSmallRadius,
-        borderBottomRightRadius: numberOfContent > 1 ? 0 : borderSmallRadius,
-      },
-    })
+    const styles = useMemo(
+      () =>
+        StyleSheet.create({
+          boxContent: {
+            padding: 16,
+            backgroundColor: backgroundStyle,
+            borderRadius: borderSmallRadius,
+            flex: fullHeight ? 1 : undefined,
+            marginLeft: highlighted ? 4 : 0,
+            borderTopLeftRadius: (highlighted && numberOfContent > 1) || header ? 0 : borderSmallRadius,
+            borderTopRightRadius: header ? 0 : borderSmallRadius,
+            borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : borderSmallRadius,
+            borderBottomRightRadius: numberOfContent > 1 ? 0 : borderSmallRadius,
+          },
+        }),
+      [backgroundStyle, borderSmallRadius, fullHeight, highlighted, header, numberOfContent],
+    )
 
-    const content = (
-      <View
-        testID={testId}
-        ref={ref}
-        style={[styles.boxContent]}
-        {...others}
-        onLayout={() => {
-          setNumberOfContent((prev) => prev + 1)
-        }}
-      >
-        {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
-      </View>
+    const onLayout = useCallback(() => {
+      setNumberOfContent((prev) => prev + 1)
+    }, [setNumberOfContent])
+
+    const content = useMemo(
+      () => (
+        <View testID={testId} ref={ref} style={[styles.boxContent]} {...others} onLayout={onLayout}>
+          {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
+        </View>
+      ),
+      [testId, ref, styles.boxContent, others, onLayout, children],
     )
 
     if (backgroundSrc) {
@@ -58,9 +62,8 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
           {content}
         </ImageBackground>
       )
-    } else {
-      return content
     }
+    return content
   },
 )
 

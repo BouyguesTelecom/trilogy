@@ -47,7 +47,7 @@
     }
     
   a.link {
-    color: getColor('font');
+    color: var(--text-primary);
     cursor: pointer;
     text-decoration: none;
 
@@ -105,7 +105,7 @@
 
     strong {
         color: inherit;
-        font-weight: $weight-bold;
+        font-weight: var(--font-weight-body-1-bold);
     }
 
     sup {
@@ -121,7 +121,7 @@
     }
 
     code {
-        font-size: $size-7;
+        font-size: var(--body-3-size);
         padding: 4px 8px;
     }
 
@@ -129,11 +129,11 @@
     pre {
         -moz-osx-font-smoothing: auto;
         -webkit-font-smoothing: auto;
-        font-family: $family-code;
+        font-family: monospace;
     }
 
     pre {
-        @include overflow-touch;
+        -webkit-overflow-scrolling: touch;
         font-size: 0.875em;
         overflow-x: auto;
         padding: 12.5px 15px;

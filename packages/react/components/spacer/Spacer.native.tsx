@@ -1,4 +1,4 @@
-import * as React from "react"
+import { forwardRef } from 'react'
 import { StyleSheet, View } from "react-native"
 import { SpacerNativeRef, SpacerProps } from "@/components/spacer/SpacerProps"
 import { ComponentName } from "@/components/enumsComponentsName"
@@ -8,7 +8,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param size {SpacerSize} Size of the spacer
  * @param horizontal {Boolean} If horizontal margin
  */
-const Spacer = React.forwardRef<SpacerNativeRef, SpacerProps>(({ size, horizontal }, ref): JSX.Element => {
+const Spacer = forwardRef<SpacerNativeRef, SpacerProps>(({ size, horizontal }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     spacer: {
       marginLeft: (horizontal && parseInt(size.toString())) || 0,

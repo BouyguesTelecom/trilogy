@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TabsContext } from '@/components/tabs/context'
 import { TabPanelNativeRef, TabPanelProps } from '@/components/tabs/tab-panels/tab-panel/TabPanelProps'
-import React from 'react'
+import { forwardRef, useContext, useRef, useEffect } from 'react'
 import { Animated, StyleSheet } from 'react-native'
 
 /**
@@ -9,10 +9,10 @@ import { Animated, StyleSheet } from 'react-native'
  * @param children {ReactChild} React Child Element
  * @param testId {string} Test Id for Test Integration
  */
-const TabPanel = React.forwardRef<TabPanelNativeRef, TabPanelProps>(({ children, testId, ...others }, ref) => {
+const TabPanel = forwardRef<TabPanelNativeRef, TabPanelProps>(({ children, testId, ...others }, ref) => {
   const { index, ...props } = others as any
-  const { activeIndex } = React.useContext(TabsContext)
-  const opacity = React.useRef(new Animated.Value(0)).current
+  const { activeIndex } = useContext(TabsContext)
+  const opacity = useRef(new Animated.Value(0)).current
 
   const styles = StyleSheet.create({
     tabPanel: {
@@ -21,7 +21,7 @@ const TabPanel = React.forwardRef<TabPanelNativeRef, TabPanelProps>(({ children,
     },
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (activeIndex === index) {
       Animated.timing(opacity, {
         toValue: 1,

@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import * as React from 'react'
+import { forwardRef, useState } from 'react'
 import { Linking, StyleSheet, Text, View } from 'react-native'
 import { LinkNativeRef, LinkPropsNative } from '@/components/link/LinkProps'
 import { getColorStyle } from '@/helpers/color'
@@ -16,9 +16,9 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param inverted {boolean} Inverted link color
  * @param testId {string} Test Id for Test Integration
  */
-const Link = React.forwardRef<LinkNativeRef, LinkPropsNative>(
+const Link = forwardRef<LinkNativeRef, LinkPropsNative>(
   ({ children, to, onClick, testId, accessibilityLabel, iconName, inverted, ...others }, ref): JSX.Element => {
-    const [pressedLink, setPressedLink] = React.useState(false)
+    const [pressedLink, setPressedLink] = useState(false)
 
     const styles = StyleSheet.create({
       link: {

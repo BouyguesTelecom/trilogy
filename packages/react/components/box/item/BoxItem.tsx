@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { BoxItemProps, BoxItemRef } from '@/components/box/item/BoxItemProps'
 
 /**
@@ -14,12 +14,18 @@ import { BoxItemProps, BoxItemRef } from '@/components/box/item/BoxItemProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const BoxItem = React.forwardRef<BoxItemRef, BoxItemProps>(
+const BoxItem = forwardRef<BoxItemRef, BoxItemProps>(
   ({ className, id, children, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     return (
-      <div ref={ref} id={id} className={hashClass(styled, clsx('box-item', className))} data-testid={testId} {...others}>
+      <div
+        ref={ref}
+        id={id}
+        className={hashClass(styled, clsx('box-item', className))}
+        data-testid={testId}
+        {...others}
+      >
         {children}
       </div>
     )

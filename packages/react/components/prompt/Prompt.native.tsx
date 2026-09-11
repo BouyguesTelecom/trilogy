@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+import { useContext, forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptNativeRef, PromptProps } from '@/components/prompt/PromptProps'
 import { PromptContext, PromptProvider } from '@/components/prompt/context'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
-const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {
+const PromptElm = forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {
   const { isFocused, isDisabled } = useContext(PromptContext)
 
   const styles = StyleSheet.create({
@@ -31,15 +31,13 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ..
  * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  */
-const Prompt = React.forwardRef<PromptNativeRef, PromptProps>(
-  ({ disabled = false, readOnly = false, ...others }, ref) => {
-    return (
-      <PromptProvider isDisabled={disabled} isReadonly={readOnly}>
-        <PromptElm ref={ref} disabled={disabled} {...others} />
-      </PromptProvider>
-    )
-  },
-)
+const Prompt = forwardRef<PromptNativeRef, PromptProps>(({ disabled = false, readOnly = false, ...others }, ref) => {
+  return (
+    <PromptProvider isDisabled={disabled} isReadonly={readOnly}>
+      <PromptElm ref={ref} disabled={disabled} {...others} />
+    </PromptProvider>
+  )
+})
 
 Prompt.displayName = ComponentName.Prompt
 export default Prompt

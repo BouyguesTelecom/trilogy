@@ -2,7 +2,7 @@ import { Icon, IconName } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef, useCallback } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PaginationProps, PaginationRef } from '@/components/pagination/PaginationProps'
 
@@ -17,13 +17,13 @@ import { PaginationProps, PaginationRef } from '@/components/pagination/Paginati
  * @param className {string} Additional CSS Classes
  * @param href {Function} Function that generates a link for SEO bots
  */
-const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
+const Pagination = forwardRef<PaginationRef, PaginationProps>(
   ({ className, id, length, defaultPage = 1, onClick, href, testId, ...others }, ref): JSX.Element => {
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('pagination', className))
 
-    const getPages = React.useCallback(
+    const getPages = useCallback(
       (page: number) => {
         let startPage = 1
         let endPage = 5

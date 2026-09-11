@@ -1,4 +1,4 @@
-import { ClickEvent } from "@/interfaces/OnClickEvent";
+import { ClickEvent } from '@/interfaces/OnClickEvent'
 
 export interface Clickable {
   onClick?: ClickEvent

@@ -6,8 +6,7 @@ import { is } from '@/helpers/classify'
 import { isRequiredChild } from '@/helpers/require'
 import { getAlignClassName } from '@/helpers/alignable'
 import clsx from 'clsx'
-import * as React from 'react'
-
+import { forwardRef } from 'react'
 /**
  * RadioTiles
  * @param id {string}
@@ -20,7 +19,7 @@ import * as React from 'react'
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  * @param testId {string} Test Id for Test Integration
  */
-const RadioTiles = React.forwardRef<RadioTilesRef, RadioTilesProps>(
+const RadioTiles = forwardRef<RadioTilesRef, RadioTilesProps>(
   (
     { id, className, children, align, verticalAlign, accessibilityLabelledBy, numberCols, testId, ...others },
     ref,

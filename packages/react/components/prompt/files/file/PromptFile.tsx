@@ -9,10 +9,10 @@ import { Text, TextLevels } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { PromptFileProps, PromptFileRef } from '@/components/prompt/files/file/PromptFileProps'
-import { Align } from "@/interfaces/Alignable";
-import { TypographyBold } from "@/interfaces/TypographyBold";
+import { Align } from '@/interfaces/Alignable'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 /**
  * PromptFile component - Displays an individual file attachment with preview and delete option
@@ -23,7 +23,7 @@ import { TypographyBold } from "@/interfaces/TypographyBold";
  * @param className {string} Additional CSS classes (ONLY FOR WEB)
  * @param testId {string} Test Id for Test Integration
  */
-const PromptFile = React.forwardRef<PromptFileRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
+const PromptFile = forwardRef<PromptFileRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
   const { styled } = useTrilogyContext()
   const classesImgContainer = hashClass(styled, clsx('prompt-files-file'))
   const classesImg = clsx('prompt-files-img')

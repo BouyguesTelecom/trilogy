@@ -1,5 +1,5 @@
 @mixin hoverRules {
-  background-color: getColor('main-fade');
+  background-color: var(--input-hover);
 }
 
 @mixin hover {
@@ -12,14 +12,14 @@
 }
 
 @mixin disabledRulesWithoutBG {
-  border-color: getColor('disabled') !important;
+  border-color: var(--border-disabled) !important;
   box-shadow: none !important;
-  color: getColor('disabled') !important;
+  color: var(--text-disabled) !important;
   cursor: not-allowed !important;
   filter: grayscale(1);
 }
 
 @mixin disabledRules {
-  background-color: getColor('disabled-fade') !important;
+  background-color: var(--bg-disabled) !important;
   @include disabledRulesWithoutBG;
 }

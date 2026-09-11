@@ -1,9 +1,8 @@
-import React, { useEffect, useMemo } from 'react'
-
+import { useEffect, useMemo, useState } from 'react'
 import { IconColor } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
-import { TrilogyColor } from "@/interfaces/Color";
-import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from '@/interfaces/Color'
+import { getColorStyle } from '@/helpers/color'
 
 interface IParams {
   validationRules?: IValidationRules
@@ -12,15 +11,15 @@ interface IParams {
 }
 
 export const useGauge = ({ validationRules, inputValue, securityRules }: IParams) => {
-  const [points, setPoints] = React.useState<number>(0)
+  const [points, setPoints] = useState<number>(0)
   const initStateVerifies = { isVerify: false, color: IconColor.NEUTRAL }
-  const [isLengthVerify, setIsLengthVerify] = React.useState(initStateVerifies)
-  const [isSpecialCharsVerify, setIsSpecialCharsVerify] = React.useState(initStateVerifies)
-  const [isNumberVerify, setIsNumberVerify] = React.useState(initStateVerifies)
-  const [isUppercaseVerify, setIsUppercaseVerify] = React.useState(initStateVerifies)
-  const [isLowerercaseVerify, setisLowerercaseVerify] = React.useState(initStateVerifies)
+  const [isLengthVerify, setIsLengthVerify] = useState(initStateVerifies)
+  const [isSpecialCharsVerify, setIsSpecialCharsVerify] = useState(initStateVerifies)
+  const [isNumberVerify, setIsNumberVerify] = useState(initStateVerifies)
+  const [isUppercaseVerify, setIsUppercaseVerify] = useState(initStateVerifies)
+  const [isLowerercaseVerify, setisLowerercaseVerify] = useState(initStateVerifies)
 
-  const nbAllVerifies = React.useMemo(
+  const nbAllVerifies = useMemo(
     () =>
       (validationRules && Object.values(validationRules).filter((rule) => rule).length) ||
       (securityRules && securityRules.length) ||
@@ -28,7 +27,7 @@ export const useGauge = ({ validationRules, inputValue, securityRules }: IParams
     [validationRules, securityRules],
   )
 
-  const rules = React.useMemo(
+  const rules = useMemo(
     () =>
       securityRules &&
       securityRules.map(({ label, patternValidator, dataAttribute }) => ({
@@ -39,7 +38,7 @@ export const useGauge = ({ validationRules, inputValue, securityRules }: IParams
     [inputValue, securityRules],
   )
 
-  const calcPoints = React.useMemo(() => {
+  const calcPoints = useMemo(() => {
     if (validationRules) {
       return Number(((points / nbAllVerifies) * 100).toFixed(0))
     }
@@ -51,7 +50,7 @@ export const useGauge = ({ validationRules, inputValue, securityRules }: IParams
     return 0
   }, [points, nbAllVerifies, rules, validationRules, securityRules])
 
-  const widthGauge = React.useMemo(() => {
+  const widthGauge = useMemo(() => {
     if (calcPoints <= 50 && calcPoints > 0) return '50%'
     if (calcPoints <= 99 && calcPoints > 50) return '75%'
     if (calcPoints === 100) return '100%'

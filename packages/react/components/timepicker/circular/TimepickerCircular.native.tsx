@@ -5,7 +5,7 @@ import { Modal, ModalBody, ModalFooter } from '@/components/modal'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle } from '@/helpers/color'
 import DateTimePicker from '@react-native-community/datetimepicker'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, forwardRef } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
@@ -58,7 +58,7 @@ const formatTime = (hours: number, minutes: number): string => {
  * @param disabled {boolean} Disabled state of the component (default: false)
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
  */
-const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, TimepickerCircularProps>(
+const TimepickerCircular = forwardRef<TimepickerCircularNativeRef, TimepickerCircularProps>(
   ({ value = '00:00', onChange, disabled = false, step = 5, testId, ...others }, ref): JSX.Element => {
     const { hours: initialHours, minutes: initialMinutes } = useMemo(() => parseTime(value), [value])
     const [currentHours, setCurrentHours] = useState(initialHours)

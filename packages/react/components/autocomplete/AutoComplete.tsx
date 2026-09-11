@@ -1,6 +1,5 @@
 import clsx from 'clsx'
-import React, { FocusEvent, useEffect, useState } from 'react'
-
+import { FocusEvent, useEffect, useState, forwardRef } from 'react'
 import { Input } from '@/components/input'
 import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
@@ -242,7 +241,7 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
  * @param accessibilityLabel {string} Accessibility label
  */
-const AutoComplete = React.forwardRef(AutoCompleteRef) as <T>(
+const AutoComplete = forwardRef(AutoCompleteRef) as <T>(
   props: AutoCompletePropsWeb<T> & { ref?: React.ForwardedRef<AutocompleteRef> },
 ) => JSX.Element
 

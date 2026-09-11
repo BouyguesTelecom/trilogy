@@ -1,8 +1,8 @@
 import type { View } from 'react-native'
-import { type BackgroundProps } from "@/interfaces/Background";
-import { type ChildrenWithNoText } from "@/interfaces/ChildrenWithNoText";
-import { type Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { type BackgroundProps } from '@/interfaces/Background'
+import { type ChildrenWithNoText } from '@/interfaces/ChildrenWithNoText'
+import { type Dev } from '@/interfaces/Dev'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 type Styles = { [key: string]: any }
 

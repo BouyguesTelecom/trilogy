@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import Input from '@/components/input/Input.native'
 import { Modal, ModalBody } from '@/components/modal'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, forwardRef, useId, Children, isValidElement, useMemo } from 'react'
 import { Pressable, View } from 'react-native'
 import { SelectNativeProps, SelectNativeRef, SelectedValue } from '@/components/select/SelectProps'
 import SelectOption from '@/components/select/option'
@@ -20,19 +20,19 @@ import SelectOption from '@/components/select/option'
  * @param status {SelectStatus} Select with status (SUCCESS|WARNING|ERROR|DEFAULT)
  * @param readOnly {boolean} Read-only Select
  */
-const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
+const Select = forwardRef<SelectNativeRef, SelectNativeProps>(
   (
     { children, id, selected, iconName, onChange, disabled, multiple, onBlur, status, readOnly, ...others },
     ref,
   ): JSX.Element => {
     const [selectedValues, setSelectedValues] = useState<SelectedValue>(selected)
-    const [selectedNames, setSelectedNames] = React.useState<string[]>([])
+    const [selectedNames, setSelectedNames] = useState<string[]>([])
     const [display, setDisplay] = useState<boolean>(false)
-    const reactId = React.useId()
+    const reactId = useId()
 
     useEffect(() => {
-      const labelSelected = React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return false
+      const labelSelected = Children.map(children, (child) => {
+        if (!isValidElement(child)) return false
         const label = child.props.children || child.props.label
         switch (true) {
           case (Array.isArray(selected) && (selected as (number | string)[]).includes(child.props.value)) ||
@@ -109,9 +109,9 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
       [multiple],
     )
 
-    const options = React.useMemo(() => {
-      return React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) return null
+    const options = useMemo(() => {
+      return Children.map(children, (child, index) => {
+        if (!isValidElement(child)) return null
         const clickEventValue = (v: string) => {
           switch (true) {
             case (multiple && (selectedValues as (number | string)[])?.includes(child.props.value)) ||

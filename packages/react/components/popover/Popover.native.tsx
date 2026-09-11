@@ -1,12 +1,12 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { PopoverNativeRef, PopoverProps } from '@/components/popover/PopoverProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StyleSheet, View } from 'react-native'
 import { PopoverDirection } from '@/components/popover/PopoverEnum'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * Popover Component
@@ -14,7 +14,7 @@ import { Radius } from "@/interfaces/Radius";
  * @param direction {PopoverDirection} Popover direction (DOWN|LEFT|RIGHT)
  * @param active {boolean} Is the popover active
  */
-const Popover = React.forwardRef<PopoverNativeRef, PopoverProps>(
+const Popover = forwardRef<PopoverNativeRef, PopoverProps>(
   ({ children, active = false, direction }, ref): JSX.Element => {
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
     const borderMediumRadius = getRadiusStyle(Radius.MEDIUM)

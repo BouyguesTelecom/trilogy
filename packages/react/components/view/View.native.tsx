@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative } from 'react-native'
 import { getColorStyle } from '@/helpers/color'
 import { getJustifyStyle } from '@/helpers/justifiable'
@@ -21,7 +21,7 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param align {AlignableProps.center?} AlignableProps | "ALIGNED_CENTER" | "ALIGNED_START" | "ALIGNED_END" | undefined
  * @param bottom {boolean} Bottom position
  */
-const View = React.forwardRef<ViewNativeRef, ViewProps>(
+const View = forwardRef<ViewNativeRef, ViewProps>(
   (
     {
       children,

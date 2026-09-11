@@ -2,8 +2,8 @@
  * Timeline Content Interface
  */
 import { View } from 'react-native'
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
 
 export interface TimelineContentProps extends Dev {
   children?: React.ReactNode

@@ -1,12 +1,12 @@
 import { View } from 'react-native'
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 import { AlertMarkup, AlertMarkupValues } from '@/components/alert/AlertEnum'
-import { ClickEvent } from "@/interfaces/OnClickEvent";
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Clickable } from "@/interfaces/Clickable";
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
-import { StatusProps } from "@/interfaces/Status";
+import { ClickEvent } from '@/interfaces/OnClickEvent'
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Clickable } from '@/interfaces/Clickable'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
+import { StatusProps } from '@/interfaces/Status'
 
 export enum ToasterAlertPosition {
   TOP = 'top',

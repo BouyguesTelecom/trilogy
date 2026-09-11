@@ -1,12 +1,12 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useContext } from 'react'
+import { useContext, forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptProps, PromptRef } from '@/components/prompt/PromptProps'
 import { PromptContext, PromptProvider } from '@/components/prompt/context'
 
-const PromptElm = React.forwardRef<PromptRef, PromptProps>(({ className, testId, ...others }, ref) => {
+const PromptElm = forwardRef<PromptRef, PromptProps>(({ className, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const { isReadonly, isDisabled } = useContext(PromptContext)
   const classes = hashClass(styled, clsx('prompt', className))
@@ -40,7 +40,7 @@ const PromptElm = React.forwardRef<PromptRef, PromptProps>(({ className, testId,
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const Prompt = React.forwardRef<PromptRef, PromptProps>(
+const Prompt = forwardRef<PromptRef, PromptProps>(
   ({ readOnly = false, disabled = false, className, ...others }, ref) => {
     return (
       <PromptProvider isReadonly={readOnly} isDisabled={disabled}>

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef, Children, isValidElement, cloneElement } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -15,17 +15,8 @@ import { DropdownTriggerProps, DropdownTriggerRef } from '@/components/dropdown/
  * @param className {string} Additional CSS classes
  * @param testId {string} Test ID
  */
-const DropdownTrigger = React.forwardRef<DropdownTriggerRef, DropdownTriggerProps>(
-  (
-    {
-      children,
-      onClick,
-      className,
-      testId,
-      ...others
-    },
-    ref,
-  ): JSX.Element => {
+const DropdownTrigger = forwardRef<DropdownTriggerRef, DropdownTriggerProps>(
+  ({ children, onClick, className, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     let contextState: ReturnType<typeof useDropdownContext> | null = null
@@ -36,13 +27,7 @@ const DropdownTrigger = React.forwardRef<DropdownTriggerRef, DropdownTriggerProp
       contextState = null
     }
 
-    const classes = hashClass(
-      styled,
-      clsx(
-        'dropdown-trigger',
-        className,
-      ),
-    )
+    const classes = hashClass(styled, clsx('dropdown-trigger', className))
 
     const handleClick = (event: React.MouseEvent) => {
       if (contextState) {
@@ -51,37 +36,37 @@ const DropdownTrigger = React.forwardRef<DropdownTriggerRef, DropdownTriggerProp
       onClick?.(event as any)
     }
 
-    const enhancedChildren = React.Children.map(children, (child) => {
-      if (React.isValidElement(child)) {
+    const enhancedChildren = Children.map(children, (child) => {
+      if (isValidElement(child)) {
         if (!child.props.onClick) {
-          return React.cloneElement(child as React.ReactElement<any>, {
-            onClick: (e: React.MouseEvent) => {
-              e.preventDefault()
-              e.stopPropagation()
-              handleClick(e)
-            }
-          } as any)
+          return cloneElement(
+            child as React.ReactElement<any>,
+            {
+              onClick: (e: React.MouseEvent) => {
+                e.preventDefault()
+                e.stopPropagation()
+                handleClick(e)
+              },
+            } as any,
+          )
         }
-        return React.cloneElement(child as React.ReactElement<any>, {
-          onClick: (e: React.MouseEvent) => {
-            child.props.onClick?.(e)
-            if (!e.defaultPrevented) {
-              handleClick(e)
-            }
-          }
-        } as any)
+        return cloneElement(
+          child as React.ReactElement<any>,
+          {
+            onClick: (e: React.MouseEvent) => {
+              child.props.onClick?.(e)
+              if (!e.defaultPrevented) {
+                handleClick(e)
+              }
+            },
+          } as any,
+        )
       }
       return child
     })
 
     return (
-      <div
-        ref={ref}
-        className={classes}
-        onClick={handleClick}
-        data-testid={testId}
-        {...others}
-      >
+      <div ref={ref} className={classes} onClick={handleClick} data-testid={testId} {...others}>
         {enhancedChildren}
       </div>
     )
@@ -90,4 +75,3 @@ const DropdownTrigger = React.forwardRef<DropdownTriggerRef, DropdownTriggerProp
 
 DropdownTrigger.displayName = ComponentName.DropdownTrigger
 export default DropdownTrigger
-

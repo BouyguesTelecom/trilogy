@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import TimepickerComponent from '@/components/timepicker/Timepicker'
 import type { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
 

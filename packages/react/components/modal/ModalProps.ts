@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
 import { ModalSize } from '@/components/modal/ModalEnum'
 import { View } from 'react-native'
-import { ClickEvent } from "@/interfaces/OnClickEvent";
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { ClickEvent } from '@/interfaces/OnClickEvent'
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Dev } from '@/interfaces/Dev'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 /**
  * Modal Interface

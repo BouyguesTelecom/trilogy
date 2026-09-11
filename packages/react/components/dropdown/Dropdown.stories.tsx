@@ -6,7 +6,6 @@ import type { DropdownProps } from '@/components/dropdown/DropdownProps'
 import DropdownItem from '@/components/dropdown/item/DropdownItem'
 import type { DropdownItemProps } from '@/components/dropdown/item/DropdownItemProps'
 import DropdownTrigger from '@/components/dropdown/trigger/DropdownTrigger'
-import React from 'react'
 
 DropdownComponent.displayName = 'Dropdown'
 DropdownTrigger.displayName = 'DropdownTrigger'
@@ -118,7 +117,7 @@ const meta: Meta<DropdownStoryArgs> = {
   }) => (
     <DropdownComponent defaultOpen={dropdown_defaultOpen} isActive={dropdown_isActive} onToggle={dropdown_onToggle}>
       <DropdownTrigger>
-        <Button variant="PRIMARY">{trigger_children}</Button>
+        <Button variant='PRIMARY'>{trigger_children}</Button>
       </DropdownTrigger>
       <DropdownItem iconName={item_iconName} active={item_active} disabled={item_disabled} onSelect={item_onSelect}>
         {item_children}

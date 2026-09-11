@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import SegmentControlComponent from '@/components/segment-control/SegmentControl'
 import SegmentControlItem from '@/components/segment-control/item/SegmentControlItem'
 import { Alignable } from "@/interfaces/Alignable";

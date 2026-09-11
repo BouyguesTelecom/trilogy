@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, forwardRef } from 'react'
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
 import { OtpNativeRef, OtpProps } from '@/components/otp/OtpProps'
 import { TypographyAlign } from '@/interfaces/TypographyAlign'
@@ -25,7 +25,7 @@ import { Radius } from '@/interfaces/Radius'
  * @param id {string} Custom id attribute
  * @param activated {boolean} Activated OTP
  */
-const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
+const Otp = forwardRef<OtpNativeRef, OtpProps>(
   (
     { value, length = 6, disabled, error, onCompleted, onFocus, activated, onChange, label, testId, ...others },
     ref,

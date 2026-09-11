@@ -3,9 +3,9 @@ import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 import { ColumnsContext, ColumnsContextType } from '@/components/columns/context'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from '@/helpers/alignable'
-import React, { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, forwardRef, Children } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
-import { Alignable } from "@/interfaces/Alignable";
+import { Alignable } from '@/interfaces/Alignable'
 
 const staticStyles = StyleSheet.create({
   centered: {
@@ -29,7 +29,7 @@ const staticStyles = StyleSheet.create({
  * @param verticalAlign {AlignProps} Vertical alignment of columns
  * @param id {string} Custom id attribute
  */
-const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
+const Columns = forwardRef<ColumnsNativeRef, ColumnsProps>(
   (
     { children, align, gap, verticalAlign, fullBleed, scrollable, multiline, fullheight, testId, ...others },
     ref,
@@ -78,7 +78,7 @@ const Columns = React.forwardRef<ColumnsNativeRef, ColumnsProps>(
         width,
         realGap,
         scrollable: scrollable || false,
-        childrensLength: React.Children.count(children),
+        childrensLength: Children.count(children),
       }),
       [width, realGap, scrollable, children],
     )
