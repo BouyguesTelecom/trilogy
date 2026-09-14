@@ -1,8 +1,8 @@
 import { ToasterAlertFloat, ToasterAlertPosition } from '@/components/alert/AlertProps'
 import { IconName, IconNameValues } from '@/components/icon'
 import { AlertMarkup, AlertMarkupValues } from '@/components/alert/AlertEnum'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { StatusProps } from "@/interfaces/Status";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { StatusProps } from '@/interfaces/Status'
 
 /**
  * @param title {string} Notification title content

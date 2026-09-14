@@ -2,13 +2,13 @@ import { BoxNativeRef, BoxProps } from '@/components/box/BoxProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import React, { useState } from 'react'
+import { useState, forwardRef, useMemo, PropsWithChildren } from 'react'
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from '@/components/skeleton'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyBackgroundColor, TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { useTheme } from '@/hooks/useTheme'
+import { useThemeBackground } from '@/hooks/useThemeBackground'
 
 /**
  * Box Component
@@ -27,7 +27,7 @@ import { Radius } from "@/interfaces/Radius";
  * @param id {string} Custom id attribute
  * @param fullheight {boolean} Full height box
  */
-const Box = React.forwardRef<BoxNativeRef, BoxProps>(
+const Box = forwardRef<BoxNativeRef, BoxProps>(
   (
     {
       children,
@@ -47,30 +47,29 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     },
     ref,
   ): JSX.Element => {
-    const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
+    const { radius, colors } = useTheme()
+    const background = useThemeBackground(backgroundColor || TrilogyBackgroundColor.PRIMARY)
     const [boxHeight, setBoxHeight] = useState(0)
     const [numberOfContent, setNumberOfContent] = useState(0)
     const [header, setHeader] = useState<boolean>(false)
+    const backgroundHighlight = useThemeBackground(highlighted || TrilogyBackgroundColor.PRIMARY)
 
-    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
-    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
-
-    const styles = StyleSheet.create({
-      box: {
-        width: '100%',
-        backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
-        borderRadius: borderSmallRadius,
-        justifyContent: 'flex-start',
-        position: 'relative',
-        borderStyle: flat ? 'solid' : undefined,
-        borderWidth: (flat && 1) || (active && 2) || 0,
-        borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.STROKE_FADE),
-        marginTop: headerOffset ? 35 : 0,
-        flex: fullheight ? 1 : 0,
-      },
-      shadow: shadowless
-        ? {}
-        : {
+    const styles = useMemo(
+      () =>
+        StyleSheet.create({
+          box: {
+            width: '100%',
+            backgroundColor: background,
+            borderRadius: radius.radiusSm,
+            justifyContent: 'flex-start',
+            position: 'relative',
+            borderStyle: flat ? 'solid' : undefined,
+            borderWidth: (flat && 1) || (active && 2) || 0,
+            borderColor: active ? colors.borderSelected : colors.border,
+            marginTop: headerOffset ? 35 : 0,
+            flex: fullheight ? 1 : 0,
+          },
+          shadow: {
             shadowColor: Platform.OS === 'android' ? 'rgba(0, 0, 0, 0.67)' : '#000',
             shadowOffset: {
               width: 0,
@@ -80,41 +79,40 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
             shadowRadius: 2.4,
             elevation: 4,
           },
-      skeleton: {
-        width: '100%',
-        minHeight: 50,
-        backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-        overflow: 'hidden',
-        borderRadius: borderSmallRadius,
-      },
-      highlighted: {
-        position: 'absolute',
-        width: 4,
-        borderTopStartRadius: borderSmallerRadius,
-        borderBottomStartRadius: borderSmallerRadius,
-        height: boxHeight,
-        backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
-        overflow: 'hidden',
-      },
-      boxImage: {
-        width: '100%',
-        minHeight: 100,
-        maxHeight: 300,
-        height: 'auto',
-      },
-    })
-
-    const boxTestId = testId ?? 'NotSpecified'
-
-    const BoxSkeleton = () => (
-      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={borderSmallRadius} testID='skeleton'>
-        {children}
-      </Skeleton>
+          highlighted: {
+            position: 'absolute',
+            width: 4,
+            borderTopStartRadius: radius.radiusXs,
+            borderBottomStartRadius: radius.radiusXs,
+            height: boxHeight,
+            backgroundColor: highlighted ? backgroundHighlight : 'transparent',
+            overflow: 'hidden',
+          },
+          boxImage: {
+            width: '100%',
+            minHeight: 100,
+            maxHeight: 300,
+            height: 'auto',
+          },
+        }),
+      [
+        background,
+        radius.radiusSm,
+        radius.radiusXs,
+        colors.borderSelected,
+        colors.border,
+        boxHeight,
+        backgroundHighlight,
+        flat,
+        active,
+        headerOffset,
+        fullheight,
+        highlighted,
+        shadowless,
+      ],
     )
 
-    if (skeleton) {
-      return <BoxSkeleton />
-    }
+    if (skeleton) return <BoxSkeleton />
 
     if (onClick) {
       return (
@@ -131,17 +129,16 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
           <TouchableOpacity
             ref={ref as React.Ref<TouchableOpacity>}
             onPress={(e?: unknown) => onClick?.(e)}
-
-            style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
+            style={[styles.box, !flat && !shadowless && styles.shadow, (others as any)?.style]}
             onLayout={(event) => {
               const { height } = event.nativeEvent.layout
               setBoxHeight(height)
             }}
-            testID={boxTestId}
+            testID={testId ?? 'NotSpecified'}
           >
             {backgroundSrc ? (
               <ImageBackground
-                imageStyle={{ borderRadius: borderSmallRadius }}
+                imageStyle={{ borderRadius: radius.radiusSm }}
                 style={styles.boxImage}
                 source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
               >
@@ -173,13 +170,12 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
             const { height } = event.nativeEvent.layout
             setBoxHeight(height)
           }}
-
-          style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-          testID={boxTestId}
+          style={[styles.box, !flat && !shadowless && styles.shadow, (others as any)?.style]}
+          testID={testId ?? 'NotSpecified'}
         >
           {backgroundSrc ? (
             <ImageBackground
-              imageStyle={{ borderRadius: borderSmallRadius }}
+              imageStyle={{ borderRadius: radius.radiusSm }}
               style={styles.boxImage}
               source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
             >
@@ -200,6 +196,28 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
   },
 )
 
-Box.displayName = ComponentName.Box
+const BoxSkeleton = ({ children }: PropsWithChildren) => {
+  const { radius } = useTheme()
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        skeleton: {
+          width: '100%',
+          minHeight: 50,
+          backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+          overflow: 'hidden',
+          borderRadius: radius.radiusSm,
+        },
+      }),
+    [radius.radiusSm],
+  )
 
+  return (
+    <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={radius.radiusSm} testID='skeleton'>
+      {children}
+    </Skeleton>
+  )
+}
+
+Box.displayName = ComponentName.Box
 export default Box

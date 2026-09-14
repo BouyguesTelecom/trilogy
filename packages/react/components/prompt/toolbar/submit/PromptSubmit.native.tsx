@@ -1,14 +1,18 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState, forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { PromptContext } from '@/components/prompt/context'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
-import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import {
+  PromptSubmitNativeRef,
+  PromptSubmitProps,
+  PromptSubmitStatus,
+} from '@/components/prompt/toolbar/submit/PromptSubmitProps'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * PromptSubmit component - Submit button for prompt with streaming support
@@ -18,7 +22,7 @@ import { Radius } from "@/interfaces/Radius";
  * @param disabled {boolean} Whether the submit button is disabled
  * @param readOnly {boolean} Whether the submit button is read-only
  */
-const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
+const PromptSubmit = forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
   ({ status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, disabled, readOnly, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
     const { text, files, setIsSend, setIsTyping, isDisabled } = useContext(PromptContext)

@@ -5,8 +5,8 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
-import { getJustifiedClassName } from "@/helpers/justifiable";
+import { forwardRef } from 'react'
+import { getJustifiedClassName } from '@/helpers/justifiable'
 
 /**
  * Columns Component
@@ -25,7 +25,7 @@ import { getJustifiedClassName } from "@/helpers/justifiable";
  * @param className {string} Additional CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(
+const Columns = forwardRef<ColumnsRef, ColumnsProps>(
   (
     {
       className,

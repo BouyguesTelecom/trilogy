@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { createContext } from 'react'
+import { createContext, forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { CardProps, CardRef } from '@/components/card/CardProps'
 
@@ -25,7 +25,7 @@ export const CardContext = createContext({ horizontal: false })
  * @param href {string} Link href (renders card as anchor)
  * @param testId {string} Test Id for Test Integration
  */
-const Card = React.forwardRef<CardRef, CardProps>(
+const Card = forwardRef<CardRef, CardProps>(
   (
     {
       className,
@@ -73,7 +73,6 @@ const Card = React.forwardRef<CardRef, CardProps>(
           id={id}
           href={href}
           onClick={(e) => {
-
             onClick?.(e)
             e.stopPropagation()
           }}

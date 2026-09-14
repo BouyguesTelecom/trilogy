@@ -5,10 +5,10 @@ import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
 import { Text } from '@/components/text'
 import { DimensionValue, StyleSheet, View } from 'react-native'
 import { useGauge } from '@/components/input/gauge/hook/useGauge'
-import { TrilogyColor } from "@/interfaces/Color";
-import { getColorStyle } from "@/helpers/color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { TrilogyColor } from '@/interfaces/Color'
+import { getColorStyle } from '@/helpers/color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 interface InputGaugeProps {
   validationRules?: IValidationRules

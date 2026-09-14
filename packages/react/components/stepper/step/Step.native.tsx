@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef, useRef, useEffect } from 'react'
 import { Animated, ColorValue, Easing, StyleSheet } from 'react-native'
 import { StepNativeRef, StepProps } from '@/components/stepper/step/StepProps'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -15,12 +15,12 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param error {boolean} display error step
  * @param children {ReactNode} Stepper Step Children
  */
-const Step = React.forwardRef<StepNativeRef, StepProps>(
+const Step = forwardRef<StepNativeRef, StepProps>(
   ({ active, current, done, error, ...others }, ref): JSX.Element => {
     const defaultColor = getColorStyle(TrilogyColor.NEUTRAL)
     const activeColor = getColorStyle(TrilogyColor.MAIN)
     const errorColor = getColorStyle(TrilogyColor.ERROR)
-    const backgroundColorAnim = React.useRef(new Animated.Value(0)).current
+    const backgroundColorAnim = useRef(new Animated.Value(0)).current
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const backgroundColor = backgroundColorAnim.interpolate({
@@ -28,7 +28,7 @@ const Step = React.forwardRef<StepNativeRef, StepProps>(
       outputRange: [defaultColor as string, activeColor as string, errorColor as string],
     })
 
-    React.useEffect(() => {
+    useEffect(() => {
       let targetValue
       if (error) {
         targetValue = 2

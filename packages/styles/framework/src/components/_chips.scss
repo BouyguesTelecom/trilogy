@@ -1,11 +1,9 @@
-@import "../utilities/spacing";
-
 .chips-list {
   align-items: center;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: $spacing-2;
+  gap: var(--spacing-xs);
 
   // centrage des chips
   &.is-centered {
@@ -41,43 +39,44 @@
     align-items: center;
     background-color: white;
     border-radius: 9999px;
-    color: getColor('font');
+    color: var(--text-primary);
     display: inline-flex;
-    font-size: $size-normal;
+    font-size: var(--body-1-size);
     height: 32px;
     justify-content: center;
     line-height: 2;
-    padding: 6px $spacing-4;
+    padding: 6px 16px;
     white-space: nowrap;
     cursor: pointer;
-    border: var(--border);
+    border: var(--border-style);
     &:not(.is-disabled) {
       &.is-active {
-        background-color: getColor('main');
+        background-color: var(--bg-secondary);
         color: white;
         border: var(--border-active);
-        padding: 5px ($spacing-4 - 1px);
+        // -2px per side offsets the active border's +2px so the chip size doesn't shift
+        padding: 4px 14px;
         #{$hoverSelector} {
-          background-color: getColor('main');
+          background-color: var(--bg-secondary);
           color: white;
         }
       }
       #{$hoverSelector} {
-        background-color: getColor('neutral-fade');
+        background-color: var(--input-hover);
       }
     }
 
     &.is-inverted {
       background-color: white;
-      color: getColor('accent');
+      color: var(--text-accent);
 
       &:active,
       &:hover,
       &:focus,
       &:focus-visible,
       &.is-active {
-        background-color: getColor('accent') !important;
-        color: getColor('background') !important;
+        background-color: var(--bg-accent) !important;
+        color: var(--text-inverse) !important;
       }
     }
   }

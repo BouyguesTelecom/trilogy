@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { Icon, IconSize } from '@/components/icon'
 import { DropdownItemProps, DropdownItemRef } from '@/components/dropdown/item/DropdownItemProps'
 
@@ -15,7 +15,7 @@ import { DropdownItemProps, DropdownItemRef } from '@/components/dropdown/item/D
  * @param disabled {boolean} Disabled item state
  * @param onSelect {Function} Callback called when item is selected
  */
-const DropdownItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
+const DropdownItem = forwardRef<DropdownItemRef, DropdownItemProps>(
   ({ children, iconName, active, disabled, onSelect, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/helpers/typography'
 import { getColorStyle } from '@/helpers/color'
-import * as React from 'react'
+import { forwardRef, useContext } from 'react'
 import { StyleSheet, Text as TextNative, TouchableOpacity } from 'react-native'
 import { Skeleton } from '@/components/skeleton'
 import { TitleLevels } from '@/components/title/TitleEnum'
@@ -24,12 +24,12 @@ import { TypographyBold } from '@/interfaces/TypographyBold'
  * @param subtitle {boolean} Subtitle below title
  * @param overline {boolean} Overline above title
  */
-const Title = React.forwardRef<TitleNativeRef, TitleProps>(
+const Title = forwardRef<TitleNativeRef, TitleProps>(
   (
     { children, level, style, inverted, typo, onClick, skeleton, accessibilityLabel, subtitle, overline, ...others },
     ref,
   ): JSX.Element => {
-    const statesContext = React.useContext(StatesContext)
+    const statesContext = useContext(StatesContext)
     const color = setTypographyColor(typo, inverted || statesContext.inverted, skeleton)
     const colorOverline = getColorStyle(TrilogyColor.MAIN)
 

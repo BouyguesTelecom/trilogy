@@ -1,5 +1,4 @@
-import React from 'react'
-
+import { createContext } from 'react'
 interface IContext {
   activeIndex: number
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>
@@ -9,7 +8,7 @@ interface IContext {
   fullwidth?: boolean
 }
 
-export const TabsContext = React.createContext<IContext>({
+export const TabsContext = createContext<IContext>({
   activeIndex: 0,
   inverted: false,
   setActiveIndex: () => 0,

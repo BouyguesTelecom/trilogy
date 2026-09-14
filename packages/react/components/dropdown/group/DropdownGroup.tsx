@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { DropdownGroupProps, DropdownGroupRef } from '@/components/dropdown/group/DropdownGroupProps'
 
 /**
@@ -15,7 +15,7 @@ import { DropdownGroupProps, DropdownGroupRef } from '@/components/dropdown/grou
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test id
  */
-const DropdownGroup = React.forwardRef<DropdownGroupRef, DropdownGroupProps>(
+const DropdownGroup = forwardRef<DropdownGroupRef, DropdownGroupProps>(
   ({ className, id, children, hideSeparator, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

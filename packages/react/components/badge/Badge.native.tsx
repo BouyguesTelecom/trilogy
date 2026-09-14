@@ -2,13 +2,13 @@ import { BadgePositionEnum } from '@/components/badge/BadgeEnum'
 import { BadgeNativeRef, BadgeProps } from '@/components/badge/BadgeProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
-import React from 'react'
+import { useMemo, forwardRef } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { StatusState } from "@/interfaces/Status";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { StatusState } from '@/interfaces/Status'
+import { TrilogyBackgroundColor, TrilogyColor, TrilogyTextColor } from '@/interfaces/Color'
+import { useTheme } from '@/hooks/useTheme'
+import { useThemeBackground } from '@/hooks/useThemeBackground'
+import { useThemeTextColor } from '@/hooks/useThemeTextColor'
 
 /**
  * Badge Component
@@ -22,79 +22,90 @@ import { Radius } from "@/interfaces/Radius";
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
+const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
   ({ children, label, onClick, testId, variant, inverted, position, status, ...others }, ref): JSX.Element => {
-    const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
-    const textColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const { radius, colors } = useTheme()
+    const backgroundColor = useThemeBackground(variant || TrilogyBackgroundColor.PRIMARY)
+    const textColor = useThemeTextColor(variant || TrilogyTextColor.PRIMARY)
 
-    const styles = StyleSheet.create({
-      badge: {
-        alignSelf: 'baseline',
-        minWidth: label ? 20 : 10,
-        height: label ? 20 : 10,
-        backgroundColor: !inverted ? badgeColor : getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: getRadiusStyle(Radius.FULL),
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      text: {
-        color: !inverted ? textColor : getColorStyle(variant || TrilogyColor.MAIN),
-        fontSize: 10,
-      },
-      iconStatus: {
-        position: 'absolute',
-        zIndex: 1000,
-        backgroundColor: 'white',
-        width: 16,
-        minHeight: 16,
-        borderRadius: getRadiusStyle(Radius.FULL),
-      },
-      iconStatusPositionTopLeft: {
-        top: -4,
-        left: -4,
-      },
-      iconStatusPositionTopRight: {
-        top: -4,
-        left: 17,
-      },
-      iconStatusPositionBottomLeft: {
-        top: 17,
-        left: -4,
-      },
-      iconStatusPositionBottomRight: {
-        top: 17,
-        left: 17,
-      },
-    })
+    const styles = useMemo(
+      () =>
+        StyleSheet.create({
+          badge: {
+            alignSelf: 'baseline',
+            minWidth: label ? 20 : 10,
+            height: label ? 20 : 10,
+            backgroundColor: !inverted ? backgroundColor : colors.bgPrimary,
+            borderRadius: radius.radiusFull,
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+          text: {
+            color: !inverted ? colors.bgPrimary : textColor,
+            fontSize: 10,
+          },
+          iconStatus: {
+            position: 'absolute',
+            zIndex: 1000,
+            backgroundColor: 'white',
+            width: 16,
+            minHeight: 16,
+            borderRadius: radius.radiusFull,
+          },
+          iconStatusPositionTopLeft: {
+            top: -4,
+            left: -4,
+          },
+          iconStatusPositionTopRight: {
+            top: -4,
+            left: 17,
+          },
+          iconStatusPositionBottomLeft: {
+            top: 17,
+            left: -4,
+          },
+          iconStatusPositionBottomRight: {
+            top: 17,
+            left: 17,
+          },
+        }),
+      [backgroundColor, colors.bgPrimary, radius.radiusFull, textColor],
+    )
 
-    let iconName: IconName | null = null
-    let iconColor: IconColor | null = null
-
-    switch (status) {
-      case StatusState.SUCCESS:
-        iconName = IconName.CHECK_CIRCLE
-        iconColor = IconColor.SUCCESS
-        break
-      case StatusState.WARNING:
-        iconName = IconName.EXCLAMATION_CIRCLE
-        iconColor = IconColor.WARNING
-        break
-      case StatusState.ERROR:
-        iconName = IconName.TIMES_CIRCLE
-        iconColor = IconColor.ERROR
-        break
-      case StatusState.INFO:
-        iconName = IconName.INFOS_CIRCLE
-        iconColor = IconColor.INFO
-        break
-      default:
-        break
-    }
+    const icon = useMemo(() => {
+      switch (status) {
+        case StatusState.SUCCESS:
+          return {
+            iconName: IconName.CHECK_CIRCLE,
+            iconColor: IconColor.SUCCESS,
+          }
+        case StatusState.WARNING:
+          return {
+            iconName: IconName.EXCLAMATION_CIRCLE,
+            iconColor: IconColor.WARNING,
+          }
+        case StatusState.ERROR:
+          return {
+            iconName: IconName.TIMES_CIRCLE,
+            iconColor: IconColor.ERROR,
+          }
+        case StatusState.INFORMATION:
+          return {
+            iconName: IconName.INFOS_CIRCLE,
+            iconColor: IconColor.INFO,
+          }
+        default:
+          return {
+            iconName: null,
+            iconColor: null,
+          }
+      }
+    }, [status])
 
     if (status) {
       return (
         <View {...others} ref={ref}>
-          {iconName && iconColor && (
+          {icon.iconName && icon.iconColor && (
             <View>
               <View
                 style={[
@@ -106,7 +117,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
                     styles.iconStatusPositionTopLeft,
                 ]}
               >
-                <Icon name={iconName} size={IconSize.SMALLER} color={iconColor} />
+                <Icon name={icon.iconName} size={IconSize.SMALLER} color={icon.iconColor} />
               </View>
               <View>{children}</View>
             </View>

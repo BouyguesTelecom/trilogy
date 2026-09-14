@@ -1,11 +1,11 @@
-import { Accessibility } from "@/interfaces/Accessibility";
-import { AlignableProps } from "@/interfaces/Alignable";
-import { BackgroundProps } from "@/interfaces/Background";
-import { Clickable } from "@/interfaces/Clickable";
-import { Dev } from "@/interfaces/Dev";
-import { Fullwidth } from "@/interfaces/Fullwidth";
-import { JustifiableProps } from "@/interfaces/Justifiable";
-import { Loadable } from "@/interfaces/Loadable";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { AlignableProps } from '@/interfaces/Alignable'
+import { BackgroundProps } from '@/interfaces/Background'
+import { Clickable } from '@/interfaces/Clickable'
+import { Dev } from '@/interfaces/Dev'
+import { Fullwidth } from '@/interfaces/Fullwidth'
+import { JustifiableProps } from '@/interfaces/Justifiable'
+import { Loadable } from '@/interfaces/Loadable'
 
 type Styles = { [key: string]: any }
 

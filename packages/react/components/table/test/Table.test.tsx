@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { render } from '@testing-library/react'
 import Table from '@/components/table/Table'
 import TableHead from '@/components/table/head'

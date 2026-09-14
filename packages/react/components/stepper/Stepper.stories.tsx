@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import StepComponent from '@/components/stepper/step'
 import StepperComponent from '@/components/stepper/Stepper'
 import type { StepperProps } from '@/components/stepper/StepperProps'

@@ -1,7 +1,7 @@
 import { ScrollView } from 'react-native'
-import { AlignableProps } from "@/interfaces/Alignable";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { AlignableProps } from '@/interfaces/Alignable'
+import { Dev } from '@/interfaces/Dev'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 /**
  * Tabs Item Interface

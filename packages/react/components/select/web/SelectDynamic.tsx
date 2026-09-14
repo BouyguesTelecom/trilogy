@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { PropsWithChildren, useContext, useEffect, useMemo, useRef, useState, forwardRef, Children, isValidElement } from 'react'
 import ReactDOM from 'react-dom'
 
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -11,7 +11,7 @@ import { SelectContext } from '@/components/select/context'
 
 const OPTION_SIZE = 48
 
-const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
+const SelectDynamic = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
   (
     {
       onChange,
@@ -78,8 +78,8 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     }
 
     const options = useMemo(() => {
-      return React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return false
+      return Children.map(children, (child) => {
+        if (!isValidElement(child)) return false
         return {
           label: child.props.children || child.props.label,
           value: child.props.value,
@@ -95,7 +95,7 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     }, [selectedOptionValues, options])
 
     useEffect(() => {
-      const childrenCount = React.Children.count(children)
+      const childrenCount = Children.count(children)
       if (childrenCount > 0) {
         optionsListSize.current = childrenCount * OPTION_SIZE
       }

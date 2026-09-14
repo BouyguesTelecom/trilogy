@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { setTypographyAlign, getTypographyBoldStyle, setTypographyColor } from '@/helpers/typography'
 import { getColorStyle } from '@/helpers/color'
-import React, { useContext } from 'react'
+import { useContext, forwardRef } from 'react'
 import { StyleSheet, Text as TextNative } from 'react-native'
 import { Skeleton } from '@/components/skeleton'
 import { TextLevels, TextLevelValues } from '@/components/text/TextEnum'
@@ -21,7 +21,7 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param numberOfLines {number} Ellipsis after limit number of lines
  * @param others
  */
-const Text = React.forwardRef<TextNativeRef, TextProps>(
+const Text = forwardRef<TextNativeRef, TextProps>(
   (
     { children, level, style, inverted, typo, skeleton, accessibilityLabel, numberOfLines = 0, ...others },
     ref,

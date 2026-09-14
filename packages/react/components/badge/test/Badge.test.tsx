@@ -1,5 +1,4 @@
 // Dependencies
-import * as React from 'react'
 
 // Testing methods
 import { render } from '@testing-library/react'

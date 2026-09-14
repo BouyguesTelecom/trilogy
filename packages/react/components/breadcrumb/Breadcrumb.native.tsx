@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import * as React from 'react'
+import { forwardRef, Children, cloneElement } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { BreadcrumbNativeRef, BreadcrumbProps } from '@/components/breadcrumb/BreadcrumbProps'
 
@@ -10,25 +10,14 @@ import { BreadcrumbNativeRef, BreadcrumbProps } from '@/components/breadcrumb/Br
  * @param testId {string} Test id
  * @param id {string} Custom id attribute
  */
-const Breadcrumb = React.forwardRef<BreadcrumbNativeRef, BreadcrumbProps>(
+const Breadcrumb = forwardRef<BreadcrumbNativeRef, BreadcrumbProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const { containerStyle } = React.useMemo(
-      () =>
-        StyleSheet.create({
-          containerStyle: {
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-          },
-        }),
-      [],
-    )
-
     return (
-      <View testID={testId} style={[containerStyle]} ref={ref} {...others}>
+      <View testID={testId} style={[styles.containerStyle]} ref={ref} {...others}>
         {Array.isArray(children)
-          ? React.Children.map(children, (child, index) => (
+          ? Children.map(children, (child, index) => (
               <>
-                {React.cloneElement(child)}
+                {cloneElement(child)}
                 {index != children.length - 1 && <Icon size='smaller' name='tri-arrow-right' align='ALIGNED_CENTER' />}
               </>
             ))
@@ -38,6 +27,12 @@ const Breadcrumb = React.forwardRef<BreadcrumbNativeRef, BreadcrumbProps>(
   },
 )
 
-Breadcrumb.displayName = ComponentName.Breadcrumb
+const styles = StyleSheet.create({
+  containerStyle: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+})
 
+Breadcrumb.displayName = ComponentName.Breadcrumb
 export default Breadcrumb

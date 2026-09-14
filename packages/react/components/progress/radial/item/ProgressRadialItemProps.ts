@@ -1,5 +1,5 @@
-import { TrilogyColor } from "@/interfaces/Color";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { TrilogyColor } from '@/interfaces/Color'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 export interface ProgressRadialItemProps extends CommonProps {
   children?: React.ReactNode

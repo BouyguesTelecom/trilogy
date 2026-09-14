@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import SegmentControl from '@/components/segment-control/SegmentControl'
 import SegmentControlItem from '@/components/segment-control/item'

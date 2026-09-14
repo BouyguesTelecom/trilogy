@@ -4,17 +4,17 @@ import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import React, { useContext, useState } from 'react'
+import { useContext, useState, forwardRef, useId } from 'react'
 import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
 import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { VariantState } from "@/interfaces/Variant";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { VariantState } from '@/interfaces/Variant'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * CheckboxTile
@@ -34,13 +34,13 @@ import { Radius } from "@/interfaces/Radius";
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
+const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   (
     {
       disabled,
       checked,
       readonly,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,

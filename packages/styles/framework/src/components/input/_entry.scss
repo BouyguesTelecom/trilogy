@@ -12,17 +12,15 @@
 .textarea {
   @include input;
 
-  padding-left: $spacing-4;
-  padding-right: $spacing-4;
-  font-size: $size-medium;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+  font-size: var(--body-1-size);
   max-width: 100%;
   width: 100%;
 
   // Colors
-  @each $name in $colors-brand-functionnal {
-    $color: getColor($name);
-    $color-invert: invertColor($name);
-    $brandName: getColorBrandName($name);
+  @each $name, $color in $colors-brand-functionnal {
+    $brandName: $name;
 
     &.is-#{$brandName} {
       border: 1px solid $color;
@@ -74,7 +72,7 @@
   }
 
   &::-webkit-search-cancel-button{
-    $colorSvg: encodecolor(getColorValue('main'));
+    $colorSvg: encodecolor(var(--bg-secondary));
     position:absolute;
     right: 0px;
     bottom : 0px;
@@ -86,7 +84,7 @@
     background-size : 20px;
     -webkit-appearance: none;
     background-repeat: no-repeat;
-    background-color: getColor('background') ;
+    background-color: var(--bg-primary) ;
     background-position: center;
   }
 
@@ -94,7 +92,7 @@
     padding-right: 45px;
     &:hover:not(:focus){
       &::-webkit-search-cancel-button {
-        background-color: getColor('main-fade');
+        background-color: var(--bg-secondary-subtle);
       }
     }
     &:focus{

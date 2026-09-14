@@ -1,4 +1,4 @@
-import React from 'react'
+import { createContext } from 'react'
 import { SelectChangeEventHandler, SelectedValue } from '@/components/select/SelectProps'
 
 interface IContext {
@@ -11,7 +11,7 @@ interface IContext {
   onChange?: SelectChangeEventHandler
 }
 
-export const SelectContext = React.createContext<IContext>({
+export const SelectContext = createContext<IContext>({
   selectedOptionValues: [],
   multiple: false,
   custom: false,

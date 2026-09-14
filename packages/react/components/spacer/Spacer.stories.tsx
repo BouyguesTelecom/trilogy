@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import SpacerComponent from '@/components/spacer/Spacer'
 import { SpacerSize } from '@/components/spacer/SpacerEnum'
 

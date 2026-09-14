@@ -1,9 +1,9 @@
 import { IconName } from '@/components/icon'
 import { TagVariant, TagVariantValues } from '@/components/tag/TagEnum'
 import { View } from 'react-native'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Dev } from '@/interfaces/Dev'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 /**
  * Tag Interface

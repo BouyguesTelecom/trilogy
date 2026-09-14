@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import React, { createContext } from 'react'
+import { createContext, forwardRef } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { ChipsListNativeRef, ChipsListProps } from '@/components/chips/list/ChipsListProps'
 
@@ -13,7 +13,7 @@ export const ChipsContext = createContext({ isMultiple: false })
  * @param scrollable {boolean} If multiple Chips make scrollable List
  * @param testId {string} Test Id for Test Integration
  */
-const ChipsList = React.forwardRef<ChipsListNativeRef, ChipsListProps>(
+const ChipsList = forwardRef<ChipsListNativeRef, ChipsListProps>(
   ({ children, multiple, scrollable = true, testId, ...others }, ref): JSX.Element => {
     const styles = StyleSheet.create({
       container: {

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TimepickerCircular } from '@/components/timepicker/circular'
 import { TimepickerDefault } from '@/components/timepicker/default'
@@ -20,7 +20,7 @@ import { TimepickerProps, TimepickerRef } from '@/components/timepicker/Timepick
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const Timepicker = React.forwardRef<TimepickerRef, TimepickerProps>(({ circular, ...props }, ref): JSX.Element => {
+const Timepicker = forwardRef<TimepickerRef, TimepickerProps>(({ circular, ...props }, ref): JSX.Element => {
   if (circular) return <TimepickerCircular ref={ref} {...props} />
   return <TimepickerDefault ref={ref as React.Ref<HTMLInputElement>} {...props} />
 })

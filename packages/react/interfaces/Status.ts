@@ -3,7 +3,7 @@
  */
 export enum StatusState {
   SUCCESS = 'SUCCESS',
-  INFO = 'INFO',
+  INFORMATION = 'INFORMATION',
   WARNING = 'WARNING',
   ERROR = 'ERROR',
 }

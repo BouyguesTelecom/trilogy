@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { TrilogyThemeContext } from '@/context/providerTheme'
 import { getColorStyle } from '@/helpers/color'
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 /**
  * Typography Alignment Method (TYPO)

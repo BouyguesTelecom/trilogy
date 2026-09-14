@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import { useState, useEffect } from 'react'
 import PromptComponent from '@/components/prompt/Prompt'
 import { PromptFiles } from '@/components/prompt/files'
 import { PromptFile } from '@/components/prompt/files/file'
@@ -42,14 +42,14 @@ const Prompt = ({
   isListening,
   selected,
 }: PromptStoryArgs): JSX.Element => {
-  const [text, setText] = React.useState(value)
-  const [selectedModel, setSelectedModel] = React.useState(selected)
+  const [text, setText] = useState(value)
+  const [selectedModel, setSelectedModel] = useState(selected)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setText(value)
   }, [value])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedModel(selected)
   }, [selected])
 
@@ -226,14 +226,14 @@ const meta: Meta<PromptStoryArgs> = {
     isListening,
     selected,
   }) => {
-    const [text, setText] = React.useState(value)
-    const [selectedModel, setSelectedModel] = React.useState(selected)
+    const [text, setText] = useState(value)
+    const [selectedModel, setSelectedModel] = useState(selected)
 
-    React.useEffect(() => {
+    useEffect(() => {
       setText(value)
     }, [value])
 
-    React.useEffect(() => {
+    useEffect(() => {
       setSelectedModel(selected)
     }, [selected])
 

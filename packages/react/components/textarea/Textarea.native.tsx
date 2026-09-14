@@ -8,7 +8,7 @@ import {
 } from '@/components/input/InputEnum'
 import { getColorStyle } from '@/helpers/color'
 import { getRadiusStyle } from '@/helpers/radius'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { SpacerSize } from '@/components/spacer'
 import { Text as TrilogyText } from '@/components/text'
@@ -43,7 +43,7 @@ import { Radius } from '@/interfaces/Radius'
  * @param keyboardType {InputKeyboardType} Keyboard type
  * @param customHeight {number} Custom textarea height
  */
-const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
+const Textarea = forwardRef<TextareaNativeRef, TextareaNativeProps>(
   (
     {
       defaultValue,

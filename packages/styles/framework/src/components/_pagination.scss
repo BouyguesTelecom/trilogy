@@ -1,5 +1,5 @@
 .pagination {
-  font-size: $size-normal;
+  font-size: var(--body-1-size);
   margin: -2.5px;
   align-items: center;
   display: flex;
@@ -25,7 +25,7 @@
   .pagination-link,
   .pagination-ellipsis {
     @include hover();
-    color: getColor('font');
+    color: var(--text-primary);
     min-width: 2.25em;
     height: 35px;
     width: 35px;
@@ -62,14 +62,14 @@
 
   .pagination-link {
     &[aria-current] {
-      background-color: getColor('font');
-      color: getColor('background');
+      background-color: var(--bg-secondary);
+      color: var(--text-inverse);
       #{$hoverSelector}, &:focus, &:focus-within {
         background: linear-gradient(
             to top,
             rgba(0, 0, 0, 0.25),
             rgba(0, 0, 0, 0.25)
-        ) getColor('font') !important;
+        ) var(--text-primary) !important;
       }
     }
   }

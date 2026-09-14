@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { checkCents } from '@/components/price/PriceHelpers'
 import { PriceProps, PriceRef } from '@/components/price/PriceProps'
@@ -26,7 +26,7 @@ import { Alignable } from '@/interfaces/Alignable'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Price = React.forwardRef<PriceRef, PriceProps>(
+const Price = forwardRef<PriceRef, PriceProps>(
   (
     {
       className,

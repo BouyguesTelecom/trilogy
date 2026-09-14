@@ -1,5 +1,4 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
 import SegmentControl from '@/components/segment-control/SegmentControl'
 import SegmentControlItem from '@/components/segment-control/item'
 

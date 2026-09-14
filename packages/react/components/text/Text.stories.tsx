@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import TextComponent from '@/components/text/Text'
 import { TextLevels, TextMarkup } from '@/components/text/TextEnum'
 import type { TextProps } from '@/components/text/TextProps'

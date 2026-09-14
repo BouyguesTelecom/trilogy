@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import {
   SegmentControlItemProps,
   SegmentControlItemRef,
@@ -19,7 +19,7 @@ import {
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentControlItemProps>(
+const SegmentControlItem = forwardRef<SegmentControlItemRef, SegmentControlItemProps>(
   ({ active, onClick, disabled, className, id, children, testId, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const { styled } = useTrilogyContext()

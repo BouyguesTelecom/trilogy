@@ -1,8 +1,8 @@
 import { Image } from 'react-native'
 import { CardImageSize, CardImageSizeValues } from '@/components/card/image/CardImageEnum'
-import { Clickable } from "@/interfaces/Clickable";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Clickable } from '@/interfaces/Clickable'
+import { Dev } from '@/interfaces/Dev'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 /**
  * Card Image Interface

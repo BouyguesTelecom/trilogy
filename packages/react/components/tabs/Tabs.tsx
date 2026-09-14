@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef, useState, useEffect } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -19,10 +19,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param id {string} Custom id attribute
  * @param small {boolean} Small tabs
  */
-const Tabs = React.forwardRef<TabsRef, TabsProps>(
+const Tabs = forwardRef<TabsRef, TabsProps>(
   ({ children, className, id, activeIndex, fullwidth, inverted, small, testId }, ref) => {
-    const [currentIndex, setCurrentIndex] = React.useState<number>(activeIndex || 0)
-    const [isInverted, setIsInverted] = React.useState<boolean>(inverted || false)
+    const [currentIndex, setCurrentIndex] = useState<number>(activeIndex || 0)
+    const [isInverted, setIsInverted] = useState<boolean>(inverted || false)
 
     const { styled } = useTrilogyContext()
     const classes = hashClass(
@@ -30,7 +30,7 @@ const Tabs = React.forwardRef<TabsRef, TabsProps>(
       clsx('tabs', fullwidth && is('fullwidth'), inverted && is('inverted'), small && is('small'), className),
     )
 
-    React.useEffect(() => {
+    useEffect(() => {
       activeIndex !== undefined && setCurrentIndex(activeIndex)
     }, [activeIndex])
 

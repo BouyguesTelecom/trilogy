@@ -3,7 +3,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getStatusClassName } from '@/helpers/status'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef, useId } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SwitchProps, SwitchRef } from '@/components/switch/SwitchProps'
 
@@ -25,11 +25,11 @@ import { SwitchProps, SwitchRef } from '@/components/switch/SwitchProps'
  * @param fullWidth {boolean} Full-width switch
  * @param testId {string} Test Id for Test Integration
  */
-const Switch = React.forwardRef<SwitchRef, SwitchProps>(
+const Switch = forwardRef<SwitchRef, SwitchProps>(
   (
     {
       className,
-      id = React.useId(),
+      id = useId(),
       label,
       value,
       checked,
@@ -49,7 +49,7 @@ const Switch = React.forwardRef<SwitchRef, SwitchProps>(
     const [_checked, setChecked] = useState<boolean>(checked || false)
     const { styled } = useTrilogyContext()
 
-    React.useEffect(() => {
+    useEffect(() => {
       setChecked(checked || false)
     }, [checked])
 

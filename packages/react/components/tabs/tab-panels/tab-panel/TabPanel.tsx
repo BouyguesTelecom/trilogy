@@ -5,8 +5,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
-
+import { forwardRef, useContext } from 'react'
 /**
  * Tab Panel Component
  * @param children {ReactChild} React Child Element
@@ -15,10 +14,10 @@ import React from 'react'
  * @param id {string} Custom id attribute
  * @param className {string} Additional CSS Classes
  */
-const TabPanel = React.forwardRef<TabPanelRef, TabPanelProps>(({ children, className, testId, ...others }, ref) => {
+const TabPanel = forwardRef<TabPanelRef, TabPanelProps>(({ children, className, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const { index, ...props } = others as any
-  const { activeIndex } = React.useContext(TabsContext)
+  const { activeIndex } = useContext(TabsContext)
 
   const classes = hashClass(styled, clsx('tab-panel', index === activeIndex && is('active'), className))
 

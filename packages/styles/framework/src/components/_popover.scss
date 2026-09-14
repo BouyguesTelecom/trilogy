@@ -72,14 +72,14 @@
   .popover-content {
     @include position-top();
 
-    background-color: getColor('font');
-    border-radius: var(--radius-small);
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-sm);
     box-shadow: $shadow;
-    color: getColor('background');
+    color: var(--text-inverse);
     display: inline-block;
     font-size: 12px;
     visibility: hidden;
-    padding: $spacing-2;
+    padding: var(--spacing-xs);
     font-weight: 500;
     position: absolute;
     text-align: center;
@@ -95,8 +95,8 @@
     &::before {
       content: '';
       border-color: transparent;
-      border-bottom-color: getColor('font');
-      border-left-color: getColor('font');
+      border-bottom-color: var(--bg-secondary);
+      border-left-color: var(--bg-secondary);
       border-style: solid;
       border-width: 4px;
       pointer-events: none;
@@ -113,7 +113,7 @@
     .paragraph,
     .text,
     p {
-      color: getColor('background');
+      color: var(--text-inverse);
     }
   }
 

@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -16,19 +16,17 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const List = React.forwardRef<ListRef, ListProps>(
-  ({ className, id, children, testId, divider, ordered, ...others }, ref) => {
-    const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
-    const Tag = ordered ? 'ol' : 'ul'
+const List = forwardRef<ListRef, ListProps>(({ className, id, children, testId, divider, ordered, ...others }, ref) => {
+  const { styled } = useTrilogyContext()
+  const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
+  const Tag = ordered ? 'ol' : 'ul'
 
-    return (
-      <Tag ref={ref as any} id={id} data-testid={testId} className={classes} {...others}>
-        {children}
-      </Tag>
-    )
-  },
-)
+  return (
+    <Tag ref={ref as any} id={id} data-testid={testId} className={classes} {...others}>
+      {children}
+    </Tag>
+  )
+})
 
 List.displayName = ComponentName.List
 export default List

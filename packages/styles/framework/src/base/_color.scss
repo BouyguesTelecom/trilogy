@@ -1,7 +1,0 @@
-@use "sass:map";
-
-:root {
-  @each $name, $color in $colors {
-    --color-#{nth($color,2)}: #{nth($color,1)};
-  }
-}

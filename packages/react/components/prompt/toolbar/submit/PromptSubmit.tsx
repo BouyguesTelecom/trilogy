@@ -4,7 +4,7 @@ import { IconName } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState, forwardRef } from 'react'
 import { PromptContext } from '@/components/prompt/context'
 import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
 
@@ -19,7 +19,7 @@ import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from '@/compon
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
+const PromptSubmit = forwardRef<PromptSubmitRef, PromptSubmitProps>(
   (
     { className, status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, disabled, readOnly, ...others },
     ref,

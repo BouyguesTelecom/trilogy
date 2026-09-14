@@ -56,13 +56,13 @@ export const ProgressScreen = (): JSX.Element => {
         <Title level={TitleLevels.THREE}>Progression avec unique légende</Title>
         <Divider />
 
-        <Progress legendCenter={'Unique legend'} value={30} status={StatusState.INFO} />
+        <Progress legendCenter={'Unique legend'} value={30} status={StatusState.INFORMATION} />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Progression avec légendes aux extremités</Title>
         <Divider />
 
-        <Progress value={15} status={StatusState.INFO} legendStart='0Go' legendEnd='5Go' />
+        <Progress value={15} status={StatusState.INFORMATION} legendStart='0Go' legendEnd='5Go' />
       </Section>
       <Section>
         <Title level={TitleLevels.THREE}>Barre de progression circulaire children custo</Title>

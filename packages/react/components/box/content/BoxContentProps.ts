@@ -1,8 +1,8 @@
 import { View } from 'react-native'
-import { BackgroundProps } from "@/interfaces/Background";
-import { Accessibility } from "@/interfaces/Accessibility";
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { BackgroundProps } from '@/interfaces/Background'
+import { Accessibility } from '@/interfaces/Accessibility'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
 
 /**
  * Box Content Interface

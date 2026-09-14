@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import { useState } from 'react'
 import { Button, ButtonVariant } from '@/components/button'
 import ModalBody from '@/components/modal/body/ModalBody'
 import ModalFooter from '@/components/modal/footer/ModalFooter'
@@ -37,7 +37,7 @@ const Modal = ({
   footerPrimaryChildren,
   footerSecondaryChildren,
 }: ModalStoryArgs): JSX.Element => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <ModalComponent
@@ -191,7 +191,7 @@ const meta: Meta<ModalStoryArgs> = {
     footerPrimaryChildren,
     footerSecondaryChildren,
   }) => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = useState(false)
 
     return (
       <ModalComponent
@@ -251,7 +251,7 @@ export const WithoutFooter: Story = {
     testId,
     bodyChildren,
   }) => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = useState(false)
 
     return (
       <ModalComponent

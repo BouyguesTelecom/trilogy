@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 import { TextProps, TextRef } from '@/components/text/TextProps'
 import { TextLevels, TextMarkup, TextMarkupValues } from '@/components/text/TextEnum'
@@ -23,7 +23,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param id {string} Custom id attribute
  * @param markup {TextMarkup} HTML markup element
  */
-const Text = React.forwardRef<TextRef, TextProps>(
+const Text = forwardRef<TextRef, TextProps>(
   (
     {
       level,

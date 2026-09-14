@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { TableTdNativeRef, TableTdProps } from '@/components/table/td/TableTdProps'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -9,7 +9,7 @@ import { TrilogyColor } from '@/interfaces/Color'
  * Table TD Component
  * @param children {ReactNode} Table TD children
  */
-const TableTd = React.forwardRef<TableTdNativeRef, TableTdProps>(({ children, ...others }, ref): JSX.Element => {
+const TableTd = forwardRef<TableTdNativeRef, TableTdProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     table: {
       flexDirection: 'column',

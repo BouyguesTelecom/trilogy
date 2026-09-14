@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { CommonProps } from "@/interfaces/CommonProps";
+import { CommonProps } from '@/interfaces/CommonProps'
 
 /**
  * Arrow direction

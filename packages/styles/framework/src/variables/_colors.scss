@@ -1,0 +1,101 @@
+
+$colors-brand-functionnal: (
+  'background': var(--background),
+  'main': var(--bg-secondary),
+  'accent': var(--bg-accent),
+  'info': var(--bg-information),
+  'success': var(--bg-success),
+  'error': var(--bg-error),
+  'warning': var(--bg-warning),
+  'neutral': var(--bg-primary)
+);
+
+$colors-feedback: (
+  'success': (
+    color: var(--bg-success),
+    subtle: var(--bg-success-subtle),
+    inverse: var(--bg-primary)
+  ),
+  'error': (
+    color: var(--bg-error),
+    subtle: var(--bg-error-subtle),
+    inverse: var(--bg-primary)
+  ),
+  'warning': (
+    color: var(--bg-warning),
+    subtle: var(--bg-warning-subtle),
+    inverse: var(--bg-primary)
+  ),
+  'info': (
+    color: var(--bg-information),
+    subtle: var(--bg-information-subtle),
+    inverse: var(--bg-primary)
+  )
+);
+
+
+$colors-brand: (
+  'background': (
+    color: var(--background),
+    text: var(--text-primary)
+  ),
+  'main': (
+    color: var(--bg-secondary),
+    text: var(--text-inverse)
+  ),
+  'accent': (
+    color: var(--bg-accent),
+    text: var(--text-inverse)
+  )
+);
+
+$colors: (
+  'bg': (
+    'background': var(--background-primary),
+    'brand': var(--bg-brand),
+    'brand-fade': var(--bg-brand-subtle),
+    'transparent': transparent,
+    'main': var(--bg-secondary),
+    'main-fade': var(--bg-secondary-subtle),
+    'accent': var(--bg-accent),
+    'accent-fade': var(--bg-accent-subtle),
+    'success': var(--bg-success),
+    'success-fade': var(--bg-success-subtle),
+    'info': var(--bg-information),
+    'info-fade': var(--bg-information-subtle),
+    'warning': var(--bg-warning),
+    'warning-fade': var(--bg-warning-subtle),
+    'error': var(--bg-error),
+    'error-fade': var(--bg-error-subtle),
+    'disabled': var(--bg-disabled),
+    'disabled-fade': var(--bg-disabled),
+    'neutral': #BBC6CD,
+    'neutral-fade': var(--bg-disabled),
+    'white': var(--bg-primary),
+  ),
+  'text': (
+    'background': var(--text-primary),
+    'brand': var(--text-brand),
+    'brand-fade': var(--text-brand),
+    'transparent': transparent,
+    'main': var(--text-primary),
+    'main-fade': var(--text-primary),
+    'accent': var(--text-accent),
+    'accent-fade': var(--text-accent),
+    'font': var(--text-primary),
+    'font-placeholder': var(--text-placeholder),
+    'success': var(--text-success),
+    'success-fade': var(--text-success),
+    'info': var(--text-information),
+    'info-fade': var(--text-information),
+    'warning': var(--text-warning),
+    'warning-fade': var(--text-warning),
+    'error': var(--text-error),
+    'error-fade': var(--text-error),
+    'disabled': var(--text-disabled),
+    'disabled-fade': var(--text-disabled),
+    'neutral': #BBC6CD,
+    'neutral-fade': #BBC6CD,
+    'white': var(--text-inverse),
+  ),
+);

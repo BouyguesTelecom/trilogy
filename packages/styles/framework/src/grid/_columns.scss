@@ -347,14 +347,14 @@ $gap: 4px,
       }
 
       &::-webkit-scrollbar-track {
-        background-color: getColor('neutral');
-        border-radius: var(--radius);
+        background-color: var(--bg-inactive); 
+        border-radius: var(--radius-sm);
         margin: 0 8px;
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: getColor('main-fade');
-        border-radius: var(--radius);
+        background-color: var(--bg-secondary-subtle);
+        border-radius: var(--radius-sm);
       }
     }
   }

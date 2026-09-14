@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef, forwardRef } from 'react'
 import { Animated, ViewStyle } from 'react-native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ProgressItemNativeRef, ProgressItemProps } from '@/components/progress/item/ProgressItemProps'
@@ -9,7 +9,7 @@ import { ProgressItemNativeRef, ProgressItemProps } from '@/components/progress/
  * @param children {React.ReactNode}
  * @param style {ViewStyle} Custom styles for the progress item
  */
-const ProgressItem = React.forwardRef<ProgressItemNativeRef, ProgressItemProps>(
+const ProgressItem = forwardRef<ProgressItemNativeRef, ProgressItemProps>(
   ({ children, percent, style, ...others }, ref): JSX.Element => {
     const animation = useRef(new Animated.Value(0)).current
     const styles = style as ViewStyle[]

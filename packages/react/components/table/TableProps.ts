@@ -1,7 +1,7 @@
 import { View } from 'react-native'
-import { Fullwidth } from "@/interfaces/Fullwidth";
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { Fullwidth } from '@/interfaces/Fullwidth'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
 
 export enum TableBorderEnum {
   ALL = 'all',

@@ -11,7 +11,7 @@
   @include block;
 
   background-color: transparent;
-  color: getColor('neutral');
+  color: var(--text-disabled);
 
   &:not(:last-child) {
     margin-bottom: 30px;
@@ -21,12 +21,12 @@
   * @deprecated "Use multiples <tr><th> instead"
   */
   tbody .is-body-header {
-    background-color: getColor('neutral-fade');
+    background-color: var(--bg-primary-subtle);
   }
 
   td,
   th {
-    border: 1px solid #{getColor('stroke-fade')};
+    border: var(--border-style);
     border-width: 0;
     padding: 20px;
     vertical-align: top;
@@ -39,8 +39,8 @@
     }
 
     &.is-selected {
-      background-color: getColor('main');
-      color: getColor('background');
+      background-color: var(--bg-selected); 
+      color: var(--text-inverse);
 
       a,
       strong {
@@ -50,28 +50,28 @@
   }
 
   th {
-    color: getColor('font');
+    color: var(--text-primary);
   }
 
   tr {
-    @each $name in $colors-feedback {
+    @each $name, $colors in $colors-feedback {
       &.is-#{$name} {
-        background-color: fadeColor($name);
+        background-color: map-get($colors, subtle);
       }
     }
 
     th {
-      background-color: getColor('background');
+      background-color: var(--bg-primary);
     }
 
     th,
     td {
-      color: getColor('font');
+      color: var(--text-primary);
       vertical-align: middle;
     }
 
     td {
-      border-bottom: 1px solid #{getColor('stroke-fade')};
+      border-bottom: var(--border-style);
 
       > p {
         margin: 0;
@@ -79,8 +79,8 @@
     }
 
     &.is-selected {
-      background-color: getColor('main');
-      color: getColor('background');
+      background-color: var(--bg-selected); 
+      color: var(--text-inverse);
 
       a,
       strong {
@@ -96,7 +96,7 @@
     &.is-expanded,
     &.is-expandable:hover {
       td {
-        color: getColor('accent');
+        color: var(--text-accent);
         cursor: pointer;
       }
     }
@@ -129,7 +129,7 @@
     td,
     th {
       border-width: 0 0 1px;
-      color: getColor('font');
+      color: var(--text-primary);
     }
 
     &[class*="has-background"] {
@@ -138,20 +138,21 @@
       }
     }
     
-    @each $name in $colors-all {
-      &.is-#{$name} tr {
-        th {
-          color: getColor($name);
-        }
-      }
-    }
+    
+    // @each $name in $colors-all {
+    //   &.is-#{$name} tr {
+    //     th {
+    //       color: getColor($name);
+    //     }
+    //   }
+    // }
   }
 
   tfoot {
     td,
     th {
       border-width: 2px 0 0;
-      color: getColor('font');
+      color: var(--text-primary);
     }
   }
 
@@ -167,15 +168,15 @@
   }
 
   &.has-border-all {
-    border: 1px solid #{getColor('stroke-fade')};
+    border: var(--border-style);
 
     th {
-      border-right: 1px solid #{getColor('stroke-fade')};
+      border-right: var(--border-style);
     }
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid #{getColor('stroke-fade')};
+        border-right: var(--border-style);
       }
     }
   }
@@ -183,13 +184,13 @@
   &.has-border-inner {
     th {
       &:not(:last-child) {
-        border-right: 1px solid #{getColor('stroke-fade')};
+        border-right: var(--border-style);
       }
     }
 
     td {
       &:not(:last-child) {
-        border-right: 1px solid #{getColor('stroke-fade')};
+        border-right: var(--border-style);
       }
     }
   }
@@ -209,15 +210,15 @@
     tbody {
       tr:not(.is-selected) {
         &:nth-child(even) {
-          background-color: getColor('neutral-fade');
+          background-color: var(--bg-primary-subtle);
         }
       }
     }
   }
 
   .subtable {
-    background-color: getColor('neutral-fade');
-    border-radius: var(--radius);
+    background-color: var(--bg-primary-subtle);
+    border-radius: var(--radius-sm);
     padding: 25px;
 
     @include mobile() {
@@ -229,7 +230,7 @@
 
       tr:not(:first-child) {
         td {
-          border-top: 1px solid #{getColor('stroke-fade')};
+          border-top: var(--border-style);
         }
       }
 
@@ -250,8 +251,7 @@
 
 .table-container {
   @include block;
-  @include overflow-touch;
-
+  -webkit-overflow-scrolling: touch;
   overflow: auto;
   overflow-y: hidden;
   max-width: 100%;

@@ -1,8 +1,8 @@
 import { View } from 'react-native'
-import { Clickable } from "@/interfaces/Clickable";
-import { Dev } from "@/interfaces/Dev";
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Clickable } from '@/interfaces/Clickable'
+import { Dev } from '@/interfaces/Dev'
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 export interface TableTrPropsWeb extends Clickable, Dev {
   children: React.ReactNode

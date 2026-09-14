@@ -7,7 +7,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { useMemo } from 'react'
+import { useMemo, forwardRef, useRef, useContext, useImperativeHandle, useState, Children, isValidElement, useCallback, useEffect } from 'react'
 import { TabsContext } from '@/components/tabs/context'
 
 /**
@@ -19,18 +19,18 @@ import { TabsContext } from '@/components/tabs/context'
  * @param testId {string} Test Id for Test Integration
  * @param align {string} Alignment of the tabs
  */
-const TabList = React.forwardRef<TabListRef, TabListProps>(
+const TabList = forwardRef<TabListRef, TabListProps>(
   ({ children, className, id, testId, align, ...others }, ref) => {
     const { styled } = useTrilogyContext()
-    const TabListRef = React.useRef<HTMLDivElement>(null)
-    const tabRefs = React.useRef<DOMRect[]>([])
-    const { small } = React.useContext(TabsContext)
-    React.useImperativeHandle(ref, () => TabListRef.current as HTMLDivElement)
+    const TabListRef = useRef<HTMLDivElement>(null)
+    const tabRefs = useRef<DOMRect[]>([])
+    const { small } = useContext(TabsContext)
+    useImperativeHandle(ref, () => TabListRef.current as HTMLDivElement)
 
-    const [tabsWidth, setTabsWidth] = React.useState<number>(0)
-    const [tabListWidth, setTabListWidth] = React.useState<number>(0)
-    const [scrollLeft, setScrollLeft] = React.useState<number>(0)
-    const [tabFocused, setTabFocused] = React.useState<number>(0)
+    const [tabsWidth, setTabsWidth] = useState<number>(0)
+    const [tabListWidth, setTabListWidth] = useState<number>(0)
+    const [scrollLeft, setScrollLeft] = useState<number>(0)
+    const [tabFocused, setTabFocused] = useState<number>(0)
 
     const classes = hashClass(styled, clsx('tab-list', align && is(getAlignClassName(align)), className))
 
@@ -44,9 +44,9 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       [tabListWidth, tabsWidth, scrollLeft],
     )
 
-    const TabElms = React.useMemo(() => {
-      return React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) return false
+    const TabElms = useMemo(() => {
+      return Children.map(children, (child, index) => {
+        if (!isValidElement(child)) return false
         return (
           <Tab
             ref={(el) => (tabRefs.current[index] = el?.getBoundingClientRect() as DOMRect)}
@@ -57,7 +57,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       })
     }, [children, tabRefs])
 
-    const scrollWithArrow = React.useCallback(
+    const scrollWithArrow = useCallback(
       (direction: number) => {
         if (tabRefs.current) {
           const firstGap = tabRefs.current[0].x
@@ -69,7 +69,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       [tabRefs.current, tabFocused, TabListRef],
     )
 
-    const handleScrollList = React.useCallback(
+    const handleScrollList = useCallback(
       (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
         const target = e.target as HTMLDivElement
         const firstGap = tabRefs.current[0].x + (small ? 16 : 24)
@@ -84,26 +84,26 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
       [tabRefs, small],
     )
 
-    const onClickPrev = React.useCallback(() => {
+    const onClickPrev = useCallback(() => {
       isVisibleArrowLeft && scrollWithArrow(-1)
     }, [scrollWithArrow, isVisibleArrowLeft])
 
-    const onClickNext = React.useCallback(() => {
+    const onClickNext = useCallback(() => {
       isVisibleArrowRight && scrollWithArrow(1)
     }, [scrollWithArrow, isVisibleArrowRight])
 
-    const setWidths = React.useCallback(() => {
+    const setWidths = useCallback(() => {
       if (TabListRef.current) {
         setTabsWidth(TabListRef.current.clientWidth)
         setTabListWidth(TabListRef.current.scrollWidth)
       }
     }, [TabListRef])
 
-    React.useEffect(() => {
+    useEffect(() => {
       setWidths()
     }, [setWidths, isVisibleArrowLeft, isVisibleArrowRight])
 
-    React.useEffect(() => {
+    useEffect(() => {
       window.addEventListener('resize', setWidths)
       return () => window.removeEventListener('resize', setWidths)
     }, [TabListRef, setWidths])

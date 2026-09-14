@@ -1,6 +1,6 @@
 import translation from '@trilogy-ds/locales/lib/input'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useId, useState } from 'react'
+import { useCallback, useEffect, useId, useState, forwardRef } from 'react'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -71,14 +71,14 @@ interface IconWrapper {
  * @param forceControl {boolean} Force the control of the input value
  * @param minLength {number} Input min length
  */
-const Input = React.forwardRef<InputRef, InputProp>(
+const Input = forwardRef<InputRef, InputProp>(
   (
     {
       forceControl,
       label,
       sample,
       className,
-      id = React.useId(),
+      id = useId(),
       disabled,
       onChange,
       onKeyPress,

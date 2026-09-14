@@ -21,7 +21,7 @@ $overlap-desktop: 30px;
 
 .hero {
   align-items: stretch;
-  background-color: getColor('background');
+  background-color: var(--bg-primary);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

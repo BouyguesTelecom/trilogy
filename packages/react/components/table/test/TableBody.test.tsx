@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { render } from '@testing-library/react'
 import TableTr from '@/components/table/tr'
 import { has, is } from '@/helpers/classify'

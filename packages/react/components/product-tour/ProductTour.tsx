@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import { ProductTourRef, ProductTourWebProps } from '@/components/product-tour/ProductTourProps'
@@ -19,7 +19,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param avatarSrc {string} Display avatar if source
  * @param avatarDirection {AvatarDirection} LEFT|RIGHT
  */
-const ProductTour = React.forwardRef<ProductTourRef, ProductTourWebProps>(
+const ProductTour = forwardRef<ProductTourRef, ProductTourWebProps>(
   (
     { children, className, id, active, arrowDirection, arrowAlign, closeable, avatarSrc, avatarDirection, ...others },
     ref,

@@ -4,7 +4,7 @@ import { TabsContext } from '@/components/tabs/context'
 import { TabNativeRef, TabProps } from '@/components/tabs/tab-list/tab/TabProps'
 import { Text } from '@/components/text'
 import { getColorStyle } from '@/helpers/color'
-import React from 'react'
+import { forwardRef, useContext, useMemo, useCallback, useEffect } from 'react'
 import { GestureResponderEvent, Linking, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { TrilogyColor } from '@/interfaces/Color'
 import { TypographyAlign } from '@/interfaces/TypographyAlign'
@@ -20,13 +20,13 @@ import { TypographyAlign } from '@/interfaces/TypographyAlign'
  * @param to {string} Link
  * @param href {string} Link
  */
-const Tab = React.forwardRef<TabNativeRef, TabProps>(
+const Tab = forwardRef<TabNativeRef, TabProps>(
   ({ active, onClick, to, href, iconName, label, disabled, ...others }, ref) => {
     const { index, ...props } = others as any
-    const { activeIndex, setActiveIndex, inverted, fullwidth } = React.useContext(TabsContext)
-    const isActive = React.useMemo(() => activeIndex === index, [activeIndex, index])
+    const { activeIndex, setActiveIndex, inverted, fullwidth } = useContext(TabsContext)
+    const isActive = useMemo(() => activeIndex === index, [activeIndex, index])
 
-    const handleClick = React.useCallback(
+    const handleClick = useCallback(
       (e: GestureResponderEvent) => {
         if (!disabled) {
           if (onClick) onClick(e)
@@ -61,7 +61,7 @@ const Tab = React.forwardRef<TabNativeRef, TabProps>(
       },
     })
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (active) setActiveIndex(index)
     }, [active, setActiveIndex, index])
 

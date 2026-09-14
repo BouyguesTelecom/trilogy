@@ -1,8 +1,8 @@
 import { GapSize } from '@/components/columns/ColumnsTypes'
 import { View } from 'react-native'
-import { Dev } from "@/interfaces/Dev";
-import { AlignableProps } from "@/interfaces/Alignable";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from '@/interfaces/Dev'
+import { AlignableProps } from '@/interfaces/Alignable'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 /**
  * Columns Interface

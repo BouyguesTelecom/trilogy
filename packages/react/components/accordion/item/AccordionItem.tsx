@@ -3,8 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
-
+import { forwardRef, useId } from 'react'
 /**
  * Accordion Item Component
  * @param active {boolean} Active Accordion Item
@@ -17,8 +16,8 @@ import React from 'react'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
-  ({ open, className, children, id = React.useId(), onClick, disabled, testId, ...others }, ref): JSX.Element => {
+const AccordionItem = forwardRef<AccordionItemRef, AccordionItemProps>(
+  ({ open, className, children, id = useId(), onClick, disabled, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('accordion-item', className))
     const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}

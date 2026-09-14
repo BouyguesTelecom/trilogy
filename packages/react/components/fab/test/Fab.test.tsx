@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import Fab from '@/components/fab/Fab'
 import { IconName } from '@/components/icon'
@@ -7,7 +6,11 @@ describe('Fab', () => {
   it('renders a button with the given label and icon name', () => {
     const label = 'Add'
     const iconName: IconName = IconName.BELL
-    const { getByTestId } = render(<Fab testId={label} iconName={iconName}>{label}</Fab>)
+    const { getByTestId } = render(
+      <Fab testId={label} iconName={iconName}>
+        {label}
+      </Fab>,
+    )
     expect(getByTestId(label)).toBeInTheDocument()
   })
 

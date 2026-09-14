@@ -1,5 +1,5 @@
 import { Item } from '@/components/autocomplete/AutoCompleteProps'
-import { CommonProps } from "@/interfaces/CommonProps";
+import { CommonProps } from '@/interfaces/CommonProps'
 
 export interface AutoCompleteItemProps<T extends string | Item<unknown> = string> extends CommonProps {
   children?: string | React.ReactNode

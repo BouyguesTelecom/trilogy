@@ -1,7 +1,7 @@
 /* @todo validate a.alert exist */
 a.alert {
   cursor: pointer;
-  transition: box-shadow $animation-duration;
+  transition: box-shadow 0.3s;
 
   &:hover,
   &:active,
@@ -11,12 +11,12 @@ a.alert {
 }
 
 .alert {
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   position: relative;
   display: flex;
   align-self: flex-start;
   box-shadow: none;
-  padding: $spacing-4;
+  padding: var(--spacing-md);
 
   &.is-banner {
 
@@ -34,7 +34,7 @@ a.alert {
   .title,
   .text {
     margin-bottom: 0 !important;
-    padding-bottom: $spacing-1;
+    padding-bottom: var(--spacing-xxs);
   }
 
   .text:last-child {
@@ -53,13 +53,13 @@ a.alert {
     color: currentColor;
   }
 
-  @each $name in $colors-feedback {
+  @each $name, $colors in $colors-feedback {
     &.is-#{$name} {
-      background-color: fadeColor($name);
-      border: 1px solid getColor($name);
+      background-color: map-get($colors, subtle);
+      border: 1px solid map-get($colors, color);
 
       .alert-icon {
-        color: getColor($name);
+        color: map-get($colors, color);
       }
     }
   }
@@ -78,7 +78,7 @@ a.alert {
     align-self: center;
     margin-bottom: 0;
     flex-grow: 1;
-    padding: 1px $spacing-2; /* Fixes flex behavior on Safari mobile */
+    padding: 1px var(--spacing-xs); /* Fixes flex behavior on Safari mobile */
 
     @include mobile {
       flex: 1;
@@ -87,7 +87,7 @@ a.alert {
 
   .text,
   .paragraph {
-    font-size: $text-14;
+    font-size: var(--body-2-size);
     text-align: left;
   }
 

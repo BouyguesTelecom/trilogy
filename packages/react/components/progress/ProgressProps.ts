@@ -1,7 +1,7 @@
 import { View } from 'react-native'
-import { StatusProps } from "@/interfaces/Status";
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { StatusProps } from '@/interfaces/Status'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
 
 /**
  * Progress Interface

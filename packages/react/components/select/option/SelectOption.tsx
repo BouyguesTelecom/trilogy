@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef, useContext } from 'react'
 import { SelectContext } from '@/components/select/context'
 import { SelectedValue } from '@/components/select/SelectProps'
 import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/SelectOptionProps'
@@ -23,12 +23,12 @@ import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/S
  * @param id {string} Select option custom id
  * @param others
  */
-const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
+const SelectOption = forwardRef<SelectOptionRef, SelectOptionProps>(
   ({ id, className, value = '', disabled, children, onClick, label, iconName, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     const { custom, selectedOptionValues, setSelectedOptionValues, multiple, setIsVisibleOptions, onChange } =
-      React.useContext(SelectContext)
+      useContext(SelectContext)
 
     const isChecked = selectedOptionValues.includes(value)
 

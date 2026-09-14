@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ChipsListProps, ChipsListRef } from '@/components/chips/list/ChipsListProps'
 
 /**
@@ -17,7 +17,7 @@ import { ChipsListProps, ChipsListRef } from '@/components/chips/list/ChipsListP
  * @param className {string} Additional CSS Classes
  * @param accessibilityLabelledBy {string} Accessibility label id for ChipsList
  */
-const ChipsList = React.forwardRef<ChipsListRef, ChipsListProps>(
+const ChipsList = forwardRef<ChipsListRef, ChipsListProps>(
   ({ className, id, children, multiple, scrollable, accessibilityLabelledBy, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

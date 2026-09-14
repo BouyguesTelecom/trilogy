@@ -1,6 +1,6 @@
 a.toaster {
     cursor: pointer;
-    transition: box-shadow $animation-duration;
+    transition: box-shadow 0.3s;
 
     &:hover,
     &:active,
@@ -10,8 +10,8 @@ a.toaster {
 }
 
 .toaster {
-  background-color: getColor('info-fade');
-  border-radius: var(--radius);
+  background-color: var(--bg-information-subtle); 
+  border-radius: var(--radius-sm);
   margin-bottom: 16px;
   position: relative;
     margin-left: 24px;
@@ -19,19 +19,19 @@ a.toaster {
 
     .toaster-close {
         padding-right: 0 !important ;
-        color: getColor('font') !important;
+        color: var(--text-primary) !important;
     }
 
     .text:first-child,
     .title:first-child {
-        font-size: $text-16 !important;
+        font-size: var(--body-1-size) !important;
         line-height: normal;
     }
 
     .title,
     .text {
         margin-bottom: 0 !important ;
-        padding-bottom: $spacing-1;
+        padding-bottom: var(--spacing-xxs);
     }
 
     .text:last-child {
@@ -52,20 +52,20 @@ a.toaster {
 
     code,
     pre {
-        background: getColor('background');
+        background: var(--bg-primary);
     }
 
     pre code {
         background: transparent;
     }
 
-  @each $name in $colors-feedback {
+    @each $name, $colors in $colors-feedback {
     &.is-#{$name} {
-      background-color: fadeColor($name);
-      border: 2px solid getColor($name);
+            background-color: map-get($colors, subtle);
+            border: 2px solid map-get($colors, color);
 
       .icon {
-        color: getColor($name);
+                color: map-get($colors, color);
       }
     }
   }
@@ -101,10 +101,10 @@ a.toaster {
 
     > .body {
         align-self: center;
-        color: getColor('font');
+        color: var(--text-primary);
         margin-bottom: 0;
         flex-grow: 1;
-        padding: 1px $spacing-2; /* Fixes flex behavior on Safari mobile */
+        padding: 1px var(--spacing-xs); /* Fixes flex behavior on Safari mobile */
 
         @include mobile {
             flex: 1;
@@ -112,12 +112,12 @@ a.toaster {
     }
 
     box-shadow: none;
-    padding: $spacing-4;
+    padding: var(--spacing-md);
 
     .title,
     .text,
     .paragraph {
-        font-size: $text-14;
+        font-size: var(--body-2-size);
         text-align: left;
     }
 

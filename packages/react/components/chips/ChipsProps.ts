@@ -1,9 +1,9 @@
 import { TouchableOpacity } from 'react-native'
-import { ClickEvent } from "@/interfaces/OnClickEvent";
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Clickable } from "@/interfaces/Clickable";
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { ClickEvent } from '@/interfaces/OnClickEvent'
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Clickable } from '@/interfaces/Clickable'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
 
 /**
  * Chips Interface

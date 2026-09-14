@@ -1,7 +1,7 @@
 import { Switch } from 'react-native'
-import { StatusProps } from "@/interfaces/Status";
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { StatusProps } from '@/interfaces/Status'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
 
 export interface SwitchChangeEvent {
   switchState: boolean

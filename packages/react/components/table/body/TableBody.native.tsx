@@ -1,4 +1,4 @@
-import * as React from "react"
+import { forwardRef } from 'react'
 import { StyleSheet, Text, View } from "react-native"
 import { TableBodyNativeRef, TableBodyProps } from "@/components/table/body/TableBodyProps"
 import { ComponentName } from "@/components/enumsComponentsName"
@@ -7,7 +7,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * TableBody Component
  * @param children {ReactNode} Children of Table Body
  */
-const TableBody = React.forwardRef<TableBodyNativeRef, TableBodyProps>(({ children, ...others }, ref): JSX.Element => {
+const TableBody = forwardRef<TableBodyNativeRef, TableBodyProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     body: {
       display: "flex",

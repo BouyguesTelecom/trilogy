@@ -1,6 +1,6 @@
 .progress-radial {
   background: radial-gradient(white 58%, transparent 51%),
-  conic-gradient(getColor('main-fade') 0deg 360deg, getColor('main-fade') 0deg 360deg);
+  conic-gradient(var(--bg-secondary-subtle) 0deg 360deg, var(--bg-secondary-subtle) 0deg 360deg);
   border-radius: 50%;
   width: 124px;
   height: 124px;
@@ -27,11 +27,11 @@
 
     .progress-radial-content {
       &-label {
-        font-size: $text-16;
+        font-size: var(--body-1-size);
         line-height: normal;
       }
        &-description {
-          font-size: $text-10;
+          font-size: var(--body-4-size);
        }
     }
   }

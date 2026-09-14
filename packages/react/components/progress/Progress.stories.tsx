@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import ProgressComponent from '@/components/progress/Progress'
 import ProgressItem from '@/components/progress/item/ProgressItem'
-import { StatusState } from "@/interfaces/Status";
+import { StatusState } from '@/interfaces/Status'
 
 ProgressComponent.displayName = 'Progress'
 
@@ -128,7 +127,7 @@ const meta: Meta<ProgressStoryArgs> = {
   args: {
     value: 30,
     max: 100,
-    status: StatusState.INFO,
+    status: StatusState.INFORMATION,
     small: false,
     legendStart: '0',
     legendCenter: '',
@@ -175,7 +174,7 @@ export const StackedLinear: Story = {
   render: () => (
     <ProgressComponent stacked>
       <ProgressItem percent={15} />
-      <ProgressItem percent={15} status={StatusState.INFO} />
+      <ProgressItem percent={15} status={StatusState.INFORMATION} />
       <ProgressItem percent={15} status={StatusState.SUCCESS} />
       <ProgressItem percent={30} status={StatusState.WARNING} />
     </ProgressComponent>

@@ -2,11 +2,11 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { BoxProps, BoxRef } from '@/components/box/BoxProps'
-import { getBackgroundClassName } from "@/helpers/background";
-import { getColorClassName } from "@/helpers/color";
+import { getBackgroundClassName } from '@/helpers/background'
+import { getColorClassName } from '@/helpers/color'
 
 /**
  * Box Component
@@ -29,7 +29,7 @@ import { getColorClassName } from "@/helpers/color";
  * @param href {string} Link href (renders box as anchor)
  * @param blank {boolean} Target blank when href is set
  */
-const Box = React.forwardRef<BoxRef, BoxProps>(
+const Box = forwardRef<BoxRef, BoxProps>(
   (
     {
       inverted,
@@ -91,7 +91,6 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
             target: '_blank',
           })}
         onClick={(e) => {
-
           onClick?.(e)
         }}
         className={classes}

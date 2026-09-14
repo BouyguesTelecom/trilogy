@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import Link from '@/components/link/Link'
 import { IconName } from '@/components/icon'

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import HeroComponent from '@/components/hero/Hero'
 import { BackgroundHeight } from '@/components/hero/heroEnum'
-import { TrilogyColor } from "@/interfaces/Color";
+import { TrilogyColor } from '@/interfaces/Color'
 
 HeroComponent.displayName = 'Hero'
 

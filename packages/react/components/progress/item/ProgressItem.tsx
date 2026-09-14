@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
@@ -20,7 +20,7 @@ import { getStatusClassName } from '@/helpers/status'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param style {ViewStyle} Custom styles for the progress item
  */
-const ProgressItem = React.forwardRef<ProgressItemWebRef, ProgressItemProps>(
+const ProgressItem = forwardRef<ProgressItemWebRef, ProgressItemProps>(
   (
     { className, percent, maxPercent = 100, minPercent = 0, status, accessibilityLabel, testId, ...others },
     ref,

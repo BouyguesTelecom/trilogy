@@ -1,12 +1,7 @@
 import { FocusEventHandler } from 'react'
 import { View } from 'react-native'
-import {
-  InputChangeEventNative,
-  InputChangeEventWeb,
-  InputClickEvent,
-  InputProps,
-} from '@/components/input/InputProps'
-import { CommonProps } from "@/interfaces/CommonProps";
+import { InputChangeEventNative, InputChangeEventWeb, InputClickEvent, InputProps } from '@/components/input/InputProps'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 /**
  * AutoComplete Interface

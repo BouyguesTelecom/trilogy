@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 import { TagListProps, TagListRef } from '@/components/tag/list/TagListProps'
 import { useTrilogyContext } from '@/context'
@@ -17,7 +17,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param align {string} Alignment of the tags
  * @param testId {string} Test Id for Test Integration
  */
-const TagList = React.forwardRef<TagListRef, TagListProps>(
+const TagList = forwardRef<TagListRef, TagListProps>(
   ({ className, id, align, marginless, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

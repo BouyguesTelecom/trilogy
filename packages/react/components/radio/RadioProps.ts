@@ -1,7 +1,7 @@
 import { TouchableOpacity } from 'react-native'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Dev } from '@/interfaces/Dev'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 interface EventHandler {
   radioValue: string

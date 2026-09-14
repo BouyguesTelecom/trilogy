@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, forwardRef } from 'react'
 import clsx from 'clsx'
 import { ProgressRadialProps, ProgressRadialRef } from '@/components/progress/radial/ProgressRadialProps'
 import { is } from '@/helpers/classify'
@@ -23,7 +23,7 @@ import { getColorStyle } from '@/helpers/color'
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(
+const ProgressRadial = forwardRef<ProgressRadialRef, ProgressRadialProps>(
   (
     { children, value = 0, secondValue = 0, label, description, skeleton, className, id, small, testId, ...others },
     ref,

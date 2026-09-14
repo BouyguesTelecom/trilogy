@@ -1,5 +1,8 @@
+@use "sass:map";
+
 $status-select: (
-  'success', 'error'
+  'success': map.get($colors-feedback, 'success', color),
+  'error': map.get($colors-feedback, 'error', color)
 );
 
 .select {
@@ -21,12 +24,9 @@ $status-select: (
       opacity: 1 !important;
     }
 
-    @each $name in $status-select {
-      $color: getColor($name);
-      $color-invert: invertColor($name);
-      $brandName: getColorBrandName($name);
+    @each $name, $color in $status-select {
   
-      &.is-#{$brandName} {
+      &.is-#{$name} {
         border: 1px solid $color;
       }
     }
@@ -44,7 +44,7 @@ $status-select: (
 
   &-options {
     box-shadow: 0 0 8px #0000001a;
-    border-radius: var(--radius-smaller);
+    border-radius: var(--radius-xs);
     overflow: hidden;
     position: absolute;
     z-index: 1001;
@@ -89,28 +89,28 @@ $status-select: (
   }
 
   .select-options {
-    background-color: getColor('background');
+    background-color: var(--bg-primary);
 
     li.option {
-      padding: $spacing-3 $spacing-4;
+      padding: var(--spacing-sm) var(--spacing-md);
       cursor: pointer;
       display: flex;
-      gap: $spacing-2;
+      gap: var(--spacing-xs);
       @include hover;
 
       &.is-disabled {
-        color: getColor('disabled');
-        background-color: getColor('disabled-fade');
+        color: var(--text-disabled);
+        background-color: var(--bg-disabled);
         cursor: not-allowed;
       }
 
       &[data-selected="true"] {
-        font-weight: $weight-black;
+        font-weight: var(--font-weight-body-1-bold);
 
         &:after {
           content: "" !important;
           mask-image: url('./assets/icons/all/check.svg') !important;
-          background-color: getColor('main') !important;
+          background-color: var(--bg-secondary) !important;
           mask-size: 18px !important;
           right: 18px !important;
           height: 18px !important;

@@ -3,7 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptContext } from '@/components/prompt/context'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { useContext } from 'react'
+import { useContext, forwardRef } from 'react'
 import { PromptButtonProps, PromptButtonRef } from '@/components/prompt/toolbar/tools/button/PromptButtonProps'
 import { OnClickEvent } from '@/interfaces/OnClickEvent'
 
@@ -19,7 +19,7 @@ import { OnClickEvent } from '@/interfaces/OnClickEvent'
  * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  */
-const PromptButton = React.forwardRef<PromptButtonRef, PromptButtonProps>(
+const PromptButton = forwardRef<PromptButtonRef, PromptButtonProps>(
   ({ className, variant, rounded, disabled, readOnly, onClick, ...others }, ref) => {
     const { isDisabled, isReadonly } = useContext(PromptContext)
 

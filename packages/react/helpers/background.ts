@@ -1,5 +1,5 @@
 import { getColorClassName } from '@/helpers/color'
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
 
 /**
  * Returns background's classname depending on background type

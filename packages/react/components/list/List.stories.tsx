@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import { IconName } from '@/components/icon'
 import ListComponent from '@/components/list/List'
 import ListItem from '@/components/list/item/ListItem'

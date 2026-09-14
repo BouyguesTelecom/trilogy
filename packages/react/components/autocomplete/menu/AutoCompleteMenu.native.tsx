@@ -1,11 +1,8 @@
-import * as React from 'react'
+import { useMemo, useCallback } from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
 import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
-import { TrilogyColor } from "@/interfaces/Color";
-import { getColorStyle } from "@/helpers/color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { useTheme } from '@/hooks/useTheme'
 
 /**
  * AutoCompleteMenu Component
@@ -16,19 +13,36 @@ import { Radius } from "@/interfaces/Radius";
  * @param handleSelectItem {Function} Callback when selecting an item
  */
 const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteMenuProps): JSX.Element => {
-  const styles = StyleSheet.create({
-    list: {
-      marginTop: 6,
-      marginBottom: 6,
-      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-      borderWidth: 1,
-      borderRadius: getRadiusStyle(Radius.SMALLER),
-      borderColor: getColorStyle(TrilogyColor.STROKE),
-      width: '100%',
-      maxHeight: 165,
-      flexGrow: 1,
-    },
-  })
+  const { radius, colors } = useTheme()
+
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        list: {
+          marginTop: 6,
+          marginBottom: 6,
+          backgroundColor: colors.bgPrimary,
+          borderWidth: 1,
+          borderRadius: radius.radiusXs,
+          borderColor: colors.border,
+          width: '100%',
+          maxHeight: 165,
+          flexGrow: 1,
+        },
+      }),
+    [radius.radiusXs, colors.bgPrimary, colors.border],
+  )
+
+  const renderItem = useCallback(
+    ({ item }: { item: string }) =>
+      AutoCompleteItemNative({
+        item: item,
+        onSelect: () => {
+          handleSelectItem && handleSelectItem(item)
+        },
+      }),
+    [handleSelectItem],
+  )
 
   return (
     <FlatList
@@ -37,14 +51,7 @@ const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteM
       scrollEnabled={true}
       style={styles.list}
       data={suggestions}
-      renderItem={({ item }) =>
-        AutoCompleteItemNative({
-          item: item,
-          onSelect: () => {
-            handleSelectItem && handleSelectItem(item)
-          },
-        })
-      }
+      renderItem={renderItem}
       keyExtractor={(item, index) => String(index)}
     />
   )

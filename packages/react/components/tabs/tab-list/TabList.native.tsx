@@ -4,7 +4,7 @@ import { TabsContext } from '@/components/tabs/context'
 import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListNativeRef, TabListProps } from '@/components/tabs/tab-list/TabListProps'
 import { getColorStyle } from '@/helpers/color'
-import React from 'react'
+import { forwardRef, useContext, useRef, useState, useImperativeHandle, useMemo, useCallback, Children, isValidElement } from 'react'
 import {
   LayoutChangeEvent,
   LayoutRectangle,
@@ -21,19 +21,19 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param children {ReactChild} React Child Element
  * @param id {string} Custom id attribute
  */
-const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ...others }, ref) => {
-  const { inverted, fullwidth } = React.useContext(TabsContext)
-  const TabListRef = React.useRef<ScrollView>(null)
+const TabList = forwardRef<TabListNativeRef, TabListProps>(({ children, ...others }, ref) => {
+  const { inverted, fullwidth } = useContext(TabsContext)
+  const TabListRef = useRef<ScrollView>(null)
   const paddingHorizontalTab = 12
   const negativeGap = -35
 
-  const [tabsWidth, setTabsWidth] = React.useState<number>(0)
-  const [tabListWidth, setTabListWidth] = React.useState<number>(0)
-  const [scrollLeft, setScrollLeft] = React.useState<number>(0)
-  const [tabFocused, setTabFocused] = React.useState<number>(0)
-  const [tabElms, setTabElms] = React.useState<LayoutRectangle[]>([])
+  const [tabsWidth, setTabsWidth] = useState<number>(0)
+  const [tabListWidth, setTabListWidth] = useState<number>(0)
+  const [scrollLeft, setScrollLeft] = useState<number>(0)
+  const [tabFocused, setTabFocused] = useState<number>(0)
+  const [tabElms, setTabElms] = useState<LayoutRectangle[]>([])
 
-  React.useImperativeHandle(ref, () => TabListRef.current as ScrollView)
+  useImperativeHandle(ref, () => TabListRef.current as ScrollView)
 
   const styles = StyleSheet.create({
     tabList: {
@@ -43,17 +43,17 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
     arrow: { alignItems: 'center', justifyContent: 'center', paddingHorizontal: 2 },
   })
 
-  const isVisibleArrowLeft = React.useMemo(() => {
+  const isVisibleArrowLeft = useMemo(() => {
     if (!tabElms.length || !tabElms[0]) return false
     return scrollLeft > tabElms[0].width / 2
   }, [tabElms, scrollLeft])
 
-  const isVisibleArrowRight = React.useMemo(
+  const isVisibleArrowRight = useMemo(
     () => tabListWidth - tabsWidth - scrollLeft > negativeGap,
     [tabListWidth, tabsWidth, scrollLeft],
   )
 
-  const handleScrollList = React.useCallback(
+  const handleScrollList = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       const scrollLeft = e.nativeEvent.contentOffset.x
       const scrollPosition = tabElms.findIndex(
@@ -65,7 +65,7 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
     [tabElms],
   )
 
-  const scrollWithArrow = React.useCallback(
+  const scrollWithArrow = useCallback(
     (direction: number) => {
       if (tabElms.length) {
         const nextTab = tabFocused + direction
@@ -76,11 +76,11 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
     [tabFocused, TabListRef, tabElms],
   )
 
-  const onClickPrev = React.useCallback(() => {
+  const onClickPrev = useCallback(() => {
     isVisibleArrowLeft && scrollWithArrow(-1)
   }, [scrollWithArrow, isVisibleArrowLeft])
 
-  const onClickNext = React.useCallback(() => {
+  const onClickNext = useCallback(() => {
     isVisibleArrowRight && scrollWithArrow(1)
   }, [scrollWithArrow, isVisibleArrowRight])
 
@@ -111,8 +111,8 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
         }}
         {...others}
       >
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) return false
+        {Children.map(children, (child, index) => {
+          if (!isValidElement(child)) return false
           return (
             <Tab
               onLayout={(e: LayoutChangeEvent) => {

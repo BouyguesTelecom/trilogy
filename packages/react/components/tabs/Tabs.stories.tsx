@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import TabsComponent from '@/components/tabs/Tabs'
 import type { TabsProps } from '@/components/tabs/TabsProps'
 import TabList from '@/components/tabs/tab-list/TabList'

@@ -1,5 +1,4 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
 import Chips from '@/components/chips/Chips.native'
 
 jest.useFakeTimers()

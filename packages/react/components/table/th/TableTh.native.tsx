@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet } from 'react-native'
 import { TableThNativeRef, TableThProps } from '@/components/table/th/TableThProps'
 import { View } from '@/components/view'
@@ -12,7 +12,7 @@ import { TypographyBold } from '@/interfaces/TypographyBold'
  * TableTh Component
  * @param children {ReactNode} children of table TH
  */
-const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
+const TableTh = forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = StyleSheet.create({
     tableTh: {
       flexDirection: 'column',

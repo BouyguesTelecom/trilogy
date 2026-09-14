@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, forwardRef } from 'react'
 import {
   TimepickerCircularProps,
   TimepickerCircularRef,
@@ -25,7 +25,7 @@ const HOUR_DOTS_COUNT = 24
  * @param disabled {boolean} Disabled state of the component (default: false)
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
  */
-const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCircularProps>(
+const TimepickerCircular = forwardRef<TimepickerCircularRef, TimepickerCircularProps>(
   ({ value = '00:00', onChange, disabled = false, step = 5, testId, className, id, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const formatNumber = (num: number): string => num.toString().padStart(2, '0')
