@@ -9,13 +9,14 @@ import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } 
 import ToasterContext from '@/components/alert/context'
 import { ToasterShowContext } from '@/components/alert/context/ToasterContextProps'
 import { getStatusIconName } from '@/helpers/status'
-import { useThemeRadius } from '@/hooks/useThemeRadius'
-import { useThemeBackgroundSubtle } from '@/hooks/useThemeBackground'
-import { useThemeTextColor } from '@/hooks/useThemeTextColor'
 import { TrilogyColor } from '@/interfaces/Color'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import FlexBox from '@/components/flex-box/FlexBox.native'
 import FlexItem from '@/components/flex-box/flex-item/FlexItem.native'
+import { THEME_TRILOGY } from '@trilogy-ds/react/theme'
+import { useThemeBackgroundSubtle } from '@/hooks/useThemeBackground'
+import { useThemeMode } from '@/hooks/useThemeMode'
+import { useThemeBorder } from '@/hooks/useThemeBorder'
 
 /**
  * Alert Component
@@ -29,62 +30,50 @@ import FlexItem from '@/components/flex-box/flex-item/FlexItem.native'
  */
 const Alert = forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {
-    const backgroundColor = useThemeBackgroundSubtle(status)
-    const { radiusSm } = useThemeRadius()
-    const color = useThemeTextColor(status)
-    const isClosable = useMemo(() => (others as any).closable, [others])
+    const mode = useThemeMode()
+    const backgroundTheme = useThemeBackgroundSubtle(status)
+    const borderColor = useThemeBorder(status)
+    const isClosable = Boolean((others as any).closable)
+    const colorStyle = mode === 'dark' ? darkStyles : lightStyles
 
-    const styles = useMemo(
-      () =>
-        StyleSheet.create({
-          container: {
-            width: '100%',
-            borderColor: status !== undefined ? color : backgroundColor,
-            borderWidth: banner ? 0 : 1,
-            backgroundColor: backgroundColor,
-            borderRadius: banner ? 0 : radiusSm,
-            textAlign: banner ? 'center' : 'left',
-            padding: 12,
-            pointerEvents: onClick ? 'auto' : 'none',
-          },
-          description: {
-            justifyContent: 'center',
-            textAlignVertical: 'center',
-            paddingLeft: 8,
-          },
-          containerTitle: {
-            paddingLeft: 8,
-            fontWeight: 'bold',
-          },
-          icon: {
-            marginTop: -2,
-          },
-        }),
-      [banner, status, color, backgroundColor, radiusSm, onClick],
+    const dynamicStyle = useMemo(
+      () => (backgroundTheme ? { backgroundColor: backgroundTheme, borderColor } : undefined),
+      [backgroundTheme, borderColor],
     )
 
     return (
       <TouchableOpacity
         onPress={onClick}
         activeOpacity={onClick ? 0.85 : 1}
-        style={[styles.container, (others as any).style]}
+        style={[
+          generalStyles.container,
+          status && colorStyle[status],
+          banner && generalStyles.banner,
+          onClick && generalStyles.onClickContainer,
+          dynamicStyle,
+          (others as any).style,
+        ]}
       >
         <FlexBox ref={ref}>
-          <View style={styles.icon}>
+          <View style={generalStyles.icon}>
             <Icon name={iconName ? iconName : getStatusIconName(status)} color={status || TrilogyColor.MAIN} />
           </View>
 
           <FlexItem>
-            <Text style={[styles.containerTitle]} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+            <Text
+              style={[generalStyles.containerTitle]}
+              level={TextLevels.ONE}
+              typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}
+            >
               {title}
             </Text>
             {description && <Spacer size={SpacerSize.ONE} />}
             {description && typeof description.valueOf() === 'string' ? (
-              <Text level={TextLevels.TWO} style={styles.description}>
+              <Text level={TextLevels.TWO} style={generalStyles.description}>
                 {description}
               </Text>
             ) : (
-              <View style={styles.description}>{description}</View>
+              <View style={generalStyles.description}>{description}</View>
             )}
           </FlexItem>
           {isClosable && (
@@ -109,18 +98,9 @@ const Alert = forwardRef<AlertNativeRef, AlertProps>(
  */
 export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props }) => {
   const { title, description, iconName, status, closable, onClick } = props
-  const styles = useMemo(
-    () =>
-      StyleSheet.create({
-        toaster: {
-          padding: 24,
-        },
-      }),
-    [],
-  )
 
   return (
-    <View style={styles.toaster}>
+    <View style={generalStyles.toaster}>
       <Alert
         title={title}
         description={description}
@@ -174,3 +154,76 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
 Alert.displayName = ComponentName.Alert
 
 export default Alert
+
+const generalStyles = StyleSheet.create({
+  container: {
+    width: '100%',
+    padding: 12,
+    borderWidth: 1,
+    borderRadius: THEME_TRILOGY.radius.radiusSm,
+    pointerEvents: 'none',
+    borderColor: THEME_TRILOGY.colors.light.borderInformation,
+    backgroundColor: THEME_TRILOGY.colors.light.bgInformationSubtle,
+  },
+  description: {
+    justifyContent: 'center',
+    textAlignVertical: 'center',
+    paddingLeft: 8,
+  },
+  containerTitle: {
+    paddingLeft: 8,
+    fontWeight: 'bold',
+  },
+  icon: {
+    marginTop: -2,
+  },
+  banner: {
+    borderWidth: 0,
+    borderRadius: 0,
+    textAlign: 'center',
+  },
+  toaster: {
+    padding: 24,
+  },
+  onClickContainer: {
+    pointerEvents: 'auto',
+  },
+})
+
+const lightStyles = StyleSheet.create({
+  ERROR: {
+    borderColor: THEME_TRILOGY.colors.light.borderError,
+    backgroundColor: THEME_TRILOGY.colors.light.bgErrorSubtle,
+  },
+  SUCCESS: {
+    borderColor: THEME_TRILOGY.colors.light.borderSuccess,
+    backgroundColor: THEME_TRILOGY.colors.light.bgSuccessSubtle,
+  },
+  WARNING: {
+    borderColor: THEME_TRILOGY.colors.light.borderWarning,
+    backgroundColor: THEME_TRILOGY.colors.light.bgWarningSubtle,
+  },
+  INFORMATION: {
+    borderColor: THEME_TRILOGY.colors.light.borderInformation,
+    backgroundColor: THEME_TRILOGY.colors.light.bgInformationSubtle,
+  },
+})
+
+const darkStyles = StyleSheet.create({
+  ERROR: {
+    borderColor: THEME_TRILOGY.colors.dark.borderError,
+    backgroundColor: THEME_TRILOGY.colors.dark.bgErrorSubtle,
+  },
+  SUCCESS: {
+    borderColor: THEME_TRILOGY.colors.dark.borderSuccess,
+    backgroundColor: THEME_TRILOGY.colors.dark.bgSuccessSubtle,
+  },
+  WARNING: {
+    borderColor: THEME_TRILOGY.colors.dark.borderWarning,
+    backgroundColor: THEME_TRILOGY.colors.dark.bgWarningSubtle,
+  },
+  INFORMATION: {
+    borderColor: THEME_TRILOGY.colors.dark.borderInformation,
+    backgroundColor: THEME_TRILOGY.colors.dark.bgInformationSubtle,
+  },
+})

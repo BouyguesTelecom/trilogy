@@ -250,22 +250,30 @@ StyleDictionary.registerFormat({
 StyleDictionary.registerFormat({
   name: 'typescript/theme/react',
   format: ({ dictionary, options }) => {
-    const entries = getReactTokens(dictionary, options.filter)
-    const object = formatReactObject(entries)
-    const value = options.modeAware
-      ? `{\n  light: ${object.replace(/\n/g, '\n  ')},\n  dark: ${object.replace(/\n/g, '\n  ')},\n}`
-      : object
+    const exports = options.exports || [options]
+    const declarations = exports.map(({ name, property, filter, modeAware }) => {
+      const entries = getReactTokens(dictionary, filter)
+      const object = formatReactObject(entries)
+      const value = modeAware
+        ? `{\n  light: ${object.replace(/\n/g, '\n  ')},\n  dark: ${object.replace(/\n/g, '\n  ')},\n}`
+        : object
 
-    return `// Generated from figma tokens. Do not edit directly.\n\nexport const ${options.name} = ${value} as const\n`
+      return { name, property, value }
+    })
+
+    const themeObject = declarations
+      .map(({ property, value }) => `  ${property}: ${value.replace(/\n/g, '\n  ')},`)
+      .join('\n')
+    const aliases = declarations.map(({ name, property }) => `export const ${name} = THEME_TRILOGY.${property}`)
+
+    return `// Generated from figma tokens. Do not edit directly.\n\nexport const THEME_TRILOGY = {\n${themeObject}\n} as const\n\n${aliases.join(
+      '\n',
+    )}\n`
   },
 })
 
 export default {
-  source: [
-    'figma/primitives.json',
-    'figma/theme.json',
-    'figma/breakpoints/sm.tokens.json',
-  ],
+  source: ['figma/primitives.json', 'figma/theme.json', 'figma/breakpoints/sm.tokens.json'],
   platforms: {
     scss: {
       transformGroup: 'scss',
@@ -286,37 +294,33 @@ export default {
       buildPath: path.join(configDirectory, '../../react/theme/'),
       files: [
         {
-          destination: 'colors.ts',
+          destination: 'index.ts',
           format: 'typescript/theme/react',
           options: {
-            name: 'THEME_COLORS_TRILOGY',
-            modeAware: true,
-            filter: (token) =>
-              token.filePath?.endsWith('/theme.json') && token.path[0] !== 'Radius' && token.path[0] !== 'Spacing',
-          },
-        },
-        {
-          destination: 'fonts.ts',
-          format: 'typescript/theme/react',
-          options: {
-            name: 'THEME_FONTS_TRILOGY',
-            filter: (token) => token.filePath?.includes('sm.tokens') && token.path[0] === 'Font',
-          },
-        },
-        {
-          destination: 'radius.ts',
-          format: 'typescript/theme/react',
-          options: {
-            name: 'THEME_RADIUS_TRILOGY',
-            filter: (token) => token.filePath?.endsWith('/theme.json') && token.path[0] === 'Radius',
-          },
-        },
-        {
-          destination: 'spacings.ts',
-          format: 'typescript/theme/react',
-          options: {
-            name: 'THEME_SPACINGS_TRILOGY',
-            filter: (token) => token.filePath?.endsWith('/theme.json') && token.path[0] === 'Spacing',
+            exports: [
+              {
+                name: 'THEME_COLORS_TRILOGY',
+                property: 'colors',
+                modeAware: true,
+                filter: (token) =>
+                  token.filePath?.endsWith('/theme.json') && token.path[0] !== 'Radius' && token.path[0] !== 'Spacing',
+              },
+              {
+                name: 'THEME_FONTS_TRILOGY',
+                property: 'fonts',
+                filter: (token) => token.filePath?.includes('sm.tokens') && token.path[0] === 'Font',
+              },
+              {
+                name: 'THEME_RADIUS_TRILOGY',
+                property: 'radius',
+                filter: (token) => token.filePath?.endsWith('/theme.json') && token.path[0] === 'Radius',
+              },
+              {
+                name: 'THEME_SPACINGS_TRILOGY',
+                property: 'spacings',
+                filter: (token) => token.filePath?.endsWith('/theme.json') && token.path[0] === 'Spacing',
+              },
+            ],
           },
         },
       ],

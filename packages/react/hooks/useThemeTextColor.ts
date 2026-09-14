@@ -19,10 +19,11 @@ export type ThemeTextColorVariant =
 /**
  * Hook to get a theme text color by variant.
  */
-export const useThemeTextColor = (variant?: ThemeTextColorVariant): string => {
-  const { theme } = useContext(TrilogyThemeContext)
+export const useThemeTextColor = (variant?: ThemeTextColorVariant) => {
+  const trilogyTheme = useContext(TrilogyThemeContext)
+  if (!trilogyTheme?.theme) return null
   const themeMode = useThemeMode()
-  const colors = theme.colors[themeMode]
+  const colors = trilogyTheme?.theme?.colors[themeMode]
 
   switch (variant) {
     case 'SUCCESS':
