@@ -3,7 +3,8 @@ import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
 import { useContext } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { BoxContext } from '../context/boxContext'
 import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
 
@@ -26,7 +27,7 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
     const headerBgc = variant ? getColorStyle(variant) : getColorStyle(TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       boxHeader: {
         width: '100%',
         backgroundColor: headerBgc,

@@ -5,7 +5,8 @@ import { SpacerSize } from '@/components/spacer'
 import { Text } from '@/components/text'
 import * as React from 'react'
 import type { RadioListNativeRef, RadioListProps } from './RadioListProps'
-import { StyleSheet } from 'react-native'
+import {  } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { isRequiredChild } from '@/helpers/require'
 import { TypographyColor } from '@/objects/Typography'
 
@@ -25,7 +26,7 @@ const SPACING_MATRIX: SpacingMatrix = [
  * @param label {string} RadioList label
  */
 const RadioList = React.forwardRef<RadioListNativeRef, RadioListProps>(({ children, label }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
       label: {
         marginBottom: 8,
       },

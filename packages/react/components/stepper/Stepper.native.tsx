@@ -3,7 +3,8 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { TypographyBold, TypographyColor } from '@/objects'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { StepperNativeRef, StepperProps } from './StepperProps'
 
 interface ICurrentStep {
@@ -23,7 +24,7 @@ const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ..
     iconName: '',
   })
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     steppers: {
       flexDirection: 'row',
       flex: 1,

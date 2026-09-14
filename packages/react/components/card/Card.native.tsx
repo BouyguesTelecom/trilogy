@@ -2,7 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { createContext, PropsWithChildren } from 'react'
-import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Platform, TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../skeleton'
 import { CardNativeRef, CardProps } from './CardProps'
 
@@ -34,7 +35,7 @@ const Card = React.forwardRef<CardNativeRef, CardProps>(
   ): JSX.Element => {
     const borderColor = getColorStyle(TrilogyColor.STROKE_FADE)
     const cardRadius = 6
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       card: {
         width: '100%',
         minHeight: 100,

@@ -2,7 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from '@/objects/facets/Alignable'
 import { getJustifyStyle } from '@/objects/facets/Justifiable'
 import React, { useState } from 'react'
-import { Dimensions, LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native'
+import { Dimensions, LayoutChangeEvent, ScrollView, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { ColumnsGapValue } from '../columns'
 import { FlexBoxNativeRef, FlexBoxProps } from './FlexBoxProps'
 import { FlexBoxContext } from './context'
@@ -43,7 +44,7 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
     const gapIndex = (gap && typeof gap === 'number' && gap) || (gap && gap?.mobile) || 0
     const realGap = React.useMemo(() => (typeof gap === 'undefined' ? 8 : ColumnsGapValue[gapIndex]), [gap])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       columns: {
         flexDirection: !isValueDirection ? direction?.mobile : direction,
         gap: realGap,

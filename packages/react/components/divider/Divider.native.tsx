@@ -3,7 +3,8 @@ import { Icon, IconColor } from '@/components/icon'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { DividerNativeRef, DividerProps } from './DividerProps'
 
 /**
@@ -20,7 +21,7 @@ const Divider = React.forwardRef<DividerNativeRef, DividerProps>(({ content, unb
   const [containerWidth, setContainerWidth] = React.useState(0)
   const dividerColor = getColorStyle(TrilogyColor.NEUTRAL)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     divider: {
       marginBottom: 16,
       marginTop: 16,
