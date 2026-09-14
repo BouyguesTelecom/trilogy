@@ -28,7 +28,7 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
     ref,
   ): JSX.Element => {
     const [codeInput, setCodeInput] = useState<string>(value || '')
-    // eslint-disable-next-line prefer-spread
+
     const [codeDigitsArray] = useState([...Array(length).keys()])
     const [focused, setFocused] = useState(false)
     const color = getColorStyle(disabled ? TrilogyColor.DISABLED : error ? TrilogyColor.ERROR : TrilogyColor.MAIN)

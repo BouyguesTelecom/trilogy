@@ -6,6 +6,7 @@ import { Modal, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 
 import { ComponentName } from '../enumsComponentsName'
 import { Icon } from '../icon'
 import { Text } from '../text'
+import { CalendarYearsOrder } from './CalendarEnum'
 import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 
 const days = [
@@ -34,6 +35,7 @@ const checkIsRange = (date: ChangeEventCalendar): date is [Date, Date] | [Date] 
  * @param disabledDates {Date[]} List of disabled/unavailable dates
  * @param onChange {Function} Callback when selected date(s) change
  * @param onMonthChange {Function} Callback when the displayed month changes
+ * @param yearsOrder {CalendarYearsOrder} Order of years in the year selector (asc by default, desc from most recent to oldest)
  * @param testId {string} Test Id for Test Integration
  */
 const Calendar = React.forwardRef<View, CalendarProps>(
@@ -48,6 +50,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       testId,
       onChange,
       onMonthChange,
+      yearsOrder = CalendarYearsOrder.ASC,
     },
     ref,
   ) => {
@@ -362,18 +365,21 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       const maxYear = maxDate.getFullYear()
       const currentYear = value instanceof Date && value?.getFullYear()
       const isCurrentYearInclude = currentYear && currentYear >= minYear && currentYear <= maxYear
+      const isDesc = yearsOrder === CalendarYearsOrder.DESC
       let years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => {
-        const year = minYear + i
+        const year = isDesc ? maxYear - i : minYear + i
         return {
           value: year,
           disabled: false,
         }
       })
       if (currentYear && !isCurrentYearInclude) {
-        years = [{ value: currentYear, disabled: true }, ...years]
+        const currentYearEntry = { value: currentYear, disabled: true }
+        const shouldPrepend = isDesc ? currentYear > maxYear : currentYear < minYear
+        years = shouldPrepend ? [currentYearEntry, ...years] : [...years, currentYearEntry]
       }
       return years
-    }, [minDate, maxDate, value])
+    }, [minDate, maxDate, value, yearsOrder])
 
     const availableMonths = React.useMemo(() => {
       const currentYear = visibleMonth.getFullYear()

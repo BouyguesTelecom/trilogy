@@ -12,7 +12,6 @@ import { AutoLayoutProps } from '@/components/autolayout/AutoLayoutProps'
  * @param matrix {SpacingMatrix} Custom spacing matrix for between children spacing (overrides default matrix)
  */
 const AutoLayout: React.FC<AutoLayoutProps> = ({ children }): JSX.Element => {
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <div className={'autolayout'}>{children}</div>
 }
 

@@ -73,7 +73,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
           id={id}
           href={href}
           onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
+
             onClick?.(e)
             e.stopPropagation()
           }}

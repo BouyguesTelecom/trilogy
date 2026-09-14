@@ -142,7 +142,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
           <TouchableWithoutFeedback
             style={styles.item}
             testID={id || testId || ''}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
             onPress={(e: any) => {
               if (!disabled) {
                 toggleListItem()
@@ -165,7 +165,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
           <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
             <View
               style={styles.bodyContainer}
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
               onLayout={(e: any) => {
                 setBodySectionHeight(e.nativeEvent.layout.height)
               }}

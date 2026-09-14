@@ -1,4 +1,5 @@
 import { Dev } from "@/objects/facets/Dev"
+import { CalendarYearsOrder, CalendarYearsOrderValues } from './CalendarEnum'
 
 export type ChangeEventCalendar = Date | [Date, Date] | [Date] | []
 
@@ -11,4 +12,5 @@ export interface CalendarProps extends Dev {
   onChange?: (e: ChangeEventCalendar) => void
   onMonthChange?: (e: Date) => void
   disabledDates?: Date[]
+  yearsOrder?: CalendarYearsOrder | CalendarYearsOrderValues
 }

@@ -80,7 +80,7 @@ const Switch = React.forwardRef<SwitchRef, SwitchProps>(
               })
             }
           }}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
           onClick={(e: any) => {
             if (!readonly) {
               setChecked(!_checked)

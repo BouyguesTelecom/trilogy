@@ -93,7 +93,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
           disabled={isDisabled}
           name={name}
           onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
+
             !isDisabled && onClick?.(e)
             e.stopPropagation()
           }}
@@ -116,7 +116,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
           aria-label={accessibilityLabel}
           name={name}
           onClick={(e) => {
-            // eslint-disable-next-line no-unused-expressions
+
             !isDisabled && onClick?.(e)
             e.stopPropagation()
           }}
@@ -154,7 +154,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
         className={classes}
         href={href}
         onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
+
           !isDisabled && onClick?.(e)
           e.stopPropagation()
         }}

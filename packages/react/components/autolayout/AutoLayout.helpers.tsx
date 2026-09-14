@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React from 'react'
 
 import type { HandleBetweenChildren, ParseChildren } from '@/components/autolayout/AutoLayout.d'
@@ -87,7 +87,6 @@ export const parseChildren = ({ children, handleBetweenChildren }: ParseChildren
   }, [] as JSX.Element[])
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const autoLayoutChildrenHandler = (
   matrix: SpacingMatrix,
   { accumulator, previousChildType, nextChildType, childIndex }: HandleBetweenChildren,

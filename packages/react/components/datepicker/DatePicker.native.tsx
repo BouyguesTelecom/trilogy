@@ -30,6 +30,7 @@ import { DatePickerProps } from './DatePickerProps'
  * @param status {DatePickerStatus} DatePicker status (SUCCESS | WARNING | ERROR | DEFAULT)
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
+ * @param yearsOrder {CalendarYearsOrder} Order of years in the calendar year selector (asc by default, desc from most recent to oldest)
  */
 const DatePicker = forwardRef<View, DatePickerProps>(
   (
@@ -47,6 +48,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
       disabledDates,
       testId,
       name,
+      yearsOrder,
       ...others
     },
     ref,
@@ -414,6 +416,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
                 disabledDates={disabledDates}
                 onChange={handleCalendarChange}
                 disabled={disabled}
+                yearsOrder={yearsOrder}
               />
             </View>
           </View>

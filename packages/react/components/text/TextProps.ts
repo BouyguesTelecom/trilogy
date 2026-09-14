@@ -7,7 +7,6 @@ import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './Tex
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { Text } from 'react-native'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Styles = { [key: string]: any }
 
 type Typo =

@@ -30,7 +30,7 @@ const CardImage = React.forwardRef<CardImageRef, CardImageProps>(
         ref={ref}
         id={id}
         onClick={(e) => {
-          // eslint-disable-next-line no-unused-expressions
+
           onClick?.(e)
           e.stopPropagation()
         }}
