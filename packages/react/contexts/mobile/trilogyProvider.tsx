@@ -1,19 +1,13 @@
-import React, { PropsWithChildren, useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 import type { ITrilogyProvider } from './interfaces'
 import { useMemo } from 'react'
-import { THEME_TRILOGY } from '@/theme'
 import { TrilogyThemeContext } from './trilogyContext'
 import { useColorScheme } from 'react-native'
 
 export const TrilogyThemeProvider = ({
   children,
   mode = 'auto',
-  theme = {
-    colors: THEME_TRILOGY.colors,
-    fonts: THEME_TRILOGY.fonts,
-    radius: THEME_TRILOGY.radius,
-    spacings: THEME_TRILOGY.spacings,
-  },
+  theme,
 }: PropsWithChildren<ITrilogyProvider>): JSX.Element => {
   const colorScheme = useColorScheme() ?? 'light'
   const [trilogyTheme, setTrilogyTheme] = useState(theme)

@@ -7,6 +7,7 @@ import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 're
 import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
 import { TrilogyColor } from '@/interfaces/Color'
 import { useTheme } from '@/hooks/useTheme'
+import { THEME_TRILOGY } from '@trilogy-ds/react/theme'
 
 interface AccordionChild {
   header?: React.ReactNode
@@ -25,7 +26,9 @@ interface AccordionChild {
  */
 const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
   ({ open, id, onClick, disabled, children, testId, ...others }, ref): JSX.Element => {
-    const { radius, colors } = useTheme()
+    const { theme, mode } = useTheme()
+    const colorStyle = mode === 'dark' ? darkStyles : lightStyles
+
     const [isActive, setIsActive] = useState<boolean>(Boolean(typeof open !== 'undefined' ? open : false))
     const animatedController = useRef(new Animated.Value(0)).current
     const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
@@ -33,48 +36,6 @@ const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
       header: undefined,
       body: undefined,
     })
-
-    const styles = useMemo(
-      () =>
-        StyleSheet.create({
-          item: {
-            width: '100%',
-            padding: 5,
-            borderRadius: radius.radiusSm,
-            backgroundColor: disabled ? colors.bgDisabled : colors.bgPrimary,
-            borderWidth: 1,
-            borderColor: (disabled && colors.borderDisabled) || colors.border,
-          },
-          bodyBackground: {
-            borderRadius: radius.radiusSm,
-            backgroundColor: colors.bgPrimary,
-            overflow: 'hidden',
-          },
-          titleContainer: {
-            minWidth: '100%',
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingLeft: 10,
-            paddingRight: 5,
-            paddingTop: 5,
-            paddingBottom: 5,
-            borderColor: colors.bgPrimary,
-          },
-          bodyContainer: {
-            padding: 10,
-            paddingLeft: 10,
-            paddingRight: 10,
-            position: 'absolute',
-            bottom: 0,
-            borderRadius: radius.radiusSm,
-            left: 0,
-            right: 0,
-          },
-        }),
-      [radius, disabled, colors],
-    )
 
     const bodyHeight = animatedController.interpolate({
       inputRange: [0, 1],
@@ -152,14 +113,14 @@ const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
 
     return (
       <>
-        <View style={styles.item} ref={ref}>
+        <View style={[styles.item, colorStyle.item, disabled && colorStyle.itemDisabled]} ref={ref}>
           <TouchableWithoutFeedback
-            style={styles.item}
+            style={[styles.item, colorStyle.item, disabled && colorStyle.itemDisabled]}
             testID={id || testId || ''}
             onPress={toggleListItem}
             {...others}
           >
-            <View style={styles.titleContainer}>
+            <View style={[styles.titleContainer, colorStyle.titleContainer]}>
               {childs.header && <View>{childs.header}</View>}
               <Animated.View style={{ transform: [{ rotateZ: arrowAngle }] }}>
                 <Icon
@@ -170,7 +131,7 @@ const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
               </Animated.View>
             </View>
           </TouchableWithoutFeedback>
-          <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
+          <Animated.View style={[styles.bodyBackground, colorStyle.bodyBackground, { height: bodyHeight }]}>
             <View style={styles.bodyContainer} onLayout={onLayoutBody}>
               {childs.body && <View>{childs.body}</View>}
             </View>
@@ -183,5 +144,72 @@ const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
 )
 
 AccordionItem.displayName = ComponentName.AccordionItem
-
 export default AccordionItem
+
+const styles = StyleSheet.create({
+  item: {
+    width: '100%',
+    padding: 5,
+    borderWidth: 1,
+    borderRadius: THEME_TRILOGY.radius.radiusSm,
+  },
+  bodyBackground: {
+    borderRadius: THEME_TRILOGY.radius.radiusSm,
+    overflow: 'hidden',
+  },
+  titleContainer: {
+    minWidth: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingLeft: 10,
+    paddingRight: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
+  bodyContainer: {
+    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    position: 'absolute',
+    bottom: 0,
+    borderRadius: THEME_TRILOGY.radius.radiusSm,
+    left: 0,
+    right: 0,
+  },
+})
+
+const lightStyles = StyleSheet.create({
+  item: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgPrimary,
+    borderColor: THEME_TRILOGY.colors.light.border,
+  },
+  itemDisabled: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgDisabled,
+    borderColor: THEME_TRILOGY.colors.light.borderDisabled,
+  },
+  bodyBackground: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgPrimary,
+  },
+  titleContainer: {
+    borderColor: THEME_TRILOGY.colors.light.bgPrimary,
+  },
+})
+
+const darkStyles = StyleSheet.create({
+  item: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgPrimary,
+    borderColor: THEME_TRILOGY.colors.dark.border,
+  },
+  itemDisabled: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgDisabled,
+    borderColor: THEME_TRILOGY.colors.dark.borderDisabled,
+  },
+  bodyBackground: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgPrimary,
+  },
+  titleContainer: {
+    borderColor: THEME_TRILOGY.colors.dark.bgPrimary,
+  },
+})

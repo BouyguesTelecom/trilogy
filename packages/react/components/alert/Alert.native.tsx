@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import { forwardRef, useMemo, useCallback } from 'react'
+import { forwardRef, useCallback, useMemo } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import LibToast from 'react-native-toast-message'
 import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
@@ -14,9 +14,8 @@ import { TypographyBold } from '@/interfaces/TypographyBold'
 import FlexBox from '@/components/flex-box/FlexBox.native'
 import FlexItem from '@/components/flex-box/flex-item/FlexItem.native'
 import { THEME_TRILOGY } from '@trilogy-ds/react/theme'
-import { useThemeBackgroundSubtle } from '@/hooks/useThemeBackground'
-import { useThemeMode } from '@/hooks/useThemeMode'
-import { useThemeBorder } from '@/hooks/useThemeBorder'
+import { useTheme } from '@/hooks/useTheme'
+import { getThemeBackgroundSubtle, getThemeBorderColor } from '@/helpers/getThemeColors'
 
 /**
  * Alert Component
@@ -30,16 +29,18 @@ import { useThemeBorder } from '@/hooks/useThemeBorder'
  */
 const Alert = forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {
-    const mode = useThemeMode()
-    const backgroundTheme = useThemeBackgroundSubtle(status)
-    const borderColor = useThemeBorder(status)
+    const { theme, mode } = useTheme()
     const isClosable = Boolean((others as any).closable)
     const colorStyle = mode === 'dark' ? darkStyles : lightStyles
 
-    const dynamicStyle = useMemo(
-      () => (backgroundTheme ? { backgroundColor: backgroundTheme, borderColor } : undefined),
-      [backgroundTheme, borderColor],
-    )
+    const containerStyle = useMemo(() => {
+      if (!theme) return
+      return {
+        borderRadius: theme.radius.radiusSm,
+        borderColor: theme.colors[status ? getThemeBorderColor(status) : 'borderInformation'],
+        backgroundColor: theme.colors[status ? getThemeBackgroundSubtle(status) : 'bgInformationSubtle'],
+      }
+    }, [theme, status])
 
     return (
       <TouchableOpacity
@@ -50,7 +51,7 @@ const Alert = forwardRef<AlertNativeRef, AlertProps>(
           status && colorStyle[status],
           banner && generalStyles.banner,
           onClick && generalStyles.onClickContainer,
-          dynamicStyle,
+          containerStyle,
           (others as any).style,
         ]}
       >
@@ -158,10 +159,10 @@ export default Alert
 const generalStyles = StyleSheet.create({
   container: {
     width: '100%',
+    pointerEvents: 'none',
     padding: 12,
     borderWidth: 1,
     borderRadius: THEME_TRILOGY.radius.radiusSm,
-    pointerEvents: 'none',
     borderColor: THEME_TRILOGY.colors.light.borderInformation,
     backgroundColor: THEME_TRILOGY.colors.light.bgInformationSubtle,
   },

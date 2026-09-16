@@ -1,7 +1,8 @@
 import { AccordionNativeRef, AccordionProps } from '@/components/accordion/AccordionProps'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { useTheme } from '@/hooks/useTheme'
 import { THEME_TRILOGY } from '@trilogy-ds/react/theme'
-import { forwardRef } from 'react'
+import { forwardRef, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 /**
@@ -12,7 +13,16 @@ import { StyleSheet, View } from 'react-native'
  * @param id {string} Custom id attribute
  */
 const Accordion = forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...others }, ref): JSX.Element => {
-  return <View ref={ref} testID={testId} style={styles.accordion} {...others} />
+  const { theme } = useTheme()
+
+  const accordionStyle = useMemo(() => {
+    if (!theme?.radius.radiusSm) return
+    return {
+      borderRadius: theme.radius.radiusSm,
+    }
+  }, [theme?.radius.radiusSm])
+
+  return <View ref={ref} testID={testId} style={[styles.accordion, accordionStyle]} {...others} />
 })
 
 Accordion.displayName = ComponentName.Accordion

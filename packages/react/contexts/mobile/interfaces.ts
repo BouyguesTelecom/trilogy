@@ -1,12 +1,7 @@
-import type { THEME_TRILOGY } from '@/theme'
+import { THEME_TRILOGY } from '@/theme'
 import { Dispatch, SetStateAction } from 'react'
 
-export interface ITrilogyTheme {
-  colors: typeof THEME_TRILOGY.colors
-  fonts: typeof THEME_TRILOGY.fonts
-  radius: typeof THEME_TRILOGY.radius
-  spacings: typeof THEME_TRILOGY.spacings
-}
+export type ITrilogyTheme = typeof THEME_TRILOGY
 
 export interface ITrilogyThemeContext {
   theme: ITrilogyTheme | null
