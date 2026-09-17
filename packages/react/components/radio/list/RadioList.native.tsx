@@ -4,11 +4,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import { Text } from '@/components/text'
 import * as React from 'react'
-import type { RadioListNativeRef, RadioListProps } from './RadioListProps'
-import {  } from 'react-native'
+import type { RadioListNativeRef, RadioListProps } from '@/components/radio/list/RadioListProps'
+import { StyleSheet } from 'react-native'
+import {} from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { isRequiredChild } from '@/helpers/require'
-import { TypographyColor } from '@/objects/Typography'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
@@ -27,15 +28,17 @@ const SPACING_MATRIX: SpacingMatrix = [
  */
 const RadioList = React.forwardRef<RadioListNativeRef, RadioListProps>(({ children, label }, ref): JSX.Element => {
   const styles = memoStyles({
-      label: {
-        marginBottom: 8,
-      },
-    })
+    label: {
+      marginBottom: 8,
+    },
+  })
 
   return (
     <AutoLayoutWrapper {...{ autolayout: SPACING_MATRIX }}>
       {label && (
-        <Text style={styles.label}>{label} {isRequiredChild(children) && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}</Text>
+        <Text style={styles.label}>
+          {label} {isRequiredChild(children) && <Text typo={TypographyColor.TEXT_ERROR}>*</Text>}
+        </Text>
       )}
       {children}
     </AutoLayoutWrapper>

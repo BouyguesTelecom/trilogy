@@ -1,12 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
+import { Pager } from '@/components/pagination/PaginationEnum'
+import { PaginationNativeProps, PaginationNativeRef } from '@/components/pagination/PaginationProps'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Pager } from './PaginationEnum'
-import { PaginationNativeProps, PaginationNativeRef } from './PaginationProps'
 
 /**
  * Pagination Component
@@ -21,6 +24,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
     const [arrayPage] = useState<Array<number>>(Array.from(Array(length + 1).keys()))
     const prevCurrentPage = useRef<number>(currentPage)
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
 
     const [pager, setPager] = useState<Pager>({
       currentPage: currentPage,
@@ -90,7 +94,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
         width: 26,
         height: 26,
-        borderRadius: 26,
+        borderRadius: borderFullRadius,
         justifyContent: 'center',
       },
 
@@ -98,11 +102,8 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         width: 26,
         height: 26,
-        borderRadius: 26,
+        borderRadius: borderFullRadius,
         justifyContent: 'center',
-      },
-      currentPage: {
-        color: getColorStyle(TrilogyColor.MAIN),
       },
       dotsLeft: {
         color: getColorStyle(TrilogyColor.BACKGROUND),

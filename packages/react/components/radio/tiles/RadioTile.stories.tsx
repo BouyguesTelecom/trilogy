@@ -1,12 +1,12 @@
 import { IconName } from '@/components/icon'
-import { VariantState } from '@/objects'
-import { Alignable } from '@/objects/facets/Alignable'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import RadioTiles from './RadioTiles'
-import type { RadioTilesProps } from './RadioTilesProps'
-import RadioTileComponent from './tile/RadioTile'
-import type { RadioTileProps } from './tile/RadioTileProps'
+import RadioTiles from '@/components/radio/tiles/RadioTiles'
+import type { RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
+import RadioTileComponent from '@/components/radio/tiles/tile/RadioTile'
+import type { RadioTileProps } from '@/components/radio/tiles/tile/RadioTileProps'
+import { VariantState } from "@/interfaces/Variant";
+import { Alignable } from "@/interfaces/Alignable";
 
 RadioTileComponent.displayName = 'RadioTile'
 RadioTiles.displayName = 'RadioTiles'

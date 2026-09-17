@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Text } from "@/components/text"
 import { View } from "@/components/view"
-import { ListItemDescriptionNativeRef, ListItemDescriptionProps } from "./ListItemDescriptionProps"
+import { ListItemDescriptionNativeRef, ListItemDescriptionProps } from "@/components/list/item/description/ListItemDescriptionProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**

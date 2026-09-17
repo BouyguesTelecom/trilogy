@@ -1,8 +1,8 @@
-import * as React from "react"
+import * as React from 'react'
+import { TableBodyNativeRef, TableBodyProps } from '@/components/table/body/TableBodyProps'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TableBodyNativeRef, TableBodyProps } from "./TableBodyProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * TableBody Component
@@ -11,19 +11,15 @@ import { ComponentName } from "@/components/enumsComponentsName"
 const TableBody = React.forwardRef<TableBodyNativeRef, TableBodyProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = memoStyles({
     body: {
-      display: "flex",
-      flexDirection: "column",
+      display: 'flex',
+      flexDirection: 'column',
       flex: 1,
     },
   })
 
   return (
     <View ref={ref} style={styles.body} {...others}>
-      {children && typeof children.valueOf() === "string" ? (
-        <Text>{String(children)}</Text>
-      ) : (
-        children
-      )}
+      {children && typeof children.valueOf() === 'string' ? <Text>{String(children)}</Text> : children}
     </View>
   )
 })

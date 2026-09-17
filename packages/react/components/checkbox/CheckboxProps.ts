@@ -1,8 +1,8 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import { Accessibility } from '../../objects/facets/Accessibility'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { Dev } from '@/objects/facets/Dev'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 export type CheckboxChangeEventHandler = (event: {
   checkboxValue: string

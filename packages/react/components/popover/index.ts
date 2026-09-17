@@ -1,4 +1,4 @@
-import Popover from './Popover'
+import Popover from '@/components/popover/Popover'
 
 export * from './PopoverEnum'
 

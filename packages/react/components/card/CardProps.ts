@@ -1,10 +1,10 @@
 import { View } from 'react-native'
-import { ClickEvent } from '../../events/OnClickEvent'
-import { Accessibility } from '../../objects/facets/Accessibility'
-import { Clickable } from '../../objects/facets/Clickable'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { Fullheight } from '../../objects/facets/Fullheight'
-import { Dev } from '@/objects/facets/Dev'
+import { ClickEvent } from "@/interfaces/OnClickEvent";
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Clickable } from "@/interfaces/Clickable";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Fullheight } from "@/interfaces/Fullheight";
+import { Dev } from "@/interfaces/Dev";
 
 /**
  * Card Interface

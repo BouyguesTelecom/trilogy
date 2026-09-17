@@ -1,6 +1,7 @@
 import { View } from 'react-native'
-import { Dev, TrilogyColor, TrilogyColorValues } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { Dev } from "@/interfaces/Dev";
+import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 export interface TableHeadProps extends CommonProps, Dev {
   children: React.ReactNode

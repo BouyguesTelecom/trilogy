@@ -7,7 +7,7 @@ import { render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 // Component to test
-import { ModalFooter } from '../'
+import { ModalFooter } from '@/components/modal'
 
 describe('ModalFooter component', () => {
   test('should ModalFooter have "modal-footer" className', () => {

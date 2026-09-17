@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import type { DatePickerProps } from '@/components/datepicker/DatePickerProps'
+import { DatePicker } from '@/components/datepicker'
 import { CalendarYearsOrder } from '@/components/calendar/CalendarEnum'
-import type { DatePickerProps } from './DatePickerProps'
-import { DatePicker } from './index'
 
 const meta: Meta<DatePickerProps> = {
   title: 'Components/DatePicker',
@@ -14,7 +14,7 @@ const meta: Meta<DatePickerProps> = {
       },
     },
     controls: {
-      exclude: ['name', 'id',' className','testId'],
+      exclude: ['name', 'id', ' className', 'testId'],
     },
   },
   argTypes: {
@@ -74,7 +74,8 @@ const meta: Meta<DatePickerProps> = {
     yearsOrder: {
       control: 'select',
       options: [CalendarYearsOrder.ASC, CalendarYearsOrder.DESC],
-      description: 'Order of years in the calendar year selector (asc: oldest to most recent, desc: most recent to oldest)',
+      description:
+        'Order of years in the calendar year selector (asc: oldest to most recent, desc: most recent to oldest)',
       table: { category: 'Main' },
     },
     onChange: { table: { disable: true } },

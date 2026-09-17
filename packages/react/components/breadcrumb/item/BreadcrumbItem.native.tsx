@@ -1,10 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text } from '@/components/text'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import * as React from 'react'
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native'
-import { BreadcrumbItemNativeRef, BreadcrumbItemProps } from './BreadcrumbItemProps'
+import { BreadcrumbItemNativeRef, BreadcrumbItemProps } from '@/components/breadcrumb/item/BreadcrumbItemProps'
+import { getColorStyle } from "@/helpers/color";
+import { TrilogyColor } from "@/interfaces/Color";
+import { TypographyBold } from "@/interfaces/TypographyBold";
 
 /**
  * Breadcrumb Item Component

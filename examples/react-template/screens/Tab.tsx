@@ -15,7 +15,7 @@ import {
   Title,
 } from '@trilogy-ds/react/components'
 import { isMobile } from '@trilogy-ds/react/helpers'
-import { Alignable } from '@trilogy-ds/react/objects'
+import { Alignable } from '@trilogy-ds/react/interfaces'
 import * as React from 'react'
 
 export const TabScreen = (): JSX.Element => {

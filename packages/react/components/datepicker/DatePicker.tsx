@@ -4,8 +4,7 @@ import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { useClickOutside } from '@/helpers/clickOutside'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { TypographyColor } from '@/objects'
-import { has, is } from '@/services'
+import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React, {
   forwardRef,
@@ -18,9 +17,10 @@ import React, {
   useState,
 } from 'react'
 import ReactDOM from 'react-dom'
-import { Modal, ModalBody } from '../modal'
-import { Text, TextLevels, TextMarkup } from '../text'
-import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from './DatePickerProps'
+import { Modal, ModalBody } from '@/components/modal'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
+import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from '@/components/datepicker/DatePickerProps'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420
 

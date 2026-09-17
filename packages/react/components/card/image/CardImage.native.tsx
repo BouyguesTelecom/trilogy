@@ -1,9 +1,9 @@
 import { CardContext } from '@/components/card/Card.native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import React, { useContext, useEffect, useState } from 'react'
+import { CardImageNativeRef, CardImageProps } from '@/components/card/image/CardImageProps'
 import { Image, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { CardImageNativeRef, CardImageProps } from './CardImageProps'
 
 /**
  * Card Image Component

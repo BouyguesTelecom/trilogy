@@ -1,8 +1,9 @@
 import { TextInput } from 'react-native'
-import { Accessibility, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconName, IconNameValues } from '../icon'
-import { SelectStatus, SelectStatusValues } from './SelectEnum'
+import { IconName, IconNameValues } from '@/components/icon'
+import { SelectStatus, SelectStatusValues } from '@/components/select/SelectEnum'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 export interface ISelectOption {
   value: string | undefined

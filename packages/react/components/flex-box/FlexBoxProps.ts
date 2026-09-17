@@ -1,10 +1,10 @@
-import { Align } from '@/objects/facets/Alignable'
-import { DirectionEnum, DirectionEnumValues } from '@/objects/facets/Direction'
-import { Justify } from '@/objects/facets/Justifiable'
 import { View } from 'react-native'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { GapSize } from '../columns'
-import { Dev } from '@/objects/facets/Dev'
+import { GapSize } from '@/components/columns'
+import { Align } from "@/interfaces/Alignable";
+import { DirectionEnum, DirectionEnumValues } from "@/interfaces/Direction";
+import { Justify } from "@/interfaces/Justifiable";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 interface ResponsiveValue<T> {
   mobile?: T

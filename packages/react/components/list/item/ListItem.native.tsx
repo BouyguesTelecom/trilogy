@@ -3,8 +3,12 @@ import { Icon, IconName } from '@/components/icon'
 import { ListContext } from '@/components/list/context'
 import { ListItemNativeRef, ListItemProps } from '@/components/list/item/ListItemProps'
 import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
 import React, { useContext, useEffect, useId, useMemo } from 'react'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
@@ -20,6 +24,7 @@ const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
     const id = useId()
     const { ordered, chilIndexes, setChildIndexes, divider } = useContext(ListContext)
     const isLastItem = chilIndexes[chilIndexes.length - 1] === id
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     useEffect(() => {
       setChildIndexes((prev) => [...prev, id])
@@ -41,7 +46,7 @@ const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
         width: 4,
         height: 4,
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
-        borderRadius: 4,
+        borderRadius: borderSmallerRadius,
       },
     })
 

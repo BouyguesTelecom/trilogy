@@ -1,4 +1,4 @@
-import Icon from './Icon'
+import Icon from '@/components/icon/Icon'
 export * from './IconEnum'
 export * from './IconNameEnum'
 

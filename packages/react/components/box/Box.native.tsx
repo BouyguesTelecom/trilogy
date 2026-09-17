@@ -2,11 +2,14 @@ import { BoxNativeRef, BoxProps } from '@/components/box/BoxProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import React, { useState } from 'react'
-import { ImageBackground, Platform, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Skeleton } from '@/components/skeleton'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Skeleton } from '../skeleton'
 
 /**
  * Box Component
@@ -50,12 +53,14 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     const [numberOfContent, setNumberOfContent] = useState(0)
     const [header, setHeader] = useState<boolean>(false)
 
-    const boxRadius = 6
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
+
     const styles = memoStyles({
       box: {
         width: '100%',
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
-        borderRadius: boxRadius,
+        borderRadius: borderSmallRadius,
         justifyContent: 'flex-start',
         position: 'relative',
         borderStyle: flat ? 'solid' : undefined,
@@ -81,13 +86,13 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         minHeight: 50,
         backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
         overflow: 'hidden',
-        borderRadius: boxRadius,
+        borderRadius: borderSmallRadius,
       },
       highlighted: {
         position: 'absolute',
         width: 4,
-        borderTopStartRadius: 4,
-        borderBottomStartRadius: 4,
+        borderTopStartRadius: borderSmallerRadius,
+        borderBottomStartRadius: borderSmallerRadius,
         height: boxHeight,
         backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
         overflow: 'hidden',
@@ -98,15 +103,12 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         maxHeight: 300,
         height: 'auto',
       },
-      content: {
-        padding: 16,
-      },
     })
 
     const boxTestId = testId ?? 'NotSpecified'
 
     const BoxSkeleton = () => (
-      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={boxRadius} testID='skeleton'>
+      <Skeleton style={styles.skeleton} width='100%' height={50} borderRadius={borderSmallRadius} testID='skeleton'>
         {children}
       </Skeleton>
     )
@@ -130,7 +132,6 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
           <TouchableOpacity
             ref={ref as React.Ref<TouchableOpacity>}
             onPress={(e?: unknown) => onClick?.(e)}
-
             style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
             onLayout={(event) => {
               const { height } = event.nativeEvent.layout
@@ -140,7 +141,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
           >
             {backgroundSrc ? (
               <ImageBackground
-                imageStyle={{ borderRadius: boxRadius }}
+                imageStyle={{ borderRadius: borderSmallRadius }}
                 style={styles.boxImage}
                 source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
               >
@@ -172,13 +173,12 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
             const { height } = event.nativeEvent.layout
             setBoxHeight(height)
           }}
-
           style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
           testID={boxTestId}
         >
           {backgroundSrc ? (
             <ImageBackground
-              imageStyle={{ borderRadius: boxRadius }}
+              imageStyle={{ borderRadius: borderSmallRadius }}
               style={styles.boxImage}
               source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
             >

@@ -1,8 +1,10 @@
-import { Align, Justify, TrilogyColor } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import ViewComponent from './View'
-import { ViewMarkup } from './ViewProps'
+import ViewComponent from '@/components/view/View'
+import { ViewMarkup } from '@/components/view/ViewProps'
+import { Align } from "@/interfaces/Alignable";
+import { Justify } from "@/interfaces/Justifiable";
+import { TrilogyColor } from "@/interfaces/Color";
 
 ViewComponent.displayName = 'View'
 

@@ -5,7 +5,7 @@ import { ContainerProps, ContainerRef } from '@/components/container/ContainerPr
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 
 /**
  * Container Component

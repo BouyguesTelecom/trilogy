@@ -4,12 +4,14 @@ import { IconNativeRef, IconProps } from '@/components/icon/IconProps'
 import { StatesContext } from '@/context/providerStates'
 import { TrilogyThemeContext } from '@/context/providerTheme.native'
 import { isIOS } from '@/helpers/device.native'
-import { getAlignStyle } from '@/objects/facets/Alignable'
-import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { getAlignStyle } from '@/helpers/alignable'
 import React, { useContext } from 'react'
+import { WithLocalSvg } from 'react-native-svg/css'
+import { Skeleton } from '@/components/skeleton'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Skeleton } from '../skeleton'
 
 const resolveSvg = (mod: unknown): React.ComponentType<Record<string, unknown>> => {
   const asModule = mod as { __esModule?: boolean; default?: React.ComponentType<Record<string, unknown>> }
@@ -138,38 +140,33 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
       const SvgComponent = resolveSvg(icons[iconKey])
       if (SvgComponent) {
         if (stretched && !circled) {
-        iconView = (
-          <View style={styles.stretched} testID={`${testId}-stretched`}>
-            <SvgComponent
-              style={[styles.iconCircled, styles.icon]}
-              width={defaultSize}
-              height={defaultSize}
-              color={getColorStyle(TrilogyColor.BACKGROUND)}
-            />
-          </View>
-        )
-      } else if (circled) {
-        iconView = (
-          <View style={styles.circled} testID={`${testId}-circled`}>
-            <SvgComponent
-              style={[styles.iconCircled, styles.icon]}
-              width={defaultSize}
-              height={defaultSize}
-              color={iconColor}
-            />
-          </View>
-        )
-      } else {
-        iconView = (
-          <View style={styles.iconContainer} {...others}>
-            <SvgComponent
-              style={[styles.icon, style]}
-              width={defaultSize}
-              height={defaultSize}
-              color={iconColor}
-            />
-          </View>
-        )
+          iconView = (
+            <View style={styles.stretched} testID={`${testId}-stretched`}>
+              <SvgComponent
+                style={[styles.iconCircled, styles.icon]}
+                width={defaultSize}
+                height={defaultSize}
+                color={getColorStyle(TrilogyColor.BACKGROUND)}
+              />
+            </View>
+          )
+        } else if (circled) {
+          iconView = (
+            <View style={styles.circled} testID={`${testId}-circled`}>
+              <SvgComponent
+                style={[styles.iconCircled, styles.icon]}
+                width={defaultSize}
+                height={defaultSize}
+                color={iconColor}
+              />
+            </View>
+          )
+        } else {
+          iconView = (
+            <View style={styles.iconContainer} {...others}>
+              <SvgComponent style={[styles.icon, style]} width={defaultSize} height={defaultSize} color={iconColor} />
+            </View>
+          )
         }
       }
     }

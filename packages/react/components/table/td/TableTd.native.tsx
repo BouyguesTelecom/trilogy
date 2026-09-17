@@ -1,9 +1,10 @@
-import * as React from "react"
+import { TableTdNativeRef, TableTdProps } from '@/components/table/td/TableTdProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import * as React from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TableTdNativeRef, TableTdProps } from "./TableTdProps"
-import { getColorStyle, TrilogyColor } from "@/objects"
-import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Table TD Component
@@ -12,7 +13,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
 const TableTd = React.forwardRef<TableTdNativeRef, TableTdProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = memoStyles({
     table: {
-      flexDirection: "column",
+      flexDirection: 'column',
       flex: 1,
       padding: 10,
       borderBottomWidth: 0.2,
@@ -27,7 +28,7 @@ const TableTd = React.forwardRef<TableTdNativeRef, TableTdProps>(({ children, ..
 
   return (
     <View ref={ref} style={styles.table} {...others}>
-      {children && typeof children.valueOf() === "string" ? (
+      {children && typeof children.valueOf() === 'string' ? (
         <Text style={styles.text}>{String(children)}</Text>
       ) : (
         children

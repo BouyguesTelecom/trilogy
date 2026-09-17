@@ -4,10 +4,10 @@ import { RadioTileProps, RadioTileRef } from '@/components/radio/tiles/tile/Radi
 import { Sticker } from '@/components/sticker'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { VariantState } from '@/objects/facets/Variant'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
+import { VariantState } from "@/interfaces/Variant";
 
 /**
  * radioTile Component

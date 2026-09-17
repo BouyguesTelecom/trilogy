@@ -2,7 +2,7 @@
   border-collapse: separate;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 24px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   border-spacing: 0 8px;
   background-color: getColor('background');
 
@@ -33,19 +33,19 @@
       border-radius: 0px;
       &:hover {
         filter: brightness(95%) ;
-        border-radius: 4px;
+        border-radius: var(--radius-smaller);
       }
     }
 
     &.calendar-date-rounded-left {
       button:not(.is-disabled, .is-active){
-        border-radius: 8px 0 0 8px;
+        border-radius: var(--radius) 0 0 var(--radius);
       }
     }
 
     &.calendar-date-rounded-right {
       button:not(.is-disabled, .is-active){
-        border-radius: 0px 8px 8px 0;
+        border-radius: 0 var(--radius) var(--radius) 0;
       }
     }
   }
@@ -54,7 +54,7 @@
     padding-bottom: 16px;
     button {
       text-align: center;
-      border-radius: 4px;
+      border-radius: var(--radius-smaller);
       width: 36px;
       height: 36px;
       i {
@@ -82,7 +82,7 @@
       display: block;
       width: 36px;
       height: 36px;
-      border-radius: 4px;
+      border-radius: var(--radius-smaller);
     }
   }
 
@@ -96,7 +96,7 @@
     }
     button {
       padding: 2px 6px;
-      border-radius: 4px;
+      border-radius: var(--radius-smaller);
     }
   }
 

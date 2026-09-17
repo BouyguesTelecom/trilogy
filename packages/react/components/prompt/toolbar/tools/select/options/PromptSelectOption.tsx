@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { SelectOption } from '@/components/select'
 import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
 import React from 'react'
-import { PromptSelectOptionRef } from './PromptSelectOptionProps'
+import { PromptSelectOptionRef } from '@/components/prompt/toolbar/tools/select/options/PromptSelectOptionProps'
 
 /**
  * PromptSelectOption component - Option item for PromptSelect dropdown

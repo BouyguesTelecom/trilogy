@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import * as React from 'react'
-import { CardContentProps, CardContentRef } from './CardContentProps'
+import { CardContentProps, CardContentRef } from '@/components/card/content/CardContentProps'
 
 /**
  * Card Content Component

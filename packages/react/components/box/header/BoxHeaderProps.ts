@@ -1,12 +1,9 @@
-/**
- * Box Header Interface
- */
-import { Accessibility } from '@/objects/facets/Accessibility'
-import { AlignableProps } from '@/objects/facets/Alignable'
-import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { View } from 'react-native'
-import { CommonProps } from '../../../objects/facets/CommonProps'
-import { Dev } from '@/objects/facets/Dev'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { AlignableProps } from "@/interfaces/Alignable";
+import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev";
 
 export interface BoxHeaderProps extends AlignableProps, Accessibility, CommonProps, Dev {
   children?: React.ReactNode

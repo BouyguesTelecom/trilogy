@@ -4,12 +4,18 @@ import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, VariantState } from '@/objects'
 import React, { useContext, useState } from 'react'
 import { TouchableOpacity, View as ViewRN } from 'react-native'
+import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
+import { CheckboxTileNativeRef, CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { VariantState } from '@/interfaces/Variant'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 import { memoStyles } from '@/helpers/memoStyles'
-import { CheckboxTilesContext } from '../context'
-import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps'
 
 /**
  * CheckboxTile
@@ -52,6 +58,8 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     const [_checked, setChecked] = useState<boolean>(checked || false)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
     const { isGrid } = useContext(CheckboxTilesContext)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     const styles = memoStyles({
       container: {
@@ -68,7 +76,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         borderWidth: 1,
         width: 19,
         height: 19,
-        borderRadius: 4,
+        borderRadius: borderSmallerRadius,
         backgroundColor: getColorStyle(
           disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : 'transparent',
         ),
@@ -85,7 +93,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         borderColor: getColorStyle(
           disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
         ),
-        borderRadius: 6,
+        borderRadius: borderSmallRadius,
         textAlign: 'center',
         alignItems: 'center',
         backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
@@ -106,7 +114,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         borderColor: getColorStyle(
           disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
         ),
-        borderRadius: 6,
+        borderRadius: borderSmallRadius,
         backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
       },
       sticker: {
@@ -132,7 +140,13 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
 
     if (horizontal) {
       return (
-        <TouchableOpacity testID={testId} ref={ref} disabled={disabled} style={styles.horizontal} onPress={() => handleClick()}>
+        <TouchableOpacity
+          testID={testId}
+          ref={ref}
+          disabled={disabled}
+          style={styles.horizontal}
+          onPress={() => handleClick()}
+        >
           {sticker && (
             <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
               <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />
@@ -175,7 +189,14 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     }
 
     return (
-      <TouchableOpacity testID={testId} ref={ref} disabled={disabled} style={styles.tile} onPress={handleClick} {...others}>
+      <TouchableOpacity
+        testID={testId}
+        ref={ref}
+        disabled={disabled}
+        style={styles.tile}
+        onPress={handleClick}
+        {...others}
+      >
         {sticker && (
           <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
             <Sticker label={sticker} variant={stickerVariant} className='radio-sticker' small />

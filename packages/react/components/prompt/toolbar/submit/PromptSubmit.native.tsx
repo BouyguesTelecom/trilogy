@@ -1,12 +1,19 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { PromptContext } from '@/components/prompt/context'
+import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
+import {
+  PromptSubmitNativeRef,
+  PromptSubmitProps,
+  PromptSubmitStatus,
+} from '@/components/prompt/toolbar/submit/PromptSubmitProps'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { PromptContext } from '../../context'
-import PromptButton from '../tools/button/PromptButton.native'
-import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './PromptSubmitProps'
 
 /**
  * PromptSubmit component - Submit button for prompt with streaming support
@@ -22,6 +29,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
     const { text, files, setIsSend, setIsTyping, isDisabled } = useContext(PromptContext)
     const backgroundStopElm = getColorStyle(TrilogyColor.BACKGROUND)
     const isDisable = isDisabled || disabled
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const onClick = useCallback(() => {
       setIsTyping(false)
@@ -62,7 +70,9 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
         {...others}
       >
         {statusSubmit === PromptSubmitStatus.STREAMING_ON ? (
-          <View style={{ height: 20, width: 20, borderRadius: 4, backgroundColor: backgroundStopElm }} />
+          <View
+            style={{ height: 20, width: 20, borderRadius: borderSmallerRadius, backgroundColor: backgroundStopElm }}
+          />
         ) : (
           <Icon
             size={IconSize.SMALLER}

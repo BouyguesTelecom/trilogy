@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react-native'
 import * as React from 'react'
-import Countdown from '../Countdown'
+import Countdown from '@/components/countdown/Countdown'
 
 jest.useFakeTimers()
 

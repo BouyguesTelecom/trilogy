@@ -1,9 +1,9 @@
-import { Alignable } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import ImageComponent from './Image'
-import type { ImageProps } from './ImageProps'
-import { RadiusValues } from './ImageProps'
+import ImageComponent from '@/components/image/Image'
+import type { ImageProps } from '@/components/image/ImageProps'
+import { Alignable } from "@/interfaces/Alignable";
+import { Radius } from "@/interfaces/Radius";
 
 ImageComponent.displayName = 'Image'
 
@@ -13,7 +13,7 @@ interface ImageStoryArgs {
   width?: number
   height?: number
   circled: boolean
-  radius?: RadiusValues
+  radius?: Radius
   align?: ImageProps['align']
 }
 
@@ -72,7 +72,7 @@ const meta: Meta<ImageStoryArgs> = {
     },
     radius: {
       control: 'select',
-      options: [undefined, ...Object.values(RadiusValues)],
+      options: [undefined, ...Object.values(Radius)],
       name: 'radius',
       description: 'Border radius size',
       table: { category: 'Image' },
@@ -91,7 +91,7 @@ const meta: Meta<ImageStoryArgs> = {
     width: 320,
     height: 160,
     circled: false,
-    radius: RadiusValues.MEDIUM,
+    radius: Radius.MEDIUM,
     align: Alignable.ALIGNED_CENTER,
   },
 }
@@ -113,7 +113,7 @@ export const Circled: Story = {
 
 export const Rounded: Story = {
   args: {
-    radius: RadiusValues.LARGE,
+    radius: Radius.LARGE,
   },
 }
 

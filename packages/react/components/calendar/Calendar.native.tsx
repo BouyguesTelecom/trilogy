@@ -1,13 +1,16 @@
-import { TypographyAlign } from '@/objects'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import translation from '@trilogy-ds/locales/lib/calendar'
 import React from 'react'
 import { Modal, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { ComponentName } from '../enumsComponentsName'
-import { Icon } from '../icon'
-import { Text } from '../text'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
+import { Text } from '@/components/text'
+import { CalendarProps, ChangeEventCalendar } from '@/components/calendar/CalendarProps'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 import { CalendarYearsOrder } from './CalendarEnum'
-import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
 
 const days = [
   translation.days[1],
@@ -68,13 +71,15 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     const mainColor = getColorStyle(TrilogyColor.MAIN)
     const mainFadeColor = getColorStyle(TrilogyColor.MAIN_FADE)
     const disabledColor = getColorStyle(TrilogyColor.DISABLED)
+    const borderMediumRadius = getRadiusStyle(Radius.MEDIUM)
+    const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
     const styles = React.useMemo(
       () =>
         StyleSheet.create({
           calendar: {
             backgroundColor,
-            borderRadius: 8,
+            borderRadius: borderMediumRadius,
             padding: 24,
             shadowColor,
             shadowOffset: {
@@ -82,7 +87,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
               height: 2,
             },
             shadowOpacity: 0.2,
-            shadowRadius: 8,
+            shadowRadius: borderMediumRadius,
             elevation: 4,
             width: '85%',
             alignSelf: 'center',
@@ -103,7 +108,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             height: 36,
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: 4,
+            borderRadius: borderSmallerRadius,
             backgroundColor: 'transparent',
           },
           iconWrapper: {
@@ -127,7 +132,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             paddingHorizontal: 8,
             paddingVertical: 4,
             backgroundColor,
-            borderRadius: 4,
+            borderRadius: borderSmallerRadius,
             borderWidth: 1,
             borderColor: disabledFadeColor,
             width: 80,
@@ -139,7 +144,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             paddingHorizontal: 8,
             paddingVertical: 4,
             backgroundColor,
-            borderRadius: 4,
+            borderRadius: borderSmallerRadius,
             borderWidth: 1,
             borderColor: disabledFadeColor,
             width: 80,
@@ -209,7 +214,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             height: Platform.OS === 'android' ? 42 : 36,
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: 4,
+            borderRadius: borderSmallerRadius,
             backgroundColor: 'transparent',
             maxWidth: Platform.OS === 'android' ? 42 : 36,
             minWidth: Platform.OS === 'android' ? 42 : 36,
@@ -238,29 +243,29 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           },
           dateStart: {
             backgroundColor: mainColor,
-            borderTopLeftRadius: 8,
-            borderBottomLeftRadius: 8,
-            borderTopRightRadius: 4,
-            borderBottomRightRadius: 4,
+            borderTopLeftRadius: borderMediumRadius,
+            borderBottomLeftRadius: borderMediumRadius,
+            borderTopRightRadius: borderSmallerRadius,
+            borderBottomRightRadius: borderSmallerRadius,
           },
           dateEnd: {
             backgroundColor: mainColor,
-            borderTopRightRadius: 8,
-            borderBottomRightRadius: 8,
-            borderTopLeftRadius: 4,
-            borderBottomLeftRadius: 4,
+            borderTopRightRadius: borderMediumRadius,
+            borderBottomRightRadius: borderMediumRadius,
+            borderTopLeftRadius: borderSmallerRadius,
+            borderBottomLeftRadius: borderSmallerRadius,
           },
           dateInRange: {
             backgroundColor: mainFadeColor,
             borderRadius: 0,
           },
           roundedLeft: {
-            borderTopLeftRadius: 8,
-            borderBottomLeftRadius: 8,
+            borderTopLeftRadius: borderMediumRadius,
+            borderBottomLeftRadius: borderMediumRadius,
           },
           roundedRight: {
-            borderTopRightRadius: 8,
-            borderBottomRightRadius: 8,
+            borderTopRightRadius: borderMediumRadius,
+            borderBottomRightRadius: borderMediumRadius,
           },
           todayButton: {
             borderWidth: 0,
@@ -278,7 +283,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           },
           pickerContainer: {
             backgroundColor,
-            borderRadius: 8,
+            borderRadius: borderMediumRadius,
             maxHeight: 300,
             width: 200,
             shadowColor: '#000',
@@ -287,7 +292,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
               height: 2,
             },
             shadowOpacity: 0.25,
-            shadowRadius: 8,
+            shadowRadius: borderMediumRadius,
             elevation: 5,
           },
           pickerScrollView: {

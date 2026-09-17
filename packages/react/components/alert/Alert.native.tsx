@@ -5,16 +5,20 @@ import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { View } from '@/components/view'
-import { Alignable, TrilogyColor, TypographyBold } from '@/objects'
-import { getStatusIconName, getStatusStyle } from '@/objects/facets/Status'
 import * as React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import LibToast from 'react-native-toast-message'
-import { Row, Rows } from '../rows'
-import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
-import ToasterContext from './context'
-import { ToasterShowContext } from './context/ToasterContextProps'
+import { Row, Rows } from '@/components/rows'
+import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
+import ToasterContext from '@/components/alert/context'
+import { ToasterShowContext } from '@/components/alert/context/ToasterContextProps'
+import { getRadiusStyle } from '@/helpers/radius'
+import { getStatusIconName, getStatusStyle } from '@/helpers/status'
+import { Alignable } from '@/interfaces/Alignable'
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 /**
  * Function call by context for showing toast
@@ -48,6 +52,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {
     const { color, backgroundColor } = getStatusStyle(status)
     let alertView: JSX.Element
+    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     const styles = memoStyles({
       container: {
@@ -57,7 +62,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
         paddingBottom: 12,
         borderWidth: banner ? 0 : 1,
         backgroundColor: backgroundColor,
-        borderRadius: banner ? 0 : 6,
+        borderRadius: banner ? 0 : borderSmallRadius,
         alignItems: 'baseline',
         textAlign: banner ? 'center' : 'left',
         paddingLeft: 12,
@@ -144,7 +149,7 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
       borderColor: color,
       backgroundColor: backgroundColor,
       padding: 14,
-      borderRadius: 6,
+      borderRadius: getRadiusStyle(Radius.SMALL),
     },
   })
 

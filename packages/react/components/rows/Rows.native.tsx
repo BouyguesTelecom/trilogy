@@ -1,7 +1,7 @@
 import * as React from 'react'
+import { RowsNativeRef, RowsProps } from '@/components/rows/RowsProps'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { RowsNativeRef, RowsProps } from './RowsProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 

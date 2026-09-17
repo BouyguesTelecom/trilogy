@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import * as React from 'react'
-import { Button } from '../button'
-import PopoverComponent from './Popover'
-import { PopoverArrowPosition, PopoverDirection } from './PopoverEnum'
+import { Button } from '@/components/button'
+import PopoverComponent from '@/components/popover/Popover'
+import { PopoverArrowPosition, PopoverDirection } from '@/components/popover/PopoverEnum'
 
 PopoverComponent.displayName = 'Popover'
 

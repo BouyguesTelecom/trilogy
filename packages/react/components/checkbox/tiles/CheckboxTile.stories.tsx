@@ -1,12 +1,12 @@
 import { IconName } from '@/components/icon'
-import { VariantState } from '@/objects'
-import { Alignable } from '@/objects/facets/Alignable'
 import type { Meta, StoryObj } from '@storybook/react'
-import CheckboxTiles from './CheckboxTiles'
-import type { CheckboxTilesProps } from './CheckboxTilesProps'
-import CheckboxTileComponent from './tile/CheckboxTile'
-import type { CheckboxTileProps } from './tile/CheckboxTileProps'
+import CheckboxTiles from '@/components/checkbox/tiles/CheckboxTiles'
+import type { CheckboxTilesProps } from '@/components/checkbox/tiles/CheckboxTilesProps'
+import CheckboxTileComponent from '@/components/checkbox/tiles/tile/CheckboxTile'
+import type { CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
 import React from 'react'
+import { VariantState } from "@/interfaces/Variant";
+import { Alignable } from "@/interfaces/Alignable";
 
 CheckboxTileComponent.displayName = 'CheckboxTile'
 CheckboxTiles.displayName = 'CheckboxTiles'

@@ -1,6 +1,6 @@
-import { Dev } from '@/objects'
-import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 /**
  * Tabs Item Interface

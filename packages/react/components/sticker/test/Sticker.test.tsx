@@ -1,12 +1,12 @@
 // Dependencies
 import * as React from 'react'
-import { is } from '../../../services/index'
+import { is } from '@/helpers/classify'
 
 // Testing methods
 import { render } from '@testing-library/react'
 
 // Component to test
-import Sticker from '../Sticker'
+import Sticker from '@/components/sticker/Sticker'
 
 describe('Sticker component', () => {
   test('should have a Sticker in document', () => {

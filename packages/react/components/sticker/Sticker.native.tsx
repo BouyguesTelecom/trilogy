@@ -2,11 +2,16 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, getVariantStyle, TrilogyColor, TypographyBold } from '@/objects'
 import * as React from 'react'
+import { StickerNativeRef, StickerProps } from '@/components/sticker/StickerProps'
+import { getRadiusStyle } from '@/helpers/radius'
+import { getColorStyle } from '@/helpers/color'
+import { getVariantStyle } from '@/helpers/variant'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { Radius } from '@/interfaces/Radius'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { StickerNativeRef, StickerProps } from './StickerProps'
 
 /**
  * Sticker Component
@@ -20,6 +25,8 @@ import { StickerNativeRef, StickerProps } from './StickerProps'
 const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(
   ({ variant, small, outlined, label, iconName, accessibilityLabel, ...others }, ref): JSX.Element => {
     const defaultColor = getColorStyle(TrilogyColor.MAIN)
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
+
     const styles = memoStyles({
       sticker: {
         flexDirection: 'row',
@@ -32,10 +39,7 @@ const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(
         borderWidth: outlined ? 2 : 0,
         borderColor: (outlined && defaultColor) || 'transparent',
         backgroundColor: (outlined && 'white') || (variant && getVariantStyle(variant)) || defaultColor,
-        borderTopLeftRadius: (!small && 24) || (small && 16) || 0,
-        borderTopRightRadius: (small && 16) || 24,
-        borderBottomLeftRadius: (!small && 24) || (small && 16) || 0,
-        borderBottomRightRadius: (!small && 24) || (small && 16) || 0,
+        borderRadius: borderFullRadius,
         marginTop: 0,
         fontSize: small ? 12 : 16,
         top: 0,

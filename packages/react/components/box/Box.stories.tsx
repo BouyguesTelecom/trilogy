@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import BoxComponent from './Box'
-import BoxContent from './content'
-import BoxFooter from './footer'
-import BoxHeader from './header'
-import BoxItem from './item'
-import type { BoxProps } from './BoxProps'
-import { TrilogyColor } from '@/objects/facets/Color'
+import BoxComponent from '@/components/box/Box'
+import BoxContent from '@/components/box/content'
+import BoxFooter from '@/components/box/footer'
+import BoxHeader from '@/components/box/header'
+import BoxItem from '@/components/box/item'
+import type { BoxProps } from '@/components/box/BoxProps'
+import { TrilogyColor } from "@/interfaces/Color";
 
 BoxComponent.displayName = 'Box'
 
@@ -206,9 +206,7 @@ const meta: Meta<BoxStoryArgs> = {
       highlighted={box_highlighted}
     >
       {header_enabled && <BoxHeader variant={header_variant}>{header_children}</BoxHeader>}
-      <BoxContent>
-        {item_enabled ? <BoxItem>{item_children}</BoxItem> : content_children}
-      </BoxContent>
+      <BoxContent>{item_enabled ? <BoxItem>{item_children}</BoxItem> : content_children}</BoxContent>
       {footer_enabled && <BoxFooter backgroundColor={footer_backgroundColor}>{footer_children}</BoxFooter>}
     </BoxComponent>
   ),

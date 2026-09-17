@@ -1,9 +1,10 @@
 import * as React from 'react'
+import { getColorStyle } from '@/helpers/color'
+import { TableBorderEnum, TableNativeRef, TableProps } from '@/components/table/TableProps'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { getColorStyle, TrilogyColor } from '@/objects'
-import { TableBorderEnum, TableNativeRef, TableProps } from './TableProps'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * Table Component

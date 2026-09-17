@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { IconName, IconNameValues } from '../../icon/IconNameEnum'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 
 /**
  * DropdownItem Interface

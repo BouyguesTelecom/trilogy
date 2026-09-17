@@ -1,14 +1,14 @@
 import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getButtonVariantClassName } from '@/objects/facets/Color'
-import { Loading, LoadingValues } from '@/objects/facets/Loadable'
-import { is } from '@/services/index'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from './ButtonEnum'
-import { ButtonProps, ButtonRef } from './ButtonProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from '@/components/button/ButtonEnum'
+import { ButtonProps, ButtonRef } from '@/components/button/ButtonProps'
+import { getButtonVariantClassName } from '@/helpers/color'
+import { Loading, LoadingValues } from '@/interfaces/Loadable'
 
 /**
  * Button component

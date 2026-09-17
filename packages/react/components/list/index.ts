@@ -1,4 +1,4 @@
-import List from './List'
+import List from '@/components/list/List'
 
 export * from './item'
 export * from './ListProps'

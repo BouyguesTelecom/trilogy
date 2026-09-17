@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Section, Switch } from '@trilogy-ds/react/components'
 
 export const SwitchScreen = (): JSX.Element => {
@@ -8,7 +7,6 @@ export const SwitchScreen = (): JSX.Element => {
         label='Switch one fullwidth'
         fullWidth
         name='switch one'
-
         // eslint-disable-next-line no-console
         onChange={(e) => {
           console.log('SwitchState =>', e.switchState)

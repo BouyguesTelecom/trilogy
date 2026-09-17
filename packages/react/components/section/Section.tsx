@@ -1,11 +1,11 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getBackgroundClassName } from '@/objects'
-import { has, is } from '@/services'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { SectionProps, SectionRef } from './SectionProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { SectionProps, SectionRef } from '@/components/section/SectionProps'
+import { getBackgroundClassName } from '@/helpers/background'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.

@@ -1,11 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import { TypographyBold, TypographyColor } from '@/objects'
 import * as React from 'react'
+import { StepperNativeRef, StepperProps } from '@/components/stepper/StepperProps'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { StepperNativeRef, StepperProps } from './StepperProps'
 
 interface ICurrentStep {
   step: number
@@ -42,9 +43,6 @@ const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ..
     },
     icon: {
       marginRight: 4,
-    },
-    counter: {
-      marginRight: 10,
     },
   })
 

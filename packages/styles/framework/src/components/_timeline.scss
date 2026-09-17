@@ -51,7 +51,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       left: 3rem;
       bottom: 8px;
       height: auto;
-      border-radius: 2px;
+      border-radius: var(--radius-smaller);
     }
 
     .timeline-marker.is-icon {

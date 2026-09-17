@@ -1,4 +1,4 @@
-import ListItemDescription from './ListItemDescription'
+import ListItemDescription from '@/components/list/item/description/ListItemDescription'
 
 export * from './ListItemDescriptionProps'
 

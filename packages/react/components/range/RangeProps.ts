@@ -2,8 +2,9 @@
  * range Interface
  */
 import { View } from 'react-native'
-import { Accessibility, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 export type InputChangeEventHandlerNative = (event: {
   inputValue: number[] | number

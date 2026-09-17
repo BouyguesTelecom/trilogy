@@ -8,11 +8,11 @@ import { Image } from '@/components/image'
 import { Text, TextLevels } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { Align } from '@/objects'
-import { TypographyBold } from '@/objects/Typography'
 import clsx from 'clsx'
 import React from 'react'
-import { PromptFileProps, PromptFileRef } from './PromptFileProps'
+import { PromptFileProps, PromptFileRef } from '@/components/prompt/files/file/PromptFileProps'
+import { Align } from "@/interfaces/Alignable";
+import { TypographyBold } from "@/interfaces/TypographyBold";
 
 /**
  * PromptFile component - Displays an individual file attachment with preview and delete option

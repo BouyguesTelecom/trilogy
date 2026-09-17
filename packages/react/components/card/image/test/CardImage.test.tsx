@@ -1,7 +1,7 @@
 import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import CardImage from "../CardImage";
-import { CardImageSize } from "../CardImageEnum";
+import CardImage from "@/components/card/image/CardImage";
+import { CardImageSize } from "@/components/card/image/CardImageEnum";
 
 describe("CardImage", () => {
   it("renders an image with the specified lib and alt attributes", () => {

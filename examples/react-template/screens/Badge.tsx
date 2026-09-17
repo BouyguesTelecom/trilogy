@@ -12,7 +12,6 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import * as React from 'react'
 import { BadgePositionEnum } from '../../../packages/react/components/badge/BadgeEnum'
 
 export const BadgeScreen = (): JSX.Element => {

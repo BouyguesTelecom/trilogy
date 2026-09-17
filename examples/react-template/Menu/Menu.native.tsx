@@ -13,7 +13,7 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import { TypographyAlign } from '@trilogy-ds/react/objects'
+import { TypographyAlign } from '@trilogy-ds/react/interfaces'
 import * as React from 'react'
 import { FlatList, SafeAreaView, View } from 'react-native'
 import * as Screens from '../screens'

@@ -14,7 +14,7 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const getSuggestions = async () => {
   return [

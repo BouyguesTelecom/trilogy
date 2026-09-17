@@ -1,11 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconSize } from '@/components/icon'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { getStatusStyle } from '@/objects/facets/Status'
 import React from 'react'
+import { TagNativeRef, TagProps } from '@/components/tag/TagProps'
+import { getRadiusStyle } from '@/helpers/radius'
+import { getColorStyle } from '@/helpers/color'
+import { getStatusStyle } from '@/helpers/status'
+import { TrilogyColor } from '@/interfaces/Color'
+import { Radius } from '@/interfaces/Radius'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TagNativeRef, TagProps } from './TagProps'
 
 /**
  * Tag Component
@@ -18,9 +21,11 @@ import { TagNativeRef, TagProps } from './TagProps'
  **/
 const Tag = React.forwardRef<TagNativeRef, TagProps>(
   ({ label, variant, inverted, iconName, small, testId, ...others }, ref): JSX.Element => {
-    const textColor = inverted ? getColorStyle(variant as TrilogyColor) : getColorStyle(TrilogyColor.MAIN)
-
-    const backgroundColor = variant && getStatusStyle(variant).backgroundColor
+    const textColor = getColorStyle(inverted ? (variant as TrilogyColor) : TrilogyColor.MAIN)
+    const variantBackgroundColor = getStatusStyle(variant).backgroundColor
+    const invertedBackgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const neutralBackgroundColor = getColorStyle(TrilogyColor.NEUTRAL_FADE)
+    const borderFullRadius = getRadiusStyle(Radius.FULL)
 
     const styles = memoStyles({
       tag: {
@@ -28,14 +33,14 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        borderRadius: 15,
+        borderRadius: borderFullRadius,
         paddingHorizontal: 8,
         paddingVertical: 4,
         minHeight: small ? 24 : 32,
         backgroundColor:
-          (inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
-          (variant && (backgroundColor as TrilogyColor)) ||
-          getColorStyle(TrilogyColor.NEUTRAL_FADE),
+          (inverted && invertedBackgroundColor) ||
+          (variant && (variantBackgroundColor as TrilogyColor)) ||
+          neutralBackgroundColor,
       },
       text: {
         alignSelf: 'center',
@@ -48,9 +53,6 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(
       icon: {
         marginRight: small ? 3 : 6,
       },
-      button: {
-        flexDirection: 'row',
-      },
     })
 
     return (
@@ -58,7 +60,7 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(
         {iconName && (
           <View style={styles.icon}>
             <Icon
-              color={IconColor[variant || IconColor.BACKGROUND]}
+              color={IconColor[variant ?? IconColor.MAIN]}
               size={small ? IconSize.SMALLER : IconSize.SMALL}
               name={iconName}
               testId={`${testId}-icon`}

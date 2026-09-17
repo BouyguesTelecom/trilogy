@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import AccordionComponent from './Accordion'
-import type { AccordionProps } from './AccordionProps'
-import AccordionItem from './item'
-import AccordionBody from './item/body'
-import AccordionHeader from './item/header'
+import AccordionComponent from '@/components/accordion/Accordion'
+import type { AccordionProps } from '@/components/accordion/AccordionProps'
+import AccordionItem from '@/components/accordion/item'
+import AccordionBody from '@/components/accordion/item/body'
+import AccordionHeader from '@/components/accordion/item/header'
 
 AccordionComponent.displayName = 'Accordion'
 

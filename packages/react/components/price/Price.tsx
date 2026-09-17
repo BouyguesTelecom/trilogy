@@ -1,12 +1,12 @@
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { Alignable } from '@/objects'
-import { has, is } from '@/services/classify'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { checkCents } from './PriceHelpers'
-import { PriceProps, PriceRef } from './PriceProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { checkCents } from '@/components/price/PriceHelpers'
+import { PriceProps, PriceRef } from '@/components/price/PriceProps'
+import { Alignable } from '@/interfaces/Alignable'
 
 /**
  * Price Component
@@ -66,7 +66,11 @@ const Price = React.forwardRef<PriceRef, PriceProps>(
       const isNegativeStrike = oldAmount && oldAmount < 0
       const absoluteAmountStrike = oldAmount && Math.abs(oldAmount)
       const absoluteWholeStrike = absoluteAmountStrike && Math.floor(absoluteAmountStrike)
-      const wholeStrike = isNegativeStrike ? (absoluteWholeStrike === 0 ? '-0' : -absoluteWholeStrike) : absoluteWholeStrike
+      const wholeStrike = isNegativeStrike
+        ? absoluteWholeStrike === 0
+          ? '-0'
+          : -absoluteWholeStrike
+        : absoluteWholeStrike
 
       let cents = checkCents(absoluteAmountStrike.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
       cents = (cents && cents.length === 1 && `${cents}0`) || cents

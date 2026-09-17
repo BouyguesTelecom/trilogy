@@ -1,5 +1,5 @@
 .segmented-control {
-  border-radius: 6px;
+  border-radius: var(--radius-small);
   padding: $spacing-1;
   background-color: getColor('background');
   display: flex;

@@ -1,14 +1,14 @@
 import { ButtonType } from '@/components/button'
 import { Title, TitleLevels, TitleMarkup } from '@/components/title'
-import { useTrilogyContext } from '@/context/index'
-import { ClickEvent, OnClickEvent } from '@/events/OnClickEvent'
+import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services'
+import { is } from '@/helpers/classify'
 import translation from '@trilogy-ds/locales/lib/modal'
 import clsx from 'clsx'
 import React, { KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { ModalProps, ModalRef } from './ModalProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ModalProps, ModalRef } from '@/components/modal/ModalProps'
+import { ClickEvent, OnClickEvent } from '@/interfaces/OnClickEvent'
 
 /**
  * Modal Component

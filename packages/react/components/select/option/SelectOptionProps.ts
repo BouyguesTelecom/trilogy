@@ -1,8 +1,9 @@
-import { ClickEvent } from '../../../events/OnClickEvent'
-import { IconName, IconNameValues } from '../../../components/icon'
-import { Accessibility, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
 import { TouchableOpacity } from 'react-native'
+import { ClickEvent } from "@/interfaces/OnClickEvent";
+import { Accessibility } from "@/interfaces/Accessibility";
+import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps";
 
 /**
  * Select Option Interface

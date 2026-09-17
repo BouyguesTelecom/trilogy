@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services/classify'
+import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { CardImageProps, CardImageRef } from './CardImageProps'
+import { CardImageProps, CardImageRef } from '@/components/card/image/CardImageProps'
 
 /**
  * Card Image Component

@@ -4,7 +4,7 @@
     visibility: hidden;
     opacity: 0;
     background-color: getColor('background');
-    border-radius: $radius;
+    border-radius: var(--radius);
     box-shadow: $shadow;
     width: 350px;
     padding: $spacing-3 * 2;

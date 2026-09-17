@@ -3,7 +3,7 @@ import { PromptContext } from '@/components/prompt/context'
 import Select from '@/components/select/Select.native'
 import { SelectNativeProps } from '@/components/select/SelectProps'
 import React, { useContext } from 'react'
-import { PromptSelectNativeRef } from './PromptSelectProps'
+import { PromptSelectNativeRef } from '@/components/prompt/toolbar/tools/select/PromptSelectProps'
 
 const PromptSelect = React.forwardRef<PromptSelectNativeRef, SelectNativeProps>(
   ({ disabled, readOnly, ...others }, ref) => {

@@ -1,10 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid, isIOS } from '@/helpers/device.native'
-import { getColorStyle, ScrollDirectionEnum } from '@/objects'
 import * as React from 'react'
+import { ScrollViewNativeRef, ScrollViewProps } from '@/components/scroll-view/ScrollViewProps'
+import { getColorStyle } from '@/helpers/color'
+import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
 import { RefreshControl, ScrollView as ScrollViewNative, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { ScrollViewNativeRef, ScrollViewProps } from './ScrollViewProps'
 
 /**
  * ScrollView Component

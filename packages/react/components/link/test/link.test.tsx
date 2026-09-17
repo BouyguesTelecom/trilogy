@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import Link from '../Link'
-import { IconName } from '../../icon'
+import Link from '@/components/link/Link'
+import { IconName } from '@/components/icon'
 
 describe('Link component', () => {
   test('renders children', async () => {

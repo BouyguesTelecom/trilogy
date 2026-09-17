@@ -1,11 +1,17 @@
-import * as React from "react"
+import * as React from 'react'
+import { FabNativeRef, FabProps } from '@/components/fab/FabProps'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Text } from '@/components/text'
+import { Alignable } from '@/interfaces/Alignable'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { TypographyColor } from '@/interfaces/TypographyColor'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { FabNativeRef, FabProps } from "./FabProps"
-import { Alignable, getColorStyle, TrilogyColor, TypographyBold, TypographyColor } from "@/objects"
-import { Icon, IconColor, IconName, IconSize } from "@/components/icon"
-import { ComponentName } from "@/components/enumsComponentsName"
-import { Text } from "@/components/text"
 
 /**
  * Fab Component - Floating Action Button
@@ -22,87 +28,81 @@ import { Text } from "@/components/text"
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Fab =  React.forwardRef<FabNativeRef, FabProps>(({
-               children,
-               accessibilityLabel,
-               iconName,
-               extended,
-               onClick,
-               top,
-               bottom,
-               left,
-               right,
-               disabled,
-               testId
-             }, ref): JSX.Element => {
-  const styles = memoStyles({
-    button: {
-      backgroundColor: getColorStyle(TrilogyColor.MAIN),
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: 16,
-      minHeight: 56,
-      height: "auto",
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 3 },
-      shadowOpacity: 0.2,
-      shadowRadius: 6,
-      elevation: 3,
-      position: top || bottom || left || right ? "absolute" : "relative",
-      top: top ? top : "auto",
-      right: right ? right : "auto",
-      left: left ? left : "auto",
-      bottom: bottom ? bottom : "auto",
-      width: extended ? "auto" : 60,
-      flexDirection: "row",
-      zIndex: 999,
-    },
-    label: {
-      marginTop: "auto",
-      marginBottom: "auto",
-      marginLeft: 10,
-      marginRight: 16,
-    },
-    icon: {
-      marginLeft: extended ? 16 : 0,
-      marginRight: extended ? 8 : 0,
-    },
-    extended: {
-      height: 56,
-    },
-  })
+const Fab = React.forwardRef<FabNativeRef, FabProps>(
+  (
+    { children, accessibilityLabel, iconName, extended, onClick, top, bottom, left, right, disabled, testId },
+    ref,
+  ): JSX.Element => {
+    const styles = memoStyles({
+      button: {
+        backgroundColor: getColorStyle(TrilogyColor.MAIN),
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 16,
+        minHeight: 56,
+        height: 'auto',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
+        elevation: 3,
+        position: top || bottom || left || right ? 'absolute' : 'relative',
+        top: top ? top : 'auto',
+        right: right ? right : 'auto',
+        left: left ? left : 'auto',
+        bottom: bottom ? bottom : 'auto',
+        width: extended ? 'auto' : 60,
+        flexDirection: 'row',
+        zIndex: 999,
+      },
+      label: {
+        marginTop: 'auto',
+        marginBottom: 'auto',
+        marginLeft: 10,
+        marginRight: 16,
+      },
+      icon: {
+        marginLeft: extended ? 16 : 0,
+        marginRight: extended ? 8 : 0,
+      },
+      extended: {
+        height: 56,
+      },
+    })
 
-  return (
-    <TouchableOpacity
-      ref={ref}
-      style={[styles.button, extended && styles.extended]}
-      accessibilityLabel={accessibilityLabel}
-      onPress={(e?: unknown) => onClick?.(e)}
-      disabled={disabled}
-      testID={testId}
-    >
-      {extended ? (
-        <>
+    return (
+      <TouchableOpacity
+        ref={ref}
+        style={[styles.button, extended && styles.extended]}
+        accessibilityLabel={accessibilityLabel}
+        onPress={(e?: unknown) => onClick?.(e)}
+        disabled={disabled}
+        testID={testId}
+      >
+        {extended ? (
+          <>
+            <Icon
+              name={iconName as IconName}
+              color={IconColor.WHITE}
+              size={IconSize.MEDIUM}
+              align={Alignable.ALIGNED_CENTER}
+            />
+            <Text style={styles.label} typo={[TypographyColor.TEXT_WHITE, TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>
+              {children}
+            </Text>
+          </>
+        ) : (
           <Icon
             name={iconName as IconName}
             color={IconColor.WHITE}
             size={IconSize.MEDIUM}
             align={Alignable.ALIGNED_CENTER}
           />
-          <Text style={styles.label}
-                typo={[TypographyColor.TEXT_WHITE, TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>{children}</Text>
-        </>
-      ) : (
-        <Icon
-          name={iconName as IconName}
-          color={IconColor.WHITE}
-          size={IconSize.MEDIUM}
-          align={Alignable.ALIGNED_CENTER}
-        />
-      )}
-    </TouchableOpacity>
-  )
-})
+        )}
+      </TouchableOpacity>
+    )
+  },
+)
 
 Fab.displayName = ComponentName.Fab
 

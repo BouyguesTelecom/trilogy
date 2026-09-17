@@ -1,8 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
+import { BoxItemNativeRef, BoxItemProps } from '@/components/box/item/BoxItemProps'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { BoxItemNativeRef, BoxItemProps } from './BoxItemProps'
 
 /**
  * Box Item Component
@@ -11,24 +11,26 @@ import { BoxItemNativeRef, BoxItemProps } from './BoxItemProps'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const BoxItem = React.forwardRef<BoxItemNativeRef, BoxItemProps>(({ children, size, testId, ...others }, ref): JSX.Element => {
-  const height = Number(size) || 48
-  const styles = memoStyles({
-    boxItem: {
-      height: height,
-      alignItems: 'center',
-      alignContent: 'center',
-      flexWrap: 'wrap',
-      flex: 1,
-    },
-  })
+const BoxItem = React.forwardRef<BoxItemNativeRef, BoxItemProps>(
+  ({ children, size, testId, ...others }, ref): JSX.Element => {
+    const height = Number(size) || 48
+    const styles = memoStyles({
+      boxItem: {
+        height: height,
+        alignItems: 'center',
+        alignContent: 'center',
+        flexWrap: 'wrap',
+        flex: 1,
+      },
+    })
 
-  return (
-    <View ref={ref} style={[styles.boxItem]} testID={testId} {...others}>
-      {children}
-    </View>
-  )
-})
+    return (
+      <View ref={ref} style={[styles.boxItem]} testID={testId} {...others}>
+        {children}
+      </View>
+    )
+  },
+)
 
 BoxItem.displayName = ComponentName.BoxItem
 

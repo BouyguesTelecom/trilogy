@@ -1,9 +1,12 @@
 import * as React from 'react'
 import { FlatList } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TrilogyColor, getColorStyle } from '@/objects'
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
-import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
+import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getColorStyle } from '@/helpers/color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 /**
  * AutoCompleteMenu Component
@@ -20,7 +23,7 @@ const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteM
       marginBottom: 6,
       backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: 1,
-      borderRadius: 3,
+      borderRadius: getRadiusStyle(Radius.SMALLER),
       borderColor: getColorStyle(TrilogyColor.STROKE),
       width: '100%',
       maxHeight: 165,

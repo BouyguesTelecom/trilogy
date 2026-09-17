@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import * as React from 'react'
 import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
-import { Item } from '../AutoCompleteProps'
-import { AutoCompleteItemProps } from './AutoCompleteItemProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/helpers/classify'
+import { Item } from '@/components/autocomplete/AutoCompleteProps'
+import { AutoCompleteItemProps } from '@/components/autocomplete/item/AutoCompleteItemProps'
 
 /**
  * AutoCompleteItem Component

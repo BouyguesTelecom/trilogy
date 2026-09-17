@@ -1,11 +1,11 @@
 import { Icon, IconSize } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { has, is } from '@/services/classify'
+import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { LinkProps, LinkRef } from './LinkProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { LinkProps, LinkRef } from '@/components/link/LinkProps'
 
 /**
  * Link Component
@@ -48,7 +48,10 @@ const Link = React.forwardRef<LinkRef, LinkProps>(
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
 
-    const classes = hashClass(styled, clsx('link', iconName && has('icon'), inverted && is('inverted'), small && is('small'), className))
+    const classes = hashClass(
+      styled,
+      clsx('link', iconName && has('icon'), inverted && is('inverted'), small && is('small'), className),
+    )
 
     if (routerLink && to) {
       const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType

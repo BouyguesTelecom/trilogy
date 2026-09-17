@@ -75,7 +75,7 @@ $dropdown-item-padding-horizontal: 16px;
 
   &::-webkit-scrollbar-thumb {
     background: getColor('main-fade');
-    border-radius: 3px;
+    border-radius: var(--radius-smaller);
   }
 }
 
