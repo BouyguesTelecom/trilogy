@@ -5,16 +5,17 @@ import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import React, { useContext, useState } from 'react'
-import { StyleSheet, TouchableOpacity, View as ViewRN } from 'react-native'
+import { TouchableOpacity, View as ViewRN } from 'react-native'
 import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { VariantState } from "@/interfaces/Variant";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { VariantState } from '@/interfaces/Variant'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * CheckboxTile
@@ -60,7 +61,12 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
+      container: {
+        flexDirection: 'row',
+        paddingBottom: 5,
+        justifyContent: 'flex-start',
+      },
       checkBox: {
         alignItems: 'center',
         justifyContent: 'center',

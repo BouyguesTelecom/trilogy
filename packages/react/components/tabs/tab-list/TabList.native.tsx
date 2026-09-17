@@ -5,16 +5,16 @@ import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListNativeRef, TabListProps } from '@/components/tabs/tab-list/TabListProps'
 import { getColorStyle } from '@/helpers/color'
 import React from 'react'
+import { TrilogyColor } from '@/interfaces/Color'
 import {
   LayoutChangeEvent,
   LayoutRectangle,
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
-  StyleSheet,
   View,
 } from 'react-native'
-import { TrilogyColor } from '@/interfaces/Color'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Tabs Nav Component
@@ -35,7 +35,7 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
 
   React.useImperativeHandle(ref, () => TabListRef.current as ScrollView)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     tabList: {
       flexDirection: 'row',
       backgroundColor: getColorStyle(inverted ? TrilogyColor.MAIN : 'transparent'),

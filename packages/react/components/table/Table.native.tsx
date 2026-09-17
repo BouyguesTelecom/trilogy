@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
 import { getColorStyle } from '@/helpers/color'
 import { TableBorderEnum, TableNativeRef, TableProps } from '@/components/table/TableProps'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TrilogyColor } from '@/interfaces/Color'
 
@@ -13,7 +14,7 @@ import { TrilogyColor } from '@/interfaces/Color'
 const Table = React.forwardRef<TableNativeRef, TableProps>(({ children, border, ...others }, ref): JSX.Element => {
   const borderColor = getColorStyle(TrilogyColor.STROKE_FADE)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     table: {
       width: '100%',
       backgroundColor: 'transparent',

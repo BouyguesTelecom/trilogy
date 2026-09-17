@@ -1,10 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid, isIOS } from '@/helpers/device.native'
 import * as React from 'react'
-import { RefreshControl, ScrollView as ScrollViewNative, StyleSheet, View } from 'react-native'
 import { ScrollViewNativeRef, ScrollViewProps } from '@/components/scroll-view/ScrollViewProps'
-import { getColorStyle } from "@/helpers/color";
-import { ScrollDirectionEnum } from "@/interfaces/ScrollDirection";
+import { getColorStyle } from '@/helpers/color'
+import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
+import { RefreshControl, ScrollView as ScrollViewNative, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * ScrollView Component
@@ -45,7 +46,7 @@ const ScrollView = React.forwardRef<ScrollViewNativeRef, ScrollViewProps>(
       wait(2000).then(() => setRefreshing(false))
     }, [])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       stickyContent: {
         flexGrow: 1,
         justifyContent: 'space-between',

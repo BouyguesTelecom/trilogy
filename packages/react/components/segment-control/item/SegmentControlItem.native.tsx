@@ -1,11 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { SegmentControlItemNativeRef, SegmentControlItemProps } from '@/components/segment-control/item/SegmentControlItemProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import {
+  SegmentControlItemNativeRef,
+  SegmentControlItemProps,
+} from '@/components/segment-control/item/SegmentControlItemProps'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { Text, TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * SegmentControlItem Item Component
@@ -20,7 +24,7 @@ const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, Segment
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       tabsItem: {
         flexDirection: 'column',
         flex: 1,

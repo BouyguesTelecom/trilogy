@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
 import { TagListNativeRef, TagListProps } from '@/components/tag/list/TagListProps'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -9,7 +10,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param id {string} Custom id attribute
  */
 const TagList = React.forwardRef<TagListNativeRef, TagListProps>(({ children, ...others }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     tagList: {
       width: '100%',
       flexDirection: 'row',

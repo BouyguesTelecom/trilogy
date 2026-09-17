@@ -5,13 +5,14 @@ import { Image } from '@/components/image'
 import { SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
 import { PromptFileNativeRef, PromptFileProps } from '@/components/prompt/files/file/PromptFileProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { Radius } from '@/interfaces/Radius'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 const HEIGHT_ITEM = 64
 const HEIGHT_IMG_FILE = 40
@@ -22,7 +23,7 @@ const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onD
   const borderSmallRadius = getRadiusStyle(Radius.SMALL)
   const borderFullRadius = getRadiusStyle(Radius.FULL)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     cardImg: {
       backgroundColor: getColorStyle(TrilogyColor.MAIN_FADE),
       borderRadius: borderSmallRadius,

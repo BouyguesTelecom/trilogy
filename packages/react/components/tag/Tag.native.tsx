@@ -1,13 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconSize } from '@/components/icon'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { TagNativeRef, TagProps } from '@/components/tag/TagProps'
 import { getRadiusStyle } from '@/helpers/radius'
 import { getColorStyle } from '@/helpers/color'
 import { getStatusStyle } from '@/helpers/status'
 import { TrilogyColor } from '@/interfaces/Color'
 import { Radius } from '@/interfaces/Radius'
+import { Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Tag Component
@@ -26,7 +27,7 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(
     const neutralBackgroundColor = getColorStyle(TrilogyColor.NEUTRAL_FADE)
     const borderFullRadius = getRadiusStyle(Radius.FULL)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       tag: {
         flexDirection: 'row',
         justifyContent: 'center',

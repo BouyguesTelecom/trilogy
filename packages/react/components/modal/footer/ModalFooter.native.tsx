@@ -2,11 +2,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
 import { isIOS } from '@/helpers/device.native'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { ModalContext } from '@/components/modal/context'
-import { ModalFooterProps, ModalFooterNativeRef } from '@/components/modal/footer/ModalFooterProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { ModalContext } from '../context'
+import { ModalFooterProps, ModalFooterNativeRef } from './ModalFooterProps'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * Modal Footer Component
@@ -17,6 +19,8 @@ import { TrilogyColor } from "@/interfaces/Color";
 const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
     const { setIsFooter } = React.useContext(ModalContext)
+    const insets = useSafeAreaInsets()
+    const bottomPadding = isIOS ? Math.max(40, insets.bottom) : 18
 
     React.useEffect(() => {
       setIsFooter(true)
@@ -27,7 +31,7 @@ const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(
     }, [])
 
     return (
-      <View ref={ref} style={[styles.container]} testID={testId} {...others}>
+      <View ref={ref} style={[styles.container, { paddingBottom: bottomPadding }]} testID={testId} {...others}>
         <View style={[{ backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }]}>
           {(typeof children === 'string' && (
             <Title level={TitleLevels.THREE} style={styles.title}>
@@ -45,7 +49,7 @@ ModalFooter.displayName = ComponentName.ModalFooter
 
 export default ModalFooter
 
-const styles = StyleSheet.create({
+const styles = memoStyles({
   container: {
     paddingBottom: isIOS ? 40 : 18,
     paddingTop: 16,

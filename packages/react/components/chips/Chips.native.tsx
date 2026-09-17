@@ -2,14 +2,15 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import React, { useContext, useEffect, useState } from 'react'
-import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ChipsNativeRef, ChipsProps } from '@/components/chips/ChipsProps'
 import { ChipsContext } from '@/components/chips/list/ChipsList.native'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { GestureResponderEvent, TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -30,7 +31,7 @@ const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
       setActiveItem(active || false)
     }, [active])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       chips: {
         backgroundColor:
           (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||

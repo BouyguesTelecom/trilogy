@@ -1,11 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import React, { useContext } from 'react'
-import { StyleSheet } from 'react-native'
 import { PromptContext } from '@/components/prompt/context'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
-import { PromptMicrophoneNativeRef, PromptMicrophoneProps } from '@/components/prompt/toolbar/microphone/PromptMicrophoneProps'
-import { TrilogyColor } from "@/interfaces/Color";
+import {
+  PromptMicrophoneNativeRef,
+  PromptMicrophoneProps,
+} from '@/components/prompt/toolbar/microphone/PromptMicrophoneProps'
+import { TrilogyColor } from '@/interfaces/Color'
+import {} from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * PromptMicrophone component - Voice recording button for prompt input
@@ -19,7 +23,7 @@ const PromptMicrophone = React.forwardRef<PromptMicrophoneNativeRef, PromptMicro
     const { isTyping, setIsSpeech, isDisabled } = useContext(PromptContext)
     const isDisable = isDisabled || disabled
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       icon: {
         flexDirection: 'row',
         justifyContent: 'center',

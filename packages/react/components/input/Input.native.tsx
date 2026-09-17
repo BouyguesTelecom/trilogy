@@ -3,16 +3,16 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
 import React, { useCallback, useEffect, useState } from 'react'
+import { Spacer, SpacerSize } from '@/components/spacer'
 import {
   Keyboard,
   NativeSyntheticEvent,
-  StyleSheet,
   TextInput,
   TextInputSubmitEditingEventData,
   TouchableOpacity,
   View,
 } from 'react-native'
-import { Spacer, SpacerSize } from '@/components/spacer'
+import { memoStyles } from '@/helpers/memoStyles'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
@@ -23,13 +23,13 @@ import {
 } from '@/components/input/InputEnum'
 import { InputNativeEvents, InputNativeRef, InputProps } from '@/components/input/InputProps'
 import InputGauge from '@/components/input/gauge/InputGauge.native'
-import { TypographyColor } from "@/interfaces/TypographyColor";
-import { Align } from "@/interfaces/Alignable";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { StatusState } from "@/interfaces/Status";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { TypographyColor } from '@/interfaces/TypographyColor'
+import { Align } from '@/interfaces/Alignable'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { StatusState } from '@/interfaces/Status'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
@@ -169,7 +169,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
 
     const hasIcon = iconNameLeft || iconNameRight || false
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       input: {
         paddingLeft:
           (((iconNameLeft && isFocused) || (type === InputType.SEARCH && isFocused)) && 39) ||

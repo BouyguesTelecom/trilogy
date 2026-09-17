@@ -2,9 +2,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import { getAlignStyle } from '@/helpers/alignable'
 import React, { ReactNode, RefObject, useCallback, useMemo } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
 import { CheckboxTilesNativeRef, CheckboxTilesProps } from '@/components/checkbox/tiles/CheckboxTilesProps'
 import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
+import { FlatList, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * CheckboxTiles
@@ -27,7 +28,7 @@ const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProp
       return numberCols.mobile || numberCols.tablet
     }, [numberCols])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flexDirection: 'row',
         flexWrap: 'wrap',

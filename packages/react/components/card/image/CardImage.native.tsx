@@ -1,8 +1,9 @@
 import { CardContext } from '@/components/card/Card.native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import React, { useContext, useEffect, useState } from 'react'
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { CardImageNativeRef, CardImageProps } from '@/components/card/image/CardImageProps'
+import { Image, TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Card Image Component
@@ -20,11 +21,10 @@ const CardImage = React.forwardRef<CardImageNativeRef, CardImageProps>(
     const maxSize = horizontal ? '50%' : '100%'
     const [ratio, setRatio] = useState(1)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       cardImage: {
         width: size ? `${size}0%` : maxSize,
         aspectRatio: horizontal ? undefined : ratio,
-        resizeMode: contain ? 'contain' : 'cover',
         alignSelf: contain ? 'flex-end' : 'auto',
         marginBottom: 0,
         height: horizontal ? 'auto' : undefined,
@@ -48,6 +48,7 @@ const CardImage = React.forwardRef<CardImageNativeRef, CardImageProps>(
     const image = (
       <Image
         ref={ref}
+        resizeMode={contain ? 'contain' : 'cover'}
         accessibilityLabel={alt}
         style={styles.cardImage}
         source={typeof src === 'number' ? src : { uri: src }}

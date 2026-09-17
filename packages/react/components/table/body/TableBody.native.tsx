@@ -1,28 +1,25 @@
-import * as React from "react"
-import { StyleSheet, Text, View } from "react-native"
-import { TableBodyNativeRef, TableBodyProps } from "@/components/table/body/TableBodyProps"
-import { ComponentName } from "@/components/enumsComponentsName"
+import * as React from 'react'
+import { TableBodyNativeRef, TableBodyProps } from '@/components/table/body/TableBodyProps'
+import { Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * TableBody Component
  * @param children {ReactNode} Children of Table Body
  */
 const TableBody = React.forwardRef<TableBodyNativeRef, TableBodyProps>(({ children, ...others }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     body: {
-      display: "flex",
-      flexDirection: "column",
+      display: 'flex',
+      flexDirection: 'column',
       flex: 1,
     },
   })
 
   return (
     <View ref={ref} style={styles.body} {...others}>
-      {children && typeof children.valueOf() === "string" ? (
-        <Text>{String(children)}</Text>
-      ) : (
-        children
-      )}
+      {children && typeof children.valueOf() === 'string' ? <Text>{String(children)}</Text> : children}
     </View>
   )
 })

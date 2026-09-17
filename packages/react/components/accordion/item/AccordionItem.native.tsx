@@ -5,10 +5,11 @@ import { Spacer, SpacerSize } from '@/components/spacer'
 import React, { isValidElement, useEffect, useRef, useState } from 'react'
 import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { memoStyles } from '@/helpers/memoStyles'
 
 interface AccordionChild {
   header?: React.ReactNode
@@ -35,7 +36,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
       body: undefined,
     })
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       item: {
         width: '100%',
         padding: 5,
@@ -144,7 +145,6 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
           <TouchableWithoutFeedback
             style={styles.item}
             testID={id || testId || ''}
-
             onPress={(e: any) => {
               if (!disabled) {
                 toggleListItem()
@@ -167,7 +167,6 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
           <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
             <View
               style={styles.bodyContainer}
-
               onLayout={(e: any) => {
                 setBodySectionHeight(e.nativeEvent.layout.height)
               }}

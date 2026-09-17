@@ -5,9 +5,9 @@ import { SpacerSize } from '@/components/spacer'
 import { Text } from '@/components/text'
 import * as React from 'react'
 import type { CheckboxListNativeRef, CheckboxListProps } from '@/components/checkbox/list/CheckboxListProps'
-import { StyleSheet } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { isRequiredChild } from '@/helpers/require'
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
@@ -25,7 +25,7 @@ const SPACING_MATRIX: SpacingMatrix = [
  */
 const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(
   ({ children, label }, ref): JSX.Element => {
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       label: {
         marginBottom: 8,
       },

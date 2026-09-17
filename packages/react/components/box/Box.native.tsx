@@ -5,10 +5,11 @@ import { StatesContext } from '@/context/providerStates'
 import React, { useState } from 'react'
 import { ImageBackground, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from '@/components/skeleton'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Box Component
@@ -55,7 +56,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       box: {
         width: '100%',
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
@@ -131,7 +132,6 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
           <TouchableOpacity
             ref={ref as React.Ref<TouchableOpacity>}
             onPress={(e?: unknown) => onClick?.(e)}
-
             style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
             onLayout={(event) => {
               const { height } = event.nativeEvent.layout
@@ -173,7 +173,6 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
             const { height } = event.nativeEvent.layout
             setBoxHeight(height)
           }}
-
           style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
           testID={boxTestId}
         >

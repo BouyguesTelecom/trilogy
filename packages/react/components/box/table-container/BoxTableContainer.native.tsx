@@ -1,7 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { BoxTableContainerNativeRef, BoxTableContainerProps } from '@/components/box/table-container/BoxTableContainerProps'
+import {
+  BoxTableContainerNativeRef,
+  BoxTableContainerProps,
+} from '@/components/box/table-container/BoxTableContainerProps'
+import { View } from 'react-native'
 
 /**
  * Box Table Component

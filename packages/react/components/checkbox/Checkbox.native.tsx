@@ -3,12 +3,13 @@ import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Text } from '@/components/text'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
 import { CheckboxNativeRef, CheckboxProps } from '@/components/checkbox/CheckboxProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Checkbox Component
@@ -30,7 +31,7 @@ const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
       setChecked(checked || false)
     }, [checked])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flexDirection: 'row',
         justifyContent: 'flex-start',

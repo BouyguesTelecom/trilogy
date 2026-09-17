@@ -1,16 +1,17 @@
-import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { TableTdNativeRef, TableTdProps } from '@/components/table/td/TableTdProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
+import * as React from 'react'
+import { Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Table TD Component
  * @param children {ReactNode} Table TD children
  */
 const TableTd = React.forwardRef<TableTdNativeRef, TableTdProps>(({ children, ...others }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     table: {
       flexDirection: 'column',
       flex: 1,

@@ -5,16 +5,17 @@ import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { RadioTilesContext } from '@/components/radio/tiles/context'
-import { VariantState } from "@/interfaces/Variant";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { TypographyColor } from "@/interfaces/TypographyColor";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { VariantState } from '@/interfaces/Variant'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyColor } from '@/interfaces/TypographyColor'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * radioTile Component
@@ -56,7 +57,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
     const [stickerHeight, setStickerHeight] = useState<number>(0)
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         flex: isGrid ? 1 : undefined,
         flexDirection: horizontal ? 'row' : 'column',
@@ -150,7 +151,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
 const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boolean }): JSX.Element => {
   const borderFullRadius = getRadiusStyle(Radius.FULL)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     input: {
       marginRight: 'auto',
       width: 18,

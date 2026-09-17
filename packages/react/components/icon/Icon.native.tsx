@@ -6,11 +6,17 @@ import { TrilogyThemeContext } from '@/context/providerTheme.native'
 import { isIOS } from '@/helpers/device.native'
 import { getAlignStyle } from '@/helpers/alignable'
 import React, { useContext } from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { WithLocalSvg } from 'react-native-svg/css'
 import { Skeleton } from '@/components/skeleton'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
+
+const resolveSvg = (mod: unknown): React.ComponentType<Record<string, unknown>> => {
+  const asModule = mod as { __esModule?: boolean; default?: React.ComponentType<Record<string, unknown>> }
+  return (asModule && asModule.__esModule ? asModule.default : mod) as React.ComponentType<Record<string, unknown>>
+}
 
 /**
  * Icon Component
@@ -69,7 +75,7 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
       (size === IconSize.SMALLER && 38) ||
       32
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       rootView: {
         alignSelf: getAlignStyle(align),
       },
@@ -130,42 +136,38 @@ const Icon = React.forwardRef<IconNativeRef, IconProps>(
     let iconView: JSX.Element = <View></View>
 
     if (name && icons) {
-      if (stretched && !circled) {
-        iconView = (
-          <View style={styles.stretched} testID={`${testId}-stretched`}>
-            <WithLocalSvg
-              style={[styles.iconCircled, styles.icon]}
-              asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}
-              width={defaultSize}
-              height={defaultSize}
-              color={getColorStyle(TrilogyColor.BACKGROUND)}
-            />
-          </View>
-        )
-      } else if (circled) {
-        iconView = (
-          <View style={styles.circled} testID={`${testId}-circled`}>
-            <WithLocalSvg
-              style={[styles.iconCircled, styles.icon]}
-              asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}
-              width={defaultSize}
-              height={defaultSize}
-              color={iconColor}
-            />
-          </View>
-        )
-      } else {
-        iconView = (
-          <View style={styles.iconContainer} {...others}>
-            <WithLocalSvg
-              style={[styles.icon, style]}
-              asset={icons[name.toString().replace('tri-picto-', '').replace('tri-', '')]}
-              width={defaultSize}
-              height={defaultSize}
-              color={iconColor}
-            />
-          </View>
-        )
+      const iconKey = name.toString().replace('tri-picto-', '').replace('tri-', '')
+      const SvgComponent = resolveSvg(icons[iconKey])
+      if (SvgComponent) {
+        if (stretched && !circled) {
+          iconView = (
+            <View style={styles.stretched} testID={`${testId}-stretched`}>
+              <SvgComponent
+                style={[styles.iconCircled, styles.icon]}
+                width={defaultSize}
+                height={defaultSize}
+                color={getColorStyle(TrilogyColor.BACKGROUND)}
+              />
+            </View>
+          )
+        } else if (circled) {
+          iconView = (
+            <View style={styles.circled} testID={`${testId}-circled`}>
+              <SvgComponent
+                style={[styles.iconCircled, styles.icon]}
+                width={defaultSize}
+                height={defaultSize}
+                color={iconColor}
+              />
+            </View>
+          )
+        } else {
+          iconView = (
+            <View style={styles.iconContainer} {...others}>
+              <SvgComponent style={[styles.icon, style]} width={defaultSize} height={defaultSize} color={iconColor} />
+            </View>
+          )
+        }
       }
     }
 

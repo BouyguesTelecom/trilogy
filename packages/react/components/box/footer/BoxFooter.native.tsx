@@ -1,11 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { BoxFooterNativeRef, BoxFooterProps } from '@/components/box/footer/BoxFooterProps'
-import { getColorStyle } from "@/helpers/color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Box Footer Component
@@ -19,7 +20,7 @@ const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
     const { highlighted } = React.useContext(BoxContext)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       boxFooter: {
         padding: 12,
         justifyContent: 'center',

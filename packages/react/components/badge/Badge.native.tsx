@@ -3,12 +3,13 @@ import { BadgeNativeRef, BadgeProps } from '@/components/badge/BadgeProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { StatusState } from "@/interfaces/Status";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { Text, TouchableOpacity, View } from 'react-native'
+import { StatusState } from '@/interfaces/Status'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Badge Component
@@ -27,7 +28,10 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
     const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
+      container: {
+        flexDirection: 'row',
+      },
       badge: {
         alignSelf: 'baseline',
         minWidth: label ? 20 : 10,

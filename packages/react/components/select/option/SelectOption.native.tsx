@@ -3,12 +3,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import * as React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
 import { SelectOptionNativeRef, SelectOptionProps } from '@/components/select/option/SelectOptionProps'
 import { getColorStyle } from '@/helpers/color'
 import { Alignable } from '@/interfaces/Alignable'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import { TrilogyColor } from '@/interfaces/Color'
+import { TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Select Option Component
@@ -20,7 +21,7 @@ const SelectOption = React.forwardRef<SelectOptionNativeRef, SelectOptionProps>(
   ({ disabled, children, onClick, label, iconName, ...others }, ref): JSX.Element => {
     const { checked } = others as { checked: string }
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
         width: '100%',

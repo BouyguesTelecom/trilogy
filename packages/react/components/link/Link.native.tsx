@@ -1,10 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import * as React from 'react'
-import { Linking, StyleSheet, Text, View } from 'react-native'
 import { LinkNativeRef, LinkPropsNative } from '@/components/link/LinkProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
+import { Linking, Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Link Component
@@ -20,7 +21,7 @@ const Link = React.forwardRef<LinkNativeRef, LinkPropsNative>(
   ({ children, to, onClick, testId, accessibilityLabel, iconName, inverted, ...others }, ref): JSX.Element => {
     const [pressedLink, setPressedLink] = React.useState(false)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       link: {
         color: getColorStyle(
           (pressedLink && TrilogyColor.MAIN_FADE) || (inverted && TrilogyColor.BACKGROUND) || TrilogyColor.MAIN,

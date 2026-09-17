@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { RowNativeRef, RowProps } from '@/components/rows/row/RowProps'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
+import { RowNativeRef, RowProps } from './RowProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -9,7 +10,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {React.ReactNode}
  */
 const Row = React.forwardRef<RowNativeRef, RowProps>(({ children, narrow, ...others }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     row: {
       flexGrow: (narrow && 0) || 1,
       flexShrink: 1,

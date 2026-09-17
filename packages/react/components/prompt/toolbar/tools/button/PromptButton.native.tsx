@@ -1,12 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptContext } from '@/components/prompt/context'
 import React, { useContext } from 'react'
-import { Pressable, StyleSheet } from 'react-native'
 import { PromptButtonNativeRef, PromptButtonProps } from '@/components/prompt/toolbar/tools/button/PromptButtonProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { Pressable } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
   ({ disabled, active, onClick, rounded, readOnly, ...others }, ref) => {
@@ -14,7 +15,7 @@ const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
     const isDisable = isDisabled || disabled
     const isReadOnly = isReadonly || readOnly
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       button: {
         height: 36,
         minWidth: 36,

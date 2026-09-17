@@ -4,12 +4,13 @@ import { ListContext } from '@/components/list/context'
 import { ListItemNativeRef, ListItemProps } from '@/components/list/item/ListItemProps'
 import { Text, TextLevels } from '@/components/text'
 import React, { useContext, useEffect, useId, useMemo } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * ListItem Component
@@ -29,7 +30,7 @@ const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
       setChildIndexes((prev) => [...prev, id])
     }, [id])
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       text: {
         paddingHorizontal: 16,
       },

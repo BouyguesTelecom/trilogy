@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { PopoverNativeRef, PopoverProps } from '@/components/popover/PopoverProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { StyleSheet, View } from 'react-native'
 import { PopoverDirection } from '@/components/popover/PopoverEnum'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Popover Component
@@ -19,7 +20,7 @@ const Popover = React.forwardRef<PopoverNativeRef, PopoverProps>(
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
     const borderMediumRadius = getRadiusStyle(Radius.MEDIUM)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         alignItems: 'center',
       },
@@ -27,7 +28,7 @@ const Popover = React.forwardRef<PopoverNativeRef, PopoverProps>(
         minWidth: 50,
         minHeight: 30,
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
-        borderRadius: borderSmallRadius,
+        borderRadius: 6,
         justifyContent: 'center',
         padding: 5,
       },
@@ -37,34 +38,34 @@ const Popover = React.forwardRef<PopoverNativeRef, PopoverProps>(
       },
       arrowBottom: {
         borderTopColor: getColorStyle(TrilogyColor.MAIN),
-        borderTopWidth: borderMediumRadius,
-        borderLeftWidth: borderMediumRadius,
-        borderRightWidth: borderMediumRadius,
+        borderTopWidth: 10,
+        borderLeftWidth: 10,
+        borderRightWidth: 10,
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
       },
       arrowTop: {
         borderBottomColor: getColorStyle(TrilogyColor.MAIN),
-        borderBottomWidth: borderMediumRadius,
-        borderLeftWidth: borderMediumRadius,
-        borderRightWidth: borderMediumRadius,
+        borderBottomWidth: 10,
+        borderLeftWidth: 10,
+        borderRightWidth: 10,
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
       },
       arrowLeft: {
-        borderTopWidth: borderMediumRadius,
-        borderBottomWidth: borderMediumRadius,
+        borderTopWidth: 8,
+        borderBottomWidth: 8,
         borderLeftWidth: 0,
-        borderRightWidth: borderMediumRadius,
+        borderRightWidth: 8,
         borderTopColor: 'transparent',
         borderBottomColor: 'transparent',
         borderLeftColor: 'transparent',
         borderRightColor: getColorStyle(TrilogyColor.MAIN),
       },
       arrowRight: {
-        borderTopWidth: borderMediumRadius,
-        borderBottomWidth: borderMediumRadius,
-        borderLeftWidth: borderMediumRadius,
+        borderTopWidth: 8,
+        borderBottomWidth: 8,
+        borderLeftWidth: 8,
         borderRightWidth: 0,
         borderTopColor: 'transparent',
         borderBottomColor: 'transparent',

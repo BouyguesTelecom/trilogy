@@ -9,7 +9,6 @@ import {
 import { getColorStyle } from '@/helpers/color'
 import { getRadiusStyle } from '@/helpers/radius'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { SpacerSize } from '@/components/spacer'
 import { Text as TrilogyText } from '@/components/text'
 import { TextLevels } from '@/components/text/TextEnum'
@@ -18,6 +17,8 @@ import { TypographyColor } from '@/interfaces/TypographyColor'
 import { TrilogyColor } from '@/interfaces/Color'
 import { StatusState } from '@/interfaces/Status'
 import { Radius } from '@/interfaces/Radius'
+import { Text, TextInput, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Textarea Component
@@ -92,7 +93,7 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
     const placeholderTextColor = getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.FONT_PLACEHOLDER)
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       textarea: {
         borderWidth: isFocus ? 2 : 1,
         borderRadius: borderSmallerRadius,

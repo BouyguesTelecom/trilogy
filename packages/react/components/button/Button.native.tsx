@@ -2,7 +2,6 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { View } from '@/components/view'
 import * as React from 'react'
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { ButtonVariant } from '@/components/button/ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from '@/components/button/ButtonProps'
 import { getButtonColorStyle, getColorStyle } from '@/helpers/color'
@@ -13,6 +12,8 @@ import { getVariantClassName } from '@/helpers/variant'
 import { TrilogyColor } from '@/interfaces/Color'
 import { Radius } from '@/interfaces/Radius'
 import { TypographyBold } from '@/interfaces/TypographyBold'
+import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Button Component
@@ -62,7 +63,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         ? TrilogyColor.INFO_FADE
         : TrilogyColor.BACKGROUND
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       button: {
         maxWidth: '100%',
         minWidth: '100%',

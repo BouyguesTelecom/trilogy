@@ -2,17 +2,21 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { PromptContext } from '@/components/prompt/context'
 import React, { useContext } from 'react'
-import { StyleSheet } from 'react-native'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
-import { PromptInputFileNativeRef, PromptInputFileProps } from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
-import { TrilogyColor } from "@/interfaces/Color";
+import {
+  PromptInputFileNativeRef,
+  PromptInputFileProps,
+} from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
+import { TrilogyColor } from '@/interfaces/Color'
+import {} from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 const PromptInputFile = React.forwardRef<PromptInputFileNativeRef, PromptInputFileProps>(
   ({ onChange, disabled, readOnly, ...others }, ref) => {
     const { isDisabled } = useContext(PromptContext)
     const isDisable = isDisabled || disabled
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       icon: {
         flexDirection: 'row',
         justifyContent: 'center',

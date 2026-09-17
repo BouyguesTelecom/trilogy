@@ -2,12 +2,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor } from '@/components/icon'
 import { Text } from '@/components/text'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
 import { DividerNativeRef, DividerProps } from '@/components/divider/DividerProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Divider Component
@@ -25,7 +26,7 @@ const Divider = React.forwardRef<DividerNativeRef, DividerProps>(
     const dividerColor = getColorStyle(TrilogyColor.NEUTRAL)
     const borderFullRadius = getRadiusStyle(Radius.FULL)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       divider: {
         marginBottom: 16,
         marginTop: 16,

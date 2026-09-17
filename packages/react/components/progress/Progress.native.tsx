@@ -2,13 +2,14 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import React, { useEffect, useRef } from 'react'
-import { Animated, StyleSheet } from 'react-native'
 import { ProgressNativeRef, ProgressProps } from '@/components/progress/ProgressProps'
-import { getColorStyle } from "@/helpers/color";
-import { getStatusStyle } from "@/helpers/status";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getColorStyle } from '@/helpers/color'
+import { getStatusStyle } from '@/helpers/status'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { Animated } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Progress Component
@@ -49,7 +50,7 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
       extrapolate: 'clamp',
     })
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       progress: {
         flexDirection: 'row',
         width: '100%',
@@ -91,7 +92,6 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
         <View style={styles.progress} {...others}>
           {Array.isArray(children) &&
             children.map(
-
               (child: any, index: number) =>
                 (child &&
                   child.type.render.displayName === 'ProgressItem' &&

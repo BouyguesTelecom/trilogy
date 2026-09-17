@@ -6,6 +6,7 @@ import { ModalContext } from '@/components/modal/context/ModalContext'
 import { ModalBodyNativeRef, ModalBodyProps } from '@/components/modal/body/ModalBodyProps'
 import { getColorStyle } from "@/helpers/color";
 import { TrilogyColor } from "@/interfaces/Color";
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 /**
  * Modal Body Component
@@ -13,16 +14,30 @@ import { TrilogyColor } from "@/interfaces/Color";
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const ModalBody = React.forwardRef<ModalBodyNativeRef, ModalBodyProps>(
-  ({ children, testId, ...others }, ref): JSX.Element => {
-    const { handleOnScroll, scrollViewRef, isFooter } = React.useContext(ModalContext)
+const ModalBody = React.forwardRef<ModalBodyNativeRef, ModalBodyProps>(({ children, testId, ...others }, ref): JSX.Element => {
+  const { handleOnScroll, scrollViewRef, isFooter } = React.useContext(ModalContext)
+  const insets = useSafeAreaInsets()
+  const defaultBottom = isIOS ? 40 : 16
+  const bottomPadding = isFooter ? 8 : isIOS ? Math.max(defaultBottom, insets.bottom) : defaultBottom
 
-    return (
-      <ScrollView
-        ref={scrollViewRef}
-        scrollEventThrottle={16}
-        onScroll={handleOnScroll}
-        showsVerticalScrollIndicator={false}
+  return (
+    <ScrollView
+      ref={scrollViewRef}
+      scrollEventThrottle={16}
+      onScroll={handleOnScroll}
+      showsVerticalScrollIndicator={false}
+    >
+      <View
+        ref={ref}
+        style={[
+          {
+            backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+            paddingTop: 8,
+            paddingBottom: bottomPadding,
+          },
+        ]}
+        testID={testId}
+        {...others}
       >
         <View
           ref={ref}

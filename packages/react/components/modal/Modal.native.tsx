@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -137,7 +138,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
     }))
 
     const backdropAnimatedStyle = useAnimatedStyle(() => ({
-      backgroundColor: `rgba(0, 0, 0, ${backdropOpacity.value})`,
+      backgroundColor: `rgba(0, 0, 0, ${Math.max(0, Math.min(1, backdropOpacity.value)).toFixed(3)})`,
     }))
 
     const { bottom: bottomInset } = useSafeAreaInsets()
@@ -205,7 +206,7 @@ Modal.displayName = ComponentName.Modal
 
 export default Modal
 
-const styles = StyleSheet.create({
+const styles = memoStyles({
   overlay: {
     flex: 1,
     justifyContent: 'flex-end',

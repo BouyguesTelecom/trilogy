@@ -1,9 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { Image as ImageNative, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { ImageCache, ImageNativeRef, ImageProps } from '@/components/image/ImageProps'
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { Image as ImageNative, TouchableOpacity, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Image Component
@@ -21,13 +22,12 @@ const Image = React.forwardRef<ImageNativeRef, ImageProps>(
   ({ src, alt = '', circled, width, height, onClick, cache, testId, ...others }, ref): JSX.Element => {
     const borderFullRadius = getRadiusStyle(Radius.FULL)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       image: {
         width: width ? width : '100%',
         height: height ? height : '100%',
         borderRadius: circled ? borderFullRadius : 0,
         overflow: circled ? 'hidden' : 'visible',
-        resizeMode: circled ? undefined : 'contain',
       },
     })
 
@@ -60,6 +60,7 @@ const Image = React.forwardRef<ImageNativeRef, ImageProps>(
       <ImageNative
         testID={testId}
         ref={ref}
+        resizeMode={circled ? undefined : 'contain'}
         style={styles.image}
         accessibilityLabel={alt}
         source={imageSource}

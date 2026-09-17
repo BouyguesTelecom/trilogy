@@ -18,7 +18,7 @@ const Column = React.memo(
       const { width, realGap, scrollable, childrensLength } = React.useContext(ColumnsContext)
 
       const calculatedWidth = React.useMemo(
-        () => (size ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : null),
+        () => (size && width > 0 ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : null),
         [size, width, realGap, childrensLength],
       )
 
@@ -34,7 +34,7 @@ const Column = React.memo(
           flex: narrow ? 0 : 1,
           flexGrow: size || narrow ? 0 : 1,
           flexShrink: narrow ? 1 : 0,
-          flexBasis: calculatedWidth || 'auto',
+          flexBasis: calculatedWidth || (size ? `${(size / 12) * 100}%` : 'auto'),
         }),
         [narrow, size, calculatedWidth],
       )

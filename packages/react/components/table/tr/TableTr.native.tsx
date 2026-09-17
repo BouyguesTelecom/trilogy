@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
 import { TableTrNativeRef, TableTrPropsNative } from '@/components/table/tr/TableTrProps'
+import { TouchableOpacity } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { View } from '@/components/view'
 import { Text, TextLevels } from '@/components/text'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -17,7 +18,7 @@ const TableTr = React.forwardRef<TableTrNativeRef, TableTrPropsNative>(
   ({ children, expandable, expanded, ...others }, ref): JSX.Element => {
     const [isExpanded, setIsExpended] = useState<boolean>(false)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       tableTr: {
         flexDirection: 'row',
         flex: 1,

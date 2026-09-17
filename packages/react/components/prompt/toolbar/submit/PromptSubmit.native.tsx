@@ -1,14 +1,19 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
 import { PromptContext } from '@/components/prompt/context'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
-import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import {
+  PromptSubmitNativeRef,
+  PromptSubmitProps,
+  PromptSubmitStatus,
+} from '@/components/prompt/toolbar/submit/PromptSubmitProps'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * PromptSubmit component - Submit button for prompt with streaming support
@@ -42,7 +47,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
       [statusSubmit, text, files],
     )
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       icon: {
         flexDirection: 'row',
         justifyContent: 'center',

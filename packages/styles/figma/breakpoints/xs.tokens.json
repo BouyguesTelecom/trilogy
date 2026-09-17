@@ -1,0 +1,1145 @@
+{
+  "Breakpoint-min": {
+    "$type": "number",
+    "$value": 0,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3866:12147",
+      "com.figma.scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:b84dfbb7e4bb557a2004cbb17985560e10c4bd32/-1:-1",
+        "targetVariableName": "Breakpoint/xs/min",
+        "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+        "targetVariableSetName": "Primitive_Trilogy"
+      }
+    }
+  },
+  "Breakpoint-max": {
+    "$type": "number",
+    "$value": 375,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3893:12457",
+      "com.figma.scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:98e2c76e316d2bb5d4289f17c23882b55acf909f/-1:-1",
+        "targetVariableName": "Breakpoint/xs/max",
+        "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+        "targetVariableSetName": "Primitive_Trilogy"
+      }
+    }
+  },
+  "Font": {
+    "title-1": {
+      "size": {
+        "$type": "number",
+        "$value": 28,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27291",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-title-1)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:379ee56d0c3d7e8a0b91ea757fa7f9459a5874b1/-1:-1",
+            "targetVariableName": "Font/font-size-700",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 36,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27282",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--line-height-title-1)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:8ee0fd6e52392c5e1951a1dfa30bbef53a51d559/-1:-1",
+            "targetVariableName": "Font/Line-height/900",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-title-1": {
+        "$type": "string",
+        "$value": "Bouygues Read",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3829:13492",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-title-1)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:f3cceef82d1cb1dac916fd9b9fe616f3d15e6289/-1:-1",
+            "targetVariableName": "Font/font-family-1",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-title-1": {
+        "$type": "number",
+        "$value": 400,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3866:12145",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-title-1)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:132064d8212168ae609f0750a277ed282fc799b5/-1:-1",
+            "targetVariableName": "Font/weight-regular",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "title-2": {
+      "size": {
+        "$type": "number",
+        "$value": 24,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27274",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-title-2)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:e70551a302ad478360c3402649ccb3e14f594316/-1:-1",
+            "targetVariableName": "Font/font-size-600",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 30,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27273",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--line-height-title-2)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:fd32f7aa3ebcb362efbe4a5c2ab958b5fdc93a01/-1:-1",
+            "targetVariableName": "Font/Line-height/800",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-title-2": {
+        "$type": "string",
+        "$value": "Bouygues Read",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3829:13493",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-title-2)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:f3cceef82d1cb1dac916fd9b9fe616f3d15e6289/-1:-1",
+            "targetVariableName": "Font/font-family-1",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-title-2": {
+        "$type": "number",
+        "$value": 400,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3866:12146",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-title-2)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:132064d8212168ae609f0750a277ed282fc799b5/-1:-1",
+            "targetVariableName": "Font/weight-regular",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "title-3": {
+      "size": {
+        "$type": "number",
+        "$value": 22,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27280",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-title-3)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:27a9468f6aa1bfd6c07da3cbe51032b74f1c5ec9/-1:-1",
+            "targetVariableName": "Font/Size/500",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 28,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27272",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--line-height-title-3)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:41e8e1ed01a4db70e745709a562fa27ff865e38b/-1:-1",
+            "targetVariableName": "Font/Line-height/700",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-title-3": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3832:12145",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-title-3)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-title-3": {
+        "$type": "number",
+        "$value": 700,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12418",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-title-3)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d81f39366825e73da0a04ea154d6cbbf5e32db2f/-1:-1",
+            "targetVariableName": "Font/weight-bold",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "title-4": {
+      "size": {
+        "$type": "number",
+        "$value": 20,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27277",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--title-4-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:db351e57a85d7a7f95057f4ac77b2adaabb138d3/-1:-1",
+            "targetVariableName": "Font/font-size-400",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 26,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27288",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--line-height-title-4)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:ae684a059b16e04497c5e92bad97859a322d9c03/-1:-1",
+            "targetVariableName": "Font/Line-height/600",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-title-4": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3832:12147",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-title-4)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-title-4": {
+        "$type": "number",
+        "$value": 700,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12419",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-title-4)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d81f39366825e73da0a04ea154d6cbbf5e32db2f/-1:-1",
+            "targetVariableName": "Font/weight-bold",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "title-5": {
+      "size": {
+        "$type": "number",
+        "$value": 18,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27290",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-title-5)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:0052fb75fe84a04e008a71e43f64ddc272ca2ee8/-1:-1",
+            "targetVariableName": "Font/font-size-300",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 22,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27284",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--line-height-title-5)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:f32bec986694185bd4a8a6b6ef8b93d30e1e4799/-1:-1",
+            "targetVariableName": "Font/Line-height/400",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-title-5": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3832:12148",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-title-5)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-title-5": {
+        "$type": "number",
+        "$value": 700,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12420",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-title-5)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d81f39366825e73da0a04ea154d6cbbf5e32db2f/-1:-1",
+            "targetVariableName": "Font/weight-bold",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "title-6": {
+      "size": {
+        "$type": "number",
+        "$value": 16,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27283",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-title-6)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:83f5811c51493e6d533cd8fb2e6e866876e7f865/-1:-1",
+            "targetVariableName": "Font/font-size-200",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 20,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27281",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--line-height-title-6)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:7e88f43a4fcbc4db2d6528a4d63e093ad1a0ecfc/-1:-1",
+            "targetVariableName": "Font/Line-height/300",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-title-6": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3832:12149",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-title-6)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-title-6": {
+        "$type": "number",
+        "$value": 700,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12421",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-title-6)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d81f39366825e73da0a04ea154d6cbbf5e32db2f/-1:-1",
+            "targetVariableName": "Font/weight-bold",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "body-1": {
+      "size": {
+        "$type": "number",
+        "$value": 16,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27279",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-1-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:83f5811c51493e6d533cd8fb2e6e866876e7f865/-1:-1",
+            "targetVariableName": "Font/font-size-200",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 24,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27286",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-1-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:7d38a886d9338674686d3978094ebf2ab9db3a1d/-1:-1",
+            "targetVariableName": "Font/Line-height/500",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-body-1": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3832:12150",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-body-1)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-body-1": {
+        "$type": "number",
+        "$value": 400,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12425",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-body-1)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:132064d8212168ae609f0750a277ed282fc799b5/-1:-1",
+            "targetVariableName": "Font/weight-regular",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "body-1-bold": {
+      "size": {
+        "$type": "number",
+        "$value": 16,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12422",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-1-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:83f5811c51493e6d533cd8fb2e6e866876e7f865/-1:-1",
+            "targetVariableName": "Font/font-size-200",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 24,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12423",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-1-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:7d38a886d9338674686d3978094ebf2ab9db3a1d/-1:-1",
+            "targetVariableName": "Font/Line-height/500",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-body-1-bold": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12424",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-body-1)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-body-1-bold": {
+        "$type": "number",
+        "$value": 600,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12426",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-body-1-bold)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:5311b98c210564757182256a035a2433d88aefb7/-1:-1",
+            "targetVariableName": "Font/weight-semibold",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "body-2": {
+      "size": {
+        "$type": "number",
+        "$value": 14,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27278",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-2-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:c7440574d51ed84e4bd02025852a001b88fb9ba8/-1:-1",
+            "targetVariableName": "Font/font-size-100",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 22,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27289",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-2-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:f32bec986694185bd4a8a6b6ef8b93d30e1e4799/-1:-1",
+            "targetVariableName": "Font/Line-height/400",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-body-2": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3832:12151",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-body-2)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-body-2": {
+        "$type": "number",
+        "$value": 400,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12429",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-body-2)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:132064d8212168ae609f0750a277ed282fc799b5/-1:-1",
+            "targetVariableName": "Font/weight-regular",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "body-2-bold": {
+      "size": {
+        "$type": "number",
+        "$value": 14,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12433",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-2-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:c7440574d51ed84e4bd02025852a001b88fb9ba8/-1:-1",
+            "targetVariableName": "Font/font-size-100",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 22,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12434",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-2-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:f32bec986694185bd4a8a6b6ef8b93d30e1e4799/-1:-1",
+            "targetVariableName": "Font/Line-height/400",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-body-2-bold": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12435",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-body-2)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-body-2-bold": {
+        "$type": "number",
+        "$value": 600,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12436",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-body-2-bold)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:5311b98c210564757182256a035a2433d88aefb7/-1:-1",
+            "targetVariableName": "Font/weight-semibold",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "body-3": {
+      "size": {
+        "$type": "number",
+        "$value": 12,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27275",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-3-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:4efa54ab3f71a386797aaa61057fa23220b1d881/-1:-1",
+            "targetVariableName": "Font/font-size-50",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 18,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27287",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-3-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:72d99e2bb3800ceaf7032cd293c84a8b4a21fe68/-1:-1",
+            "targetVariableName": "Font/Line-height/200",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-body-3": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3832:12152",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-body-3)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-body-3": {
+        "$type": "number",
+        "$value": 400,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3888:12452",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-body-3)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:132064d8212168ae609f0750a277ed282fc799b5/-1:-1",
+            "targetVariableName": "Font/weight-regular",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "body-3-bold": {
+      "size": {
+        "$type": "number",
+        "$value": 12,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12437",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-3-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:4efa54ab3f71a386797aaa61057fa23220b1d881/-1:-1",
+            "targetVariableName": "Font/font-size-50",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 18,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12438",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-3-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:72d99e2bb3800ceaf7032cd293c84a8b4a21fe68/-1:-1",
+            "targetVariableName": "Font/Line-height/200",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-body-3-bold": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12439",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-body-3)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-body-3-bold": {
+        "$type": "number",
+        "$value": 600,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12440",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-body-3-bold)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:5311b98c210564757182256a035a2433d88aefb7/-1:-1",
+            "targetVariableName": "Font/weight-semibold",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "body-4": {
+      "size": {
+        "$type": "number",
+        "$value": 10,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27276",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-4-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d43621c81d0c0bd9918b47330cbf32af42585cbd/-1:-1",
+            "targetVariableName": "Font/Size/25",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 16,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3808:27285",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-4-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:4b33fc3168f36e55cd07d4c726f64b7216b56333/-1:-1",
+            "targetVariableName": "Font/Line-height/100",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-body-4": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3837:12155",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-body-4)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-body-4": {
+        "$type": "number",
+        "$value": 400,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3888:12453",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-body-4)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:132064d8212168ae609f0750a277ed282fc799b5/-1:-1",
+            "targetVariableName": "Font/weight-regular",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    },
+    "body-4-bold": {
+      "size": {
+        "$type": "number",
+        "$value": 10,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12444",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-4-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d43621c81d0c0bd9918b47330cbf32af42585cbd/-1:-1",
+            "targetVariableName": "Font/Size/25",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 16,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12445",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--body-4-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:4b33fc3168f36e55cd07d4c726f64b7216b56333/-1:-1",
+            "targetVariableName": "Font/Line-height/100",
+            "targetVariableSetId": "VariableCollectionId:79bc00d71755763feecf83573b7c966a68a6442b/-1:-1",
+            "targetVariableSetName": "Primitive_Trilogy"
+          }
+        }
+      },
+      "font-body-4-bold": {
+        "$type": "string",
+        "$value": "Bouygues Speak Corpo",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12446",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-body-4)"
+          },
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d98e5893a50112851c0283d81dd0e7d3b0f4a586/-1:-1",
+            "targetVariableName": "Font/font-family-2",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      },
+      "font-weight-body-4-bold": {
+        "$type": "number",
+        "$value": 600,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3880:12447",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--font-weight-body-4-bold)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:5311b98c210564757182256a035a2433d88aefb7/-1:-1",
+            "targetVariableName": "Font/weight-semibold",
+            "targetVariableSetId": "VariableCollectionId:744a267725b22f544ee4343a6f98da697b60ce08/-1:-1",
+            "targetVariableSetName": "Primitive_BouyguesTelecom"
+          }
+        }
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "xs"
+  }
+}

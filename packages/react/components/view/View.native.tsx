@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { ImageBackground, StyleSheet, TouchableOpacity, View as ViewNative } from 'react-native'
 import { getColorStyle } from '@/helpers/color'
 import { getJustifyStyle } from '@/helpers/justifiable'
 import { getAlignStyle } from '@/helpers/alignable'
 import { ViewNativeRef, ViewProps } from '@/components/view/ViewProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TrilogyColor } from '@/interfaces/Color'
-
+import * as React from 'react'
+import { ImageBackground, TouchableOpacity, View as ViewNative } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 /**
  * View Component (DIV EQUIVALENT)
  * @param children {ReactNode} View child
@@ -41,7 +41,7 @@ const View = React.forwardRef<ViewNativeRef, ViewProps>(
   ): JSX.Element => {
     const viewColor = (backgroundColor && getColorStyle(backgroundColor as TrilogyColor)) || 'transparent'
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       view: {
         flex: flexable ? 1 : 0,
         backgroundColor: viewColor,

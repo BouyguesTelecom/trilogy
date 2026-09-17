@@ -1,13 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { BoxHeaderNativeRef, BoxHeaderProps } from '@/components/box/header/BoxHeaderProps'
 import { getColorStyle } from '@/helpers/color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { TrilogyColor } from '@/interfaces/Color'
 import { Radius } from '@/interfaces/Radius'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Box Header Component
@@ -30,7 +31,7 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       boxHeader: {
         width: '100%',
         backgroundColor: headerBgc,

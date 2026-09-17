@@ -1,9 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { ImageBackground, StyleSheet, View } from 'react-native'
 import { SectionNativeRef, SectionProps } from '@/components/section/SectionProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { ImageBackground, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
@@ -17,7 +18,7 @@ const Section = React.forwardRef<SectionNativeRef, SectionProps>(
   ({ backgroundColor, backgroundSrc, children, style, ...others }, ref): JSX.Element => {
     const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         backgroundColor: backgroundSrc ? undefined : backgroundColor ? getColorStyle(backgroundColor) : colorBgc,
         paddingVertical: 32,

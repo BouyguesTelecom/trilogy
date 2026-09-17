@@ -1,8 +1,9 @@
 import { CardContext } from '@/components/card/Card.native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import React, { useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
 import { CardContentNativeRef, CardContentProps } from '@/components/card/content/CardContentProps'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Card Content Component
@@ -14,7 +15,7 @@ const CardContent = React.forwardRef<CardContentNativeRef, CardContentProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
     const cardContextValues = useContext(CardContext)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       card: {
         padding: 16,
         minHeight: 10,

@@ -4,8 +4,9 @@ import TabPanel from '@/components/tabs/tab-panels/tab-panel'
 import { TabPanelsNativeRef, TabPanelsProps } from '@/components/tabs/tab-panels/TabPanelsProps'
 import React from 'react'
 import { getColorStyle } from '@/helpers/color'
-import { StyleSheet, View } from 'react-native'
 import { TrilogyColor } from '@/interfaces/Color'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Tabs Nav Component
@@ -16,7 +17,7 @@ import { TrilogyColor } from '@/interfaces/Color'
 const TabPanels = React.forwardRef<TabPanelsNativeRef, TabPanelsProps>(({ children, ...others }, ref) => {
   const { inverted } = React.useContext(TabsContext)
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     tabPanels: {
       paddingVertical: 8,
       backgroundColor: getColorStyle(inverted ? TrilogyColor.MAIN : 'transparent'),
