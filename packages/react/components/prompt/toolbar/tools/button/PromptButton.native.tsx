@@ -4,7 +4,8 @@ import { PromptContext } from '@/components/prompt/context'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getRadiusStyle } from '@/objects/facets/Radius'
 import React, { useContext } from 'react'
-import { Pressable, StyleSheet } from 'react-native'
+import { Pressable } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { PromptButtonNativeRef, PromptButtonProps } from './PromptButtonProps'
 
 const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
@@ -13,7 +14,7 @@ const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
     const isDisable = isDisabled || disabled
     const isReadOnly = isReadonly || readOnly
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       button: {
         height: 36,
         minWidth: 36,

@@ -4,7 +4,8 @@ import { Title, TitleLevels } from '@/components/title'
 import { getAlignStyle, TypographyAlign, TypographyBold } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../../skeleton'
 import { ProgressRadialNativeRef, ProgressRadialProps } from './ProgressRadialProps'
 import { AnimatedCircularProgress } from './react-native-circular-progress'
@@ -52,7 +53,7 @@ const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialP
     const progressRadialWidth = small ? 100 : 124
     const progressRadialSkeletonRadius = small ? 50 : 124
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       container: {
         alignSelf: getAlignStyle(align),
       },

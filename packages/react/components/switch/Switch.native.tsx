@@ -2,7 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getStatusStyle } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useState } from 'react'
-import { Pressable, StyleSheet } from 'react-native'
+import { Pressable } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import Animated, {
   interpolate,
   interpolateColor,
@@ -56,7 +57,7 @@ const Switch = React.forwardRef<SwitchNativeRef, SwitchProps>(
       }
     })
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       track: {
         alignItems: 'flex-start',
         width: TRACK_WIDTH,

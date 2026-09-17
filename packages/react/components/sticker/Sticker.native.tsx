@@ -4,7 +4,8 @@ import { Text } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
 import { getColorStyle, getVariantStyle, TrilogyColor, TypographyBold } from '@/objects'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { StickerNativeRef, StickerProps } from './StickerProps'
 
 /**
@@ -19,7 +20,7 @@ import { StickerNativeRef, StickerProps } from './StickerProps'
 const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(
   ({ variant, small, outlined, label, iconName, accessibilityLabel, ...others }, ref): JSX.Element => {
     const defaultColor = getColorStyle(TrilogyColor.MAIN)
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       sticker: {
         flexDirection: 'row',
         justifyContent: 'center',

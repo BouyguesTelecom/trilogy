@@ -10,7 +10,8 @@ import { TypographyColor } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { Text, TextInput, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { SpacerSize } from '../spacer'
 import { Text as TrilogyText } from '../text'
 import { TextLevels } from '../text/TextEnum'
@@ -88,7 +89,7 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
     const counterBackground = getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.BACKGROUND)
     const placeholderTextColor = getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.FONT_PLACEHOLDER)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       textarea: {
         borderWidth: isFocus ? 2 : 1,
         borderRadius: 3,

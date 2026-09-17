@@ -3,7 +3,8 @@ import { StatesContext } from '@/context/providerStates'
 import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useContext } from 'react'
-import { StyleSheet, Text as TextNative } from 'react-native'
+import { Text as TextNative } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../skeleton'
 import { TextLevels, TextLevelValues } from './TextEnum'
 import { TextNativeRef, TextProps } from './TextProps'
@@ -42,7 +43,7 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(({
     )
   }
 
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     text: {
       fontFamily: getTypographyBoldStyle(typo),
       fontSize: textLevels(level as TextLevels | TextLevelValues),

@@ -1,7 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/objects'
 import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { BoxContext } from '../context/boxContext'
 import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
 
@@ -17,7 +18,7 @@ const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
     const boxRadius = 6
     const { highlighted } = React.useContext(BoxContext)
 
-    const styles = StyleSheet.create({
+    const styles = memoStyles({
       boxFooter: {
         padding: 12,
         justifyContent: 'center',

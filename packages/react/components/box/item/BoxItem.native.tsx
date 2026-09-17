@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { BoxItemNativeRef, BoxItemProps } from './BoxItemProps'
 
 /**
@@ -12,7 +13,7 @@ import { BoxItemNativeRef, BoxItemProps } from './BoxItemProps'
  */
 const BoxItem = React.forwardRef<BoxItemNativeRef, BoxItemProps>(({ children, size, testId, ...others }, ref): JSX.Element => {
   const height = Number(size) || 48
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     boxItem: {
       height: height,
       alignItems: 'center',

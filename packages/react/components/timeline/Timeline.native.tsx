@@ -1,5 +1,6 @@
 import * as React from "react"
-import { StyleSheet, View } from "react-native"
+import { View } from 'react-native'
+import { memoStyles } from '@/helpers/memoStyles'
 import { TimelineNativeRef, TimelineProps } from "./TimelineProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
@@ -19,7 +20,7 @@ export const TimelineHeightContext = React.createContext<IContext>({
 
  */
 const Timeline = React.forwardRef<TimelineNativeRef, TimelineProps>(({ children }, ref): JSX.Element => {
-  const styles = StyleSheet.create({
+  const styles = memoStyles({
     container: {
       flexDirection: "column",
     },
