@@ -1,15 +1,14 @@
 import { useContext } from 'react'
 import { TrilogyThemeContext } from '@/contexts/mobile/trilogyContext'
-import { useColorScheme } from 'react-native'
+import { THEME_TRILOGY } from '@trilogy-ds/react/theme'
 
 /**
  * Hook to get the current theme, including colors, radius, spacings, and fonts.
  * @returns The current theme object, with default values if the theme is not available.
  */
 export const useTheme = () => {
-  const colorScheme = useColorScheme() ?? 'light'
   const trilogyTheme = useContext(TrilogyThemeContext)
-  const mode = trilogyTheme?.mode !== 'auto' ? trilogyTheme?.mode : colorScheme
+  const mode = trilogyTheme?.mode ?? THEME_TRILOGY.defaultMode
 
   if (!trilogyTheme?.theme) {
     return {

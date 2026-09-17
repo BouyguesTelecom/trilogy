@@ -5,10 +5,9 @@ import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { useMemo, forwardRef } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { StatusState } from '@/interfaces/Status'
-import { TrilogyBackgroundColor, TrilogyColor, TrilogyTextColor } from '@/interfaces/Color'
 import { useTheme } from '@/hooks/useTheme'
-import { useThemeBackground } from '@/hooks/useThemeBackground'
-import { useThemeTextColor } from '@/hooks/useThemeTextColor'
+import { THEME_TRILOGY } from '@trilogy-ds/react/theme'
+import { getThemeBackground } from '@/helpers/getThemeColors'
 
 /**
  * Badge Component
@@ -24,53 +23,24 @@ import { useThemeTextColor } from '@/hooks/useThemeTextColor'
  */
 const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
   ({ children, label, onClick, testId, variant, inverted, position, status, ...others }, ref): JSX.Element => {
-    const { radius, colors } = useTheme()
-    const backgroundColor = useThemeBackground(variant || TrilogyBackgroundColor.PRIMARY)
-    const textColor = useThemeTextColor(variant || TrilogyTextColor.PRIMARY)
+    const { theme, mode } = useTheme()
+    const colorStyle = mode === 'dark' ? darkStyles : lightStyles
 
-    const styles = useMemo(
-      () =>
-        StyleSheet.create({
-          badge: {
-            alignSelf: 'baseline',
-            minWidth: label ? 20 : 10,
-            height: label ? 20 : 10,
-            backgroundColor: !inverted ? backgroundColor : colors.bgPrimary,
-            borderRadius: radius.radiusFull,
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
-          text: {
-            color: !inverted ? colors.bgPrimary : textColor,
-            fontSize: 10,
-          },
-          iconStatus: {
-            position: 'absolute',
-            zIndex: 1000,
-            backgroundColor: 'white',
-            width: 16,
-            minHeight: 16,
-            borderRadius: radius.radiusFull,
-          },
-          iconStatusPositionTopLeft: {
-            top: -4,
-            left: -4,
-          },
-          iconStatusPositionTopRight: {
-            top: -4,
-            left: 17,
-          },
-          iconStatusPositionBottomLeft: {
-            top: 17,
-            left: -4,
-          },
-          iconStatusPositionBottomRight: {
-            top: 17,
-            left: 17,
-          },
-        }),
-      [backgroundColor, colors.bgPrimary, radius.radiusFull, textColor],
-    )
+    const contextStyles = useMemo(() => {
+      if (!theme) return
+      return {
+        badge: {
+          borderRadius: theme.radius.radiusFull,
+          backgroundColor: variant ? theme.colors[getThemeBackground(variant)] : theme.colors.bgSecondary,
+        },
+        text: {
+          color: inverted ? theme.colors.textPrimary : theme.colors.textInverse,
+        },
+        iconStatus: {
+          borderRadius: theme.radius.radiusFull,
+        },
+      }
+    }, [theme, variant, inverted])
 
     const icon = useMemo(() => {
       switch (status) {
@@ -102,21 +72,22 @@ const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
       }
     }, [status])
 
+    const positionStyles = useMemo(() => {
+      return (
+        (position === BadgePositionEnum.TOP_LEFT && styles.iconStatusPositionTopLeft) ||
+        (position === BadgePositionEnum.TOP_RIGHT && styles.iconStatusPositionTopRight) ||
+        (position === BadgePositionEnum.BOTTOM_LEFT && styles.iconStatusPositionBottomLeft) ||
+        (position === BadgePositionEnum.BOTTOM_RIGHT && styles.iconStatusPositionBottomRight) ||
+        styles.iconStatusPositionTopLeft
+      )
+    }, [position])
+
     if (status) {
       return (
         <View {...others} ref={ref}>
           {icon.iconName && icon.iconColor && (
             <View>
-              <View
-                style={[
-                  styles.iconStatus,
-                  (position === BadgePositionEnum.TOP_LEFT && styles.iconStatusPositionTopLeft) ||
-                    (position === BadgePositionEnum.TOP_RIGHT && styles.iconStatusPositionTopRight) ||
-                    (position === BadgePositionEnum.BOTTOM_LEFT && styles.iconStatusPositionBottomLeft) ||
-                    (position === BadgePositionEnum.BOTTOM_RIGHT && styles.iconStatusPositionBottomRight) ||
-                    styles.iconStatusPositionTopLeft,
-                ]}
-              >
+              <View style={[styles.iconStatus, shapeStyles.badge, positionStyles, contextStyles?.iconStatus]}>
                 <Icon name={icon.iconName} size={IconSize.SMALLER} color={icon.iconColor} />
               </View>
               <View>{children}</View>
@@ -129,14 +100,37 @@ const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
     return onClick ? (
       <View {...others} ref={ref}>
         <TouchableOpacity onPress={onClick} activeOpacity={0.85} testID={testId}>
-          <View style={styles.badge} {...others}>
-            <Text style={styles.text}>{label}</Text>
+          <View
+            style={[
+              styles.badge,
+              shapeStyles.badge,
+              colorStyle[variant ?? 'DEFAULT'],
+              label ? styles.badgeWithLabel : undefined,
+              contextStyles?.badge,
+            ]}
+            {...others}
+          >
+            <Text style={[styles.text, colorStyle.text, inverted && colorStyle.textInverse, contextStyles?.text]}>
+              {label}
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
     ) : (
-      <View style={styles.badge} {...others} ref={ref}>
-        <Text style={styles.text}>{label}</Text>
+      <View
+        style={[
+          styles.badge,
+          shapeStyles.badge,
+          colorStyle[variant ?? 'DEFAULT'],
+          label ? styles.badgeWithLabel : undefined,
+          contextStyles?.badge,
+        ]}
+        {...others}
+        ref={ref}
+      >
+        <Text style={[styles.text, colorStyle.text, inverted && colorStyle.textInverse, contextStyles?.text]}>
+          {label}
+        </Text>
         {!label && children && children}
       </View>
     )
@@ -146,3 +140,127 @@ const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
 Badge.displayName = ComponentName.Badge
 
 export default Badge
+
+const styles = StyleSheet.create({
+  badge: {
+    alignSelf: 'baseline',
+    minWidth: 10,
+    height: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  badgeWithLabel: {
+    minWidth: 20,
+    height: 20,
+  },
+  text: {
+    fontSize: 10,
+  },
+  iconStatus: {
+    position: 'absolute',
+    zIndex: 1000,
+    backgroundColor: 'white',
+    width: 16,
+    minHeight: 16,
+  },
+  iconStatusPositionTopLeft: {
+    top: -4,
+    left: -4,
+  },
+  iconStatusPositionTopRight: {
+    top: -4,
+    left: 17,
+  },
+  iconStatusPositionBottomLeft: {
+    top: 17,
+    left: -4,
+  },
+  iconStatusPositionBottomRight: {
+    top: 17,
+    left: 17,
+  },
+})
+
+const lightStyles = StyleSheet.create({
+  text: {
+    color: THEME_TRILOGY.colors.light.textInverse,
+  },
+  textInverse: {
+    color: THEME_TRILOGY.colors.light.textPrimary,
+  },
+  DEFAULT: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgSecondary,
+  },
+  SUCCESS: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgSuccess,
+  },
+  INFORMATION: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgInformation,
+  },
+  WARNING: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgWarning,
+  },
+  ERROR: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgError,
+  },
+  PRIMARY: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgPrimary,
+  },
+  SECONDARY: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgSecondary,
+  },
+  BRAND: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgBrand,
+  },
+  ACCENT: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgAccent,
+  },
+  INVERTED: {
+    backgroundColor: THEME_TRILOGY.colors.light.bgPrimary,
+  },
+})
+
+const darkStyles = StyleSheet.create({
+  text: {
+    color: THEME_TRILOGY.colors.dark.textInverse,
+  },
+  textInverse: {
+    color: THEME_TRILOGY.colors.dark.textPrimary,
+  },
+  DEFAULT: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgSecondary,
+  },
+  SUCCESS: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgSuccess,
+  },
+  INFORMATION: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgInformation,
+  },
+  WARNING: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgWarning,
+  },
+  ERROR: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgError,
+  },
+  PRIMARY: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgPrimary,
+  },
+  SECONDARY: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgSecondary,
+  },
+  BRAND: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgBrand,
+  },
+  ACCENT: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgAccent,
+  },
+  INVERTED: {
+    backgroundColor: THEME_TRILOGY.colors.dark.bgPrimary,
+  },
+})
+
+export const shapeStyles = StyleSheet.create({
+  badge: {
+    borderRadius: THEME_TRILOGY.radius.radiusFull,
+  },
+})

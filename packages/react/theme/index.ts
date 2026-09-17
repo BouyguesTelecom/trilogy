@@ -1,6 +1,7 @@
 // Generated from figma tokens. Do not edit directly.
 
 export const THEME_TRILOGY = {
+  defaultMode: 'light',
   colors: {
     light: {
       "border": "#CCDEEB",
@@ -269,6 +270,10 @@ export const THEME_TRILOGY = {
     "spacingXs": 8,
     "spacingXxs": 4,
   },
+} as const
+
+export const THEMES_TRILOGY = {
+  trilogy: THEME_TRILOGY,
 } as const
 
 export const THEME_COLORS_TRILOGY = THEME_TRILOGY.colors

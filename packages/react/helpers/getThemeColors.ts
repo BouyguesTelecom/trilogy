@@ -91,11 +91,11 @@ export const getThemeBackground = (variant?: ThemeBackgroundVariant) => {
     case 'SELECTED_HOVER':
       return 'bgSelectedHover'
     case 'SELECTED_PRESSED':
-      return 'bgSelectedPressed'
+      return 'tokenbackgroundSelectedPressed'
     case 'INACTIVE':
       return 'bgInactive'
-    case 'TRANSPARENT':
-      return 'transparent'
+    default:
+      return 'bgPrimary'
   }
 }
 

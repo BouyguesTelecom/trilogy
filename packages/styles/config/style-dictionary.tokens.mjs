@@ -266,7 +266,7 @@ StyleDictionary.registerFormat({
       .join('\n')
     const aliases = declarations.map(({ name, property }) => `export const ${name} = THEME_TRILOGY.${property}`)
 
-    return `// Generated from figma tokens. Do not edit directly.\n\nexport const THEME_TRILOGY = {\n${themeObject}\n} as const\n\n${aliases.join(
+    return `// Generated from figma tokens. Do not edit directly.\n\nexport const THEME_TRILOGY = {\n  defaultMode: 'light',\n${themeObject}\n} as const\n\nexport const THEMES_TRILOGY = {\n  trilogy: THEME_TRILOGY,\n} as const\n\n${aliases.join(
       '\n',
     )}\n`
   },

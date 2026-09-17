@@ -33,7 +33,7 @@ const Alert = forwardRef<AlertNativeRef, AlertProps>(
     const isClosable = Boolean((others as any).closable)
     const colorStyle = mode === 'dark' ? darkStyles : lightStyles
 
-    const containerStyle = useMemo(() => {
+    const contextStyles = useMemo(() => {
       if (!theme) return
       return {
         borderRadius: theme.radius.radiusSm,
@@ -48,10 +48,12 @@ const Alert = forwardRef<AlertNativeRef, AlertProps>(
         activeOpacity={onClick ? 0.85 : 1}
         style={[
           generalStyles.container,
-          status && colorStyle[status],
-          banner && generalStyles.banner,
-          onClick && generalStyles.onClickContainer,
-          containerStyle,
+          shapeStyles.radius,
+          colorStyle.DEFAULT,
+          status ? colorStyle[status] : undefined,
+          banner ? generalStyles.banner : undefined,
+          onClick ? generalStyles.onClickContainer : undefined,
+          contextStyles,
           (others as any).style,
         ]}
       >
@@ -162,9 +164,6 @@ const generalStyles = StyleSheet.create({
     pointerEvents: 'none',
     padding: 12,
     borderWidth: 1,
-    borderRadius: THEME_TRILOGY.radius.radiusSm,
-    borderColor: THEME_TRILOGY.colors.light.borderInformation,
-    backgroundColor: THEME_TRILOGY.colors.light.bgInformationSubtle,
   },
   description: {
     justifyContent: 'center',
@@ -191,7 +190,17 @@ const generalStyles = StyleSheet.create({
   },
 })
 
+const shapeStyles = StyleSheet.create({
+  radius: {
+    borderRadius: THEME_TRILOGY.radius.radiusSm,
+  },
+})
+
 const lightStyles = StyleSheet.create({
+  DEFAULT: {
+    borderColor: THEME_TRILOGY.colors.light.borderInformation,
+    backgroundColor: THEME_TRILOGY.colors.light.bgInformationSubtle,
+  },
   ERROR: {
     borderColor: THEME_TRILOGY.colors.light.borderError,
     backgroundColor: THEME_TRILOGY.colors.light.bgErrorSubtle,
@@ -211,6 +220,10 @@ const lightStyles = StyleSheet.create({
 })
 
 const darkStyles = StyleSheet.create({
+  DEFAULT: {
+    borderColor: THEME_TRILOGY.colors.dark.borderInformation,
+    backgroundColor: THEME_TRILOGY.colors.dark.bgInformationSubtle,
+  },
   ERROR: {
     borderColor: THEME_TRILOGY.colors.dark.borderError,
     backgroundColor: THEME_TRILOGY.colors.dark.bgErrorSubtle,

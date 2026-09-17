@@ -1,7 +1,7 @@
-import { ViewStyle, DimensionValue } from 'react-native'
+import { ViewStyle, DimensionValue, StyleProp } from 'react-native'
 
 export interface SkeletonProps {
-  style?: ViewStyle
+  style?: StyleProp<ViewStyle>
   width?: DimensionValue
   height?: DimensionValue
   backgroundColor?: string

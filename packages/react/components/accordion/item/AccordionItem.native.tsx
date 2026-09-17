@@ -26,7 +26,7 @@ interface AccordionChild {
  */
 const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
   ({ open, id, onClick, disabled, children, testId, ...others }, ref): JSX.Element => {
-    const { theme, mode } = useTheme()
+    const { mode } = useTheme()
     const colorStyle = mode === 'dark' ? darkStyles : lightStyles
 
     const [isActive, setIsActive] = useState<boolean>(Boolean(typeof open !== 'undefined' ? open : false))
@@ -113,9 +113,9 @@ const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
 
     return (
       <>
-        <View style={[styles.item, colorStyle.item, disabled && colorStyle.itemDisabled]} ref={ref}>
+        <View style={[styles.item, colorStyle.item, shapeStyles.item, disabled && colorStyle.itemDisabled]} ref={ref}>
           <TouchableWithoutFeedback
-            style={[styles.item, colorStyle.item, disabled && colorStyle.itemDisabled]}
+            style={[styles.item, colorStyle.item, shapeStyles.item, disabled && colorStyle.itemDisabled]}
             testID={id || testId || ''}
             onPress={toggleListItem}
             {...others}
@@ -131,8 +131,15 @@ const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
               </Animated.View>
             </View>
           </TouchableWithoutFeedback>
-          <Animated.View style={[styles.bodyBackground, colorStyle.bodyBackground, { height: bodyHeight }]}>
-            <View style={styles.bodyContainer} onLayout={onLayoutBody}>
+          <Animated.View
+            style={[
+              styles.bodyBackground,
+              shapeStyles.bodyBackground,
+              colorStyle.bodyBackground,
+              { height: bodyHeight },
+            ]}
+          >
+            <View style={[styles.bodyContainer, shapeStyles.bodyContainer]} onLayout={onLayoutBody}>
               {childs.body && <View>{childs.body}</View>}
             </View>
           </Animated.View>
@@ -151,10 +158,8 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 5,
     borderWidth: 1,
-    borderRadius: THEME_TRILOGY.radius.radiusSm,
   },
   bodyBackground: {
-    borderRadius: THEME_TRILOGY.radius.radiusSm,
     overflow: 'hidden',
   },
   titleContainer: {
@@ -174,7 +179,6 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     position: 'absolute',
     bottom: 0,
-    borderRadius: THEME_TRILOGY.radius.radiusSm,
     left: 0,
     right: 0,
   },
@@ -211,5 +215,17 @@ const darkStyles = StyleSheet.create({
   },
   titleContainer: {
     borderColor: THEME_TRILOGY.colors.dark.bgPrimary,
+  },
+})
+
+const shapeStyles = StyleSheet.create({
+  item: {
+    borderRadius: THEME_TRILOGY.radius.radiusSm,
+  },
+  bodyBackground: {
+    borderRadius: THEME_TRILOGY.radius.radiusSm,
+  },
+  bodyContainer: {
+    borderRadius: THEME_TRILOGY.radius.radiusSm,
   },
 })

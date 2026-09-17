@@ -3,7 +3,7 @@ import { createContext, useContext } from 'react'
 const TrilogyThemeContext = createContext<ITrilogyThemeContext>({
   theme: null,
   setTheme: () => {},
-  mode: 'auto',
+  mode: undefined,
   setMode: () => {},
 })
 

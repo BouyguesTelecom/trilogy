@@ -35,7 +35,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
         duration,
         useNativeDriver: true,
       }),
-      { iterations: -1 }
+      { iterations: -1 },
     )
 
     shimmerAnimation.start()
@@ -60,7 +60,6 @@ const Skeleton: React.FC<SkeletonProps> = ({
     borderRadius,
     overflow: 'hidden',
     alignSelf: children ? 'flex-start' : undefined,
-    ...style,
   }
 
   const handleLayout = (event: any) => {
@@ -70,10 +69,8 @@ const Skeleton: React.FC<SkeletonProps> = ({
 
   if (children) {
     return (
-      <View style={containerStyle} testID={testID} onLayout={handleLayout}>
-        <View style={{ opacity: 0 }}>
-          {children}
-        </View>
+      <View style={[containerStyle, style]} testID={testID} onLayout={handleLayout}>
+        <View style={{ opacity: 0 }}>{children}</View>
 
         <Animated.View
           style={[
@@ -94,7 +91,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   }
 
   return (
-    <View style={containerStyle} testID={testID} onLayout={handleLayout}>
+    <View style={[containerStyle, style]} testID={testID} onLayout={handleLayout}>
       <Animated.View
         style={[
           {

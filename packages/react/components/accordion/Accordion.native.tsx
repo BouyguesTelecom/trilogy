@@ -16,13 +16,13 @@ const Accordion = forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...o
   const { theme } = useTheme()
 
   const accordionStyle = useMemo(() => {
-    if (!theme?.radius.radiusSm) return
+    if (!theme) return
     return {
       borderRadius: theme.radius.radiusSm,
     }
-  }, [theme?.radius.radiusSm])
+  }, [theme])
 
-  return <View ref={ref} testID={testId} style={[styles.accordion, accordionStyle]} {...others} />
+  return <View ref={ref} testID={testId} style={[styles.accordion, shapeStyles.radius, accordionStyle]} {...others} />
 })
 
 Accordion.displayName = ComponentName.Accordion
@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
   accordion: {
     width: '100%',
     minHeight: 10,
+  },
+})
+
+const shapeStyles = StyleSheet.create({
+  radius: {
     borderRadius: THEME_TRILOGY.radius.radiusSm,
   },
 })

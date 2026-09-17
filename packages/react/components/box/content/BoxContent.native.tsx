@@ -6,6 +6,10 @@ import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import { useThemeRadiusBySize } from '@/hooks/useThemeRadius'
 import { Radius } from '@/interfaces/Radius'
 import { useThemeBackground } from '@/hooks/useThemeBackground'
+import { THEME_TRILOGY } from '@trilogy-ds/react/theme'
+import { lightBackgroundStyles, darkBackgroundStyles } from '@/helpers/styles'
+import { getThemeBackground } from '@/helpers/getThemeColors'
+import { useTheme } from '@/hooks/useTheme'
 
 /**
  * Box Content
@@ -17,27 +21,11 @@ import { useThemeBackground } from '@/hooks/useThemeBackground'
  */
 const BoxContent = forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
+    const { theme, mode } = useTheme()
+    const backgroundStyle = mode === 'dark' ? darkBackgroundStyles : lightBackgroundStyles
     const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = useContext(BoxContext)
     const borderSmallRadius = useThemeRadiusBySize(Radius.SMALL)
-    const backgroundStyle = useThemeBackground(backgroundColor || 'TRANSPARENT')
-
-    const styles = useMemo(
-      () =>
-        StyleSheet.create({
-          boxContent: {
-            padding: 16,
-            backgroundColor: backgroundStyle,
-            borderRadius: borderSmallRadius,
-            flex: fullHeight ? 1 : undefined,
-            marginLeft: highlighted ? 4 : 0,
-            borderTopLeftRadius: (highlighted && numberOfContent > 1) || header ? 0 : borderSmallRadius,
-            borderTopRightRadius: header ? 0 : borderSmallRadius,
-            borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : borderSmallRadius,
-            borderBottomRightRadius: numberOfContent > 1 ? 0 : borderSmallRadius,
-          },
-        }),
-      [backgroundStyle, borderSmallRadius, fullHeight, highlighted, header, numberOfContent],
-    )
+    //const backgroundStyle = useThemeBackground(backgroundColor || 'TRANSPARENT')
 
     const onLayout = useCallback(() => {
       setNumberOfContent((prev) => prev + 1)
@@ -45,7 +33,21 @@ const BoxContent = forwardRef<BoxContentNativeRef, BoxContentProps>(
 
     const content = useMemo(
       () => (
-        <View testID={testId} ref={ref} style={[styles.boxContent]} {...others} onLayout={onLayout}>
+        <View
+          testID={testId}
+          ref={ref}
+          style={[
+            styles.boxContent,
+            backgroundStyle[backgroundColor ?? 'PRIMARY'],
+            fullHeight && styles.boxContentFullHeight,
+            highlighted && styles.boxContentHighlighted,
+            ((highlighted && numberOfContent > 1) || header) && styles.boxContentHighlightedWithContentOrHeader,
+            header && styles.boxContentWithHeader,
+            numberOfContent > 1 && styles.boxContentWithContent,
+          ]}
+          {...others}
+          onLayout={onLayout}
+        >
           {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
         </View>
       ),
@@ -68,5 +70,31 @@ const BoxContent = forwardRef<BoxContentNativeRef, BoxContentProps>(
 )
 
 BoxContent.displayName = ComponentName.BoxContent
-
 export default BoxContent
+
+const styles = StyleSheet.create({
+  boxContent: {
+    padding: 16,
+    borderRadius: THEME_TRILOGY.radius.radiusSm,
+    marginLeft: 0,
+    borderTopLeftRadius: THEME_TRILOGY.radius.radiusSm,
+    borderTopRightRadius: THEME_TRILOGY.radius.radiusSm,
+    borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : borderSmallRadius,
+    borderBottomRightRadius: THEME_TRILOGY.radius.radiusSm,
+  },
+  boxContentFullHeight: {
+    flex: 1,
+  },
+  boxContentHighlighted: {
+    marginLeft: 4,
+  },
+  boxContentHighlightedWithContentOrHeader: {
+    borderTopLeftRadius: 0,
+  },
+  boxContentWithHeader: {
+    borderTopRightRadius: 0,
+  },
+  boxContentWithContent: {
+    borderBottomRightRadius: 0,
+  },
+})

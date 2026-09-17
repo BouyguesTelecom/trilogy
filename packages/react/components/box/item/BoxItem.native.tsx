@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { forwardRef, useMemo } from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { BoxItemNativeRef, BoxItemProps } from '@/components/box/item/BoxItemProps'
 
@@ -12,23 +12,9 @@ import { BoxItemNativeRef, BoxItemProps } from '@/components/box/item/BoxItemPro
  */
 const BoxItem = forwardRef<BoxItemNativeRef, BoxItemProps>(
   ({ children, size, testId, ...others }, ref): JSX.Element => {
-    const height = useMemo(() => Number(size) || 48, [size])
-    const styles = useMemo(
-      () =>
-        StyleSheet.create({
-          boxItem: {
-            height: height,
-            alignItems: 'center',
-            alignContent: 'center',
-            flexWrap: 'wrap',
-            flex: 1,
-          },
-        }),
-      [height],
-    )
-
+    const heightStyle = { height: Number(size) || 48 }
     return (
-      <View ref={ref} style={[styles.boxItem]} testID={testId} {...others}>
+      <View ref={ref} style={[styles.boxItem, heightStyle]} testID={testId} {...others}>
         {children}
       </View>
     )
@@ -36,5 +22,13 @@ const BoxItem = forwardRef<BoxItemNativeRef, BoxItemProps>(
 )
 
 BoxItem.displayName = ComponentName.BoxItem
-
 export default BoxItem
+
+const styles = StyleSheet.create({
+  boxItem: {
+    alignItems: 'center',
+    alignContent: 'center',
+    flexWrap: 'wrap',
+    flex: 1,
+  },
+})

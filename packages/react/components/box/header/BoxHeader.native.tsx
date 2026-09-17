@@ -1,12 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { forwardRef, useContext, useMemo } from 'react'
+import { forwardRef, useCallback, useContext, useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { BoxHeaderNativeRef, BoxHeaderProps } from '@/components/box/header/BoxHeaderProps'
-import { TrilogyBackgroundColor } from '@/interfaces/Color'
 import { useTheme } from '@/hooks/useTheme'
-import { useThemeBackground } from '@/hooks/useThemeBackground'
+import { THEME_TRILOGY } from '@trilogy-ds/react/theme'
+import { lightBackgroundStyles, darkBackgroundStyles } from '@/helpers/styles'
+import { getThemeBackground } from '@/helpers/getThemeColors'
 
 /**
  * Box Header Component
@@ -17,56 +18,48 @@ import { useThemeBackground } from '@/hooks/useThemeBackground'
  */
 const BoxHeader = forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
   ({ children, variant, testId, ...others }, ref): JSX.Element => {
+    const { theme, mode } = useTheme()
     const statesContext = useContext(StatesContext)
     const boxContext = useContext(BoxContext)
-    const headerBgc = useThemeBackground(variant || TrilogyBackgroundColor.SECONDARY)
-    const { colors, radius } = useTheme()
+    const backgroundStyle = mode === 'dark' ? darkBackgroundStyles : lightBackgroundStyles
+    const colorStyle = mode === 'dark' ? darkStyles : lightStyles
 
-    const styles = useMemo(
-      () =>
-        StyleSheet.create({
-          boxHeader: {
-            width: '100%',
-            backgroundColor: headerBgc,
-            padding: 10,
-            paddingLeft: 16,
-            borderTopLeftRadius: boxContext?.highlighted ? radius.radiusXs : radius.radiusSm,
-            borderTopRightRadius: radius.radiusSm,
-            marginTop: (statesContext.active && -2) || (statesContext.flat && -1) || 0,
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            flexDirection: 'row',
-          },
-          text: {
-            color: colors.textInverse,
-            fontSize: 15,
-            fontWeight: '600',
-          },
-          helpContainer: {
-            alignSelf: 'center',
-          },
-          help: {
-            fontSize: 12,
-            color: colors.textInverse,
-            fontWeight: '600',
-            lineHeight: 15,
-          },
-        }),
-      [colors.textInverse, radius.radiusSm, radius.radiusXs, headerBgc],
-    )
+    const contextStyles = useMemo(() => {
+      if (!theme) return
+      return {
+        boxHeader: {
+          backgroundColor: theme.colors[getThemeBackground(variant ?? 'SECONDARY')],
+          borderTopLeftRadius: boxContext?.highlighted ? theme.radius.radiusXs : theme.radius.radiusSm,
+          borderTopRightRadius: theme.radius.radiusSm,
+        },
+        text: {
+          color: theme.colors.textInverse,
+        },
+      }
+    }, [theme, variant, boxContext?.highlighted])
+
+    const onLayout = useCallback(() => {
+      boxContext.setHeader(true)
+    }, [boxContext])
 
     return (
       <View
-        style={[styles.boxHeader]}
+        style={[
+          styles.boxHeader,
+          backgroundStyle[variant ?? 'SECONDARY'],
+          statesContext.active && styles.boxActive,
+          statesContext.flat && styles.boxFlat,
+          boxContext?.highlighted && shapeStyles.highlighted,
+          shapeStyles.boxHeader,
+          contextStyles?.boxHeader,
+        ]}
         ref={ref}
         testID={testId}
         {...others}
-        onLayout={() => {
-          boxContext.setHeader(true)
-        }}
+        onLayout={onLayout}
       >
         {children && typeof children.valueOf() === 'string' ? (
-          <Text style={styles.text}>{String(children)}</Text>
+          <Text style={[styles.text, colorStyle.text, contextStyles?.text]}>{String(children)}</Text>
         ) : (
           children
         )}
@@ -76,5 +69,51 @@ const BoxHeader = forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
 )
 
 BoxHeader.displayName = ComponentName.BoxHeader
-
 export default BoxHeader
+
+const styles = StyleSheet.create({
+  boxHeader: {
+    width: '100%',
+    padding: 10,
+    paddingLeft: 16,
+    marginTop: 0,
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+  },
+  boxActive: {
+    marginTop: -2,
+  },
+  boxFlat: {
+    marginTop: -1,
+  },
+  text: {
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  helpContainer: {
+    alignSelf: 'center',
+  },
+})
+
+const lightStyles = StyleSheet.create({
+  text: {
+    color: THEME_TRILOGY.colors.light.textInverse,
+  },
+})
+
+const darkStyles = StyleSheet.create({
+  text: {
+    color: THEME_TRILOGY.colors.dark.textInverse,
+  },
+})
+
+const shapeStyles = StyleSheet.create({
+  boxHeader: {
+    borderTopLeftRadius: THEME_TRILOGY.radius.radiusSm,
+    borderTopRightRadius: THEME_TRILOGY.radius.radiusSm,
+  },
+  highlighted: {
+    borderTopLeftRadius: THEME_TRILOGY.radius.radiusXs,
+  },
+})
