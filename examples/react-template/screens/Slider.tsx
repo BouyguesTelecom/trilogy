@@ -131,7 +131,52 @@ export const SliderScreen = (): JSX.Element => {
 
       <Spacer size={SpacerSize.FOUR} /></>}
 
-      {/* 4. Mobile-only fullBleed + gap example */}
+      {/* 4. Snap — navigate page by page instead of slide by slide */}
+      {isWeb && (
+        <>
+          <Box flat>
+            <BoxContent>
+              <Title className="is-centered">
+                snap — moves by groups of slidesPerView (3 by 3)
+              </Title>
+              <Slider
+                snap
+                gap={GapSize.THREE}
+                radius={SliderRadiusValues.LARGE}
+                accessibilityLabel="Snap slider"
+                slidesPerView={{
+                  desktop: 3,
+                  tablet: 2,
+                  mobile: 1,
+                }}
+              >
+                <SliderItem>
+                  <Panel label="Snap 1" bg="#264653" />
+                </SliderItem>
+                <SliderItem>
+                  <Panel label="Snap 2" bg="#e76f51" />
+                </SliderItem>
+                <SliderItem>
+                  <Panel label="Snap 3" bg="#2a9d8f" />
+                </SliderItem>
+                <SliderItem>
+                  <Panel label="Snap 4" bg="#8e44ad" />
+                </SliderItem>
+                <SliderItem>
+                  <Panel label="Snap 5" bg="#f39c12" />
+                </SliderItem>
+                <SliderItem>
+                  <Panel label="Snap 6" bg="#16a085" />
+                </SliderItem>
+              </Slider>
+            </BoxContent>
+          </Box>
+
+          <Spacer size={SpacerSize.FOUR} />
+        </>
+      )}
+
+      {/* 5. Mobile-only fullBleed + gap example */}
       {!isWeb && (
         <>
           <Title className="is-centered">FullBleed + gap (mobile)</Title>
@@ -159,7 +204,7 @@ export const SliderScreen = (): JSX.Element => {
         </>
       )}
 
-      {/* 5. Playground – WEB ONLY */}
+      {/* 6. Playground – WEB ONLY */}
       {isWeb && (
         <Box flat>
           <BoxContent>

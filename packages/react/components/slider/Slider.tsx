@@ -11,40 +11,20 @@ import {
   SlidesNum,
   SlidesNumConfig,
 } from '@/components/slider/SliderEnum'
-import { SliderProps, SliderRef } from '@/components/slider/SliderProps'
+import { SliderProps } from '@/components/slider/SliderProps'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 import clsx from 'clsx'
 
 const FIXED_HEIGHT = 350
-const FULLBLEED_PEEK = 32 // px visible from previous/next slide when fullBleed is enabled
+const FULLBLEED_PEEK = 32
 
-/**
- * Slider Component
- *
- * @param id {string} Slider section id
- * @param children {React.ReactNode} Slides to display
- * @param autoplay {boolean} Automatically advance slides
- * @param autoplayDelay {number} Delay between slides when autoplay is enabled
- * @param gap {GapSize} Space between slides
- * @param loop {boolean} Loop slides when reaching the end
- * @param radius {SliderRadiusValues} Border radius of the viewport
- * @param fullBleed {boolean} Slides peek outside viewport on the sides
- * @param onSlideChange {(index: number) => void} Callback when active slide changes
- * @param slidesPerView {SlidesNum | SlidesNumConfig} Responsive slides per view (ignored when fullBleed)
- * @param accessibilityLabel {string} Accessibility label for the slider region
- * - -------------------------- WEB PROPERTIES -------------------------------
- * @param testId {string} Testing identifier
- * @param className {string} Additional CSS classes
- */
-
-const Slider = React.forwardRef<SliderRef, SliderProps>(
+const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
   (
     {
       children,
-      autoplay = false,
-      autoplayDelay = SliderDefaults.AUTOPLAY_DELAY,
+      autoplay,
       gap,
       loop = true,
       radius = SliderRadiusValues.LARGE,
@@ -55,6 +35,7 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       accessibilityLabel,
       testId,
       slidesPerView,
+      snap = false,
     },
     ref,
   ) => {
@@ -75,17 +56,22 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
     const [slidesPerViewResolved, setSlidesPerViewResolved] = React.useState<number>(1)
     const [cloneCount, setCloneCount] = React.useState<number>(1)
     const [activeIndex, setActiveIndex] = React.useState<number>(0)
-    const [pageCount] = React.useState<number>(Math.max(1, total))
 
     const onSlideChangeRef = React.useRef(onSlideChange)
     React.useEffect(() => {
       onSlideChangeRef.current = onSlideChange
     }, [onSlideChange])
 
+    const autoplayEnabled =
+      autoplay === true || (typeof autoplay === 'number' && autoplay > 0)
+
+    const autoplayDelayMs =
+      typeof autoplay === 'number' && autoplay > 0
+        ? autoplay
+        : SliderDefaults.AUTOPLAY_DELAY
+
     const resolveSlidesPerViewForWidth = React.useCallback(
       (width: number): number => {
-        if (fullBleed) return 1
-
         const asNumber =
           typeof slidesPerView === 'number'
             ? (slidesPerView as SlidesNum)
@@ -107,14 +93,13 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
           asConfig?.tablet ??
           (desktopBase === 3 ? 2 : desktopBase)
 
-        const mobileBase: number =
-          asConfig?.mobile ?? 1
+        const mobileBase: number = asConfig?.mobile ?? 1
 
         if (width >= SLIDER_BREAKPOINT_PX.desktop) return desktopBase
         if (width >= SLIDER_BREAKPOINT_PX.tablet) return tabletBase
         return mobileBase
       },
-      [slidesPerView, fullBleed],
+      [slidesPerView],
     )
 
     const computeCloneCount = React.useCallback(
@@ -137,6 +122,7 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         setSlidesPerViewResolved(perView)
         setCloneCount(computeCloneCount(perView))
       }
+
       updateSlidesPerView()
       window.addEventListener('resize', updateSlidesPerView)
 
@@ -158,10 +144,28 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
 
     const isLoop = loop && total > 1
 
+    // Step size: if snap=true, move by current slidesPerViewResolved, else 1
+    const stepSize = React.useMemo(() => {
+      if (!snap || total <= 1) return 1
+      const perView = Math.max(1, slidesPerViewResolved || 1)
+      return Math.min(perView, total)
+    }, [snap, slidesPerViewResolved, total])
+
+    // Page count for bullets: in snap mode, one bullet per cohort; otherwise one per slide
+    const pageCount = React.useMemo(() => {
+      if (stepSize <= 1) {
+        return Math.max(1, total)
+      }
+      return Math.max(1, Math.ceil(total / stepSize))
+    }, [total, stepSize])
+
     React.useEffect(() => {
       const viewport = viewportRef.current
       const wrapper = wrapperRef.current
       if (!viewport || !wrapper) return
+
+      viewport.setAttribute('tabindex', '-1')
+      viewport.style.outline = 'none'
 
       const slides = slideRefs.current.filter(Boolean) as HTMLDivElement[]
       const totalSlides = slides.length
@@ -208,7 +212,9 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         }
         const first = slides[0].getBoundingClientRect()
         slideStep =
-          slides.length > 1 ? slides[1].getBoundingClientRect().left - first.left : first.width
+          slides.length > 1
+            ? slides[1].getBoundingClientRect().left - first.left
+            : first.width
       }
 
       const applyLayoutStyles = () => {
@@ -229,47 +235,36 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         viewport.style.width = '100%'
         viewport.style.cursor = 'grab'
         viewport.style.userSelect = 'none'
+        viewport.style.touchAction = 'pan-x'
+        viewport.style.outline = 'none'
 
-        if (fullBleed) {
-          slides.forEach((slide) => {
-            slide.style.flexShrink = '0'
-            slide.style.boxSizing = 'border-box'
-            slide.style.width = '100%'
+        const perView = Math.max(1, slidesPerViewResolved || 1)
+        const viewportWidth = viewport.clientWidth
 
-            slide.querySelectorAll('img').forEach((img) => {
-              img.style.pointerEvents = 'none'
-              img.style.userSelect = 'none'
-              img.setAttribute('draggable', 'false')
-            })
+        const totalGapWidth = gapPx * (perView - 1)
+        const targetSlideWidth =
+          perView > 0 && viewportWidth > 0
+            ? Math.max(0, (viewportWidth - totalGapWidth) / perView)
+            : viewportWidth
+
+        slides.forEach((slide) => {
+          slide.style.flexShrink = '0'
+          slide.style.boxSizing = 'border-box'
+          slide.style.width = `${targetSlideWidth}px`
+
+          slide.querySelectorAll('img').forEach((img) => {
+            img.style.pointerEvents = 'none'
+            img.style.userSelect = 'none'
+            img.setAttribute('draggable', 'false')
           })
-        } else {
-          const perView = Math.max(1, slidesPerViewResolved || 1)
-          const viewportWidth = viewport.clientWidth
-
-          const totalGapWidth = gapPx * (perView - 1)
-          const targetSlideWidth =
-            perView > 0 && viewportWidth > 0
-              ? Math.max(0, (viewportWidth - totalGapWidth) / perView)
-              : viewportWidth
-
-          slides.forEach((slide) => {
-            slide.style.flexShrink = '0'
-            slide.style.boxSizing = 'border-box'
-            slide.style.width = `${targetSlideWidth}px`
-
-            slide.querySelectorAll('img').forEach((img) => {
-              img.style.pointerEvents = 'none'
-              img.style.userSelect = 'none'
-              img.setAttribute('draggable', 'false')
-            })
-          })
-        }
+        })
 
         recomputeSlideStep()
       }
 
       const setSliderPosition = () => {
-        wrapper.style.transform = `translate3d(${currentTranslate}px, 0, 0)`
+        const offset = fullBleed ? FULLBLEED_PEEK : 0
+        wrapper.style.transform = `translate3d(${currentTranslate - offset}px, 0, 0)`
       }
 
       const jumpToRealSlide = () => {
@@ -324,7 +319,9 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         currentTranslate = -currentIndex * slideStep
         prevTranslate = currentTranslate
         if (animate) {
-          wrapper.style.transition = `transform ${SliderDefaults.TRANSITION_MS / 1000}s ease-out`
+          wrapper.style.transition = `transform ${
+            SliderDefaults.TRANSITION_MS / 1000
+          }s ease-out`
           scheduleLoopJump()
         } else {
           wrapper.style.transition = 'none'
@@ -333,35 +330,48 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         emitChange()
       }
 
-      const nextSlide = () => {
-        if (cloneLoop) {
-          currentIndex = Math.min(currentIndex + 1, totalSlides - 1)
-        } else if (isLoop) {
-          currentIndex = currentIndex >= maxIndex() ? 0 : Math.min(currentIndex + 1, maxIndex())
+      const realStep = stepSize && stepSize > 0 ? stepSize : 1
+
+      const goToRealIndex = (targetReal: number) => {
+        const max = maxIndex()
+        let clamped = targetReal
+
+        if (isLoop) {
+          clamped = ((targetReal % (max + 1)) + (max + 1)) % (max + 1)
         } else {
-          currentIndex = Math.min(currentIndex + 1, maxIndex())
+          clamped = Math.min(Math.max(targetReal, 0), max)
+        }
+
+        if (cloneLoop) {
+          currentIndex = localCloneCount + clamped
+        } else {
+          currentIndex = clamped
         }
         updateSliderPosition()
+      }
+
+      const nextSlide = () => {
+        const currentReal = getRealIndex()
+        const targetReal = currentReal + realStep
+        goToRealIndex(targetReal)
+        lastTick = Date.now()
       }
 
       const prevSlide = () => {
-        if (cloneLoop) {
-          currentIndex = Math.max(currentIndex - 1, 0)
-        } else if (isLoop) {
-          currentIndex = currentIndex <= 0 ? maxIndex() : currentIndex - 1
-        } else {
-          currentIndex = Math.max(currentIndex - 1, 0)
-        }
-        updateSliderPosition()
+        const currentReal = getRealIndex()
+        const targetReal = currentReal - realStep
+        goToRealIndex(targetReal)
+        lastTick = Date.now()
       }
 
-      const goToSlide = (index: number) => {
-        if (cloneLoop) {
-          currentIndex = localCloneCount + Math.min(Math.max(index, 0), maxIndex())
+      const goToSlide = (pageIndex: number) => {
+        if (realStep > 1) {
+          const targetReal = pageIndex * realStep
+          goToRealIndex(targetReal)
         } else {
-          currentIndex = Math.min(Math.max(index, 0), maxIndex())
+          goToRealIndex(pageIndex)
         }
-        updateSliderPosition()
+        lastTick = Date.now()
       }
 
       const cleanup = (resetPos: boolean) => {
@@ -389,7 +399,6 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
           const t = window.getComputedStyle(wrapper).transform
           if (t && t !== 'none') currentTranslate = new DOMMatrix(t).m41
         } catch {
-          // ignore transform parsing errors
         }
 
         prevTranslate = currentTranslate
@@ -411,8 +420,12 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         const dx = e.clientX - startX
         const dy = e.clientY - startY
         const threshold = SliderDefaults.DRAG_THRESHOLD
-        if (!dragDirection && (Math.abs(dx) > threshold || Math.abs(dy) > threshold)) {
-          dragDirection = Math.abs(dx) >= Math.abs(dy) ? 'horizontal' : 'vertical'
+        if (
+          !dragDirection &&
+          (Math.abs(dx) > threshold || Math.abs(dy) > threshold)
+        ) {
+          dragDirection =
+            Math.abs(dx) >= Math.abs(dy) ? 'horizontal' : 'vertical'
           if (dragDirection === 'vertical') {
             cleanup(true)
             return
@@ -427,7 +440,9 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       const onDragEnd = (e: PointerEvent) => {
         if (e.pointerId !== activePointerId) return
         const movedBy = currentTranslate - prevTranslate
-        const threshold = slideStep ? slideStep / 4 : viewport.clientWidth / 6
+        const threshold = slideStep
+          ? slideStep / 4
+          : viewport.clientWidth / 6
         const didDrag = wasDragged
         const direction = dragDirection
         cleanup(false)
@@ -435,17 +450,14 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         if (didDrag && direction === 'horizontal') {
           if (movedBy < -threshold) {
             nextSlide()
-            lastTick = Date.now()
             return
           }
           if (movedBy > threshold) {
             prevSlide()
-            lastTick = Date.now()
             return
           }
         }
         updateSliderPosition()
-        lastTick = Date.now()
       }
 
       const onDragCancel = (e: PointerEvent) => {
@@ -462,9 +474,9 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       }
 
       const runAutoplayFrame = () => {
-        if (!autoplay || realTotal <= 1) return
+        if (!autoplayEnabled || realTotal <= 1) return
         const now = Date.now()
-        if (!isDragging && now - lastTick >= autoplayDelay) {
+        if (!isDragging && now - lastTick >= autoplayDelayMs) {
           nextSlide()
           lastTick = now
         }
@@ -472,7 +484,7 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       }
 
       const startAutoplay = () => {
-        if (autoplay) {
+        if (autoplayEnabled) {
           lastTick = Date.now()
           runAutoplayFrame()
         }
@@ -487,17 +499,14 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         next: () => {
           wasDragged = false
           nextSlide()
-          lastTick = Date.now()
         },
         prev: () => {
           wasDragged = false
           prevSlide()
-          lastTick = Date.now()
         },
         goTo: (i: number) => {
           wasDragged = false
           goToSlide(i)
-          lastTick = Date.now()
         },
       }
 
@@ -515,19 +524,18 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
       const onNativeDragStart = (e: Event) => e.preventDefault()
       viewport.addEventListener('dragstart', onNativeDragStart)
 
-      const section = viewport.parentElement
       const onKeyDown = (e: KeyboardEvent) => {
         if (realTotal <= 1) return
 
         const target = e.target as HTMLElement | null
         if (
           target &&
-          target !== section &&
           target.closest(
             'input, select, textarea, [role="slider"], [role="spinbutton"], [role="combobox"]',
           )
-        )
+        ) {
           return
+        }
 
         switch (e.key) {
           case 'ArrowLeft':
@@ -545,20 +553,20 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
           case 'Home':
             e.preventDefault()
             wasDragged = false
-            goToSlide(0)
+            goToRealIndex(0)
             lastTick = Date.now()
             break
           case 'End':
             e.preventDefault()
             wasDragged = false
-            goToSlide(maxIndex())
+            goToRealIndex(maxIndex())
             lastTick = Date.now()
             break
           default:
             break
         }
       }
-      section?.addEventListener('keydown', onKeyDown)
+      viewport.addEventListener('keydown', onKeyDown)
 
       const onResize = () => relayoutAndPosition()
       window.addEventListener('resize', onResize)
@@ -576,7 +584,9 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
           if (img.complete) return
           const onLoad = () => relayoutAndPosition()
           img.addEventListener('load', onLoad, { once: true })
-          imgLoadCleanups.push(() => img.removeEventListener('load', onLoad))
+          imgLoadCleanups.push(() =>
+            img.removeEventListener('load', onLoad),
+          )
         })
       })
 
@@ -606,30 +616,44 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
         viewport.removeEventListener('touchmove', onTouchMove as any)
         viewport.removeEventListener('click', preventClickOnDrag, true)
         viewport.removeEventListener('dragstart', onNativeDragStart)
-        section?.removeEventListener('keydown', onKeyDown)
+        viewport.removeEventListener('keydown', onKeyDown)
         document.removeEventListener('pointermove', onDragMove)
         document.removeEventListener('pointerup', onDragEnd)
         document.removeEventListener('pointercancel', onDragCancel)
         imgLoadCleanups.forEach((fn) => fn())
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [total, loop, isLoop, gap, autoplay, autoplayDelay, slidesPerViewResolved, cloneCount])
+    }, [
+      total,
+      loop,
+      isLoop,
+      gap,
+      autoplayEnabled,
+      autoplayDelayMs,
+      slidesPerViewResolved,
+      cloneCount,
+      fullBleed,
+      useClones,
+      stepSize,
+    ])
 
     const classes = hashClass(styled, clsx('slider', className))
     const borderRadius = SLIDER_RADIUS_PIXELS[radius]
 
     if (total === 0) return null
 
+    const isAtStart = !loop && activeIndex === 0
+    const isAtEnd = !loop && activeIndex === total - 1
+
+    const currentPage =
+      stepSize > 1 ? Math.floor(activeIndex / stepSize) : activeIndex
+
     return (
       <SliderContext.Provider value={{ activeIndex }}>
-        <section
+        <div
           ref={ref}
           id={id}
           className={classes}
-          role="region"
-          aria-label={accessibilityLabel ?? 'Content slider'}
-          aria-roledescription="carousel"
-          tabIndex={total > 1 ? 0 : undefined}
           data-testid={testId}
         >
           <div
@@ -679,14 +703,22 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
                 type="button"
                 aria-label="Previous slide"
                 className={hashClass(styled, 'nav')}
-                onClick={() => controlsRef.current?.prev()}
+                onClick={(e) => {
+                  e.currentTarget.blur()
+                  controlsRef.current?.prev()
+                }}
+                style={{
+                  overflow: 'hidden',
+                  borderRadius: '50%',
+                }}
+                disabled={isAtStart}
               >
                 <Icon circled size={IconSize.SMALL} name={IconName.ARROW_LEFT} />
               </button>
 
               <div
                 role="group"
-                aria-label="Choose slide to display"
+                aria-label={accessibilityLabel ?? 'Content slider'}
                 className={hashClass(styled, 'dots')}
               >
                 {Array.from({ length: pageCount }).map((_, i) => (
@@ -694,10 +726,10 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
                     key={i}
                     type="button"
                     aria-label={`Go to slide ${i + 1}`}
-                    aria-current={i === activeIndex ? 'true' : undefined}
+                    aria-current={i === currentPage ? 'true' : undefined}
                     className={hashClass(
                       styled,
-                      clsx('bullet', { 'is-active': i === activeIndex }),
+                      clsx('bullet', { 'is-active': i === currentPage }),
                     )}
                     onClick={() => controlsRef.current?.goTo(i)}
                   />
@@ -708,13 +740,21 @@ const Slider = React.forwardRef<SliderRef, SliderProps>(
                 type="button"
                 aria-label="Next slide"
                 className={hashClass(styled, 'nav')}
-                onClick={() => controlsRef.current?.next()}
+                onClick={(e) => {
+                  e.currentTarget.blur()
+                  controlsRef.current?.next()
+                }}
+                style={{
+                  overflow: 'hidden',
+                  borderRadius: '50%',
+                }}
+                disabled={isAtEnd}
               >
                 <Icon circled size={IconSize.SMALL} name={IconName.ARROW_RIGHT} />
               </button>
             </div>
           )}
-        </section>
+        </div>
       </SliderContext.Provider>
     )
   },

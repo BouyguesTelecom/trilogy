@@ -19,6 +19,7 @@ interface SliderStoryArgs {
   slider_className: string
   slider_slidesPerView_mode: 'single' | 'responsive'
   slider_slidesPerView_value: 1 | 2 | 3
+  slider_snap: boolean
 }
 
 const meta: Meta<SliderStoryArgs> = {
@@ -85,6 +86,12 @@ const meta: Meta<SliderStoryArgs> = {
       description: 'Desktop slides per view (1–3)',
       table: { category: 'Slider' },
     },
+    slider_snap: {
+      control: 'boolean',
+      name: 'snap',
+      description: 'Move slide by slide (false) or page by page, i.e. by groups of `slidesPerView` slides (true)',
+      table: { category: 'Slider' },
+    },
   },
   args: {
     slider_autoplay: false,
@@ -95,6 +102,7 @@ const meta: Meta<SliderStoryArgs> = {
     slider_className: '',
     slider_slidesPerView_mode: 'responsive',
     slider_slidesPerView_value: 3,
+    slider_snap: false,
   },
 }
 
@@ -105,7 +113,7 @@ type Story = StoryObj<SliderStoryArgs>
 const Panel = ({ label, bg }: { label: string; bg: string }): JSX.Element => (
   <div
     style={{
-      height: 220,
+      height: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -175,6 +183,7 @@ export const Default: Story = {
         accessibilityLabel={args.slider_accessibilityLabel}
         className={args.slider_className}
         slidesPerView={slidesPerView}
+        snap={args.slider_snap}
       >
         <SliderItem>
           <Panel label="Slide 1" bg="#3d5d7e" />
@@ -194,4 +203,52 @@ export const Default: Story = {
       </Slider>
     )
   },
+}
+
+/**
+ * `snap` changes the navigation step.
+ *
+ * - `snap={false}` (default): the slider advances one slide at a time, and there is one bullet per slide.
+ * - `snap={true}`: the slider advances page by page, i.e. by groups of `slidesPerView` slides,
+ *   and there is one bullet per page (`Math.ceil(totalSlides / slidesPerView)`).
+ *
+ * Here 6 slides are displayed 3 by 3: clicking next jumps from slides 1-2-3 to slides 4-5-6,
+ * and only 2 bullets are rendered.
+ */
+export const Snap: Story = {
+  args: {
+    slider_snap: true,
+  },
+  render: () => (
+    <Slider
+      snap
+      loop={false}
+      gap={GapSize.THREE}
+      accessibilityLabel='Snap slider'
+      slidesPerView={{
+        desktop: SlidesNum.THREE,
+        tablet: SlidesNum.TWO,
+        mobile: SlidesNum.ONE,
+      }}
+    >
+      <SliderItem>
+        <Panel label='Slide 1' bg='#3d5d7e' />
+      </SliderItem>
+      <SliderItem>
+        <Panel label='Slide 2' bg='#e6685e' />
+      </SliderItem>
+      <SliderItem>
+        <Panel label='Slide 3' bg='#3fa06b' />
+      </SliderItem>
+      <SliderItem>
+        <Panel label='Slide 4' bg='#8e44ad' />
+      </SliderItem>
+      <SliderItem>
+        <Panel label='Slide 5' bg='#f39c12' />
+      </SliderItem>
+      <SliderItem>
+        <Panel label='Slide 6' bg='#16a085' />
+      </SliderItem>
+    </Slider>
+  ),
 }

@@ -21,13 +21,8 @@ export interface SliderProps extends Accessibility, Dev, CommonProps {
   radius?: SliderRadiusValues
   fullBleed?: boolean
   onSlideChange?: (index: number) => void
-
-  // NEW: responsive slides per view
-  // - number: desktop value (1,2,3) -> auto maps to tablet/mobile
-  // - object: explicit per breakpoint
-  slidesPerView?:
-    | SlidesNum
-    | SlidesNumConfig
+  slidesPerView?: SlidesNum | SlidesNumConfig
+  snap?: boolean
 }
 
 export interface SliderItemProps extends CommonProps {
