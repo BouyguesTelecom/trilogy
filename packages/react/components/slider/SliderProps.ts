@@ -1,7 +1,7 @@
 // SliderProps.ts
 import { Accessibility, Dev } from '@/objects'
 import { CommonProps } from '@/objects/facets/CommonProps'
-import { View } from 'react-native'
+import type { View } from 'react-native'
 import type { GapSize } from '@/components/columns/ColumnsTypes'
 import type {
   SliderRadiusValues,

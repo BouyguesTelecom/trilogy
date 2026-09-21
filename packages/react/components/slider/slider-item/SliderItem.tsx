@@ -10,8 +10,11 @@ import React from 'react'
  *
  * @param children {ReactNode} Slide content
  */
-const SliderItem = ({ children }: SliderItemProps): React.ReactNode => {
-  return children
+const SliderItem = ({ children }: SliderItemProps): JSX.Element => {
+  // The positioning wrapper is rendered by <Slider>; the fragment only exists
+  // so the component is a valid JSX element type.
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{children}</>
 }
 
 SliderItem.displayName = ComponentName.SliderItem

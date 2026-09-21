@@ -19,12 +19,24 @@ import clsx from 'clsx'
 
 const FIXED_HEIGHT = 350
 const FULLBLEED_PEEK = 32
+// Space the slider is allowed to bleed outside its own box so the slides'
+// shadows are not cut off. Always paired with an equal negative margin, so the
+// component still occupies the same space in its parent.
+const SHADOW_GUTTER = 8
+
+/** Imperative navigation handles, owned by the layout effect. */
+type SliderControls = {
+  next: () => void
+  prev: () => void
+  goTo: (index: number) => void
+}
 
 const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
   (
     {
       children,
       autoplay,
+      autoplayDelay,
       gap,
       loop = true,
       radius = SliderRadiusValues.LARGE,
@@ -41,14 +53,19 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
   ) => {
     const { styled } = useTrilogyContext()
 
+    const rootRef = React.useRef<HTMLDivElement | null>(null)
+    const setRootRef = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        rootRef.current = node
+        if (typeof ref === 'function') ref(node)
+        else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+      },
+      [ref],
+    )
     const viewportRef = React.useRef<HTMLDivElement | null>(null)
     const wrapperRef = React.useRef<HTMLDivElement | null>(null)
     const slideRefs = React.useRef<Array<HTMLDivElement | null>>([])
-    const controlsRef = React.useRef<{
-      next: () => void
-      prev: () => void
-      goTo: (i: number) => void
-    } | null>(null)
+    const controlsRef = React.useRef<SliderControls | null>(null)
 
     const slidesArray = React.Children.toArray(children)
     const total = slidesArray.length
@@ -66,7 +83,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       autoplay === true || (typeof autoplay === 'number' && autoplay > 0)
 
     const autoplayDelayMs =
-      typeof autoplay === 'number' && autoplay > 0
+      typeof autoplayDelay === 'number' && autoplayDelay > 0
+        ? autoplayDelay
+        : typeof autoplay === 'number' && autoplay > 0
         ? autoplay
         : SliderDefaults.AUTOPLAY_DELAY
 
@@ -117,6 +136,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       if (!viewport || !wrapper) return
 
       const updateSlidesPerView = () => {
+        // Resolved against the window: SLIDER_BREAKPOINT_PX is the design
+        // system's viewport scale, not a container-query scale.
         const width = window.innerWidth || viewport.clientWidth
         const perView = resolveSlidesPerViewForWidth(width)
         setSlidesPerViewResolved(perView)
@@ -162,10 +183,14 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     React.useEffect(() => {
       const viewport = viewportRef.current
       const wrapper = wrapperRef.current
+      const root = rootRef.current
       if (!viewport || !wrapper) return
 
-      viewport.setAttribute('tabindex', '-1')
       viewport.style.outline = 'none'
+
+      // Drop refs left over by slides that no longer exist, otherwise detached
+      // nodes would still be measured and styled.
+      slideRefs.current.length = totalWithClones
 
       const slides = slideRefs.current.filter(Boolean) as HTMLDivElement[]
       const totalSlides = slides.length
@@ -197,7 +222,14 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         return (currentIndex - localCloneCount + realTotal) % realTotal
       }
 
-      const maxIndex = () => Math.max(0, realTotal - 1)
+      // Without looping, the last reachable index is the one that still fills
+      // the viewport, otherwise navigation would end on blank space when
+      // several slides are visible at once.
+      const perViewForBounds = Math.max(1, Math.min(slidesPerViewResolved || 1, realTotal))
+      const maxIndex = () => {
+        if (isLoop) return Math.max(0, realTotal - 1)
+        return Math.max(0, realTotal - perViewForBounds)
+      }
 
       const emitChange = () => {
         const idx = getRealIndex()
@@ -273,13 +305,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         const firstRealIndex = localCloneCount
         const lastRealIndex = localCloneCount + realTotal - 1
 
-        if (currentIndex < firstRealIndex) {
-          currentIndex += realTotal
-        } else if (currentIndex > lastRealIndex) {
-          currentIndex -= realTotal
-        } else {
-          return
-        }
+        if (currentIndex >= firstRealIndex && currentIndex <= lastRealIndex) return
+
+        while (currentIndex < firstRealIndex) currentIndex += realTotal
+        while (currentIndex > lastRealIndex) currentIndex -= realTotal
 
         currentTranslate = -currentIndex * slideStep
         prevTranslate = currentTranslate
@@ -350,17 +379,35 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         updateSliderPosition()
       }
 
+      // Relative navigation, shared by the arrows, the keyboard, the swipe and
+      // the autoplay. When looping, move *through* the clones so the motion
+      // always continues in the requested direction; `jumpToRealSlide` then
+      // re-anchors silently once the transition ends. Without clones, wrap
+      // around so the last slide leads back to the first one.
+      const stepBy = (delta: number) => {
+        if (!cloneLoop) {
+          const span = maxIndex() + 1
+          const target = getRealIndex() + delta
+          goToRealIndex(((target % span) + span) % span)
+          return
+        }
+
+        const lastRendered = Math.max(0, slides.length - 1)
+        // Re-anchor first when the step would leave the rendered range.
+        if (currentIndex + delta < 0 || currentIndex + delta > lastRendered) {
+          jumpToRealSlide()
+        }
+        currentIndex = Math.min(Math.max(currentIndex + delta, 0), lastRendered)
+        updateSliderPosition()
+      }
+
       const nextSlide = () => {
-        const currentReal = getRealIndex()
-        const targetReal = currentReal + realStep
-        goToRealIndex(targetReal)
+        stepBy(realStep)
         lastTick = Date.now()
       }
 
       const prevSlide = () => {
-        const currentReal = getRealIndex()
-        const targetReal = currentReal - realStep
-        goToRealIndex(targetReal)
+        stepBy(-realStep)
         lastTick = Date.now()
       }
 
@@ -399,6 +446,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           const t = window.getComputedStyle(wrapper).transform
           if (t && t !== 'none') currentTranslate = new DOMMatrix(t).m41
         } catch {
+          // Unsupported/unparsable transform: keep the last known translate.
         }
 
         prevTranslate = currentTranslate
@@ -566,7 +614,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             break
         }
       }
-      viewport.addEventListener('keydown', onKeyDown)
+      const keyTarget: HTMLElement = root ?? viewport
+      keyTarget.addEventListener('keydown', onKeyDown)
 
       const onResize = () => relayoutAndPosition()
       window.addEventListener('resize', onResize)
@@ -616,7 +665,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         viewport.removeEventListener('touchmove', onTouchMove as any)
         viewport.removeEventListener('click', preventClickOnDrag, true)
         viewport.removeEventListener('dragstart', onNativeDragStart)
-        viewport.removeEventListener('keydown', onKeyDown)
+        keyTarget.removeEventListener('keydown', onKeyDown)
         document.removeEventListener('pointermove', onDragMove)
         document.removeEventListener('pointerup', onDragEnd)
         document.removeEventListener('pointercancel', onDragCancel)
@@ -625,6 +674,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
       total,
+      totalWithClones,
       loop,
       isLoop,
       gap,
@@ -637,13 +687,47 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       stepSize,
     ])
 
+    // Cloned slides are `aria-hidden`, so any focusable content they contain
+    // must be taken out of the tab order too (focus must never land in a
+    // duplicate that screen readers cannot announce).
+    React.useEffect(() => {
+      if (!useClones) return
+      const FOCUSABLE =
+        'a[href], area[href], button, input, select, textarea, iframe, audio[controls], video[controls], [contenteditable], [tabindex]'
+      const restore: Array<[HTMLElement, string | null]> = []
+
+      slideRefs.current.forEach((slide, i) => {
+        if (!slide) return
+        const isClone = i < cloneCount || i >= totalWithClones - cloneCount
+        if (!isClone) return
+        slide.querySelectorAll<HTMLElement>(FOCUSABLE).forEach((node) => {
+          restore.push([node, node.getAttribute('tabindex')])
+          node.setAttribute('tabindex', '-1')
+        })
+      })
+
+      return () => {
+        restore.forEach(([node, previous]) => {
+          if (previous === null) node.removeAttribute('tabindex')
+          else node.setAttribute('tabindex', previous)
+        })
+      }
+    }, [useClones, cloneCount, totalWithClones, children])
+
     const classes = hashClass(styled, clsx('slider', className))
+    // `hashClass` consumes a context, so it must not be called from inside the
+    // slides loop: the hook count would change with the number of slides.
+    const viewportClasses = hashClass(styled, 'viewport')
+    const wrapperClasses = hashClass(styled, 'wrapper')
+    const slideClasses = hashClass(styled, 'slide')
+    const controlsClasses = hashClass(styled, 'controls')
+    const navClasses = hashClass(styled, 'nav')
+    const dotsClasses = hashClass(styled, 'dots')
+    const bulletClasses = hashClass(styled, 'bullet')
+    const bulletActiveClasses = hashClass(styled, clsx('bullet', 'is-active'))
     const borderRadius = SLIDER_RADIUS_PIXELS[radius]
 
     if (total === 0) return null
-
-    const isAtStart = !loop && activeIndex === 0
-    const isAtEnd = !loop && activeIndex === total - 1
 
     const currentPage =
       stepSize > 1 ? Math.floor(activeIndex / stepSize) : activeIndex
@@ -651,14 +735,25 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     return (
       <SliderContext.Provider value={{ activeIndex }}>
         <div
-          ref={ref}
+          ref={setRootRef}
           id={id}
           className={classes}
           data-testid={testId}
+          role='region'
+          aria-roledescription='carousel'
+          aria-label={accessibilityLabel ?? 'Content slider'}
+          tabIndex={total > 1 ? 0 : undefined}
+          style={{
+            // The slider bleeds 8px outside its own zone: the padding gives
+            // room for the slides' shadows, the equal negative margin cancels
+            // it so the component still occupies the same space in its parent.
+            padding: SHADOW_GUTTER,
+            margin: -SHADOW_GUTTER,
+          }}
         >
           <div
             ref={viewportRef}
-            className={hashClass(styled, 'viewport')}
+            className={viewportClasses}
             style={{
               height: FIXED_HEIGHT,
               width: '100%',
@@ -668,7 +763,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           >
             <div
               ref={wrapperRef}
-              className={hashClass(styled, 'wrapper')}
+              className={wrapperClasses}
               style={{ height: '100%' }}
             >
               {rendered.map((child, i) => {
@@ -684,7 +779,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                     ref={(el) => {
                       slideRefs.current[i] = el
                     }}
-                    className={hashClass(styled, 'slide')}
+                    className={slideClasses}
                     aria-roledescription="slide"
                     aria-label={`Slide ${displayIndex} of ${total}`}
                     aria-hidden={isClone ? 'true' : undefined}
@@ -698,11 +793,11 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           </div>
 
           {total > 1 && (
-            <div className={hashClass(styled, 'controls')}>
+            <div className={controlsClasses}>
               <button
                 type="button"
                 aria-label="Previous slide"
-                className={hashClass(styled, 'nav')}
+                className={navClasses}
                 onClick={(e) => {
                   e.currentTarget.blur()
                   controlsRef.current?.prev()
@@ -711,15 +806,14 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                   overflow: 'hidden',
                   borderRadius: '50%',
                 }}
-                disabled={isAtStart}
               >
                 <Icon circled size={IconSize.SMALL} name={IconName.ARROW_LEFT} />
               </button>
 
               <div
                 role="group"
-                aria-label={accessibilityLabel ?? 'Content slider'}
-                className={hashClass(styled, 'dots')}
+                aria-label='Slide navigation'
+                className={dotsClasses}
               >
                 {Array.from({ length: pageCount }).map((_, i) => (
                   <button
@@ -727,10 +821,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                     type="button"
                     aria-label={`Go to slide ${i + 1}`}
                     aria-current={i === currentPage ? 'true' : undefined}
-                    className={hashClass(
-                      styled,
-                      clsx('bullet', { 'is-active': i === currentPage }),
-                    )}
+                    className={i === currentPage ? bulletActiveClasses : bulletClasses}
                     onClick={() => controlsRef.current?.goTo(i)}
                   />
                 ))}
@@ -739,7 +830,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
               <button
                 type="button"
                 aria-label="Next slide"
-                className={hashClass(styled, 'nav')}
+                className={navClasses}
                 onClick={(e) => {
                   e.currentTarget.blur()
                   controlsRef.current?.next()
@@ -748,7 +839,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                   overflow: 'hidden',
                   borderRadius: '50%',
                 }}
-                disabled={isAtEnd}
               >
                 <Icon circled size={IconSize.SMALL} name={IconName.ARROW_RIGHT} />
               </button>

@@ -7,6 +7,7 @@ import {
   SliderDefaults,
 } from '@/components/slider/SliderEnum'
 import { SliderNativeRef, SliderProps } from '@/components/slider/SliderProps'
+import { ColumnsGapValue } from '@/components/columns/ColumnsTypes'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React from 'react'
 import {
@@ -61,7 +62,9 @@ const Slider = React.forwardRef<SliderNativeRef, SliderProps>(
     }
 
     const gapPx = React.useMemo(() => {
-      if (typeof gap === 'number') return gap
+      // `gap` is a GapSize, i.e. an index into the shared scale — not a pixel
+      // value. Resolve it the same way the web implementation does.
+      if (typeof gap === 'number') return ColumnsGapValue[gap] ?? 0
       if (gap) return 16
       return 0
     }, [gap])
@@ -93,7 +96,11 @@ const Slider = React.forwardRef<SliderNativeRef, SliderProps>(
 
     const onMomentumEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       if (!snapInterval) return
-      const idx = Math.round(e.nativeEvent.contentOffset.x / snapInterval)
+      // Overscroll (rubber banding) can yield an out-of-range index.
+      const idx = Math.min(
+        Math.max(Math.round(e.nativeEvent.contentOffset.x / snapInterval), 0),
+        total - 1,
+      )
       indexRef.current = idx
       setActiveIndex(idx)
       onSlideChange?.(idx)
