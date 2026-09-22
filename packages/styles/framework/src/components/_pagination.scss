@@ -29,7 +29,7 @@
     min-width: 2.25em;
     height: 35px;
     width: 35px;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
     padding-left: 0.75em;
     padding-right: 0.75em;
     white-space: nowrap;

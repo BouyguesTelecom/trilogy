@@ -9,7 +9,7 @@ $basis-values: (
 .card {
   max-width: 100%;
   display: flex;
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   flex-direction: column;
   position: relative;
@@ -205,7 +205,7 @@ $basis-values: (
     background: transparent;
 
     .card-image .image img {
-      border-radius: var(--radius);
+      border-radius: var(--radius-lg);
     }
 
     .card-content {

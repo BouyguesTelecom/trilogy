@@ -20,7 +20,7 @@
     content: "";
     display: block;
     height: 4px;
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-full);
     background-size: 200% !important;
     background-color: getColor('neutral');
   }
@@ -130,7 +130,7 @@
 .step-bars {
   height: 4px;
   background: getColor('disabled');
-  border-radius: var(--radius-small);
+  border-radius: var(--radius-full);
   display: none;
 }
 

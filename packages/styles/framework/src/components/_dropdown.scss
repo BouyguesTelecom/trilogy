@@ -1,7 +1,6 @@
 @use 'sass:math';
 @import "../utilities/spacing";
 
-$dropdown-border-radius: var(--radius-small);
 $dropdown-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 $dropdown-item-padding-vertical: 12px;
 $dropdown-item-padding-horizontal: 16px;
@@ -42,7 +41,7 @@ $dropdown-item-padding-horizontal: 16px;
   display: none;
   margin-top: 15px;
   background-color: getColor('background');
-  border-radius: $dropdown-border-radius;
+  border-radius: var(--radius-md);
   box-shadow: $dropdown-shadow;
   overflow: hidden;
   max-height: 300px;
@@ -92,7 +91,7 @@ $dropdown-item-padding-horizontal: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   border: none;
-  border-radius: $dropdown-border-radius;
+  border-radius: var(--radius-sm);
   background: none;
   width: 100%;
   text-align: left;

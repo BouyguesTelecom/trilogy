@@ -438,11 +438,16 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 // Radius
-$radius-list: ['radius-large', 'radius-medium', 'radius-small', 'radius'];
+$radius-list: (
+  'radius-large': 'radius-lg',
+  'radius-medium': 'radius-md',
+  'radius-small': 'radius-sm',
+  'radius': 'radius-sm',
+);
 
 @each $label in $radius-list {
   .has-border-#{$label} {
-    border-radius: var(--#{$label});
+    border-radius: var(--#{map-get($radius-list, $label)});
   }
 }
 

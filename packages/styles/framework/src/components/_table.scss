@@ -217,7 +217,7 @@
 
   .subtable {
     background-color: getColor('neutral-fade');
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
     padding: 25px;
 
     @include mobile() {
