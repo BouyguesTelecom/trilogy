@@ -7,6 +7,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 import { PromptContext } from '../../context'
 import PromptButton from '../tools/button/PromptButton.native'
 import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './PromptSubmitProps'
+import { Theme } from '@/constants/theme'
 
 /**
  * PromptSubmit component - Submit button for prompt with streaming support
@@ -62,7 +63,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
         {...others}
       >
         {statusSubmit === PromptSubmitStatus.STREAMING_ON ? (
-          <View style={{ height: 20, width: 20, borderRadius: 4, backgroundColor: backgroundStopElm }} />
+          <View style={{ height: 20, width: 20, borderRadius: Theme.radius.xs, backgroundColor: backgroundStopElm }} />
         ) : (
           <Icon
             size={IconSize.SMALLER}

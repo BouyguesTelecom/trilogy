@@ -7,6 +7,7 @@ import * as React from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { StickerNativeRef, StickerProps } from './StickerProps'
+import { Theme } from '@/constants/theme'
 
 /**
  * Sticker Component
@@ -32,10 +33,7 @@ const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(
         borderWidth: outlined ? 2 : 0,
         borderColor: (outlined && defaultColor) || 'transparent',
         backgroundColor: (outlined && 'white') || (variant && getVariantStyle(variant)) || defaultColor,
-        borderTopLeftRadius: (!small && 24) || (small && 16) || 0,
-        borderTopRightRadius: (small && 16) || 24,
-        borderBottomLeftRadius: (!small && 24) || (small && 16) || 0,
-        borderBottomRightRadius: (!small && 24) || (small && 16) || 0,
+        borderRadius: Theme.radius.full,
         marginTop: 0,
         fontSize: small ? 12 : 16,
         top: 0,

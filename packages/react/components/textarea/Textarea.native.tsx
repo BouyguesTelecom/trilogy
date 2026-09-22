@@ -16,6 +16,7 @@ import { SpacerSize } from '../spacer'
 import { Text as TrilogyText } from '../text'
 import { TextLevels } from '../text/TextEnum'
 import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
+import { Theme } from '@/constants/theme'
 
 /**
  * Textarea Component
@@ -92,7 +93,7 @@ const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
     const styles = memoStyles({
       textarea: {
         borderWidth: isFocus ? 2 : 1,
-        borderRadius: 3,
+        borderRadius: Theme.radius.sm,
         borderColor: borderColorTextarea,
         height: customHeight,
         justifyContent: 'flex-start',

@@ -8,6 +8,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography'
 import { CountdownFormat, CountdownUnite } from './CountdownEnum'
 import { CountdownNativeRef, CountdownProps } from './CountdownProps'
+import { Theme } from '@/constants/theme'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -129,7 +130,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
       countdown: {
         alignSelf: centered ? 'center' : 'flex-start',
         backgroundColor: getColorStyle(TrilogyColor.ACCENT_FADE),
-        borderRadius: small ? 8 : 8,
+        borderRadius: Theme.radius.md,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 12,

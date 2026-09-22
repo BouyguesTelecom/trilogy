@@ -7,6 +7,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useEffect, useRef, useState } from 'react'
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
 import { OtpNativeRef, OtpProps } from './OtpProps'
+import { Theme } from '@/constants/theme'
 
 /**
  * OTP Code Component
@@ -74,7 +75,7 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
             : TrilogyColor.STROKE,
         ),
         borderWidth: 1,
-        borderRadius: 4,
+        borderRadius: Theme.radius.sm,
         marginHorizontal: 5,
         justifyContent: 'center',
         alignContent: 'center',
@@ -85,7 +86,7 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
       inputSelectedContainer: {
         borderColor: color,
         borderWidth: 1,
-        borderRadius: 4,
+        borderRadius: Theme.radius.sm,
         marginHorizontal: 5,
         justifyContent: 'center',
         alignContent: 'center',

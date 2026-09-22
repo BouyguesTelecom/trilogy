@@ -6,6 +6,7 @@ import { Text } from '@/components/text'
 import { TrilogyColor, getColorStyle } from '@/objects'
 import { DimensionValue, StyleSheet, View } from 'react-native'
 import { useGauge } from './hook/useGauge'
+import { Theme } from '@/constants/theme'
 
 interface InputGaugeProps {
   validationRules?: IValidationRules
@@ -132,11 +133,11 @@ const styles = StyleSheet.create({
   containerGauge: {
     height: 4,
     width: '100%',
-    borderRadius: 4,
+    borderRadius: Theme.radius.full,
     marginVertical: 8,
   },
   gauge: {
     height: 4,
-    borderRadius: 4,
+    borderRadius: Theme.radius.full,
   },
 })

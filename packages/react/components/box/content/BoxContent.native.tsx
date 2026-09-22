@@ -5,6 +5,7 @@ import { getColorStyle } from '@/objects/facets/Color'
 import * as React from 'react'
 import { ImageBackground, Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
+import { Theme } from '@/constants/theme'
 
 /**
  * Box Content
@@ -16,32 +17,19 @@ import { memoStyles } from '@/helpers/memoStyles'
  */
 const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
-    const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = React.useContext(BoxContext)
+    const { fullHeight, highlighted } = React.useContext(BoxContext)
 
     const styles = memoStyles({
       boxContent: {
         padding: 16,
         backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
-        borderRadius: 6,
         flex: fullHeight ? 1 : undefined,
         marginLeft: highlighted ? 4 : 0,
-        borderTopLeftRadius: (highlighted && numberOfContent > 1) || header ? 0 : 6,
-        borderTopRightRadius: header ? 0 : 6,
-        borderBottomLeftRadius: numberOfContent > 1 || highlighted ? 0 : 6,
-        borderBottomRightRadius: numberOfContent > 1 ? 0 : 6,
       },
     })
 
     const content = (
-      <View
-        testID={testId}
-        ref={ref}
-        style={[styles.boxContent]}
-        {...others}
-        onLayout={() => {
-          setNumberOfContent((prev) => prev + 1)
-        }}
-      >
+      <View testID={testId} ref={ref} style={[styles.boxContent]} {...others}>
         {children && typeof children.valueOf() === 'string' ? <Text>{children}</Text> : children}
       </View>
     )
@@ -51,7 +39,7 @@ const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
         <ImageBackground
           source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
           style={{ flex: 1 }}
-          imageStyle={{ borderRadius: 6 }}
+          imageStyle={{ borderRadius: Theme.radius.lg }}
         >
           {content}
         </ImageBackground>

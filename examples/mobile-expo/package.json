@@ -29,6 +29,7 @@
     "react-hook-form": "^7.54.2",
     "react-native": "0.74.5",
     "react-native-svg": "15.2.0",
+    "react-native-svg-transformer": "^1.5.3",
     "react-native-toast-message": "^2.2.0",
     "shortid": "^2.2.16",
     "typescript": "~5.3.3"
