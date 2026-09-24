@@ -15,7 +15,7 @@ import { is } from '@/services/classify'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param medium {boolean} Set medium container width
- * @param sizes {boolean} Set container sizes
+ * @param size {ContainerSizes | `${ContainerSizes}`} Set container size
  */
 const Container = React.forwardRef<ContainerRef, ContainerProps>(
   ({ className, id, medium, testId, size, ...others }, ref): JSX.Element => {
