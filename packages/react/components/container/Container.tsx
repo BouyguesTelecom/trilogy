@@ -15,11 +15,12 @@ import { is } from '@/services/classify'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param medium {boolean} Set medium container width
+ * @param sizes {boolean} Set container sizes
  */
 const Container = React.forwardRef<ContainerRef, ContainerProps>(
-  ({ className, id, medium, testId, ...others }, ref): JSX.Element => {
+  ({ className, id, medium, testId, size, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('container', medium && is('medium'), className))
+    const classes = hashClass(styled, clsx('container', medium && is('medium'), size && `size-${size}`, className))
 
     return (
       <div ref={ref as React.RefObject<HTMLDivElement>} id={id} className={classes} data-testid={testId} {...others} />
