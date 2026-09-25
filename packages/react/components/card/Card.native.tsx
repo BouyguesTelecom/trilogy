@@ -7,6 +7,7 @@ import { Platform, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../skeleton'
 import { CardNativeRef, CardProps } from './CardProps'
+import { getRadius, Radius } from '@/objects/facets/Radius'
 
 export const CardContext = createContext({
   floating: false,
@@ -31,11 +32,12 @@ export const CardContext = createContext({
  */
 const Card = React.forwardRef<CardNativeRef, CardProps>(
   (
-    { children, flat, horizontal, floating, onClick, skeleton, reversed, fullheight, active, ...others },
+    { children, flat, horizontal, floating, onClick, skeleton, reversed, fullheight, active, radius, ...others },
     ref,
   ): JSX.Element => {
     const borderColor = getColorStyle(TrilogyColor.STROKE_FADE)
-    const cardRadius = Theme.radius.lg
+    const cardRadius = getRadius(radius ?? Radius.LG)
+
     const styles = memoStyles({
       card: {
         width: '100%',

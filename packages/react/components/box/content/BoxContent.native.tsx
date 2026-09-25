@@ -17,14 +17,13 @@ import { Theme } from '@/constants/theme'
  */
 const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
-    const { fullHeight, highlighted } = React.useContext(BoxContext)
+    const { fullHeight } = React.useContext(BoxContext)
 
     const styles = memoStyles({
       boxContent: {
         padding: 16,
         backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
         flex: fullHeight ? 1 : undefined,
-        marginLeft: highlighted ? 4 : 0,
       },
     })
 
