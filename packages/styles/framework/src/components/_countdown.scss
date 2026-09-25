@@ -35,7 +35,7 @@
 
   &.is-small {
     padding: $spacing-2 $spacing-1;
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
 
     .count {
       font-size: $text-12;
