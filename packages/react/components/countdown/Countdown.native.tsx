@@ -130,7 +130,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
       countdown: {
         alignSelf: centered ? 'center' : 'flex-start',
         backgroundColor: getColorStyle(TrilogyColor.ACCENT_FADE),
-        borderRadius: Theme.radius.md,
+        borderRadius: small ? Theme.radius.sm : Theme.radius.md,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 12,
