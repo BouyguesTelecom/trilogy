@@ -5,6 +5,11 @@
   --radius-medium: 8px;
   --radius-small: 4px;
   --radius-large: 16px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
   --border: 1px solid #{getColor('stroke')};
   --border-active: 2px solid #{getColor('main')};
 }

@@ -40,7 +40,7 @@
   .chips {
     align-items: center;
     background-color: white;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
     color: getColor('font');
     display: inline-flex;
     font-size: $size-normal;

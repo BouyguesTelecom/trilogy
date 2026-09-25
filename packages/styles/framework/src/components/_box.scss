@@ -23,14 +23,32 @@ a.box {
 }
 
 .box {
+  --box-radius: var(--radius-lg);
+
   background-color: getColor('background');
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: var(--radius);
+  border-radius: var(--box-radius);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
   padding: var(--padding-box);
+
+  &.radius-xs {
+    --box-radius: var(--radius-xs);
+  }
+
+  &.radius-sm {
+    --box-radius: var(--radius-sm);
+  }
+
+  &.radius-md {
+    --box-radius: var(--radius-md);
+  }
+
+  &.radius-lg {
+    --box-radius: var(--radius-lg);
+  }
 
   &.is-active {
     outline: var(--border-active);
@@ -65,8 +83,8 @@ a.box {
 
   &.is-highlighted {
     border-left: $highlighted-border-width solid transparent;
-    border-top-left-radius: $highlighted-border-width;
-    border-bottom-left-radius: $highlighted-border-width;
+    border-top-left-radius: calc(var(--box-radius) + 3px);
+    border-bottom-left-radius: calc(var(--box-radius) + 3px);
     border-left-color: getColor('main');
     @each $name, $pair in $colors-brand-functionnal {
       $color: getColor($name);
@@ -77,22 +95,8 @@ a.box {
         border-left-width: $highlighted-border-width;
       }
     }
-    > .box-content {
-      &:first-child {
-        border-top-left-radius: 0;
-      }
-
-      &:last-child {
-        border-bottom-left-radius: 0;
-      }
-    }
-    > .box-footer {
-      border-bottom-left-radius: 0;
-    }
-
     > .box-header {
       margin-left: calc(var(--padding-box) * -1 - $highlighted-border-width);
-      border-radius: $highlighted-border-width var(--radius) 0 0;
 
     }
   }
@@ -113,7 +117,7 @@ a.box {
     flex-direction: column;
     align-items: center;
     font-weight: $weight-semibold;
-    border-radius: var(--radius) var(--radius) 0 0;
+    border-radius: var(--box-radius) var(--box-radius) 0 0;
     height: 40px;
 
     @include tablet {
@@ -144,14 +148,14 @@ a.box {
 
     &:first-child {
       margin-top: calc(var(--padding-box) * -1);
-      border-top-left-radius: var(--radius);
-      border-top-right-radius: var(--radius);
+      border-top-left-radius: var(--box-radius);
+      border-top-right-radius: var(--box-radius);
     }
 
     &:last-child {
       margin-bottom: calc(var(--padding-box) * -1);
-      border-bottom-left-radius: var(--radius);
-      border-bottom-right-radius: var(--radius);
+      border-bottom-left-radius: var(--box-radius);
+      border-bottom-right-radius: var(--box-radius);
     }
 
     > .is-unboxed {
@@ -169,8 +173,8 @@ a.box {
     margin-right: calc(var(--padding-box) * -1);
     margin-bottom: calc(var(--padding-box) * -1);
     padding: var(--padding-box);
-    border-bottom-left-radius: var(--radius);
-    border-bottom-right-radius: var(--radius);
+    border-bottom-left-radius: var(--box-radius);
+    border-bottom-right-radius: var(--box-radius);
   }
 
   .box-footer:not(.is-borderless):not([class*="has-background"])::before {

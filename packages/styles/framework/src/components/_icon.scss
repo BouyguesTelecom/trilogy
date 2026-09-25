@@ -8,19 +8,19 @@ $icon-dimensions-default: 15px;
 
 $size: (
   'smaller': (
-    container: 20px, icon:16px, radius: var(--radius-small)
+    container: 20px, icon:16px, radius: var(--radius-sm)
   ),
   'small': (
-    container: 32px, icon: 20px, radius: var(--radius-small)
+    container: 32px, icon: 20px, radius: var(--radius-sm)
   ),
   'medium': (
-    container: 48px, icon: 32px, radius: var(--radius-medium)
+    container: 48px, icon: 32px, radius: var(--radius-md)
   ),
   'large': (
-    container: 66px, icon: 44px, radius: var(--radius-medium)
+    container: 66px, icon: 44px, radius: var(--radius-md)
   ),
   'huge': (
-    container: 99px, icon: 66px, radius: var(--radius-large)
+    container: 99px, icon: 66px, radius: var(--radius-lg)
   )
 );
 
@@ -31,7 +31,7 @@ $size: (
     font-size: inherit;
     width: 1.5em;
     height: 1.5em;
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-sm);
     [class^="tri-"],
     [class*=" tri-"] {
       &::before {

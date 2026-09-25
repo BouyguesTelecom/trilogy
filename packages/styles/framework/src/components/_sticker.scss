@@ -1,7 +1,7 @@
 $sticker-height: 35px;
 
 .sticker {
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   font-size: 16px;
   flex-grow: 0;
   display: inline-flex;
@@ -72,7 +72,7 @@ $sticker-height: 35px;
 
   // deprecated
   &.is-stretched {
-    border-radius: var(--radius) 0;
+    border-radius: var(--radius-sm) 0;
     padding: 0 10px;
     position: relative;
     margin-right: 10px;
@@ -92,12 +92,12 @@ $sticker-height: 35px;
     }
 
     &::before {
-      border-radius: var(--radius) 0 0 var(--radius);
+      border-radius: var(--radius-sm) 0 0 var(--radius-sm);
       left: -6px;
     }
 
     &::after {
-      border-radius: 0 var(--radius) var(--radius) 0;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       right: -7px;
     }
   }
@@ -116,7 +116,7 @@ $sticker-height: 35px;
 .has-hat-mobile {
   .is-hat {
     display: inline-block;
-    border-radius: var(--radius) var(--radius) 0 0;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     position: absolute;
     top: -$sticker-height;
     left: 0;

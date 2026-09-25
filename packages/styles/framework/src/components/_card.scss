@@ -7,14 +7,32 @@ $basis-values: (
 
 
 .card {
+  --card-radius: var(--radius-lg);
+
   max-width: 100%;
   display: flex;
-  border-radius: var(--radius);
+  border-radius: var(--card-radius);
   overflow: hidden;
   flex-direction: column;
   position: relative;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   background-color: getColor('background');
+
+  &.radius-xs {
+    --card-radius: var(--radius-xs);
+  }
+
+  &.radius-sm {
+    --card-radius: var(--radius-sm);
+  }
+
+  &.radius-md {
+    --card-radius: var(--radius-md);
+  }
+
+  &.radius-lg {
+    --card-radius: var(--radius-lg);
+  }
 
   &:not(.is-reversed) .card-image {
     order: 1;
@@ -205,7 +223,7 @@ $basis-values: (
     background: transparent;
 
     .card-image .image img {
-      border-radius: var(--radius);
+      border-radius: var(--card-radius);
     }
 
     .card-content {

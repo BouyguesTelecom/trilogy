@@ -46,7 +46,7 @@
   .radio-container {
     &:before,
     &:after {
-      border-radius: 9999px;
+      border-radius: var(--radius-full);
     }
   }
 }
