@@ -3,6 +3,7 @@ import { Icon, IconColor, IconSize } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getStatusStyle } from '@/objects/facets/Status'
 import React from 'react'
+import { Theme } from '@/constants/theme'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { TagNativeRef, TagProps } from './TagProps'
@@ -28,7 +29,7 @@ const Tag = React.forwardRef<TagNativeRef, TagProps>(
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        borderRadius: 15,
+        borderRadius: Theme.radius.full,
         paddingHorizontal: 8,
         paddingVertical: 4,
         minHeight: small ? 24 : 32,

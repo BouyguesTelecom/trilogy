@@ -22,6 +22,7 @@ import { Icon, IconName, IconSize } from '../icon'
 import { Title } from '../title'
 import { ModalNativeRef, ModalProps } from './ModalProps'
 import { ModalContext } from './context/ModalContext'
+import { Theme } from '@/constants/theme'
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height
 const DISMISS_THRESHOLD = 150
@@ -160,7 +161,12 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
             </Animated.View>
             <Animated.View
               ref={ref}
-              style={[styles.body, { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) }, animatedStyle, isAndroid ? { paddingBottom: bottomInset } : {}]}
+              style={[
+                styles.body,
+                { backgroundColor: getColorStyle(TrilogyColor.BACKGROUND) },
+                animatedStyle,
+                isAndroid ? { paddingBottom: bottomInset } : {},
+              ]}
               {...others}
             >
               <GestureDetector gesture={panGesture}>
@@ -208,7 +214,7 @@ const styles = memoStyles({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
+    borderTopLeftRadius: Theme.radius.lg,
+    borderTopRightRadius: Theme.radius.lg,
   },
 })

@@ -5,6 +5,7 @@ import { Clickable } from '../../objects/facets/Clickable'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { Fullheight } from '../../objects/facets/Fullheight'
 import { Dev } from '@/objects/facets/Dev'
+import { Radius } from '@/objects/facets/Radius'
 
 /**
  * Card Interface
@@ -20,6 +21,7 @@ export interface CardProps extends Fullheight, Clickable, Accessibility, CommonP
   reversed?: boolean
   href?: string
   active?: boolean
+  radius?: Radius | `${Radius}`
 }
 
 export type CardRef = HTMLDivElement | HTMLAnchorElement

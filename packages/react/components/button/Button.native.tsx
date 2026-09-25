@@ -10,6 +10,7 @@ import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { ButtonVariant } from './ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from './ButtonProps'
+import { Theme } from '@/constants/theme'
 
 /**
  * Button Component
@@ -70,7 +71,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: getColorStyle(background),
-        borderRadius: 4,
+        borderRadius: Theme.radius.sm,
         minHeight: 45,
         height: loading ? 52 : 'auto',
         borderColor: getColorStyle(borderColor),

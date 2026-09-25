@@ -3,6 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import * as React from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
+import { Theme } from '@/constants/theme'
 
 /**
  * Accordion Component
@@ -16,7 +17,7 @@ const Accordion = React.forwardRef<AccordionNativeRef, AccordionProps>(({ testId
     accordion: {
       width: '100%',
       minHeight: 10,
-      borderRadius: 6,
+      borderRadius: Theme.radius.md,
     },
   })
 

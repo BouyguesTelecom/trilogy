@@ -7,6 +7,7 @@ import { getColorStyle, StatusState, TrilogyColor } from '../../../objects'
 import { IconName } from '../../icon'
 import Input from '../Input.native'
 import { InputAutoCapitalize, InputKeyboardType, InputStatus, InputType } from '../InputEnum'
+import { Theme } from '../../../constants/theme'
 
 describe('Input component', () => {
   const types = [
@@ -70,7 +71,7 @@ describe('Input component', () => {
         alignSelf: 'stretch',
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         borderWidth: 1,
-        borderRadius: 3,
+        borderRadius: Theme.radius.sm,
         borderColor:
           (state === 'success' && getColorStyle(StatusState.SUCCESS)) ||
           (state === 'warning' && getColorStyle(StatusState.WARNING)) ||

@@ -15,6 +15,7 @@ import { Row, Rows } from '../rows'
 import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
 import ToasterContext from './context'
 import { ToasterShowContext } from './context/ToasterContextProps'
+import { Theme } from '@/constants/theme'
 
 /**
  * Function call by context for showing toast
@@ -57,7 +58,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
         paddingBottom: 12,
         borderWidth: banner ? 0 : 1,
         backgroundColor: backgroundColor,
-        borderRadius: banner ? 0 : 6,
+        borderRadius: banner ? 0 : Theme.radius.md,
         alignItems: 'baseline',
         textAlign: banner ? 'center' : 'left',
         paddingLeft: 12,
@@ -76,7 +77,6 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
 
     // eslint-disable-next-line prefer-const
     alertView = (
-
       <View style={[styles.container, (others as any).style]} ref={ref}>
         <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>
           <Column narrow>
@@ -144,7 +144,7 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
       borderColor: color,
       backgroundColor: backgroundColor,
       padding: 14,
-      borderRadius: 6,
+      borderRadius: Theme.radius.md,
     },
   })
 

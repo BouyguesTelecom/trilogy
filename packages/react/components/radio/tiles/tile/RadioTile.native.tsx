@@ -9,6 +9,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyAlign, TypographyColor } from '@/objects/Typography'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { Theme } from '@/constants/theme'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { RadioTilesContext } from '../context'
@@ -60,7 +61,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
         borderWidth: checked ? 2 : 1,
         alignItems: 'center',
         gap: SpacerSize.THREE,
-        borderRadius: 6,
+        borderRadius: Theme.radius.md,
         padding: !checked ? SpacerSize.FOUR : SpacerSize.FOUR - 1,
         maxWidth: horizontal || isGrid ? undefined : '50%',
         backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : TrilogyColor.BACKGROUND),
@@ -150,7 +151,7 @@ const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boole
       width: 18,
       height: 18,
       borderWidth: 1,
-      borderRadius: 18,
+      borderRadius: Theme.radius.full,
       justifyContent: 'center',
       alignItems: 'center',
       borderColor: getColorStyle(disabled ? TrilogyColor.DISABLED : checked ? TrilogyColor.MAIN : TrilogyColor.STROKE),
@@ -158,7 +159,7 @@ const InputRadio = ({ checked, disabled }: { checked?: boolean; disabled?: boole
     inputRadio: {
       width: 12,
       height: 12,
-      borderRadius: 12,
+      borderRadius: Theme.radius.full,
       backgroundColor: getColorStyle(
         disabled && checked
           ? TrilogyColor.DISABLED

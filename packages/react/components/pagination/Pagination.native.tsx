@@ -7,6 +7,7 @@ import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Pager } from './PaginationEnum'
 import { PaginationNativeProps, PaginationNativeRef } from './PaginationProps'
+import { Theme } from '@/constants/theme'
 
 /**
  * Pagination Component
@@ -90,7 +91,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
         width: 26,
         height: 26,
-        borderRadius: 26,
+        borderRadius: Theme.radius.full,
         justifyContent: 'center',
       },
 
@@ -98,7 +99,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         width: 26,
         height: 26,
-        borderRadius: 26,
+        borderRadius: Theme.radius.full,
         justifyContent: 'center',
       },
       currentPage: {

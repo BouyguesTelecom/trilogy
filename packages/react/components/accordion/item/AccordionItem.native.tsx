@@ -7,6 +7,7 @@ import React, { isValidElement, useEffect, useRef, useState } from 'react'
 import { Animated, Easing, TouchableWithoutFeedback, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { AccordionItemNativeRef, AccordionItemProps } from './AccordionItemProps'
+import { Theme } from '@/constants/theme'
 
 interface AccordionChild {
   header?: React.ReactNode
@@ -37,13 +38,13 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
       item: {
         width: '100%',
         padding: 5,
-        borderRadius: 6,
+        borderRadius: Theme.radius.md,
         backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
         borderWidth: 1,
         borderColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.STROKE_FADE),
       },
       bodyBackground: {
-        borderRadius: 6,
+        borderRadius: Theme.radius.md,
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
         overflow: 'hidden',
       },
@@ -65,7 +66,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
         paddingRight: 10,
         position: 'absolute',
         bottom: 0,
-        borderRadius: 6,
+        borderRadius: Theme.radius.md,
         left: 0,
         right: 0,
       },
@@ -142,7 +143,6 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
           <TouchableWithoutFeedback
             style={styles.item}
             testID={id || testId || ''}
-
             onPress={(e: any) => {
               if (!disabled) {
                 toggleListItem()
@@ -165,7 +165,6 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
           <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
             <View
               style={styles.bodyContainer}
-
               onLayout={(e: any) => {
                 setBodySectionHeight(e.nativeEvent.layout.height)
               }}

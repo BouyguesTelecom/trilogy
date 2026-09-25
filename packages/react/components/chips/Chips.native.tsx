@@ -3,6 +3,7 @@ import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useContext, useEffect, useState } from 'react'
+import { Theme } from '@/constants/theme'
 import { GestureResponderEvent, TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Icon, IconColor, IconName, IconSize } from '../icon'
@@ -33,7 +34,7 @@ const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
           (disabled && getColorStyle(TrilogyColor.NEUTRAL_FADE)) ||
           (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
           getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 30,
+        borderRadius: Theme.radius.full,
         paddingLeft: 12,
         paddingRight: 12,
         paddingTop: 6,

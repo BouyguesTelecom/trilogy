@@ -3,7 +3,6 @@ import { getColorStyle } from '@/objects'
 import * as React from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { BoxContext } from '../context/boxContext'
 import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
 
 /**
@@ -15,17 +14,11 @@ import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
  */
 const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
   ({ children, backgroundColor, testId, ...others }, ref): JSX.Element => {
-    const boxRadius = 6
-    const { highlighted } = React.useContext(BoxContext)
-
     const styles = memoStyles({
       boxFooter: {
         padding: 12,
         justifyContent: 'center',
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : 'transparent',
-        borderBottomLeftRadius: highlighted ? 0 : boxRadius,
-        borderBottomRightRadius: boxRadius,
-        marginLeft: highlighted ? 4 : 0,
       },
     })
 

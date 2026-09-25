@@ -3,7 +3,9 @@ import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import React, { useState } from 'react'
+import { getRadius, Radius } from '@/objects/facets/Radius'
+import React, { useCallback, useState } from 'react'
+import { Theme } from '@/constants/theme'
 import { ImageBackground, Platform, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../skeleton'
@@ -41,16 +43,14 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       fullheight,
       active,
       testId,
+      radius,
       ...others
     },
     ref,
   ): JSX.Element => {
     const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
-    const [boxHeight, setBoxHeight] = useState(0)
-    const [numberOfContent, setNumberOfContent] = useState(0)
-    const [header, setHeader] = useState<boolean>(false)
+    const boxRadius = getRadius(radius ?? Radius.LG)
 
-    const boxRadius = 6
     const styles = memoStyles({
       box: {
         width: '100%',
@@ -63,6 +63,8 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         borderColor: active ? getColorStyle(TrilogyColor.MAIN) : getColorStyle(TrilogyColor.STROKE_FADE),
         marginTop: headerOffset ? 35 : 0,
         flex: fullheight ? 1 : 0,
+        borderLeftWidth: highlighted ? 4 : undefined,
+        borderLeftColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : undefined,
       },
       shadow: shadowless
         ? {}
@@ -83,23 +85,11 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         overflow: 'hidden',
         borderRadius: boxRadius,
       },
-      highlighted: {
-        position: 'absolute',
-        width: 4,
-        borderTopStartRadius: 4,
-        borderBottomStartRadius: 4,
-        height: boxHeight,
-        backgroundColor: highlighted ? getColorStyle(highlighted as TrilogyColor | TrilogyColorValues) : 'transparent',
-        overflow: 'hidden',
-      },
       boxImage: {
         width: '100%',
         minHeight: 100,
         maxHeight: 300,
         height: 'auto',
-      },
-      content: {
-        padding: 16,
       },
     })
 
@@ -120,23 +110,59 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         <BoxContext.Provider
           value={{
             fullHeight: fullheight || false,
-            highlighted,
-            numberOfContent,
-            header,
-            setHeader,
-            setNumberOfContent,
           }}
         >
-          <TouchableOpacity
-            ref={ref as React.Ref<TouchableOpacity>}
-            onPress={(e?: unknown) => onClick?.(e)}
+          <View style={[styles.box, !flat && styles.shadow, (others as any)?.style]}>
+            <TouchableOpacity
+              ref={ref as React.Ref<TouchableOpacity>}
+              onPress={(e?: unknown) => onClick?.(e)}
+              testID={boxTestId}
+              style={{
+                overflow: 'hidden',
+                borderRadius: boxRadius,
+                borderTopLeftRadius: boxRadius - (highlighted ? 2.5 : 0),
+                borderBottomLeftRadius: boxRadius - (highlighted ? 2.5 : 0),
+              }}
+            >
+              {backgroundSrc ? (
+                <ImageBackground
+                  imageStyle={{ borderRadius: boxRadius }}
+                  style={styles.boxImage}
+                  source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
+                >
+                  <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+                    {children}
+                  </StatesContext.Provider>
+                </ImageBackground>
+              ) : (
+                <>
+                  <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
+                    {children}
+                  </StatesContext.Provider>
+                </>
+              )}
+            </TouchableOpacity>
+          </View>
+        </BoxContext.Provider>
+      )
+    }
 
-            style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-            onLayout={(event) => {
-              const { height } = event.nativeEvent.layout
-              setBoxHeight(height)
-            }}
+    return (
+      <BoxContext.Provider
+        value={{
+          fullHeight: fullheight || false,
+        }}
+      >
+        <View style={[styles.box, !flat && styles.shadow, (others as any)?.style]}>
+          <View
+            ref={ref as React.Ref<View>}
             testID={boxTestId}
+            style={{
+              overflow: 'hidden',
+              borderRadius: boxRadius,
+              borderTopLeftRadius: boxRadius - (highlighted ? 2.5 : 0),
+              borderBottomLeftRadius: boxRadius - (highlighted ? 2.5 : 0),
+            }}
           >
             {backgroundSrc ? (
               <ImageBackground
@@ -144,55 +170,16 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
                 style={styles.boxImage}
                 source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
               >
-                {Boolean(highlighted) && <View style={styles.highlighted} />}
                 <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
                   {children}
                 </StatesContext.Provider>
               </ImageBackground>
             ) : (
-              <>
-                {Boolean(highlighted) && <View style={styles.highlighted} />}
-                <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-                  {children}
-                </StatesContext.Provider>
-              </>
-            )}
-          </TouchableOpacity>
-        </BoxContext.Provider>
-      )
-    }
-
-    return (
-      <BoxContext.Provider
-        value={{ fullHeight: fullheight || false, highlighted, numberOfContent, header, setHeader, setNumberOfContent }}
-      >
-        <View
-          ref={ref as React.Ref<View>}
-          onLayout={(event) => {
-            const { height } = event.nativeEvent.layout
-            setBoxHeight(height)
-          }}
-
-          style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
-          testID={boxTestId}
-        >
-          {backgroundSrc ? (
-            <ImageBackground
-              imageStyle={{ borderRadius: boxRadius }}
-              style={styles.boxImage}
-              source={typeof backgroundSrc === 'number' ? backgroundSrc : { uri: backgroundSrc }}
-            >
-              {Boolean(highlighted) && <View style={styles.highlighted} />}
               <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
                 {children}
               </StatesContext.Provider>
-            </ImageBackground>
-          ) : (
-            <StatesContext.Provider value={{ inverted: !!inverted, active: !!active, flat: !!flat }}>
-              {Boolean(highlighted) && <View style={styles.highlighted} />}
-              {children}
-            </StatesContext.Provider>
-          )}
+            )}
+          </View>
         </View>
       </BoxContext.Provider>
     )
@@ -200,5 +187,4 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
 )
 
 Box.displayName = ComponentName.Box
-
 export default Box
