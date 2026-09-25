@@ -40,6 +40,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
       fullheight,
       active,
       testId,
+      radius,
       ...others
     },
     ref,
@@ -62,6 +63,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
         className,
         fullheight && is('fullheight'),
         active && is('active'),
+        radius && `radius-${radius}`,
       ),
     )
 
@@ -73,7 +75,6 @@ const Card = React.forwardRef<CardRef, CardProps>(
           id={id}
           href={href}
           onClick={(e) => {
-
             onClick?.(e)
             e.stopPropagation()
           }}

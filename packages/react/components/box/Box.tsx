@@ -49,6 +49,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       fullheight,
       active,
       testId,
+      radius,
       ...others
     },
     ref,
@@ -70,6 +71,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         headerOffset && is('offset-header'),
         fullheight && is('fullheight'),
         active && is('active'),
+        radius && `radius-${radius}`,
       ),
     )
 
@@ -91,7 +93,6 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
             target: '_blank',
           })}
         onClick={(e) => {
-
           onClick?.(e)
         }}
         className={classes}

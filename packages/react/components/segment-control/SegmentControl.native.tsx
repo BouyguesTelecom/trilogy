@@ -3,7 +3,8 @@ import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React, { useState } from 'react'
-import {  } from 'react-native'
+import { Theme } from '@/constants/theme'
+import {} from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import SegmentedControlItem from './item'
 import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlProps'
@@ -43,7 +44,7 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
         flexDirection: 'row',
         width: '100%',
         backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 4,
+        borderRadius: Theme.radius.sm,
         padding: 4,
         paddingRight: -4,
         borderWidth: 1,
@@ -56,7 +57,6 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
         <View style={styles.segmentedControl} {...others}>
           {children &&
             Array.isArray(children) &&
-
             children.map((child: any, index: number) => {
               const props = {
                 active: Boolean(isActive(index, child.props.active)) || false,

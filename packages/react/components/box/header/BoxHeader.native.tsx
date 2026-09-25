@@ -5,7 +5,6 @@ import * as React from 'react'
 import { useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { BoxContext } from '../context/boxContext'
 import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
 
 /**
@@ -18,12 +17,6 @@ import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
 const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
   ({ children, variant, testId, ...others }, ref): JSX.Element => {
     const statesContext = useContext(StatesContext)
-    const boxContext = useContext(BoxContext)
-    const centered = false
-    const pulledLeft = false
-    const pulledRight = false
-    const help = ''
-
     const headerBgc = variant ? getColorStyle(variant) : getColorStyle(TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
 
@@ -33,12 +26,9 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
         backgroundColor: headerBgc,
         padding: 10,
         paddingLeft: 16,
-        borderTopLeftRadius: boxContext?.highlighted ? 4 : 6,
-        borderTopRightRadius: 6,
         marginTop: (statesContext.active && -2) || (statesContext.flat && -1) || 0,
         justifyContent: 'space-between',
-        alignItems:
-          (centered && 'center') || (pulledRight && 'flex-end') || (pulledLeft && 'flex-start') || 'flex-start',
+        alignItems: 'flex-start',
         flexDirection: 'row',
       },
       text: {
@@ -58,25 +48,11 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
     })
 
     return (
-      <View
-        style={[styles.boxHeader]}
-        ref={ref}
-        testID={testId}
-        {...others}
-        onLayout={() => {
-          boxContext.setHeader(true)
-        }}
-      >
+      <View style={[styles.boxHeader]} ref={ref} testID={testId} {...others}>
         {children && typeof children.valueOf() === 'string' ? (
           <Text style={styles.text}>{String(children)}</Text>
         ) : (
           children
-        )}
-
-        {help && (
-          <View style={styles.helpContainer}>
-            <Text style={styles.help}>{help}</Text>
-          </View>
         )}
       </View>
     )

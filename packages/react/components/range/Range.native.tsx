@@ -6,6 +6,7 @@ import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Text, TextLevels } from '../text'
 import { RangeNativeProps, RangeNativeRef } from './RangeProps'
+import { Theme } from '@/constants/theme'
 
 /**
  * Range Component
@@ -26,7 +27,7 @@ const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
       marker: {
         width: 20,
         height: 20,
-        borderRadius: 20,
+        borderRadius: Theme.radius.full,
         backgroundColor: 'white',
         shadowColor: '#000',
         shadowOffset: {

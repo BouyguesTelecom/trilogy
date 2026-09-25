@@ -8,6 +8,7 @@ import { Icon } from '../icon'
 import { Text } from '../text'
 import { CalendarYearsOrder } from './CalendarEnum'
 import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
+import { Theme } from '@/constants/theme'
 
 const days = [
   translation.days[1],
@@ -74,7 +75,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         StyleSheet.create({
           calendar: {
             backgroundColor,
-            borderRadius: 8,
+            borderRadius: Theme.radius.lg,
             padding: 24,
             shadowColor,
             shadowOffset: {
@@ -209,7 +210,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             height: Platform.OS === 'android' ? 42 : 36,
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: 4,
+            borderRadius: Theme.radius.sm,
             backgroundColor: 'transparent',
             maxWidth: Platform.OS === 'android' ? 42 : 36,
             minWidth: Platform.OS === 'android' ? 42 : 36,
@@ -238,29 +239,29 @@ const Calendar = React.forwardRef<View, CalendarProps>(
           },
           dateStart: {
             backgroundColor: mainColor,
-            borderTopLeftRadius: 8,
-            borderBottomLeftRadius: 8,
-            borderTopRightRadius: 4,
-            borderBottomRightRadius: 4,
+            borderTopLeftRadius: Theme.radius.sm,
+            borderBottomLeftRadius: Theme.radius.sm,
+            borderTopRightRadius: Theme.radius.xs,
+            borderBottomRightRadius: Theme.radius.xs,
           },
           dateEnd: {
             backgroundColor: mainColor,
-            borderTopRightRadius: 8,
-            borderBottomRightRadius: 8,
-            borderTopLeftRadius: 4,
-            borderBottomLeftRadius: 4,
+            borderTopRightRadius: Theme.radius.sm,
+            borderBottomRightRadius: Theme.radius.sm,
+            borderTopLeftRadius: Theme.radius.xs,
+            borderBottomLeftRadius: Theme.radius.xs,
           },
           dateInRange: {
             backgroundColor: mainFadeColor,
             borderRadius: 0,
           },
           roundedLeft: {
-            borderTopLeftRadius: 8,
-            borderBottomLeftRadius: 8,
+            borderTopLeftRadius: Theme.radius.sm,
+            borderBottomLeftRadius: Theme.radius.sm,
           },
           roundedRight: {
-            borderTopRightRadius: 8,
-            borderBottomRightRadius: 8,
+            borderTopRightRadius: Theme.radius.sm,
+            borderBottomRightRadius: Theme.radius.sm,
           },
           todayButton: {
             borderWidth: 0,

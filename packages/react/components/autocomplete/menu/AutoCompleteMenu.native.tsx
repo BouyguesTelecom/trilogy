@@ -4,6 +4,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 import { TrilogyColor, getColorStyle } from '@/objects'
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
 import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
+import { Theme } from '@/constants/theme'
 
 /**
  * AutoCompleteMenu Component
@@ -20,7 +21,7 @@ const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteM
       marginBottom: 6,
       backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
       borderWidth: 1,
-      borderRadius: 3,
+      borderRadius: Theme.radius.md,
       borderColor: getColorStyle(TrilogyColor.STROKE),
       width: '100%',
       maxHeight: 165,

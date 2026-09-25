@@ -12,3 +12,28 @@ export const getRadiusStyle = (radius?: RadiusValues) => {
       return 0
   }
 }
+
+export const getRadius = (radius?: Radius | `${Radius}`) => {
+  switch (radius) {
+    case Radius.LG:
+      return 24
+    case Radius.MD:
+      return 16
+    case Radius.SM:
+      return 8
+    case Radius.XS:
+      return 4
+    case Radius.FULL:
+      return 9999
+    default:
+      return 0
+  }
+}
+
+export enum Radius {
+  XS = 'xs',
+  SM = 'sm',
+  MD = 'md',
+  LG = 'lg',
+  FULL = 'full',
+}

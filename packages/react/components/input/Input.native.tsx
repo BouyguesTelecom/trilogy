@@ -7,7 +7,14 @@ import { Align } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
 import React, { useCallback, useEffect, useState } from 'react'
-import { Keyboard, NativeSyntheticEvent, TextInput, TextInputSubmitEditingEventData, TouchableOpacity, View } from 'react-native'
+import {
+  Keyboard,
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputSubmitEditingEventData,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Spacer, SpacerSize } from '../spacer'
 import {
@@ -20,6 +27,7 @@ import {
 } from './InputEnum'
 import { InputNativeEvents, InputNativeRef, InputProps } from './InputProps'
 import InputGauge from './gauge/InputGauge.native'
+import { Theme } from '@/constants/theme'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
@@ -189,7 +197,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
         alignSelf: 'stretch',
         backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
         borderWidth: isFocused ? 2 : 1,
-        borderRadius: 3,
+        borderRadius: Theme.radius.sm,
         borderColor:
           (status && status === 'success' && getColorStyle(StatusState.SUCCESS)) ||
           (status && status === 'warning' && getColorStyle(StatusState.WARNING)) ||

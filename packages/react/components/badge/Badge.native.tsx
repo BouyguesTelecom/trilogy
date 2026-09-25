@@ -7,6 +7,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
+import { Theme } from '@/constants/theme'
 
 /**
  * Badge Component
@@ -34,7 +35,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
         minWidth: label ? 20 : 10,
         height: label ? 20 : 10,
         backgroundColor: !inverted ? badgeColor : getColorStyle(TrilogyColor.BACKGROUND),
-        borderRadius: 30,
+        borderRadius: Theme.radius.full,
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -54,7 +55,7 @@ const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
         backgroundColor: 'white',
         width: 16,
         minHeight: 16,
-        borderRadius: 15,
+        borderRadius: Theme.radius.full,
       },
       iconStatusPositionTopLeft: {
         top: -4,
