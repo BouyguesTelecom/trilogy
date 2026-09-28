@@ -51,6 +51,21 @@
     max-width: 960px;
     margin: auto;
   }
+
+  &.size-small {
+    max-width: 960px;
+    margin: auto;
+  }
+
+  &.size-medium {
+    max-width: 1120px;
+    margin: auto;
+  }
+
+  &.size-large {
+    max-width: 1340px;
+    margin: auto;
+  }
 }
 
 main,
