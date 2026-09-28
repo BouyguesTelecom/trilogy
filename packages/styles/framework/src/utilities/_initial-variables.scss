@@ -1,6 +1,6 @@
 @import './variables';
 
-$hoverSelector: "&:hover:not([disabled]):not([aria-disabled=true])";
+$hoverSelector: "&:hover:not([disabled]):not([aria-disabled=true]):not(.inactive)";
 
 // Radius
 $radius-small: 4px !default;
