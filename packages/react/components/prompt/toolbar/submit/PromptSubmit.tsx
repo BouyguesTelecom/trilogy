@@ -51,7 +51,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
 
     const classesBtn = clsx(
       'prompt-toolbar-tool icon_only prompt-toolbar-tool-submit',
-      isActive && 'active',
+      isActive ? 'active' : 'inactive',
       status === PromptSubmitStatus.STREAMING_ON && 'streaming',
       className,
     )
