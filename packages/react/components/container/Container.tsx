@@ -14,7 +14,7 @@ import { is } from '@/services/classify'
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param medium {boolean} Set medium container width
+ * @param medium {boolean} Deprecated: use size="small" instead (same 960px max-width)
  * @param size {ContainerSizes | `${ContainerSizes}`} Set container size
  */
 const Container = React.forwardRef<ContainerRef, ContainerProps>(
