@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/helpers/typography'
+import { setTypographyAlign, setTypographyColor } from '@/helpers/typography'
 import { getColorStyle } from '@/helpers/color'
 import { Skeleton } from '@/components/skeleton'
 import { TitleLevels } from '@/components/title/TitleEnum'
@@ -10,6 +10,7 @@ import { TypographyBold } from '@/interfaces/TypographyBold'
 import { forwardRef, useContext } from 'react'
 import { Text as TextNative, TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
+import { useTypographyBold } from '@/hooks/useTypographyBold'
 
 /**
  * Title component
@@ -38,6 +39,8 @@ const Title = forwardRef<TitleNativeRef, TitleProps>(
       level && [TitleLevels.ONE, TitleLevels.TWO].includes(level)
         ? TypographyBold.TEXT_WEIGHT_BOLD
         : TypographyBold.TEXT_WEIGHT_SEMIBOLD
+
+    const fontWeight = useTypographyBold(fontFamily)
 
     const titlesLevels = () => {
       switch (level) {
@@ -73,7 +76,7 @@ const Title = forwardRef<TitleNativeRef, TitleProps>(
 
     const styles = memoStyles({
       text: {
-        fontFamily: getTypographyBoldStyle(fontFamily),
+        fontFamily: fontWeight,
         fontSize: titlesLevels(),
         color: ((overline || subtitle) && !level && colorOverline) || color,
         textAlign: setTypographyAlign(typo),

@@ -7,7 +7,7 @@ import { checkCents } from '@/components/price/PriceHelpers'
 import { PriceNativeRef, PriceProps } from '@/components/price/PriceProps'
 import { Alignable } from '@/interfaces/Alignable'
 import { getColorStyle } from '@/helpers/color'
-import { getTypographyBoldStyle } from '@/helpers/typography'
+import { useTypographyBold } from '@/hooks/useTypographyBold'
 import { TrilogyColor } from '@/interfaces/Color'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import { Text, View } from 'react-native'
@@ -53,9 +53,7 @@ const Price = forwardRef<PriceNativeRef, PriceProps>(
     const absoluteAmount = amount ? Math.abs(amount) : 0
     const absoluteWhole = Math.floor(absoluteAmount)
     const whole = isNegative ? (absoluteWhole === 0 ? '-0' : -absoluteWhole) : absoluteWhole
-
     const cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
-
     const isNegativeStriked = oldAmount && oldAmount < 0
     const absoluteAmountStriked = oldAmount && Math.abs(oldAmount)
     const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
@@ -64,14 +62,13 @@ const Price = forwardRef<PriceNativeRef, PriceProps>(
         ? '-0'
         : -(absoluteWholeStriked as number)
       : absoluteWholeStriked
-
     const centsStriked =
       absoluteAmountStriked && checkCents(absoluteAmountStriked.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
-
     const primaryColor = getColorStyle(TrilogyColor.MAIN)
     const secondaryColor = getColorStyle(TrilogyColor.MAIN)
     const invertedColor = getColorStyle(TrilogyColor.BACKGROUND)
     const neutralColor = getColorStyle(TrilogyColor.FONT_PLACEHOLDER)
+    const fontFamily = useTypographyBold(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
 
     const priceLevel =
       (level === PriceLevel.ONE && 64) ||
@@ -176,7 +173,7 @@ const Price = forwardRef<PriceNativeRef, PriceProps>(
       },
       price: {
         fontWeight: (level === PriceLevel.SIX && 'normal') || (level === PriceLevel.SEVEN && 'normal') || 'bold',
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontFamily: fontFamily,
       },
       priceFontSize: {
         fontSize: priceLevel,
@@ -193,7 +190,7 @@ const Price = forwardRef<PriceNativeRef, PriceProps>(
       cents: {
         fontWeight: 'bold',
         color: color,
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontFamily: fontFamily,
       },
       centsFontSize: {
         fontSize: centsLevel,
@@ -203,7 +200,7 @@ const Price = forwardRef<PriceNativeRef, PriceProps>(
       },
       period: {
         color: color,
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontFamily: fontFamily,
       },
       periodFontSize: {
         fontSize: centsLevel,

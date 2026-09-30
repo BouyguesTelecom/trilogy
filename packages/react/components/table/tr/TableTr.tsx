@@ -1,4 +1,4 @@
-import { forwardRef, RefObject } from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 import { TableTrProps, TableTrRef } from '@/components/table/tr/TableTrProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'

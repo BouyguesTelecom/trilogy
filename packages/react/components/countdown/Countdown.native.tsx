@@ -6,7 +6,7 @@ import { CountdownFormat, CountdownUnite } from '@/components/countdown/Countdow
 import { CountdownNativeRef, CountdownProps } from '@/components/countdown/CountdownProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
-import { getTypographyBoldStyle } from '@/helpers/typography'
+import { useTypographyBold } from '@/hooks/useTypographyBold'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
@@ -42,7 +42,8 @@ const Countdown = forwardRef<CountdownNativeRef, CountdownProps>(
     const show = [timer.days !== 0, timer.hours !== 0, timer.minutes !== 0, timer.seconds !== 0]
     const parsedFormat = format?.split('-')
     const borderMediumRadius = getRadiusStyle(Radius.MEDIUM)
-
+    const fontFamily = useTypographyBold(TypographyBold.TEXT_WEIGHT_NORMAL)
+    const fontFamilySemiBold = useTypographyBold(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     const centered = false
 
     useEffect(() => {
@@ -144,19 +145,19 @@ const Countdown = forwardRef<CountdownNativeRef, CountdownProps>(
         color: getColorStyle(TrilogyColor.MAIN),
         fontSize: small ? 16 : 20,
         fontWeight: '600',
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontFamily: fontFamilySemiBold,
         minWidth: small ? 28 : 34,
         textAlign: 'center',
       },
       date: {
         fontSize: 12,
         fontWeight: '400',
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_NORMAL),
+        fontFamily: fontFamily,
       },
       separator: {
         color: getColorStyle(TrilogyColor.MAIN),
         fontWeight: '400',
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_NORMAL),
+        fontFamily: fontFamily,
         fontSize: 12,
         lineHeight: 16,
         marginHorizontal: 4,

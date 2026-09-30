@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { setTypographyAlign, getTypographyBoldStyle, setTypographyColor } from '@/helpers/typography'
+import { setTypographyAlign, setTypographyColor } from '@/helpers/typography'
 import { getColorStyle } from '@/helpers/color'
 import { forwardRef, useContext } from 'react'
 import { Skeleton } from '@/components/skeleton'
@@ -9,6 +9,7 @@ import { TextNativeRef, TextProps } from '@/components/text/TextProps'
 import { TrilogyColor } from '@/interfaces/Color'
 import { Text as TextNative } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
+import { useTypographyBold } from '@/hooks/useTypographyBold'
 
 /**
  * Text Native Component
@@ -28,6 +29,7 @@ const Text = forwardRef<TextNativeRef, TextProps>(
     ref,
   ): JSX.Element => {
     const statesContext = useContext(StatesContext)
+    const fontFamily = useTypographyBold(typo)
     const textLevels = (level: TextLevels | TextLevelValues) => {
       return (
         (level && level === TextLevels.ONE && 16) ||
@@ -40,7 +42,7 @@ const Text = forwardRef<TextNativeRef, TextProps>(
 
     const styles = memoStyles({
       text: {
-        fontFamily: getTypographyBoldStyle(typo),
+        fontFamily: fontFamily,
         fontSize: textLevels(level as TextLevels | TextLevelValues),
         color: setTypographyColor(typo, inverted || statesContext.inverted, skeleton),
         textAlign: setTypographyAlign(typo),

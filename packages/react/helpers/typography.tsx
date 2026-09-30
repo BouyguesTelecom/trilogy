@@ -1,9 +1,6 @@
-import { useContext } from 'react'
-import { TrilogyThemeContext } from '@/context/providerTheme'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
 import { TypographyAlign } from '@/interfaces/TypographyAlign'
-import { TypographyBold } from '@/interfaces/TypographyBold'
 import { TypographyColor } from '@/interfaces/TypographyColor'
 
 /**
@@ -43,30 +40,6 @@ export const getTypographyBoldClassName = (
       return 'has-text-weight-semibold'
     default:
       return null
-  }
-}
-
-/**
- * @param typographyBoldType {TypographyBold|string} - Bold type
- * @param level {}
- * @returns {string} - Bold type
- */
-export const getTypographyBoldStyle = (typo?: string | string[]) => {
-  const { theme } = useContext(TrilogyThemeContext)
-  const currentTypo = Array.isArray(typo) ? typo : [typo]
-
-  switch (true) {
-    case typo && currentTypo.includes(TypographyBold.TEXT_WEIGHT_MEDIUM):
-      return theme?.fontFamily?.medium || 'poppins-medium'
-
-    case typo && currentTypo.includes(TypographyBold.TEXT_WEIGHT_SEMIBOLD):
-      return theme?.fontFamily?.bold || 'poppins-semibold'
-
-    case typo && currentTypo.includes(TypographyBold.TEXT_WEIGHT_BOLD):
-      return theme?.fontFamily?.speak || 'poppins-semibold'
-
-    default:
-      return theme?.fontFamily?.regular || 'poppins-regular'
   }
 }
 
