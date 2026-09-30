@@ -5,9 +5,9 @@ import { Input } from '@/components/input'
 import { Text } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useClickOutside } from '@/helpers/clickOutside'
+import { useClickOutside } from '@/hooks/useclickOutside'
 import clsx from 'clsx'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import { forwardRef, KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TimepickerSelector } from '@/components/timepicker/default/selector'
 import { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
 import { Align } from '@/interfaces/Alignable'
@@ -30,7 +30,7 @@ const parseTime = (timeStr: string) => {
   }
 }
 
-const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefaultProps, 'circular'>>(
+const TimepickerDefault = forwardRef<HTMLInputElement, Omit<TimepickerDefaultProps, 'circular'>>(
   ({ disabled, id, value = '00:00', onChange, step = 1, label, sample, help, required, testId, ...others }, ref) => {
     const [display, setDisplay] = useState<boolean>(false)
     const { styled } = useTrilogyContext()
@@ -117,7 +117,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
       [selectedHours, onChange],
     )
 
-    const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
+    const handleKeyDown = useCallback((event: KeyboardEvent) => {
       const { key } = event
       if (key === 'Escape') {
         setDisplay(false)
@@ -186,17 +186,17 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
           onChange?.('00:00')
         }
       },
-      [onChange],
+      [onChange, step],
     )
 
-    React.useEffect(() => {
+    useEffect(() => {
       const { hours: h, minutes: m } = parseTime(value)
       setSelectedHours(h)
       setSelectedMinutes(m)
       setInputValue(value !== '00:00' ? value : '')
     }, [value])
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (!display) return
       const handleUpdate = () => calculatePortalPosition()
       window.addEventListener('scroll', handleUpdate, true)

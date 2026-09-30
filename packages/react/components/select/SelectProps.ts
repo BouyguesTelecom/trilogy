@@ -1,9 +1,10 @@
 import { TextInput } from 'react-native'
 import { IconName, IconNameValues } from '@/components/icon'
 import { SelectStatus, SelectStatusValues } from '@/components/select/SelectEnum'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Accessibility } from "@/interfaces/Accessibility"
+import { Dev } from "@/interfaces/Dev"
+import { CommonProps } from "@/interfaces/CommonProps"
+import { BaseSyntheticEvent, FocusEvent, FocusEventHandler, ReactNode } from 'react'
 
 export interface ISelectOption {
   value: string | undefined
@@ -27,15 +28,15 @@ export type SelectChangeEventHandler<T = SelectChangeEvent> = (event: T) => void
 export type SelectNativeChangeEventHandler<T = SelectChangeEventNative> = (event: T) => void
 
 export type SelectedValue = string | number | string[] | undefined
-export type ParamEventSelectFocus = React.FocusEvent | React.BaseSyntheticEvent
+export type ParamEventSelectFocus = FocusEvent | BaseSyntheticEvent
 export type SelectRef = HTMLSelectElement | HTMLInputElement
 export type SelectNativeRef = TextInput
 
 interface Props {
   onFocus?: (event: ParamEventSelectFocus) => void
-  onBlur?: React.FocusEventHandler<HTMLSelectElement> | ((event: unknown) => void)
+  onBlur?: FocusEventHandler<HTMLSelectElement> | ((event: unknown) => void)
   label?: string
-  children?: React.ReactNode
+  children?: ReactNode
   disabled?: boolean
   iconName?: IconName | IconNameValues
   selected?: SelectedValue

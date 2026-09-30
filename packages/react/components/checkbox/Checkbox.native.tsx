@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Text } from '@/components/text'
-import React, { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useId, useState } from 'react'
 import { CheckboxNativeRef, CheckboxProps } from '@/components/checkbox/CheckboxProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -22,8 +22,9 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param name {string} Name for checkbox
  * @param testId {string} Test Id for Test Integration
  */
-const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
-  ({ id = React.useId(), checked, name, onChange, disabled, readonly, label, testId }, ref): JSX.Element => {
+const Checkbox = forwardRef<CheckboxNativeRef, CheckboxProps>(
+  ({ id, checked, name, onChange, disabled, readonly, label, testId }, ref): JSX.Element => {
+    const generateId = useId()
     const [_checked, setChecked] = useState(checked || false)
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)
 
@@ -63,7 +64,7 @@ const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
         setChecked(!_checked)
         if (onChange) {
           onChange({
-            checkboxId: id,
+            checkboxId: id ?? generateId,
             checkboxValue: '',
             checkboxName: name || '',
             checkboxChecked: !_checked,
@@ -77,7 +78,7 @@ const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
         <TouchableOpacity
           style={styles.checkBox}
           disabled={disabled}
-          testID={testId || id}
+          testID={testId || id || generateId}
           onPressIn={() => handleClick()}
         >
           {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}

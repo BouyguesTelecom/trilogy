@@ -1,13 +1,14 @@
 import { View } from 'react-native'
-import { Clickable } from "@/interfaces/Clickable";
-import { Dev } from "@/interfaces/Dev";
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Clickable } from "@/interfaces/Clickable"
+import { Dev } from "@/interfaces/Dev"
+import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color"
+import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 export interface TableTrPropsWeb extends Clickable, Dev {
-  children: React.ReactNode
+  children: ReactNode
   expandable?: boolean
-  expanded?: boolean | React.ReactNode | string
+  expanded?: boolean | ReactNode | string
   className?: string
   expansion?: boolean
   color?: TrilogyColor | TrilogyColorValues

@@ -1,14 +1,15 @@
 import { GapSize } from '@/components/columns/ColumnsTypes'
 import { View } from 'react-native'
-import { Dev } from "@/interfaces/Dev";
-import { AlignableProps } from "@/interfaces/Alignable";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev"
+import { AlignableProps } from "@/interfaces/Alignable"
+import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 /**
  * Columns Interface
  */
 export interface ColumnsProps extends AlignableProps, CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   multiline?: boolean
   scrollable?: boolean
   gap?: GapSize

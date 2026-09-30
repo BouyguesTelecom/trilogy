@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import ProgressComponent from '@/components/progress/Progress'
 import ProgressItem from '@/components/progress/item/ProgressItem'
-import { StatusState } from "@/interfaces/Status";
+import { StatusState } from '@/interfaces/Status'
 
 ProgressComponent.displayName = 'Progress'
 

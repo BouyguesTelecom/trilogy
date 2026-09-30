@@ -2,14 +2,14 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import Textarea from '@/components/textarea/Textarea.native'
 import { TextareaChangeEvent } from '@/components/textarea/TextareaProps'
-import React, { useContext, useEffect, useImperativeHandle } from 'react'
+import { forwardRef, useContext, useEffect, useImperativeHandle } from 'react'
 import { StyleSheet, TextInput } from 'react-native'
 import { PromptContext } from '@/components/prompt/context'
 import { PromptTextareaNativeRef, PromptTextareaProps } from '@/components/prompt/textarea/PromptTextareaProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
 
-const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaProps>(
+const PromptTextarea = forwardRef<PromptTextareaNativeRef, PromptTextareaProps>(
   ({ value, onChange, disabled, readOnly, ...others }, ref) => {
     const {
       setText,
@@ -57,7 +57,7 @@ const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaP
         textareaRef.current?.blur()
         setIsSend(false)
       }
-    }, [isSend, setIsSend])
+    }, [isSend, setIsSend, textareaRef])
 
     return (
       <Textarea

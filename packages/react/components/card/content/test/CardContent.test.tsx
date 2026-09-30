@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react'
-import * as React from 'react'
 import CardContent from '@/components/card/content/CardContent'
 
 describe('CardContent component', () => {

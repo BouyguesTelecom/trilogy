@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { forwardRef, MouseEvent, useEffect, useState } from 'react'
 import {
   SegmentControlItemProps,
   SegmentControlItemRef,
@@ -19,7 +19,7 @@ import {
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentControlItemProps>(
+const SegmentControlItem = forwardRef<SegmentControlItemRef, SegmentControlItemProps>(
   ({ active, onClick, disabled, className, id, children, testId, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const { styled } = useTrilogyContext()
@@ -36,7 +36,7 @@ const SegmentControlItem = React.forwardRef<SegmentControlItemRef, SegmentContro
         id={id}
         disabled={disabled}
         className={hashClass(styled, clsx('segmented-control-item', className, { 'is-active': activeItem }))}
-        onClick={(e: React.MouseEvent) => {
+        onClick={(e: MouseEvent) => {
           const target = e.target as HTMLFormElement
           setActiveItem(active || false)
           target.active = active

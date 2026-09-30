@@ -1,12 +1,13 @@
 import { View } from 'react-native'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { AlignableProps } from "@/interfaces/Alignable";
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { Accessibility } from "@/interfaces/Accessibility"
+import { AlignableProps } from "@/interfaces/Alignable"
+import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color"
+import { CommonProps } from "@/interfaces/CommonProps"
+import { Dev } from "@/interfaces/Dev"
+import { ReactNode } from 'react'
 
 export interface BoxHeaderProps extends AlignableProps, Accessibility, CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   variant?: TrilogyColor | TrilogyColorValues
 }
 

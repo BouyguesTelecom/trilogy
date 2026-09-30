@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { CheckboxListRef, CheckboxListWebProps } from '@/components/checkbox/list/CheckboxListProps'
 import { Text, TextMarkup } from '@/components/text'
 import { getJustifiedClassName } from '@/helpers/justifiable'
@@ -23,7 +23,7 @@ import { TypographyColor } from '@/interfaces/TypographyColor'
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const CheckboxList = React.forwardRef<CheckboxListRef, CheckboxListWebProps>(
+const CheckboxList = forwardRef<CheckboxListRef, CheckboxListWebProps>(
   (
     {
       className,

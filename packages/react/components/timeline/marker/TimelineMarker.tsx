@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { TimelineMarkerRef, TimelineMarkerWebProps } from '@/components/timeline/marker/TimelineMarkerProps'
 
 /**
@@ -16,7 +16,7 @@ import { TimelineMarkerRef, TimelineMarkerWebProps } from '@/components/timeline
  * @param className {string} Additional CSS Classes
  * @param iconClassname {string} Additional CSS Classes for icon
  */
-const TimelineMarker = React.forwardRef<TimelineMarkerRef, TimelineMarkerWebProps>(
+const TimelineMarker = forwardRef<TimelineMarkerRef, TimelineMarkerWebProps>(
   ({ className, id, iconClassname, iconName, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('timeline-marker', is('icon'), className))

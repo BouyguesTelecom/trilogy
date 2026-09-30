@@ -1,13 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { StatesContext } from '@/context/providerStates'
-import React, { useContext, useMemo } from 'react'
+import { forwardRef, useContext, useMemo } from 'react'
 import { PriceLevel } from '@/components/price/PriceEnum'
 import { checkCents } from '@/components/price/PriceHelpers'
 import { PriceNativeRef, PriceProps } from '@/components/price/PriceProps'
 import { Alignable } from '@/interfaces/Alignable'
 import { getColorStyle } from '@/helpers/color'
-import { getTypographyBoldStyle } from '@/helpers/typography'
+import { useTypographyBold } from '@/hooks/useTypographyBold'
 import { TrilogyColor } from '@/interfaces/Color'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import { Text, View } from 'react-native'
@@ -23,13 +23,13 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param hideCents {boolean} Hide cents from displayed price
  * @param level {PriceLevel} Price custom size
  * @param inverted {boolean} Inverted Price Color
- * @param children {React.ReactNode} Price child elements
+ * @param children {ReactNode} Price child elements
  * @param align {Alignable} Price alignment
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Price = React.forwardRef<PriceNativeRef, PriceProps>(
+const Price = forwardRef<PriceNativeRef, PriceProps>(
   (
     {
       amount,
@@ -53,9 +53,7 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
     const absoluteAmount = amount ? Math.abs(amount) : 0
     const absoluteWhole = Math.floor(absoluteAmount)
     const whole = isNegative ? (absoluteWhole === 0 ? '-0' : -absoluteWhole) : absoluteWhole
-
     const cents = checkCents(absoluteAmount.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
-
     const isNegativeStriked = oldAmount && oldAmount < 0
     const absoluteAmountStriked = oldAmount && Math.abs(oldAmount)
     const absoluteWholeStriked = absoluteAmountStriked && Math.floor(absoluteAmountStriked)
@@ -64,42 +62,41 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
         ? '-0'
         : -(absoluteWholeStriked as number)
       : absoluteWholeStriked
-
     const centsStriked =
       absoluteAmountStriked && checkCents(absoluteAmountStriked.toString().split(/[.,]/)[1]?.substring(0, 2) || '')
-
     const primaryColor = getColorStyle(TrilogyColor.MAIN)
     const secondaryColor = getColorStyle(TrilogyColor.MAIN)
     const invertedColor = getColorStyle(TrilogyColor.BACKGROUND)
     const neutralColor = getColorStyle(TrilogyColor.FONT_PLACEHOLDER)
+    const fontFamily = useTypographyBold(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
 
     const priceLevel =
-      (level == PriceLevel.ONE && 64) ||
-      (level == PriceLevel.TWO && 56) ||
-      (level == PriceLevel.THREE && 44) ||
-      (level == PriceLevel.FOUR && 32) ||
-      (level == PriceLevel.FIVE && 28) ||
-      (level == PriceLevel.SIX && 24) ||
-      (level == PriceLevel.SEVEN && 20) ||
+      (level === PriceLevel.ONE && 64) ||
+      (level === PriceLevel.TWO && 56) ||
+      (level === PriceLevel.THREE && 44) ||
+      (level === PriceLevel.FOUR && 32) ||
+      (level === PriceLevel.FIVE && 28) ||
+      (level === PriceLevel.SIX && 24) ||
+      (level === PriceLevel.SEVEN && 20) ||
       44
 
     const centsLevel = priceLevel * 0.4
 
     const suptitleLevel =
-      (level == PriceLevel.ONE && 16) ||
-      (level == PriceLevel.TWO && 16) ||
-      (level == PriceLevel.THREE && 16) ||
-      (level == PriceLevel.FOUR && 14) ||
-      (level == PriceLevel.FIVE && 14) ||
-      (level == PriceLevel.SIX && 10) ||
-      (level == PriceLevel.SEVEN && 10) ||
+      (level === PriceLevel.ONE && 16) ||
+      (level === PriceLevel.TWO && 16) ||
+      (level === PriceLevel.THREE && 16) ||
+      (level === PriceLevel.FOUR && 14) ||
+      (level === PriceLevel.FIVE && 14) ||
+      (level === PriceLevel.SIX && 10) ||
+      (level === PriceLevel.SEVEN && 10) ||
       16
 
     const priceLevelStriked =
-      (level == PriceLevel.ONE && 44) ||
-      (level == PriceLevel.TWO && 32) ||
-      (level == PriceLevel.THREE && 28) ||
-      (level == PriceLevel.FOUR && 24) ||
+      (level === PriceLevel.ONE && 44) ||
+      (level === PriceLevel.TWO && 32) ||
+      (level === PriceLevel.THREE && 28) ||
+      (level === PriceLevel.FOUR && 24) ||
       20
 
     const centsLevelStriked = priceLevelStriked * 0.4
@@ -116,20 +113,20 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
 
     const strikedRotateByLevel = () => {
       return (
-        (level == PriceLevel.SEVEN && (hideCents || period) && '-18deg') ||
-        (level == PriceLevel.SIX && (hideCents || period) && '-19deg') ||
-        (level == PriceLevel.FIVE && (hideCents || period) && '-18deg') ||
-        (level == PriceLevel.FOUR && (hideCents || period) && '-16deg') ||
-        (level == PriceLevel.THREE && (hideCents || period) && '-16deg') ||
-        (level == PriceLevel.TWO && (hideCents || period) && '-16deg') ||
-        (level == PriceLevel.ONE && (hideCents || period) && '-15deg') ||
-        (level == PriceLevel.ONE && '-17deg') ||
-        (level == PriceLevel.TWO && '-18deg') ||
-        (level == PriceLevel.THREE && '-20deg') ||
-        (level == PriceLevel.FOUR && '-18deg') ||
-        (level == PriceLevel.FIVE && '-18deg') ||
-        (level == PriceLevel.SIX && '-22deg') ||
-        (level == PriceLevel.SEVEN && '-22deg') ||
+        (level === PriceLevel.SEVEN && (hideCents || period) && '-18deg') ||
+        (level === PriceLevel.SIX && (hideCents || period) && '-19deg') ||
+        (level === PriceLevel.FIVE && (hideCents || period) && '-18deg') ||
+        (level === PriceLevel.FOUR && (hideCents || period) && '-16deg') ||
+        (level === PriceLevel.THREE && (hideCents || period) && '-16deg') ||
+        (level === PriceLevel.TWO && (hideCents || period) && '-16deg') ||
+        (level === PriceLevel.ONE && (hideCents || period) && '-15deg') ||
+        (level === PriceLevel.ONE && '-17deg') ||
+        (level === PriceLevel.TWO && '-18deg') ||
+        (level === PriceLevel.THREE && '-20deg') ||
+        (level === PriceLevel.FOUR && '-18deg') ||
+        (level === PriceLevel.FIVE && '-18deg') ||
+        (level === PriceLevel.SIX && '-22deg') ||
+        (level === PriceLevel.SEVEN && '-22deg') ||
         (!level && (hideCents || period) && '-15deg') ||
         '-20deg'
       )
@@ -137,20 +134,20 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
 
     const strikedBottomByLevel = () => {
       return (
-        (level == PriceLevel.SEVEN && (hideCents || period) && 12) ||
-        (level == PriceLevel.SIX && (hideCents || period) && 15) ||
-        (level == PriceLevel.FIVE && (hideCents || period) && 18) ||
-        (level == PriceLevel.FOUR && (hideCents || period) && 19) ||
-        (level == PriceLevel.THREE && (hideCents || period) && 26) ||
-        (level == PriceLevel.TWO && (hideCents || period) && 33) ||
-        (level == PriceLevel.ONE && (hideCents || period) && 37) ||
-        (level == PriceLevel.ONE && 34) ||
-        (level == PriceLevel.TWO && 30) ||
-        (level == PriceLevel.THREE && 24) ||
-        (level == PriceLevel.FOUR && 18) ||
-        (level == PriceLevel.FIVE && 16) ||
-        (level == PriceLevel.SIX && 14) ||
-        (level == PriceLevel.SEVEN && 12) ||
+        (level === PriceLevel.SEVEN && (hideCents || period) && 12) ||
+        (level === PriceLevel.SIX && (hideCents || period) && 15) ||
+        (level === PriceLevel.FIVE && (hideCents || period) && 18) ||
+        (level === PriceLevel.FOUR && (hideCents || period) && 19) ||
+        (level === PriceLevel.THREE && (hideCents || period) && 26) ||
+        (level === PriceLevel.TWO && (hideCents || period) && 33) ||
+        (level === PriceLevel.ONE && (hideCents || period) && 37) ||
+        (level === PriceLevel.ONE && 34) ||
+        (level === PriceLevel.TWO && 30) ||
+        (level === PriceLevel.THREE && 24) ||
+        (level === PriceLevel.FOUR && 18) ||
+        (level === PriceLevel.FIVE && 16) ||
+        (level === PriceLevel.SIX && 14) ||
+        (level === PriceLevel.SEVEN && 12) ||
         (!level && (hideCents || period) && 25) ||
         25
       )
@@ -160,23 +157,23 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
       container: {
         flexDirection: 'row',
         alignSelf:
-          (align && align == Alignable.ALIGNED_START && 'flex-start') ||
-          (align && align == Alignable.ALIGNED_CENTER && 'center') ||
-          (align && align == Alignable.ALIGNED_END && 'flex-end') ||
+          (align && align === Alignable.ALIGNED_START && 'flex-start') ||
+          (align && align === Alignable.ALIGNED_CENTER && 'center') ||
+          (align && align === Alignable.ALIGNED_END && 'flex-end') ||
           'flex-start',
       },
       priceContainer: {
         padding: 0,
         paddingLeft:
-          (level == PriceLevel.FIVE && 2) || (level == PriceLevel.SIX && 2) || (level == PriceLevel.SEVEN && 2) || 4,
+          (level === PriceLevel.FIVE && 2) || (level === PriceLevel.SIX && 2) || (level === PriceLevel.SEVEN && 2) || 4,
         flexDirection: 'column',
         justifyContent: 'center',
         width: 'auto',
         position: 'relative',
       },
       price: {
-        fontWeight: (level == PriceLevel.SIX && 'normal') || (level == PriceLevel.SEVEN && 'normal') || 'bold',
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontWeight: (level === PriceLevel.SIX && 'normal') || (level === PriceLevel.SEVEN && 'normal') || 'bold',
+        fontFamily: fontFamily,
       },
       priceFontSize: {
         fontSize: priceLevel,
@@ -193,7 +190,7 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
       cents: {
         fontWeight: 'bold',
         color: color,
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontFamily: fontFamily,
       },
       centsFontSize: {
         fontSize: centsLevel,
@@ -203,7 +200,7 @@ const Price = React.forwardRef<PriceNativeRef, PriceProps>(
       },
       period: {
         color: color,
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontFamily: fontFamily,
       },
       periodFontSize: {
         fontSize: centsLevel,

@@ -2,15 +2,16 @@ import { Calendar, ChangeEventCalendar } from '@/components/calendar'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context'
-import { useClickOutside } from '@/helpers/clickOutside'
+import { useClickOutside } from '@/hooks/useclickOutside'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, {
+import {
   forwardRef,
   KeyboardEvent,
   useCallback,
   useEffect,
+  useId,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -73,7 +74,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       status,
       disabled,
       disabledDates,
-      id = React.useId(),
+      id,
       testId,
       name,
       yearsOrder,
@@ -81,6 +82,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     },
     ref,
   ) => {
+    const generateId = useId()
     const { styled } = useTrilogyContext()
     const { 'data-cy': dataCy, ...otherProps } = others as any
     const [day, setDay] = useState<string>('jj')
@@ -241,7 +243,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           if (onChange) onChange(`${newYear.slice(-4)}-${newMonth}-${newDay}`)
         }
       },
-      [disabled, segments, canContinueTyping, onChange],
+      [disabled, segments, canContinueTyping, onChange, day, month, year],
     )
 
     const formatDateValue = () => {
@@ -250,7 +252,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     }
 
     const handleKeyDownDay = useCallback(
-      (e: React.KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
+      (e: KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
         if (disabled) return
         const { segmentSetter, label, maxValue, initValue, segmentPosition, segment } = segments[type]
 
@@ -300,7 +302,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             return
         }
       },
-      [disabled, segments, year, month, day],
+      [disabled, segments, year, month, day, onChange],
     )
 
     const handleFocus = () => {
@@ -316,7 +318,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       setIsOpenCalendar(true)
     }
 
-    const handleChangeCalendar = React.useCallback(
+    const handleChangeCalendar = useCallback(
       (e: ChangeEventCalendar) => {
         const dateCalendar = e as Date
         const dateDay = dateCalendar.getDate()
@@ -445,7 +447,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     return (
       <div ref={refContainer} className={datePickerClasses} onKeyDown={onKeyDown}>
         {label && (
-          <label className={inputLabelClasses} htmlFor={id}>
+          <label className={inputLabelClasses} htmlFor={id ?? generateId}>
             {label}{' '}
             {required && (
               <Text markup={TextMarkup.SPAN} typo={TypographyColor.TEXT_ERROR}>
@@ -557,7 +559,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               disabled={disabled}
               name={name}
               type='text'
-              id={id}
+              id={id ?? generateId}
               data-testid={testId}
               value={`${year}-${month}-${day}`}
               data-cy={dataCy}

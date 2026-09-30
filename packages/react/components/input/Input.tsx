@@ -1,6 +1,6 @@
 import translation from '@trilogy-ds/locales/lib/input'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useId, useState } from 'react'
+import { forwardRef, KeyboardEvent, MouseEvent, useCallback, useEffect, useId, useState } from 'react'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -71,14 +71,14 @@ interface IconWrapper {
  * @param forceControl {boolean} Force the control of the input value
  * @param minLength {number} Input min length
  */
-const Input = React.forwardRef<InputRef, InputProp>(
+const Input = forwardRef<InputRef, InputProp>(
   (
     {
       forceControl,
       label,
       sample,
       className,
-      id = React.useId(),
+      id,
       disabled,
       onChange,
       onKeyPress,
@@ -123,6 +123,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
     const { styled } = useTrilogyContext()
     const idHelp = useId()
     const idSample = useId()
+    const idInput = useId()
 
     const inputIcon = new Map()
     inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
@@ -158,7 +159,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       }),
     )
 
-    const onPressKey = useCallback((e: React.KeyboardEvent) => {
+    const onPressKey = useCallback((e: KeyboardEvent) => {
       const target = e.target as HTMLInputElement
       return {
         inputName: target.name,
@@ -196,13 +197,19 @@ const Input = React.forwardRef<InputRef, InputProp>(
           </Markup>
         )
       },
-      [_value, styled],
+      [_value, iconTimesClasses, srOnlyClasses, onIconClick],
     )
 
-    const validator =
-      !customValidator && patternValidator
-        ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
-        : customValidator
+    const validator = useCallback(
+      (value: string) => {
+        if (!customValidator && patternValidator) {
+          return patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR
+        }
+
+        return customValidator?.(value)
+      },
+      [customValidator, patternValidator],
+    )
 
     useEffect(() => {
       let newVal = value ?? defaultValue ?? ''
@@ -221,8 +228,9 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
     useEffect(() => {
       if (!validator || !isTouched) return
-      setLocalStatus(validator(_value))
-    }, [isFocused, isTouched])
+      const validationStatus = validator(_value)
+      if (validationStatus !== undefined) setLocalStatus(validationStatus)
+    }, [isFocused, isTouched, _value, validator])
 
     useEffect(() => {
       setLocalStatus(status || InputStatus.DEFAULT)
@@ -230,7 +238,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
     useEffect(() => {
       if (onStatusChange) onStatusChange(localStatus)
-    }, [localStatus])
+    }, [localStatus, onStatusChange])
 
     return (
       <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
@@ -253,7 +261,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
           <input
             data-testid={testId}
             aria-describedby={type === 'password' && help ? `${idHelp} ${idSample}` : undefined}
-            id={id}
+            id={id ?? idInput}
             required={required}
             readOnly={readOnly}
             {...others}
@@ -270,12 +278,12 @@ const Input = React.forwardRef<InputRef, InputProp>(
             minLength={minLength}
             maxLength={maxLength}
             autoComplete={autoCompleteType}
-            onKeyUp={(e: React.KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e))}
-            onKeyPress={(e: React.KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e))}
+            onKeyUp={(e: KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e))}
+            onKeyPress={(e: KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e))}
             onMouseEnter={(e) => onMouseEnter?.(e)}
             onMouseLeave={(e) => onMouseLeave?.(e)}
             placeholder={placeholder}
-            onClick={(e: React.MouseEvent<Element>) => {
+            onClick={(e: MouseEvent<Element>) => {
               const target = e.target as HTMLFormElement
               if (onClick) {
                 onClick({

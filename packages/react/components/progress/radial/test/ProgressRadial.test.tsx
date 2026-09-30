@@ -1,8 +1,7 @@
-import * as React from 'react'
 import { render } from '@testing-library/react'
 import ProgressRadial from '@/components/progress/radial/ProgressRadial'
 import ProgressRadialItem from '@/components/progress/radial/item'
-import { TrilogyColor } from "@/interfaces/Color";
+import { TrilogyColor } from '@/interfaces/Color'
 
 describe('ProgressRadial', () => {
   it('renders the label when provided', () => {

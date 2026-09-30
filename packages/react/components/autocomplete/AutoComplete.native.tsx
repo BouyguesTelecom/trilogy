@@ -1,6 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import { BaseSyntheticEvent, FocusEvent, forwardRef, useCallback, useEffect, useMemo, useState } from 'react'
 import { Keyboard, StyleSheet, View } from 'react-native'
-
 import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -31,7 +30,7 @@ import { debounce } from '@/components/autocomplete/utils'
  * @param loading {boolean} Loading input
  * @param id {string} Custom id attribute
  */
-const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNative>(
+const AutoComplete = forwardRef<AutocompleteNativeRef, AutoCompletePropsNative>(
   (
     {
       value,
@@ -59,24 +58,28 @@ const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNa
     const [suggestions, setSuggestions] = useState(data ?? [])
     const [isOpenMenu, setIsOpenMenu] = useState<boolean>(displayMenu ?? false)
 
-    const updateSuggestions = async (valueInput: string) => {
-      if (getSuggestions) {
-        const suggestions = await getSuggestions(valueInput)
-        suggestions && setSuggestions(suggestions)
-        setIsOpenMenu(Boolean(suggestions?.length))
-      } else if (matching && data.length) {
-        const suggestions = matching(data, valueInput)
-        setSuggestions(suggestions)
-        setIsOpenMenu(Boolean(suggestions.length))
-      }
-    }
+    const updateSuggestions = useCallback(
+      async (valueInput: string) => {
+        if (getSuggestions) {
+          const suggestions = await getSuggestions(valueInput)
+          suggestions && setSuggestions(suggestions)
+          setIsOpenMenu(Boolean(suggestions?.length))
+        } else if (matching && data.length) {
+          const suggestions = matching(data, valueInput)
+          setSuggestions(suggestions)
+          setIsOpenMenu(Boolean(suggestions.length))
+        }
+      },
+      [getSuggestions, matching, data],
+    )
+
     const updateSuggestionsFn = useMemo(() => {
       return debounceSuggestionsTimeout ? debounce(updateSuggestions, debounceSuggestionsTimeout) : updateSuggestions
-    }, [debounceSuggestionsTimeout])
+    }, [debounceSuggestionsTimeout, updateSuggestions])
 
     useEffect(() => {
       updateSuggestionsFn(valueInput)
-    }, [valueInput])
+    }, [valueInput, updateSuggestionsFn])
 
     useEffect(() => {
       setValueInput(value || '')
@@ -106,7 +109,7 @@ const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNa
       }
     }
 
-    const handleFocus = (event: React.FocusEvent | React.BaseSyntheticEvent) => {
+    const handleFocus = (event: FocusEvent | BaseSyntheticEvent) => {
       setIsOpenMenu(true)
       if (onFocus) onFocus(event)
     }

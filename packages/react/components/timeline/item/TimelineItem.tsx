@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { TimelineMarkerRef } from '@/components/timeline/marker/TimelineMarkerProps'
 import { TimelineItemWebProps } from '@/components/timeline/item/TimelineItemProps'
 
@@ -16,7 +16,7 @@ import { TimelineItemWebProps } from '@/components/timeline/item/TimelineItemPro
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const TimelineItem = React.forwardRef<TimelineMarkerRef, TimelineItemWebProps>(
+const TimelineItem = forwardRef<TimelineMarkerRef, TimelineItemWebProps>(
   ({ className, id, done, active, cancel, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(

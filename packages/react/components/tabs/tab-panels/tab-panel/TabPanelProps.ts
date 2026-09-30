@@ -1,12 +1,13 @@
 import { View } from 'react-native'
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev"
+import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 /**
  * Tabs Item Interface
  */
 export interface TabPanelProps extends Dev, CommonProps {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
 }
 

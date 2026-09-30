@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from '@/helpers/alignable'
-import React, { useState } from 'react'
+import { Children, forwardRef, useCallback, useMemo, useState } from 'react'
 import { ColumnsGapValue } from '@/components/columns'
 import { FlexBoxNativeRef, FlexBoxProps } from '@/components/flex-box/FlexBoxProps'
 import { FlexBoxContext } from '@/components/flex-box/context'
@@ -11,7 +11,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 /**
  * @beta
  * FlexBox Component - Flexible box layout container
- * @param children {React.ReactNode} FlexBox child elements
+ * @param children {ReactNode} FlexBox child elements
  * @param gap {number | { mobile?: number; tablet?: number; desktop?: number }} Gap between children (supports responsive values)
  * @param direction { 'row' | 'column' | 'row-reverse' | 'column-reverse' | { mobile?: ...; tablet?: ...; desktop?: ... } } Flex direction (supports responsive values)
  * @param align { 'start' | 'end' | 'center' | 'stretch' | 'baseline' | { mobile?: ...; tablet?: ...; desktop?: ... } } Align items (supports responsive values)
@@ -22,7 +22,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param id {string} Custom id attribute
  * @param fullBleed {boolean} Extend to full screen width (ignores container padding)
  */
-const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
+const FlexBox = forwardRef<FlexBoxNativeRef, FlexBoxProps>(
   (
     { id, gap, direction = 'row', align, justify, scrollable, fullBleed, children, fullheight, testId, ...others },
     ref,
@@ -33,7 +33,7 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
     const isValueAlign = typeof align === 'string'
     const isValueJustify = typeof justify === 'string'
 
-    const onLayoutHandler = React.useCallback(
+    const onLayoutHandler = useCallback(
       (event: LayoutChangeEvent) => {
         if (!width) {
           const { width } = event.nativeEvent.layout
@@ -45,7 +45,7 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
     )
 
     const gapIndex = (gap && typeof gap === 'number' && gap) || (gap && gap?.mobile) || 0
-    const realGap = React.useMemo(() => (typeof gap === 'undefined' ? 8 : ColumnsGapValue[gapIndex]), [gap])
+    const realGap = useMemo(() => (typeof gap === 'undefined' ? 8 : ColumnsGapValue[gapIndex]), [gap, gapIndex])
 
     const styles = memoStyles({
       columns: {
@@ -72,7 +72,7 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
           width,
           realGap,
           scrollable: scrollable || false,
-          childrenLength: React.Children.count(children),
+          childrenLength: Children.count(children),
         }}
       >
         {!scrollable && (

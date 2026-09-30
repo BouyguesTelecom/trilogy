@@ -1,26 +1,26 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import * as React from 'react'
-import { Text, View } from 'react-native'
-import { BoxContext } from '@/components/box/context/boxContext'
 import { BoxHeaderNativeRef, BoxHeaderProps } from '@/components/box/header/BoxHeaderProps'
 import { getColorStyle } from '@/helpers/color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { TrilogyColor } from '@/interfaces/Color'
 import { Radius } from '@/interfaces/Radius'
+import { BoxContext } from '@/components/box/context/boxContext'
+import { forwardRef, useContext } from 'react'
+import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Box Header Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param variant {TrilogyColor} Box Header backgroundColor
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
+const BoxHeader = forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
   ({ children, variant, testId, ...others }, ref): JSX.Element => {
-    const statesContext = React.useContext(StatesContext)
-    const boxContext = React.useContext(BoxContext)
+    const statesContext = useContext(StatesContext)
+    const boxContext = useContext(BoxContext)
     const centered = false
     const pulledLeft = false
     const pulledRight = false

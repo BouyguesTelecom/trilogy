@@ -2,34 +2,34 @@ import { ColumnNativeRef, ColumnProps } from '@/components/columns/column/Column
 import { ColumnsContext } from '@/components/columns/context'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from '@/helpers/alignable'
-import React from 'react'
 import { View, ViewStyle } from 'react-native'
+import { forwardRef, memo, useContext, useMemo } from 'react'
 
 /**
  * Columns Item Component - Columns Child
  * @param size {ColumnsSize} Size 1-12
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param verticalAlign {AlignProps} Vertical alignment of column
  * @param narrow {boolean} Narrow column item
  */
-const Column = React.memo(
-  React.forwardRef<ColumnNativeRef, ColumnProps>(
+const Column = memo(
+  forwardRef<ColumnNativeRef, ColumnProps>(
     ({ children, narrow, size, verticalAlign, ...others }, ref): JSX.Element => {
-      const { width, realGap, scrollable, childrensLength } = React.useContext(ColumnsContext)
+      const { width, realGap, scrollable, childrensLength } = useContext(ColumnsContext)
 
-      const calculatedWidth = React.useMemo(
+      const calculatedWidth = useMemo(
         () => (size && width > 0 ? (size / 12) * width - realGap * ((childrensLength - 1) / childrensLength) : null),
         [size, width, realGap, childrensLength],
       )
 
-      const scrollableStyle: ViewStyle = React.useMemo(
+      const scrollableStyle: ViewStyle = useMemo(
         () => ({
           width: calculatedWidth || (narrow ? 'auto' : width - 2 * realGap),
         }),
         [calculatedWidth, narrow, width, realGap],
       )
 
-      const noScrollableStyle: ViewStyle = React.useMemo(
+      const noScrollableStyle: ViewStyle = useMemo(
         () => ({
           flex: narrow ? 0 : 1,
           flexGrow: size || narrow ? 0 : 1,
@@ -39,7 +39,7 @@ const Column = React.memo(
         [narrow, size, calculatedWidth],
       )
 
-      const justifyContentStyle = React.useMemo(
+      const justifyContentStyle = useMemo(
         () => ({
           justifyContent: getAlignStyle(verticalAlign) as
             | 'flex-start'

@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { createContext } from 'react'
+import { createContext, forwardRef, type CSSProperties, type Ref } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { CardProps, CardRef } from '@/components/card/CardProps'
 
@@ -18,14 +18,14 @@ export const CardContext = createContext({ horizontal: false })
  * @param reversed {boolean} Reversed card
  * @param active {boolean} Activated card
  * @param id {string} Custom id attribute
- * @param children {React.ReactNode} Card content
+ * @param children {ReactNode} Card content
  * @param fullheight {boolean} Full height card
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param href {string} Link href (renders card as anchor)
  * @param testId {string} Test Id for Test Integration
  */
-const Card = React.forwardRef<CardRef, CardProps>(
+const Card = forwardRef<CardRef, CardProps>(
   (
     {
       className,
@@ -46,7 +46,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
   ) => {
     const { styled } = useTrilogyContext()
 
-    const hoverStyle: React.CSSProperties = {
+    const hoverStyle: CSSProperties = {
       cursor: 'pointer',
     }
 
@@ -69,11 +69,10 @@ const Card = React.forwardRef<CardRef, CardProps>(
       return (
         <a
           data-testid={testId}
-          ref={ref as React.Ref<HTMLAnchorElement>}
+          ref={ref as Ref<HTMLAnchorElement>}
           id={id}
           href={href}
           onClick={(e) => {
-
             onClick?.(e)
             e.stopPropagation()
           }}
@@ -86,7 +85,7 @@ const Card = React.forwardRef<CardRef, CardProps>(
     return (
       <div
         data-testid={testId}
-        ref={ref as React.Ref<HTMLDivElement>}
+        ref={ref as Ref<HTMLDivElement>}
         id={id}
         onClick={onClick && onClick}
         className={classes}

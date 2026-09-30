@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
@@ -11,7 +11,7 @@ import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * ListItem Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param iconName {IconName} Icon name
  * @param status {ListIconStatus} Status success|error
  * @param testId {string} Test Id for Test Integration
@@ -19,7 +19,7 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const ListItem = React.forwardRef<ListItemRef, ListItemProps>(
+const ListItem = forwardRef<ListItemRef, ListItemProps>(
   ({ className, id, children, iconName, status, testId }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = clsx('list-item', className, status && is(getColorClassName(TrilogyColor[status])))

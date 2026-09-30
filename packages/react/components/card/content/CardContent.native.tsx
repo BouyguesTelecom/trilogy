@@ -1,17 +1,17 @@
 import { CardContext } from '@/components/card/Card.native'
 import { ComponentName } from '@/components/enumsComponentsName'
-import React, { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { CardContentNativeRef, CardContentProps } from '@/components/card/content/CardContentProps'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Card Content Component
- * @param children {React.ReactNode} Custom Card Content Children
+ * @param children {ReactNode} Custom Card Content Children
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const CardContent = React.forwardRef<CardContentNativeRef, CardContentProps>(
+const CardContent = forwardRef<CardContentNativeRef, CardContentProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
     const cardContextValues = useContext(CardContext)
 

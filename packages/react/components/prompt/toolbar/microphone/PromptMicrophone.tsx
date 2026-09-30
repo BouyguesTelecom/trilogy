@@ -2,10 +2,10 @@ import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconName } from '@/components/icon'
 import clsx from 'clsx'
-import React, { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { PromptContext } from '@/components/prompt/context'
 import { PromptMicrophoneProps, PromptMicrophoneRef } from '@/components/prompt/toolbar/microphone/PromptMicrophoneProps'
-import { OnClickEvent } from "@/interfaces/OnClickEvent";
+import { OnClickEvent } from "@/interfaces/OnClickEvent"
 
 /**
  * PromptMicrophone component - Voice recording button for prompt input
@@ -16,7 +16,7 @@ import { OnClickEvent } from "@/interfaces/OnClickEvent";
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const PromptMicrophone = React.forwardRef<PromptMicrophoneRef, PromptMicrophoneProps>(
+const PromptMicrophone = forwardRef<PromptMicrophoneRef, PromptMicrophoneProps>(
   ({ className, onClick, disabled = false, isListening, readOnly, ...others }, ref) => {
     const { isTyping, isDisabled, isReadonly } = useContext(PromptContext)
     const isDisable = isDisabled || disabled

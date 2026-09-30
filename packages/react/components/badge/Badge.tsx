@@ -3,17 +3,17 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { BadgeProps, BadgeRef } from '@/components/badge/BadgeProps'
-import { TrilogyColor } from "@/interfaces/Color";
-import { StatusState } from "@/interfaces/Status";
-import { getStatusClassName } from "@/helpers/status";
-import { getVariantClassName } from "@/helpers/variant";
+import { TrilogyColor } from '@/interfaces/Color'
+import { StatusState } from '@/interfaces/Status'
+import { getStatusClassName } from '@/helpers/status'
+import { getVariantClassName } from '@/helpers/variant'
+import { forwardRef } from 'react'
 
 /**
  * Badge Component
- * @param children {React.ReactNode} Content inside the badge (e.g. Icon)
+ * @param children {ReactNode} Content inside the badge (e.g. Icon)
  * @param label {string|number} Badge content text
  * @param inverted {boolean} Inverted style for Badge
  * @param status {StatusState} Badge status variant (INFO|SUCCESS|WARNING|ERROR)
@@ -25,7 +25,7 @@ import { getVariantClassName } from "@/helpers/variant";
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Badge = React.forwardRef<BadgeRef, BadgeProps>(
+const Badge = forwardRef<BadgeRef, BadgeProps>(
   (
     { className, children, id, label, inverted, onClick, variant, position, status, testId, ...others },
     ref,

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { RowsNativeRef, RowsProps } from '@/components/rows/RowsProps'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -7,10 +7,10 @@ import { ColumnsGapValue, GapSize } from '@/components/columns/ColumnsTypes'
 
 /**
  * Rows Component
- * @param children {React.ReactNode} Rows children
+ * @param children {ReactNode} Rows children
  * @param gapless {boolean} Delete margins between row
  */
-const Rows = React.forwardRef<RowsNativeRef, RowsProps>(({ children, gap, ...others }, ref): JSX.Element => {
+const Rows = forwardRef<RowsNativeRef, RowsProps>(({ children, gap, ...others }, ref): JSX.Element => {
   const realGap = (typeof gap === 'undefined' && 16) || ColumnsGapValue[gap as GapSize]
   const styles = memoStyles({
     rows: {

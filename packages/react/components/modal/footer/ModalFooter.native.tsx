@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
 import { isIOS } from '@/helpers/device.native'
-import * as React from 'react'
+import { forwardRef, useContext, useEffect } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -12,23 +12,23 @@ import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * Modal Footer Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const ModalFooter = React.forwardRef<ModalFooterNativeRef, ModalFooterProps>(
+const ModalFooter = forwardRef<ModalFooterNativeRef, ModalFooterProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const { setIsFooter } = React.useContext(ModalContext)
+    const { setIsFooter } = useContext(ModalContext)
     const insets = useSafeAreaInsets()
     const bottomPadding = isIOS ? Math.max(40, insets.bottom) : 18
 
-    React.useEffect(() => {
+    useEffect(() => {
       setIsFooter(true)
 
       return () => {
         setIsFooter(false)
       }
-    }, [])
+    }, [setIsFooter])
 
     return (
       <View ref={ref} style={[styles.container, { paddingBottom: bottomPadding }]} testID={testId} {...others}>

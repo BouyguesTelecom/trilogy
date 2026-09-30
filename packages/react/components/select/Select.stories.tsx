@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import SelectComponent from '@/components/select/Select'
 import { SelectStatus } from '@/components/select/SelectEnum'
 import type { SelectProps } from '@/components/select/SelectProps'

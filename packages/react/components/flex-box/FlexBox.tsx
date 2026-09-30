@@ -4,7 +4,6 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
 import {
   AlignProps,
   Direction,
@@ -18,6 +17,7 @@ import { GapSize } from '@/components/columns'
 import { Align } from '@/interfaces/Alignable'
 import { Justify } from '@/interfaces/Justifiable'
 import { DirectionEnum, DirectionEnumValues } from '@/interfaces/Direction'
+import { forwardRef } from 'react'
 
 interface GetResponsiveClassesProp {
   value:
@@ -101,7 +101,7 @@ const getJustifyClassName = (justifyContent?: string) => {
 /**
  * @beta
  * FlexBox Component - Flexible box layout container
- * @param children {React.ReactNode} FlexBox child elements
+ * @param children {ReactNode} FlexBox child elements
  * @param gap {number | { mobile?: number; tablet?: number; desktop?: number }} Gap between children (supports responsive values)
  * @param direction { 'row' | 'column' | 'row-reverse' | 'column-reverse' | { mobile?: ...; tablet?: ...; desktop?: ... } } Flex direction (supports responsive values)
  * @param align { 'start' | 'end' | 'center' | 'stretch' | 'baseline' | { mobile?: ...; tablet?: ...; desktop?: ... } } Align items (supports responsive values)
@@ -117,7 +117,7 @@ const getJustifyClassName = (justifyContent?: string) => {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param fullBleed {boolean} Extend to full screen width (ignores container padding)
  */
-const FlexBox = React.forwardRef<FlexBoxRef, FlexBoxProps>(
+const FlexBox = forwardRef<FlexBoxRef, FlexBoxProps>(
   ({ className, id, gap, direction, align, justify, wrap, scrollable, fullheight, mobile, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

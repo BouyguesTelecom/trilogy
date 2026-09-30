@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 import { TableTdProps, TableTdRef } from '@/components/table/td/TableTdProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -13,12 +13,16 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param rowSpan {number} Specifies the number of rows a cell should span
  * @param colSpan {number} Defines the number of columns a cell should span
  */
-const TableTd = React.forwardRef<TableTdRef, TableTdProps>(({ className, id, rowSpan, colSpan, testId, ...others }, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const TableTd = forwardRef<TableTdRef, TableTdProps>(
+  ({ className, id, rowSpan, colSpan, testId, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const classes = hashClass(styled, clsx(className))
-  return <td ref={ref} id={id} className={classes} rowSpan={rowSpan} colSpan={colSpan} data-testid={testId} {...others} />
-})
+    const classes = hashClass(styled, clsx(className))
+    return (
+      <td ref={ref} id={id} className={classes} rowSpan={rowSpan} colSpan={colSpan} data-testid={testId} {...others} />
+    )
+  },
+)
 
 TableTd.displayName = ComponentName.TableTd
 export default TableTd

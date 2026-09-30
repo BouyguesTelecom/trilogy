@@ -1,6 +1,6 @@
 import { TrilogyThemeContext } from '@/context/providerTheme'
 import { useContext } from 'react'
-import { colors, TrilogyColor, TrilogyColorValues } from "@/interfaces/Color";
+import { colors, TrilogyColor, TrilogyColorValues } from "@/interfaces/Color"
 
 /**
  * Returns color's className depending on Trilogy Color

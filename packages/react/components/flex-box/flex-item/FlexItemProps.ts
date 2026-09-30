@@ -1,7 +1,8 @@
 import { View } from 'react-native'
-import { Dev } from "@/interfaces/Dev";
-import { AlignableProps } from "@/interfaces/Alignable";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev"
+import { AlignableProps } from "@/interfaces/Alignable"
+import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 export interface FlexSize {
   mobile?: FlexItemSize
@@ -16,7 +17,7 @@ export interface FlexSize {
  * FlexItem Interface
  */
 export interface FlexItemProps extends AlignableProps, CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   size?: FlexSize | FlexItemSize
   narrow?: boolean
 }

@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import * as React from 'react'
+import { forwardRef, useState } from 'react'
 import { LinkNativeRef, LinkPropsNative } from '@/components/link/LinkProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -9,7 +9,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Link Component
- * @param children {React.ReactNode} Content children for Link
+ * @param children {ReactNode} Content children for Link
  * @param to {string} Use for router navigation
  * @param onClick {Function} onClick Event
  * @param accessibilityLabel {string} Accessibility label
@@ -17,9 +17,9 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param inverted {boolean} Inverted link color
  * @param testId {string} Test Id for Test Integration
  */
-const Link = React.forwardRef<LinkNativeRef, LinkPropsNative>(
+const Link = forwardRef<LinkNativeRef, LinkPropsNative>(
   ({ children, to, onClick, testId, accessibilityLabel, iconName, inverted, ...others }, ref): JSX.Element => {
-    const [pressedLink, setPressedLink] = React.useState(false)
+    const [pressedLink, setPressedLink] = useState(false)
 
     const styles = memoStyles({
       link: {

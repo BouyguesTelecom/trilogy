@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import React, { useCallback, useEffect, useState } from 'react'
+import { forwardRef, useCallback, useEffect, useState } from 'react'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import {
   Keyboard,
@@ -69,7 +69,7 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param keyType {KeyType} Key type for submit button
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
+const Input = forwardRef<InputNativeRef, InputNativeProps>(
   (
     {
       defaultValue,
@@ -121,7 +121,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
     const [email, setEmail] = useState<string>('')
     const [isFocused, setIsFocused] = useState(false)
     const [iconPassword, setIconPassword] = useState(IconName.EYE)
-    const [isKeyboardVisible, setKeyboardVisible] = useState<null | boolean>(null)
+    const [, setKeyboardVisible] = useState<null | boolean>(null)
 
     const handleChange = useCallback((text: string) => {
       setValue(text)
@@ -132,15 +132,15 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
         domains.forEach((item) => {
           const domainSplit = domain.split('')
           const itemSplit = item.split('').slice(0, domainSplit.length)
-          if (JSON.stringify(domainSplit) == JSON.stringify(itemSplit)) setEmail(item.slice(domain.length))
+          if (JSON.stringify(domainSplit) === JSON.stringify(itemSplit)) setEmail(item.slice(domain.length))
         })
       }
     }, [])
 
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
       setValue(value + email)
       setEmail('')
-    }
+    }, [email, value])
 
     const handleSubmit = (e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
       onSubmit?.(e)
@@ -165,7 +165,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
 
     useEffect(() => {
       handleClick()
-    }, [isKeyboardVisible])
+    }, [handleClick])
 
     const hasIcon = iconNameLeft || iconNameRight || false
 

@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import Column from '@/components/columns/column/Column'
 import ColumnsComponent from '@/components/columns/Columns'
 import type { ColumnsProps } from '@/components/columns/ColumnsProps'
 import { ColumnsSize, GapSize } from '@/components/columns/ColumnsTypes'
-import { Alignable } from "@/interfaces/Alignable";
+import { Alignable } from '@/interfaces/Alignable'
+import { ReactNode } from 'react'
 
 ColumnsComponent.displayName = 'Columns'
 Column.displayName = 'Column'
 
-const Columns = (props: ColumnsProps & { children: React.ReactNode }): JSX.Element => <ColumnsComponent {...props} />
+const Columns = (props: ColumnsProps & { children: ReactNode }): JSX.Element => <ColumnsComponent {...props} />
 Columns.displayName = 'Columns'
 
 interface ColumnsStoryArgs extends ColumnsProps {

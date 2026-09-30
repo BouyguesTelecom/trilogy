@@ -4,7 +4,7 @@ import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import React, { useContext, useState } from 'react'
+import { forwardRef, useContext, useId, useState } from 'react'
 import { TouchableOpacity, View as ViewRN } from 'react-native'
 import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
@@ -35,13 +35,13 @@ import { memoStyles } from '@/helpers/memoStyles'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
+const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   (
     {
       disabled,
       checked,
       readonly,
-      id = React.useId(),
+      id,
       label,
       onChange,
       name,
@@ -55,6 +55,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     },
     ref,
   ): JSX.Element => {
+    const generateId = useId()
     const [_checked, setChecked] = useState<boolean>(checked || false)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
     const { isGrid } = useContext(CheckboxTilesContext)
@@ -129,7 +130,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         setChecked(!_checked)
         if (onChange) {
           onChange({
-            checkboxId: id,
+            checkboxId: id ?? generateId,
             checkboxValue: '',
             checkboxName: name || '',
             checkboxChecked: !_checked,
@@ -153,7 +154,12 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
             </ViewRN>
           )}
 
-          <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
+          <TouchableOpacity
+            style={styles.checkBox}
+            disabled={disabled}
+            testID={id ?? generateId}
+            onPressIn={() => handleClick()}
+          >
             {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
           </TouchableOpacity>
 
@@ -203,7 +209,12 @@ const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
           </ViewRN>
         )}
         <View style={{ gap: SpacerSize.TWO }}>
-          <TouchableOpacity style={[styles.checkBox]} disabled={disabled} testID={id} onPressIn={handleClick}>
+          <TouchableOpacity
+            style={[styles.checkBox]}
+            disabled={disabled}
+            testID={id ?? generateId}
+            onPressIn={handleClick}
+          >
             {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
           </TouchableOpacity>
           {icon && (

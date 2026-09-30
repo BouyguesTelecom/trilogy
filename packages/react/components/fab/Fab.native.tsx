@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { FabNativeRef, FabProps } from '@/components/fab/FabProps'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -8,8 +8,6 @@ import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import { TypographyColor } from '@/interfaces/TypographyColor'
-import { getRadiusStyle } from '@/helpers/radius'
-import { Radius } from '@/interfaces/Radius'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
@@ -28,7 +26,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Fab = React.forwardRef<FabNativeRef, FabProps>(
+const Fab = forwardRef<FabNativeRef, FabProps>(
   (
     { children, accessibilityLabel, iconName, extended, onClick, top, bottom, left, right, disabled, testId },
     ref,

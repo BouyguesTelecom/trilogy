@@ -2,17 +2,17 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { BoxTableContainerProps, BoxTableContainerRef } from '@/components/box/table-container/BoxTableContainerProps'
 
 /**
  * Box Table Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const BoxTableContainer = React.forwardRef<BoxTableContainerRef, BoxTableContainerProps>(
+const BoxTableContainer = forwardRef<BoxTableContainerRef, BoxTableContainerProps>(
   ({ className, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

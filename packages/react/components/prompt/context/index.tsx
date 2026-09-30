@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, PropsWithChildren, SetStateAction, useRef, useState } from 'react'
+import { createContext, Dispatch, PropsWithChildren, RefObject, SetStateAction, useRef, useState } from 'react'
 import { TextInput } from 'react-native'
 
 export interface IPromptFile {
@@ -22,7 +22,7 @@ export interface IPromptContext {
   setIsSpeech: Dispatch<SetStateAction<boolean>>
   isDisabled: boolean
   isReadonly: boolean
-  textareaRef: React.RefObject<TextInput>
+  textareaRef: RefObject<TextInput>
 }
 
 interface Props {

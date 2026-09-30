@@ -5,7 +5,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { RadioListRef, RadioListWebProps } from '@/components/radio/list/RadioListProps'
 import { getJustifiedClassName } from '@/helpers/justifiable'
 import { TypographyColor } from '@/interfaces/TypographyColor'
@@ -23,7 +23,7 @@ import { TypographyColor } from '@/interfaces/TypographyColor'
  * @param horizontalMobile {boolean} Expect mobile screen
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
-const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
+const RadioList = forwardRef<RadioListRef, RadioListWebProps>(
   (
     {
       className,

@@ -1,15 +1,16 @@
 import { View } from 'react-native'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { AlignableProps } from "@/interfaces/Alignable";
-import { Clickable } from "@/interfaces/Clickable";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Accessibility } from "@/interfaces/Accessibility"
+import { AlignableProps } from "@/interfaces/Alignable"
+import { Clickable } from "@/interfaces/Clickable"
+import { Dev } from "@/interfaces/Dev"
+import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 /**
  * Tabs Interface
  */
 export interface TabsProps extends AlignableProps, Clickable, Accessibility, Dev, CommonProps {
-  children: React.ReactNode | string
+  children: ReactNode | string
   activeIndex?: number
   fullwidth?: boolean
   inverted?: boolean

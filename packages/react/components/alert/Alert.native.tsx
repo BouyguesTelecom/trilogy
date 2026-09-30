@@ -5,9 +5,9 @@ import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { View } from '@/components/view'
-import * as React from 'react'
-import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
+import { FC, forwardRef } from 'react'
+import { TouchableOpacity } from 'react-native'
 import LibToast from 'react-native-toast-message'
 import { Row, Rows } from '@/components/rows'
 import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
@@ -48,7 +48,7 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
  * @param onClick {Function} onClick Event for all alert
  * @param display {boolean} Display Alert component
  */
-const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
+const Alert = forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {
     const { color, backgroundColor } = getStatusStyle(status)
     let alertView: JSX.Element
@@ -79,9 +79,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
       },
     })
 
-    // eslint-disable-next-line prefer-const
     alertView = (
-
       <View style={[styles.container, (others as any).style]} ref={ref}>
         <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>
           <Column narrow>
@@ -136,7 +134,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
  * @param onClick {Function} onClick Event for all notification
  * @param closable {Function} onClick Event on cross icon
  */
-export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props }) => {
+export const ToasterAlert: FC<{ props: ToasterStatusProps }> = ({ props }) => {
   const { title, description, iconName, status, closable, onClick } = props
   const { color, backgroundColor } = getStatusStyle(status)
 
@@ -187,7 +185,7 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
 
 /**
  * Toaster provider
- * @param children {React.ReactNode} Custom Toast Content
+ * @param children {ReactNode} Custom Toast Content
  * @param duration {number} Duration in MS (Default: 5000)
  * @param offset {number} Offset position margin (Default: 10 dp)
  * @param others

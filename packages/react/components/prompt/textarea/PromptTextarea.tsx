@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Textarea } from '@/components/textarea'
 import { TextareaChangeEvent } from '@/components/textarea/TextareaProps'
 import clsx from 'clsx'
-import React, { useContext, useEffect } from 'react'
+import { FormEvent, forwardRef, useContext, useEffect } from 'react'
 import { PromptContext } from '@/components/prompt/context'
 import { PromptTextareaProps, PromptTextareaRef } from '@/components/prompt/textarea/PromptTextareaProps'
 
@@ -17,7 +17,7 @@ import { PromptTextareaProps, PromptTextareaRef } from '@/components/prompt/text
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const PromptTextarea = React.forwardRef<PromptTextareaRef, PromptTextareaProps>(
+const PromptTextarea = forwardRef<PromptTextareaRef, PromptTextareaProps>(
   ({ className, value, onChange, disabled, readOnly, ...others }, ref) => {
     const classes = clsx('prompt-textarea', className)
     const { setText, setIsTyping, isDisabled, isReadonly } = useContext(PromptContext)
@@ -25,7 +25,7 @@ const PromptTextarea = React.forwardRef<PromptTextareaRef, PromptTextareaProps>(
     const isDisable = isDisabled || disabled
     const isReadOnly = isReadonly || readOnly
 
-    const handleTextareaChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const handleTextareaChange = (e: FormEvent<HTMLTextAreaElement>) => {
       const textarea = e.target as HTMLTextAreaElement
       textarea.style.height = 'auto'
       textarea.style.height = `${textarea.scrollHeight}px`

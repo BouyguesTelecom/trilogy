@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptNativeRef, PromptProps } from '@/components/prompt/PromptProps'
 import { PromptContext, PromptProvider } from '@/components/prompt/context'
@@ -9,7 +9,7 @@ import { Radius } from '@/interfaces/Radius'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
-const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {
+const PromptElm = forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {
   const { isFocused, isDisabled } = useContext(PromptContext)
 
   const styles = memoStyles({
@@ -23,6 +23,7 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ..
   })
   return <View ref={ref} style={styles.view} {...others} />
 })
+PromptElm.displayName = 'PromptElm'
 
 /**
  * Prompt Component (React Native) - Form wrapper for chat-like or AI prompt interfaces
@@ -32,7 +33,7 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ..
  * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  */
-const Prompt = React.forwardRef<PromptNativeRef, PromptProps>(
+const Prompt = forwardRef<PromptNativeRef, PromptProps>(
   ({ disabled = false, readOnly = false, ...others }, ref) => {
     return (
       <PromptProvider isDisabled={disabled} isReadonly={readOnly}>

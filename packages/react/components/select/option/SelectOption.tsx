@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef, RefObject, useContext } from 'react'
 import { SelectContext } from '@/components/select/context'
 import { SelectedValue } from '@/components/select/SelectProps'
 import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/SelectOptionProps'
@@ -12,7 +12,7 @@ import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/S
 /**
  * Select Option Component
  * @param value {string} Select option value
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param label {string} option name
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
@@ -23,12 +23,12 @@ import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/S
  * @param id {string} Select option custom id
  * @param others
  */
-const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
+const SelectOption = forwardRef<SelectOptionRef, SelectOptionProps>(
   ({ id, className, value = '', disabled, children, onClick, label, iconName, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 
     const { custom, selectedOptionValues, setSelectedOptionValues, multiple, setIsVisibleOptions, onChange } =
-      React.useContext(SelectContext)
+      useContext(SelectContext)
 
     const isChecked = selectedOptionValues.includes(value)
 
@@ -67,7 +67,7 @@ const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
     if (custom || multiple) {
       return (
         <li
-          ref={ref as React.RefObject<HTMLLIElement>}
+          ref={ref as RefObject<HTMLLIElement>}
           id={id}
           className={selectClasses}
           data-selected={isChecked}
@@ -86,7 +86,7 @@ const SelectOption = React.forwardRef<SelectOptionRef, SelectOptionProps>(
 
     return (
       <option
-        ref={ref as React.RefObject<HTMLOptionElement>}
+        ref={ref as RefObject<HTMLOptionElement>}
         role='option'
         id={id}
         value={value}

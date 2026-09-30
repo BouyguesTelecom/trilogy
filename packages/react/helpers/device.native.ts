@@ -20,7 +20,7 @@ const { Browser, Server, Native } = Device
 
 const canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement)
 
-const canUseNative: boolean = typeof navigator != 'undefined' && navigator.product == 'ReactNative'
+const canUseNative: boolean = typeof navigator != 'undefined' && navigator.product === 'ReactNative'
 
 const device = canUseNative ? Native : canUseDOM ? Browser : Server
 

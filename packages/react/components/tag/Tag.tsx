@@ -3,11 +3,11 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getColorClassName } from '@/helpers/color'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { TagProps, TagRef } from '@/components/tag/TagProps'
 import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { forwardRef } from 'react'
 
 /**
  * Tag Component
@@ -21,7 +21,7 @@ import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  **/
-const Tag = React.forwardRef<TagRef, TagProps>(
+const Tag = forwardRef<TagRef, TagProps>(
   ({ label, className, id, variant, inverted, small, iconName, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

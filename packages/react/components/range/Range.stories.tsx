@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import RangeComponent from '@/components/range/Range'
+import { useEffect, useState } from 'react'
 
 RangeComponent.displayName = 'Range'
 
@@ -65,14 +65,14 @@ const meta: Meta<RangeStoryArgs> = {
     testId: '',
   },
   render: ({ min, max, label, simple, unit, name, value, valueMin, valueMax, gap, id, className, testId }) => {
-    const [localMin, setLocalMin] = React.useState(valueMin)
-    const [localMax, setLocalMax] = React.useState(simple ? value : valueMax)
+    const [localMin, setLocalMin] = useState(valueMin)
+    const [localMax, setLocalMax] = useState(simple ? value : valueMax)
 
-    React.useEffect(() => {
+    useEffect(() => {
       setLocalMin(valueMin)
     }, [valueMin])
 
-    React.useEffect(() => {
+    useEffect(() => {
       setLocalMax(simple ? value : valueMax)
     }, [simple, value, valueMax])
 

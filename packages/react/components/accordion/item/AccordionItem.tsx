@@ -3,7 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef, useId } from 'react'
 
 /**
  * Accordion Item Component
@@ -11,15 +11,16 @@ import React from 'react'
  * @param id {string} id for accordion item
  * @param onClick {ClickEvent} onClick Event
  * @param disabled {boolean} Disabled AccordionItem
- * @param children {React.ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
+ * @param children {ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
  * @param testId {string} Test Id for Test Integration
  * @param open {boolean} Open state of the AccordionItem (for controlled behavior)
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
-  ({ open, className, children, id = React.useId(), onClick, disabled, testId, ...others }, ref): JSX.Element => {
+const AccordionItem = forwardRef<AccordionItemRef, AccordionItemProps>(
+  ({ open, className, children, id, onClick, disabled, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
+    const generatedId = useId()
     const classes = hashClass(styled, clsx('accordion-item', className))
     const ariaProps: { 'aria-disabled'?: boolean; tabIndex?: number } = {}
 
@@ -35,7 +36,7 @@ const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
         data-testid={testId || id}
         className={classes}
         ref={ref}
-        id={id}
+        id={id ?? generatedId}
         {...others}
         onClick={(e) => {
           if (disabled) {

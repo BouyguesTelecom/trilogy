@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptContext } from '@/components/prompt/context'
-import React, { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { PromptButtonNativeRef, PromptButtonProps } from '@/components/prompt/toolbar/tools/button/PromptButtonProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -9,7 +9,7 @@ import { Radius } from '@/interfaces/Radius'
 import { Pressable } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
-const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
+const PromptButton = forwardRef<PromptButtonNativeRef, PromptButtonProps>(
   ({ disabled, active, onClick, rounded, readOnly, ...others }, ref) => {
     const { isDisabled, isReadonly } = useContext(PromptContext)
     const isDisable = isDisabled || disabled

@@ -1,14 +1,15 @@
 import { ColumnsSize } from '@/components/columns/ColumnsTypes'
 import { View } from 'react-native'
-import { Dev } from "@/interfaces/Dev";
-import { AlignableProps } from "@/interfaces/Alignable";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Dev } from "@/interfaces/Dev"
+import { AlignableProps } from "@/interfaces/Alignable"
+import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 /**
  * Columns Item Interface
  */
 export interface ColumnProps extends AlignableProps, CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   size?: ColumnsSize
   mobileSize?: ColumnsSize
   tabletSize?: ColumnsSize

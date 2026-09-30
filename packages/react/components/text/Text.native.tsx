@@ -1,14 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { setTypographyAlign, getTypographyBoldStyle, setTypographyColor } from '@/helpers/typography'
+import { setTypographyAlign, setTypographyColor } from '@/helpers/typography'
 import { getColorStyle } from '@/helpers/color'
-import React, { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { Skeleton } from '@/components/skeleton'
 import { TextLevels, TextLevelValues } from '@/components/text/TextEnum'
 import { TextNativeRef, TextProps } from '@/components/text/TextProps'
 import { TrilogyColor } from '@/interfaces/Color'
 import { Text as TextNative } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
+import { useTypographyBold } from '@/hooks/useTypographyBold'
 
 /**
  * Text Native Component
@@ -22,25 +23,26 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param numberOfLines {number} Ellipsis after limit number of lines
  * @param others
  */
-const Text = React.forwardRef<TextNativeRef, TextProps>(
+const Text = forwardRef<TextNativeRef, TextProps>(
   (
     { children, level, style, inverted, typo, skeleton, accessibilityLabel, numberOfLines = 0, ...others },
     ref,
   ): JSX.Element => {
     const statesContext = useContext(StatesContext)
+    const fontFamily = useTypographyBold(typo)
     const textLevels = (level: TextLevels | TextLevelValues) => {
       return (
-        (level && level == TextLevels.ONE && 16) ||
-        (level && level == TextLevels.TWO && 14) ||
-        (level && level == TextLevels.THREE && 12) ||
-        (level && level == TextLevels.FOUR && 10) ||
+        (level && level === TextLevels.ONE && 16) ||
+        (level && level === TextLevels.TWO && 14) ||
+        (level && level === TextLevels.THREE && 12) ||
+        (level && level === TextLevels.FOUR && 10) ||
         14
       )
     }
 
     const styles = memoStyles({
       text: {
-        fontFamily: getTypographyBoldStyle(typo),
+        fontFamily: fontFamily,
         fontSize: textLevels(level as TextLevels | TextLevelValues),
         color: setTypographyColor(typo, inverted || statesContext.inverted, skeleton),
         textAlign: setTypographyAlign(typo),
@@ -61,9 +63,9 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(
           'flex-start',
 
         borderRadius:
-          (level && level == TextLevels.ONE && 7) ||
-          (level && level == TextLevels.TWO && 7) ||
-          (level && level == TextLevels.THREE && 5) ||
+          (level && level === TextLevels.ONE && 7) ||
+          (level && level === TextLevels.TWO && 7) ||
+          (level && level === TextLevels.THREE && 5) ||
           3,
         borderWidth: 0.1,
         borderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
@@ -98,9 +100,9 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(
           style={styles.skeleton}
           height={textLevels(level as TextLevels | TextLevelValues)}
           borderRadius={
-            (level && level == TextLevels.ONE && 7) ||
-            (level && level == TextLevels.TWO && 7) ||
-            (level && level == TextLevels.THREE && 5) ||
+            (level && level === TextLevels.ONE && 7) ||
+            (level && level === TextLevels.TWO && 7) ||
+            (level && level === TextLevels.THREE && 5) ||
             3
           }
         >

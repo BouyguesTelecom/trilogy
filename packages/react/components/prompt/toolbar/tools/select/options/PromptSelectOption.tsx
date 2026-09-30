@@ -1,8 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SelectOption } from '@/components/select'
 import { SelectOptionProps } from '@/components/select/option/SelectOptionProps'
-import React from 'react'
 import { PromptSelectOptionRef } from '@/components/prompt/toolbar/tools/select/options/PromptSelectOptionProps'
+import { forwardRef } from 'react'
 
 /**
  * PromptSelectOption component - Option item for PromptSelect dropdown
@@ -12,7 +12,7 @@ import { PromptSelectOptionRef } from '@/components/prompt/toolbar/tools/select/
  * @param className {string} Additional CSS classes (ONLY FOR WEB)
  * @param testId {string} Test Id for Test Integration
  */
-const PromptSelectOption = React.forwardRef<PromptSelectOptionRef, SelectOptionProps>(({ ...others }, ref) => {
+const PromptSelectOption = forwardRef<PromptSelectOptionRef, SelectOptionProps>(({ ...others }, ref) => {
   return <SelectOption ref={ref} {...others} />
 })
 

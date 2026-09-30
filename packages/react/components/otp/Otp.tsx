@@ -4,14 +4,14 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import translation from '@trilogy-ds/locales/lib/otp'
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FocusEvent, forwardRef, KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { OtpProps, OtpRef } from '@/components/otp/OtpProps'
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 type NumberOrNull = number | null
 
-const stringToCode = (str: string | undefined, codeSize: number): Array<NumberOrNull> => {
+const stringToCode = (str: string | undefined, codeSize: number): NumberOrNull[] => {
   if (!str) return new Array(codeSize).fill(null)
   return str.split('').map((char) => (char === '' ? null : Number(char)))
 }
@@ -55,7 +55,7 @@ const updateCodeInput = (value: string, index: number, code: NumberOrNull[]): Nu
   return updateCodeInput(value.slice(1), index + 1, newCodeInput)
 }
 
-const inputOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+const inputOnKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
   const { key } = e
   const target = e.target as HTMLInputElement
 
@@ -96,7 +96,7 @@ const formatTranslation = (translation: string, x: string, y: string) => {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param activated {boolean} Activated OTP
  */
-const Otp = React.forwardRef<OtpRef, OtpProps>(
+const Otp = forwardRef<OtpRef, OtpProps>(
   (
     {
       className,
@@ -135,9 +135,9 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
       if (hasChanged.current) {
         onChange?.(codeToString(codeInput))
       }
-    }, [codeInput])
+    }, [codeInput, onChange])
 
-    const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
+    const inputOnChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
       const { target } = e
       const targetValue = target.value.trim()
 
@@ -152,7 +152,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
       }
     }
 
-    const inputOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const inputOnFocus = (e: FocusEvent<HTMLInputElement>) => {
       const { target } = e
       target.setSelectionRange(0, target.value.length)
     }

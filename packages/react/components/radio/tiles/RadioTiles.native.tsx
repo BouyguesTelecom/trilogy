@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioTilesNativeRef, RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
 import { SpacerSize } from '@/components/spacer'
-import React, { ReactNode, RefObject, useCallback, useMemo } from 'react'
+import { Children, forwardRef, isValidElement, ReactNode, RefObject, useCallback, useMemo } from 'react'
 import { RadioTilesContext } from '@/components/radio/tiles/context'
 import { Alignable } from '@/interfaces/Alignable'
 import { FlatList, View } from 'react-native'
@@ -15,9 +15,9 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param verticalAlign { Alignable | AlignableValues} align vertical content
  * @param numberCols {GridSize | GridItemSize} number of columns for grid layout
  */
-const RadioTiles = React.forwardRef<RadioTilesNativeRef, RadioTilesProps>(
+const RadioTiles = forwardRef<RadioTilesNativeRef, RadioTilesProps>(
   ({ id, children, align, verticalAlign, numberCols, ...others }, ref): JSX.Element => {
-    const childArray = useMemo(() => React.Children.toArray(children).filter(React.isValidElement), [children])
+    const childArray = useMemo(() => Children.toArray(children).filter(isValidElement), [children])
 
     const columnCount = useMemo(() => {
       if (!numberCols || numberCols === 1) return null

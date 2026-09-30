@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import React, { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { PromptContext } from '@/components/prompt/context'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
 import {
@@ -18,7 +18,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param readOnly {boolean} Whether the microphone button is read-only
  * @param isListening {boolean} Whether the microphone is currently listening/recording
  */
-const PromptMicrophone = React.forwardRef<PromptMicrophoneNativeRef, PromptMicrophoneProps>(
+const PromptMicrophone = forwardRef<PromptMicrophoneNativeRef, PromptMicrophoneProps>(
   ({ isListening, onClick, disabled = false, readOnly, ...others }, ref) => {
     const { isTyping, setIsSpeech, isDisabled } = useContext(PromptContext)
     const isDisable = isDisabled || disabled

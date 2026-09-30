@@ -4,13 +4,13 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { BoxHeaderProps, BoxHeaderRef } from '@/components/box/header/BoxHeaderProps'
 import { getBackgroundClassName } from '@/helpers/background'
 
 /**
  * Box Header Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param variant {TrilogyColor} Box Header backgroundColor
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
@@ -18,7 +18,7 @@ import { getBackgroundClassName } from '@/helpers/background'
  * @param className {string} Additional CSS Classes
  * @param align {AlignProps} Box Header Alignment
  */
-const BoxHeader = React.forwardRef<BoxHeaderRef, BoxHeaderProps>(
+const BoxHeader = forwardRef<BoxHeaderRef, BoxHeaderProps>(
   ({ children, className, id, align, variant, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     let alignClass = null

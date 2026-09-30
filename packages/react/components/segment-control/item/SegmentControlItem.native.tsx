@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import React, { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import {
   SegmentControlItemNativeRef,
   SegmentControlItemProps,
@@ -19,7 +19,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param disabled {boolean} disable onClick on item
  * @param id {string} Custom id attribute
  */
-const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(
+const SegmentControlItem = forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(
   ({ active, children, onClick, disabled, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const borderSmallerRadius = getRadiusStyle(Radius.SMALLER)

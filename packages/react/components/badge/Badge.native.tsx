@@ -2,7 +2,6 @@ import { BadgePositionEnum } from '@/components/badge/BadgeEnum'
 import { BadgeNativeRef, BadgeProps } from '@/components/badge/BadgeProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
-import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { StatusState } from '@/interfaces/Status'
 import { getColorStyle } from '@/helpers/color'
@@ -10,10 +9,11 @@ import { TrilogyColor } from '@/interfaces/Color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
 import { memoStyles } from '@/helpers/memoStyles'
+import { forwardRef } from 'react'
 
 /**
  * Badge Component
- * @param children {React.ReactNode} Content inside the badge (e.g. Icon)
+ * @param children {ReactNode} Content inside the badge (e.g. Icon)
  * @param label {string|number} Badge content text
  * @param inverted {boolean} Inverted style for Badge
  * @param status {StatusState} Badge status variant (INFO|SUCCESS|WARNING|ERROR)
@@ -23,7 +23,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Badge = React.forwardRef<BadgeNativeRef, BadgeProps>(
+const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
   ({ children, label, onClick, testId, variant, inverted, position, status, ...others }, ref): JSX.Element => {
     const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)

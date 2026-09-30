@@ -2,28 +2,28 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ScrollViewProps, ScrollViewRef } from '@/components/scroll-view/ScrollViewProps'
 import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
 
 /**
  * ScrollView Component
- * @param children {React.ReactNode} ScrollView child
+ * @param children {ReactNode} ScrollView child
  * @param scrollDirection {ScrollDirectionEnum} Scroll direction (VERTICAL | HORIZONTAL)
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- NATIVE PROPERTIES -------------------------------
- * @param footer {React.ReactNode} Footer element fixed at the bottom
+ * @param footer {ReactNode} Footer element fixed at the bottom
  * @param bounce {boolean} Bounce effect on scroll (iOS)
  * @param centerContent {boolean} Center content in scrollView
  * @param refresh {boolean} Enable pull-to-refresh
  * @param refreshControlColor {TrilogyColor} Color of the refresh control indicator
  * @param onRefresh {Function} Callback when user triggers a refresh
  */
-const ScrollView = React.forwardRef<ScrollViewRef, ScrollViewProps>(
+const ScrollView = forwardRef<ScrollViewRef, ScrollViewProps>(
   ({ id, scrollDirection, children, testId }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

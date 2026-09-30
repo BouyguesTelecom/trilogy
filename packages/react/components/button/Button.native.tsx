@@ -1,13 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { View } from '@/components/view'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ButtonVariant } from '@/components/button/ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from '@/components/button/ButtonProps'
 import { getButtonColorStyle, getColorStyle } from '@/helpers/color'
 import { getLoadingClassName } from '@/helpers/loadable'
 import { getRadiusStyle } from '@/helpers/radius'
-import { getTypographyBoldStyle } from '@/helpers/typography'
+import { useTypographyBold } from '@/hooks/useTypographyBold'
 import { getVariantClassName } from '@/helpers/variant'
 import { TrilogyColor } from '@/interfaces/Color'
 import { Radius } from '@/interfaces/Radius'
@@ -27,13 +27,14 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param testId {string} Test Id for Test Integration
  * @param iconName {IconName} Icon displayed inside the button
  */
-const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
+const Button = forwardRef<ButtonNativeRef, ButtonProps>(
   (
     { children, variant, onClick, disabled, loading, fullwidth, testId, accessibilityLabel, iconName, ...others },
     ref,
   ): JSX.Element => {
     const loaderColor = getColorStyle(TrilogyColor.BACKGROUND)
     const isLoading = typeof loading === 'string' && getLoadingClassName(loading) === 'loading'
+    const fontFamily = useTypographyBold(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
 
     const background = disabled
       ? TrilogyColor.NEUTRAL_FADE
@@ -80,7 +81,7 @@ const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
         borderColor: getColorStyle(borderColor),
       },
       text: {
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontFamily: fontFamily,
         color: getColorStyle(color),
         alignSelf: 'center',
         alignItems: 'center',

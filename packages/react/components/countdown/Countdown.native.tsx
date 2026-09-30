@@ -1,12 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import React, { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import { CountdownFormat, CountdownUnite } from '@/components/countdown/CountdownEnum'
 import { CountdownNativeRef, CountdownProps } from '@/components/countdown/CountdownProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
-import { getTypographyBoldStyle } from '@/helpers/typography'
+import { useTypographyBold } from '@/hooks/useTypographyBold'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
@@ -32,17 +32,18 @@ const calculateTimer = (timeDifference: number) => {
  * @param id {string} Custom id attribute
  * @param small {boolean} Small countdown
  */
-const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
+const Countdown = forwardRef<CountdownNativeRef, CountdownProps>(
   ({ deadline, format, event, small, inverted, testId, ...others }, ref): JSX.Element => {
     const [init, setInit] = useState(false)
     const [timeLeft, setTimeLeft] = useState(deadline)
     const initialTimeDifference = deadline.getTime() - new Date().getTime()
     const initialTimer = calculateTimer(initialTimeDifference)
     const [timer, setTimer] = useState(initialTimer)
-    const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
+    const show = [timer.days !== 0, timer.hours !== 0, timer.minutes !== 0, timer.seconds !== 0]
     const parsedFormat = format?.split('-')
     const borderMediumRadius = getRadiusStyle(Radius.MEDIUM)
-
+    const fontFamily = useTypographyBold(TypographyBold.TEXT_WEIGHT_NORMAL)
+    const fontFamilySemiBold = useTypographyBold(TypographyBold.TEXT_WEIGHT_SEMIBOLD)
     const centered = false
 
     useEffect(() => {
@@ -144,19 +145,19 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
         color: getColorStyle(TrilogyColor.MAIN),
         fontSize: small ? 16 : 20,
         fontWeight: '600',
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_SEMIBOLD),
+        fontFamily: fontFamilySemiBold,
         minWidth: small ? 28 : 34,
         textAlign: 'center',
       },
       date: {
         fontSize: 12,
         fontWeight: '400',
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_NORMAL),
+        fontFamily: fontFamily,
       },
       separator: {
         color: getColorStyle(TrilogyColor.MAIN),
         fontWeight: '400',
-        fontFamily: getTypographyBoldStyle(TypographyBold.TEXT_WEIGHT_NORMAL),
+        fontFamily: fontFamily,
         fontSize: 12,
         lineHeight: 16,
         marginHorizontal: 4,
@@ -167,7 +168,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
 
     return (
       <View testID={testId} ref={ref} style={styles.countdown} {...others}>
-        {(show[CountdownUnite.DAY] || timer.days != 0) && (
+        {(show[CountdownUnite.DAY] || timer.days !== 0) && (
           <Title style={styles.text} level={TitleLevels.FOUR}>
             {String(timer.days ? timer.days : 0).padStart(2, '0')}
             <Text style={styles.date} level={TextLevels.THREE}>
@@ -180,7 +181,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
             {':'}
           </TextNative>
         )}
-        {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
+        {(show[CountdownUnite.HOUR] || timer.hours !== 0) && (
           <Title style={styles.text} level={TitleLevels.FOUR}>
             {String(timer.hours ? timer.hours : 0).padStart(2, '0')}
             <Text style={styles.date} level={TextLevels.THREE}>
@@ -193,7 +194,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
             {':'}
           </TextNative>
         )}
-        {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
+        {(show[CountdownUnite.MIN] || timer.minutes !== 0) && (
           <Title style={styles.text} level={TitleLevels.FOUR}>
             {String(timer.minutes ? timer.minutes : 0).padStart(2, '0')}
             <Text style={styles.date} level={TextLevels.THREE}>
@@ -206,7 +207,7 @@ const Countdown = React.forwardRef<CountdownNativeRef, CountdownProps>(
             {':'}
           </TextNative>
         )}
-        {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
+        {(show[CountdownUnite.SEC] || timer.seconds !== 0) && (
           <Title style={styles.text} level={TitleLevels.FOUR}>
             {String(timer.seconds ? timer.seconds : 0).padStart(2, '0')}
             <Text style={styles.date} level={TextLevels.THREE}>

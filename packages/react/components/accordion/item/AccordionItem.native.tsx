@@ -2,8 +2,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
-import React, { isValidElement, useEffect, useRef, useState } from 'react'
-import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
+import { forwardRef, isValidElement, JSXElementConstructor, ReactNode, useEffect, useRef, useState } from 'react'
+import { Animated, Easing, TouchableWithoutFeedback, View } from 'react-native'
 import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -12,8 +12,8 @@ import { Radius } from '@/interfaces/Radius'
 import { memoStyles } from '@/helpers/memoStyles'
 
 interface AccordionChild {
-  header?: React.ReactNode
-  body?: React.ReactNode
+  header?: ReactNode
+  body?: ReactNode
 }
 
 /**
@@ -22,11 +22,11 @@ interface AccordionChild {
  * @param id {string} id for accordion item
  * @param onClick {ClickEvent} onClick Event
  * @param disabled {boolean} Disabled AccordionItem
- * @param children {React.ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
+ * @param children {ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
  * @param testId {string} Test Id for Test Integration
  * @param open {boolean} Open state of the AccordionItem (for controlled behavior)
  */
-const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProps>(
+const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
   ({ open, id, onClick, disabled, children, testId, ...others }, ref): JSX.Element => {
     const [isActive, setIsActive] = useState<boolean>(Boolean(typeof open !== 'undefined' ? open : false))
     const animatedController = useRef(new Animated.Value(0)).current
@@ -108,15 +108,19 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
     }
 
     useEffect(() => {
-      open ? animatedController.setValue(1) : animatedController.setValue(0)
-    }, [open])
+      if (open) {
+        animatedController.setValue(1)
+      } else {
+        animatedController.setValue(0)
+      }
+    }, [open, animatedController])
 
     useEffect(() => {
       const newChilds: AccordionChild = {}
       if (Array.isArray(children)) {
         children.forEach((child) => {
           if (isValidElement(child) && child.type) {
-            const childType = child.type as React.JSXElementConstructor<unknown> & {
+            const childType = child.type as JSXElementConstructor<unknown> & {
               displayName?: string
               render?: { displayName?: string }
             }

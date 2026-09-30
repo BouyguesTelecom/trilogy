@@ -5,7 +5,7 @@ import { Modal, ModalBody, ModalFooter } from '@/components/modal'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle } from '@/helpers/color'
 import DateTimePicker from '@react-native-community/datetimepicker'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
@@ -58,7 +58,7 @@ const formatTime = (hours: number, minutes: number): string => {
  * @param disabled {boolean} Disabled state of the component (default: false)
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
  */
-const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, TimepickerCircularProps>(
+const TimepickerCircular = forwardRef<TimepickerCircularNativeRef, TimepickerCircularProps>(
   ({ value = '00:00', onChange, disabled = false, step = 5, testId, ...others }, ref): JSX.Element => {
     const { hours: initialHours, minutes: initialMinutes } = useMemo(() => parseTime(value), [value])
     const [currentHours, setCurrentHours] = useState(initialHours)
@@ -124,7 +124,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           onChange?.(formatTime(newHours, newMinutes))
         }
       },
-      [maxMinutes, onChange, step],
+      [onChange, step],
     )
 
     const handlePickerChange = useCallback(
@@ -147,7 +147,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           }
         }
       },
-      [onChange, formatTime],
+      [onChange],
     )
 
     const handleInputPress = useCallback(() => {
@@ -167,7 +167,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       setMinutesInputValue(formatNumber(minutes))
       setIsPickerVisible(false)
       if (onChange) onChange(formatTime(hours, minutes))
-    }, [tempPickerDate, onChange, formatTime, formatNumber])
+    }, [tempPickerDate, onChange])
 
     const handleCancelPicker = useCallback(() => {
       setIsPickerVisible(false)
@@ -188,34 +188,28 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
       [cursorX, cursorY],
     )
 
-    const isOnCenterInputs = useCallback(
-      (locationX: number, locationY: number) => {
-        const inputZoneWidth = 120
-        const inputZoneHeight = 120
-        const leftBound = centerX - inputZoneWidth / 2
-        const rightBound = centerX + inputZoneWidth / 2
-        const topBound = centerY - inputZoneHeight / 2
-        const bottomBound = centerY + inputZoneHeight / 2
-        return locationX >= leftBound && locationX <= rightBound && locationY >= topBound && locationY <= bottomBound
-      },
-      [centerX, centerY],
-    )
+    const isOnCenterInputs = useCallback((locationX: number, locationY: number) => {
+      const inputZoneWidth = 120
+      const inputZoneHeight = 120
+      const leftBound = centerX - inputZoneWidth / 2
+      const rightBound = centerX + inputZoneWidth / 2
+      const topBound = centerY - inputZoneHeight / 2
+      const bottomBound = centerY + inputZoneHeight / 2
+      return locationX >= leftBound && locationX <= rightBound && locationY >= topBound && locationY <= bottomBound
+    }, [])
 
-    const isOnHourDot = useCallback(
-      (locationX: number, locationY: number) => {
-        for (let i = 0; i < HOUR_DOTS_COUNT; i++) {
-          const dotAngle = (i / HOUR_DOTS_COUNT) * 2 * Math.PI - Math.PI / 2
-          const dotX = centerX + radius * Math.cos(dotAngle)
-          const dotY = centerY + radius * Math.sin(dotAngle)
-          const dx = locationX - dotX
-          const dy = locationY - dotY
-          const distance = Math.sqrt(dx * dx + dy * dy)
-          if (distance <= HOUR_DOT_SIZE) return i
-        }
-        return -1
-      },
-      [centerX, centerY, radius],
-    )
+    const isOnHourDot = useCallback((locationX: number, locationY: number) => {
+      for (let i = 0; i < HOUR_DOTS_COUNT; i++) {
+        const dotAngle = (i / HOUR_DOTS_COUNT) * 2 * Math.PI - Math.PI / 2
+        const dotX = centerX + radius * Math.cos(dotAngle)
+        const dotY = centerY + radius * Math.sin(dotAngle)
+        const dx = locationX - dotX
+        const dy = locationY - dotY
+        const distance = Math.sqrt(dx * dx + dy * dy)
+        if (distance <= HOUR_DOT_SIZE) return i
+      }
+      return -1
+    }, [])
 
     const isOnCircleTrack = useCallback(
       (locationX: number, locationY: number) => {
@@ -261,7 +255,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           rafId.current = requestAnimationFrame(flushGesture)
         }
       },
-      [centerX, centerY, disabled, normalizeAngle, flushGesture],
+      [disabled, normalizeAngle, flushGesture],
     )
 
     const handleHourDotPress = useCallback(
@@ -388,7 +382,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           </Svg>
         </View>
       )
-    }, [svgRadius, mainFadeColor, strokeWidth])
+    }, [mainFadeColor])
 
     const progressCircle = useMemo(() => {
       return (
@@ -409,7 +403,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularNativeRef, Timepic
           </Svg>
         </View>
       )
-    }, [svgRadius, mainColor, strokeWidth, circumference, progressOffset])
+    }, [mainColor, progressOffset])
 
     return (
       <View ref={ref} style={styles.container} testID={testId} {...others}>

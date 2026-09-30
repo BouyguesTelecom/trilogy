@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { cloneElement, forwardRef, MouseEvent, ReactNode, useEffect, useState } from 'react'
 import SegmentControlItem from '@/components/segment-control/item'
 import { SegmentControlProps, SegmentControlRef } from '@/components/segment-control/SegmentControlProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -18,14 +18,14 @@ import { getJustifiedClassName } from '@/helpers/justifiable'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
+const SegmentControl = forwardRef<SegmentControlRef, SegmentControlProps>(
   ({ className, id, onClick, children, activeIndex, align, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     const classes = hashClass(styled, clsx('segmented-control', align && getJustifiedClassName(align), className))
     const [activateIndex, setActivateIndex] = useState<number>(activeIndex || 0)
 
-    const isActive = (index: number, childPropsActive: React.ReactNode) => {
+    const isActive = (index: number, childPropsActive: ReactNode) => {
       if (typeof childPropsActive !== 'undefined' && !activateIndex) {
         return childPropsActive
       }
@@ -34,12 +34,12 @@ const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
       }
     }
 
-    const toggleActive = (e: React.MouseEvent, index: number) => {
+    const toggleActive = (e: MouseEvent, index: number) => {
       setActivateIndex(index)
       if (onClick) onClick(e)
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
       setActivateIndex(activateIndex)
     }, [activateIndex])
 
@@ -52,7 +52,7 @@ const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
               active: Boolean(isActive(index, child.props.active)) || false,
               disabled: child.props.disabled,
               key: index,
-              onClick: (event: React.MouseEvent) => {
+              onClick: (event: MouseEvent) => {
                 toggleActive(event, index)
                 if (child) {
                   if (child.props.onClick) {
@@ -72,7 +72,7 @@ const SegmentControl = React.forwardRef<SegmentControlRef, SegmentControlProps>(
                 {child}
               </SegmentControlItem>
             ) : (
-              React.cloneElement(child, props)
+              cloneElement(child, props)
             )
           })}
       </div>

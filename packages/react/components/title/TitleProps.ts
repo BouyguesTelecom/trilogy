@@ -1,15 +1,16 @@
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from '@/components/title/TitleEnum'
 import { Text } from 'react-native'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Clickable } from "@/interfaces/Clickable";
-import { Dev } from "@/interfaces/Dev";
-import { Invertable } from "@/interfaces/Invertable";
-import { Marginless } from "@/interfaces/Marginless";
-import { TypographyAlign, TypographyAlignValues } from "@/interfaces/TypographyAlign";
-import { TypographyBold, TypographyBoldValues } from "@/interfaces/TypographyBold";
-import { TypographyColor, TypographyColorValues } from "@/interfaces/TypographyColor";
-import { TypographyTransform, TypographyTransformValues } from "@/interfaces/TypographyTransform";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Clickable } from '@/interfaces/Clickable'
+import { Dev } from '@/interfaces/Dev'
+import { Invertable } from '@/interfaces/Invertable'
+import { Marginless } from '@/interfaces/Marginless'
+import { TypographyAlign, TypographyAlignValues } from '@/interfaces/TypographyAlign'
+import { TypographyBold, TypographyBoldValues } from '@/interfaces/TypographyBold'
+import { TypographyColor, TypographyColorValues } from '@/interfaces/TypographyColor'
+import { TypographyTransform, TypographyTransformValues } from '@/interfaces/TypographyTransform'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { ReactNode } from 'react'
 
 type Styles = { [key: string]: unknown }
 
@@ -17,7 +18,7 @@ type Styles = { [key: string]: unknown }
  * Title Interface
  */
 export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   level?: TitleLevelValues | TitleLevels
   typo?:
     | TypographyColor
@@ -28,7 +29,7 @@ export interface TitleProps extends Invertable, Accessibility, Clickable, Margin
     | TypographyBoldValues
     | TypographyAlign
     | TypographyAlignValues
-    | Array<string>
+    | string[]
     | string
   skeleton?: boolean
   markup?: TitleMarkup | TitleMarkupValues

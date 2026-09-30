@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Calendar, ChangeEventCalendar } from '@/components/calendar'
-import React, { forwardRef, useCallback, useEffect, useState, useRef } from 'react'
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import { StyleSheet, TextInput, TouchableOpacity, View, Platform, Modal } from 'react-native'
 import { DatePickerProps } from '@/components/datepicker/DatePickerProps'
 import { getColorStyle } from '@/helpers/color'
@@ -134,7 +134,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
           onChange(formattedDate)
         }
       },
-      [onChange, isDateInRange, formatDateForDisplay],
+      [onChange, isDateInRange],
     )
 
     const handleManualInput = useCallback(
@@ -230,7 +230,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
           }
         }
       },
-      [parseManualInput, onChange],
+      [onChange],
     )
 
     const handleInputBlur = useCallback(() => {

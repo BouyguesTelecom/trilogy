@@ -4,7 +4,7 @@ import { Text, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { TimelineContentRef, TimelineContentWebProps } from '@/components/timeline/content/TimelineContentProps'
 
 /**
@@ -19,7 +19,7 @@ import { TimelineContentRef, TimelineContentWebProps } from '@/components/timeli
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const TimelineContent = React.forwardRef<TimelineContentRef, TimelineContentWebProps>(
+const TimelineContent = forwardRef<TimelineContentRef, TimelineContentWebProps>(
   ({ children, className, id, heading, content, linkLabel, linkTo, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('timeline-content', className))

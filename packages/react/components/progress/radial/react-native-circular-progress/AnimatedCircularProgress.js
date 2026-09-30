@@ -1,21 +1,19 @@
 // @ts-nocheck
-import * as React from "react"
-import PropTypes from "prop-types"
-import { Animated, Easing } from "react-native"
-import CircularProgress from "./CircularProgress"
+import { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { Animated, Easing } from 'react-native'
+import CircularProgress from './CircularProgress'
 
 const AnimatedProgress = Animated.createAnimatedComponent(CircularProgress)
 
-export default class AnimatedCircularProgress extends React.PureComponent {
+export default class AnimatedCircularProgress extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
       fillAnimation: new Animated.Value(props.prefill),
     }
     if (props.onFillChange) {
-      this.state.fillAnimation.addListener(({ value }) =>
-        props.onFillChange(value)
-      )
+      this.state.fillAnimation.addListener(({ value }) => props.onFillChange(value))
     }
   }
 
@@ -34,7 +32,7 @@ export default class AnimatedCircularProgress extends React.PureComponent {
       {
         fillAnimation: new Animated.Value(prefill),
       },
-      () => this.animate(toVal, dur, ease)
+      () => this.animate(toVal, dur, ease),
     )
   }
 
@@ -71,13 +69,7 @@ export default class AnimatedCircularProgress extends React.PureComponent {
   render() {
     const { fill, prefill, ...other } = this.props
 
-    return (
-      <AnimatedProgress
-        {...other}
-        fill={this.state.fillAnimation}
-        tintColor={this.animateColor()}
-      />
-    )
+    return <AnimatedProgress {...other} fill={this.state.fillAnimation} tintColor={this.animateColor()} />
   }
 }
 

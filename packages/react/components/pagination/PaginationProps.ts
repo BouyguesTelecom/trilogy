@@ -1,8 +1,9 @@
 import { View } from 'react-native'
 import { Pager } from '@/components/pagination/PaginationEnum'
-import { Accessibility } from "@/interfaces/Accessibility";
-import { Dev } from "@/interfaces/Dev";
-import { CommonProps } from "@/interfaces/CommonProps";
+import { Accessibility } from "@/interfaces/Accessibility"
+import { Dev } from "@/interfaces/Dev"
+import { CommonProps } from "@/interfaces/CommonProps"
+import { MouseEvent } from 'react'
 
 /**
  * Pagination Interface
@@ -10,7 +11,7 @@ import { CommonProps } from "@/interfaces/CommonProps";
 export interface PaginationProps extends Accessibility, Dev, CommonProps {
   length: number
   defaultPage?: number
-  onClick?: (event: Pager & React.MouseEvent<HTMLAnchorElement>) => void
+  onClick?: (event: Pager & MouseEvent<HTMLAnchorElement>) => void
   href?: (page: number) => string
 }
 

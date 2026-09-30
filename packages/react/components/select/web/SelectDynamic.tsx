@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { Children, CSSProperties, forwardRef, isValidElement, PropsWithChildren, RefObject, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -11,7 +11,7 @@ import { SelectContext } from '@/components/select/context'
 
 const OPTION_SIZE = 48
 
-const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
+const SelectDynamic = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
   (
     {
       onChange,
@@ -42,7 +42,7 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     const containerRef = useRef<HTMLDivElement>(null)
     const [openUpward, setOpenUpward] = useState(false)
     const optionsListSize = useRef(0)
-    const [dropdownStyles, setDropdownStyles] = useState<React.CSSProperties>({})
+    const [dropdownStyles, setDropdownStyles] = useState<CSSProperties>({})
 
     const selectClasses = hashClass(styled, clsx('select', className))
     const optionsClasses = hashClass(styled, clsx('select-options', openUpward && 'select-options-top'))
@@ -78,14 +78,14 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     }
 
     const options = useMemo(() => {
-      return React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return false
+      return Children.map(children, (child) => {
+        if (!isValidElement(child)) return false
         return {
           label: child.props.children || child.props.label,
           value: child.props.value,
         }
       })?.filter((option) => option)
-    }, [])
+    }, [children])
 
     const labelsSelected = useMemo(() => {
       return selectedOptionValues.map((selectedOption) => {
@@ -95,7 +95,7 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
     }, [selectedOptionValues, options])
 
     useEffect(() => {
-      const childrenCount = React.Children.count(children)
+      const childrenCount = Children.count(children)
       if (childrenCount > 0) {
         optionsListSize.current = childrenCount * OPTION_SIZE
       }
@@ -109,7 +109,7 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
           help={help}
           required={required}
           status={status}
-          ref={ref as React.RefObject<HTMLInputElement>}
+          ref={ref as RefObject<HTMLInputElement>}
           value={labelsSelected?.join(', ')}
           name={name}
           disabled={disabled}

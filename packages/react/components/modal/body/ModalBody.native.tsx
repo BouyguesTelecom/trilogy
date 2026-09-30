@@ -1,43 +1,32 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isIOS } from '@/helpers/device.native'
-import * as React from 'react'
+import { forwardRef, useContext } from 'react'
 import { ScrollView, View } from 'react-native'
 import { ModalContext } from '@/components/modal/context/ModalContext'
 import { ModalBodyNativeRef, ModalBodyProps } from '@/components/modal/body/ModalBodyProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 /**
  * Modal Body Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const ModalBody = React.forwardRef<ModalBodyNativeRef, ModalBodyProps>(({ children, testId, ...others }, ref): JSX.Element => {
-  const { handleOnScroll, scrollViewRef, isFooter } = React.useContext(ModalContext)
-  const insets = useSafeAreaInsets()
-  const defaultBottom = isIOS ? 40 : 16
-  const bottomPadding = isFooter ? 8 : isIOS ? Math.max(defaultBottom, insets.bottom) : defaultBottom
+const ModalBody = forwardRef<ModalBodyNativeRef, ModalBodyProps>(
+  ({ children, testId, ...others }, ref): JSX.Element => {
+    const { handleOnScroll, scrollViewRef, isFooter } = useContext(ModalContext)
+    const insets = useSafeAreaInsets()
+    const defaultBottom = isIOS ? 40 : 16
+    const bottomPadding = isFooter ? 8 : isIOS ? Math.max(defaultBottom, insets.bottom) : defaultBottom
 
-  return (
-    <ScrollView
-      ref={scrollViewRef}
-      scrollEventThrottle={16}
-      onScroll={handleOnScroll}
-      showsVerticalScrollIndicator={false}
-    >
-      <View
-        ref={ref}
-        style={[
-          {
-            backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-            paddingTop: 8,
-            paddingBottom: bottomPadding,
-          },
-        ]}
-        testID={testId}
-        {...others}
+    return (
+      <ScrollView
+        ref={scrollViewRef}
+        scrollEventThrottle={16}
+        onScroll={handleOnScroll}
+        showsVerticalScrollIndicator={false}
       >
         <View
           ref={ref}
@@ -45,13 +34,26 @@ const ModalBody = React.forwardRef<ModalBodyNativeRef, ModalBodyProps>(({ childr
             {
               backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
               paddingTop: 8,
-              paddingBottom: isFooter ? 8 : isIOS ? 40 : 16,
+              paddingBottom: bottomPadding,
             },
           ]}
           testID={testId}
           {...others}
         >
-          {children}
+          <View
+            ref={ref}
+            style={[
+              {
+                backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+                paddingTop: 8,
+                paddingBottom: isFooter ? 8 : isIOS ? 40 : 16,
+              },
+            ]}
+            testID={testId}
+            {...others}
+          >
+            {children}
+          </View>
         </View>
       </ScrollView>
     )

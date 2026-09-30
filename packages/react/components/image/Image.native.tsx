@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ImageCache, ImageNativeRef, ImageProps } from '@/components/image/ImageProps'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
@@ -18,7 +18,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param id {string} Custom id attribute
  * @param cache {ImageCache} Caching strategy for the image
  */
-const Image = React.forwardRef<ImageNativeRef, ImageProps>(
+const Image = forwardRef<ImageNativeRef, ImageProps>(
   ({ src, alt = '', circled, width, height, onClick, cache, testId, ...others }, ref): JSX.Element => {
     const borderFullRadius = getRadiusStyle(Radius.FULL)
 

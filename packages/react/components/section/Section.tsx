@@ -2,14 +2,14 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SectionProps, SectionRef } from '@/components/section/SectionProps'
 import { getBackgroundClassName } from '@/helpers/background'
+import { forwardRef } from 'react'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
- * @param children {React.ReactNode} Section child elements
+ * @param children {ReactNode} Section child elements
  * @param backgroundColor {TrilogyColor} Section Background Color
  * @param backgroundSrc {string} Source of background image
  * @param inverted {boolean} Inverted Section Color
@@ -19,7 +19,7 @@ import { getBackgroundClassName } from '@/helpers/background'
  * @param skeleton {boolean} Loading skeleton state
  * @param testId {string} Test Id for Test Integration
  */
-const Section = React.forwardRef<SectionRef, SectionProps>(
+const Section = forwardRef<SectionRef, SectionProps>(
   ({ className, id, skeleton, backgroundColor, backgroundSrc, inverted, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

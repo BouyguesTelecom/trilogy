@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid } from '@/helpers/device.native'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import {
   Dimensions,
   GestureResponderEvent,
@@ -10,7 +10,6 @@ import {
   type ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View,
 } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -21,11 +20,11 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Title } from '@/components/title'
 import { ModalNativeRef, ModalProps } from '@/components/modal/ModalProps'
 import { ModalContext } from '@/components/modal/context/ModalContext'
-import { Alignable } from "@/interfaces/Alignable";
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { getRadiusStyle } from "@/helpers/radius";
-import { Radius } from "@/interfaces/Radius";
+import { Alignable } from '@/interfaces/Alignable'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height
 const DISMISS_THRESHOLD = 150
@@ -35,8 +34,8 @@ const ANIMATION_DURATION = 300
  * Modal Component
  * @param active {boolean} Activated Modal
  * @param title {string} Modal title
- * @param children {React.ReactNode} Modal content
- * @param trigger {React.ReactNode} Element that triggers the modal opening
+ * @param children {ReactNode} Modal content
+ * @param trigger {ReactNode} Element that triggers the modal opening
  * @param onClose {Function} Callback when modal closes
  * @param unClosable {boolean} Prevent modal from being closed by the user
  * @param hideCloseButton {boolean} Hide the close button
@@ -44,7 +43,7 @@ const ANIMATION_DURATION = 300
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param onModalHide {Function} Callback after modal is fully hidden
  */
-const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
+const Modal = forwardRef<ModalNativeRef, ModalProps>(
   (
     {
       children,
@@ -94,7 +93,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
         })
         backdropOpacity.value = withTiming(0, { duration: ANIMATION_DURATION })
       },
-      [callOnClose, handleDismiss],
+      [callOnClose, handleDismiss, backdropOpacity, translateY],
     )
 
     const handleClose = useCallback(() => {
@@ -104,7 +103,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
     const animateIn = useCallback(() => {
       translateY.value = withTiming(0, { duration: ANIMATION_DURATION })
       backdropOpacity.value = withTiming(0.5, { duration: ANIMATION_DURATION })
-    }, [])
+    }, [backdropOpacity, translateY])
 
     useEffect(() => {
       if (active) {
@@ -114,7 +113,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
       } else if (visible) {
         animateOut(false)
       }
-    }, [active])
+    }, [active, animateOut, visible, translateY, backdropOpacity])
 
     const panGesture = Gesture.Pan()
       .onUpdate((event) => {

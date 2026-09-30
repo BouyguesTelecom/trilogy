@@ -4,7 +4,7 @@ import { RadioTileNativeProps, RadioTileNativeRef } from '@/components/radio/til
 import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { forwardRef, useCallback, useContext, useId, useMemo, useState } from 'react'
 import { RadioTilesContext } from '@/components/radio/tiles/context'
 import { VariantState } from '@/interfaces/Variant'
 import { getColorStyle } from '@/helpers/color'
@@ -33,12 +33,12 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param sticker {string} sticker label
  * @param stickerVariant {VariantState} Sticker variant
  */
-const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
+const RadioTile = forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
   (
     {
       checked,
       disabled,
-      id = React.useId(),
+      id,
       label,
       onChange,
       name,
@@ -56,6 +56,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
     const { isGrid } = useContext(RadioTilesContext)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
+    const generatedId = useId()
 
     const styles = memoStyles({
       container: {
@@ -108,9 +109,9 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
           radioValue: value || '',
           radioName: name || '',
           radioChecked: true,
-          radioId: id,
+          radioId: id ?? generatedId,
         })
-    }, [value, name, id, disabled, readonly, onChange])
+    }, [value, name, id, disabled, readonly, onChange, generatedId])
 
     return (
       <TouchableOpacity ref={ref} disabled={disabled} style={[styles.container]} onPress={handleChange} {...others}>

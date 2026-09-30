@@ -1,12 +1,13 @@
 import { View } from 'react-native'
-import { CommonProps } from "@/interfaces/CommonProps";
-import { Dev } from "@/interfaces/Dev";
+import { CommonProps } from "@/interfaces/CommonProps"
+import { Dev } from "@/interfaces/Dev"
+import { ReactNode } from 'react'
 
 /**
  * Timeline Item Interface
  */
 export interface TimelineItemProps extends Dev {
-  children: React.ReactNode
+  children: ReactNode
   done?: boolean
   active?: boolean
   cancel?: boolean
