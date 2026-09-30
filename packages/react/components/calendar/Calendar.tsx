@@ -109,7 +109,7 @@ const Calendar = forwardRef<HTMLTableElement, CalendarProps>(
 
     const getAllDaysInMonth = useCallback((year: number, month: number) => {
       const date = new Date(year, month, 1)
-      const days: (Date | null)[][] = []
+      const days: (Date | null)[] = []
       const firstDayOfMonth = (date.getDay() + 6) % 7
       const lastDayOfMonth = new Date(year, month + 1, 0).getDate()
       const allDays: (Date | null)[][] = []

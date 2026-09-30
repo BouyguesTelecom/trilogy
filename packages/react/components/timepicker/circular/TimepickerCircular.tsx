@@ -4,7 +4,17 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef, KeyboardEvent, MouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import {
+  forwardRef,
+  KeyboardEvent as ReactKeyboardEvent,
+  MouseEvent as ReactMouseEvent,
+  PointerEvent as ReactPointerEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import {
   TimepickerCircularProps,
   TimepickerCircularRef,
@@ -99,7 +109,7 @@ const TimepickerCircular = forwardRef<TimepickerCircularRef, TimepickerCircularP
     )
 
     const getMousePosition = (
-      event: MouseEvent | MouseEvent | PointerEvent | PointerEvent | TouchEvent,
+      event: MouseEvent | ReactMouseEvent | PointerEvent | ReactPointerEvent | TouchEvent,
     ): { x: number; y: number } => {
       if (!containerRef.current) return { x: 0, y: 0 }
       const rect = containerRef.current.getBoundingClientRect()
@@ -136,7 +146,7 @@ const TimepickerCircular = forwardRef<TimepickerCircularRef, TimepickerCircularP
       return -1
     }
 
-    const handleMouseDown = (event: MouseEvent) => {
+    const handleMouseDown = (event: ReactMouseEvent) => {
       if (disabled) return
       event.preventDefault()
 
@@ -187,7 +197,7 @@ const TimepickerCircular = forwardRef<TimepickerCircularRef, TimepickerCircularP
       }
     }, [])
 
-    const handlePointerDown = (event: PointerEvent) => {
+    const handlePointerDown = (event: ReactPointerEvent) => {
       if (disabled) return
       event.preventDefault()
 
@@ -265,7 +275,7 @@ const TimepickerCircular = forwardRef<TimepickerCircularRef, TimepickerCircularP
       [currentHours, currentMinutes, onChange, formatTime, step],
     )
 
-    const handleKeyDown = useCallback((e: KeyboardEvent<HTMLSpanElement>) => {
+    const handleKeyDown = useCallback((e: ReactKeyboardEvent<HTMLSpanElement>) => {
       const target = e.target as HTMLSpanElement
       const currentText = target.textContent || ''
 

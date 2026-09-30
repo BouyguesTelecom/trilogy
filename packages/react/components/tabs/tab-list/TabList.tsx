@@ -11,6 +11,7 @@ import {
   Children,
   forwardRef,
   isValidElement,
+  UIEvent as ReactUIEvent,
   useCallback,
   useContext,
   useEffect,
@@ -20,7 +21,6 @@ import {
   useState,
 } from 'react'
 import { TabsContext } from '@/components/tabs/context'
-import { UIEvent } from 'react'
 
 /**
  * Tabs Nav Component
@@ -81,7 +81,7 @@ const TabList = forwardRef<TabListRef, TabListProps>(({ children, className, id,
   )
 
   const handleScrollList = useCallback(
-    (e: UIEvent<HTMLDivElement, UIEvent>) => {
+    (e: ReactUIEvent<HTMLDivElement>) => {
       const target = e.target as HTMLDivElement
       const firstGap = tabRefs.current[0].x + (small ? 16 : 24)
 
