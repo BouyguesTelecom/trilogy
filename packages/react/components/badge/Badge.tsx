@@ -9,7 +9,7 @@ import { TrilogyColor } from '@/interfaces/Color'
 import { StatusState } from '@/interfaces/Status'
 import { getStatusClassName } from '@/helpers/status'
 import { getVariantClassName } from '@/helpers/variant'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Badge Component

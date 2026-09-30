@@ -5,7 +5,7 @@ import { getAlignClassName } from '@/helpers/alignable'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
 import { FlexItemProps, FlexItemRef } from '@/components/flex-box/flex-item/FlexItemProps'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 /**
  * FlexItem Component - FlexBox Child

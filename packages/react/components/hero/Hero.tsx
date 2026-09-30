@@ -5,7 +5,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import { getBackgroundClassName } from '@/helpers/background'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Hero Component

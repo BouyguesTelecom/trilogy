@@ -1,6 +1,6 @@
 import { CardContext } from '@/components/card/Card.native'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { forwardRef, ReactNode, useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { CardContentNativeRef, CardContentProps } from '@/components/card/content/CardContentProps'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'

@@ -3,7 +3,7 @@ import { AutoLayoutProps } from '@/components/autolayout/AutoLayoutProps'
 import { DEFAULT_SPACING_MATRIX } from '@/components/autolayout/DefaultSpacingMatrix'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 
 /**
  * AutoLayout Component - Automatic layout wrapper with edge insets and spacing

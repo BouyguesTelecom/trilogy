@@ -1,5 +1,5 @@
 import { SkeletonProps } from '@/components/skeleton/SkeletonProps'
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 
 /**
  * Skeleton Component - Loading placeholder with animated shimmer effect

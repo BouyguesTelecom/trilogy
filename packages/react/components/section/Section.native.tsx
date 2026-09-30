@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 import { SectionNativeRef, SectionProps } from '@/components/section/SectionProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'

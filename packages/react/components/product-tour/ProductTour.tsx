@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import { ProductTourRef, ProductTourWebProps } from '@/components/product-tour/ProductTourProps'

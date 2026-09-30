@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef, KeyboardEvent, MouseEvent, ReactNode, RefObject } from 'react'
+import { forwardRef, KeyboardEvent, MouseEvent, RefObject } from 'react'
 import { Icon, IconSize } from '@/components/icon'
 import { DropdownItemProps, DropdownItemRef } from '@/components/dropdown/item/DropdownItemProps'
 

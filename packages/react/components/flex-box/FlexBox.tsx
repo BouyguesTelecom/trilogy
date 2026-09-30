@@ -17,7 +17,7 @@ import { GapSize } from '@/components/columns'
 import { Align } from '@/interfaces/Alignable'
 import { Justify } from '@/interfaces/Justifiable'
 import { DirectionEnum, DirectionEnumValues } from '@/interfaces/Direction'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 interface GetResponsiveClassesProp {
   value:

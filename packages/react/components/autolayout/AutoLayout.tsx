@@ -1,5 +1,5 @@
 import { AutoLayoutProps } from '@/components/autolayout/AutoLayoutProps'
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 
 /**
  * AutoLayout Component - Automatic layout wrapper with edge insets and spacing

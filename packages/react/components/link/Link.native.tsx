@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import { forwardRef, ReactNode, useState } from 'react'
+import { forwardRef, useState } from 'react'
 import { LinkNativeRef, LinkPropsNative } from '@/components/link/LinkProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'

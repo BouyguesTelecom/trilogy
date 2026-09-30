@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 import { BoxHeaderProps, BoxHeaderRef } from '@/components/box/header/BoxHeaderProps'
 import { getBackgroundClassName } from '@/helpers/background'
 

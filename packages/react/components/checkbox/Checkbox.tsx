@@ -1,7 +1,7 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { ChangeEvent, forwardRef, ReactNode, useCallback, useEffect, useId, useState } from 'react'
+import { ChangeEvent, forwardRef, useCallback, useEffect, useId, useState } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { CheckboxProps, CheckboxRef } from '@/components/checkbox/CheckboxProps'
 

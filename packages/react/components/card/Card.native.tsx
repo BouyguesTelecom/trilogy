@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { createContext, forwardRef, ReactNode, type PropsWithChildren } from 'react'
+import { createContext, forwardRef, type PropsWithChildren } from 'react'
 import { Platform, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from '@/components/skeleton'
 import { CardNativeRef, CardProps } from '@/components/card/CardProps'

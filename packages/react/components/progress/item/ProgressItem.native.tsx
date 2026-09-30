@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, useEffect, useRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 import { Animated, ViewStyle } from 'react-native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ProgressItemNativeRef, ProgressItemProps } from '@/components/progress/item/ProgressItemProps'

@@ -5,7 +5,7 @@ import { isRequiredChild } from '@/helpers/require'
 import { getAlignClassName } from '@/helpers/alignable'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 import { CheckboxTilesProps, CheckboxTilesRef } from '@/components/checkbox/tiles/CheckboxTilesProps'
 
 /**

@@ -1,5 +1,5 @@
 import { BoxContentNativeRef, BoxContentProps } from '@/components/box/content/BoxContentProps'
-import { forwardRef, ReactNode, useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { memoStyles } from '@/helpers/memoStyles'

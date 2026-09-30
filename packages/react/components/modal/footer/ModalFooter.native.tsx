@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
 import { isIOS } from '@/helpers/device.native'
-import { forwardRef, ReactNode, useContext, useEffect } from 'react'
+import { forwardRef, useContext, useEffect } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'

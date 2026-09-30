@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid, isIOS } from '@/helpers/device.native'
-import { forwardRef, ReactNode, useCallback, useState } from 'react'
+import { forwardRef, useCallback, useState } from 'react'
 import { ScrollViewNativeRef, ScrollViewProps } from '@/components/scroll-view/ScrollViewProps'
 import { getColorStyle } from '@/helpers/color'
 import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'

@@ -5,7 +5,7 @@ import { has } from '@/helpers/classify'
 import clsx from 'clsx'
 import { BoxContentProps, BoxContentRef } from '@/components/box/content/BoxContentProps'
 import { getBackgroundClassName } from '@/helpers/background'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Box Content

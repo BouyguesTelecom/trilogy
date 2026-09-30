@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 import { ModalBodyProps, ModalBodyRef } from '@/components/modal/body/ModalBodyProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'

@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid } from '@/helpers/device.native'
-import { forwardRef, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import {
   Dimensions,
   GestureResponderEvent,

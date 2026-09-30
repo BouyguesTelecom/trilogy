@@ -5,7 +5,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
-import { forwardRef, ReactNode, RefObject } from 'react'
+import { forwardRef, RefObject } from 'react'
 
 /**
  * Container Component

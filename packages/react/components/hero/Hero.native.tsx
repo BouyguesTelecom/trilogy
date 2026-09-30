@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, useState } from 'react'
+import { forwardRef, useState } from 'react'
 import { ImageBackground, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Box } from '@/components/box'

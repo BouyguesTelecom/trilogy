@@ -4,7 +4,7 @@ import { getColorStyle } from '@/helpers/color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
 import { BoxContext } from '@/components/box/context/boxContext'
-import { forwardRef, ReactNode, useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 

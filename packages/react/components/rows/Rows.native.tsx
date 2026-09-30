@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 import { RowsNativeRef, RowsProps } from '@/components/rows/RowsProps'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'

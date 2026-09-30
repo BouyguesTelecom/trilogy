@@ -3,7 +3,7 @@ import { ColumnsContext } from '@/components/columns/context'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getAlignStyle } from '@/helpers/alignable'
 import { View, ViewStyle } from 'react-native'
-import { forwardRef, memo, ReactNode, useContext, useMemo } from 'react'
+import { forwardRef, memo, useContext, useMemo } from 'react'
 
 /**
  * Columns Item Component - Columns Child

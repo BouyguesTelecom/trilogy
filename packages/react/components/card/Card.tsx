@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { createContext, forwardRef, ReactNode, type CSSProperties, type Ref } from 'react'
+import { createContext, forwardRef, type CSSProperties, type Ref } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { CardProps, CardRef } from '@/components/card/CardProps'
 

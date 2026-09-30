@@ -1,4 +1,4 @@
-import { Children, cloneElement, forwardRef, isValidElement, MouseEvent, ReactElement, ReactNode } from 'react'
+import { Children, cloneElement, forwardRef, isValidElement, MouseEvent, ReactElement } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'

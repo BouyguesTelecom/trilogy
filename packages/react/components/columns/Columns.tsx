@@ -6,7 +6,7 @@ import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
 import { getJustifiedClassName } from '@/helpers/justifiable'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Columns Component

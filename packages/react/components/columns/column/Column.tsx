@@ -5,7 +5,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Columns Item Component - Columns Child

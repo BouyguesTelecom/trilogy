@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SectionProps, SectionRef } from '@/components/section/SectionProps'
 import { getBackgroundClassName } from '@/helpers/background'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.

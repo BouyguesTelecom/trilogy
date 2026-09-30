@@ -6,7 +6,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { BoxProps, BoxRef } from '@/components/box/BoxProps'
 import { getBackgroundClassName } from '@/helpers/background'
 import { getColorClassName } from '@/helpers/color'
-import { CSSProperties, forwardRef, ReactNode, RefObject } from 'react'
+import { CSSProperties, forwardRef, RefObject } from 'react'
 
 /**
  * Box Component

@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { ElementType, forwardRef, ReactNode, Ref } from 'react'
+import { ElementType, forwardRef, Ref } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { LinkProps, LinkRef } from '@/components/link/LinkProps'
 

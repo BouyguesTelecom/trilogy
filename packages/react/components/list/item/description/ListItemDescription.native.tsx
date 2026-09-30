@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 import { Text } from '@/components/text'
 import { View } from '@/components/view'
 import {

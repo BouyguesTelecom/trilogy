@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { createContext, forwardRef, ReactNode, Ref } from 'react'
+import { createContext, forwardRef, Ref } from 'react'
 import { ChipsListNativeRef, ChipsListProps } from '@/components/chips/list/ChipsListProps'
 import { ScrollView, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'

@@ -9,7 +9,7 @@ import { TrilogyColor } from '@/interfaces/Color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
 import { memoStyles } from '@/helpers/memoStyles'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Badge Component

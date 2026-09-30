@@ -4,7 +4,7 @@ import {
   BoxTableContainerProps,
 } from '@/components/box/table-container/BoxTableContainerProps'
 import { View } from 'react-native'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Box Table Component

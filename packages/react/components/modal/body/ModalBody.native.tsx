@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isIOS } from '@/helpers/device.native'
-import { forwardRef, ReactNode, useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { ScrollView, View } from 'react-native'
 import { ModalContext } from '@/components/modal/context/ModalContext'
 import { ModalBodyNativeRef, ModalBodyProps } from '@/components/modal/body/ModalBodyProps'
