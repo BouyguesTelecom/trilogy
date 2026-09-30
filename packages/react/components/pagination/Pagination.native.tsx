@@ -22,7 +22,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
   ({ length, defaultPage = 1, onClick, testId, ...others }, ref): JSX.Element => {
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
-    const [arrayPage] = useState<Array<number>>(Array.from(Array(length + 1).keys()))
+    const [arrayPage] = useState<number[]>(Array.from(Array(length + 1).keys()))
     const prevCurrentPage = useRef<number>(currentPage)
     const borderFullRadius = getRadiusStyle(Radius.FULL)
 
@@ -72,7 +72,7 @@ const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
       if (onClick && prevCurrentPage.current !== currentPage) {
         onClick(pager)
       }
-    }, [currentPage])
+    }, [currentPage, pager, onClick])
 
     const styles = memoStyles({
       container: {

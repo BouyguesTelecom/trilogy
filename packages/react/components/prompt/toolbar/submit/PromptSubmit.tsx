@@ -6,7 +6,11 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { PromptContext } from '@/components/prompt/context'
-import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
+import {
+  PromptSubmitProps,
+  PromptSubmitRef,
+  PromptSubmitStatus,
+} from '@/components/prompt/toolbar/submit/PromptSubmitProps'
 
 /**
  * PromptSubmit component - Submit button for prompt with streaming support
@@ -42,7 +46,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
         default:
           onSubmit?.()
       }
-    }, [statusSubmit, onSubmit])
+    }, [statusSubmit, onSubmit, onCancelSubmit, isDisable, isReadOnly])
 
     const isActive = useMemo(
       () => statusSubmit === PromptSubmitStatus.STREAMING_ON || !!text.trim().length || !!files,

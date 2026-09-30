@@ -27,7 +27,7 @@ const FlexItem = React.forwardRef<FlexItemNativeRef, FlexItemProps>(
           ? 'auto'
           : width - 2 * realGap,
       }),
-      [realSize, narrow, width, realGap, childrenLength, realSize],
+      [realSize, narrow, width, realGap, childrenLength],
     )
 
     const noScrollableStyle: ViewStyle = React.useMemo(
@@ -37,7 +37,7 @@ const FlexItem = React.forwardRef<FlexItemNativeRef, FlexItemProps>(
         flexShrink: narrow ? 1 : 0,
         flexBasis: realSize ? (realSize / 12) * width - realGap * ((childrenLength - 1) / childrenLength) : 'auto',
       }),
-      [realSize, narrow, width, realGap, childrenLength, realSize],
+      [realSize, narrow, width, realGap, childrenLength],
     )
 
     return (

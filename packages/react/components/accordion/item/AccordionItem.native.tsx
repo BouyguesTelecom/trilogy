@@ -3,7 +3,7 @@ import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import React, { isValidElement, useEffect, useRef, useState } from 'react'
-import { Animated, Easing, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
+import { Animated, Easing, TouchableWithoutFeedback, View } from 'react-native'
 import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -108,8 +108,12 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
     }
 
     useEffect(() => {
-      open ? animatedController.setValue(1) : animatedController.setValue(0)
-    }, [open])
+      if (open) {
+        animatedController.setValue(1)
+      } else {
+        animatedController.setValue(0)
+      }
+    }, [open, animatedController])
 
     useEffect(() => {
       const newChilds: AccordionChild = {}

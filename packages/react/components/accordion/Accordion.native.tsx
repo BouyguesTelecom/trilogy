@@ -1,7 +1,7 @@
 import { AccordionNativeRef, AccordionProps } from '@/components/accordion/AccordionProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { forwardRef } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
 import { memoStyles } from '@/helpers/memoStyles'

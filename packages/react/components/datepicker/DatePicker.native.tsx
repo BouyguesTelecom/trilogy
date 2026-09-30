@@ -134,7 +134,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
           onChange(formattedDate)
         }
       },
-      [onChange, isDateInRange, formatDateForDisplay],
+      [onChange, isDateInRange],
     )
 
     const handleManualInput = useCallback(
@@ -230,7 +230,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
           }
         }
       },
-      [parseManualInput, onChange],
+      [onChange],
     )
 
     const handleInputBlur = useCallback(() => {

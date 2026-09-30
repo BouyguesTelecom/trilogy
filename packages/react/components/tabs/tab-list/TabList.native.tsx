@@ -50,7 +50,7 @@ const TabList = React.forwardRef<TabListNativeRef, TabListProps>(({ children, ..
 
   const isVisibleArrowRight = React.useMemo(
     () => tabListWidth - tabsWidth - scrollLeft > negativeGap,
-    [tabListWidth, tabsWidth, scrollLeft],
+    [tabListWidth, tabsWidth, scrollLeft, negativeGap],
   )
 
   const handleScrollList = React.useCallback(

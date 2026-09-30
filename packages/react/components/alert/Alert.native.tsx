@@ -79,7 +79,6 @@ const Alert = forwardRef<AlertNativeRef, AlertProps>(
       },
     })
 
-    // eslint-disable-next-line prefer-const
     alertView = (
       <View style={[styles.container, (others as any).style]} ref={ref}>
         <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>

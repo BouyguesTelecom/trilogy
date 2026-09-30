@@ -2,8 +2,8 @@ import React, { useEffect, useMemo } from 'react'
 
 import { IconColor } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
-import { TrilogyColor } from "@/interfaces/Color"
-import { getColorStyle } from "@/helpers/color"
+import { TrilogyColor } from '@/interfaces/Color'
+import { getColorStyle } from '@/helpers/color'
 
 interface IParams {
   validationRules?: IValidationRules
@@ -13,7 +13,7 @@ interface IParams {
 
 export const useGauge = ({ validationRules, inputValue, securityRules }: IParams) => {
   const [points, setPoints] = React.useState<number>(0)
-  const initStateVerifies = { isVerify: false, color: IconColor.NEUTRAL }
+  const initStateVerifies = useMemo(() => ({ isVerify: false, color: IconColor.NEUTRAL }), [])
   const [isLengthVerify, setIsLengthVerify] = React.useState(initStateVerifies)
   const [isSpecialCharsVerify, setIsSpecialCharsVerify] = React.useState(initStateVerifies)
   const [isNumberVerify, setIsNumberVerify] = React.useState(initStateVerifies)
@@ -56,7 +56,7 @@ export const useGauge = ({ validationRules, inputValue, securityRules }: IParams
     if (calcPoints <= 99 && calcPoints > 50) return '75%'
     if (calcPoints === 100) return '100%'
     return '0%'
-  }, [calcPoints, nbAllVerifies])
+  }, [calcPoints])
 
   const colorGauge = () => {
     if (calcPoints <= 50 && calcPoints > 0) return getColorStyle(TrilogyColor.ERROR)
@@ -97,7 +97,7 @@ export const useGauge = ({ validationRules, inputValue, securityRules }: IParams
     })
 
     setPoints(validations.filter((item) => item.test).length)
-  }, [inputValue, validationRules])
+  }, [inputValue, validationRules, initStateVerifies])
 
   return {
     LengthvalidationRulesText,

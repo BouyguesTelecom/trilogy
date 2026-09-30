@@ -44,7 +44,7 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
       })?.filter((item) => item)
       labelSelected && setSelectedNames(labelSelected)
       setSelectedValues(selected)
-    }, [selected])
+    }, [children, selected])
 
     const handleOpenCloseModal = useCallback(() => {
       !disabled && !readOnly && setDisplay((prev) => !prev)
@@ -52,9 +52,9 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
 
     const isChecked = useCallback(
       (value: string) =>
-        (multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
+        multiple && selectedValues && typeof selectedValues !== 'string' && typeof selectedValues !== 'number'
           ? selectedValues?.includes(value)
-          : selectedValues === value),
+          : selectedValues === value,
       [multiple, selectedValues],
     )
 
@@ -145,7 +145,7 @@ const Select = React.forwardRef<SelectNativeRef, SelectNativeProps>(
         }
         return <SelectOption {...props} key={`${reactId}_${index}`} />
       })
-    }, [multiple, selectedValues, children])
+    }, [multiple, selectedValues, children, isChecked, onChange, reactId, setNewSelectedValues])
 
     return (
       <Modal

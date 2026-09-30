@@ -33,15 +33,17 @@ const CardImage = React.forwardRef<CardImageNativeRef, CardImageProps>(
 
     useEffect(() => {
       if (!horizontal) {
-        typeof src === 'string'
-          ? Image.getSize(
-              src,
-              (w, h) => {
-                h && setRatio(w / h)
-              },
-              () => setRatio(1),
-            )
-          : setRatio(1)
+        if (typeof src === 'string') {
+          Image.getSize(
+            src,
+            (w, h) => {
+              h && setRatio(w / h)
+            },
+            () => setRatio(1),
+          )
+        } else {
+          setRatio(1)
+        }
       }
     }, [src, horizontal])
 

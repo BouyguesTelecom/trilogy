@@ -32,7 +32,7 @@ const Range = forwardRef<RangeRef, RangeProps>(
   (
     {
       className,
-      id = useId(),
+      id,
       min,
       max,
       label,
@@ -50,9 +50,9 @@ const Range = forwardRef<RangeRef, RangeProps>(
     },
     ref,
   ): JSX.Element => {
+    const generatedId = useId()
     const { styled } = useTrilogyContext()
     const refTrack = useRef(null)
-
     const [cursorMin, setCursorMin] = useState<number>(valueMin ?? 0)
     const [cursorMax, setCursorMax] = useState<number>(simple ? value || 0 : valueMax ?? max)
 
@@ -65,7 +65,7 @@ const Range = forwardRef<RangeRef, RangeProps>(
           (cursorMax / max) * 100
         }%, var(--color-main-fade) ${(cursorMax / max) * 100}%) `
       }
-    }, [cursorMin, cursorMax])
+    }, [cursorMin, cursorMax, max])
 
     useEffect(() => {
       setCursorMin(valueMin || 0)
@@ -73,7 +73,7 @@ const Range = forwardRef<RangeRef, RangeProps>(
 
     useEffect(() => {
       if (!simple) setCursorMax(valueMax || max)
-    }, [valueMax, simple])
+    }, [valueMax, simple, max])
 
     useEffect(() => {
       if (simple && value !== undefined) setCursorMax(value)
@@ -83,14 +83,14 @@ const Range = forwardRef<RangeRef, RangeProps>(
       (e: ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value) < cursorMax - gap) setCursorMin(Number(e.target.value))
       },
-      [cursorMax, cursorMin],
+      [cursorMax, gap],
     )
 
     const handleChangeCursorMax = useCallback(
       (e: ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value) >= cursorMin + gap) setCursorMax(Number(e.target.value))
       },
-      [cursorMax, cursorMin],
+      [cursorMin, gap],
     )
 
     const handleMouseUpMin = useCallback(() => {
@@ -134,7 +134,7 @@ const Range = forwardRef<RangeRef, RangeProps>(
               min={min}
               max={max}
               name={name}
-              id={`${id}-min`}
+              id={`${id ?? generatedId}-min`}
               aria-label={label}
             />
           )}
@@ -148,7 +148,7 @@ const Range = forwardRef<RangeRef, RangeProps>(
             min={min}
             max={max}
             name={name}
-            id={`${id}-max`}
+            id={`${id ?? generatedId}-max`}
             aria-label={label}
           />
         </div>

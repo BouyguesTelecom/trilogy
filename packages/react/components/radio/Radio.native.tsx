@@ -21,8 +21,9 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param value {string} Value for radio
  */
 const Radio = React.forwardRef<RadioNativeRef, RadioNativeProps>(
-  ({ id = React.useId(), checked, name, onChange, disabled, readonly, label, value }, ref): JSX.Element => {
+  ({ id, checked, name, onChange, disabled, readonly, label, value }, ref): JSX.Element => {
     const borderFullRadius = getRadiusStyle(Radius.FULL)
+    const generatedId = React.useId()
     const styles = memoStyles({
       container: {
         flexDirection: 'row',
@@ -59,7 +60,7 @@ const Radio = React.forwardRef<RadioNativeRef, RadioNativeProps>(
       if (!readonly) {
         if (onChange) {
           onChange({
-            radioId: id,
+            radioId: id ?? generatedId,
             radioValue: value,
             radioName: name || '',
             radioChecked: true,
@@ -70,7 +71,7 @@ const Radio = React.forwardRef<RadioNativeRef, RadioNativeProps>(
 
     return (
       <TouchableOpacity ref={ref} disabled={disabled} style={styles.container} onPress={() => handleClick(value ?? '')}>
-        <View style={styles.radio} testID={id}>
+        <View style={styles.radio} testID={id ?? generatedId}>
           {checked && <View style={styles.icon} />}
         </View>
         {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}

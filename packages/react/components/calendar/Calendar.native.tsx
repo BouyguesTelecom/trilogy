@@ -327,7 +327,16 @@ const Calendar = React.forwardRef<View, CalendarProps>(
             color: '#6c757d',
           },
         }),
-      [backgroundColor, shadowColor, disabledFadeColor, mainColor, mainFadeColor, disabledColor],
+      [
+        backgroundColor,
+        shadowColor,
+        disabledFadeColor,
+        mainColor,
+        mainFadeColor,
+        disabledColor,
+        borderMediumRadius,
+        borderSmallerRadius,
+      ],
     )
 
     const isRange = checkIsRange(activeDate)
@@ -348,10 +357,10 @@ const Calendar = React.forwardRef<View, CalendarProps>(
 
     const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
       const date = new Date(year, month, 1)
-      const days: Array<Date | null> = []
+      const days: (Date | null)[][] = []
       const firstDayOfMonth = (date.getDay() + 6) % 7
       const lastDayOfMonth = new Date(year, month + 1, 0).getDate()
-      const allDays: Array<(Date | null)[]> = []
+      const allDays: (Date | null)[][] = []
 
       for (let i = 0; i < firstDayOfMonth; i++) days.push(null)
 
@@ -405,13 +414,13 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
       return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
-    }, [minDate, maxDate, visibleMonth])
+    }, [minDate, maxDate])
 
     const allDaysInMonth = React.useMemo(() => {
       const activeYear = visibleMonth.getFullYear()
       const activeMonth = visibleMonth.getMonth()
       return getAllDaysInMonth(activeYear, activeMonth)
-    }, [visibleMonth])
+    }, [visibleMonth, getAllDaysInMonth])
 
     const handleClickNextPrevMonth = React.useCallback(
       (month: number) => {
@@ -428,7 +437,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
         setVisibleMonth(newDate)
         onMonthChange && onMonthChange(newDate)
       },
-      [visibleMonth, onMonthChange, minDate, maxDate],
+      [visibleMonth, onMonthChange],
     )
 
     const handleYearSelect = React.useCallback(

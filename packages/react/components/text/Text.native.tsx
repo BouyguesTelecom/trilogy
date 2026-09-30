@@ -30,10 +30,10 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(
     const statesContext = useContext(StatesContext)
     const textLevels = (level: TextLevels | TextLevelValues) => {
       return (
-        (level && level == TextLevels.ONE && 16) ||
-        (level && level == TextLevels.TWO && 14) ||
-        (level && level == TextLevels.THREE && 12) ||
-        (level && level == TextLevels.FOUR && 10) ||
+        (level && level === TextLevels.ONE && 16) ||
+        (level && level === TextLevels.TWO && 14) ||
+        (level && level === TextLevels.THREE && 12) ||
+        (level && level === TextLevels.FOUR && 10) ||
         14
       )
     }
@@ -61,9 +61,9 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(
           'flex-start',
 
         borderRadius:
-          (level && level == TextLevels.ONE && 7) ||
-          (level && level == TextLevels.TWO && 7) ||
-          (level && level == TextLevels.THREE && 5) ||
+          (level && level === TextLevels.ONE && 7) ||
+          (level && level === TextLevels.TWO && 7) ||
+          (level && level === TextLevels.THREE && 5) ||
           3,
         borderWidth: 0.1,
         borderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
@@ -98,9 +98,9 @@ const Text = React.forwardRef<TextNativeRef, TextProps>(
           style={styles.skeleton}
           height={textLevels(level as TextLevels | TextLevelValues)}
           borderRadius={
-            (level && level == TextLevels.ONE && 7) ||
-            (level && level == TextLevels.TWO && 7) ||
-            (level && level == TextLevels.THREE && 5) ||
+            (level && level === TextLevels.ONE && 7) ||
+            (level && level === TextLevels.TWO && 7) ||
+            (level && level === TextLevels.THREE && 5) ||
             3
           }
         >

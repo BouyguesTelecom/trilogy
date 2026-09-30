@@ -1,7 +1,7 @@
 import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
 import { SpacerSize } from '@/components/spacer'
 
-const { FOUR, THREE, TWO, ONE } = SpacerSize
+const { FOUR, THREE, TWO } = SpacerSize
 
 export const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode
 

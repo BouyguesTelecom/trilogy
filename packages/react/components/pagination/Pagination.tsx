@@ -58,7 +58,7 @@ const Pagination = React.forwardRef<PaginationRef, PaginationProps>(
     useEffect(() => {
       setCurrentPage(defaultPage)
       setPages(getPages(defaultPage).pages)
-    }, [defaultPage])
+    }, [defaultPage, getPages])
 
     return (
       <nav ref={ref} id={id} className={classes} data-testid={testId} {...others}>

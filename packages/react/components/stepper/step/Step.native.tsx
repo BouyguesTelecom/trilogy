@@ -43,7 +43,7 @@ const Step = forwardRef<StepNativeRef, StepProps>(({ active, current, done, erro
       useNativeDriver: false,
       easing: Easing.linear,
     }).start()
-  }, [active, current, done, error])
+  }, [active, current, done, error, backgroundColorAnim])
 
   const styles = StyleSheet.create({
     step: {

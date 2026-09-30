@@ -1,7 +1,9 @@
 import { useCallback, useEffect } from 'react'
 
 export const useClickOutside = (ref: React.RefObject<HTMLElement>, callback: () => void) => {
-  const stableCallback = useCallback(callback, [callback])
+  const stableCallback = useCallback(() => {
+    callback()
+  }, [callback])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

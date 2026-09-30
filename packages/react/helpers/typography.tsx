@@ -1,17 +1,17 @@
 import { useContext } from 'react'
 import { TrilogyThemeContext } from '@/context/providerTheme'
 import { getColorStyle } from '@/helpers/color'
-import { TrilogyColor } from "@/interfaces/Color"
-import { TypographyAlign } from "@/interfaces/TypographyAlign"
-import { TypographyBold } from "@/interfaces/TypographyBold"
-import { TypographyColor } from "@/interfaces/TypographyColor"
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 /**
  * Typography Alignment Method (TYPO)
  * @param typo {String} TypographyColor
  */
 export const setTypographyAlign = (
-  typo: Array<string> | string = 'left',
+  typo: string[] | string = 'left',
 ): 'left' | 'auto' | 'right' | 'center' | 'justify' | undefined => {
   return (
     (typo && !Array.isArray(typo) && typo === TypographyAlign.TEXT_CENTERED && 'center') ||
@@ -51,7 +51,7 @@ export const getTypographyBoldClassName = (
  * @param level {}
  * @returns {string} - Bold type
  */
-export const getTypographyBoldStyle = (typo?: string | Array<string>) => {
+export const getTypographyBoldStyle = (typo?: string | string[]) => {
   const { theme } = useContext(TrilogyThemeContext)
   const currentTypo = Array.isArray(typo) ? typo : [typo]
 
@@ -75,7 +75,7 @@ export const getTypographyBoldStyle = (typo?: string | Array<string>) => {
  * @param typo {String} TypographyColor
  * @param inverted {Boolean} Inverted color if isset default : false
  */
-export const setTypographyColor = (typo: Array<string> | string = '', inverted = false, loading = false): string => {
+export const setTypographyColor = (typo: string[] | string = '', inverted = false, loading = false): string => {
   return loading
     ? 'transparent'
     : (Array.isArray(typo) && typo.includes(TypographyColor.TEXT_DISABLED)

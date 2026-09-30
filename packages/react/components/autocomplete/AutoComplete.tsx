@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import React, { FocusEvent, useEffect, useState } from 'react'
-
 import { Input } from '@/components/input'
 import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
@@ -71,11 +70,11 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     if (itemSelected && getLabel(itemSelected) !== _inputValue) {
       setItemSelected(null)
     }
-  }, [_inputValue])
+  }, [_inputValue, data, matching, itemSelected])
 
   useEffect(() => {
     setSearch(matching(data, _inputValue))
-  }, [data])
+  }, [data, _inputValue, matching])
 
   const handleChangeInputValue = (e: InputChangeEventWeb) => {
     if (onChange) {
@@ -91,7 +90,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
       try {
         const pattern = e.inputValue.substring(1, e.inputValue.lastIndexOf('/'))
         setInputValue(new RegExp(pattern, 'i').source)
-      } catch (error) {
+      } catch {
         setInputValue(e.inputValue)
       }
     } else {

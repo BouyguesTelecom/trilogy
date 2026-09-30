@@ -88,6 +88,7 @@ const DropdownContent = forwardRef<DropdownRef, Omit<DropdownProps, 'defaultOpen
     )
   },
 )
+DropdownContent.displayName = 'DropdownContent'
 
 /**
  * Dropdown Component - Wrapper for dropdown menu with automatic state management

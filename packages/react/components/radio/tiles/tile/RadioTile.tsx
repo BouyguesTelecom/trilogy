@@ -6,8 +6,8 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
-import { VariantState } from "@/interfaces/Variant"
+import React, { forwardRef, useId } from 'react'
+import { VariantState } from '@/interfaces/Variant'
 
 /**
  * radioTile Component
@@ -28,14 +28,14 @@ import { VariantState } from "@/interfaces/Variant"
  * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required radio
  */
-const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
+const RadioTile = forwardRef<RadioTileRef, RadioTileProps>(
   (
     {
       checked,
       className,
       disabled,
       readonly,
-      id = React.useId(),
+      id,
       label,
       onChange,
       name,
@@ -51,6 +51,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
     },
     ref,
   ): JSX.Element => {
+    const generateId = useId()
     const { styled } = useTrilogyContext()
     const refInput = React.useRef<HTMLInputElement>(null)
 
@@ -71,7 +72,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
           ref={refInput}
           type='radio'
           readOnly={readonly}
-          id={id}
+          id={id ?? generateId}
           disabled={disabled}
           name={name}
           value={value}
@@ -95,14 +96,14 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
           {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
           {horizontal ? (
             <span>
-              <label htmlFor={id} className={hashClass(styled, clsx('radio-title'))}>
+              <label htmlFor={id ?? generateId} className={hashClass(styled, clsx('radio-title'))}>
                 {label}
               </label>
               {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}
             </span>
           ) : (
             <>
-              <label htmlFor={id} className={hashClass(styled, clsx('radio-title'))}>
+              <label htmlFor={id ?? generateId} className={hashClass(styled, clsx('radio-title'))}>
                 {label}
               </label>
               {description && <span className={hashClass(styled, clsx('radio-description'))}>{description}</span>}

@@ -18,15 +18,7 @@ import { DropdownTriggerProps, DropdownTriggerRef } from '@/components/dropdown/
 const DropdownTrigger = forwardRef<DropdownTriggerRef, DropdownTriggerProps>(
   ({ children, onClick, className, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
-
-    let contextState: ReturnType<typeof useDropdownContext> | null = null
-
-    try {
-      contextState = useDropdownContext()
-    } catch {
-      contextState = null
-    }
-
+    const contextState = useDropdownContext()
     const classes = hashClass(styled, clsx('dropdown-trigger', className))
 
     const handleClick = (event: MouseEvent) => {

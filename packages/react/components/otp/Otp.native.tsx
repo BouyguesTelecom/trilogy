@@ -40,13 +40,13 @@ const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
       if (/^-?\d*\.?\d*$/.test(codeInput) && !disabled) {
         setCodeInput(value || '')
       }
-    }, [value])
+    }, [value, disabled, codeInput])
 
     useEffect(() => {
       if (!disabled && codeInput && codeInput.length >= length) {
         onCompleted?.(codeInput)
       }
-    }, [value, length, codeInput])
+    }, [value, length, codeInput, onCompleted, disabled])
 
     const refInput = useRef<TextInput>(null)
 

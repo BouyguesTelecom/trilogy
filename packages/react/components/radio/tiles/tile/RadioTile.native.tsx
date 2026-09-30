@@ -38,7 +38,7 @@ const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
     {
       checked,
       disabled,
-      id = React.useId(),
+      id,
       label,
       onChange,
       name,

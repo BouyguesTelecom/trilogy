@@ -78,7 +78,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       label,
       sample,
       className,
-      id = React.useId(),
+      id,
       disabled,
       onChange,
       onKeyPress,
@@ -123,6 +123,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
     const { styled } = useTrilogyContext()
     const idHelp = useId()
     const idSample = useId()
+    const idInput = useId()
 
     const inputIcon = new Map()
     inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
@@ -196,13 +197,19 @@ const Input = React.forwardRef<InputRef, InputProp>(
           </Markup>
         )
       },
-      [_value, styled],
+      [_value, iconTimesClasses, srOnlyClasses, onIconClick],
     )
 
-    const validator =
-      !customValidator && patternValidator
-        ? (value: string) => (patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR)
-        : customValidator
+    const validator = useCallback(
+      (value: string) => {
+        if (!customValidator && patternValidator) {
+          return patternValidator.test(value) ? InputStatus.SUCCESS : InputStatus.ERROR
+        }
+
+        return customValidator?.(value)
+      },
+      [customValidator, patternValidator],
+    )
 
     useEffect(() => {
       let newVal = value ?? defaultValue ?? ''
@@ -221,8 +228,9 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
     useEffect(() => {
       if (!validator || !isTouched) return
-      setLocalStatus(validator(_value))
-    }, [isFocused, isTouched])
+      const validationStatus = validator(_value)
+      if (validationStatus !== undefined) setLocalStatus(validationStatus)
+    }, [isFocused, isTouched, _value, validator])
 
     useEffect(() => {
       setLocalStatus(status || InputStatus.DEFAULT)
@@ -230,7 +238,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
 
     useEffect(() => {
       if (onStatusChange) onStatusChange(localStatus)
-    }, [localStatus])
+    }, [localStatus, onStatusChange])
 
     return (
       <div className={wrapperClasses} data-has-gauge={securityGauge ? true : undefined}>
@@ -253,7 +261,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
           <input
             data-testid={testId}
             aria-describedby={type === 'password' && help ? `${idHelp} ${idSample}` : undefined}
-            id={id}
+            id={id ?? idInput}
             required={required}
             readOnly={readOnly}
             {...others}

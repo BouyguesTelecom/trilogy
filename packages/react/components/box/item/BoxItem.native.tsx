@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { forwardRef, type ReactNode } from 'react'
+import { forwardRef } from 'react'
 import { BoxItemNativeRef, BoxItemProps } from '@/components/box/item/BoxItemProps'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'

@@ -66,7 +66,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
           if (onCloseFunc) onCloseFunc(e)
         }
       },
-      [refBtnModal.current],
+      [unClosable],
     )
 
     const classes = hashClass(
@@ -98,7 +98,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
           onClose && onClose()
         }
       },
-      [display, focusableElementsRef, currentFocusIndexRef, refBtnModal, onClose],
+      [display, focusableElementsRef, currentFocusIndexRef, refBtnModal, unClosable, onClose],
     )
 
     useEffect(() => {

@@ -3,7 +3,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getStatusClassName } from '@/helpers/status'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, useId, forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SwitchProps, SwitchRef } from '@/components/switch/SwitchProps'
 
@@ -25,11 +25,11 @@ import { SwitchProps, SwitchRef } from '@/components/switch/SwitchProps'
  * @param fullWidth {boolean} Full-width switch
  * @param testId {string} Test Id for Test Integration
  */
-const Switch = React.forwardRef<SwitchRef, SwitchProps>(
+const Switch = forwardRef<SwitchRef, SwitchProps>(
   (
     {
       className,
-      id = React.useId(),
+      id,
       label,
       value,
       checked,
@@ -48,8 +48,10 @@ const Switch = React.forwardRef<SwitchRef, SwitchProps>(
   ): JSX.Element => {
     const [_checked, setChecked] = useState<boolean>(checked || false)
     const { styled } = useTrilogyContext()
+    const generateId = useId()
+    const switchId = `switch-${id ?? generateId}`
 
-    React.useEffect(() => {
+    useEffect(() => {
       setChecked(checked || false)
     }, [checked])
 
@@ -80,7 +82,6 @@ const Switch = React.forwardRef<SwitchRef, SwitchProps>(
               })
             }
           }}
-
           onClick={(e: any) => {
             if (!readonly) {
               setChecked(!_checked)
@@ -96,13 +97,13 @@ const Switch = React.forwardRef<SwitchRef, SwitchProps>(
           value={value}
           checked={readonly ? checked : _checked}
           readOnly={readonly}
-          id={`switch-${id}`}
+          id={switchId}
           type='checkbox'
           disabled={disabled}
           className={hashClass(styled, clsx(status && is(getStatusClassName(status))))}
           {...others}
         />
-        <label htmlFor={`switch-${id}`}>{label}</label>
+        <label htmlFor={switchId}>{label}</label>
       </div>
     )
   },

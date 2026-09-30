@@ -29,7 +29,7 @@ const Breadcrumb = forwardRef<BreadcrumbNativeRef, BreadcrumbProps>(
           ? Children.map(children, (child, index) => (
               <>
                 {cloneElement(child)}
-                {index != children.length - 1 && <Icon size='smaller' name='tri-arrow-right' align='ALIGNED_CENTER' />}
+                {index !== children.length - 1 && <Icon size='smaller' name='tri-arrow-right' align='ALIGNED_CENTER' />}
               </>
             ))
           : children}

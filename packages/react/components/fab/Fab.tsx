@@ -47,11 +47,11 @@ const Fab = React.forwardRef<FabRef, FabProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const [isExtended, setIsExtended] = useState<boolean>(extended || false)
+    const [, setIsExtended] = useState<boolean>(extended || false)
 
     useEffect(() => {
       setIsExtended(extended || false)
-    }, [isExtended])
+    }, [extended])
 
     const positionStyle: React.CSSProperties | any =
       top || bottom || left || right

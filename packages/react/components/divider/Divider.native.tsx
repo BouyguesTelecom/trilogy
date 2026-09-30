@@ -63,7 +63,7 @@ const Divider = forwardRef<DividerNativeRef, DividerProps>(
     const ContentDivider = useMemo(() => {
       if (content) return <Text style={styles.textContent}>{content}</Text>
       if (iconName && !content) return <Icon name={iconName} color={IconColor.MAIN} testId='icon-id' />
-    }, [content, iconName])
+    }, [content, iconName, styles.textContent])
 
     if (content || iconName) {
       return (

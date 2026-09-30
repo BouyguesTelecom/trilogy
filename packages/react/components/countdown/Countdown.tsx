@@ -36,7 +36,7 @@ const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
     const initialTimer = calculateTimer(initialTimeDifference)
     const [timer, setTimer] = useState(initialTimer)
     const [init, setInit] = useState(false)
-    const show = [timer.days != 0, timer.hours != 0, timer.minutes != 0, timer.seconds != 0]
+    const show = [timer.days !== 0, timer.hours !== 0, timer.minutes !== 0, timer.seconds !== 0]
     const parsedFormat = format?.split('-')
 
     const classes = hashClass(styled, clsx('countdown', small && is('small'), className))
@@ -119,7 +119,7 @@ const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
 
     return (
       <ul ref={ref} id={id} className={classes} data-testid={testId} {...others}>
-        {(show[CountdownUnite.DAY] || timer.days != 0) && (
+        {(show[CountdownUnite.DAY] || timer.days !== 0) && (
           <li className={hashClass(styled, clsx('count'))}>
             <span className={hashClass(styled, clsx('value'))}>
               {String(timer.days ? timer.days : 0).padStart(2, '0')}
@@ -127,7 +127,7 @@ const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
             J
           </li>
         )}
-        {(show[CountdownUnite.HOUR] || timer.hours != 0) && (
+        {(show[CountdownUnite.HOUR] || timer.hours !== 0) && (
           <li className={hashClass(styled, clsx('count'))}>
             <span className={hashClass(styled, clsx('value'))}>
               {String(timer.hours ? timer.hours : 0).padStart(2, '0')}
@@ -135,7 +135,7 @@ const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
             H
           </li>
         )}
-        {(show[CountdownUnite.MIN] || timer.minutes != 0) && (
+        {(show[CountdownUnite.MIN] || timer.minutes !== 0) && (
           <li className={hashClass(styled, clsx('count'))}>
             <span className={hashClass(styled, clsx('value'))}>
               {String(timer.minutes ? timer.minutes : 0).padStart(2, '0')}
@@ -143,7 +143,7 @@ const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
             M
           </li>
         )}
-        {(show[CountdownUnite.SEC] || timer.seconds != 0) && (
+        {(show[CountdownUnite.SEC] || timer.seconds !== 0) && (
           <li className={hashClass(styled, clsx('count'))}>
             <span className={hashClass(styled, clsx('value'))}>
               {String(timer.seconds ? timer.seconds : 0).padStart(2, '0')}

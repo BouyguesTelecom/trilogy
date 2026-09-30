@@ -85,7 +85,7 @@ const SelectDynamic = React.forwardRef<SelectRef, PropsWithChildren<SelectProps>
           value: child.props.value,
         }
       })?.filter((option) => option)
-    }, [])
+    }, [children])
 
     const labelsSelected = useMemo(() => {
       return selectedOptionValues.map((selectedOption) => {

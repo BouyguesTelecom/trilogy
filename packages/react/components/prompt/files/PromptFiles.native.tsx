@@ -21,7 +21,7 @@ const PromptFiles = React.forwardRef<PromptFilesNativeRef, PromptFilesProps>(({ 
 
   useEffect(() => {
     setFiles(childrenLength)
-  }, [childrenLength])
+  }, [childrenLength, setFiles])
 
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} ref={ref}>

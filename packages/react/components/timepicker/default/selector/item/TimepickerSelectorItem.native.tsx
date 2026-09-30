@@ -1,8 +1,8 @@
 import { Text } from '@/components/text'
 import React, { useMemo } from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
-import { TypographyAlign } from "@/interfaces/TypographyAlign"
-import { TypographyColor } from "@/interfaces/TypographyColor"
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 interface SelectItem {
   label: string
@@ -29,7 +29,7 @@ const TimepickerSelectorItem = ({ item, index, scrollOffset }: WheelItemProps) =
     const isActive = distance < itemHeight / 2
 
     return { opacity, scale, isActive }
-  }, [distance, itemHeight])
+  }, [distance])
 
   return (
     <View

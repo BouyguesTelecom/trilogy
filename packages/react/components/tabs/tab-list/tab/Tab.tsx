@@ -44,7 +44,7 @@ const Tab = React.forwardRef<TabRef, TabProps>(
           if (onClick) onClick(e)
         }
       },
-      [disabled, onClick, index, setActiveIndex],
+      [disabled, onClick, index, setActiveIndex, others?.href, others?.to],
     )
 
     React.useEffect(() => {

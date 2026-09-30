@@ -1,13 +1,13 @@
 import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from '@/components/text/TextEnum'
 import { Text } from 'react-native'
-import { TypographyAlign, TypographyAlignValues } from "@/interfaces/TypographyAlign"
-import { TypographyBold, TypographyBoldValues } from "@/interfaces/TypographyBold"
-import { TypographyColor, TypographyColorValues } from "@/interfaces/TypographyColor"
-import { TypographyTransform, TypographyTransformValues } from "@/interfaces/TypographyTransform"
-import { Accessibility } from "@/interfaces/Accessibility"
-import { Dev } from "@/interfaces/Dev"
-import { Invertable } from "@/interfaces/Invertable"
-import { CommonProps } from "@/interfaces/CommonProps"
+import { TypographyAlign, TypographyAlignValues } from '@/interfaces/TypographyAlign'
+import { TypographyBold, TypographyBoldValues } from '@/interfaces/TypographyBold'
+import { TypographyColor, TypographyColorValues } from '@/interfaces/TypographyColor'
+import { TypographyTransform, TypographyTransformValues } from '@/interfaces/TypographyTransform'
+import { Accessibility } from '@/interfaces/Accessibility'
+import { Dev } from '@/interfaces/Dev'
+import { Invertable } from '@/interfaces/Invertable'
+import { CommonProps } from '@/interfaces/CommonProps'
 
 type Styles = { [key: string]: any }
 
@@ -27,7 +27,7 @@ type Typo =
 export interface TextProps extends Invertable, Accessibility, Dev, CommonProps {
   level?: TextLevels | TextLevelValues
   children?: React.ReactNode
-  typo?: Typo | Array<string>
+  typo?: Typo | string[]
   markup?: TextMarkup | TextMarkupValues
   style?: Styles
   skeleton?: boolean

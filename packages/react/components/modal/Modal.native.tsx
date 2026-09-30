@@ -10,7 +10,6 @@ import {
   type ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View,
 } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -21,11 +20,11 @@ import { Icon, IconName, IconSize } from '@/components/icon'
 import { Title } from '@/components/title'
 import { ModalNativeRef, ModalProps } from '@/components/modal/ModalProps'
 import { ModalContext } from '@/components/modal/context/ModalContext'
-import { Alignable } from "@/interfaces/Alignable"
-import { getColorStyle } from "@/helpers/color"
-import { TrilogyColor } from "@/interfaces/Color"
-import { getRadiusStyle } from "@/helpers/radius"
-import { Radius } from "@/interfaces/Radius"
+import { Alignable } from '@/interfaces/Alignable'
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { getRadiusStyle } from '@/helpers/radius'
+import { Radius } from '@/interfaces/Radius'
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height
 const DISMISS_THRESHOLD = 150
@@ -94,7 +93,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
         })
         backdropOpacity.value = withTiming(0, { duration: ANIMATION_DURATION })
       },
-      [callOnClose, handleDismiss],
+      [callOnClose, handleDismiss, backdropOpacity, translateY],
     )
 
     const handleClose = useCallback(() => {
@@ -104,7 +103,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
     const animateIn = useCallback(() => {
       translateY.value = withTiming(0, { duration: ANIMATION_DURATION })
       backdropOpacity.value = withTiming(0.5, { duration: ANIMATION_DURATION })
-    }, [])
+    }, [backdropOpacity, translateY])
 
     useEffect(() => {
       if (active) {
@@ -114,7 +113,7 @@ const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
       } else if (visible) {
         animateOut(false)
       }
-    }, [active])
+    }, [active, animateOut, visible, translateY, backdropOpacity])
 
     const panGesture = Gesture.Pan()
       .onUpdate((event) => {

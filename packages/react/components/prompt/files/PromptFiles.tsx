@@ -21,7 +21,7 @@ const PromptFiles = React.forwardRef<PromptFilesRef, PromptFilesProps>(({ childr
 
   useEffect(() => {
     setFiles(childrenLength)
-  }, [childrenLength])
+  }, [childrenLength, setFiles])
 
   if (!childrenLength) return null
   return (

@@ -40,7 +40,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
         onSubmit && onSubmit()
         setIsSend(true)
       }
-    }, [statusSubmit, onSubmit, setIsTyping])
+    }, [statusSubmit, onSubmit, onCancelSubmit, setIsTyping, setIsSend])
 
     const isActive = useMemo(
       () => statusSubmit === PromptSubmitStatus.STREAMING_ON || !!text.trim().length || !!files,

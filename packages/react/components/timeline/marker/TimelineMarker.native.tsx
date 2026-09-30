@@ -6,7 +6,7 @@ import { TimelineMarkerNativeRef, TimelineMarkerProps } from '@/components/timel
 import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import { getColorStyle } from '@/helpers/color'
 import React, { useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import { TrilogyColor } from '@/interfaces/Color'
 import { memoStyles } from '@/helpers/memoStyles'
 

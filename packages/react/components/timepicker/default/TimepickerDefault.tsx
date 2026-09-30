@@ -186,7 +186,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
           onChange?.('00:00')
         }
       },
-      [onChange],
+      [onChange, step],
     )
 
     React.useEffect(() => {

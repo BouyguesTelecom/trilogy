@@ -28,7 +28,7 @@ const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
 
     useEffect(() => {
       setChildIndexes((prev) => [...prev, id])
-    }, [id])
+    }, [id, setChildIndexes])
 
     const styles = memoStyles({
       text: {
@@ -59,7 +59,7 @@ const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
           </Text>
         )
       }
-    }, [children])
+    }, [children, styles.text])
 
     return (
       <View ref={ref} style={[styles.content]} testID={testId}>

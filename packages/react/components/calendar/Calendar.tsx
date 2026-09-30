@@ -111,10 +111,10 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
 
     const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
       const date = new Date(year, month, 1)
-      const days: Array<Date | null> = []
+      const days: (Date | null)[][] = []
       const firstDayOfMonth = (date.getDay() + 6) % 7
       const lastDayOfMonth = new Date(year, month + 1, 0).getDate()
-      const allDays: Array<(Date | null)[]> = []
+      const allDays: (Date | null)[][] = []
       for (let i = 0; i < firstDayOfMonth; i++) days.push(null)
       for (let day = 1; day <= lastDayOfMonth; day++) days.push(new Date(year, month, day))
       for (let i = 0; i < days.length; i += 7) allDays.push(days.slice(i, i + 7))
@@ -161,14 +161,14 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
       return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
-    }, [minDate, maxDate, visibleMonth])
+    }, [minDate, maxDate])
 
     const allDaysInMonth = React.useMemo(() => {
       refsDays.current = []
       const activeYear = visibleMonth.getFullYear()
       const activeMonth = visibleMonth.getMonth()
       return getAllDaysInMonth(activeYear, activeMonth)
-    }, [visibleMonth])
+    }, [visibleMonth, getAllDaysInMonth])
 
     const handleClickNextPrevMonth = React.useCallback(
       (month: number) => {
@@ -185,7 +185,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
         setVisibleMonth(newDate)
         onMonthChange && onMonthChange(newDate)
       },
-      [visibleMonth, onMonthChange, minDate, maxDate],
+      [visibleMonth, onMonthChange],
     )
 
     const handleYearSelect = React.useCallback(
@@ -243,7 +243,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
           refDayFocused.current = refsDays.current[nextDayFocused.getDate() - 1]
         }, 10)
       },
-      [refsDays.current, refDayFocused.current, isNextDisabled, isPrevDisabled],
+      [isNextDisabled, isPrevDisabled],
     )
 
     const handlePressEnterInDays = React.useCallback(
@@ -266,7 +266,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
         setDateEndHovered(undefined)
         onChange && onChange(newActiveDate)
       },
-      [refsDays.current, onChange, readOnly, activeDate, isRange],
+      [onChange, readOnly, activeDate, isRange],
     )
 
     const onKeyDownDay = React.useCallback(
@@ -303,7 +303,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
           refDayFocused.current = refsDays.current[activeDateIndex]
         }
       }
-    }, [refsDays.current, refDayFocused.current])
+    }, [])
 
     React.useEffect(() => {
       const prevActiveDate = activeDate
@@ -316,7 +316,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
           (Array.isArray(prevActiveDate) && Array.isArray(value) && prevActiveDate.length === 2 && value.length === 1)
         if (isNewRangeSelection) return setVisibleMonth(value[0])
       }
-    }, [value])
+    }, [value, activeDate])
 
     return (
       <table

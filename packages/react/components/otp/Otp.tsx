@@ -7,11 +7,11 @@ import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { OtpProps, OtpRef } from '@/components/otp/OtpProps'
-import { TypographyColor } from "@/interfaces/TypographyColor"
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
 type NumberOrNull = number | null
 
-const stringToCode = (str: string | undefined, codeSize: number): Array<NumberOrNull> => {
+const stringToCode = (str: string | undefined, codeSize: number): NumberOrNull[] => {
   if (!str) return new Array(codeSize).fill(null)
   return str.split('').map((char) => (char === '' ? null : Number(char)))
 }
@@ -135,7 +135,7 @@ const Otp = React.forwardRef<OtpRef, OtpProps>(
       if (hasChanged.current) {
         onChange?.(codeToString(codeInput))
       }
-    }, [codeInput])
+    }, [codeInput, onChange])
 
     const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
       const { target } = e

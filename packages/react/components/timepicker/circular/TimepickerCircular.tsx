@@ -28,8 +28,11 @@ const HOUR_DOTS_COUNT = 24
 const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCircularProps>(
   ({ value = '00:00', onChange, disabled = false, step = 5, testId, className, id, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const formatNumber = (num: number): string => num.toString().padStart(2, '0')
-    const formatTime = (hours: number, minutes: number): string => `${formatNumber(hours)}:${formatNumber(minutes)}`
+    const formatNumber = useCallback((num: number): string => num.toString().padStart(2, '0'), [])
+    const formatTime = useCallback(
+      (hours: number, minutes: number): string => `${formatNumber(hours)}:${formatNumber(minutes)}`,
+      [formatNumber],
+    )
 
     const parseTime = (timeString: string): { hours: number; minutes: number } => {
       const [hoursStr, minutesStr] = timeString.split(':')
@@ -69,16 +72,11 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     const radius = (CIRCLE_SIZE - CIRCLE_THICKNESS) / 2
     const centerX = CIRCLE_SIZE / 2
     const centerY = CIRCLE_SIZE / 2
-
     const totalMinutes = currentHours * 60 + currentMinutes
-
     const maxMinutes = 24 * 60
     const angle = (totalMinutes / maxMinutes) * 2 * Math.PI - Math.PI / 2
-
     const cursorX = centerX + radius * Math.cos(angle) - CURSOR_SIZE / 2
     const cursorY = centerY + radius * Math.sin(angle) - CURSOR_SIZE / 2
-
-    const progressAngle = (totalMinutes / maxMinutes) * 360
 
     const updateTimeFromAngle = useCallback(
       (angleRad: number) => {
@@ -97,7 +95,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
           onChange?.(formatTime(newHours, newMinutes))
         }
       },
-      [maxMinutes, onChange, currentHours, currentMinutes, step],
+      [maxMinutes, onChange, currentHours, currentMinutes, step, formatTime],
     )
 
     const getMousePosition = (
@@ -243,7 +241,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         setCurrentMinutes(newMinutes)
         onChange?.(formatTime(newHours, newMinutes))
       },
-      [disabled, currentMinutes, currentHours, step, onChange],
+      [disabled, currentMinutes, currentHours, step, onChange, formatTime],
     )
 
     const handleBlur = useCallback(
@@ -264,7 +262,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         }
         setBlurKey((k) => k + 1)
       },
-      [currentHours, currentMinutes, onChange, formatNumber, formatTime, step],
+      [currentHours, currentMinutes, onChange, formatTime, step],
     )
 
     const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLSpanElement>) => {
@@ -323,7 +321,17 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
         )
       }
       return dots
-    }, [currentHours, currentMinutes, centerX, radius, maxMinutes, handleHourDotPress])
+    }, [
+      currentHours,
+      currentMinutes,
+      centerX,
+      radius,
+      maxMinutes,
+      handleHourDotPress,
+      centerY,
+      dotClasses,
+      dotFilledClasses,
+    ])
 
     const progressGauge = useMemo(() => {
       const strokeWidth = CIRCLE_THICKNESS
@@ -357,7 +365,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
           />
         </svg>
       )
-    }, [currentHours, currentMinutes, maxMinutes])
+    }, [currentHours, currentMinutes, maxMinutes, progressContainerClasses, progressClasses])
 
     const styles = useMemo(
       () => ({

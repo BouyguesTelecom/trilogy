@@ -2,7 +2,6 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptContext } from '@/components/prompt/context'
 import { Select } from '@/components/select'
 import { SelectProps } from '@/components/select/SelectProps'
-import { useTrilogyContext } from '@/context'
 import clsx from 'clsx'
 import React, { useContext, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { PromptSelectRef } from '@/components/prompt/toolbar/tools/select/PromptSelectProps'
@@ -22,7 +21,6 @@ const PADDING_SELECT_OPTION = 58
  */
 const PromptSelect = React.forwardRef<PromptSelectRef, SelectProps>(
   ({ className, disabled, readOnly, ...others }, ref) => {
-    const { styled } = useTrilogyContext()
     const { isDisabled, isReadonly } = useContext(PromptContext)
 
     const isDisable = isDisabled || disabled

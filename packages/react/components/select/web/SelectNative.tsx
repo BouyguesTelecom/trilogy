@@ -57,15 +57,21 @@ const SelectNative = forwardRef<SelectRef, SelectProps>(
     const controlClass = hashClass(styled, clsx('control', iconName && 'has-icons-left'))
     const helpClasses = clsx('help', status && is(status))
 
-    const handleFocus = useCallback((e: ParamEventSelectFocus) => {
-      setIsFocused(true)
-      onFocus && onFocus(e)
-    }, [])
+    const handleFocus = useCallback(
+      (e: ParamEventSelectFocus) => {
+        setIsFocused(true)
+        onFocus && onFocus(e)
+      },
+      [onFocus],
+    )
 
-    const handleBlur = useCallback((e: FocusEvent<HTMLSelectElement, Element>) => {
-      setIsFocused(false)
-      onBlur && onBlur(e)
-    }, [])
+    const handleBlur = useCallback(
+      (e: FocusEvent<HTMLSelectElement, Element>) => {
+        setIsFocused(false)
+        onBlur && onBlur(e)
+      },
+      [onBlur],
+    )
 
     useEffect(() => {
       setSelectedValues(selected)

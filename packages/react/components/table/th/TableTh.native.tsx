@@ -1,5 +1,4 @@
 import { forwardRef } from 'react'
-import { StyleSheet } from 'react-native'
 import { TableThNativeRef, TableThProps } from '@/components/table/th/TableThProps'
 import { View } from '@/components/view'
 import { Text } from '@/components/text'

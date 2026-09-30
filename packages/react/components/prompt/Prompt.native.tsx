@@ -23,6 +23,7 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ..
   })
   return <View ref={ref} style={styles.view} {...others} />
 })
+PromptElm.displayName = 'PromptElm'
 
 /**
  * Prompt Component (React Native) - Form wrapper for chat-like or AI prompt interfaces

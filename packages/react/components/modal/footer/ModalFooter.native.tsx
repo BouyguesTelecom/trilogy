@@ -28,7 +28,7 @@ const ModalFooter = forwardRef<ModalFooterNativeRef, ModalFooterProps>(
       return () => {
         setIsFooter(false)
       }
-    }, [])
+    }, [setIsFooter])
 
     return (
       <View ref={ref} style={[styles.container, { paddingBottom: bottomPadding }]} testID={testId} {...others}>

@@ -37,7 +37,7 @@ const CheckboxTile = forwardRef<CheckboxTileRef, CheckboxTileProps>(
       className,
       disabled,
       readonly,
-      id = useId(),
+      id,
       label,
       onChange,
       name,
@@ -53,6 +53,7 @@ const CheckboxTile = forwardRef<CheckboxTileRef, CheckboxTileProps>(
     },
     ref,
   ): JSX.Element => {
+    const generateId = useId()
     const { styled } = useTrilogyContext()
     const [_checked, setChecked] = useState<boolean>(checked || false)
     const refInput = useRef<HTMLInputElement>(null)
@@ -81,7 +82,7 @@ const CheckboxTile = forwardRef<CheckboxTileRef, CheckboxTileProps>(
           type='checkbox'
           readOnly={readonly}
           required={required}
-          id={id}
+          id={id ?? generateId}
           disabled={disabled}
           name={name}
           value={value}
@@ -93,14 +94,14 @@ const CheckboxTile = forwardRef<CheckboxTileRef, CheckboxTileProps>(
           {icon && <Icon name={icon} size={IconSize.MEDIUM} />}
           {horizontal ? (
             <span>
-              <label htmlFor={id} className={hashClass(styled, clsx('checkbox-title'))}>
+              <label htmlFor={id ?? generateId} className={hashClass(styled, clsx('checkbox-title'))}>
                 {label}
               </label>
               {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}
             </span>
           ) : (
             <>
-              <label htmlFor={id} className={hashClass(styled, clsx('checkbox-title'))}>
+              <label htmlFor={id ?? generateId} className={hashClass(styled, clsx('checkbox-title'))}>
                 {label}
               </label>
               {description && <span className={hashClass(styled, clsx('checkbox-description'))}>{description}</span>}

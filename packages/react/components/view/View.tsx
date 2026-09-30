@@ -8,6 +8,7 @@ import clsx from 'clsx'
 import { forwardRef } from 'react'
 import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from '@/components/view/ViewProps'
 import { getAlignClassName } from '@/helpers/alignable'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * View Component (DIV equivalent)
@@ -97,4 +98,5 @@ const View = forwardRef<ViewRef, ViewProps>(
   },
 )
 
+View.displayName = ComponentName.View
 export default View

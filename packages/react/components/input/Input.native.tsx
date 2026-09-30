@@ -121,7 +121,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
     const [email, setEmail] = useState<string>('')
     const [isFocused, setIsFocused] = useState(false)
     const [iconPassword, setIconPassword] = useState(IconName.EYE)
-    const [isKeyboardVisible, setKeyboardVisible] = useState<null | boolean>(null)
+    const [, setKeyboardVisible] = useState<null | boolean>(null)
 
     const handleChange = useCallback((text: string) => {
       setValue(text)
@@ -132,15 +132,15 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
         domains.forEach((item) => {
           const domainSplit = domain.split('')
           const itemSplit = item.split('').slice(0, domainSplit.length)
-          if (JSON.stringify(domainSplit) == JSON.stringify(itemSplit)) setEmail(item.slice(domain.length))
+          if (JSON.stringify(domainSplit) === JSON.stringify(itemSplit)) setEmail(item.slice(domain.length))
         })
       }
     }, [])
 
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
       setValue(value + email)
       setEmail('')
-    }
+    }, [email, value])
 
     const handleSubmit = (e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
       onSubmit?.(e)
@@ -165,7 +165,7 @@ const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
 
     useEffect(() => {
       handleClick()
-    }, [isKeyboardVisible])
+    }, [handleClick])
 
     const hasIcon = iconNameLeft || iconNameRight || false
 

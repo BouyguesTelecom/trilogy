@@ -4,8 +4,6 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { PopoverDirection } from '@/components/popover/PopoverEnum'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
-import { getRadiusStyle } from '@/helpers/radius'
-import { Radius } from '@/interfaces/Radius'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
@@ -17,9 +15,6 @@ import { memoStyles } from '@/helpers/memoStyles'
  */
 const Popover = forwardRef<PopoverNativeRef, PopoverProps>(
   ({ children, active = false, direction }, ref): JSX.Element => {
-    const borderSmallRadius = getRadiusStyle(Radius.SMALL)
-    const borderMediumRadius = getRadiusStyle(Radius.MEDIUM)
-
     const styles = memoStyles({
       container: {
         alignItems: 'center',

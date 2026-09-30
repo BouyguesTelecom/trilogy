@@ -66,7 +66,7 @@ const TabList = React.forwardRef<TabListRef, TabListProps>(
           nextPosition && TabListRef.current?.scrollTo({ left: nextPosition.x - firstGap, behavior: 'smooth' })
         }
       },
-      [tabRefs.current, tabFocused, TabListRef],
+      [tabFocused, TabListRef],
     )
 
     const handleScrollList = React.useCallback(

@@ -45,7 +45,7 @@ const FlexBox = React.forwardRef<FlexBoxNativeRef, FlexBoxProps>(
     )
 
     const gapIndex = (gap && typeof gap === 'number' && gap) || (gap && gap?.mobile) || 0
-    const realGap = React.useMemo(() => (typeof gap === 'undefined' ? 8 : ColumnsGapValue[gapIndex]), [gap])
+    const realGap = React.useMemo(() => (typeof gap === 'undefined' ? 8 : ColumnsGapValue[gapIndex]), [gap, gapIndex])
 
     const styles = memoStyles({
       columns: {

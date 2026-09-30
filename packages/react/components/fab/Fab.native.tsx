@@ -8,8 +8,6 @@ import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
 import { TypographyBold } from '@/interfaces/TypographyBold'
 import { TypographyColor } from '@/interfaces/TypographyColor'
-import { getRadiusStyle } from '@/helpers/radius'
-import { Radius } from '@/interfaces/Radius'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
