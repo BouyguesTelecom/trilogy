@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { CSSProperties, forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ImageProps, ImageRef } from '@/components/image/ImageProps'
 import { getJustifiedClassName } from '@/helpers/justifiable'
@@ -24,7 +24,7 @@ import { getJustifiedClassName } from '@/helpers/justifiable'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param cache {ImageCache} Caching strategy for the image
  */
-const Image = React.forwardRef<ImageRef, ImageProps>(
+const Image = forwardRef<ImageRef, ImageProps>(
   (
     { src, alt = '', className, id, circled, width, height, onClick, radius, align, testId, ...others },
     ref,
@@ -32,7 +32,7 @@ const Image = React.forwardRef<ImageRef, ImageProps>(
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('image', className, align && is(getJustifiedClassName(align))))
 
-    const styles: React.CSSProperties | any = {
+    const styles: CSSProperties | any = {
       image: {
         width: width,
         height: height,

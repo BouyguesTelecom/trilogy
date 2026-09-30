@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { render } from '@testing-library/react'
 import Table from '@/components/table/Table'
 import TableHead from '@/components/table/head'
@@ -134,7 +133,7 @@ describe('Table component', () => {
         </TableBody>
       </Table>,
     )
-      expect(container.firstChild).toHaveClass('has-border-all')
+    expect(container.firstChild).toHaveClass('has-border-all')
   })
 
   it('applies the comparative class when the prop is set', () => {

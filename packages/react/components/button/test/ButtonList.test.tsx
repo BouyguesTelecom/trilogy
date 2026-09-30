@@ -1,5 +1,4 @@
 // Dependencies
-import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 import { Button, ButtonList } from '@/components/button'
 

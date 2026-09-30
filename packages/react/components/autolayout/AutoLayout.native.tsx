@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import { autoLayoutChildrenHandler, parseChildren } from '@/components/autolayout/AutoLayout.helpers'
 import { AutoLayoutProps } from '@/components/autolayout/AutoLayoutProps'
 import { DEFAULT_SPACING_MATRIX } from '@/components/autolayout/DefaultSpacingMatrix'

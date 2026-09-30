@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react'
-import * as React from 'react'
 import Card from '@/components/card/Card'
 import CardContent from '@/components/card/content'
 

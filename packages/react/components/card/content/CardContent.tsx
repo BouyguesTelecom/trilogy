@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { CardContentProps, CardContentRef } from '@/components/card/content/CardContentProps'
 
 /**
@@ -13,11 +13,17 @@ import { CardContentProps, CardContentRef } from '@/components/card/content/Card
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const CardContent = React.forwardRef<CardContentRef, CardContentProps>(
+const CardContent = forwardRef<CardContentRef, CardContentProps>(
   ({ children, className, id, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     return (
-      <div data-testid={testId} ref={ref} id={id} className={hashClass(styled, clsx('card-content', className))} {...others}>
+      <div
+        data-testid={testId}
+        ref={ref}
+        id={id}
+        className={hashClass(styled, clsx('card-content', className))}
+        {...others}
+      >
         {children}
       </div>
     )

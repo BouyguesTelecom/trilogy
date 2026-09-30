@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid, isIOS } from '@/helpers/device.native'
-import * as React from 'react'
+import { forwardRef, useCallback, useState } from 'react'
 import { ScrollViewNativeRef, ScrollViewProps } from '@/components/scroll-view/ScrollViewProps'
 import { getColorStyle } from '@/helpers/color'
 import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
@@ -19,7 +19,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param refreshControlColor {TrilogyColor} Color of the refresh control indicator
  * @param onRefresh {Function} Callback when user triggers a refresh
  */
-const ScrollView = React.forwardRef<ScrollViewNativeRef, ScrollViewProps>(
+const ScrollView = forwardRef<ScrollViewNativeRef, ScrollViewProps>(
   (
     {
       children,
@@ -35,13 +35,13 @@ const ScrollView = React.forwardRef<ScrollViewNativeRef, ScrollViewProps>(
     },
     ref,
   ): JSX.Element => {
-    const [refreshing, setRefreshing] = React.useState(false)
+    const [refreshing, setRefreshing] = useState(false)
 
     const wait = (timeout: number) => {
       return new Promise((resolve) => setTimeout(resolve, timeout))
     }
 
-    const onRefreshing = React.useCallback(() => {
+    const onRefreshing = useCallback(() => {
       setRefreshing(true)
       wait(2000).then(() => setRefreshing(false))
     }, [])

@@ -4,7 +4,6 @@ declare module '*.scss' {
 }
 
 declare module 'react-native-safe-area-context' {
-  import * as React from 'react'
   export interface EdgeInsets {
     top: number
     right: number

@@ -4,7 +4,7 @@ import { getAlignStyle } from '@/helpers/alignable'
 import { ViewNativeRef, ViewProps } from '@/components/view/ViewProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { TrilogyColor } from '@/interfaces/Color'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ImageBackground, TouchableOpacity, View as ViewNative } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 /**
@@ -21,7 +21,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param align {AlignableProps.center?} AlignableProps | "ALIGNED_CENTER" | "ALIGNED_START" | "ALIGNED_END" | undefined
  * @param bottom {boolean} Bottom position
  */
-const View = React.forwardRef<ViewNativeRef, ViewProps>(
+const View = forwardRef<ViewNativeRef, ViewProps>(
   (
     {
       children,

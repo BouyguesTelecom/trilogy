@@ -6,7 +6,7 @@ import {
   InputClickEvent,
   InputProps,
 } from '@/components/input/InputProps'
-import { CommonProps } from "@/interfaces/CommonProps";
+import { CommonProps } from "@/interfaces/CommonProps"
 
 /**
  * AutoComplete Interface

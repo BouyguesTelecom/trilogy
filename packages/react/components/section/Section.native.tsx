@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { SectionNativeRef, SectionProps } from '@/components/section/SectionProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -14,7 +14,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param inverted {boolean} Inverted Section Color
  * @param id {string} Custom id attribute
  */
-const Section = React.forwardRef<SectionNativeRef, SectionProps>(
+const Section = forwardRef<SectionNativeRef, SectionProps>(
   ({ backgroundColor, backgroundSrc, children, style, ...others }, ref): JSX.Element => {
     const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
 

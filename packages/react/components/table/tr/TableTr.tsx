@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 import { TableTrProps, TableTrRef } from '@/components/table/tr/TableTrProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -19,7 +19,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param color {TrilogyColor} Higlight color
  * @param ref {React.RefObject<HTMLTableRowElement>} Ref of the row
  */
-const TableTr = React.forwardRef<TableTrRef, TableTrProps>(
+const TableTr = forwardRef<TableTrRef, TableTrProps>(
   ({ className, id, expandable, expanded, expansion, color, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

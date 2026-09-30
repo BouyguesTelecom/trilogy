@@ -1,17 +1,17 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
 import {
   BoxTableContainerNativeRef,
   BoxTableContainerProps,
 } from '@/components/box/table-container/BoxTableContainerProps'
 import { View } from 'react-native'
+import { forwardRef } from 'react'
 
 /**
  * Box Table Component
  * @param children {React.ReactNode} Children
  * @param testId {string} Test Id for Test Integration
  */
-const boxTableContainer = React.forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(
+const boxTableContainer = forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
     return (
       <View ref={ref} {...others} testID={testId}>

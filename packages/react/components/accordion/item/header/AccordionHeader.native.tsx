@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import React from 'react'
 import { View } from 'react-native'
 import { AccordionHeaderNativeRef, AccordionHeaderProps } from '@/components/accordion/item/header/AccordionHeaderProps'
 import { memoStyles } from '@/helpers/memoStyles'

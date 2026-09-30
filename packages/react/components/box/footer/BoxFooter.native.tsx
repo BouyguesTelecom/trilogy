@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
-import { BoxContext } from '@/components/box/context/boxContext'
 import { BoxFooterNativeRef, BoxFooterProps } from '@/components/box/footer/BoxFooterProps'
 import { getColorStyle } from '@/helpers/color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
+import { BoxContext } from '@/components/box/context/boxContext'
+import { forwardRef, useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
@@ -15,10 +15,10 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
+const BoxFooter = forwardRef<BoxFooterNativeRef, BoxFooterProps>(
   ({ children, backgroundColor, testId, ...others }, ref): JSX.Element => {
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
-    const { highlighted } = React.useContext(BoxContext)
+    const { highlighted } = useContext(BoxContext)
 
     const styles = memoStyles({
       boxFooter: {

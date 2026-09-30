@@ -1,12 +1,12 @@
 import { BoxContentNativeRef, BoxContentProps } from '@/components/box/content/BoxContentProps'
+import { forwardRef, useContext } from 'react'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { memoStyles } from '@/helpers/memoStyles'
 import { getColorStyle } from '@/helpers/color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
 import { ImageBackground, Text, View } from 'react-native'
-import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Box Content
@@ -16,9 +16,9 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
+const BoxContent = forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
-    const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = React.useContext(BoxContext)
+    const { fullHeight, highlighted, header, numberOfContent, setNumberOfContent } = useContext(BoxContext)
     const borderSmallRadius = getRadiusStyle(Radius.SMALL)
 
     const styles = memoStyles({

@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { Children, forwardRef, isValidElement, MutableRefObject, ReactNode, useEffect, useRef } from 'react'
 import { DropdownProvider, useDropdownContext } from '@/components/dropdown/context'
 import { DropdownProps, DropdownRef } from '@/components/dropdown/DropdownProps'
 import DropdownTrigger from '@/components/dropdown/trigger/DropdownTrigger'
@@ -11,19 +11,19 @@ import DropdownTrigger from '@/components/dropdown/trigger/DropdownTrigger'
 /**
  * Internal Dropdown Content Component that uses the context
  */
-const DropdownContent = React.forwardRef<DropdownRef, Omit<DropdownProps, 'defaultOpen' | 'onToggle'>>(
+const DropdownContent = forwardRef<DropdownRef, Omit<DropdownProps, 'defaultOpen' | 'onToggle'>>(
   ({ children, className, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const dropdownRef = React.useRef<HTMLDivElement>(null)
-    const menuRef = React.useRef<HTMLDivElement>(null)
+    const dropdownRef = useRef<HTMLDivElement>(null)
+    const menuRef = useRef<HTMLDivElement>(null)
 
-    const hasDropdownTrigger = React.Children.toArray(children).some(
-      (child) => React.isValidElement(child) && child.type === DropdownTrigger,
+    const hasDropdownTrigger = Children.toArray(children).some(
+      (child) => isValidElement(child) && child.type === DropdownTrigger,
     )
 
     const { isOpen } = useDropdownContext()
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (!isOpen || !dropdownRef.current || !menuRef.current) return
 
       const dropdown = dropdownRef.current
@@ -51,12 +51,12 @@ const DropdownContent = React.forwardRef<DropdownRef, Omit<DropdownProps, 'defau
       clsx('dropdown', isOpen && is('active'), !hasDropdownTrigger && 'dropdown-manual', className),
     )
 
-    const triggerChildren: React.ReactNode[] = []
-    const contentChildren: React.ReactNode[] = []
+    const triggerChildren: ReactNode[] = []
+    const contentChildren: ReactNode[] = []
 
     if (hasDropdownTrigger) {
-      React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child) && child.type === DropdownTrigger) {
+      Children.forEach(children, (child) => {
+        if (isValidElement(child) && child.type === DropdownTrigger) {
           triggerChildren.push(child)
         } else {
           contentChildren.push(child)
@@ -68,12 +68,12 @@ const DropdownContent = React.forwardRef<DropdownRef, Omit<DropdownProps, 'defau
       <div
         ref={(node) => {
           if (dropdownRef.current !== node) {
-            ;(dropdownRef as React.MutableRefObject<HTMLDivElement | null>).current = node
+            ;(dropdownRef as MutableRefObject<HTMLDivElement | null>).current = node
           }
           if (typeof ref === 'function') {
             ref(node)
           } else if (ref) {
-            ;(ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+            ;(ref as MutableRefObject<HTMLDivElement | null>).current = node
           }
         }}
         className={classes}
@@ -99,10 +99,10 @@ const DropdownContent = React.forwardRef<DropdownRef, Omit<DropdownProps, 'defau
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
+const Dropdown = forwardRef<DropdownRef, DropdownProps>(
   ({ children, isActive, defaultOpen, onToggle, className, testId, ...others }, ref): JSX.Element => {
-    const hasDropdownTrigger = React.Children.toArray(children).some(
-      (child) => React.isValidElement(child) && child.type === DropdownTrigger,
+    const hasDropdownTrigger = Children.toArray(children).some(
+      (child) => isValidElement(child) && child.type === DropdownTrigger,
     )
     const useTrigger = defaultOpen !== undefined || onToggle !== undefined || hasDropdownTrigger
     const isManualMode = !useTrigger && isActive !== undefined

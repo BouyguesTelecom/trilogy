@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { StickerNativeRef, StickerProps } from '@/components/sticker/StickerProps'
 import { getRadiusStyle } from '@/helpers/radius'
 import { getColorStyle } from '@/helpers/color'
@@ -22,7 +22,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param label {string} Sticker label text
  * @param accessibilityLabel {string} Accessibility label
  */
-const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(
+const Sticker = forwardRef<StickerNativeRef, StickerProps>(
   ({ variant, small, outlined, label, iconName, accessibilityLabel, ...others }, ref): JSX.Element => {
     const defaultColor = getColorStyle(TrilogyColor.MAIN)
     const borderFullRadius = getRadiusStyle(Radius.FULL)

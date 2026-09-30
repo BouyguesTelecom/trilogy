@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ScrollViewProps, ScrollViewRef } from '@/components/scroll-view/ScrollViewProps'
 import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
@@ -23,7 +23,7 @@ import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
  * @param refreshControlColor {TrilogyColor} Color of the refresh control indicator
  * @param onRefresh {Function} Callback when user triggers a refresh
  */
-const ScrollView = React.forwardRef<ScrollViewRef, ScrollViewProps>(
+const ScrollView = forwardRef<ScrollViewRef, ScrollViewProps>(
   ({ id, scrollDirection, children, testId }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

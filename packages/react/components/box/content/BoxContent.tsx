@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/helpers/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import React from 'react'
 import { BoxContentProps, BoxContentRef } from '@/components/box/content/BoxContentProps'
 import { getBackgroundClassName } from '@/helpers/background'
 

@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import { SpacingMatrix } from '@/components/autolayout/SpacingMatrix'
 import { SpacerSize } from '@/components/spacer'
 

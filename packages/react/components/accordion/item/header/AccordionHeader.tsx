@@ -2,19 +2,19 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
 import { AccordionHeaderProps, AccordionHeaderRef } from '@/components/accordion/item/header/AccordionHeaderProps'
+import { forwardRef } from 'react'
 
 /**
  * Accordion Header
- * @param children {React.ReactNode} Header content
+ * @param children {ReactNode} Header content
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const AccordionHeader = React.forwardRef<AccordionHeaderRef, AccordionHeaderProps>(
-  ({ children, className, id, testId, ...others }, ref): React.JSX.Element => {
+const AccordionHeader = forwardRef<AccordionHeaderRef, AccordionHeaderProps>(
+  ({ children, className, id, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     return (

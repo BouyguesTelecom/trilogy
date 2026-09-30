@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { render } from '@testing-library/react'
 import Timeline from '@/components/timeline/Timeline'
 import TimelineItem from '@/components/timeline/item'
@@ -9,7 +8,7 @@ import TimelineContent from '@/components/timeline/content'
 describe('Timeline component', () => {
   it('renders without crashing', () => {
     const { container } = render(
-      <Timeline id="my-timeline-id">
+      <Timeline id='my-timeline-id'>
         <TimelineItem cancel>
           <TimelineMarker iconName={IconName.CHECK} />
           <TimelineContent

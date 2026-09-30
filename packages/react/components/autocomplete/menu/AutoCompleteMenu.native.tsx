@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { FlatList } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'

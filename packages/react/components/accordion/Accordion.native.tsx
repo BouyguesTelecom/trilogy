@@ -1,6 +1,6 @@
 import { AccordionNativeRef, AccordionProps } from '@/components/accordion/AccordionProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
@@ -13,7 +13,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param accessibilityLabel {string} Accessibility label
  * @param id {string} Custom id attribute
  */
-const Accordion = React.forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...others }, ref): JSX.Element => {
+const Accordion = forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...others }, ref): JSX.Element => {
   const styles = memoStyles({
     accordion: {
       width: '100%',

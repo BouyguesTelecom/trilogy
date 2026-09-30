@@ -1,5 +1,16 @@
 import clsx from 'clsx'
-import * as React from 'react'
+import {
+  ChangeEvent,
+  Children,
+  FocusEvent,
+  forwardRef,
+  isValidElement,
+  RefObject,
+  useCallback,
+  useEffect,
+  useId,
+  useState,
+} from 'react'
 
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
@@ -9,9 +20,9 @@ import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
-import { TypographyColor } from "@/interfaces/TypographyColor";
+import { TypographyColor } from '@/interfaces/TypographyColor'
 
-const SelectNative = React.forwardRef<SelectRef, SelectProps>(
+const SelectNative = forwardRef<SelectRef, SelectProps>(
   (
     {
       onChange,
@@ -37,26 +48,26 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const idHelp = React.useId()
-    const idSample = React.useId()
+    const idHelp = useId()
+    const idSample = useId()
 
-    const [focused, setIsFocused] = React.useState<boolean>(false)
-    const [selectedValues, setSelectedValues] = React.useState(selected)
+    const [focused, setIsFocused] = useState<boolean>(false)
+    const [selectedValues, setSelectedValues] = useState(selected)
     const selectClasses = hashClass(styled, clsx('select', className))
     const controlClass = hashClass(styled, clsx('control', iconName && 'has-icons-left'))
     const helpClasses = clsx('help', status && is(status))
 
-    const handleFocus = React.useCallback((e: ParamEventSelectFocus) => {
+    const handleFocus = useCallback((e: ParamEventSelectFocus) => {
       setIsFocused(true)
       onFocus && onFocus(e)
     }, [])
 
-    const handleBlur = React.useCallback((e: React.FocusEvent<HTMLSelectElement, Element>) => {
+    const handleBlur = useCallback((e: FocusEvent<HTMLSelectElement, Element>) => {
       setIsFocused(false)
       onBlur && onBlur(e)
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
       setSelectedValues(selected)
     }, [selected])
 
@@ -80,12 +91,12 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
           )}
           <div className={controlClass}>
             <select
-              ref={ref as React.RefObject<HTMLSelectElement>}
+              ref={ref as RefObject<HTMLSelectElement>}
               className={hashClass(styled, clsx(!label && 'no-label', status && is(status)))}
               value={selectedValues}
               aria-label={accessibilityLabel}
               data-testid={testId}
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => {
                 const selectedV = Array.from(e.target.selectedOptions).map((select) => select.value)
                 setSelectedValues(selectedV)
                 if (onChange) {
@@ -107,8 +118,8 @@ const SelectNative = React.forwardRef<SelectRef, SelectProps>(
               role='listbox'
               {...others}
             >
-              {React.Children.map(children, (child) => {
-                if (!React.isValidElement(child)) return null
+              {Children.map(children, (child) => {
+                if (!isValidElement(child)) return null
                 const props = {
                   ...child.props,
                   native: 'true',

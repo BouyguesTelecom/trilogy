@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet } from 'react-native'
 import { TableThNativeRef, TableThProps } from '@/components/table/th/TableThProps'
 import { View } from '@/components/view'
@@ -7,14 +7,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
 import { TypographyBold } from '@/interfaces/TypographyBold'
-import {} from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * TableTh Component
  * @param children {ReactNode} children of table TH
  */
-const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
+const TableTh = forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = memoStyles({
     tableTh: {
       flexDirection: 'column',

@@ -1,11 +1,11 @@
 'use client'
 
-import * as React from 'react'
+import { ReactNode, useState } from 'react'
 import versionJSON from '@/version.json'
 import { TrilogyContext } from '@/context'
 
 interface TrilogyProviderStyledProps {
-  children: React.ReactNode
+  children: ReactNode
   mangled?: boolean
   hash?: string
 }
@@ -21,8 +21,8 @@ const TrilogyProviderStyled = ({
   mangled = false,
   hash: HASH = versionJSON.VERSION,
 }: TrilogyProviderStyledProps): JSX.Element => {
-  const [styled, setStyled] = React.useState<boolean>(mangled)
-  const [hash, setHash] = React.useState<string | undefined>(HASH)
+  const [styled, setStyled] = useState<boolean>(mangled)
+  const [hash, setHash] = useState<string | undefined>(HASH)
 
   return <TrilogyContext.Provider value={{ styled, setStyled, hash, setHash }}>{children}</TrilogyContext.Provider>
 }

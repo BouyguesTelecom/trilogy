@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import React from 'react'
 import { View } from 'react-native'
 import { AccordionBodyNativeRef, AccordionBodyProps } from '@/components/accordion/item/body/AccordionBodyProps'
 

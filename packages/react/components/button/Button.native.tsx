@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { View } from '@/components/view'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ButtonVariant } from '@/components/button/ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from '@/components/button/ButtonProps'
 import { getButtonColorStyle, getColorStyle } from '@/helpers/color'
@@ -27,7 +27,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param testId {string} Test Id for Test Integration
  * @param iconName {IconName} Icon displayed inside the button
  */
-const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
+const Button = forwardRef<ButtonNativeRef, ButtonProps>(
   (
     { children, variant, onClick, disabled, loading, fullwidth, testId, accessibilityLabel, iconName, ...others },
     ref,

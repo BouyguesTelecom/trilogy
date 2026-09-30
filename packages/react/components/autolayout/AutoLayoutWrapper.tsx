@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import AutoLayout from '@/components/autolayout/AutoLayout'
 import type { SpacingMatrix } from '@/components/autolayout/SpacingMatrix'

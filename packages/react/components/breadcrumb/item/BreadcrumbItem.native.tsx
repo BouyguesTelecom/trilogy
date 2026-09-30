@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text } from '@/components/text'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native'
 import { BreadcrumbItemNativeRef, BreadcrumbItemProps } from '@/components/breadcrumb/item/BreadcrumbItemProps'
-import { getColorStyle } from "@/helpers/color";
-import { TrilogyColor } from "@/interfaces/Color";
-import { TypographyBold } from "@/interfaces/TypographyBold";
+import { getColorStyle } from '@/helpers/color'
+import { TrilogyColor } from '@/interfaces/Color'
+import { TypographyBold } from '@/interfaces/TypographyBold'
 
 /**
  * Breadcrumb Item Component
@@ -16,7 +16,7 @@ import { TypographyBold } from "@/interfaces/TypographyBold";
  * @param onClick {Function} Click Event
  * @param testId {string} Test Id for Test Integration
  */
-const BreadcrumbItem = React.forwardRef<BreadcrumbItemNativeRef, BreadcrumbItemProps>(
+const BreadcrumbItem = forwardRef<BreadcrumbItemNativeRef, BreadcrumbItemProps>(
   ({ children, active, to, testId, onClick, ...others }, ref): JSX.Element => {
     const { textStyle } = StyleSheet.create({
       textStyle: {

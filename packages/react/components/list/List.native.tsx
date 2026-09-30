@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { ListNativeRef, ListProps } from '@/components/list/ListProps'
 import { ListContext } from '@/components/list/context'
-import * as React from 'react'
+import { forwardRef, useState } from 'react'
 import { View } from 'react-native'
 
 /**
@@ -12,19 +12,20 @@ import { View } from 'react-native'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const List = React.forwardRef<ListNativeRef, ListProps>(({ children, ordered = false, divider = false, testId, ...others }, ref): JSX.Element => {
-  const [chilIndexes, setChildIndexes] = React.useState<string[]>([])
+const List = forwardRef<ListNativeRef, ListProps>(
+  ({ children, ordered = false, divider = false, testId, ...others }, ref): JSX.Element => {
+    const [chilIndexes, setChildIndexes] = useState<string[]>([])
 
-  return (
-    <ListContext.Provider value={{ ordered, divider, chilIndexes, setChildIndexes }}>
-      <View ref={ref} testID={testId} {...others}>
-        {children}
-      </View>
-    </ListContext.Provider>
-  )
-})
+    return (
+      <ListContext.Provider value={{ ordered, divider, chilIndexes, setChildIndexes }}>
+        <View ref={ref} testID={testId} {...others}>
+          {children}
+        </View>
+      </ListContext.Provider>
+    )
+  },
+)
 
 List.displayName = ComponentName.List
 
 export default List
-
