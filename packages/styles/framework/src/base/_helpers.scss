@@ -445,9 +445,9 @@ $radius-list: (
   'radius': 'radius-sm',
 );
 
-@each $label in $radius-list {
+@each $label, $radius in $radius-list {
   .has-border-#{$label} {
-    border-radius: var(--#{map-get($radius-list, $label)});
+    border-radius: var(--#{$radius});
   }
 }
 
