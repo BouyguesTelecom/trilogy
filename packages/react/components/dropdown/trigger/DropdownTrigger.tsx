@@ -1,4 +1,4 @@
-import { Children, cloneElement, forwardRef, isValidElement, MouseEvent, ReactElement } from 'react'
+import { Children, cloneElement, forwardRef, isValidElement, MouseEvent, ReactElement, ReactNode } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -10,7 +10,7 @@ import { DropdownTriggerProps, DropdownTriggerRef } from '@/components/dropdown/
  * DropdownTrigger Component
  * Wrapper component that makes its children clickable to trigger dropdown toggle
  * Automatically manages the dropdown state when used within a DropdownProvider
- * @param children {React.ReactNode} Children - The trigger element (Button, etc.)
+ * @param children {ReactNode} Children - The trigger element (Button, etc.)
  * @param onClick {Function} Optional additional click handler
  * @param className {string} Additional CSS classes
  * @param testId {string} Test ID

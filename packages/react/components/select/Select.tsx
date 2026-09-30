@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from 'react'
+import { forwardRef, ReactNode, useEffect, useState } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SelectContext } from '@/components/select/context'
 import { SelectedValue, SelectProps, SelectRef } from '@/components/select/SelectProps'
@@ -9,7 +9,7 @@ import { SelectDynamic, SelectNative } from '@/components/select/web'
  * @param id {string} Select id
  * @param name {string} Select name
  * @param selected {string} Selected value
- * @param children {React.ReactNode} Children for Select
+ * @param children {ReactNode} Children for Select
  * @param label {string} label for select
  * @param iconName {IconName} icon for left of selector
  * @param onChange {Function} onChange Event

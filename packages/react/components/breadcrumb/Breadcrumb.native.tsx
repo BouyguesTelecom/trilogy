@@ -1,12 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import { Children, cloneElement, forwardRef, useMemo } from 'react'
+import { Children, cloneElement, forwardRef, ReactNode, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { BreadcrumbNativeRef, BreadcrumbProps } from '@/components/breadcrumb/BreadcrumbProps'
 
 /**
  * Breadcrumb Component
- * @param children {React.ReactNode} Breadcrumb Children
+ * @param children {ReactNode} Breadcrumb Children
  * @param testId {string} Test id
  * @param id {string} Custom id attribute
  */

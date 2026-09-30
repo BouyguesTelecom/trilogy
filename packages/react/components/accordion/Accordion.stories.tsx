@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import AccordionComponent from '@/components/accordion/Accordion'
 import type { AccordionProps } from '@/components/accordion/AccordionProps'
 import AccordionItem from '@/components/accordion/item'

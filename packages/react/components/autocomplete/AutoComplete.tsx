@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { FocusEvent, useEffect, useState } from 'react'
+import { FocusEvent, ForwardedRef, forwardRef, KeyboardEvent, Ref, useEffect, useState } from 'react'
 import { Input } from '@/components/input'
 import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
@@ -43,7 +43,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     testId,
     ...others
   }: AutoCompletePropsWeb<T>,
-  ref: React.Ref<HTMLInputElement>,
+  ref: Ref<HTMLInputElement>,
 ): JSX.Element => {
   const { styled } = useTrilogyContext()
 
@@ -179,7 +179,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         onIconClick={onIconClick}
         loading={loading}
         data-testid={testId}
-        {...{ onKeyDown: (e: React.KeyboardEvent) => e.key === 'Enter' && e.preventDefault(), ...others }}
+        {...{ onKeyDown: (e: KeyboardEvent) => e.key === 'Enter' && e.preventDefault(), ...others }}
       />
 
       {isAutocompleteMenuVisible && (
@@ -241,8 +241,8 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
  * @param accessibilityLabel {string} Accessibility label
  */
-const AutoComplete = React.forwardRef(AutoCompleteRef) as <T>(
-  props: AutoCompletePropsWeb<T> & { ref?: React.ForwardedRef<AutocompleteRef> },
+const AutoComplete = forwardRef(AutoCompleteRef) as <T>(
+  props: AutoCompletePropsWeb<T> & { ref?: ForwardedRef<AutocompleteRef> },
 ) => JSX.Element
 
 export default AutoComplete

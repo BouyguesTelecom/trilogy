@@ -9,11 +9,11 @@ import { TrilogyColor } from '@/interfaces/Color'
 import { StatusState } from '@/interfaces/Status'
 import { getStatusClassName } from '@/helpers/status'
 import { getVariantClassName } from '@/helpers/variant'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 
 /**
  * Badge Component
- * @param children {React.ReactNode} Content inside the badge (e.g. Icon)
+ * @param children {ReactNode} Content inside the badge (e.g. Icon)
  * @param label {string|number} Badge content text
  * @param inverted {boolean} Inverted style for Badge
  * @param status {StatusState} Badge status variant (INFO|SUCCESS|WARNING|ERROR)

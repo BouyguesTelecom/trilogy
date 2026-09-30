@@ -4,7 +4,7 @@ import { RadioTileNativeProps, RadioTileNativeRef } from '@/components/radio/til
 import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { forwardRef, useCallback, useContext, useMemo, useState } from 'react'
 import { RadioTilesContext } from '@/components/radio/tiles/context'
 import { VariantState } from '@/interfaces/Variant'
 import { getColorStyle } from '@/helpers/color'
@@ -33,7 +33,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param sticker {string} sticker label
  * @param stickerVariant {VariantState} Sticker variant
  */
-const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
+const RadioTile = forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
   (
     {
       checked,

@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react'
-import React from 'react'
 
 import Hero from '@/components/hero/Hero'
 import { VariantState } from "@/interfaces/Variant";

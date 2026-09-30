@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
@@ -11,7 +11,7 @@ import { TrilogyColor } from '@/interfaces/Color'
 
 /**
  * ListItem Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param iconName {IconName} Icon name
  * @param status {ListIconStatus} Status success|error
  * @param testId {string} Test Id for Test Integration

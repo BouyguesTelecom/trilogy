@@ -6,7 +6,7 @@ import { useClickOutside } from '@/helpers/clickOutside'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, {
+import {
   forwardRef,
   KeyboardEvent,
   useCallback,
@@ -252,7 +252,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     }
 
     const handleKeyDownDay = useCallback(
-      (e: React.KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
+      (e: KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
         if (disabled) return
         const { segmentSetter, label, maxValue, initValue, segmentPosition, segment } = segments[type]
 
@@ -318,7 +318,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       setIsOpenCalendar(true)
     }
 
-    const handleChangeCalendar = React.useCallback(
+    const handleChangeCalendar = useCallback(
       (e: ChangeEventCalendar) => {
         const dateCalendar = e as Date
         const dateDay = dateCalendar.getDate()

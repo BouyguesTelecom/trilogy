@@ -6,7 +6,7 @@ import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { View } from '@/components/view'
 import { memoStyles } from '@/helpers/memoStyles'
-import { forwardRef, FC } from 'react'
+import { FC, forwardRef } from 'react'
 import { TouchableOpacity } from 'react-native'
 import LibToast from 'react-native-toast-message'
 import { Row, Rows } from '@/components/rows'
@@ -185,7 +185,7 @@ export const ToasterAlert: FC<{ props: ToasterStatusProps }> = ({ props }) => {
 
 /**
  * Toaster provider
- * @param children {React.ReactNode} Custom Toast Content
+ * @param children {ReactNode} Custom Toast Content
  * @param duration {number} Duration in MS (Default: 5000)
  * @param offset {number} Offset position margin (Default: 10 dp)
  * @param others

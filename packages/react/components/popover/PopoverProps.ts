@@ -14,7 +14,7 @@ import { CommonProps } from "@/interfaces/CommonProps"
  * Popover Interface
  */
 export interface PopoverProps {
-  children: React.ReactNode
+  children: ReactNode
   direction?: PopoverDirection | PopoverDirectionValues
   active?: boolean
   arrowPosition?: PopoverArrowPosition | PopoverArrowPositionValues

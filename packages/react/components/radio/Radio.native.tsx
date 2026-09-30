@@ -1,13 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioNativeProps, RadioNativeRef } from '@/components/radio/RadioProps'
 import { Text } from '@/components/text'
-import React from 'react'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
+import { forwardRef, useId } from 'react'
 
 /**
  * Radio Component
@@ -20,10 +20,10 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param name {string} Name for radio
  * @param value {string} Value for radio
  */
-const Radio = React.forwardRef<RadioNativeRef, RadioNativeProps>(
+const Radio = forwardRef<RadioNativeRef, RadioNativeProps>(
   ({ id, checked, name, onChange, disabled, readonly, label, value }, ref): JSX.Element => {
     const borderFullRadius = getRadiusStyle(Radius.FULL)
-    const generatedId = React.useId()
+    const generatedId = useId()
     const styles = memoStyles({
       container: {
         flexDirection: 'row',

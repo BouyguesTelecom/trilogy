@@ -1,9 +1,10 @@
 import { View } from 'react-native'
 import { Dev } from "@/interfaces/Dev"
 import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 export interface ContainerProps extends CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   medium?: boolean
 }
 

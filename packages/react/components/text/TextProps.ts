@@ -8,6 +8,7 @@ import { Accessibility } from '@/interfaces/Accessibility'
 import { Dev } from '@/interfaces/Dev'
 import { Invertable } from '@/interfaces/Invertable'
 import { CommonProps } from '@/interfaces/CommonProps'
+import { ReactNode } from 'react'
 
 type Styles = { [key: string]: any }
 
@@ -26,7 +27,7 @@ type Typo =
  */
 export interface TextProps extends Invertable, Accessibility, Dev, CommonProps {
   level?: TextLevels | TextLevelValues
-  children?: React.ReactNode
+  children?: ReactNode
   typo?: Typo | string[]
   markup?: TextMarkup | TextMarkupValues
   style?: Styles

@@ -1,6 +1,6 @@
 
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
-import { type ChangeEvent, FocusEventHandler, ReactNode } from 'react'
+import { BaseSyntheticEvent, ChangeEvent, FocusEventHandler, FormEvent, MouseEvent, ReactNode, type ChangeEvent } from 'react'
 import { IconName, IconNameValues } from '@/components/icon'
 import {
   InputAutoCapitalize,
@@ -43,7 +43,7 @@ export interface InputKeyboardEvent {
   inputName: string
   inputValue: string
   inputKeyCode: number
-  target?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
+  target?: ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
   preventDefault: () => void
 }
 
@@ -52,7 +52,7 @@ export type InputKeyboardEventHandler = (event: InputKeyboardEvent) => void
 export interface InputClickEvent {
   inputName: string
   inputValue: string
-  target?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
+  target?: ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
 }
 
 export type InputClickEventHandler = (event: InputClickEvent) => void
@@ -61,7 +61,7 @@ export interface InputNativeEvents {
   onClick?: InputClickEventHandler
   onIconClick?: InputClickEventHandler
   onChange?: InputChangeEventHandlerNative
-  onFocus?: (event: React.BaseSyntheticEvent) => void
+  onFocus?: (event: BaseSyntheticEvent) => void
   onBlur?: (event: unknown) => void
 }
 
@@ -105,10 +105,10 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   textContentType?: InputTextContentType | InputTextContentTypeValues
   keyboardType?: InputKeyboardType | InputKeyboardTypeValues
   forceControl?: boolean
-  onMouseEnter?: (event: React.MouseEvent) => void
-  onMouseLeave?: (event: React.MouseEvent) => void
+  onMouseEnter?: (event: MouseEvent) => void
+  onMouseLeave?: (event: MouseEvent) => void
   keyType?: KeyType
-  onSubmit?: (event: NativeSyntheticEvent<TextInputSubmitEditingEventData> | React.FormEvent<HTMLInputElement>) => void
+  onSubmit?: (event: NativeSyntheticEvent<TextInputSubmitEditingEventData> | FormEvent<HTMLInputElement>) => void
   minLength?: number
   maxLength?: number
   securityGauge?: boolean

@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { StatesContext } from '@/context/providerStates'
-import React, { useContext, useMemo } from 'react'
+import { forwardRef, ReactNode, useContext, useMemo } from 'react'
 import { PriceLevel } from '@/components/price/PriceEnum'
 import { checkCents } from '@/components/price/PriceHelpers'
 import { PriceNativeRef, PriceProps } from '@/components/price/PriceProps'
@@ -23,13 +23,13 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param hideCents {boolean} Hide cents from displayed price
  * @param level {PriceLevel} Price custom size
  * @param inverted {boolean} Inverted Price Color
- * @param children {React.ReactNode} Price child elements
+ * @param children {ReactNode} Price child elements
  * @param align {Alignable} Price alignment
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Price = React.forwardRef<PriceNativeRef, PriceProps>(
+const Price = forwardRef<PriceNativeRef, PriceProps>(
   (
     {
       amount,

@@ -3,13 +3,13 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef, KeyboardEvent, MouseEvent, RefObject } from 'react'
+import { forwardRef, KeyboardEvent, MouseEvent, ReactNode, RefObject } from 'react'
 import { Icon, IconSize } from '@/components/icon'
 import { DropdownItemProps, DropdownItemRef } from '@/components/dropdown/item/DropdownItemProps'
 
 /**
  * DropdownItem Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param iconName {string} Icon displayed on the left of the text
  * @param active {boolean} Active/selected item state
  * @param disabled {boolean} Disabled item state

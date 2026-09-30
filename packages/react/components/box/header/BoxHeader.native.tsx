@@ -6,13 +6,13 @@ import { getRadiusStyle } from '@/helpers/radius'
 import { TrilogyColor } from '@/interfaces/Color'
 import { Radius } from '@/interfaces/Radius'
 import { BoxContext } from '@/components/box/context/boxContext'
-import { forwardRef, useContext } from 'react'
+import { forwardRef, ReactNode, useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Box Header Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param variant {TrilogyColor} Box Header backgroundColor
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration

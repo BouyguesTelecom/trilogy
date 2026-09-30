@@ -1,5 +1,5 @@
 import { Text } from '@/components/text'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
 import { TypographyAlign } from '@/interfaces/TypographyAlign'
 import { TypographyColor } from '@/interfaces/TypographyColor'

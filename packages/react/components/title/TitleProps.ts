@@ -10,6 +10,7 @@ import { TypographyBold, TypographyBoldValues } from '@/interfaces/TypographyBol
 import { TypographyColor, TypographyColorValues } from '@/interfaces/TypographyColor'
 import { TypographyTransform, TypographyTransformValues } from '@/interfaces/TypographyTransform'
 import { CommonProps } from '@/interfaces/CommonProps'
+import { ReactNode } from 'react'
 
 type Styles = { [key: string]: unknown }
 
@@ -17,7 +18,7 @@ type Styles = { [key: string]: unknown }
  * Title Interface
  */
 export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   level?: TitleLevelValues | TitleLevels
   typo?:
     | TypographyColor

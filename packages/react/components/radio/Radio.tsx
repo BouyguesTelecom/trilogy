@@ -2,8 +2,8 @@ import { RadioProps, RadioRef } from '@/components/radio/RadioProps'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
+import { forwardRef, useId } from 'react'
 
 /**
  * Radio Component
@@ -20,12 +20,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param className {string} Additional CSS Classes
  * @param required {boolean} Required radio
  */
-const Radio = React.forwardRef<RadioRef, RadioProps>(
+const Radio = forwardRef<RadioRef, RadioProps>(
   (
     { checked, className, disabled, readonly, id, label, onChange, name, value, required, testId, ...others },
     ref,
   ): JSX.Element => {
-    const generatedId = React.useId()
+    const generatedId = useId()
     const { styled } = useTrilogyContext()
 
     return (

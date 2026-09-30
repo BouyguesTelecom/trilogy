@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useTrilogyContext } from '@/context'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import { Item } from '@/components/autocomplete/AutoCompleteProps'

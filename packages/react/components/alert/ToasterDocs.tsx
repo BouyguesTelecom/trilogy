@@ -1,7 +1,7 @@
-import React from 'react'
 import { AlertMarkup } from '@/components/alert/AlertEnum'
 import { ToasterAlertFloat, ToasterAlertPosition } from '@/components/alert/AlertProps'
-import { StatusState } from "@/interfaces/Status"
+import { StatusState } from '@/interfaces/Status'
+import { ReactNode } from 'react'
 
 export interface ToasterDocsProps {
   title?: string
@@ -13,7 +13,7 @@ export interface ToasterDocsProps {
   offset?: number
   markup?: AlertMarkup
   closable?: boolean
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 function ToasterDocs(props: ToasterDocsProps): JSX.Element {

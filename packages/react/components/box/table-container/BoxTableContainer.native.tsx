@@ -4,11 +4,11 @@ import {
   BoxTableContainerProps,
 } from '@/components/box/table-container/BoxTableContainerProps'
 import { View } from 'react-native'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 
 /**
  * Box Table Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param testId {string} Test Id for Test Integration
  */
 const boxTableContainer = forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(

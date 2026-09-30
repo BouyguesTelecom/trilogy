@@ -1,5 +1,5 @@
 import { BoxContentNativeRef, BoxContentProps } from '@/components/box/content/BoxContentProps'
-import { forwardRef, useContext } from 'react'
+import { forwardRef, ReactNode, useContext } from 'react'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -10,7 +10,7 @@ import { ImageBackground, Text, View } from 'react-native'
 
 /**
  * Box Content
- * @param children {React.ReactNode} Box Content Children
+ * @param children {ReactNode} Box Content Children
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param backgroundSrc {string} Source of background Image
  * @param id {string} Custom id attribute

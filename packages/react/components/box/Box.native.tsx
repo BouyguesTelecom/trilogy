@@ -2,7 +2,7 @@ import { BoxNativeRef, BoxProps } from '@/components/box/BoxProps'
 import { BoxContext } from '@/components/box/context/boxContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import React, { useState } from 'react'
+import { forwardRef, ReactNode, type Ref, useState } from 'react'
 import { ImageBackground, Platform, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from '@/components/skeleton'
 import { getColorStyle } from '@/helpers/color'
@@ -13,7 +13,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Box Component
- * @param children {React.ReactNode} Box child
+ * @param children {ReactNode} Box child
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
  * @param backgroundColor {TrilogyColor} Box Content Background Color
@@ -28,7 +28,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param id {string} Custom id attribute
  * @param fullheight {boolean} Full height box
  */
-const Box = React.forwardRef<BoxNativeRef, BoxProps>(
+const Box = forwardRef<BoxNativeRef, BoxProps>(
   (
     {
       children,
@@ -130,7 +130,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
           }}
         >
           <TouchableOpacity
-            ref={ref as React.Ref<TouchableOpacity>}
+            ref={ref as Ref<TouchableOpacity>}
             onPress={(e?: unknown) => onClick?.(e)}
             style={[styles.box, !flat && styles.shadow, (others as any)?.style]}
             onLayout={(event) => {
@@ -168,7 +168,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         value={{ fullHeight: fullheight || false, highlighted, numberOfContent, header, setHeader, setNumberOfContent }}
       >
         <View
-          ref={ref as React.Ref<View>}
+          ref={ref as Ref<View>}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout
             setBoxHeight(height)

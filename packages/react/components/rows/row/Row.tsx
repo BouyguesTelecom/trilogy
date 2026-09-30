@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { RowProps, RowRef } from '@/components/rows/row/RowProps'
 import { is } from '@/helpers/classify'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -9,7 +9,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 /**
  * Rows Item Component
  * @param narrow {boolean} Align same elements horizontaly
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------
  *  @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute

@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import TabsComponent from '@/components/tabs/Tabs'
 import type { TabsProps } from '@/components/tabs/TabsProps'
 import TabList from '@/components/tabs/tab-list/TabList'
 import Tab from '@/components/tabs/tab-list/tab/Tab'
 import TabPanels from '@/components/tabs/tab-panels/TabPanels'
 import TabPanel from '@/components/tabs/tab-panels/tab-panel/TabPanel'
-import { Alignable } from "@/interfaces/Alignable";
+import { Alignable } from '@/interfaces/Alignable'
 
 TabsComponent.displayName = 'Tabs'
 TabList.displayName = 'TabList'

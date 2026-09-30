@@ -2,15 +2,15 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { BoxProps, BoxRef } from '@/components/box/BoxProps'
-import { getBackgroundClassName } from "@/helpers/background"
-import { getColorClassName } from "@/helpers/color"
+import { getBackgroundClassName } from '@/helpers/background'
+import { getColorClassName } from '@/helpers/color'
+import { CSSProperties, forwardRef, ReactNode, RefObject } from 'react'
 
 /**
  * Box Component
- * @param children {React.ReactNode} Box child
+ * @param children {ReactNode} Box child
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
  * @param backgroundColor {TrilogyColor} Box Content Background Color
@@ -29,7 +29,7 @@ import { getColorClassName } from "@/helpers/color"
  * @param href {string} Link href (renders box as anchor)
  * @param blank {boolean} Target blank when href is set
  */
-const Box = React.forwardRef<BoxRef, BoxProps>(
+const Box = forwardRef<BoxRef, BoxProps>(
   (
     {
       inverted,
@@ -75,14 +75,14 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
 
     const Tag = href ? 'a' : 'div'
 
-    const hoverStyle: React.CSSProperties = {
+    const hoverStyle: CSSProperties = {
       cursor: 'pointer',
     }
 
     return (
       <Tag
         data-testid={testId}
-        ref={ref as React.RefObject<HTMLAnchorElement> & React.RefObject<HTMLDivElement>}
+        ref={ref as RefObject<HTMLAnchorElement> & RefObject<HTMLDivElement>}
         id={id}
         style={onClick && { ...hoverStyle }}
         href={href}
@@ -91,7 +91,6 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
             target: '_blank',
           })}
         onClick={(e) => {
-
           onClick?.(e)
         }}
         className={classes}

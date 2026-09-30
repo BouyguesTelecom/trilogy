@@ -1,6 +1,6 @@
 import translation from '@trilogy-ds/locales/lib/input'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useId, useState } from 'react'
+import { forwardRef, KeyboardEvent, MouseEvent, useCallback, useEffect, useId, useState } from 'react'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -71,7 +71,7 @@ interface IconWrapper {
  * @param forceControl {boolean} Force the control of the input value
  * @param minLength {number} Input min length
  */
-const Input = React.forwardRef<InputRef, InputProp>(
+const Input = forwardRef<InputRef, InputProp>(
   (
     {
       forceControl,
@@ -159,7 +159,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       }),
     )
 
-    const onPressKey = useCallback((e: React.KeyboardEvent) => {
+    const onPressKey = useCallback((e: KeyboardEvent) => {
       const target = e.target as HTMLInputElement
       return {
         inputName: target.name,
@@ -278,12 +278,12 @@ const Input = React.forwardRef<InputRef, InputProp>(
             minLength={minLength}
             maxLength={maxLength}
             autoComplete={autoCompleteType}
-            onKeyUp={(e: React.KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e))}
-            onKeyPress={(e: React.KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e))}
+            onKeyUp={(e: KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e))}
+            onKeyPress={(e: KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e))}
             onMouseEnter={(e) => onMouseEnter?.(e)}
             onMouseLeave={(e) => onMouseLeave?.(e)}
             placeholder={placeholder}
-            onClick={(e: React.MouseEvent<Element>) => {
+            onClick={(e: MouseEvent<Element>) => {
               const target = e.target as HTMLFormElement
               if (onClick) {
                 onClick({

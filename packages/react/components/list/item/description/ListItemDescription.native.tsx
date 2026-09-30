@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { Text } from '@/components/text'
 import { View } from '@/components/view'
 import {
@@ -9,7 +9,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * ListItemDescription Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  */
 const ListItemDescription = forwardRef<ListItemDescriptionNativeRef, ListItemDescriptionProps>(
   ({ children }, ref): JSX.Element => {

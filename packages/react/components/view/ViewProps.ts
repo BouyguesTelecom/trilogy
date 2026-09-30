@@ -6,6 +6,7 @@ import { Dev } from "@/interfaces/Dev"
 import { Fullwidth } from "@/interfaces/Fullwidth"
 import { JustifiableProps } from "@/interfaces/Justifiable"
 import { Loadable } from "@/interfaces/Loadable"
+import { ReactNode } from 'react'
 
 type Styles = { [key: string]: any }
 
@@ -43,7 +44,7 @@ export interface ViewProps
     BackgroundProps,
     Accessibility,
     Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   className?: string
   style?: Styles
   flexable?: boolean

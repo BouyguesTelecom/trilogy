@@ -92,7 +92,7 @@ DropdownContent.displayName = 'DropdownContent'
 
 /**
  * Dropdown Component - Wrapper for dropdown menu with automatic state management
- * @param children {React.ReactNode} Children (DropdownTrigger, DropdownItem and DropdownGroup)
+ * @param children {ReactNode} Children (DropdownTrigger, DropdownItem and DropdownGroup)
  * @param isActive {boolean} Dropdown active/open state (for manual control)
  * @param defaultOpen {boolean} Initial open state (for automatic control)
  * @param onToggle {Function} Callback when dropdown open state changes

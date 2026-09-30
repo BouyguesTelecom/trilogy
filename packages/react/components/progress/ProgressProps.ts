@@ -2,12 +2,13 @@ import { View } from 'react-native'
 import { StatusProps } from "@/interfaces/Status"
 import { CommonProps } from "@/interfaces/CommonProps"
 import { Dev } from "@/interfaces/Dev"
+import { ReactNode } from 'react'
 
 /**
  * Progress Interface
  */
 export interface ProgressProps extends StatusProps, CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   value?: number
   max?: number
   small?: boolean

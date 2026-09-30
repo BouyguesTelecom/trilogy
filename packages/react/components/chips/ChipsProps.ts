@@ -4,12 +4,13 @@ import { Accessibility } from "@/interfaces/Accessibility"
 import { Clickable } from "@/interfaces/Clickable"
 import { CommonProps } from "@/interfaces/CommonProps"
 import { Dev } from "@/interfaces/Dev"
+import { ReactNode } from 'react'
 
 /**
  * Chips Interface
  */
 export interface ChipsProps extends Clickable, Accessibility, Dev, CommonProps {
-  children: string | React.ReactNode
+  children: string | ReactNode
   onClick?: ClickEvent
   active?: boolean
   disabled?: boolean

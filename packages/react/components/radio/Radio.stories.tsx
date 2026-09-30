@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import { ReactNode } from 'react'
 import RadioComponent from '@/components/radio/Radio'
 import type { RadioProps } from '@/components/radio/RadioProps'
 import RadioList from '@/components/radio/list/RadioList'
@@ -8,7 +8,7 @@ import type { RadioListWebProps } from '@/components/radio/list/RadioListProps'
 RadioComponent.displayName = 'Radio'
 RadioList.displayName = 'RadioList'
 
-const Radio = (props: RadioProps & { children?: React.ReactNode }): JSX.Element => <RadioComponent {...props} />
+const Radio = (props: RadioProps & { children?: ReactNode }): JSX.Element => <RadioComponent {...props} />
 Radio.displayName = 'Radio'
 
 interface RadioStoryArgs extends RadioProps, Omit<RadioListWebProps, 'children'> {

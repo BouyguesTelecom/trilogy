@@ -1,22 +1,24 @@
 import { ContainerNativeRef, ContainerProps } from '@/components/container/ContainerProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer/SpacerEnum'
-import React from 'react'
+import { forwardRef } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 /**
  * Container Component
- * @param children {React.ReactNode} Container child elements
+ * @param children {ReactNode} Container child elements
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Container = React.forwardRef<ContainerNativeRef, ContainerProps>(({ children, testId, ...others }, ref): JSX.Element => {
-  return (
-    <View  testID={testId} ref={ref} style={styles.container} {...others}>
-      {children}
-    </View>
-  )
-})
+const Container = forwardRef<ContainerNativeRef, ContainerProps>(
+  ({ children, testId, ...others }, ref): JSX.Element => {
+    return (
+      <View testID={testId} ref={ref} style={styles.container} {...others}>
+        {children}
+      </View>
+    )
+  },
+)
 
 Container.displayName = ComponentName.Container
 export default Container

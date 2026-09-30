@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid, isIOS } from '@/helpers/device.native'
-import { forwardRef, useCallback, useState } from 'react'
+import { forwardRef, ReactNode, useCallback, useState } from 'react'
 import { ScrollViewNativeRef, ScrollViewProps } from '@/components/scroll-view/ScrollViewProps'
 import { getColorStyle } from '@/helpers/color'
 import { ScrollDirectionEnum } from '@/interfaces/ScrollDirection'
@@ -9,10 +9,10 @@ import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * ScrollView Component
- * @param children {React.ReactNode} ScrollView child
+ * @param children {ReactNode} ScrollView child
  * @param scrollDirection {ScrollDirectionEnum} Scroll direction (VERTICAL | HORIZONTAL)
  * @param id {string} Custom id attribute
- * @param footer {React.ReactNode} Footer element fixed at the bottom
+ * @param footer {ReactNode} Footer element fixed at the bottom
  * @param bounce {boolean} Bounce effect on scroll (iOS)
  * @param centerContent {boolean} Center content in scrollView
  * @param refresh {boolean} Enable pull-to-refresh

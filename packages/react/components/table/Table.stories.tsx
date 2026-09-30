@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import { ComponentType } from 'react'
 import TableComponent from '@/components/table/Table'
 import { TableBorderEnum, type TableProps } from '@/components/table/TableProps'
 import TableBody from '@/components/table/body'
@@ -37,7 +37,7 @@ interface TableStoryArgs extends TableProps {
 const meta: Meta<TableStoryArgs> = {
   title: 'Components/Table',
   component: Table,
-  subcomponents: { TableHead, TableBody, TableTr, TableTh, TableTd } as Record<string, React.ComponentType<unknown>>,
+  subcomponents: { TableHead, TableBody, TableTr, TableTh, TableTd } as Record<string, ComponentType<unknown>>,
   tags: ['autodocs'],
   parameters: {
     docs: {

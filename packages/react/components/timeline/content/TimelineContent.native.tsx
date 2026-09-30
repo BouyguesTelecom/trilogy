@@ -4,7 +4,7 @@ import { Link } from '@/components/link'
 import { Text, TextLevels } from '@/components/text'
 import { TimelineContentNativeRef, TimelineContentProps } from '@/components/timeline/content/TimelineContentProps'
 import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.native'
-import React, { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { TypographyColor } from '@/interfaces/TypographyColor'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -17,7 +17,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param linkLabel {string} Text for content link
  * @param linkTo {string} href of link
  */
-const TimelineContent = React.forwardRef<TimelineContentNativeRef, TimelineContentProps>(
+const TimelineContent = forwardRef<TimelineContentNativeRef, TimelineContentProps>(
   ({ content, heading, linkLabel, linkTo, children }, ref): JSX.Element => {
     const timelineContextValues = useContext(TimelineItemContext)
 

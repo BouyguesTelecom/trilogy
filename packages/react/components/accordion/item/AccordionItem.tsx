@@ -3,7 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { forwardRef, useId } from 'react'
+import { forwardRef, useId } from 'react'
 
 /**
  * Accordion Item Component
@@ -11,7 +11,7 @@ import React, { forwardRef, useId } from 'react'
  * @param id {string} id for accordion item
  * @param onClick {ClickEvent} onClick Event
  * @param disabled {boolean} Disabled AccordionItem
- * @param children {React.ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
+ * @param children {ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
  * @param testId {string} Test Id for Test Integration
  * @param open {boolean} Open state of the AccordionItem (for controlled behavior)
  * - -------------------------- WEB PROPERTIES -------------------------------

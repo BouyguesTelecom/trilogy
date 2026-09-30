@@ -1,13 +1,13 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { ModalFooterProps, ModalFooterRef } from '@/components/modal/footer/ModalFooterProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Modal Footer Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------

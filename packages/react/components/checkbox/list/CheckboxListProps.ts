@@ -4,8 +4,9 @@ import type { DividerProps } from '@/components/divider/DividerProps'
 import { AlignableProps } from "@/interfaces/Alignable"
 import { Dev } from "@/interfaces/Dev"
 import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactElement } from 'react'
 
-type CheckboxListChildrenTypes = React.ReactElement<CheckboxProps | DividerProps> | undefined
+type CheckboxListChildrenTypes = ReactElement<CheckboxProps | DividerProps> | undefined
 
 /**
  * Checkbox List Interface

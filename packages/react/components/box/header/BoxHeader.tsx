@@ -4,13 +4,13 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { BoxHeaderProps, BoxHeaderRef } from '@/components/box/header/BoxHeaderProps'
 import { getBackgroundClassName } from '@/helpers/background'
 
 /**
  * Box Header Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param variant {TrilogyColor} Box Header backgroundColor
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration

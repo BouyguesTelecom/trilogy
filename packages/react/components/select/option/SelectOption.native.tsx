@@ -2,7 +2,7 @@ import { Column, Columns } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import { forwardRef, useMemo } from 'react'
+import { forwardRef, ReactNode, useMemo } from 'react'
 import { SelectOptionNativeRef, SelectOptionProps } from '@/components/select/option/SelectOptionProps'
 import { getColorStyle } from '@/helpers/color'
 import { Alignable } from '@/interfaces/Alignable'
@@ -15,7 +15,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * Select Option Component
  * @param value {string} Select option value
  * @param label {string} Label value
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  */
 const SelectOption = forwardRef<SelectOptionNativeRef, SelectOptionProps>(
   ({ disabled, children, onClick, label, iconName, ...others }, ref): JSX.Element => {

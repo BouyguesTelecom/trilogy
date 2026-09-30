@@ -1,6 +1,5 @@
 import { IconName } from '@/components/icon'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import RadioTiles from '@/components/radio/tiles/RadioTiles'
 import type { RadioTilesProps } from '@/components/radio/tiles/RadioTilesProps'
 import RadioTileComponent from '@/components/radio/tiles/tile/RadioTile'

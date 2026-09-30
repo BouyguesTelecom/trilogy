@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { checkCents } from '@/components/price/PriceHelpers'
 import { PriceProps, PriceRef } from '@/components/price/PriceProps'
@@ -18,7 +18,7 @@ import { Alignable } from '@/interfaces/Alignable'
  * @param hideCents {boolean} Hide cents from displayed price
  * @param level {PriceLevel} Price custom size
  * @param inverted {boolean} Inverted Price Color
- * @param children {React.ReactNode} Price child elements
+ * @param children {ReactNode} Price child elements
  * @param align {Alignable} Price alignment
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration

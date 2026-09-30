@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import TextComponent from '@/components/text/Text'
 import { TextLevels, TextMarkup } from '@/components/text/TextEnum'
 import type { TextProps } from '@/components/text/TextProps'
-import { TypographyAlign } from "@/interfaces/TypographyAlign";
-import { TypographyBold } from "@/interfaces/TypographyBold";
-import { TypographyColor } from "@/interfaces/TypographyColor";
-import { TypographyTransform } from "@/interfaces/TypographyTransform";
+import { TypographyAlign } from '@/interfaces/TypographyAlign'
+import { TypographyBold } from '@/interfaces/TypographyBold'
+import { TypographyColor } from '@/interfaces/TypographyColor'
+import { TypographyTransform } from '@/interfaces/TypographyTransform'
 
 TextComponent.displayName = 'Text'
 

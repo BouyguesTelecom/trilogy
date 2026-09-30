@@ -2,13 +2,13 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { RowsProps, RowsRef } from '@/components/rows/RowsProps'
 
 /**
  * Rows Component
- * @param children {React.ReactNode} Rows children
+ * @param children {ReactNode} Rows children
  * @param gap {GapSize} Gap size between rows
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------

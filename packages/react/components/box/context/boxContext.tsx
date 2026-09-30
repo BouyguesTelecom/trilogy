@@ -1,16 +1,16 @@
-import React from 'react'
-import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color"
+import { TrilogyColor, TrilogyColorValues } from '@/interfaces/Color'
+import { createContext, Dispatch, SetStateAction } from 'react'
 
 interface BoxContextValue {
   fullHeight: boolean
   highlighted?: TrilogyColor | TrilogyColorValues
   numberOfContent: number
-  setNumberOfContent: React.Dispatch<React.SetStateAction<number>>
+  setNumberOfContent: Dispatch<SetStateAction<number>>
   header: boolean
-  setHeader: React.Dispatch<React.SetStateAction<boolean>>
+  setHeader: Dispatch<SetStateAction<boolean>>
 }
 
-export const BoxContext = React.createContext<BoxContextValue>({
+export const BoxContext = createContext<BoxContextValue>({
   fullHeight: false,
   highlighted: undefined,
   numberOfContent: 0,

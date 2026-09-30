@@ -3,12 +3,12 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * List Component
- * @param children {React.ReactNode} List items (ListItem components)
+ * @param children {ReactNode} List items (ListItem components)
  * @param divider {boolean} Add a divider between list items
  * @param ordered {boolean} Display as an ordered list (ol) instead of unordered (ul)
  * @param testId {string} Test Id for Test Integration

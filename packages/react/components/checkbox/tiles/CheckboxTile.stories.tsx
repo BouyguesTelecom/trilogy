@@ -4,9 +4,8 @@ import CheckboxTiles from '@/components/checkbox/tiles/CheckboxTiles'
 import type { CheckboxTilesProps } from '@/components/checkbox/tiles/CheckboxTilesProps'
 import CheckboxTileComponent from '@/components/checkbox/tiles/tile/CheckboxTile'
 import type { CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
-import React from 'react'
-import { VariantState } from "@/interfaces/Variant";
-import { Alignable } from "@/interfaces/Alignable";
+import { VariantState } from '@/interfaces/Variant'
+import { Alignable } from '@/interfaces/Alignable'
 
 CheckboxTileComponent.displayName = 'CheckboxTile'
 CheckboxTiles.displayName = 'CheckboxTiles'

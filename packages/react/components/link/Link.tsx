@@ -3,13 +3,13 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { ElementType, forwardRef, Ref } from 'react'
+import { ElementType, forwardRef, ReactNode, Ref } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { LinkProps, LinkRef } from '@/components/link/LinkProps'
 
 /**
  * Link Component
- * @param children {React.ReactNode} Content children for Link
+ * @param children {ReactNode} Content children for Link
  * @param to {string} Use for router navigation
  * @param onClick {Function} onClick Event
  * @param accessibilityLabel {string} Accessibility label
@@ -19,7 +19,7 @@ import { LinkProps, LinkRef } from '@/components/link/LinkProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
- * @param routerLink {React.ElementType} Custom Router Link component
+ * @param routerLink {ElementType} Custom Router Link component
  * @param blank {boolean} Link target blank
  * @param small {boolean} Small link
  * @param href {string} Link URL

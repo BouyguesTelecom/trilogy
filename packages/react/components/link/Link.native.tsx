@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import { forwardRef, useState } from 'react'
+import { forwardRef, ReactNode, useState } from 'react'
 import { LinkNativeRef, LinkPropsNative } from '@/components/link/LinkProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -9,7 +9,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Link Component
- * @param children {React.ReactNode} Content children for Link
+ * @param children {ReactNode} Content children for Link
  * @param to {string} Use for router navigation
  * @param onClick {Function} onClick Event
  * @param accessibilityLabel {string} Accessibility label

@@ -8,7 +8,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Accordion Component
- * @param children {React.ReactNode} Accordion items (AccordionItem components)
+ * @param children {ReactNode} Accordion items (AccordionItem components)
  * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  * @param id {string} Custom id attribute

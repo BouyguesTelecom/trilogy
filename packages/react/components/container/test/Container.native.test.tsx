@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react-native'
-import React from 'react'
 
 import Container from '@/components/container/Container'
 import Text from '@/components/text/Text.native'

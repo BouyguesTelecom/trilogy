@@ -1,6 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isIOS } from '@/helpers/device.native'
-import { forwardRef, useContext } from 'react'
+import { forwardRef, ReactNode, useContext } from 'react'
 import { ScrollView, View } from 'react-native'
 import { ModalContext } from '@/components/modal/context/ModalContext'
 import { ModalBodyNativeRef, ModalBodyProps } from '@/components/modal/body/ModalBodyProps'
@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 /**
  * Modal Body Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */

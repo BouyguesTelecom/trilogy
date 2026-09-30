@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { ModalBodyProps, ModalBodyRef } from '@/components/modal/body/ModalBodyProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
@@ -7,7 +7,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Modal Body Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------

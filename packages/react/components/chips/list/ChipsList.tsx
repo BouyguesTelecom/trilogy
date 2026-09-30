@@ -3,13 +3,13 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { ChipsListProps, ChipsListRef } from '@/components/chips/list/ChipsListProps'
 
 /**
  * ChipsList Component - Container for Chips
  * @param id {string} Custom id attribute
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param multiple {boolean} Selection Multiple With checked icon
  * @param scrollable {boolean} If multiple Chips make scrollable List
  * @param testId {string} Test Id for Test Integration

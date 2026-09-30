@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { SectionNativeRef, SectionProps } from '@/components/section/SectionProps'
 import { getColorStyle } from '@/helpers/color'
 import { TrilogyColor } from '@/interfaces/Color'
@@ -8,7 +8,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Section Component - Manages the main margins of the page and takes up all the available width.
- * @param children {React.ReactNode} Section child elements
+ * @param children {ReactNode} Section child elements
  * @param backgroundColor {TrilogyColor} Section Background Color
  * @param backgroundSrc {string} Source of background image
  * @param inverted {boolean} Inverted Section Color

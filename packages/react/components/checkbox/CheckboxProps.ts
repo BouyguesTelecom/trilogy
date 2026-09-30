@@ -1,8 +1,8 @@
-import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import { Accessibility } from "@/interfaces/Accessibility"
-import { CommonProps } from "@/interfaces/CommonProps"
-import { Dev } from "@/interfaces/Dev"
+import { Accessibility } from '@/interfaces/Accessibility'
+import { CommonProps } from '@/interfaces/CommonProps'
+import { Dev } from '@/interfaces/Dev'
+import { ReactNode } from 'react'
 
 export type CheckboxChangeEventHandler = (event: {
   checkboxValue: string
@@ -33,7 +33,7 @@ interface CheckboxWithLabel extends CheckboxCommonProps {
 }
 
 interface CheckboxWithChildren extends CheckboxCommonProps {
-  children: React.ReactNode
+  children: ReactNode
   label?: never
 }
 

@@ -5,13 +5,13 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/helpers/alignable'
 import { has, is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React from 'react'
-import { getJustifiedClassName } from "@/helpers/justifiable"
+import { getJustifiedClassName } from '@/helpers/justifiable'
+import { forwardRef, ReactNode } from 'react'
 
 /**
  * Columns Component
  * @param scrollable {boolean} Make colomns scrollable to vertical
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param marginless {boolean} delete margin
  * @param testId {string} Test Id for Test Integration
  * @param fullBleed {boolean} Full Bleed Columns
@@ -25,7 +25,7 @@ import { getJustifiedClassName } from "@/helpers/justifiable"
  * @param className {string} Additional CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(
+const Columns = forwardRef<ColumnsRef, ColumnsProps>(
   (
     {
       className,

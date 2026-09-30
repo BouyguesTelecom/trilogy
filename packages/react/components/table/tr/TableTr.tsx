@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, RefObject } from 'react'
 import clsx from 'clsx'
 import { TableTrProps, TableTrRef } from '@/components/table/tr/TableTrProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
@@ -17,7 +17,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param expansion {boolean} Is expansion
  * @param onClick {ClickEvent} On click event
  * @param color {TrilogyColor} Higlight color
- * @param ref {React.RefObject<HTMLTableRowElement>} Ref of the row
+ * @param ref {RefObject<HTMLTableRowElement>} Ref of the row
  */
 const TableTr = forwardRef<TableTrRef, TableTrProps>(
   ({ className, id, expandable, expanded, expansion, color, testId, ...others }, ref): JSX.Element => {

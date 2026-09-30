@@ -3,7 +3,7 @@ import { PromptContext } from '@/components/prompt/context'
 import { Select } from '@/components/select'
 import { SelectProps } from '@/components/select/SelectProps'
 import clsx from 'clsx'
-import React, { useContext, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { forwardRef, useContext, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { PromptSelectRef } from '@/components/prompt/toolbar/tools/select/PromptSelectProps'
 
 const PADDING_SELECT_OPTION = 58
@@ -19,7 +19,7 @@ const PADDING_SELECT_OPTION = 58
  * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  */
-const PromptSelect = React.forwardRef<PromptSelectRef, SelectProps>(
+const PromptSelect = forwardRef<PromptSelectRef, SelectProps>(
   ({ className, disabled, readOnly, ...others }, ref) => {
     const { isDisabled, isReadonly } = useContext(PromptContext)
 

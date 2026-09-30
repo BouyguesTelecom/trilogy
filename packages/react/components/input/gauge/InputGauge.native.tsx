@@ -1,4 +1,4 @@
-import React, { useId } from 'react'
+import { useId } from 'react'
 
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'

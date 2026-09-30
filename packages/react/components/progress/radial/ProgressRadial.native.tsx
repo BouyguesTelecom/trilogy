@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { getAlignStyle } from '@/helpers/alignable'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { Skeleton } from '@/components/skeleton'
 import { ProgressRadialNativeRef, ProgressRadialProps } from '@/components/progress/radial/ProgressRadialProps'
 import { AnimatedCircularProgress } from '@/components/progress/radial/react-native-circular-progress/index.js'
@@ -17,7 +17,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * Progress Radial component
  * @param label {string} Custom label
  * @param description {string} Custom description
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param skeleton {boolean} Skeleton Progress Radial
  * @param secondValue {number} Second progress percent (for dual progress)
  * @param small {boolean} Display small progress radial

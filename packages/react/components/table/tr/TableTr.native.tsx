@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { forwardRef, isValidElement, useState } from 'react'
 import { TableTrNativeRef, TableTrPropsNative } from '@/components/table/tr/TableTrProps'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -14,7 +14,7 @@ import { TrilogyColor } from '@/interfaces/Color'
  * @param expandable {boolean} Lines can display additional information
  * @param expanded {ReactNode|string} Expended Table TR content
  */
-const TableTr = React.forwardRef<TableTrNativeRef, TableTrPropsNative>(
+const TableTr = forwardRef<TableTrNativeRef, TableTrPropsNative>(
   ({ children, expandable, expanded, ...others }, ref): JSX.Element => {
     const [isExpanded, setIsExpended] = useState<boolean>(false)
 
@@ -45,7 +45,7 @@ const TableTr = React.forwardRef<TableTrNativeRef, TableTrPropsNative>(
               <Text level={TextLevels.FOUR}>{String(expanded)}</Text>
             </View>
           )}
-          {isExpanded && expanded && React.isValidElement(expanded) && (
+          {isExpanded && expanded && isValidElement(expanded) && (
             <View style={styles.expendable}>{expanded}</View>
           )}
         </View>

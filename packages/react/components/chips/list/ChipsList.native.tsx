@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import React, { createContext } from 'react'
+import { createContext, forwardRef, ReactNode, Ref } from 'react'
 import { ChipsListNativeRef, ChipsListProps } from '@/components/chips/list/ChipsListProps'
 import { ScrollView, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -9,12 +9,12 @@ export const ChipsContext = createContext({ isMultiple: false })
 /**
  * ChipsList Component - Container for Chips
  * @param id {string} Custom id attribute
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param multiple {boolean} Selection Multiple With checked icon
  * @param scrollable {boolean} If multiple Chips make scrollable List
  * @param testId {string} Test Id for Test Integration
  */
-const ChipsList = React.forwardRef<ChipsListNativeRef, ChipsListProps>(
+const ChipsList = forwardRef<ChipsListNativeRef, ChipsListProps>(
   ({ children, multiple, scrollable = true, testId, ...others }, ref): JSX.Element => {
     const styles = memoStyles({
       container: {
@@ -28,7 +28,7 @@ const ChipsList = React.forwardRef<ChipsListNativeRef, ChipsListProps>(
         {scrollable ? (
           <ScrollView
             testID={testId}
-            ref={ref as React.Ref<ScrollView>}
+            ref={ref as Ref<ScrollView>}
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.container}
@@ -37,7 +37,7 @@ const ChipsList = React.forwardRef<ChipsListNativeRef, ChipsListProps>(
             {children}
           </ScrollView>
         ) : (
-          <View ref={ref as React.Ref<View>} style={styles.container} {...others}>
+          <View ref={ref as Ref<View>} style={styles.container} {...others}>
             {children}
           </View>
         )}

@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import {
   ListItemDescriptionProps,
   ListItemDescriptionRef,
@@ -10,7 +10,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * ListItemDescription Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration

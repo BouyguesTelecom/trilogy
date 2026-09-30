@@ -3,16 +3,17 @@ import { AutoLayoutProps } from '@/components/autolayout/AutoLayoutProps'
 import { DEFAULT_SPACING_MATRIX } from '@/components/autolayout/DefaultSpacingMatrix'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
+import { FC, ReactNode } from 'react'
 
 /**
  * AutoLayout Component - Automatic layout wrapper with edge insets and spacing
- * @param children {React.ReactNode} Child components to layout
+ * @param children {ReactNode} Child components to layout
  * @param edges {EdgeType[]} Edges to apply spacing to ('top' | 'bottom')
  * @param edgeSize {SpacerSize} Spacing size for safe area edges
  * @param noSpace {boolean} Disable automatic spacing
  * @param matrix {SpacingMatrix} Custom spacing matrix for between children spacing (overrides default matrix)
  */
-const AutoLayout: React.FC<AutoLayoutProps> = ({
+const AutoLayout: FC<AutoLayoutProps> = ({
   children,
   matrix = DEFAULT_SPACING_MATRIX,
   edges,

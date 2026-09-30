@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import React, { useEffect, useRef, useState } from 'react'
+import { forwardRef, useEffect, useRef, useState } from 'react'
 import { Pager } from '@/components/pagination/PaginationEnum'
 import { PaginationNativeProps, PaginationNativeRef } from '@/components/pagination/PaginationProps'
 import { getColorStyle } from '@/helpers/color'
@@ -19,7 +19,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Pagination = React.forwardRef<PaginationNativeRef, PaginationNativeProps>(
+const Pagination = forwardRef<PaginationNativeRef, PaginationNativeProps>(
   ({ length, defaultPage = 1, onClick, testId, ...others }, ref): JSX.Element => {
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
     const [arrayPage] = useState<number[]>(Array.from(Array(length + 1).keys()))

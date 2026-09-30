@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { forwardRef, ReactNode, useState } from 'react'
 import { ImageBackground, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Box } from '@/components/box'
@@ -10,7 +10,7 @@ import { TrilogyColor } from "@/interfaces/Color"
 
 /**
  * Hero Component
- * @param children {React.ReactNode} Hero Children
+ * @param children {ReactNode} Hero Children
  * @param backgroundColor {TrilogyColor} Hero background color
  * @param backgroundSrc {string} If source, it will display background option
  * @param onClick {Function} onClick Event
@@ -18,7 +18,7 @@ import { TrilogyColor } from "@/interfaces/Color"
  * @param overlap {ReactNode[]|boolean} Hero overlap components (need to add key for each element)
  * @param testId {string} Test Id for Test Integration
  */
-const Hero = React.forwardRef<HeroNativeRef, HeroProps>(
+const Hero = forwardRef<HeroNativeRef, HeroProps>(
   (
     { children, backgroundSrc, onClick, overlap, inverted, backgroundColor, backgroundHeight, testId, ...others },
     ref,

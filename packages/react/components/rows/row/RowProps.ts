@@ -1,12 +1,13 @@
 import { View } from 'react-native'
 import { CommonProps } from "@/interfaces/CommonProps"
 import { Dev } from "@/interfaces/Dev"
+import { ReactNode } from 'react'
 
 /**
  * Rows Interface
  */
 export interface RowProps extends CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   narrow?: boolean
 }
 

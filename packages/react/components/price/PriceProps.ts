@@ -5,12 +5,13 @@ import { AlignableProps } from "@/interfaces/Alignable"
 import { Dev } from "@/interfaces/Dev"
 import { Invertable } from "@/interfaces/Invertable"
 import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 /**
  * Price Interface
  */
 export interface PriceProps extends Invertable, Accessibility, AlignableProps, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   amount?: number
   mention?: string
   period?: string

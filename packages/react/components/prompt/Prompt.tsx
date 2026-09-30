@@ -1,7 +1,7 @@
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useContext, forwardRef } from 'react'
+import { FormEvent, forwardRef, useContext } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptProps, PromptRef } from '@/components/prompt/PromptProps'
 import { PromptContext, PromptProvider } from '@/components/prompt/context'
@@ -11,7 +11,7 @@ const PromptElm = forwardRef<PromptRef, PromptProps>(({ className, testId, ...ot
   const { isReadonly, isDisabled } = useContext(PromptContext)
   const classes = hashClass(styled, clsx('prompt', className))
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
   }

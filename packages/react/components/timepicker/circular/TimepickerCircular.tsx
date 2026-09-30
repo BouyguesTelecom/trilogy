@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { forwardRef, KeyboardEvent, MouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   TimepickerCircularProps,
   TimepickerCircularRef,
@@ -25,7 +25,7 @@ const HOUR_DOTS_COUNT = 24
  * @param disabled {boolean} Disabled state of the component (default: false)
  * @param step {number} Step for minutes (e.g., 5 for 5-minute increments, default: 5)
  */
-const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCircularProps>(
+const TimepickerCircular = forwardRef<TimepickerCircularRef, TimepickerCircularProps>(
   ({ value = '00:00', onChange, disabled = false, step = 5, testId, className, id, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const formatNumber = useCallback((num: number): string => num.toString().padStart(2, '0'), [])
@@ -99,7 +99,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
     )
 
     const getMousePosition = (
-      event: MouseEvent | React.MouseEvent | PointerEvent | React.PointerEvent | TouchEvent,
+      event: MouseEvent | MouseEvent | PointerEvent | PointerEvent | TouchEvent,
     ): { x: number; y: number } => {
       if (!containerRef.current) return { x: 0, y: 0 }
       const rect = containerRef.current.getBoundingClientRect()
@@ -136,7 +136,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       return -1
     }
 
-    const handleMouseDown = (event: React.MouseEvent) => {
+    const handleMouseDown = (event: MouseEvent) => {
       if (disabled) return
       event.preventDefault()
 
@@ -187,7 +187,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       }
     }, [])
 
-    const handlePointerDown = (event: React.PointerEvent) => {
+    const handlePointerDown = (event: PointerEvent) => {
       if (disabled) return
       event.preventDefault()
 
@@ -265,7 +265,7 @@ const TimepickerCircular = React.forwardRef<TimepickerCircularRef, TimepickerCir
       [currentHours, currentMinutes, onChange, formatTime, step],
     )
 
-    const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLSpanElement>) => {
+    const handleKeyDown = useCallback((e: KeyboardEvent<HTMLSpanElement>) => {
       const target = e.target as HTMLSpanElement
       const currentText = target.textContent || ''
 

@@ -5,6 +5,7 @@ import { DirectionEnum, DirectionEnumValues } from "@/interfaces/Direction"
 import { Justify } from "@/interfaces/Justifiable"
 import { CommonProps } from "@/interfaces/CommonProps"
 import { Dev } from "@/interfaces/Dev"
+import { ReactNode } from 'react'
 
 interface ResponsiveValue<T> {
   mobile?: T
@@ -21,7 +22,7 @@ export type JustifyProps = ResponsiveValue<Justify>
 export type WrapProps = ResponsiveValue<boolean>
 
 export interface FlexBoxProps extends CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   gap?: FlexBoxSize | GapSize
   direction?: Direction | DirectionEnum | DirectionEnumValues
   align?: AlignProps | Align

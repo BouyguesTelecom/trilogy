@@ -1,4 +1,5 @@
 import { ViewStyle, DimensionValue } from 'react-native'
+import { ReactNode } from 'react'
 
 export interface SkeletonProps {
   style?: ViewStyle
@@ -8,6 +9,6 @@ export interface SkeletonProps {
   shimmerColor?: string
   duration?: number
   borderRadius?: number
-  children?: React.ReactNode
+  children?: ReactNode
   testID?: string
 }

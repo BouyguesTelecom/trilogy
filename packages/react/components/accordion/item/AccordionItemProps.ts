@@ -1,6 +1,7 @@
 import { View } from 'react-native'
 import { CommonProps } from '@/interfaces/CommonProps'
 import { Dev } from '@/interfaces/Dev'
+import { MouseEvent, ReactNode, TouchEvent } from 'react'
 
 export type TargetElement = HTMLElement & {
   active?: boolean
@@ -10,7 +11,7 @@ export type TargetElement = HTMLElement & {
 /**
  * OnClickEvent type
  */
-export type OnClickEvent = React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement> | { target: TargetElement }
+export type OnClickEvent = MouseEvent<HTMLElement> | TouchEvent<HTMLElement> | { target: TargetElement }
 
 export interface OnClickCallback {
   (e: OnClickEvent): void
@@ -20,7 +21,7 @@ export interface OnClickCallback {
  * AccordionItem Interface
  */
 export interface AccordionItemProps extends CommonProps, Dev {
-  children: React.ReactNode | React.ReactNode[]
+  children: ReactNode | ReactNode[]
   open?: boolean
   onClick?: OnClickCallback
   disabled?: boolean

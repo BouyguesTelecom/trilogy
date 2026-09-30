@@ -2,13 +2,13 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import translation from '@trilogy-ds/locales/lib/breadcrumb'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { BreadcrumbRef, BreadcrumbWebProps } from '@/components/breadcrumb/BreadcrumbProps'
 
 /**
  * Breadcrumb Component
- * @param children {React.ReactNode} Breadcrumb Children
+ * @param children {ReactNode} Breadcrumb Children
  * @param testId {string} Test id
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------

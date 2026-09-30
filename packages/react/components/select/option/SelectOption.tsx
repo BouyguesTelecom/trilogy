@@ -4,7 +4,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import { forwardRef, RefObject, useContext } from 'react'
+import { forwardRef, ReactNode, RefObject, useContext } from 'react'
 import { SelectContext } from '@/components/select/context'
 import { SelectedValue } from '@/components/select/SelectProps'
 import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/SelectOptionProps'
@@ -12,7 +12,7 @@ import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/S
 /**
  * Select Option Component
  * @param value {string} Select option value
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param label {string} option name
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes

@@ -2,9 +2,10 @@ import { View } from 'react-native'
 import { Dev } from "@/interfaces/Dev"
 import { TrilogyColor, TrilogyColorValues } from "@/interfaces/Color"
 import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 export interface TableHeadProps extends CommonProps, Dev {
-  children: React.ReactNode
+  children: ReactNode
   color?: TrilogyColor | TrilogyColorValues
   backgroundColor?: TrilogyColor | TrilogyColorValues
 }

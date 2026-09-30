@@ -6,7 +6,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/helpers/classify'
 import clsx from 'clsx'
-import React, { forwardRef, useId } from 'react'
+import { forwardRef, useId, useRef } from 'react'
 import { VariantState } from '@/interfaces/Variant'
 
 /**
@@ -53,7 +53,7 @@ const RadioTile = forwardRef<RadioTileRef, RadioTileProps>(
   ): JSX.Element => {
     const generateId = useId()
     const { styled } = useTrilogyContext()
-    const refInput = React.useRef<HTMLInputElement>(null)
+    const refInput = useRef<HTMLInputElement>(null)
 
     return (
       <div

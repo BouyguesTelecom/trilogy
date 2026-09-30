@@ -1,5 +1,6 @@
 import { View } from 'react-native'
 import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactNode } from 'react'
 
 /**
  * Arrow direction
@@ -52,7 +53,7 @@ export type AvatarDirectionValues = `${AvatarDirection}`
  * Product Tour Interface
  */
 export interface ProductTourProps {
-  children?: React.ReactNode
+  children?: ReactNode
   active?: boolean
   arrowDirection?: ArrowDirection | ArrowDirectionValues
   arrowAlign?: ArrowAlign | ArrowAlignValues

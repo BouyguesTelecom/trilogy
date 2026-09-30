@@ -4,13 +4,13 @@ import { getColorStyle } from '@/helpers/color'
 import { getRadiusStyle } from '@/helpers/radius'
 import { Radius } from '@/interfaces/Radius'
 import { BoxContext } from '@/components/box/context/boxContext'
-import { forwardRef, useContext } from 'react'
+import { forwardRef, ReactNode, useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * Box Footer Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param backgroundColor {TrilogyColor} Background for BoxFooter
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute

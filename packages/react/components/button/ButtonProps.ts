@@ -13,19 +13,20 @@ import { Clickable } from "@/interfaces/Clickable"
 import { CommonProps } from "@/interfaces/CommonProps"
 import { Dev } from "@/interfaces/Dev"
 import { Fullwidth } from "@/interfaces/Fullwidth"
+import { ElementType, ReactNode } from 'react'
 
 /**
  * Button Interface
  */
 export interface ButtonProps extends Accessibility, Fullwidth, Clickable, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   disabled?: boolean
   markup?: ButtonMarkup | ButtonMarkupValues
   href?: string
   to?: string
   loading?: boolean
   name?: string
-  routerLink?: React.ElementType
+  routerLink?: ElementType
   type?: ButtonType | ButtonTypeValues
   iconName?: IconName | IconNameValues
   variant?: ButtonVariant | ButtonVariantValues

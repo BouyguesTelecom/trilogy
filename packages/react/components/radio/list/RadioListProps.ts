@@ -4,8 +4,9 @@ import type { RadioProps } from '@/components/radio/RadioProps'
 import { AlignableProps } from "@/interfaces/Alignable"
 import { Dev } from "@/interfaces/Dev"
 import { CommonProps } from "@/interfaces/CommonProps"
+import { ReactElement } from 'react'
 
-type RadioListChildrenTypes = React.ReactElement<RadioProps | DividerProps> | undefined
+type RadioListChildrenTypes = ReactElement<RadioProps | DividerProps> | undefined
 
 /**
  * Radio List Interface

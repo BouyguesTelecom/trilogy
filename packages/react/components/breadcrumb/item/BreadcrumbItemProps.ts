@@ -3,6 +3,7 @@ import { Accessibility } from "@/interfaces/Accessibility"
 import { Clickable } from "@/interfaces/Clickable"
 import { CommonProps } from "@/interfaces/CommonProps"
 import { Dev } from "@/interfaces/Dev"
+import { ElementType } from 'react'
 
 export interface BreadcrumbItemProps extends Accessibility, Clickable, Dev {
   children?: string
@@ -15,7 +16,7 @@ export interface BreadcrumbItemProps extends Accessibility, Clickable, Dev {
  */
 export interface BreadcrumbItemPropsWeb extends Accessibility, Clickable, BreadcrumbItemProps, Dev, CommonProps {
   href?: string
-  routerLink?: React.ElementType
+  routerLink?: ElementType
 }
 
 export type BreadcrumbItemRef = HTMLLIElement

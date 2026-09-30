@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import React, { useEffect, useRef } from 'react'
+import { cloneElement, forwardRef, useEffect, useRef } from 'react'
 import { ProgressNativeRef, ProgressProps } from '@/components/progress/ProgressProps'
 import { getColorStyle } from '@/helpers/color'
 import { getStatusStyle } from '@/helpers/status'
@@ -24,7 +24,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
+const Progress = forwardRef<ProgressNativeRef, ProgressProps>(
   (
     { children, value, max = 100, status, legendCenter, legendStart, legendEnd, stacked, ...others },
     ref,
@@ -95,7 +95,7 @@ const Progress = React.forwardRef<ProgressNativeRef, ProgressProps>(
               (child: any, index: number) =>
                 (child &&
                   child.type.render.displayName === 'ProgressItem' &&
-                  React.cloneElement(child, {
+                  cloneElement(child, {
                     key: index,
                     style: [
                       index === 0 ? styles.progressItemFirst : undefined,

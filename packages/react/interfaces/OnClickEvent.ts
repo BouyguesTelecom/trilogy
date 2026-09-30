@@ -1,4 +1,5 @@
-export type OnClickEvent = React.MouseEvent<Element> | unknown
+import { MouseEvent } from 'react'
+export type OnClickEvent = MouseEvent<Element> | unknown
 
 /**
  * Click Event Interface

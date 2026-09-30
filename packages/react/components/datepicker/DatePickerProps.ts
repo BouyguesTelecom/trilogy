@@ -2,11 +2,12 @@ import { DatePickerStatus, DatePickerStatusValues } from '@/components/datepicke
 import { CommonProps } from '@/interfaces/CommonProps'
 import { Dev } from '@/interfaces/Dev'
 import { CalendarYearsOrder, CalendarYearsOrderValues } from '@/components/calendar/CalendarEnum'
+import { Dispatch, InputEvent, SetStateAction } from 'react'
 
 export type SegmentType = 'day' | 'month' | 'year'
 
 export interface HandleKeyPress {
-  event: React.InputEvent<HTMLSpanElement>
+  event: InputEvent<HTMLSpanElement>
   type: 'day' | 'month' | 'year'
 }
 
@@ -31,7 +32,7 @@ export interface Segment {
   maxValue: number
   segment: string
   segmentPosition: number
-  segmentSetter: React.Dispatch<React.SetStateAction<string>>
+  segmentSetter: Dispatch<SetStateAction<string>>
   label: string
   initValue: string
 }

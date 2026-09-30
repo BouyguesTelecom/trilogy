@@ -2,12 +2,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { CardContentProps, CardContentRef } from '@/components/card/content/CardContentProps'
 
 /**
  * Card Content Component
- * @param children {React.ReactNode} Custom Card Content Children
+ * @param children {ReactNode} Custom Card Content Children
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------

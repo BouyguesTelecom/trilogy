@@ -1,11 +1,9 @@
-
-import React from 'react'
-
 import type { HandleBetweenChildren, ParseChildren } from '@/components/autolayout/AutoLayout.d'
 import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/SpacingMatrix'
 import { ComponentName } from '@/components/enumsComponentsName'
 import type { TrilogyComponents } from '@/components/index.d'
 import { Spacer, SpacerSize } from '@/components/spacer'
+import { Children, cloneElement, Fragment, ReactElement, ReactNode } from 'react'
 
 /**
  * Test if an element is a React Fragment
@@ -13,7 +11,7 @@ import { Spacer, SpacerSize } from '@/components/spacer'
  * @param element
  * @returns
  */
-export const isFragment = (element: React.ReactElement): boolean => element?.type === React.Fragment
+export const isFragment = (element: ReactElement): boolean => element?.type === Fragment
 
 const getTrilogyComponentName = (child: any): string | undefined => {
   const componentsKeys = Object.keys(ComponentName).filter((key) => key)
@@ -27,7 +25,7 @@ const getTrilogyComponentName = (child: any): string | undefined => {
  * @param componentType
  * @returns
  */
-export const isElementType = (element: React.ReactElement, componentType: TrilogyComponents): boolean =>
+export const isElementType = (element: ReactElement, componentType: TrilogyComponents): boolean =>
   (element?.type as any)?.render?.displayName === componentType || (element?.type as any)?.displayName === componentType
 
 /**
@@ -35,7 +33,7 @@ export const isElementType = (element: React.ReactElement, componentType: Trilog
  */
 
 export const parseChildren = ({ children, handleBetweenChildren }: ParseChildren): JSX.Element[] => {
-  const array: JSX.Element[] = [] // React.Children.toArray(children)
+  const array: JSX.Element[] = [] // Children.toArray(children)
   createChildrenArray(array, children)
 
   return array.reduce((accumulator, nextChild, childIndex) => {
@@ -44,11 +42,11 @@ export const parseChildren = ({ children, handleBetweenChildren }: ParseChildren
     // Check the actual type of previous and next children
 
     const getChildCandidateToComparison = (
-      child: React.ReactElement,
+      child: ReactElement,
       accumulator?: JSX.Element[],
-    ): React.ReactElement => {
+    ): ReactElement => {
       if (isElementType(child, 'AutoLayout')) {
-        return getChildCandidateToComparison(React.Children.toArray(child.props.children)[0] as React.ReactElement)
+        return getChildCandidateToComparison(Children.toArray(child.props.children)[0] as ReactElement)
       }
       if (child === null && accumulator && accumulator.length >= 2) {
         return getChildCandidateToComparison(accumulator[accumulator.length - 2], accumulator.slice(0, -1))
@@ -80,7 +78,7 @@ export const parseChildren = ({ children, handleBetweenChildren }: ParseChildren
     return [
       ...accumulator,
       nextChild &&
-        React.cloneElement(nextChild, {
+        cloneElement(nextChild, {
           key: nextChild.key || `child${childIndex}`,
         }),
     ]
@@ -120,10 +118,10 @@ export const autoLayoutChildrenHandler = (
   })
 }
 
-const createChildrenArray = (array: JSX.Element[], children: React.ReactNode): void => {
-  React.Children.forEach(children, (child: any) => {
+const createChildrenArray = (array: JSX.Element[], children: ReactNode): void => {
+  Children.forEach(children, (child: any) => {
     if (isFragment(child)) {
-      React.Children.forEach(child?.props.children, (item) => {
+      Children.forEach(child?.props.children, (item) => {
         createChildrenArray(array, item)
       })
     } else if (
