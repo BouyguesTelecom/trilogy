@@ -95,9 +95,9 @@ export const BoxScreen = (): JSX.Element => {
           </Box>
         </Column>
         <Column size={10}>
-          <Box>
+          <Box padding='lg'>
             <BoxContent>
-              <Title level={TitleLevels.FOUR}>Simple box</Title>
+              <Title level={TitleLevels.FOUR}>Simple box padding lg</Title>
               <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus tellus sed erat maximus porta.
                 Etiam non ex in dolor faucibus tempor. Sed ullamcorper, ligula sit amet dictum posuere, urna tortor
@@ -209,10 +209,10 @@ export const BoxScreen = (): JSX.Element => {
       <Divider />
       <Columns mobile multiline>
         <Column size={6}>
-          <Box highlighted={TrilogyColor.ERROR} className='is-fullheight'>
+          <Box highlighted={TrilogyColor.ERROR} className='is-fullheight' padding='sm'>
             <BoxHeader>Test</BoxHeader>
             <BoxContent>
-              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Title level={TitleLevels.FOUR}>Highlited box padding sm</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
                 ultricies justo ultrices sed leo cras.
@@ -228,10 +228,10 @@ export const BoxScreen = (): JSX.Element => {
           </Box>
         </Column>
         <Column size={6}>
-          <Box className='is-fullheight'>
+          <Box className='is-fullheight' padding='xl'>
             <BoxHeader>Test</BoxHeader>
             <BoxContent backgroundColor={'NEUTRAL_FADE'}>
-              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Title level={TitleLevels.FOUR}>Highlited box padding xl</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
                 ultricies justo ultrices sed leo cras.
@@ -395,7 +395,7 @@ export const BoxScreen = (): JSX.Element => {
           </Box>
         </Column>
         <Column size={10}>
-          <Box>
+          <Box padding='xl'>
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Simple Box with footer</Title>
               <Text>

@@ -10,6 +10,23 @@
 
 $highlighted-border-width: 4px;
 
+$radius-values: (
+  'xs',
+  'sm',
+  'md',
+  'lg',
+);
+
+$padding-values: (
+  'xxs',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  'xxl',
+  'xxxl'
+);
 
 a.box {
   cursor: pointer;
@@ -34,20 +51,16 @@ a.box {
   position: relative;
   padding: var(--padding-box);
 
-  &.radius-xs {
-    --box-radius: var(--radius-xs);
+  @each $padding in $padding-values {
+    &.padding-#{$padding} {
+     --padding-box: var(--spacing-#{$padding});
+    }
   }
 
-  &.radius-sm {
-    --box-radius: var(--radius-sm);
-  }
-
-  &.radius-md {
-    --box-radius: var(--radius-md);
-  }
-
-  &.radius-lg {
-    --box-radius: var(--radius-lg);
+  @each $radius in $radius-values {
+    &.radius-#{$radius} {
+      --box-radius: var(--radius-#{$radius});
+    }
   }
 
   &.is-active {

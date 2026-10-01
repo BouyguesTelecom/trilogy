@@ -878,3 +878,21 @@ $align-values: (
   -webkit-box-orient: vertical;
   display: -webkit-box;
 }
+
+$spacings-values: (
+  'none',
+  'xxs',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  'xxl',
+  'xxxl'
+);
+
+@each $spacing in $spacings-values {
+  .padding-#{$spacing} {
+    padding: var(--spacing-#{$spacing}) !important;
+  }
+}
