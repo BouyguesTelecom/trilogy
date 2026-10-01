@@ -6,6 +6,7 @@ import * as React from 'react'
 import { ImageBackground, Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Theme } from '@/constants/theme'
+import { getPaddingStyle } from '@/objects/facets/Padding'
 
 /**
  * Box Content
@@ -17,11 +18,11 @@ import { Theme } from '@/constants/theme'
  */
 const BoxContent = React.forwardRef<BoxContentNativeRef, BoxContentProps>(
   ({ children, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
-    const { fullHeight } = React.useContext(BoxContext)
+    const { fullHeight, padding } = React.useContext(BoxContext)
 
     const styles = memoStyles({
       boxContent: {
-        padding: 16,
+        padding: getPaddingStyle(padding ?? 'md'),
         backgroundColor: (backgroundColor && getColorStyle(backgroundColor)) || 'transparent',
         flex: fullHeight ? 1 : undefined,
       },

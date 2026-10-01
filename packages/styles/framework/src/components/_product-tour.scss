@@ -4,7 +4,7 @@
     visibility: hidden;
     opacity: 0;
     background-color: getColor('background');
-    border-radius: $radius;
+    border-radius: var(--radius-sm);
     box-shadow: $shadow;
     width: 350px;
     padding: $spacing-3 * 2;
@@ -92,7 +92,7 @@
             top: 0;
             left: 0;
             background: white;
-            border-radius: 9999px;
+            border-radius: var(--radius-full);
             box-shadow: $shadow;
             transform: translate(-50%, -50%);
 

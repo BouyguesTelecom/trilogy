@@ -53,7 +53,7 @@
       top: 50%;
       transform: translateY(-50%);
       right: 0;
-      border-radius: 9999px;
+      border-radius: var(--radius-full);
       width: 44px;
       height: 22px;
       background-color: getColor('neutral');
@@ -66,7 +66,7 @@
       top: 50%;
       transform: translateY(-50%);
       right: calc(44px - 18px - 2px);
-      border-radius: 9999px;
+      border-radius: var(--radius-full);
       width: 18px;
       height: 18px;
       background-color: getColor('background');

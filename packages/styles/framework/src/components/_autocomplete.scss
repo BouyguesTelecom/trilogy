@@ -17,7 +17,7 @@
         display: block;
         border: var(--border);
         padding: calc($spacing-1 + 1px) calc($spacing-2 + 2px);
-        border-radius: 4px;
+        border-radius: var(--radius-md);
         max-height: 220px;
         overflow-y: auto;
         background-color: getColor('background');

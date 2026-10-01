@@ -73,7 +73,7 @@
     @include position-top();
 
     background-color: getColor('font');
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-sm);
     box-shadow: $shadow;
     color: getColor('background');
     display: inline-block;

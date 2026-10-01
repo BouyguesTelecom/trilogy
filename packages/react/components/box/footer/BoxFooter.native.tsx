@@ -4,6 +4,8 @@ import * as React from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
+import { BoxContext } from '../context/boxContext'
+import { getPaddingStyle } from '@/objects/facets/Padding'
 
 /**
  * Box Footer Component
@@ -14,9 +16,11 @@ import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
  */
 const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
   ({ children, backgroundColor, testId, ...others }, ref): JSX.Element => {
+    const { padding } = React.useContext(BoxContext)
+
     const styles = memoStyles({
       boxFooter: {
-        padding: 12,
+        padding: getPaddingStyle(padding ?? 'md'),
         justifyContent: 'center',
         backgroundColor: backgroundColor ? getColorStyle(backgroundColor) : 'transparent',
       },

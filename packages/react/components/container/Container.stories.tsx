@@ -29,7 +29,7 @@ const meta: Meta<ContainerStoryArgs> = {
     medium: {
       control: 'boolean',
       name: 'medium',
-      description: 'Set medium container width',
+      description: 'Deprecated: use size="small" instead (same 960px max-width)',
       table: { category: 'Container' },
     },
     content: {

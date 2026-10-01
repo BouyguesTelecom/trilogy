@@ -5,7 +5,7 @@ export const ContainerScreen = (): JSX.Element => {
   return (
     <>
       <Section>
-        <Container>
+        <Container size='large'>
           <Box>
             <BoxContent>
               <Text>Container</Text>

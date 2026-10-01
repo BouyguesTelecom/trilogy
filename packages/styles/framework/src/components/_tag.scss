@@ -79,7 +79,7 @@ $tag-delete-margin: 1px !default;
 .tag {
   align-items: center;
   background-color: getColor('neutral-fade');
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   color: getColor('font');
   display: inline-flex;
   font-size: $size-medium;

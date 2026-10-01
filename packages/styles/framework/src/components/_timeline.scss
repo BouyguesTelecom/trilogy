@@ -51,7 +51,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
       left: 3rem;
       bottom: 8px;
       height: auto;
-      border-radius: 2px;
+      border-radius: var(--radius-full);
     }
 
     .timeline-marker.is-icon {
@@ -80,7 +80,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     .timeline-marker {
       position: absolute;
       background: $timeline-marker-color;
-      border-radius: 9999px;
+      border-radius: var(--radius-full);
       content: '';
       display: block;
       height: $timeline-marker-size;
@@ -100,7 +100,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
         }
 
         background: $timeline-marker-color;
-        border-radius: 9999px;
+        border-radius: var(--radius-full);
         display: block;
         overflow: hidden;
       }
@@ -115,7 +115,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
                             $timeline-marker-border-size * 0.5);
         line-height: size(0.75rem);
         padding: math.div($timeline-icon-size, 3);
-        border-radius: 9999px;
+        border-radius: var(--radius-full);
       }
 
       &.is-outlined {

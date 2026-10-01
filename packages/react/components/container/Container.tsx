@@ -14,12 +14,13 @@ import { is } from '@/services/classify'
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
- * @param medium {boolean} Set medium container width
+ * @param medium {boolean} Deprecated: use size="small" instead (same 960px max-width)
+ * @param size {ContainerSizes | `${ContainerSizes}`} Set container size
  */
 const Container = React.forwardRef<ContainerRef, ContainerProps>(
-  ({ className, id, medium, testId, ...others }, ref): JSX.Element => {
+  ({ className, id, medium, testId, size, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const classes = hashClass(styled, clsx('container', medium && is('medium'), className))
+    const classes = hashClass(styled, clsx('container', medium && is('medium'), size && `size-${size}`, className))
 
     return (
       <div ref={ref as React.RefObject<HTMLDivElement>} id={id} className={classes} data-testid={testId} {...others} />

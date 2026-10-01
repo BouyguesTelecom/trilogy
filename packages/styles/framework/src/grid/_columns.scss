@@ -354,7 +354,7 @@ $gap: 4px,
 
       &::-webkit-scrollbar-thumb {
         background-color: getColor('main-fade');
-        border-radius: var(--radius);
+        border-radius: var(--radius-sm);
       }
     }
   }

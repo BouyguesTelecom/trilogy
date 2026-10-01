@@ -5,6 +5,20 @@
   --radius-medium: 8px;
   --radius-small: 4px;
   --radius-large: 16px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
   --border: 1px solid #{getColor('stroke')};
   --border-active: 2px solid #{getColor('main')};
+  --spacing-none: 0;
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-xxxl: 64px;
 }

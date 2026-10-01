@@ -438,11 +438,16 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 // Radius
-$radius-list: ['radius-large', 'radius-medium', 'radius-small', 'radius'];
+$radius-list: (
+  'radius-large': 'radius-lg',
+  'radius-medium': 'radius-md',
+  'radius-small': 'radius-sm',
+  'radius': 'radius-sm',
+);
 
-@each $label in $radius-list {
+@each $label, $radius in $radius-list {
   .has-border-#{$label} {
-    border-radius: var(--#{$label});
+    border-radius: var(--#{$radius});
   }
 }
 
@@ -872,4 +877,22 @@ $align-values: (
   word-break: break-word;
   -webkit-box-orient: vertical;
   display: -webkit-box;
+}
+
+$spacings-values: (
+  'none',
+  'xxs',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  'xxl',
+  'xxxl'
+);
+
+@each $spacing in $spacings-values {
+  .padding-#{$spacing} {
+    padding: var(--spacing-#{$spacing}) !important;
+  }
 }

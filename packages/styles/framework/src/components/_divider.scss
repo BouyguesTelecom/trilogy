@@ -4,6 +4,7 @@
   height: 1px;
   background-color: getColor('neutral');
   border: 1px solid #{getColor('stroke-fade')};
+  border-radius: var(--radius-full);
 }
 
 .divider {

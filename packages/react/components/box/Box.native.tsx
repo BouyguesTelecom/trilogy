@@ -4,11 +4,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { getRadius, Radius } from '@/objects/facets/Radius'
-import React, { useCallback, useState } from 'react'
-import { Theme } from '@/constants/theme'
+import React from 'react'
 import { ImageBackground, Platform, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../skeleton'
+import { getPaddingStyle, Padding } from '@/objects/facets/Padding'
 
 /**
  * Box Component
@@ -26,6 +26,8 @@ import { Skeleton } from '../skeleton'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  * @param fullheight {boolean} Full height box
+ * @param radius {string} Box border radius
+ * @param padding {string} Box padding
  */
 const Box = React.forwardRef<BoxNativeRef, BoxProps>(
   (
@@ -44,6 +46,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       active,
       testId,
       radius,
+      padding,
       ...others
     },
     ref,
@@ -110,6 +113,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         <BoxContext.Provider
           value={{
             fullHeight: fullheight || false,
+            padding: padding,
           }}
         >
           <View style={[styles.box, !flat && styles.shadow, (others as any)?.style]}>
@@ -151,6 +155,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       <BoxContext.Provider
         value={{
           fullHeight: fullheight || false,
+          padding: padding,
         }}
       >
         <View style={[styles.box, !flat && styles.shadow, (others as any)?.style]}>

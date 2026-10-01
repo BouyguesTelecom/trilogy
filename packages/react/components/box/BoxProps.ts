@@ -1,4 +1,5 @@
 import { TouchableOpacity, type View } from 'react-native'
+import { Padding } from '@/objects/facets/Padding'
 import { BackgroundProps } from '../../objects/atoms/Background'
 import { Accessibility } from '../../objects/facets/Accessibility'
 import { Clickable } from '../../objects/facets/Clickable'
@@ -24,6 +25,7 @@ export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Access
   inverted?: boolean
   blank?: boolean
   radius?: Radius | `${Radius}`
+  padding?: Padding | `${Padding}`
 }
 
 export type BoxRef = HTMLDivElement

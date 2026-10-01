@@ -2,7 +2,7 @@
   border-collapse: separate;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 24px;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   border-spacing: 0 8px;
   background-color: getColor('background');
 
@@ -54,7 +54,7 @@
     padding-bottom: 16px;
     button {
       text-align: center;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       width: 36px;
       height: 36px;
       i {
@@ -82,7 +82,7 @@
       display: block;
       width: 36px;
       height: 36px;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
     }
   }
 
@@ -96,7 +96,7 @@
     }
     button {
       padding: 2px 6px;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
     }
   }
 

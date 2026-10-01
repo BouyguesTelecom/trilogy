@@ -2,7 +2,7 @@ $height-prompt-item: 64px;
 
 .prompt {
     box-shadow: 0 0 0 1px var(--color-stroke);
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-sm);
     overflow: hidden;
     background-color: getColor('background');
     &[aria-disabled=true] {
@@ -35,7 +35,7 @@ $height-prompt-item: 64px;
         padding: 16px 16px 0px 16px !important;
         margin:0 !important;
         &-img {
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             overflow: hidden;
         }
         &-file {
@@ -72,7 +72,7 @@ $height-prompt-item: 64px;
         }
         &-delete {
             background-color: getColor('main-fade');
-            border-radius: 100px;
+            border-radius: var(--radius-full);
             height: 20px;
             width: 20px;
         }
@@ -125,7 +125,7 @@ $height-prompt-item: 64px;
             width: 36px !important;
         }
         &-microphone {
-            border-radius: 100px;
+            border-radius: var(--radius-full);
         }
         &-tool-submit.streaming {
             padding: 0;
@@ -152,6 +152,6 @@ $height-prompt-item: 64px;
         background-color: getColor('background');
         height: 16px;
         width: 16px;
-        border-radius: 3px;
+        border-radius: var(--radius-xs);
     }
 }

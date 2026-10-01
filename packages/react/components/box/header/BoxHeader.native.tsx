@@ -6,6 +6,8 @@ import { useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
+import { getPaddingStyle } from '@/objects/facets/Padding'
+import { BoxContext } from '../context/boxContext'
 
 /**
  * Box Header Component
@@ -19,13 +21,14 @@ const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
     const statesContext = useContext(StatesContext)
     const headerBgc = variant ? getColorStyle(variant) : getColorStyle(TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const { padding } = React.useContext(BoxContext)
 
     const styles = memoStyles({
       boxHeader: {
         width: '100%',
         backgroundColor: headerBgc,
         padding: 10,
-        paddingLeft: 16,
+        paddingLeft: getPaddingStyle(padding ?? 'md'),
         marginTop: (statesContext.active && -2) || (statesContext.flat && -1) || 0,
         justifyContent: 'space-between',
         alignItems: 'flex-start',

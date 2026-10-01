@@ -24,6 +24,8 @@ import { BoxProps, BoxRef } from './BoxProps'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  * @param fullheight {boolean} Full height box
+ * @param radius {string} Box border radius
+ * @param padding {string} Box padding
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param href {string} Link href (renders box as anchor)
@@ -50,6 +52,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
       active,
       testId,
       radius,
+      padding,
       ...others
     },
     ref,
@@ -72,6 +75,7 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
         fullheight && is('fullheight'),
         active && is('active'),
         radius && `radius-${radius}`,
+        padding && `padding-${padding}`,
       ),
     )
 

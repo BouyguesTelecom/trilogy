@@ -19,7 +19,7 @@
     background-color: getColor('background');
     font-size: $size-normal;
     border: 1px solid #{getColor('stroke-fade')};
-    border-radius: var(--radius);
+    border-radius: var(--radius-md);
     margin: 8px 0;
     min-height: 56px;
     max-height: max-content;
@@ -66,7 +66,7 @@
     }
 
     .accordion-header {
-        border-radius: var(--radius);
+      border-radius: var(--radius-md);
       transition: margin 300ms ease-out;
 
       &:focus-visible{
@@ -123,7 +123,7 @@
         overflow-y: hidden;
 
         .accordion-content {
-          border-radius: var(--radius);
+          border-radius: var(--radius-md);
           margin-bottom: 10px;
 
           @include mobile() {
