@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.19.0] - 2026-09-xx
+## [4.20.0] - 2026-10-01
+- Add prop `radius` & `padding` on Box component
+- Add prop `size` on Container component (web)
+- Deprecate the `medium` prop on the container.
+- Update padding Section (web)
+- Update radius on all components  
+- Fix submit button on Prompt component (web)
+
+## [4.19.0] - 2026-09-14
 - Add prop yearsOrder on Calendar
 - Fix pagination 
 - Fix stepper css 
