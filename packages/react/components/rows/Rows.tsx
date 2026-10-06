@@ -1,21 +1,21 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { has, is } from '@/services'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { RowsProps, RowsRef } from './RowsProps'
+import { forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { RowsProps, RowsRef } from '@/components/rows/RowsProps'
 
 /**
  * Rows Component
- * @param children {React.ReactNode} Rows children
+ * @param children {ReactNode} Rows children
  * @param gap {GapSize} Gap size between rows
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const Rows = React.forwardRef<RowsRef, RowsProps>(({ className, id, gap, testId, ...others }, ref) => {
+const Rows = forwardRef<RowsRef, RowsProps>(({ className, id, gap, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   return (

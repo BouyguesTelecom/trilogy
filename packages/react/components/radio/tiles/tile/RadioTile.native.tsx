@@ -4,15 +4,16 @@ import { RadioTileNativeProps, RadioTileNativeRef } from '@/components/radio/til
 import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
-import { VariantState } from '@/objects'
+import { VariantState } from '@/objects/facets/Variant'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { TypographyAlign, TypographyColor } from '@/objects/Typography'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useMemo, useState, forwardRef, useId } from 'react'
 import { Theme } from '@/constants/theme'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { RadioTilesContext } from '../context'
+import { RadioTilesContext } from '@/components/radio/tiles/context'
 
 /**
  * radioTile Component
@@ -30,12 +31,12 @@ import { RadioTilesContext } from '../context'
  * @param sticker {string} sticker label
  * @param stickerVariant {VariantState} Sticker variant
  */
-const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
+const RadioTile = forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
   (
     {
       checked,
       disabled,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,

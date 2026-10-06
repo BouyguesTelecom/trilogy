@@ -1,7 +1,8 @@
-import { ClickEvent } from '../../../events/OnClickEvent'
-import { IconName, IconNameValues } from '../../../components/icon'
-import { Accessibility, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { ClickEvent } from '@/events/OnClickEvent'
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { TouchableOpacity } from 'react-native'
 
 /**

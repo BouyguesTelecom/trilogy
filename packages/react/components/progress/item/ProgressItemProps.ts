@@ -1,5 +1,8 @@
-import { Accessibility, Dev, StatusProps } from '@/objects/facets'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import { StatusProps } from '@/objects/facets/Status'
 import { View } from 'react-native'
+import { ReactNode } from 'react'
 
 type Styles = { [key: string]: any }
 
@@ -7,7 +10,7 @@ type Styles = { [key: string]: any }
  * Progress Item Interface
  */
 export interface ProgressItemProps extends StatusProps, Accessibility, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   percent: number
   minPercent?: number
   maxPercent?: number

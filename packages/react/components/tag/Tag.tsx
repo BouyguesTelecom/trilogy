@@ -1,12 +1,12 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { Icon } from '../icon'
-import { TagProps, TagRef } from './TagProps'
+import { forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
+import { TagProps, TagRef } from '@/components/tag/TagProps'
 
 /**
  * Tag Component
@@ -20,7 +20,7 @@ import { TagProps, TagRef } from './TagProps'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  **/
-const Tag = React.forwardRef<TagRef, TagProps>(
+const Tag = forwardRef<TagRef, TagProps>(
   ({ label, className, id, variant, inverted, small, iconName, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

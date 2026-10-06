@@ -1,15 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { BoxContentProps, BoxContentRef } from './BoxContentProps'
+import { forwardRef } from 'react'
+import { BoxContentProps, BoxContentRef } from '@/components/box/content/BoxContentProps'
 
 /**
  * Box Content
- * @param children {React.ReactNode} Box Content Children
+ * @param children {ReactNode} Box Content Children
  * @param backgroundColor {TrilogyColor} Box Content Background Color
  * @param backgroundSrc {string} Source of background Image
  * @param id {string} Custom id attribute
@@ -17,7 +17,7 @@ import { BoxContentProps, BoxContentRef } from './BoxContentProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const BoxContent = React.forwardRef<BoxContentRef, BoxContentProps>(
+const BoxContent = forwardRef<BoxContentRef, BoxContentProps>(
   ({ children, className, id, backgroundColor, backgroundSrc, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

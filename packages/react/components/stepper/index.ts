@@ -1,6 +1,6 @@
-import Stepper from './Stepper'
-import Step from './step'
+import Stepper from '@/components/stepper/Stepper'
+import Step from '@/components/stepper/step'
 
-export * from './step/StepEnum'
+export * from '@/components/stepper/step/StepEnum'
 
 export { Stepper, Step }

@@ -1,11 +1,11 @@
-import React, { useId } from 'react'
+import { useId } from 'react'
 
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
 import { Text } from '@/components/text'
-import { TrilogyColor, getColorStyle } from '@/objects'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import { DimensionValue, StyleSheet, View } from 'react-native'
-import { useGauge } from './hook/useGauge'
+import { useGauge } from '@/components/input/gauge/hook/useGauge'
 import { Theme } from '@/constants/theme'
 
 interface InputGaugeProps {

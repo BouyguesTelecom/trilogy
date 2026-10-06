@@ -5,9 +5,10 @@ import { Clickable } from '@/objects/facets/Clickable'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
 import { View } from 'react-native'
+import { ReactNode } from 'react'
 
 export interface PromptButtonProps extends Accessibility, Dev, CommonProps, Clickable {
-  children?: React.ReactNode
+  children?: ReactNode
   iconName?: IconName | IconNameValues
   disabled?: boolean
   readOnly?: boolean

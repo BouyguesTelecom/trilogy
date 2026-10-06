@@ -3,14 +3,16 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { FlexBox } from '@/components/flex-box'
 import { Input } from '@/components/input'
 import { Text } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useClickOutside } from '@/helpers/clickOutside'
-import { Align, Justify, TypographyAlign } from '@/objects'
+import { Align } from '@/objects/facets/Alignable'
+import { Justify } from '@/objects/facets/Justifiable'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
 import clsx from 'clsx'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { TimepickerSelector } from './selector'
-import { TimepickerDefaultProps } from './TimepickerDefaultProps'
+import { useCallback, useMemo, useRef, useState, KeyboardEvent as ReactKeyboardEvent, forwardRef, useEffect } from 'react'
+import { TimepickerSelector } from '@/components/timepicker/default/selector'
+import { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
 
 const APPROXIMATIVE_HEIGHT_TIMEPICKER = 300
 
@@ -28,7 +30,7 @@ const parseTime = (timeStr: string) => {
   }
 }
 
-const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefaultProps, 'circular'>>(
+const TimepickerDefault = forwardRef<HTMLInputElement, Omit<TimepickerDefaultProps, 'circular'>>(
   ({ disabled, id, value = '00:00', onChange, step = 1, label, sample, help, required, testId, ...others }, ref) => {
     const [display, setDisplay] = useState<boolean>(false)
     const { styled } = useTrilogyContext()
@@ -115,7 +117,7 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
       [selectedHours, onChange],
     )
 
-    const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
+    const handleKeyDown = useCallback((event: ReactKeyboardEvent) => {
       const { key } = event
       if (key === 'Escape') {
         setDisplay(false)
@@ -187,14 +189,14 @@ const TimepickerDefault = React.forwardRef<HTMLInputElement, Omit<TimepickerDefa
       [onChange],
     )
 
-    React.useEffect(() => {
+    useEffect(() => {
       const { hours: h, minutes: m } = parseTime(value)
       setSelectedHours(h)
       setSelectedMinutes(m)
       setInputValue(value !== '00:00' ? value : '')
     }, [value])
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (!display) return
       const handleUpdate = () => calculatePortalPosition()
       window.addEventListener('scroll', handleUpdate, true)

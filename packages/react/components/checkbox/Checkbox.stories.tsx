@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
-import CheckboxComponent from './Checkbox'
-import type { CheckboxProps } from './CheckboxProps'
-import CheckboxList from './list/CheckboxList'
-import type { CheckboxListWebProps } from './list/CheckboxListProps'
+import { ReactNode } from 'react'
+import CheckboxComponent from '@/components/checkbox/Checkbox'
+import type { CheckboxProps } from '@/components/checkbox/CheckboxProps'
+import CheckboxList from '@/components/checkbox/list/CheckboxList'
+import type { CheckboxListWebProps } from '@/components/checkbox/list/CheckboxListProps'
 
 CheckboxComponent.displayName = 'Checkbox'
 CheckboxList.displayName = 'CheckboxList'
 
-const Checkbox = (props: CheckboxProps & { children?: React.ReactNode }): JSX.Element => (
+const Checkbox = (props: CheckboxProps & { children?: ReactNode }): JSX.Element => (
   <CheckboxComponent {...props} />
 )
 Checkbox.displayName = 'Checkbox'

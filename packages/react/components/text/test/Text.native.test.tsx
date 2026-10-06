@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
-import Text from '../Text'
-import { TextLevels } from '../TextEnum'
+import Text from '@/components/text/Text'
+import { TextLevels } from '@/components/text/TextEnum'
 
 jest.useFakeTimers()
 

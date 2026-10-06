@@ -1,18 +1,20 @@
-import { AriaRole } from 'react'
+import { AriaRole, ElementType, ReactNode } from 'react'
 import { Role, type Text } from 'react-native'
-import { IconName, IconNameValues } from '../../components/icon'
-import { Accessibility, Clickable, Dev } from '../../objects/facets'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Link Interface
  */
 
 interface Link extends Accessibility, Clickable, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   to?: string
   href?: string
-  routerLink?: React.ElementType
+  routerLink?: ElementType
   iconName?: IconName | IconNameValues
   inline?: boolean
   inverted?: boolean

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconName } from '../icon'
-import type { DividerProps } from './DividerProps'
-import { Divider } from './index'
-import React from 'react'
+import { IconName } from '@/components/icon'
+import type { DividerProps } from '@/components/divider/DividerProps'
+import { Divider } from '@/components/divider'
 
 type DividerStoryArgs = DividerProps & {
   marginless?: boolean

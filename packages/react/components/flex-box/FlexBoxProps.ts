@@ -2,9 +2,10 @@ import { Align } from '@/objects/facets/Alignable'
 import { DirectionEnum, DirectionEnumValues } from '@/objects/facets/Direction'
 import { Justify } from '@/objects/facets/Justifiable'
 import { View } from 'react-native'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { GapSize } from '../columns'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { GapSize } from '@/components/columns'
 import { Dev } from '@/objects/facets/Dev'
+import { ReactNode } from 'react'
 
 interface ResponsiveValue<T> {
   mobile?: T
@@ -21,7 +22,7 @@ export type JustifyProps = ResponsiveValue<Justify>
 export type WrapProps = ResponsiveValue<boolean>
 
 export interface FlexBoxProps extends CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   gap?: FlexBoxSize | GapSize
   direction?: Direction | DirectionEnum | DirectionEnumValues
   align?: AlignProps | Align

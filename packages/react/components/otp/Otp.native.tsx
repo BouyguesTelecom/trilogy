@@ -2,11 +2,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { TypographyAlign } from '@/objects'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, forwardRef } from 'react'
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
-import { OtpNativeRef, OtpProps } from './OtpProps'
+import { OtpNativeRef, OtpProps } from '@/components/otp/OtpProps'
 import { Theme } from '@/constants/theme'
 
 /**
@@ -23,7 +23,7 @@ import { Theme } from '@/constants/theme'
  * @param id {string} Custom id attribute
  * @param activated {boolean} Activated OTP
  */
-const Otp = React.forwardRef<OtpNativeRef, OtpProps>(
+const Otp = forwardRef<OtpNativeRef, OtpProps>(
   (
     { value, length = 6, disabled, error, onCompleted, onFocus, activated, onChange, label, testId, ...others },
     ref,

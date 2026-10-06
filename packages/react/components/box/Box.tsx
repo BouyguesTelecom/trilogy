@@ -1,16 +1,16 @@
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName } from '@/objects/facets/Color'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { BoxProps, BoxRef } from './BoxProps'
+import { CSSProperties, RefObject, forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { BoxProps, BoxRef } from '@/components/box/BoxProps'
 
 /**
  * Box Component
- * @param children {React.ReactNode} Box child
+ * @param children {ReactNode} Box child
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
  * @param backgroundColor {TrilogyColor} Box Content Background Color
@@ -31,7 +31,7 @@ import { BoxProps, BoxRef } from './BoxProps'
  * @param href {string} Link href (renders box as anchor)
  * @param blank {boolean} Target blank when href is set
  */
-const Box = React.forwardRef<BoxRef, BoxProps>(
+const Box = forwardRef<BoxRef, BoxProps>(
   (
     {
       inverted,
@@ -81,14 +81,14 @@ const Box = React.forwardRef<BoxRef, BoxProps>(
 
     const Tag = href ? 'a' : 'div'
 
-    const hoverStyle: React.CSSProperties = {
+    const hoverStyle: CSSProperties = {
       cursor: 'pointer',
     }
 
     return (
       <Tag
         data-testid={testId}
-        ref={ref as React.RefObject<HTMLAnchorElement> & React.RefObject<HTMLDivElement>}
+        ref={ref as RefObject<HTMLAnchorElement> & RefObject<HTMLDivElement>}
         id={id}
         style={onClick && { ...hoverStyle }}
         href={href}

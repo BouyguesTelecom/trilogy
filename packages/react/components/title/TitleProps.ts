@@ -1,21 +1,16 @@
-import {
-  Accessibility,
-  Clickable,
-  Dev,
-  Invertable,
-  Marginless,
-  TypographyAlign,
-  TypographyAlignValues,
-  TypographyBold,
-  TypographyBoldValues,
-  TypographyColor,
-  TypographyColorValues,
-  TypographyTransform,
-  TypographyTransformValues,
-} from '../../objects'
-import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
+import { Invertable } from '@/objects/facets/Invertable'
+import { Marginless } from '@/objects/facets/Marginless'
+import { TypographyAlign, TypographyAlignValues } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold, TypographyBoldValues } from '@/objects/Typography/TypographyBold'
+import { TypographyColor, TypographyColorValues } from '@/objects/Typography/TypographyColor'
+import { TypographyTransform, TypographyTransformValues } from '@/objects/Typography/TypographyTransform'
+import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from '@/components/title/TitleEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { Text } from 'react-native'
+import { ReactNode } from 'react'
 
 type Styles = { [key: string]: unknown }
 
@@ -23,7 +18,7 @@ type Styles = { [key: string]: unknown }
  * Title Interface
  */
 export interface TitleProps extends Invertable, Accessibility, Clickable, Marginless, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   level?: TitleLevelValues | TitleLevels
   typo?:
     | TypographyColor

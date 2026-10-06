@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useTrilogyContext } from '@/context'
-import { FabProps, FabRef } from './FabProps'
-import { hashClass } from '@/helpers'
+import { useEffect, useState, CSSProperties, forwardRef } from 'react'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { FabProps, FabRef } from '@/components/fab/FabProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { Icon, IconName } from '@/components/icon'
-import { is } from '@/services'
-import { ComponentName } from '../enumsComponentsName'
+import { is } from '@/services/classify'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Fab Component - Floating Action Button
@@ -25,7 +25,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param className {string} Additional CSS Classes
  * @param fixed {boolean} Fixed positioning (true by default)
  */
-const Fab = React.forwardRef<FabRef, FabProps>(({
+const Fab = forwardRef<FabRef, FabProps>(({
   children,
   extended,
   iconName,
@@ -49,7 +49,7 @@ const Fab = React.forwardRef<FabRef, FabProps>(({
     setIsExtended(extended || false)
   }, [isExtended])
 
-  const positionStyle: React.CSSProperties | any =
+  const positionStyle: CSSProperties | any =
     top || bottom || left || right
       ? {
           position: fixed ? 'fixed' : 'absolute',

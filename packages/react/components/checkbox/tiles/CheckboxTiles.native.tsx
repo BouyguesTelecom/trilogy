@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import { getAlignStyle } from '@/objects/facets/Alignable'
-import React, { ReactNode, RefObject, useCallback, useMemo } from 'react'
+import { ReactNode, RefObject, useCallback, useMemo, Children, forwardRef, isValidElement } from 'react'
 import { FlatList, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { CheckboxTilesNativeRef, CheckboxTilesProps } from './CheckboxTilesProps'
-import { CheckboxTilesContext } from './context'
+import { CheckboxTilesNativeRef, CheckboxTilesProps } from '@/components/checkbox/tiles/CheckboxTilesProps'
+import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
 
 /**
  * CheckboxTiles
@@ -14,12 +14,12 @@ import { CheckboxTilesContext } from './context'
  * @param verticalAlign {Alignable}
  * @param numberCols {GridSize | GridItemSize} number of columns for grid layout
  * @param accessibilityLabelledBy {string} Id of the element that labels the group of checkboxes for accessibility
- * @param children {React.ReactNode} CheckboxTile components as children
+ * @param children {ReactNode} CheckboxTile components as children
  * @param testId {string} Test Id for Test Integration
  */
-const CheckboxTiles = React.forwardRef<CheckboxTilesNativeRef, CheckboxTilesProps>(
+const CheckboxTiles = forwardRef<CheckboxTilesNativeRef, CheckboxTilesProps>(
   ({ children, align, verticalAlign, numberCols, id, testId, ...others }, ref): JSX.Element => {
-    const childArray = useMemo(() => React.Children.toArray(children).filter(React.isValidElement), [children])
+    const childArray = useMemo(() => Children.toArray(children).filter(isValidElement), [children])
 
     const columnCount = useMemo(() => {
       if (!numberCols || numberCols === 1) return null

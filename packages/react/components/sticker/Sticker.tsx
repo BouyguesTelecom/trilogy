@@ -1,12 +1,12 @@
 import { Icon, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getVariantClassName } from '@/objects'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getVariantClassName } from '@/objects/facets/Variant'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { StickerProps, StickerRef } from './StickerProps'
+import { forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { StickerProps, StickerRef } from '@/components/sticker/StickerProps'
 
 /**
  * Sticker Component
@@ -21,7 +21,7 @@ import { StickerProps, StickerRef } from './StickerProps'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const Sticker = React.forwardRef<StickerRef, StickerProps>(
+const Sticker = forwardRef<StickerRef, StickerProps>(
   (
     { className, id, variant, small, label, outlined, iconName, accessibilityLabel, testId, ...others },
     ref,

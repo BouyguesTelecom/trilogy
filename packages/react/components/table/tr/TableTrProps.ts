@@ -1,11 +1,15 @@
-import { Clickable, Dev, Referenceable, ReferenceableNative, TrilogyColor, TrilogyColorValues } from '../../../objects'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
+import { Referenceable, ReferenceableNative } from '@/objects/facets/Referenceable'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { TouchableOpacity, View } from 'react-native'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { ReactNode } from 'react'
 
 interface TableTrPropsWeb extends Clickable, Dev {
-  children: React.ReactNode
+  children: ReactNode
   expandable?: boolean
-  expanded?: boolean | React.ReactNode | string
+  expanded?: boolean | ReactNode | string
   className?: string
   expansion?: boolean
   color?: TrilogyColor | TrilogyColorValues

@@ -1,9 +1,8 @@
-import * as React from 'react'
 import { FlatList } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TrilogyColor, getColorStyle } from '@/objects'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
-import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
+import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
 import { Theme } from '@/constants/theme'
 
 /**

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { has, is } from '@/services'
-import { ProductTourRef, ProductTourWebProps } from './ProductTourProps'
-import { Icon, IconName, IconSize } from '../icon'
-import { hashClass } from '@/helpers'
+import { useEffect, useState, forwardRef } from 'react'
+import { has, is } from '@/services/classify'
+import { ProductTourRef, ProductTourWebProps } from '@/components/product-tour/ProductTourProps'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
-import { ComponentName } from '../enumsComponentsName'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Product Tour Component
- * @param children {React.ReactNode} Title child
+ * @param children {ReactNode} Title child
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes
  * @param active {boolean} Display component
@@ -19,7 +19,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param avatarSrc {string} Display avatar if source
  * @param avatarDirection {AvatarDirection} LEFT|RIGHT
  */
-const ProductTour = React.forwardRef<ProductTourRef, ProductTourWebProps>(({
+const ProductTour = forwardRef<ProductTourRef, ProductTourWebProps>(({
   children,
   className,
   id,

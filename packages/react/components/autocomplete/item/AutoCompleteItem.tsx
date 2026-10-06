@@ -1,10 +1,10 @@
 import clsx from 'clsx'
-import * as React from 'react'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
-import { Item } from '../AutoCompleteProps'
-import { AutoCompleteItemProps } from './AutoCompleteItemProps'
+import { useState } from 'react'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
+import { Item } from '@/components/autocomplete/AutoCompleteProps'
+import { AutoCompleteItemProps } from '@/components/autocomplete/item/AutoCompleteItemProps'
 
 /**
  * AutoCompleteItem Component
@@ -27,7 +27,7 @@ const AutoCompleteItem = <T extends string | Item<unknown>>({
   id,
 }: AutoCompleteItemProps<T>): JSX.Element => {
   const { styled } = useTrilogyContext()
-  const [isActive, setIsActive] = React.useState(false)
+  const [isActive, setIsActive] = useState(false)
 
   return (
     <div

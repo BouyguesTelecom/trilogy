@@ -1,6 +1,7 @@
-import { Dev, Marginless } from '@/objects'
+import { Dev } from '@/objects/facets/Dev'
+import { Marginless } from '@/objects/facets/Marginless'
 import { IconName, IconNameValues } from '@/components/icon'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
 
 /**

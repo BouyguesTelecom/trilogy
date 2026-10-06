@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef, FC, useState } from 'react'
 import { View, ViewStyle, Animated } from 'react-native'
-import { SkeletonProps } from './SkeletonProps'
+import { SkeletonProps } from '@/components/skeleton/SkeletonProps'
 
 /**
  * Skeleton component to display a loading placeholder with shimmer effect.
@@ -14,7 +14,7 @@ import { SkeletonProps } from './SkeletonProps'
  * @param children - Optional children to render inside the skeleton.
  * @param testID - Test identifier for testing purposes.
  */
-const Skeleton: React.FC<SkeletonProps> = ({
+const Skeleton: FC<SkeletonProps> = ({
   style,
   width = '100%',
   height = 20,
@@ -26,7 +26,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   testID,
 }) => {
   const shimmerValue = useRef(new Animated.Value(0)).current
-  const [containerWidth, setContainerWidth] = React.useState(200)
+  const [containerWidth, setContainerWidth] = useState(200)
 
   useEffect(() => {
     const shimmerAnimation = Animated.loop(

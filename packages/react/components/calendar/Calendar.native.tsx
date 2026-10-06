@@ -1,13 +1,13 @@
-import { TypographyAlign } from '@/objects'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import translation from '@trilogy-ds/locales/lib/calendar'
-import React from 'react'
+import { forwardRef, useCallback, useEffect, useMemo, useState } from 'react'
 import { Modal, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { ComponentName } from '../enumsComponentsName'
-import { Icon } from '../icon'
-import { Text } from '../text'
-import { CalendarYearsOrder } from './CalendarEnum'
-import { CalendarProps, ChangeEventCalendar } from './CalendarProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { Icon } from '@/components/icon'
+import { Text } from '@/components/text'
+import { CalendarYearsOrder } from '@/components/calendar/CalendarEnum'
+import { CalendarProps, ChangeEventCalendar } from '@/components/calendar/CalendarProps'
 import { Theme } from '@/constants/theme'
 
 const days = [
@@ -39,7 +39,7 @@ const checkIsRange = (date: ChangeEventCalendar): date is [Date, Date] | [Date] 
  * @param yearsOrder {CalendarYearsOrder} Order of years in the year selector (asc by default, desc from most recent to oldest)
  * @param testId {string} Test Id for Test Integration
  */
-const Calendar = React.forwardRef<View, CalendarProps>(
+const Calendar = forwardRef<View, CalendarProps>(
   (
     {
       value = currentDate,
@@ -55,13 +55,13 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     },
     ref,
   ) => {
-    const [visibleMonth, setVisibleMonth] = React.useState<Date>(
+    const [visibleMonth, setVisibleMonth] = useState<Date>(
       value instanceof Date ? value : value[0] || currentDate,
     )
-    const [activeDate, setActiveDate] = React.useState<ChangeEventCalendar>(value)
-    const [dateEndHovered, setDateEndHovered] = React.useState<Date>()
-    const [showMonthPicker, setShowMonthPicker] = React.useState<boolean>(false)
-    const [showYearPicker, setShowYearPicker] = React.useState<boolean>(false)
+    const [activeDate, setActiveDate] = useState<ChangeEventCalendar>(value)
+    const [dateEndHovered, setDateEndHovered] = useState<Date>()
+    const [showMonthPicker, setShowMonthPicker] = useState<boolean>(false)
+    const [showYearPicker, setShowYearPicker] = useState<boolean>(false)
 
     const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
     const shadowColor = getColorStyle(TrilogyColor.DISABLED)
@@ -70,7 +70,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
     const mainFadeColor = getColorStyle(TrilogyColor.MAIN_FADE)
     const disabledColor = getColorStyle(TrilogyColor.DISABLED)
 
-    const styles = React.useMemo(
+    const styles = useMemo(
       () =>
         StyleSheet.create({
           calendar: {
@@ -328,21 +328,21 @@ const Calendar = React.forwardRef<View, CalendarProps>(
 
     const isRange = checkIsRange(activeDate)
 
-    const isNextDisabled = React.useMemo(
+    const isNextDisabled = useMemo(
       () =>
         disabled ||
         (maxDate?.getMonth() === visibleMonth?.getMonth() && maxDate?.getFullYear() === visibleMonth?.getFullYear()),
       [maxDate, visibleMonth, disabled],
     )
 
-    const isPrevDisabled = React.useMemo(
+    const isPrevDisabled = useMemo(
       () =>
         disabled ||
         (minDate?.getMonth() === visibleMonth?.getMonth() && minDate?.getFullYear() === visibleMonth?.getFullYear()),
       [minDate, visibleMonth, disabled],
     )
 
-    const getAllDaysInMonth = React.useCallback((year: number, month: number) => {
+    const getAllDaysInMonth = useCallback((year: number, month: number) => {
       const date = new Date(year, month, 1)
       const days: Array<Date | null> = []
       const firstDayOfMonth = (date.getDay() + 6) % 7
@@ -361,7 +361,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       return allDays
     }, [])
 
-    const yearsBetween = React.useMemo(() => {
+    const yearsBetween = useMemo(() => {
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
       const currentYear = value instanceof Date && value?.getFullYear()
@@ -382,7 +382,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       return years
     }, [minDate, maxDate, value, yearsOrder])
 
-    const availableMonths = React.useMemo(() => {
+    const availableMonths = useMemo(() => {
       const currentYear = visibleMonth.getFullYear()
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
@@ -397,19 +397,19 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       })
     }, [minDate, maxDate, visibleMonth])
 
-    const availableYear = React.useMemo(() => {
+    const availableYear = useMemo(() => {
       const minYear = minDate.getFullYear()
       const maxYear = maxDate.getFullYear()
       return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i)
     }, [minDate, maxDate, visibleMonth])
 
-    const allDaysInMonth = React.useMemo(() => {
+    const allDaysInMonth = useMemo(() => {
       const activeYear = visibleMonth.getFullYear()
       const activeMonth = visibleMonth.getMonth()
       return getAllDaysInMonth(activeYear, activeMonth)
     }, [visibleMonth])
 
-    const handleClickNextPrevMonth = React.useCallback(
+    const handleClickNextPrevMonth = useCallback(
       (month: number) => {
         const nextMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + month, visibleMonth.getDate())
         setVisibleMonth(nextMonth)
@@ -418,7 +418,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       [visibleMonth, onMonthChange],
     )
 
-    const handleMonthSelect = React.useCallback(
+    const handleMonthSelect = useCallback(
       (selectedMonth: number) => {
         const newDate = new Date(visibleMonth.getFullYear(), selectedMonth, visibleMonth.getDate())
         setVisibleMonth(newDate)
@@ -427,7 +427,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       [visibleMonth, onMonthChange, minDate, maxDate],
     )
 
-    const handleYearSelect = React.useCallback(
+    const handleYearSelect = useCallback(
       (selectedYear: number) => {
         const newDate = new Date(selectedYear, visibleMonth.getMonth(), visibleMonth.getDate())
 
@@ -448,7 +448,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       [visibleMonth, onMonthChange, minDate, maxDate],
     )
 
-    const handlePressDay = React.useCallback(
+    const handlePressDay = useCallback(
       (day: Date) => {
         if (readOnly) return
 
@@ -467,7 +467,7 @@ const Calendar = React.forwardRef<View, CalendarProps>(
       [onChange, readOnly, activeDate, isRange],
     )
 
-    React.useEffect(() => {
+    useEffect(() => {
       setActiveDate(value)
       if (value instanceof Date) return setVisibleMonth(value)
       if (!(value instanceof Date) && value[0]) {

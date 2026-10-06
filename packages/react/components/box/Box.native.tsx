@@ -4,15 +4,14 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { getRadius, Radius } from '@/objects/facets/Radius'
-import React from 'react'
+import { Ref, forwardRef } from 'react'
 import { ImageBackground, Platform, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Skeleton } from '../skeleton'
-import { getPaddingStyle, Padding } from '@/objects/facets/Padding'
+import { Skeleton } from '@/components/skeleton'
 
 /**
  * Box Component
- * @param children {React.ReactNode} Box child
+ * @param children {ReactNode} Box child
  * @param onClick {Function} onClick Event
  * @param skeleton {boolean} Box skeleton
  * @param backgroundColor {TrilogyColor} Box Content Background Color
@@ -29,7 +28,7 @@ import { getPaddingStyle, Padding } from '@/objects/facets/Padding'
  * @param radius {string} Box border radius
  * @param padding {string} Box padding
  */
-const Box = React.forwardRef<BoxNativeRef, BoxProps>(
+const Box = forwardRef<BoxNativeRef, BoxProps>(
   (
     {
       children,
@@ -118,7 +117,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
         >
           <View style={[styles.box, !flat && styles.shadow, (others as any)?.style]}>
             <TouchableOpacity
-              ref={ref as React.Ref<TouchableOpacity>}
+              ref={ref as Ref<TouchableOpacity>}
               onPress={(e?: unknown) => onClick?.(e)}
               testID={boxTestId}
               style={{
@@ -160,7 +159,7 @@ const Box = React.forwardRef<BoxNativeRef, BoxProps>(
       >
         <View style={[styles.box, !flat && styles.shadow, (others as any)?.style]}>
           <View
-            ref={ref as React.Ref<View>}
+            ref={ref as Ref<View>}
             testID={boxTestId}
             style={{
               overflow: 'hidden',

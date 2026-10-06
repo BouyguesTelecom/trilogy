@@ -1,11 +1,11 @@
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { CountdownFormat, CountdownUnite } from './CountdownEnum'
-import { CountdownProps, CountdownRef } from './CountdownProps'
+import { useEffect, useState, forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { CountdownFormat, CountdownUnite } from '@/components/countdown/CountdownEnum'
+import { CountdownProps, CountdownRef } from '@/components/countdown/CountdownProps'
 
 const calculateTimer = (timeDifference: number) => {
   const seconds = Math.floor((timeDifference / 1000) % 60)
@@ -28,7 +28,7 @@ const calculateTimer = (timeDifference: number) => {
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Countdown = React.forwardRef<CountdownRef, CountdownProps>(
+const Countdown = forwardRef<CountdownRef, CountdownProps>(
   ({ deadline, className, id, format, event, small, inverted, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const [timeLeft] = useState(deadline)

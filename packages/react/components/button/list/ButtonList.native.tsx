@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { View } from 'react-native'
-import type { ButtonListNativeRef, ButtonListProps } from './ButtonListProps'
+import type { ButtonListNativeRef, ButtonListProps } from '@/components/button/list/ButtonListProps'
 
 /**
  * Button List Component
@@ -9,7 +9,7 @@ import type { ButtonListNativeRef, ButtonListProps } from './ButtonListProps'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const ButtonList = React.forwardRef<ButtonListNativeRef, ButtonListProps>(({ children, testId }, ref): JSX.Element => {
+const ButtonList = forwardRef<ButtonListNativeRef, ButtonListProps>(({ children, testId }, ref): JSX.Element => {
   return <View ref={ref} testID={testId} {...{ children }} />
 })
 

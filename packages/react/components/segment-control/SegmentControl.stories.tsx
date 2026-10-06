@@ -1,8 +1,7 @@
 import { Alignable } from '@/objects/facets/Alignable'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
-import SegmentControlComponent from './SegmentControl'
-import SegmentControlItem from './item/SegmentControlItem'
+import SegmentControlComponent from '@/components/segment-control/SegmentControl'
+import SegmentControlItem from '@/components/segment-control/item/SegmentControlItem'
 
 SegmentControlComponent.displayName = 'SegmentControl'
 SegmentControlItem.displayName = 'SegmentControlItem'

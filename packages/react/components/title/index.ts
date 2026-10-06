@@ -1,4 +1,4 @@
-import Title from './Title'
+import Title from '@/components/title/Title'
 
-export * from './TitleEnum'
+export * from '@/components/title/TitleEnum'
 export { Title }

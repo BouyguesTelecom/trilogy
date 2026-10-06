@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useLayoutEffect } from 'react'
-import { TrilogyContext } from './index'
-import { version } from '../version'
-import versionJSON from '../version.json'
+import { useLayoutEffect, ReactNode, useState } from 'react'
+import { TrilogyContext } from '@/context/TrilogyContext'
+import { version } from '@/version'
+import versionJSON from '@/version.json'
 
 const getHrefFromAssetUri = (assetUrl: string, theme: string, mangled: boolean) =>  {
   return (assetUrl)
@@ -39,7 +39,7 @@ const TrilogyProvider = ({
                            hash: HASH=versionJSON.VERSION,
                            assetUrl = ''
                          }: {
-  children: React.ReactNode
+  children: ReactNode
   mangled?: boolean
   injectTrilogyAssets?: boolean
   id?: string
@@ -47,8 +47,8 @@ const TrilogyProvider = ({
   hash?: string,
   assetUrl?: string
 }): JSX.Element => {
-  const [styled, setStyled] = React.useState<boolean>(mangled)
-  const [hash, setHash] = React.useState<string|undefined>( HASH )
+  const [styled, setStyled] = useState<boolean>(mangled)
+  const [hash, setHash] = useState<string|undefined>( HASH )
 
   useLayoutEffect(() => {
     injectTrilogyAssets && injectTrilogy(mangled, id, theme, assetUrl)

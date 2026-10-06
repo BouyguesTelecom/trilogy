@@ -1,6 +1,6 @@
 import { TrilogyThemeContext } from '@/context/providerTheme'
 import { useContext } from 'react'
-import { DEFAULT_TRILOGY_COLORS } from './defaultColors'
+import { DEFAULT_TRILOGY_COLORS } from '@/objects/facets/defaultColors'
 
 /**
  * Trilogy color

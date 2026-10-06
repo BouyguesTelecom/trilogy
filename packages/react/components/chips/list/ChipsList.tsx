@@ -1,15 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ChipsListProps, ChipsListRef } from './ChipsListProps'
+import { forwardRef } from 'react'
+import { ChipsListProps, ChipsListRef } from '@/components/chips/list/ChipsListProps'
 
 /**
  * ChipsList Component - Container for Chips
  * @param id {string} Custom id attribute
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param multiple {boolean} Selection Multiple With checked icon
  * @param scrollable {boolean} If multiple Chips make scrollable List
  * @param testId {string} Test Id for Test Integration
@@ -17,7 +17,7 @@ import { ChipsListProps, ChipsListRef } from './ChipsListProps'
  * @param className {string} Additional CSS Classes
  * @param accessibilityLabelledBy {string} Accessibility label id for ChipsList
  */
-const ChipsList = React.forwardRef<ChipsListRef, ChipsListProps>(
+const ChipsList = forwardRef<ChipsListRef, ChipsListProps>(
   ({ className, id, children, multiple, scrollable, accessibilityLabelledBy, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, forwardRef } from 'react'
 import clsx from 'clsx'
-import { ProgressRadialProps, ProgressRadialRef } from './ProgressRadialProps'
-import { is } from '../../../services/index'
-import { hashClass } from '../../../helpers'
-import { useTrilogyContext } from '../../../context'
-import { Title, TitleLevels } from '../../title'
-import { Text, TextLevels } from '../../text'
+import { ProgressRadialProps, ProgressRadialRef } from '@/components/progress/radial/ProgressRadialProps'
+import { is } from '@/services/classify'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { Title, TitleLevels } from '@/components/title'
+import { Text, TextLevels } from '@/components/text'
 import { getColorStyle } from '@/objects/facets/Color'
 import { ComponentName } from '@/components/enumsComponentsName'
 
@@ -13,7 +13,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * Progress Radial component
  * @param label {string} Custom label
  * @param description {string} Custom description
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param skeleton {boolean} Skeleton Progress Radial
  * @param secondValue {number} Second progress percent (for dual progress)
  * @param small {boolean} Display small progress radial
@@ -23,7 +23,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const ProgressRadial = React.forwardRef<ProgressRadialRef, ProgressRadialProps>(({
+const ProgressRadial = forwardRef<ProgressRadialRef, ProgressRadialProps>(({
   children,
   value = 0,
   secondValue = 0,

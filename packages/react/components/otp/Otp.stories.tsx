@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
-import OtpComponent from './Otp'
+import OtpComponent from '@/components/otp/Otp'
 
 OtpComponent.displayName = 'Otp'
 

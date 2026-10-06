@@ -2,9 +2,10 @@ import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
 import { View } from 'react-native'
+import { ChangeEvent } from 'react'
 
 export interface PromptInputFileProps extends Accessibility, Dev, CommonProps {
-  onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e?: ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
   readOnly?: boolean
 }

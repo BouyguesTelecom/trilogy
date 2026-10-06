@@ -1,6 +1,5 @@
-import * as React from 'react'
 import { render, screen } from '@testing-library/react'
-import TimelineContent from '../TimelineContent'
+import TimelineContent from '@/components/timeline/content/TimelineContent'
 
 describe('TimelineContent', () => {
   const defaultProps = {

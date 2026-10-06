@@ -1,5 +1,5 @@
-import Skeleton from './Skeleton'
+import Skeleton from '@/components/skeleton/Skeleton'
 
-export * from './SkeletonProps'
+export * from '@/components/skeleton/SkeletonProps'
 
 export { Skeleton }

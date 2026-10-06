@@ -1,22 +1,22 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { BoxFooterProps, BoxFooterRef } from './BoxFooterProps'
+import { forwardRef } from 'react'
+import { BoxFooterProps, BoxFooterRef } from '@/components/box/footer/BoxFooterProps'
 
 /**
  * Box Footer Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param backgroundColor {TrilogyColor} Background for BoxFooter
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const BoxFooter = React.forwardRef<BoxFooterRef, BoxFooterProps>(
+const BoxFooter = forwardRef<BoxFooterRef, BoxFooterProps>(
   ({ className, children, backgroundColor, id, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

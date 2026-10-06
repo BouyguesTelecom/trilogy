@@ -1,4 +1,4 @@
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 
 /**
  * Used to hash classes if styled components

@@ -1,12 +1,12 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { IconProps, IconRef } from './IconProps'
+import { forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { IconProps, IconRef } from '@/components/icon/IconProps'
 import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
 
 /**
@@ -26,7 +26,7 @@ import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const Icon = React.forwardRef<IconRef, IconProps>(
+const Icon = forwardRef<IconRef, IconProps>(
   (
     { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, align, testId, ...others },
     ref,

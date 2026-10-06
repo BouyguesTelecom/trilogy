@@ -1,5 +1,4 @@
 // Dependencies
-import * as React from 'react'
 
 // Testing methods
 import { render, screen } from '@testing-library/react'
@@ -7,8 +6,8 @@ import { render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 // Component to test
-import { Tag, TagList } from '../..'
-import { is } from '../../../../services'
+import { Tag, TagList } from '@/components/tag'
+import { is } from '@/services/classify'
 
 describe('TagList component', () => {
   test('should have "tags" className', () => {

@@ -1,13 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, BaseSyntheticEvent, FocusEvent as ReactFocusEvent, forwardRef } from 'react'
 import { Keyboard, StyleSheet, View } from 'react-native'
 
 import Input from '@/components/input/Input.native'
 import { InputChangeEventNative } from '@/components/input/InputProps'
-import { ComponentName } from '../enumsComponentsName'
-import { AutocompleteNativeRef, AutoCompletePropsNative } from './AutoCompleteProps'
-import { defaultMatching, getLabel } from './Autocomplete.helpers'
-import AutoCompleteMenuNative from './menu/AutoCompleteMenu.native'
-import { debounce } from './utils'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { AutocompleteNativeRef, AutoCompletePropsNative } from '@/components/autocomplete/AutoCompleteProps'
+import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplete.helpers'
+import AutoCompleteMenuNative from '@/components/autocomplete/menu/AutoCompleteMenu.native'
+import { debounce } from '@/components/autocomplete/utils'
 
 /**
  * AutoComplete Component
@@ -31,7 +31,7 @@ import { debounce } from './utils'
  * @param loading {boolean} Loading input
  * @param id {string} Custom id attribute
  */
-const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNative>(
+const AutoComplete = forwardRef<AutocompleteNativeRef, AutoCompletePropsNative>(
   (
     {
       value,
@@ -106,7 +106,7 @@ const AutoComplete = React.forwardRef<AutocompleteNativeRef, AutoCompletePropsNa
       }
     }
 
-    const handleFocus = (event: React.FocusEvent | React.BaseSyntheticEvent) => {
+    const handleFocus = (event: ReactFocusEvent | BaseSyntheticEvent) => {
       setIsOpenMenu(true)
       if (onFocus) onFocus(event)
     }

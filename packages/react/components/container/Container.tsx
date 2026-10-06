@@ -1,15 +1,15 @@
 import clsx from 'clsx'
-import React from 'react'
+import { RefObject, forwardRef } from 'react'
 
 import { ContainerProps, ContainerRef } from '@/components/container/ContainerProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 
 /**
  * Container Component
- * @param children {React.ReactNode} Container child elements
+ * @param children {ReactNode} Container child elements
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -17,13 +17,13 @@ import { is } from '@/services/classify'
  * @param medium {boolean} Deprecated: use size="small" instead (same 960px max-width)
  * @param size {ContainerSizes | `${ContainerSizes}`} Set container size
  */
-const Container = React.forwardRef<ContainerRef, ContainerProps>(
+const Container = forwardRef<ContainerRef, ContainerProps>(
   ({ className, id, medium, testId, size, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('container', medium && is('medium'), size && `size-${size}`, className))
 
     return (
-      <div ref={ref as React.RefObject<HTMLDivElement>} id={id} className={classes} data-testid={testId} {...others} />
+      <div ref={ref as RefObject<HTMLDivElement>} id={id} className={classes} data-testid={testId} {...others} />
     )
   },
 )

@@ -1,18 +1,18 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import * as React from 'react'
+import { Children, cloneElement, forwardRef, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { BreadcrumbNativeRef, BreadcrumbProps } from './BreadcrumbProps'
+import { BreadcrumbNativeRef, BreadcrumbProps } from '@/components/breadcrumb/BreadcrumbProps'
 
 /**
  * Breadcrumb Component
- * @param children {React.ReactNode} Breadcrumb Children
+ * @param children {ReactNode} Breadcrumb Children
  * @param testId {string} Test id
  * @param id {string} Custom id attribute
  */
-const Breadcrumb = React.forwardRef<BreadcrumbNativeRef, BreadcrumbProps>(
+const Breadcrumb = forwardRef<BreadcrumbNativeRef, BreadcrumbProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const { containerStyle } = React.useMemo(
+    const { containerStyle } = useMemo(
       () =>
         StyleSheet.create({
           containerStyle: {
@@ -26,9 +26,9 @@ const Breadcrumb = React.forwardRef<BreadcrumbNativeRef, BreadcrumbProps>(
     return (
       <View testID={testId} style={[containerStyle]} ref={ref} {...others}>
         {Array.isArray(children)
-          ? React.Children.map(children, (child, index) => (
+          ? Children.map(children, (child, index) => (
               <>
-                {React.cloneElement(child)}
+                {cloneElement(child)}
                 {index != children.length - 1 && <Icon size='smaller' name='tri-arrow-right' align='ALIGNED_CENTER' />}
               </>
             ))

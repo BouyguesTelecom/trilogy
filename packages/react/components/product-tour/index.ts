@@ -1,4 +1,4 @@
-import ProductTour from './ProductTour'
+import ProductTour from '@/components/product-tour/ProductTour'
 
-export * from './ProductTourProps'
+export * from '@/components/product-tour/ProductTourProps'
 export { ProductTour }

@@ -1,10 +1,10 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
-import { TagListProps, TagListRef } from './TagListProps'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { is } from '@/services'
-import { getJustifiedClassName } from '@/objects'
+import { TagListProps, TagListRef } from '@/components/tag/list/TagListProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { is } from '@/services/classify'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -17,7 +17,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param align {string} Alignment of the tags
  * @param testId {string} Test Id for Test Integration
  */
-const TagList = React.forwardRef<TagListRef, TagListProps>(({ className, id, align, marginless, testId, ...others }, ref) => {
+const TagList = forwardRef<TagListRef, TagListProps>(({ className, id, align, marginless, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   return (

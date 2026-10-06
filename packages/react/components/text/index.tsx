@@ -1,5 +1,5 @@
-import Text from './Text'
+import Text from '@/components/text/Text'
 
-export * from './TextEnum'
+export * from '@/components/text/TextEnum'
 
 export { Text }

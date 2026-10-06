@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { FC, ReactNode } from 'react'
 
 import AutoLayout from '@/components/autolayout/AutoLayout'
 import type { SpacingMatrix } from '@/components/autolayout/SpacingMatrix'
@@ -8,9 +8,9 @@ import type { SpacingMatrix } from '@/components/autolayout/SpacingMatrix'
  *
  * @param {autolayout} {boolean}  Activate/deactivate the autolayouting mechanism.
  */
-const AutoLayoutWrapper: React.FC<{
+const AutoLayoutWrapper: FC<{
   autolayout: boolean | SpacingMatrix
-  children: React.ReactNode
+  children: ReactNode
 }> = ({ autolayout = true, children }) => {
   if (autolayout === true) {
     return <AutoLayout>{children}</AutoLayout>

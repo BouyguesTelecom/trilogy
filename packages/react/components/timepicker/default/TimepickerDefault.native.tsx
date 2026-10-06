@@ -7,11 +7,14 @@ import ModalFooter from '@/components/modal/footer/ModalFooter.native'
 import Modal from '@/components/modal/Modal.native'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import { Align, Justify, TypographyAlign, TypographyBold } from '@/objects'
-import React, { useCallback, useMemo, useState } from 'react'
+import { Align } from '@/objects/facets/Alignable'
+import { Justify } from '@/objects/facets/Justifiable'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
+import { useCallback, useMemo, useState, RefObject, forwardRef, useEffect } from 'react'
 import { Pressable, TextInput, View } from 'react-native'
-import { TimepickerSelector } from './selector/TimepickerSelector.native'
-import { TimepickerDefaultProps } from './TimepickerDefaultProps'
+import { TimepickerSelector } from '@/components/timepicker/default/selector/TimepickerSelector.native'
+import { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
 
 const generateItems = (count: number) =>
   Array.from({ length: count }, (_, i) => ({
@@ -19,7 +22,7 @@ const generateItems = (count: number) =>
     label: i.toString().padStart(2, '0'),
   }))
 
-const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'circular'>>(
+const TimepickerDefault = forwardRef<View, Omit<TimepickerDefaultProps, 'circular'>>(
   (
     { disabled, id, value = '00:00', onChange, step = 1, label, sample, help, required, testId, ...others },
     ref,
@@ -67,7 +70,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
       setDisplay(false)
     }, [hours, minutes])
 
-    React.useEffect(() => {
+    useEffect(() => {
       const { hours: h, minutes: m } = parseTime(value)
       setSelectedHours(h)
       setSelectedMinutes(m)
@@ -92,7 +95,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
               iconNameRight={'tri-clock'}
               placeholder='--:--'
               value={inputValue}
-              ref={ref as React.RefObject<TextInput>}
+              ref={ref as RefObject<TextInput>}
               {...{ editable: false, pointerEvents: 'none', id }}
               {...others}
             />

@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import TimepickerCircular from './circular/TimepickerCircular.native'
-import TimepickerDefault from './default/TimepickerDefault.native'
-import { TimepickerNativeRef, TimepickerProps } from './TimepickerProps'
+import { forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import TimepickerCircular from '@/components/timepicker/circular/TimepickerCircular.native'
+import TimepickerDefault from '@/components/timepicker/default/TimepickerDefault.native'
+import { TimepickerNativeRef, TimepickerProps } from '@/components/timepicker/TimepickerProps'
 
 /**
  * Timepicker Component (React Native)
@@ -17,7 +17,7 @@ import { TimepickerNativeRef, TimepickerProps } from './TimepickerProps'
  * @param required {boolean} Required field (non-circular mode only)
  * @param testId {string} Test Id for Test Integration
  */
-const Timepicker = React.forwardRef<TimepickerNativeRef, TimepickerProps>(
+const Timepicker = forwardRef<TimepickerNativeRef, TimepickerProps>(
   ({ circular, ...props }, ref): JSX.Element => {
     if (circular) return <TimepickerCircular ref={ref} {...props} />
     return <TimepickerDefault ref={ref} {...props} />

@@ -3,12 +3,12 @@ import { RadiusValues } from '@/components/image'
 import { PromptContext } from '@/components/prompt/context'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getRadiusStyle } from '@/objects/facets/Radius'
-import React, { useContext } from 'react'
+import { useContext, forwardRef } from 'react'
 import { Pressable } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { PromptButtonNativeRef, PromptButtonProps } from './PromptButtonProps'
+import { PromptButtonNativeRef, PromptButtonProps } from '@/components/prompt/toolbar/tools/button/PromptButtonProps'
 
-const PromptButton = React.forwardRef<PromptButtonNativeRef, PromptButtonProps>(
+const PromptButton = forwardRef<PromptButtonNativeRef, PromptButtonProps>(
   ({ disabled, active, onClick, rounded, readOnly, ...others }, ref) => {
     const { isDisabled, isReadonly } = useContext(PromptContext)
     const isDisable = isDisabled || disabled

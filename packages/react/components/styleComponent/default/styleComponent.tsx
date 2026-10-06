@@ -1,5 +1,5 @@
 import '@trilogy-ds/styles/dist/default/trilogy.css'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 const StyleComponent = ({ children }: { children: ReactNode }): JSX.Element => {
   return <>{children}</>

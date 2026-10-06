@@ -2,21 +2,21 @@ import { Column, Columns } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import { Alignable } from '@/objects'
-import { TypographyBold } from '@/objects/Typography'
+import { Alignable } from '@/objects/facets/Alignable'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
-import * as React from 'react'
+import { forwardRef, useMemo } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { SelectOptionNativeRef, SelectOptionProps } from './SelectOptionProps'
+import { SelectOptionNativeRef, SelectOptionProps } from '@/components/select/option/SelectOptionProps'
 
 /**
  * Select Option Component
  * @param value {string} Select option value
  * @param label {string} Label value
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  */
-const SelectOption = React.forwardRef<SelectOptionNativeRef, SelectOptionProps>(({ disabled, children, onClick, label, iconName, ...others }, ref): JSX.Element => {
+const SelectOption = forwardRef<SelectOptionNativeRef, SelectOptionProps>(({ disabled, children, onClick, label, iconName, ...others }, ref): JSX.Element => {
   const { checked } = others as { checked: string }
 
   const styles = memoStyles({
@@ -27,7 +27,7 @@ const SelectOption = React.forwardRef<SelectOptionNativeRef, SelectOptionProps>(
         },
       })
 
-  const textColor = React.useMemo(() => {
+  const textColor = useMemo(() => {
     switch (true) {
       case disabled === true:
         return TrilogyColor.DISABLED
@@ -36,7 +36,7 @@ const SelectOption = React.forwardRef<SelectOptionNativeRef, SelectOptionProps>(
     }
   }, [disabled])
 
-  const iconColor = React.useMemo(() => {
+  const iconColor = useMemo(() => {
     switch (true) {
       case disabled === true:
         return TrilogyColor.DISABLED
@@ -45,7 +45,7 @@ const SelectOption = React.forwardRef<SelectOptionNativeRef, SelectOptionProps>(
     }
   }, [disabled])
 
-  const columnLabelSize = React.useMemo(() => {
+  const columnLabelSize = useMemo(() => {
     return iconName ? (checked && 10) || 11 : (checked && 11) || 12
   }, [iconName, checked])
 

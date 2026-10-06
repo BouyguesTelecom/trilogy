@@ -1,3 +1,3 @@
-import TableBody from './TableBody'
+import TableBody from '@/components/table/body/TableBody'
 
 export default TableBody

@@ -1,18 +1,18 @@
-import * as React from "react"
-import { ListItemDescriptionProps, ListItemDescriptionRef } from "./ListItemDescriptionProps"
+import { forwardRef } from "react"
+import { ListItemDescriptionProps, ListItemDescriptionRef } from "@/components/list/item/description/ListItemDescriptionProps"
 import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { hashClass } from "@/helpers/hashClassesHelpers"
+import { useTrilogyContext } from "@/context/TrilogyContext"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * ListItemDescription Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const ListItemDescription = React.forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(({
+const ListItemDescription = forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(({
   children,
   className,
   testId,

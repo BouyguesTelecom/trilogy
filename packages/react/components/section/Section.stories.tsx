@@ -1,7 +1,6 @@
 import { TrilogyColor } from '@/objects/facets/Color'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
-import SectionComponent from './Section'
+import SectionComponent from '@/components/section/Section'
 
 SectionComponent.displayName = 'Section'
 

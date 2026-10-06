@@ -1,7 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid } from '@/helpers/device.native'
-import { Alignable, getColorStyle, TrilogyColor } from '@/objects'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { Alignable } from '@/objects/facets/Alignable'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { useCallback, useEffect, useRef, useState, forwardRef } from 'react'
 import {
   Dimensions,
   GestureResponderEvent,
@@ -11,17 +12,16 @@ import {
   type ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View,
 } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler'
-import { Column, Columns } from '../columns'
-import { Icon, IconName, IconSize } from '../icon'
-import { Title } from '../title'
-import { ModalNativeRef, ModalProps } from './ModalProps'
-import { ModalContext } from './context/ModalContext'
+import { Column, Columns } from '@/components/columns'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { Title } from '@/components/title'
+import { ModalNativeRef, ModalProps } from '@/components/modal/ModalProps'
+import { ModalContext } from '@/components/modal/context/ModalContext'
 import { Theme } from '@/constants/theme'
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height
@@ -32,8 +32,8 @@ const ANIMATION_DURATION = 300
  * Modal Component
  * @param active {boolean} Activated Modal
  * @param title {string} Modal title
- * @param children {React.ReactNode} Modal content
- * @param trigger {React.ReactNode} Element that triggers the modal opening
+ * @param children {ReactNode} Modal content
+ * @param trigger {ReactNode} Element that triggers the modal opening
  * @param onClose {Function} Callback when modal closes
  * @param unClosable {boolean} Prevent modal from being closed by the user
  * @param hideCloseButton {boolean} Hide the close button
@@ -41,7 +41,7 @@ const ANIMATION_DURATION = 300
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param onModalHide {Function} Callback after modal is fully hidden
  */
-const Modal = React.forwardRef<ModalNativeRef, ModalProps>(
+const Modal = forwardRef<ModalNativeRef, ModalProps>(
   (
     {
       children,

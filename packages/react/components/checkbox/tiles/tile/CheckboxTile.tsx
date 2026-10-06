@@ -1,14 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Sticker } from '@/components/sticker'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { VariantState } from '@/objects'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { VariantState } from '@/objects/facets/Variant'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { useEffect, useState } from 'react'
-import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
+import { forwardRef, useId, useRef, useEffect, useState } from 'react'
+import { CheckboxTileProps, CheckboxTileRef } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
 
 /**
  * CheckboxTile
@@ -31,14 +30,14 @@ import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
  * @param value {string} Value attribute for the checkbox input
  * @param required {boolean} Required input checkboxes
  */
-const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
+const CheckboxTile = forwardRef<CheckboxTileRef, CheckboxTileProps>(
   (
     {
       checked,
       className,
       disabled,
       readonly,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,
@@ -56,7 +55,7 @@ const CheckboxTile = React.forwardRef<CheckboxTileRef, CheckboxTileProps>(
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
     const [_checked, setChecked] = useState<boolean>(checked || false)
-    const refInput = React.useRef<HTMLInputElement>(null)
+    const refInput = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
       if (!readonly) {

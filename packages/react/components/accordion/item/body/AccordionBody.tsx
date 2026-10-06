@@ -1,20 +1,20 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
-import { AccordionBodyProps, AccordionBodyRef } from './AccordionBodyProps'
+import { JSX, forwardRef } from 'react'
+import { AccordionBodyProps, AccordionBodyRef } from '@/components/accordion/item/body/AccordionBodyProps'
 
 /**
  * Accordion Body Component
- * @param children {React.ReactNode} Children for Accordion body
+ * @param children {ReactNode} Children for Accordion body
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  * - ------------------ WEB PROPERTIES -----------------------
  * @param className {string} Additional CSS Classes
  */
-const AccordionBody = React.forwardRef<AccordionBodyRef, AccordionBodyProps>(
-  ({ children, className, id, testId, ...others }, ref): React.JSX.Element => {
+const AccordionBody = forwardRef<AccordionBodyRef, AccordionBodyProps>(
+  ({ children, className, id, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     return (

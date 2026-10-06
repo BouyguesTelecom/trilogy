@@ -1,22 +1,22 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle } from '@/objects'
-import * as React from 'react'
+import { getColorStyle } from '@/objects/facets/Color'
+import { forwardRef, useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
-import { BoxContext } from '../context/boxContext'
+import { BoxFooterNativeRef, BoxFooterProps } from '@/components/box/footer/BoxFooterProps'
+import { BoxContext } from '@/components/box/context/boxContext'
 import { getPaddingStyle } from '@/objects/facets/Padding'
 
 /**
  * Box Footer Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param backgroundColor {TrilogyColor} Background for BoxFooter
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const BoxFooter = React.forwardRef<BoxFooterNativeRef, BoxFooterProps>(
+const BoxFooter = forwardRef<BoxFooterNativeRef, BoxFooterProps>(
   ({ children, backgroundColor, testId, ...others }, ref): JSX.Element => {
-    const { padding } = React.useContext(BoxContext)
+    const { padding } = useContext(BoxContext)
 
     const styles = memoStyles({
       boxFooter: {

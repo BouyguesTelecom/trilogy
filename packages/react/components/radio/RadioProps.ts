@@ -1,6 +1,8 @@
 import { TouchableOpacity } from 'react-native'
-import { Accessibility, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { ChangeEvent } from 'react'
 
 interface EventHandler {
   radioValue: string
@@ -9,7 +11,7 @@ interface EventHandler {
   radioId: string
 }
 
-export type RadioChangeEventHandler = (event: EventHandler & Partial<React.ChangeEvent<HTMLInputElement>>) => void
+export type RadioChangeEventHandler = (event: EventHandler & Partial<ChangeEvent<HTMLInputElement>>) => void
 export type RadioChangeEventHandlerNative = (event: EventHandler) => void
 
 /**

@@ -1,13 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { StatesContext } from '@/context/providerStates'
-import React, { useContext, useMemo } from 'react'
+import { useContext, useMemo, forwardRef } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Alignable, getColorStyle, getTypographyBoldStyle, TrilogyColor, TypographyBold } from '../../objects'
-import { PriceLevel } from './PriceEnum'
-import { checkCents } from './PriceHelpers'
-import { PriceNativeRef, PriceProps } from './PriceProps'
+import { Alignable } from '@/objects/facets/Alignable'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getTypographyBoldStyle, TypographyBold } from '@/objects/Typography/TypographyBold'
+import { PriceLevel } from '@/components/price/PriceEnum'
+import { checkCents } from '@/components/price/PriceHelpers'
+import { PriceNativeRef, PriceProps } from '@/components/price/PriceProps'
 
 /**
  * Price Component
@@ -19,13 +21,13 @@ import { PriceNativeRef, PriceProps } from './PriceProps'
  * @param hideCents {boolean} Hide cents from displayed price
  * @param level {PriceLevel} Price custom size
  * @param inverted {boolean} Inverted Price Color
- * @param children {React.ReactNode} Price child elements
+ * @param children {ReactNode} Price child elements
  * @param align {Alignable} Price alignment
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Price = React.forwardRef<PriceNativeRef, PriceProps>(
+const Price = forwardRef<PriceNativeRef, PriceProps>(
   (
     {
       amount,

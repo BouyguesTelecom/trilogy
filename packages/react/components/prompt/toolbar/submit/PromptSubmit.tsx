@@ -1,12 +1,12 @@
 import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconName } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { PromptContext } from '../../context'
-import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from './PromptSubmitProps'
+import { useCallback, useContext, useEffect, useMemo, useState, MouseEvent as ReactMouseEvent, forwardRef } from 'react'
+import { PromptContext } from '@/components/prompt/context'
+import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
 
 /**
  * PromptSubmit component - Submit button for prompt with streaming support
@@ -19,7 +19,7 @@ import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from './Prompt
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
+const PromptSubmit = forwardRef<PromptSubmitRef, PromptSubmitProps>(
   (
     { className, status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, disabled, readOnly, ...others },
     ref,
@@ -56,7 +56,7 @@ const PromptSubmit = React.forwardRef<PromptSubmitRef, PromptSubmitProps>(
       className,
     )
 
-    const onMouseDown = (e: React.MouseEvent) => {
+    const onMouseDown = (e: ReactMouseEvent) => {
       e.preventDefault()
     }
 

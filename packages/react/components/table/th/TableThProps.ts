@@ -1,9 +1,11 @@
 import { View } from 'react-native'
-import { Clickable, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { ReactNode } from 'react'
 
 export interface TableThProps extends Clickable, CommonProps, Dev {
-  children: React.ReactNode
+  children: ReactNode
   rowSpan?: number
   colSpan?: number
 }

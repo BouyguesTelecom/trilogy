@@ -1,18 +1,18 @@
 import clsx from 'clsx'
-import React, { FocusEvent, useEffect, useState } from 'react'
+import { FocusEvent, useEffect, useState, ForwardedRef, KeyboardEvent as ReactKeyboardEvent, Ref, forwardRef } from 'react'
 
 import { Input } from '@/components/input'
 import { InputAutoCompleteType } from '@/components/input/InputEnum'
 import { InputChangeEventWeb, InputKeyboardEvent } from '@/components/input/InputProps'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
-import { ComponentName } from '../enumsComponentsName'
-import { AutoCompletePropsWeb, AutocompleteRef, Item } from './AutoCompleteProps'
-import { defaultMatching, getLabel } from './Autocomplete.helpers'
-import AutoCompleteItem from './item'
-import AutoCompleteMenu from './menu'
-import { debounce } from './utils'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { AutoCompletePropsWeb, AutocompleteRef, Item } from '@/components/autocomplete/AutoCompleteProps'
+import { defaultMatching, getLabel } from '@/components/autocomplete/Autocomplete.helpers'
+import AutoCompleteItem from '@/components/autocomplete/item'
+import AutoCompleteMenu from '@/components/autocomplete/menu'
+import { debounce } from '@/components/autocomplete/utils'
 
 const AutoCompleteRef = <T extends string | Item<unknown> = string>(
   {
@@ -44,7 +44,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
     testId,
     ...others
   }: AutoCompletePropsWeb<T>,
-  ref: React.Ref<HTMLInputElement>,
+  ref: Ref<HTMLInputElement>,
 ): JSX.Element => {
   const { styled } = useTrilogyContext()
 
@@ -180,7 +180,7 @@ const AutoCompleteRef = <T extends string | Item<unknown> = string>(
         onIconClick={onIconClick}
         loading={loading}
         data-testid={testId}
-        {...{ onKeyDown: (e: React.KeyboardEvent) => e.key === 'Enter' && e.preventDefault(), ...others }}
+        {...{ onKeyDown: (e: ReactKeyboardEvent) => e.key === 'Enter' && e.preventDefault(), ...others }}
       />
 
       {isAutocompleteMenuVisible && (
@@ -242,8 +242,8 @@ AutoCompleteRef.displayName = ComponentName.AutoComplete
  * @param fullwidthMenu {boolean} Fullwidth size for Menu
  * @param accessibilityLabel {string} Accessibility label
  */
-const AutoComplete = React.forwardRef(AutoCompleteRef) as <T>(
-  props: AutoCompletePropsWeb<T> & { ref?: React.ForwardedRef<AutocompleteRef> },
+const AutoComplete = forwardRef(AutoCompleteRef) as <T>(
+  props: AutoCompletePropsWeb<T> & { ref?: ForwardedRef<AutocompleteRef> },
 ) => JSX.Element
 
 export default AutoComplete

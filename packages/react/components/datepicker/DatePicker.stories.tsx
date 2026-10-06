@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CalendarYearsOrder } from '@/components/calendar/CalendarEnum'
-import type { DatePickerProps } from './DatePickerProps'
-import { DatePicker } from './index'
+import type { DatePickerProps } from '@/components/datepicker/DatePickerProps'
+import { DatePicker } from '@/components/datepicker'
 
 const meta: Meta<DatePickerProps> = {
   title: 'Components/DatePicker',

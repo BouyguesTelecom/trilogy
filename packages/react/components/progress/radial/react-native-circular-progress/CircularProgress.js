@@ -1,10 +1,10 @@
 // @ts-nocheck
-import * as React from "react"
+import { PureComponent } from "react"
 import PropTypes from "prop-types"
 import { Animated, View } from "react-native"
 import { Svg, Path, G } from "react-native-svg"
 
-export default class CircularProgress extends React.PureComponent {
+export default class CircularProgress extends PureComponent {
   polarToCartesian(centerX, centerY, radius, angleInDegrees) {
     const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0
     return {

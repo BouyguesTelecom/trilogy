@@ -1,7 +1,10 @@
-import { AlignableProps, Dev, StatusProps, TrilogyColor, TrilogyColorValues } from '../../../objects'
-import React from 'react'
-import { ProgressRadialItemProps } from './item/ProgressRadialItemProps'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { Dev } from '@/objects/facets/Dev'
+import { StatusProps } from '@/objects/facets/Status'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { ReactElement, ReactNode } from 'react'
+import { ProgressRadialItemProps } from '@/components/progress/radial/item/ProgressRadialItemProps'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
 
 /**
@@ -9,13 +12,13 @@ import { View } from 'react-native'
  */
 
 export interface ProgressRadialProps extends StatusProps, AlignableProps, CommonProps, Dev {
-  children?: React.ReactElement<ProgressRadialItemProps> | React.ReactNode
-  label?: string | React.ReactNode
+  children?: ReactElement<ProgressRadialItemProps> | ReactNode
+  label?: string | ReactNode
   value?: number
   valueColor?: TrilogyColor | TrilogyColorValues
   secondValue?: number
   secondValueColor?: TrilogyColor | TrilogyColorValues
-  description?: string | React.ReactNode
+  description?: string | ReactNode
   full?: boolean
   disk?: boolean
   skeleton?: boolean

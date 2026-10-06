@@ -1,15 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { BoxTableContainerNativeRef, BoxTableContainerProps } from './BoxTableContainerProps'
+import { BoxTableContainerNativeRef, BoxTableContainerProps } from '@/components/box/table-container/BoxTableContainerProps'
 
 /**
  * Box Table Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param testId {string} Test Id for Test Integration
  */
-const boxTableContainer = React.forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(
+const boxTableContainer = forwardRef<BoxTableContainerNativeRef, BoxTableContainerProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
     const styles = memoStyles({
       boxTableContainer: {},

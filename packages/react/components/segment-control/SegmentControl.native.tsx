@@ -2,12 +2,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useState } from 'react'
+import { useState, MouseEvent as ReactMouseEvent, ReactNode, cloneElement, forwardRef } from 'react'
 import { Theme } from '@/constants/theme'
 import {} from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import SegmentedControlItem from './item'
-import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlProps'
+import SegmentedControlItem from '@/components/segment-control/item'
+import { SegmentControlNativeRef, SegmentControlProps } from '@/components/segment-control/SegmentControlProps'
 
 /**
  * SegmentControl Component
@@ -15,11 +15,11 @@ import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlPr
  * @param onClick {Function} onClick Event
  * @param activeIndex {number} Default active SegmentControl index
  */
-const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlProps>(
+const SegmentControl = forwardRef<SegmentControlNativeRef, SegmentControlProps>(
   ({ children, onClick, activeIndex, ...others }, ref): JSX.Element => {
     const [activateIndex, setActivateIndex] = useState(activeIndex || 0)
 
-    const isActive = (index: number, childPropsActive: React.ReactNode) => {
+    const isActive = (index: number, childPropsActive: ReactNode) => {
       if (typeof childPropsActive !== 'undefined' && !activateIndex) {
         return childPropsActive
       }
@@ -28,7 +28,7 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
       }
     }
 
-    const toggleActive = (e: React.MouseEvent, index: number) => {
+    const toggleActive = (e: ReactMouseEvent, index: number) => {
       setActivateIndex(index)
       if (onClick) {
         onClick(e)
@@ -63,7 +63,7 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
                 disabled: child.props.disabled,
                 key: index,
                 tabIndex: index,
-                onClick: (event: React.MouseEvent) => {
+                onClick: (event: ReactMouseEvent) => {
                   toggleActive(event, index)
                   if (child) {
                     if (child.props.onClick) {
@@ -82,7 +82,7 @@ const SegmentControl = React.forwardRef<SegmentControlNativeRef, SegmentControlP
                     <Text level={TextLevels.ONE}>{String(child)}</Text>
                   </SegmentedControlItem>
                 ) : (
-                  React.cloneElement(child, props)
+                  cloneElement(child, props)
                 )
               }
             })}

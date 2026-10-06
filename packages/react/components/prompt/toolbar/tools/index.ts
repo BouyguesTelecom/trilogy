@@ -1,4 +1,4 @@
-import PromptTools from './PromptTools'
+import PromptTools from '@/components/prompt/toolbar/tools/PromptTools'
 
-export * from './PromptToolsProps'
+export * from '@/components/prompt/toolbar/tools/PromptToolsProps'
 export { PromptTools }

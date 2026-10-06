@@ -1,4 +1,4 @@
-import PromptToolbar from './PromptToolbar'
+import PromptToolbar from '@/components/prompt/toolbar/PromptToolbar'
 
-export * from './PromptToolbarProps'
+export * from '@/components/prompt/toolbar/PromptToolbarProps'
 export { PromptToolbar }

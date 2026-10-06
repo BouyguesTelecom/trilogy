@@ -1,13 +1,12 @@
 // Dependencies
-import * as React from "react";
 
 // Testing methods
 import { render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
-import { is } from "../../../services";
+import { is } from "@/services/classify";
 
 // Component to test
-import { BreadcrumbItem } from "..";
+import { BreadcrumbItem } from "@/components/breadcrumb";
 
 describe("BreadcrumbItem component", () => {
   test("should have a BreadcrumbItem in document", () => {

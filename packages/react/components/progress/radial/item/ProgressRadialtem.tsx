@@ -1,8 +1,7 @@
-import * as React from 'react'
-import { ProgressRadialItemProps } from './ProgressRadialItemProps'
-import { hashClass } from '@/helpers'
+import { ProgressRadialItemProps } from '@/components/progress/radial/item/ProgressRadialItemProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 
 /**
  * ProgressRadialItem Component - Represents a slice of the radial progress

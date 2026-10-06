@@ -1,17 +1,17 @@
 import { ColumnsProps, ColumnsRef } from '@/components/columns/ColumnsProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Columns Component
  * @param scrollable {boolean} Make colomns scrollable to vertical
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param marginless {boolean} delete margin
  * @param testId {string} Test Id for Test Integration
  * @param fullBleed {boolean} Full Bleed Columns
@@ -25,7 +25,7 @@ import React from 'react'
  * @param className {string} Additional CSS Classes
  * @param mobile {boolean} Responsive mode
  */
-const Columns = React.forwardRef<ColumnsRef, ColumnsProps>(
+const Columns = forwardRef<ColumnsRef, ColumnsProps>(
   (
     { className, id, multiline, scrollable, mobile, gap, fullBleed, marginless, align, verticalAlign, fullheight, testId, ...others },
     ref,

@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { Theme } from '@/constants/theme'
 import { memoStyles } from '@/helpers/memoStyles'
-import { SegmentControlItemNativeRef, SegmentControlItemProps } from './SegmentControlItemProps'
+import { SegmentControlItemNativeRef, SegmentControlItemProps } from '@/components/segment-control/item/SegmentControlItemProps'
 
 /**
  * SegmentControlItem Item Component
@@ -14,7 +14,7 @@ import { SegmentControlItemNativeRef, SegmentControlItemProps } from './SegmentC
  * @param disabled {boolean} disable onClick on item
  * @param id {string} Custom id attribute
  */
-const SegmentControlItem = React.forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(
+const SegmentControlItem = forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(
   ({ active, children, onClick, disabled, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
 

@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import clsx from 'clsx'
-import React from 'react'
-import { useTrilogyContext } from '../../../context'
-import { hashClass } from '../../../helpers'
-import { getStatusClassName } from '../../../objects'
-import { is } from '../../../services/index'
-import { ProgressItemProps, ProgressItemWebRef } from './ProgressItemProps'
+import { forwardRef } from 'react'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/objects/facets/Status'
+import { is } from '@/services/classify'
+import { ProgressItemProps, ProgressItemWebRef } from '@/components/progress/item/ProgressItemProps'
 
 /**
  * Progress Item component - Only if stacked
@@ -20,7 +20,7 @@ import { ProgressItemProps, ProgressItemWebRef } from './ProgressItemProps'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param style {ViewStyle} Custom styles for the progress item
  */
-const ProgressItem = React.forwardRef<ProgressItemWebRef, ProgressItemProps>(
+const ProgressItem = forwardRef<ProgressItemWebRef, ProgressItemProps>(
   (
     { className, percent, maxPercent = 100, minPercent = 0, status, accessibilityLabel, testId, ...others },
     ref,

@@ -1,12 +1,15 @@
 import { BadgePositionEnum, BadgePositionValues } from '@/components/badge/BadgeEnum'
 import { View } from 'react-native'
-import { Accessibility, Dev, StatusState, StatusStateValues } from '../../objects'
-import { Clickable } from '../../objects/facets/Clickable'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { Invertable } from '../../objects/facets/Invertable'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import { StatusState, StatusStateValues } from '@/objects/facets/Status'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Invertable } from '@/objects/facets/Invertable'
+import { ReactNode } from 'react'
 
 export interface BadgeProps extends Clickable, Accessibility, Invertable, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   label?: string | number
   position?: BadgePositionEnum | BadgePositionValues
   status?: StatusState | StatusStateValues

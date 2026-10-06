@@ -1,6 +1,5 @@
 // Dependencies
-import * as React from "react";
-import { is } from "../../../services/";
+import { is } from "@/services/classify";
 
 // Testing methods
 import { fireEvent, render, screen } from "@testing-library/react";
@@ -8,7 +7,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
 
 // Component to test
-import { Image } from "../";
+import { Image } from "@/components/image";
 
 describe("Image component", () => {
   test('should have "image" className', () => {

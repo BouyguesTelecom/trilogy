@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { PopoverRef, PopoverWebProps } from './PopoverProps'
+import { forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { PopoverRef, PopoverWebProps } from '@/components/popover/PopoverProps'
 
 /**
  * Popover Component
@@ -18,7 +18,7 @@ import { PopoverRef, PopoverWebProps } from './PopoverProps'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Id for popover
  */
-const Popover = React.forwardRef<PopoverRef, PopoverWebProps>(
+const Popover = forwardRef<PopoverRef, PopoverWebProps>(
   ({ className, id, direction, children, active, arrowPosition, trigger, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

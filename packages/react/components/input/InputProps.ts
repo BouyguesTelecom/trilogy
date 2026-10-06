@@ -1,10 +1,11 @@
 
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
-import { Accessibility, Dev } from '../../objects/facets'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
-import { type ChangeEvent, FocusEventHandler, ReactNode } from 'react'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconName, IconNameValues } from '../icon'
+import { type ChangeEvent, FocusEventHandler, ReactNode, BaseSyntheticEvent, FormEvent, MouseEvent as ReactMouseEvent } from 'react'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
@@ -20,7 +21,7 @@ import {
   InputTextContentTypeValues,
   InputType,
   InputTypeValues,
-} from './InputEnum'
+} from '@/components/input/InputEnum'
 
 export interface InputChangeEventWeb {
   inputName: string
@@ -43,7 +44,7 @@ export interface InputKeyboardEvent {
   inputName: string
   inputValue: string
   inputKeyCode: number
-  target?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
+  target?: ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
   preventDefault: () => void
 }
 
@@ -52,7 +53,7 @@ export type InputKeyboardEventHandler = (event: InputKeyboardEvent) => void
 export interface InputClickEvent {
   inputName: string
   inputValue: string
-  target?: React.ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
+  target?: ChangeEvent<HTMLInputElement> | NativeSyntheticEvent<any> | EventTarget
 }
 
 export type InputClickEventHandler = (event: InputClickEvent) => void
@@ -61,7 +62,7 @@ export interface InputNativeEvents {
   onClick?: InputClickEventHandler
   onIconClick?: InputClickEventHandler
   onChange?: InputChangeEventHandlerNative
-  onFocus?: (event: React.BaseSyntheticEvent) => void
+  onFocus?: (event: BaseSyntheticEvent) => void
   onBlur?: (event: unknown) => void
 }
 
@@ -105,10 +106,10 @@ export interface InputProps extends Accessibility, Dev, CommonProps {
   textContentType?: InputTextContentType | InputTextContentTypeValues
   keyboardType?: InputKeyboardType | InputKeyboardTypeValues
   forceControl?: boolean
-  onMouseEnter?: (event: React.MouseEvent) => void
-  onMouseLeave?: (event: React.MouseEvent) => void
+  onMouseEnter?: (event: ReactMouseEvent) => void
+  onMouseLeave?: (event: ReactMouseEvent) => void
   keyType?: KeyType
-  onSubmit?: (event: NativeSyntheticEvent<TextInputSubmitEditingEventData> | React.FormEvent<HTMLInputElement>) => void
+  onSubmit?: (event: NativeSyntheticEvent<TextInputSubmitEditingEventData> | FormEvent<HTMLInputElement>) => void
   minLength?: number
   maxLength?: number
   securityGauge?: boolean

@@ -1,26 +1,17 @@
 import { Calendar, ChangeEventCalendar } from '@/components/calendar'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { useClickOutside } from '@/helpers/clickOutside'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { TypographyColor } from '@/objects'
-import { has, is } from '@/services'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
+import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import React, {
-  forwardRef,
-  KeyboardEvent,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { forwardRef, KeyboardEvent, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, useId } from 'react'
 import ReactDOM from 'react-dom'
-import { Modal, ModalBody } from '../modal'
-import { Text, TextLevels, TextMarkup } from '../text'
-import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from './DatePickerProps'
+import { Modal, ModalBody } from '@/components/modal'
+import { Text, TextLevels, TextMarkup } from '@/components/text'
+import { DatePickerProps, HandleKeyPress, Segments, SegmentType } from '@/components/datepicker/DatePickerProps'
 
 const APPROXIMATIVE_HEIGHT_CALENDAR = 420
 
@@ -73,7 +64,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       status,
       disabled,
       disabledDates,
-      id = React.useId(),
+      id = useId(),
       testId,
       name,
       yearsOrder,
@@ -250,7 +241,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     }
 
     const handleKeyDownDay = useCallback(
-      (e: React.KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
+      (e: KeyboardEvent<HTMLSpanElement>, type: SegmentType) => {
         if (disabled) return
         const { segmentSetter, label, maxValue, initValue, segmentPosition, segment } = segments[type]
 
@@ -316,7 +307,7 @@ const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       setIsOpenCalendar(true)
     }
 
-    const handleChangeCalendar = React.useCallback(
+    const handleChangeCalendar = useCallback(
       (e: ChangeEventCalendar) => {
         const dateCalendar = e as Date
         const dateDay = dateCalendar.getDate()

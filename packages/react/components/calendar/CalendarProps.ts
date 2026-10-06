@@ -1,5 +1,5 @@
 import { Dev } from "@/objects/facets/Dev"
-import { CalendarYearsOrder, CalendarYearsOrderValues } from './CalendarEnum'
+import { CalendarYearsOrder, CalendarYearsOrderValues } from '@/components/calendar/CalendarEnum'
 
 export type ChangeEventCalendar = Date | [Date, Date] | [Date] | []
 

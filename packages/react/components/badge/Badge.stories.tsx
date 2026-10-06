@@ -4,11 +4,10 @@ import { Icon, IconName } from '@/components/icon'
 import { Section } from '@/components/section'
 import { StatusState } from '@/objects/facets/Status'
 import type { Meta, StoryObj } from '@storybook/react'
-import { TrilogyColor } from '../../objects'
-import { IconSize } from '../icon'
-import { BadgePositionEnum } from './BadgeEnum'
-import { BadgeProps, BadgeVariant } from './BadgeProps'
-import React from 'react'
+import { TrilogyColor } from '@/objects/facets/Color'
+import { IconSize } from '@/components/icon'
+import { BadgePositionEnum } from '@/components/badge/BadgeEnum'
+import { BadgeProps, BadgeVariant } from '@/components/badge/BadgeProps'
 
 const meta: Meta<BadgeProps> = {
   title: 'Components/Badge',

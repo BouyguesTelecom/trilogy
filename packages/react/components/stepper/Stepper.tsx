@@ -1,15 +1,15 @@
 import { Text } from '@/components/text'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { Align } from '@/objects'
+import { Align } from '@/objects/facets/Alignable'
 import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { FlexBox } from '../flex-box'
-import { Icon, IconName } from '../icon'
-import { Title } from '../title'
-import { StepperProps, StepperRef } from './StepperProps'
+import { forwardRef, useEffect, useMemo, useState } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { FlexBox } from '@/components/flex-box'
+import { Icon, IconName } from '@/components/icon'
+import { Title } from '@/components/title'
+import { StepperProps, StepperRef } from '@/components/stepper/StepperProps'
 
 type CurrentStepType = { label: number | null; step: number; icon: IconName | null }
 
@@ -21,19 +21,19 @@ type CurrentStepType = { label: number | null; step: number; icon: IconName | nu
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const Stepper = React.forwardRef<StepperRef, StepperProps>(({ className, id, children, testId, ...others }, ref) => {
+const Stepper = forwardRef<StepperRef, StepperProps>(({ className, id, children, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('stepper-container', className))
-  const [currentStep, setCurrentStep] = React.useState<CurrentStepType>({ label: null, step: 1, icon: null })
+  const [currentStep, setCurrentStep] = useState<CurrentStepType>({ label: null, step: 1, icon: null })
   const classesSteps = hashClass(styled, clsx('stepper-wrapper'))
 
-  const nbChild = React.useMemo<number>(() => {
+  const nbChild = useMemo<number>(() => {
     if (children && Array.isArray(children)) return children.length
     if (children && !Array.isArray(children)) return 1
     return 0
   }, [children])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (children) {
       if (Array.isArray(children)) {
         let haveCurrentStep = false

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import CalendarComponent from './Calendar'
-import { CalendarYearsOrder } from './CalendarEnum'
-import type { CalendarProps, ChangeEventCalendar } from './CalendarProps'
-import React from 'react'
+import CalendarComponent from '@/components/calendar/Calendar'
+import { CalendarYearsOrder } from '@/components/calendar/CalendarEnum'
+import type { CalendarProps, ChangeEventCalendar } from '@/components/calendar/CalendarProps'
 
 CalendarComponent.displayName = 'Calendar'
 

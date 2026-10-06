@@ -1,10 +1,11 @@
 import { View } from 'react-native'
+import { ReactNode } from 'react'
 
 /**
  * Dropdown Interface
  */
 export interface DropdownProps {
-  children?: React.ReactNode
+  children?: ReactNode
   isActive?: boolean
   defaultOpen?: boolean
   onToggle?: (isOpen: boolean) => void

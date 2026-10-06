@@ -1,5 +1,5 @@
-import Pagination from './Pagination'
+import Pagination from '@/components/pagination/Pagination'
 
 export { Pagination }
 
-export * from './PaginationEnum'
+export * from '@/components/pagination/PaginationEnum'

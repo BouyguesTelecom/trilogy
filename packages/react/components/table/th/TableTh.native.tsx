@@ -1,17 +1,17 @@
-import * as React from "react"
-import {  } from 'react-native'
+import { forwardRef } from "react"
 import { memoStyles } from '@/helpers/memoStyles'
-import { TableThNativeRef, TableThProps } from "./TableThProps"
+import { TableThNativeRef, TableThProps } from "@/components/table/th/TableThProps"
 import { View } from "@/components/view"
 import { Text } from "@/components/text"
-import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { TypographyBold } from "@/objects/Typography/TypographyBold"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * TableTh Component
  * @param children {ReactNode} children of table TH
  */
-const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
+const TableTh = forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = memoStyles({
     tableTh: {
       flexDirection: "column",

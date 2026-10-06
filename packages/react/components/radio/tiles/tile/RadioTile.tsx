@@ -2,12 +2,12 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { RadioTileProps, RadioTileRef } from '@/components/radio/tiles/tile/RadioTileProps'
 import { Sticker } from '@/components/sticker'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { VariantState } from '@/objects/facets/Variant'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef, useId, useRef } from 'react'
 
 /**
  * radioTile Component
@@ -28,14 +28,14 @@ import React from 'react'
  * @param className {string} Additional css classes (ONLY FOR WEB)
  * @param required {boolean} Required radio
  */
-const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
+const RadioTile = forwardRef<RadioTileRef, RadioTileProps>(
   (
     {
       checked,
       className,
       disabled,
       readonly,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,
@@ -52,7 +52,7 @@ const RadioTile = React.forwardRef<RadioTileRef, RadioTileProps>(
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
-    const refInput = React.useRef<HTMLInputElement>(null)
+    const refInput = useRef<HTMLInputElement>(null)
 
     return (
       <div

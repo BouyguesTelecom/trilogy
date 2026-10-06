@@ -1,14 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { PromptContext } from '@/components/prompt/context'
-import { TrilogyColor } from '@/objects'
-import React, { useContext } from 'react'
+import { TrilogyColor } from '@/objects/facets/Color'
+import { useContext, forwardRef } from 'react'
 import {  } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import PromptButton from '../button/PromptButton.native'
-import { PromptInputFileNativeRef, PromptInputFileProps } from './PromptInputFileProps'
+import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
+import { PromptInputFileNativeRef, PromptInputFileProps } from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
 
-const PromptInputFile = React.forwardRef<PromptInputFileNativeRef, PromptInputFileProps>(
+const PromptInputFile = forwardRef<PromptInputFileNativeRef, PromptInputFileProps>(
   ({ onChange, disabled, readOnly, ...others }, ref) => {
     const { isDisabled } = useContext(PromptContext)
     const isDisable = isDisabled || disabled

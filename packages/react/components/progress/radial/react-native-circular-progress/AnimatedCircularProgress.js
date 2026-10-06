@@ -1,12 +1,12 @@
 // @ts-nocheck
-import * as React from "react"
+import { PureComponent } from "react"
 import PropTypes from "prop-types"
 import { Animated, Easing } from "react-native"
-import CircularProgress from "./CircularProgress"
+import CircularProgress from "@/components/progress/radial/react-native-circular-progress/CircularProgress"
 
 const AnimatedProgress = Animated.createAnimatedComponent(CircularProgress)
 
-export default class AnimatedCircularProgress extends React.PureComponent {
+export default class AnimatedCircularProgress extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {

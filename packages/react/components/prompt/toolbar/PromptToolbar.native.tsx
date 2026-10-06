@@ -1,13 +1,13 @@
 import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
-import React, { useContext } from 'react'
+import { useContext, forwardRef } from 'react'
 import { Pressable } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { PromptContext } from '../context'
-import { PromptToolbarNativeRef, PromptToolbarProps } from './PromptToolbarProps'
+import { PromptContext } from '@/components/prompt/context'
+import { PromptToolbarNativeRef, PromptToolbarProps } from '@/components/prompt/toolbar/PromptToolbarProps'
 
-const PromptToolbar = React.forwardRef<PromptToolbarNativeRef, PromptToolbarProps>(({ ...others }, ref) => {
+const PromptToolbar = forwardRef<PromptToolbarNativeRef, PromptToolbarProps>(({ ...others }, ref) => {
   const { textareaRef } = useContext(PromptContext)
   const styles = memoStyles({
     view: {

@@ -11,7 +11,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": false,
@@ -42,7 +42,6 @@
     "./fileTransformer.cjs",
     "./package.json",
     "./coverage",
-    "**/*.native.test.tsx",
   ],
   "ts-node": {
     "compilerOptions": {

@@ -1,11 +1,11 @@
 import { Columns, GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React, { useContext, useEffect, useMemo } from 'react'
-import { PromptContext } from '../context'
-import { PromptFilesProps, PromptFilesRef } from './PromptFilesProps'
+import { useContext, useEffect, useMemo, Children, forwardRef } from 'react'
+import { PromptContext } from '@/components/prompt/context'
+import { PromptFilesProps, PromptFilesRef } from '@/components/prompt/files/PromptFilesProps'
 
 /**
  * PromptFiles component - Container for displaying attached files in a prompt
@@ -13,11 +13,11 @@ import { PromptFilesProps, PromptFilesRef } from './PromptFilesProps'
  * @param className {string} Additional CSS classes (ONLY FOR WEB)
  * @param testId {string} Test Id for Test Integration
  */
-const PromptFiles = React.forwardRef<PromptFilesRef, PromptFilesProps>(({ children }, ref) => {
+const PromptFiles = forwardRef<PromptFilesRef, PromptFilesProps>(({ children }, ref) => {
   const { styled } = useTrilogyContext()
   const { setFiles } = useContext(PromptContext)
   const classesFiles = hashClass(styled, clsx('prompt-files'))
-  const childrenLength = useMemo(() => React.Children.count(children), [children])
+  const childrenLength = useMemo(() => Children.count(children), [children])
 
   useEffect(() => {
     setFiles(childrenLength)

@@ -1,10 +1,9 @@
 // Dependencies
-import * as React from "react";
 
 // Testing methods
 import { render, screen } from "@testing-library/react";
-import View from "../View";
-import { ViewMarkup } from "../ViewProps";
+import View from "@/components/view/View";
+import { ViewMarkup } from "@/components/view/ViewProps";
 
 // Component to test
 

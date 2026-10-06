@@ -1,17 +1,17 @@
-import React from 'react'
-import { SelectChangeEventHandler, SelectedValue } from '../SelectProps'
+import { Dispatch, SetStateAction, createContext } from 'react'
+import { SelectChangeEventHandler, SelectedValue } from '@/components/select/SelectProps'
 
 interface IContext {
   selectedOptionValues: SelectedValue[]
   isVisibleOptions: boolean
   multiple: boolean
   custom: boolean
-  setSelectedOptionValues: React.Dispatch<React.SetStateAction<SelectedValue[] | []>>
-  setIsVisibleOptions: React.Dispatch<React.SetStateAction<boolean>>
+  setSelectedOptionValues: Dispatch<SetStateAction<SelectedValue[] | []>>
+  setIsVisibleOptions: Dispatch<SetStateAction<boolean>>
   onChange?: SelectChangeEventHandler
 }
 
-export const SelectContext = React.createContext<IContext>({
+export const SelectContext = createContext<IContext>({
   selectedOptionValues: [],
   multiple: false,
   custom: false,

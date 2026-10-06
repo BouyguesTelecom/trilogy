@@ -1,14 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { isRequiredChild } from '@/helpers/require'
-import { getJustifiedClassName } from '@/objects'
-import { TypographyColor } from '@/objects/Typography'
-import { is } from '@/services'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { RadioListRef, RadioListWebProps } from './RadioListProps'
+import { forwardRef } from 'react'
+import { RadioListRef, RadioListWebProps } from '@/components/radio/list/RadioListProps'
 
 /**
  * RadioList Component
@@ -23,7 +23,7 @@ import { RadioListRef, RadioListWebProps } from './RadioListProps'
  * @param horizontalMobile {boolean} Expect mobile screen
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
-const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
+const RadioList = forwardRef<RadioListRef, RadioListWebProps>(
   (
     {
       className,

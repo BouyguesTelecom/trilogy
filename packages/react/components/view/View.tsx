@@ -1,10 +1,13 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getAlignClassName, getBackgroundClassName, getJustifyClassName, getLoadingClassName } from '@/objects'
-import { has, is } from '@/services'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getAlignClassName } from '@/objects/facets/Alignable'
+import { getBackgroundClassName } from '@/objects/atoms/Background'
+import { getJustifyClassName } from '@/objects/facets/Justifiable'
+import { getLoadingClassName } from '@/objects/facets/Loadable'
+import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from './ViewProps'
+import { forwardRef } from 'react'
+import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from '@/components/view/ViewProps'
 
 /**
  * View Component (DIV equivalent)
@@ -27,7 +30,7 @@ import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from './ViewProps'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param bottom {boolean} Bottom position
  */
-const View = React.forwardRef<ViewRef, ViewProps>(
+const View = forwardRef<ViewRef, ViewProps>(
   (
     {
       children,

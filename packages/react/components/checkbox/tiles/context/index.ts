@@ -1,2 +1,2 @@
-export * from './CheckboxTilesContext'
-export * from './CheckboxTilesContextProps'
+export * from '@/components/checkbox/tiles/context/CheckboxTilesContext'
+export * from '@/components/checkbox/tiles/context/CheckboxTilesContextProps'

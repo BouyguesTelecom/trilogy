@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
-import { TypographyAlign, TypographyBold, TypographyColor, TypographyTransform } from '../../objects'
-import TitleComponent from './Title'
-import { TitleLevels, TitleMarkup } from './TitleEnum'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
+import { TypographyTransform } from '@/objects/Typography/TypographyTransform'
+import TitleComponent from '@/components/title/Title'
+import { TitleLevels, TitleMarkup } from '@/components/title/TitleEnum'
 
 TitleComponent.displayName = 'Title'
 

@@ -1,9 +1,8 @@
-import { Align } from '@/objects'
+import { Align } from '@/objects/facets/Alignable'
 import type { Meta, StoryObj } from '@storybook/react'
-import PriceComponent from './Price'
-import { PriceLevel } from './PriceEnum'
-import type { PriceProps } from './PriceProps'
-import React from 'react'
+import PriceComponent from '@/components/price/Price'
+import { PriceLevel } from '@/components/price/PriceEnum'
+import type { PriceProps } from '@/components/price/PriceProps'
 
 PriceComponent.displayName = 'Price'
 

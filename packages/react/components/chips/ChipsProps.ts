@@ -1,15 +1,16 @@
 import { TouchableOpacity } from 'react-native'
-import { ClickEvent } from '../../events/OnClickEvent'
-import { Accessibility } from '../../objects/facets/Accessibility'
-import { Clickable } from '../../objects/facets/Clickable'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { Dev } from '../../objects/facets/Dev'
+import { ClickEvent } from '@/events/OnClickEvent'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
+import { ReactNode } from 'react'
 
 /**
  * Chips Interface
  */
 export interface ChipsProps extends Clickable, Accessibility, Dev, CommonProps {
-  children: string | React.ReactNode
+  children: string | ReactNode
   onClick?: ClickEvent
   active?: boolean
   disabled?: boolean

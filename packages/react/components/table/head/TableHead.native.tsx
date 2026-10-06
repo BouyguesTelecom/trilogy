@@ -1,14 +1,14 @@
-import * as React from "react"
+import { forwardRef } from "react"
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TableHeadNativeRef, TableHeadProps } from "./TableHeadProps"
+import { TableHeadNativeRef, TableHeadProps } from "@/components/table/head/TableHeadProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * Table Head Component
  * @param children {ReactNode} children of Table Head
  */
-const TableHead = React.forwardRef<TableHeadNativeRef, TableHeadProps>(({ children, ...others }, ref): JSX.Element => {
+const TableHead = forwardRef<TableHeadNativeRef, TableHeadProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = memoStyles({
     head: {
       width: "100%",

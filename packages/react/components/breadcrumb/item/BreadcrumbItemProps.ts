@@ -1,8 +1,9 @@
 import { TouchableOpacity } from 'react-native'
-import { Accessibility } from '../../../objects/facets/Accessibility'
-import { Clickable } from '../../../objects/facets/Clickable'
-import { CommonProps } from '../../../objects/facets/CommonProps'
-import { Dev } from '../../../objects/facets/Dev'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
+import { ElementType } from 'react'
 
 export interface BreadcrumbItemProps extends Accessibility, Clickable, Dev {
   children?: string
@@ -15,7 +16,7 @@ export interface BreadcrumbItemProps extends Accessibility, Clickable, Dev {
  */
 export interface BreadcrumbItemPropsWeb extends Accessibility, Clickable, BreadcrumbItemProps, Dev, CommonProps {
   href?: string
-  routerLink?: React.ElementType
+  routerLink?: ElementType
 }
 
 export type BreadcrumbItemRef = HTMLLIElement

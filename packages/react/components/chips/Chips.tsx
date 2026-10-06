@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { is } from '@/services'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { ChipsProps, ChipsRef } from './ChipsProps'
+import { forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ChipsProps, ChipsRef } from '@/components/chips/ChipsProps'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -17,7 +17,7 @@ import { ChipsProps, ChipsRef } from './ChipsProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Chips = React.forwardRef<ChipsRef, ChipsProps>(
+const Chips = forwardRef<ChipsRef, ChipsProps>(
   ({ className, onClick, children, active, disabled, id, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('chips', active && is('active'), className))

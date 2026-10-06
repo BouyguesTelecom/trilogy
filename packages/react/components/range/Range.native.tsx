@@ -1,11 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
-import * as React from 'react'
+import { forwardRef, useState } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Text, TextLevels } from '../text'
-import { RangeNativeProps, RangeNativeRef } from './RangeProps'
+import { Text, TextLevels } from '@/components/text'
+import { RangeNativeProps, RangeNativeRef } from '@/components/range/RangeProps'
 import { Theme } from '@/constants/theme'
 
 /**
@@ -18,10 +19,10 @@ import { Theme } from '@/constants/theme'
  * @param simple {boolean} Display one cursor
  * @param unit {string} Display unit of values
  */
-const Range = React.forwardRef<RangeNativeRef, RangeNativeProps>(
+const Range = forwardRef<RangeNativeRef, RangeNativeProps>(
   ({ min, max, label, unit, onChange, value, simple }, ref): JSX.Element => {
-    const [values, setValues] = React.useState<number[]>(value || simple ? [0] : [0, 100])
-    const [width, setWidth] = React.useState<number>(0)
+    const [values, setValues] = useState<number[]>(value || simple ? [0] : [0, 100])
+    const [width, setWidth] = useState<number>(0)
 
     const styles = memoStyles({
       marker: {

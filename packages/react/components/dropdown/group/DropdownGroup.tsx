@@ -1,21 +1,21 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { DropdownGroupProps, DropdownGroupRef } from './DropdownGroupProps'
+import { forwardRef } from 'react'
+import { DropdownGroupProps, DropdownGroupRef } from '@/components/dropdown/group/DropdownGroupProps'
 
 /**
  * DropdownGroup Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param hideSeparator {boolean} Hide separator at the top of the group
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test id
  */
-const DropdownGroup = React.forwardRef<DropdownGroupRef, DropdownGroupProps>(
+const DropdownGroup = forwardRef<DropdownGroupRef, DropdownGroupProps>(
   ({ className, id, children, hideSeparator, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

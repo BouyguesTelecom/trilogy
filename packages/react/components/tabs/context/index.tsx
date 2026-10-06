@@ -1,15 +1,15 @@
-import React from 'react'
+import { Dispatch, SetStateAction, createContext } from 'react'
 
 interface IContext {
   activeIndex: number
-  setActiveIndex: React.Dispatch<React.SetStateAction<number>>
+  setActiveIndex: Dispatch<SetStateAction<number>>
   inverted: boolean
-  setInverted: React.Dispatch<React.SetStateAction<boolean>>
+  setInverted: Dispatch<SetStateAction<boolean>>
   small?: boolean
   fullwidth?: boolean
 }
 
-export const TabsContext = React.createContext<IContext>({
+export const TabsContext = createContext<IContext>({
   activeIndex: 0,
   inverted: false,
   setActiveIndex: () => 0,

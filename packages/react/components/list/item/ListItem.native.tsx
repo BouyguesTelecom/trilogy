@@ -3,19 +3,20 @@ import { Icon, IconName } from '@/components/icon'
 import { ListContext } from '@/components/list/context'
 import { ListItemNativeRef, ListItemProps } from '@/components/list/item/ListItemProps'
 import { Text, TextLevels } from '@/components/text'
-import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
-import React, { useContext, useEffect, useId, useMemo } from 'react'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
+import { useContext, useEffect, useId, useMemo, forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
 /**
  * ListItem Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param iconName {IconName} Icon name
  * @param status {ListIconStatus} Status success|error
  * @param testId {string} Test Id for Test Integration
  */
-const ListItem = React.forwardRef<ListItemNativeRef, ListItemProps>(
+const ListItem = forwardRef<ListItemNativeRef, ListItemProps>(
   ({ children, status, iconName, testId }, ref): JSX.Element => {
     const id = useId()
     const { ordered, chilIndexes, setChildIndexes, divider } = useContext(ListContext)

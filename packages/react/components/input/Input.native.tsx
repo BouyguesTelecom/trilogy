@@ -2,11 +2,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
-import { TypographyColor } from '@/objects'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { Align } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, forwardRef } from 'react'
 import {
   Keyboard,
   NativeSyntheticEvent,
@@ -16,7 +16,7 @@ import {
   View,
 } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Spacer, SpacerSize } from '../spacer'
+import { Spacer, SpacerSize } from '@/components/spacer'
 import {
   InputAutoCapitalize,
   InputKeyboardAppearance,
@@ -24,9 +24,9 @@ import {
   InputStatus,
   InputTextContentType,
   InputType,
-} from './InputEnum'
-import { InputNativeEvents, InputNativeRef, InputProps } from './InputProps'
-import InputGauge from './gauge/InputGauge.native'
+} from '@/components/input/InputEnum'
+import { InputNativeEvents, InputNativeRef, InputProps } from '@/components/input/InputProps'
+import InputGauge from '@/components/input/gauge/InputGauge.native'
 import { Theme } from '@/constants/theme'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
@@ -67,7 +67,7 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param keyType {KeyType} Key type for submit button
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
+const Input = forwardRef<InputNativeRef, InputNativeProps>(
   (
     {
       defaultValue,

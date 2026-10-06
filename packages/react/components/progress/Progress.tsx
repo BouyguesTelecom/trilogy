@@ -1,12 +1,12 @@
 import { Text } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getStatusClassName } from '@/objects'
-import { is } from '@/services/index'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/objects/facets/Status'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { ProgressProps, ProgressRef } from './ProgressProps'
+import { forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ProgressProps, ProgressRef } from '@/components/progress/ProgressProps'
 
 /**
  * Progress Component
@@ -24,7 +24,7 @@ import { ProgressProps, ProgressRef } from './ProgressProps'
  * @param className {string} Additional CSS Classes
  * @param small {boolean} Small progress bar
  */
-const Progress = React.forwardRef<ProgressRef, ProgressProps>(
+const Progress = forwardRef<ProgressRef, ProgressProps>(
   (
     {
       children,

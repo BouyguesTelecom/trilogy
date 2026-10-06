@@ -1,15 +1,16 @@
 import { ReactNode } from 'react'
-import { ModalSize } from '../../components/modal/ModalEnum'
-import { ClickEvent } from '../../events/OnClickEvent'
-import { Accessibility, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { ModalSize } from '@/components/modal/ModalEnum'
+import { ClickEvent } from '@/events/OnClickEvent'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
 
 /**
  * Modal Interface
  */
 export interface ModalProps extends Accessibility, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   active?: boolean
   trigger?: ReactNode
   hideCloseButton?: boolean

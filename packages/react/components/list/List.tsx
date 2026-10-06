@@ -1,14 +1,14 @@
 import { ListProps, ListRef } from '@/components/list/ListProps'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { ComponentName } from '../enumsComponentsName'
+import { forwardRef } from 'react'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * List Component
- * @param children {React.ReactNode} List items (ListItem components)
+ * @param children {ReactNode} List items (ListItem components)
  * @param divider {boolean} Add a divider between list items
  * @param ordered {boolean} Display as an ordered list (ol) instead of unordered (ul)
  * @param testId {string} Test Id for Test Integration
@@ -16,7 +16,7 @@ import { ComponentName } from '../enumsComponentsName'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const List = React.forwardRef<ListRef, ListProps>(({ className, id, children, testId, divider, ordered, ...others }, ref) => {
+const List = forwardRef<ListRef, ListProps>(({ className, id, children, testId, divider, ordered, ...others }, ref) => {
   const { styled } = useTrilogyContext()
   const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
   const Tag = ordered ? 'ol' : 'ul'

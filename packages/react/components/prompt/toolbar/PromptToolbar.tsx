@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import React from 'react'
-import { PromptToolbarProps, PromptToolbarRef } from './PromptToolbarProps'
+import { forwardRef } from 'react'
+import { PromptToolbarProps, PromptToolbarRef } from '@/components/prompt/toolbar/PromptToolbarProps'
 
 /**
  * PromptToolbar component - Container for prompt action buttons and tools
@@ -11,7 +11,7 @@ import { PromptToolbarProps, PromptToolbarRef } from './PromptToolbarProps'
  * @param className {string} Additional CSS classes (ONLY FOR WEB)
  * @param testId {string} Test Id for Test Integration
  */
-const PromptToolbar = React.forwardRef<PromptToolbarRef, PromptToolbarProps>(({ className, testId, ...others }, ref) => {
+const PromptToolbar = forwardRef<PromptToolbarRef, PromptToolbarProps>(({ className, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()
 
   const classes = hashClass(styled, clsx('prompt-toolbar', className))

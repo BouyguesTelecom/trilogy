@@ -4,12 +4,15 @@ import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, VariantState } from '@/objects'
-import React, { useContext, useState } from 'react'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
+import { VariantState } from '@/objects/facets/Variant'
+import { useContext, useState, forwardRef, useId } from 'react'
 import { TouchableOpacity, View as ViewRN } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { CheckboxTilesContext } from '../context'
-import { CheckboxTileNativeRef, CheckboxTileProps } from './CheckboxTileProps'
+import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
+import { CheckboxTileNativeRef, CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
 import { Theme } from '@/constants/theme'
 
 /**
@@ -30,13 +33,13 @@ import { Theme } from '@/constants/theme'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
+const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   (
     {
       disabled,
       checked,
       readonly,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,

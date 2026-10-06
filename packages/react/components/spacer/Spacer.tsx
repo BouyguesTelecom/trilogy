@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { SpacerProps, SpacerRef } from './SpacerProps'
+import { forwardRef } from 'react'
+import { SpacerProps, SpacerRef } from '@/components/spacer/SpacerProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
-import { ComponentName } from '../enumsComponentsName'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Spacer Component - Adds vertical or horizontal spacing
@@ -14,7 +14,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param className {string} Additional CSS Classes
  * @param id {string} Custom id attribute
  */
-const Spacer = React.forwardRef<SpacerRef, SpacerProps>(({ size, horizontal, className, id, testId }, ref): JSX.Element => {
+const Spacer = forwardRef<SpacerRef, SpacerProps>(({ size, horizontal, className, id, testId }, ref): JSX.Element => {
   const { styled } = useTrilogyContext()
   const styles = {
     spacer: {

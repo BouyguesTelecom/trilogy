@@ -1,11 +1,12 @@
 import { View } from 'react-native'
-import { IconName, IconNameValues } from '../../icon/IconNameEnum'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
+import { ReactNode } from 'react'
 
 /**
  * DropdownItem Interface
  */
 export interface DropdownItemProps {
-  children?: React.ReactNode
+  children?: ReactNode
   iconName?: IconName | IconNameValues
   active?: boolean
   disabled?: boolean

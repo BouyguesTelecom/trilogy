@@ -6,13 +6,13 @@ import { FlexBox } from '@/components/flex-box'
 import { Icon } from '@/components/icon'
 import { Image } from '@/components/image'
 import { Text, TextLevels } from '@/components/text'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { Align } from '@/objects'
-import { TypographyBold } from '@/objects/Typography'
+import { Align } from '@/objects/facets/Alignable'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import clsx from 'clsx'
-import React from 'react'
-import { PromptFileProps, PromptFileRef } from './PromptFileProps'
+import { forwardRef } from 'react'
+import { PromptFileProps, PromptFileRef } from '@/components/prompt/files/file/PromptFileProps'
 
 /**
  * PromptFile component - Displays an individual file attachment with preview and delete option
@@ -23,7 +23,7 @@ import { PromptFileProps, PromptFileRef } from './PromptFileProps'
  * @param className {string} Additional CSS classes (ONLY FOR WEB)
  * @param testId {string} Test Id for Test Integration
  */
-const PromptFile = React.forwardRef<PromptFileRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
+const PromptFile = forwardRef<PromptFileRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
   const { styled } = useTrilogyContext()
   const classesImgContainer = hashClass(styled, clsx('prompt-files-file'))
   const classesImg = clsx('prompt-files-img')

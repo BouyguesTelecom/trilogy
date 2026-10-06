@@ -3,9 +3,10 @@ import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
 import { TextInput } from 'react-native'
+import { ReactNode } from 'react'
 
 export interface PromptTextareaProps extends Accessibility, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   placeholder?: string
   value?: string
   onChange?: (e: TextareaChangeEvent) => void

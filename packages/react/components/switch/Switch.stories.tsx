@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
-import { StatusState } from '../../objects/facets/Status'
-import SwitchComponent from './Switch'
-import type { SwitchProps } from './SwitchProps'
+import { StatusState } from '@/objects/facets/Status'
+import SwitchComponent from '@/components/switch/Switch'
+import type { SwitchProps } from '@/components/switch/SwitchProps'
 
 SwitchComponent.displayName = 'Switch'
 

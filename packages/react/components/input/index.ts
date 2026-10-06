@@ -1,6 +1,6 @@
-import Input from './Input'
+import Input from '@/components/input/Input'
 
-export * from './InputEnum'
-export * from './InputProps'
+export * from '@/components/input/InputEnum'
+export * from '@/components/input/InputProps'
 
 export { Input }

@@ -1,8 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
-import { DropdownTriggerNativeRef, DropdownTriggerProps } from './DropdownTriggerProps'
+import { forwardRef } from 'react'
+import { DropdownTriggerNativeRef, DropdownTriggerProps } from '@/components/dropdown/trigger/DropdownTriggerProps'
 
-const DropdownTrigger = React.forwardRef<DropdownTriggerNativeRef, DropdownTriggerProps>((props, ref): JSX.Element => {
+const DropdownTrigger = forwardRef<DropdownTriggerNativeRef, DropdownTriggerProps>((props, ref): JSX.Element => {
   return (
     <></>
   )
