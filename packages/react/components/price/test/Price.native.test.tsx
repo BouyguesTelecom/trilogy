@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react-native'
-import Price from '../Price'
+import Price from '@/components/price/Price'
 
 describe('Price', () => {
   it('renders correctly with whole amount', () => {

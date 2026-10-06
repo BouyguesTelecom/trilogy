@@ -3,7 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useContext, useEffect, useState, forwardRef } from 'react'
 import { Image, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { CardImageNativeRef, CardImageProps } from './CardImageProps'
+import { CardImageNativeRef, CardImageProps } from '@/components/card/image/CardImageProps'
 
 /**
  * Card Image Component

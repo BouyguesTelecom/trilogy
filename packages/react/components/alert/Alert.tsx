@@ -1,15 +1,15 @@
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getStatusClassName, getStatusIconName } from '@/objects/facets/Status'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef, useCallback, useMemo, CSSProperties, useEffect, useRef, useState } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { AlertProps, AlertRef, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
-import ToasterContext from './context'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { AlertProps, AlertRef, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
+import ToasterContext from '@/components/alert/context'
 
 /**
  * Toaster Component

@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { forwardRef, useContext } from 'react'
 import { ScrollView, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { ModalContext } from '../context/ModalContext'
-import { ModalBodyNativeRef, ModalBodyProps } from './ModalBodyProps'
+import { ModalContext } from '@/components/modal/context/ModalContext'
+import { ModalBodyNativeRef, ModalBodyProps } from '@/components/modal/body/ModalBodyProps'
 
 /**
  * Modal Body Component

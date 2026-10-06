@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { BoxItemNativeRef, BoxItemProps } from './BoxItemProps'
+import { BoxItemNativeRef, BoxItemProps } from '@/components/box/item/BoxItemProps'
 
 /**
  * Box Item Component

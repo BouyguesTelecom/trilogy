@@ -1,10 +1,10 @@
 import { forwardRef } from "react"
-import {  } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TableThNativeRef, TableThProps } from "./TableThProps"
+import { TableThNativeRef, TableThProps } from "@/components/table/th/TableThProps"
 import { View } from "@/components/view"
 import { Text } from "@/components/text"
-import { getColorStyle, TrilogyColor, TypographyBold } from "@/objects"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { TypographyBold } from "@/objects/Typography/TypographyBold"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**

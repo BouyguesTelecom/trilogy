@@ -1,12 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { TrilogyColor } from '@/objects'
+import { TrilogyColor } from '@/objects/facets/Color'
 import { useContext, forwardRef } from 'react'
 import {  } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { PromptContext } from '../../context'
-import PromptButton from '../tools/button/PromptButton.native'
-import { PromptMicrophoneNativeRef, PromptMicrophoneProps } from './PromptMicrophoneProps'
+import { PromptContext } from '@/components/prompt/context'
+import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
+import { PromptMicrophoneNativeRef, PromptMicrophoneProps } from '@/components/prompt/toolbar/microphone/PromptMicrophoneProps'
 
 /**
  * PromptMicrophone component - Voice recording button for prompt input

@@ -1,7 +1,9 @@
-import { Accessibility, AlignableProps, Dev } from '../../objects'
-import { Invertable } from '../../objects/facets/Invertable'
-import { PriceLevel, PriceLevelValues } from './PriceEnum'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { Dev } from '@/objects/facets/Dev'
+import { Invertable } from '@/objects/facets/Invertable'
+import { PriceLevel, PriceLevelValues } from '@/components/price/PriceEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
 import { ReactNode } from 'react'
 

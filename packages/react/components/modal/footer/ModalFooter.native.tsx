@@ -1,13 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Title, TitleLevels } from '@/components/title'
 import { isIOS } from '@/helpers/device.native'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { forwardRef, useContext, useEffect } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { ModalContext } from '../context'
-import { ModalFooterProps, ModalFooterNativeRef } from './ModalFooterProps'
+import { ModalContext } from '@/components/modal/context'
+import { ModalFooterProps, ModalFooterNativeRef } from '@/components/modal/footer/ModalFooterProps'
 
 /**
  * Modal Footer Component

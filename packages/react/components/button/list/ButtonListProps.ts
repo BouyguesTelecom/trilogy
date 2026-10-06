@@ -1,9 +1,10 @@
 import { ButtonListDirectionEnum, ButtonListDirectionEnumValues } from '@/components/button/list/ButtonListEnum'
 import { View } from 'react-native'
-import type { ButtonProps } from '../../../components/button/ButtonProps'
-import type { DividerProps } from '../../../components/divider/DividerProps'
-import { AlignableProps, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import type { ButtonProps } from '@/components/button/ButtonProps'
+import type { DividerProps } from '@/components/divider/DividerProps'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { ReactElement } from 'react'
 
 type ButtonListChildrenTypes = ReactElement<ButtonProps | DividerProps> | undefined

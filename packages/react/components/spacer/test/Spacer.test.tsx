@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import Spacer from "../Spacer";
-import { SpacerSize } from "../SpacerEnum";
+import Spacer from "@/components/spacer/Spacer";
+import { SpacerSize } from "@/components/spacer/SpacerEnum";
 
 describe("Spacer component", () => {
   it("renders the spacer with default props", () => {

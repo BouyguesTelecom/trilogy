@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react'
 
 import Hero from '@/components/hero/Hero'
-import { VariantState } from '@/objects'
+import { VariantState } from '@/objects/facets/Variant'
 
 describe('Hero', () => {
   it('renders children', () => {

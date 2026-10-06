@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent, RefObject, forwardRef } from 'react'
 import { Icon, IconSize } from '@/components/icon'
-import { DropdownItemProps, DropdownItemRef } from './DropdownItemProps'
+import { DropdownItemProps, DropdownItemRef } from '@/components/dropdown/item/DropdownItemProps'
 
 /**
  * DropdownItem Component

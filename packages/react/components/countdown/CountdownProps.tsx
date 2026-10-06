@@ -1,7 +1,7 @@
 import { type View } from 'react-native'
-import { ClickEvent } from '../../events/OnClickEvent'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { CountdownFormat } from './CountdownEnum'
+import { ClickEvent } from '@/events/OnClickEvent'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { CountdownFormat } from '@/components/countdown/CountdownEnum'
 import { Dev } from '@/objects/facets/Dev'
 
 /**

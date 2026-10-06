@@ -3,7 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useContext, forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { CardContentNativeRef, CardContentProps } from './CardContentProps'
+import { CardContentNativeRef, CardContentProps } from '@/components/card/content/CardContentProps'
 
 /**
  * Card Content Component

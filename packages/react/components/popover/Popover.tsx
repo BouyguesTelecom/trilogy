@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { PopoverRef, PopoverWebProps } from './PopoverProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { PopoverRef, PopoverWebProps } from '@/components/popover/PopoverProps'
 
 /**
  * Popover Component

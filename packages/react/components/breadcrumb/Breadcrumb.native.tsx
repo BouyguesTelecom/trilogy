@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import { Children, cloneElement, forwardRef, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { BreadcrumbNativeRef, BreadcrumbProps } from './BreadcrumbProps'
+import { BreadcrumbNativeRef, BreadcrumbProps } from '@/components/breadcrumb/BreadcrumbProps'
 
 /**
  * Breadcrumb Component

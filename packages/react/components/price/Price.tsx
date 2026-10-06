@@ -1,12 +1,12 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { Alignable } from '@/objects'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { Alignable } from '@/objects/facets/Alignable'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { checkCents } from './PriceHelpers'
-import { PriceProps, PriceRef } from './PriceProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { checkCents } from '@/components/price/PriceHelpers'
+import { PriceProps, PriceRef } from '@/components/price/PriceProps'
 
 /**
  * Price Component

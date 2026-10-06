@@ -1,5 +1,5 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import Image from '../Image.native'
+import Image from '@/components/image/Image.native'
 
 jest.useFakeTimers()
 

@@ -1,4 +1,4 @@
-import { getColorStyle, TrilogyColor } from "./Color"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 
 /**
  * Variant State

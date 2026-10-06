@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import AutoLayout from "../AutoLayout";
-import AutoLayoutWrapper from "../AutoLayoutWrapper";
+import AutoLayout from "@/components/autolayout/AutoLayout";
+import AutoLayoutWrapper from "@/components/autolayout/AutoLayoutWrapper";
 
 describe("AutoLayout component", () => {
   it("should render its children", () => {

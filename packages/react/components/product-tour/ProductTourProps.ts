@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { ReactNode } from 'react'
 
 /**

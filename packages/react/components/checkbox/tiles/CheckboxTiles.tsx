@@ -1,12 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { isRequiredChild } from '@/helpers/require'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
+import { CheckboxTilesProps, CheckboxTilesRef } from '@/components/checkbox/tiles/CheckboxTilesProps'
 
 /**
  * CheckboxTiles

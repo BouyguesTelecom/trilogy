@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import ProgressRadialComponent from './radial/ProgressRadial'
+import ProgressRadialComponent from '@/components/progress/radial/ProgressRadial'
 
 ProgressRadialComponent.displayName = 'ProgressRadial'
 

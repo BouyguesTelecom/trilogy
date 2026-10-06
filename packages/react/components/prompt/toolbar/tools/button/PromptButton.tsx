@@ -2,10 +2,10 @@ import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptContext } from '@/components/prompt/context'
 import { OnClickEvent } from '@/events/OnClickEvent'
-import { is } from '@/services/index'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { useContext, forwardRef } from 'react'
-import { PromptButtonProps, PromptButtonRef } from './PromptButtonProps'
+import { PromptButtonProps, PromptButtonRef } from '@/components/prompt/toolbar/tools/button/PromptButtonProps'
 
 /**
  * PromptButton component - Customizable button for prompt toolbar

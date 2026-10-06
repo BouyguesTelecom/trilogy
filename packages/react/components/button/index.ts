@@ -1,6 +1,6 @@
-import Button from './Button'
-import { ButtonList } from './list'
+import Button from '@/components/button/Button'
+import { ButtonList } from '@/components/button/list'
 
-export * from './ButtonEnum'
+export * from '@/components/button/ButtonEnum'
 
 export { Button, ButtonList }

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import TimepickerComponent from './Timepicker'
-import type { TimepickerDefaultProps } from './default/TimepickerDefaultProps'
+import TimepickerComponent from '@/components/timepicker/Timepicker'
+import type { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
 
 TimepickerComponent.displayName = 'Timepicker'
 

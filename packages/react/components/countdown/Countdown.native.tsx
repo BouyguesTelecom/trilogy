@@ -5,9 +5,9 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useEffect, useState, forwardRef } from 'react'
 import { Text as TextNative, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { getTypographyBoldStyle, TypographyBold } from '../../objects/Typography'
-import { CountdownFormat, CountdownUnite } from './CountdownEnum'
-import { CountdownNativeRef, CountdownProps } from './CountdownProps'
+import { getTypographyBoldStyle, TypographyBold } from '@/objects/Typography/TypographyBold'
+import { CountdownFormat, CountdownUnite } from '@/components/countdown/CountdownEnum'
+import { CountdownNativeRef, CountdownProps } from '@/components/countdown/CountdownProps'
 import { Theme } from '@/constants/theme'
 
 const calculateTimer = (timeDifference: number) => {

@@ -1,7 +1,8 @@
 import { BackgroundProps } from '@/objects/atoms/Background'
-import { Clickable, Dev } from '@/objects/facets'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
 import { CommonProps } from '@/objects/facets/CommonProps'
-import { BackgroundHeight } from './heroEnum'
+import { BackgroundHeight } from '@/components/hero/heroEnum'
 import { View } from 'react-native'
 import { ReactNode } from 'react'
 

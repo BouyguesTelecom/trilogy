@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react-native'
-import Otp from '../Otp'
+import Otp from '@/components/otp/Otp'
 
 jest.useFakeTimers()
 

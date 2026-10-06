@@ -2,11 +2,12 @@ jest.useFakeTimers()
 
 import { fireEvent, render } from '@testing-library/react-native'
 import { PlatformOSType } from 'react-native'
-import { getColorStyle, StatusState, TrilogyColor } from '../../../objects'
-import { IconName } from '../../icon'
-import Input from '../Input.native'
-import { InputAutoCapitalize, InputKeyboardType, InputStatus, InputType } from '../InputEnum'
-import { Theme } from '../../../constants/theme'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { StatusState } from '@/objects/facets/Status'
+import { IconName } from '@/components/icon'
+import Input from '@/components/input/Input.native'
+import { InputAutoCapitalize, InputKeyboardType, InputStatus, InputType } from '@/components/input/InputEnum'
+import { Theme } from '@/constants/theme'
 
 describe('Input component', () => {
   const types = [

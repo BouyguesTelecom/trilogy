@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import StepComponent from './step'
-import StepperComponent from './Stepper'
-import type { StepperProps } from './StepperProps'
+import StepComponent from '@/components/stepper/step'
+import StepperComponent from '@/components/stepper/Stepper'
+import type { StepperProps } from '@/components/stepper/StepperProps'
 
 StepperComponent.displayName = 'Stepper'
 StepComponent.displayName = 'Step'

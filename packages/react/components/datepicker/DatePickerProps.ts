@@ -1,7 +1,7 @@
 import { CalendarYearsOrder, CalendarYearsOrderValues } from '@/components/calendar/CalendarEnum'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
-import { DatePickerStatus, DatePickerStatusValues } from './DatePickerEnum'
+import { DatePickerStatus, DatePickerStatusValues } from '@/components/datepicker/DatePickerEnum'
 import { Dispatch, InputEvent, SetStateAction } from 'react'
 
 export type SegmentType = 'day' | 'month' | 'year'

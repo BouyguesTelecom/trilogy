@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { IconColor } from '@/components/icon'
 import { ISecurityRules, IValidationRules } from '@/components/input/InputProps'
-import { TrilogyColor, getColorStyle } from '@/objects'
+import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 
 interface IParams {
   validationRules?: IValidationRules

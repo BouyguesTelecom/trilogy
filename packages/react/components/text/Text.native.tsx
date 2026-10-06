@@ -1,13 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor } from '@/objects/Typography'
+import { getTypographyBoldStyle } from '@/objects/Typography/TypographyBold'
+import { setTypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { setTypographyColor } from '@/objects/Typography/TypographyColor'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useContext, forwardRef } from 'react'
 import { Text as TextNative } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Skeleton } from '../skeleton'
-import { TextLevels, TextLevelValues } from './TextEnum'
-import { TextNativeRef, TextProps } from './TextProps'
+import { Skeleton } from '@/components/skeleton'
+import { TextLevels, TextLevelValues } from '@/components/text/TextEnum'
+import { TextNativeRef, TextProps } from '@/components/text/TextProps'
 
 /**
  * Text Native Component

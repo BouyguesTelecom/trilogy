@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { useTrilogyContext } from '../../../context'
-import { hashClass } from '../../../helpers'
-import { getStatusClassName } from '../../../objects'
-import { is } from '../../../services/index'
-import { ProgressItemProps, ProgressItemWebRef } from './ProgressItemProps'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/objects/facets/Status'
+import { is } from '@/services/classify'
+import { ProgressItemProps, ProgressItemWebRef } from '@/components/progress/item/ProgressItemProps'
 
 /**
  * Progress Item component - Only if stacked

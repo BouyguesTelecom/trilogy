@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react-native'
-import Chips from '../../Chips.native'
-import ChipsList from '../ChipsList.native'
+import Chips from '@/components/chips/Chips.native'
+import ChipsList from '@/components/chips/list/ChipsList.native'
 
 describe('chips component', () => {
   it('renders the children correctly', () => {

@@ -1,13 +1,11 @@
-import {
-  Accessibility,
-  AlignableProps,
-  BackgroundProps,
-  Clickable,
-  Dev,
-  Fullwidth,
-  JustifiableProps,
-  Loadable,
-} from '../../objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { BackgroundProps } from '@/objects/atoms/Background'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
+import { Fullwidth } from '@/objects/facets/Fullwidth'
+import { JustifiableProps } from '@/objects/facets/Justifiable'
+import { Loadable } from '@/objects/facets/Loadable'
 import { ReactNode } from 'react'
 
 type Styles = { [key: string]: any }

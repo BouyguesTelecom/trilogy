@@ -1,5 +1,5 @@
-import { StatusProps } from '../../objects/facets/Status'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { StatusProps } from '@/objects/facets/Status'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
 import { Dev } from '@/objects/facets/Dev'
 import { ReactNode } from 'react'

@@ -3,14 +3,15 @@ import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Modal, ModalBody, ModalFooter } from '@/components/modal'
 import { Text, TextLevels } from '@/components/text'
-import { TypographyAlign, TypographyBold } from '@/objects'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useCallback, useEffect, useMemo, useRef, useState, forwardRef } from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
-import { TimepickerCircularNativeRef, TimepickerCircularProps } from './TimepickerCircularProps'
+import { TimepickerCircularNativeRef, TimepickerCircularProps } from '@/components/timepicker/circular/TimepickerCircularProps'
 
 const CIRCLE_SIZE = 204
 const CIRCLE_THICKNESS = 32

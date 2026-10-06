@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { ModalContextProps } from './ModalContextProps'
+import { ModalContextProps } from '@/components/modal/context/ModalContextProps'
 
 export const ModalContext = createContext<ModalContextProps>({
   scrollViewRef: null,

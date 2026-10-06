@@ -2,9 +2,9 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useContext, forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { ComponentName } from '../enumsComponentsName'
-import { PromptNativeRef, PromptProps } from './PromptProps'
-import { PromptContext, PromptProvider } from './context'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { PromptNativeRef, PromptProps } from '@/components/prompt/PromptProps'
+import { PromptContext, PromptProvider } from '@/components/prompt/context'
 import { Theme } from '@/constants/theme'
 
 const PromptElm = forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {

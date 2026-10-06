@@ -1,9 +1,9 @@
 import { forwardRef } from 'react'
-import { SpacerProps, SpacerRef } from './SpacerProps'
+import { SpacerProps, SpacerRef } from '@/components/spacer/SpacerProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
-import { ComponentName } from '../enumsComponentsName'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Spacer Component - Adds vertical or horizontal spacing

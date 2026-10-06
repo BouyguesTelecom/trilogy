@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { useContext, FormEvent, forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { PromptProps, PromptRef } from './PromptProps'
-import { PromptContext, PromptProvider } from './context'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { PromptProps, PromptRef } from '@/components/prompt/PromptProps'
+import { PromptContext, PromptProvider } from '@/components/prompt/context'
 
 const PromptElm = forwardRef<PromptRef, PromptProps>(({ className, testId, ...others }, ref) => {
   const { styled } = useTrilogyContext()

@@ -6,7 +6,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { isValidElement, useEffect, useRef, useState, JSXElementConstructor, ReactNode, forwardRef } from 'react'
 import { Animated, Easing, TouchableWithoutFeedback, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { AccordionItemNativeRef, AccordionItemProps } from './AccordionItemProps'
+import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
 import { Theme } from '@/constants/theme'
 
 interface AccordionChild {

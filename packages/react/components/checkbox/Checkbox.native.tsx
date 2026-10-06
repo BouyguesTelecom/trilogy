@@ -6,7 +6,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useEffect, useState, forwardRef, useId } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
+import { CheckboxNativeRef, CheckboxProps } from '@/components/checkbox/CheckboxProps'
 
 /**
  * Checkbox Component

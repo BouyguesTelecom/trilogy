@@ -4,9 +4,9 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { forwardRef, useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
+import { BoxHeaderNativeRef, BoxHeaderProps } from '@/components/box/header/BoxHeaderProps'
 import { getPaddingStyle } from '@/objects/facets/Padding'
-import { BoxContext } from '../context/boxContext'
+import { BoxContext } from '@/components/box/context/boxContext'
 
 /**
  * Box Header Component

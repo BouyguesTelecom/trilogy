@@ -1,9 +1,9 @@
 import { fireEvent, render } from '@testing-library/react'
 // @ts-ignore
 import renderer from 'react-test-renderer'
-import { StatusState } from '../../../objects'
-import { IconName } from '../../icon'
-import { Alert } from '../index'
+import { StatusState } from '@/objects/facets/Status'
+import { IconName } from '@/components/icon'
+import { Alert } from '@/components/alert'
 
 describe('Alert', () => {
   it('should render correctly', () => {

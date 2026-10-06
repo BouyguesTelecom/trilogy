@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
 import clsx from 'clsx'
-import { TableThProps, TableThRef } from './TableThProps'
+import { TableThProps, TableThRef } from '@/components/table/th/TableThProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

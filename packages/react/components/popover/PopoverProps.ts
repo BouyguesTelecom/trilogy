@@ -1,11 +1,12 @@
-import { Accessibility, Dev } from '../../objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 import {
   PopoverArrowPosition,
   PopoverArrowPositionValues,
   PopoverDirection,
   PopoverDirectionValues,
-} from './PopoverEnum'
-import { CommonProps } from '../../objects/facets/CommonProps'
+} from '@/components/popover/PopoverEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { ReactNode } from 'react'
 import { View } from 'react-native'
 

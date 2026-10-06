@@ -1,6 +1,8 @@
 import { View } from 'react-native'
-import { AlignableProps, Dev, Marginless } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { Dev } from '@/objects/facets/Dev'
+import { Marginless } from '@/objects/facets/Marginless'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { ReactNode } from 'react'
 
 /**

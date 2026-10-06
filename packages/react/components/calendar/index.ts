@@ -1,6 +1,6 @@
-import Calendar from './Calendar'
+import Calendar from '@/components/calendar/Calendar'
 
-export * from './CalendarProps'
-export * from './CalendarEnum'
+export * from '@/components/calendar/CalendarProps'
+export * from '@/components/calendar/CalendarEnum'
 
 export { Calendar }

@@ -5,8 +5,8 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useEffect, useRef, useState, forwardRef } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Pager } from './PaginationEnum'
-import { PaginationNativeProps, PaginationNativeRef } from './PaginationProps'
+import { Pager } from '@/components/pagination/PaginationEnum'
+import { PaginationNativeProps, PaginationNativeRef } from '@/components/pagination/PaginationProps'
 import { Theme } from '@/constants/theme'
 
 /**

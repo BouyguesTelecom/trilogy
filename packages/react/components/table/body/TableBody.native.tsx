@@ -1,7 +1,7 @@
 import { forwardRef } from "react"
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TableBodyNativeRef, TableBodyProps } from "./TableBodyProps"
+import { TableBodyNativeRef, TableBodyProps } from "@/components/table/body/TableBodyProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**

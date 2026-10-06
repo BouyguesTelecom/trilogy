@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import Range from "../Range";
+import Range from "@/components/range/Range";
 
 describe("Range component", () => {
   test("renders with default values", () => {

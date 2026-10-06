@@ -1,4 +1,6 @@
-import { Accessibility, Dev, StatusProps } from '@/objects/facets'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import { StatusProps } from '@/objects/facets/Status'
 import { View } from 'react-native'
 import { ReactNode } from 'react'
 

@@ -1,7 +1,7 @@
 import { StatusState } from '@/objects/facets/Status'
 import { ReactNode } from 'react'
-import { AlertMarkup } from './AlertEnum'
-import { ToasterAlertFloat, ToasterAlertPosition } from './AlertProps'
+import { AlertMarkup } from '@/components/alert/AlertEnum'
+import { ToasterAlertFloat, ToasterAlertPosition } from '@/components/alert/AlertProps'
 
 export interface ToasterDocsProps {
   title?: string

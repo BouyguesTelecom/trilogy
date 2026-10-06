@@ -1,10 +1,10 @@
 import { forwardRef } from 'react'
 import clsx from 'clsx'
-import { TagListProps, TagListRef } from './TagListProps'
-import { hashClass } from '@/helpers'
-import { useTrilogyContext } from '@/context'
-import { is } from '@/services'
-import { getJustifiedClassName } from '@/objects'
+import { TagListProps, TagListRef } from '@/components/tag/list/TagListProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { is } from '@/services/classify'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

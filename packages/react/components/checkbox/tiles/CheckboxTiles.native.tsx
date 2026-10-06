@@ -4,8 +4,8 @@ import { getAlignStyle } from '@/objects/facets/Alignable'
 import { ReactNode, RefObject, useCallback, useMemo, Children, forwardRef, isValidElement } from 'react'
 import { FlatList, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { CheckboxTilesNativeRef, CheckboxTilesProps } from './CheckboxTilesProps'
-import { CheckboxTilesContext } from './context'
+import { CheckboxTilesNativeRef, CheckboxTilesProps } from '@/components/checkbox/tiles/CheckboxTilesProps'
+import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
 
 /**
  * CheckboxTiles

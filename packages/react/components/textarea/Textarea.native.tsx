@@ -6,16 +6,16 @@ import {
   InputKeyboardType,
   InputTextContentType,
 } from '@/components/input/InputEnum'
-import { TypographyColor } from '@/objects'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
 import { useEffect, useState, forwardRef } from 'react'
 import { Text, TextInput, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { SpacerSize } from '../spacer'
-import { Text as TrilogyText } from '../text'
-import { TextLevels } from '../text/TextEnum'
-import { TextareaNativeProps, TextareaNativeRef } from './TextareaProps'
+import { SpacerSize } from '@/components/spacer'
+import { Text as TrilogyText } from '@/components/text'
+import { TextLevels } from '@/components/text/TextEnum'
+import { TextareaNativeProps, TextareaNativeRef } from '@/components/textarea/TextareaProps'
 import { Theme } from '@/constants/theme'
 
 /**

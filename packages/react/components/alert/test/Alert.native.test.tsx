@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react-native'
-import { StatusState } from '../../../objects'
-import Alert from '../Alert.native'
+import { StatusState } from '@/objects/facets/Status'
+import Alert from '@/components/alert/Alert.native'
 
 describe('Alert', () => {
   it('should render correctly', () => {

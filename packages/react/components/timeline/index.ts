@@ -1,6 +1,6 @@
-import TimelineContent from './content'
-import TimelineItem from './item'
-import TimelineMarker from './marker'
-import Timeline from './Timeline'
+import TimelineContent from '@/components/timeline/content'
+import TimelineItem from '@/components/timeline/item'
+import TimelineMarker from '@/components/timeline/marker'
+import Timeline from '@/components/timeline/Timeline'
 
 export { Timeline, TimelineItem, TimelineContent, TimelineMarker }

@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Link } from '@/components/link'
 import { Text, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { TimelineContentRef, TimelineContentWebProps } from './TimelineContentProps'
+import { TimelineContentRef, TimelineContentWebProps } from '@/components/timeline/content/TimelineContentProps'
 
 /**
  * Timeline Content Component

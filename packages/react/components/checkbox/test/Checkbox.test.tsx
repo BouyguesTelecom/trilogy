@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import Checkbox from '../Checkbox'
+import Checkbox from '@/components/checkbox/Checkbox'
 
 describe('Checkbox component', () => {
   const defaultProps = {

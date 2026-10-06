@@ -1,10 +1,10 @@
 import { forwardRef } from 'react'
-import { PopoverNativeRef, PopoverProps } from './PopoverProps'
+import { PopoverNativeRef, PopoverProps } from '@/components/popover/PopoverProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { getColorStyle, TrilogyColor } from '@/objects'
-import { PopoverDirection } from './PopoverEnum'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { PopoverDirection } from '@/components/popover/PopoverEnum'
 import { Theme } from '@/constants/theme'
 
 /**

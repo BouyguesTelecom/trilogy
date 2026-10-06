@@ -1,5 +1,5 @@
 import { getColorClassName, TrilogyColor, TrilogyColorValues, } from "@/objects/facets/Color"
-import { Invertable } from "@/objects/facets"
+import { Invertable } from "@/objects/facets/Invertable"
 
 /**
  * Background props

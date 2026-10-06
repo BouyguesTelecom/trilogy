@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { TimelineProps, TimelineRef } from './TimelineProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TimelineProps, TimelineRef } from '@/components/timeline/TimelineProps'
 
 /**
  * Timeline Component

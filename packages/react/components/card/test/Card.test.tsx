@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react'
-import Card from '../Card'
-import CardContent from '../content'
+import Card from '@/components/card/Card'
+import CardContent from '@/components/card/content'
 
 jest.useFakeTimers()
 

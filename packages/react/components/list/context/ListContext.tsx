@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { ListContextProps } from './ListContextProps'
+import { ListContextProps } from '@/components/list/context/ListContextProps'
 
 export const ListContext = createContext<ListContextProps>({
   divider: false,

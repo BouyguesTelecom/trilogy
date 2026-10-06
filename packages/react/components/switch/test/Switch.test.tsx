@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import Switch from "../Switch";
+import Switch from "@/components/switch/Switch";
 
 describe("Switch", () => {
   it("renders the label text", () => {

@@ -1,4 +1,3 @@
-
 import { Children, Fragment, ReactElement, ReactNode, cloneElement } from 'react'
 
 import type { HandleBetweenChildren, ParseChildren } from '@/components/autolayout/AutoLayout.d'
@@ -43,10 +42,7 @@ export const parseChildren = ({ children, handleBetweenChildren }: ParseChildren
 
     // Check the actual type of previous and next children
 
-    const getChildCandidateToComparison = (
-      child: ReactElement,
-      accumulator?: JSX.Element[],
-    ): ReactElement => {
+    const getChildCandidateToComparison = (child: ReactElement, accumulator?: JSX.Element[]): ReactElement => {
       if (isElementType(child, 'AutoLayout')) {
         return getChildCandidateToComparison(Children.toArray(child.props.children)[0] as ReactElement)
       }

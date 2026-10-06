@@ -1,14 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
-import { isAndroid } from '@/helpers/device.native'
-import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from '@/objects'
+import { getTypographyBoldStyle, TypographyBold } from '@/objects/Typography/TypographyBold'
+import { setTypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { setTypographyColor } from '@/objects/Typography/TypographyColor'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { forwardRef, useContext } from 'react'
 import { Text as TextNative, TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Skeleton } from '../skeleton'
-import { TitleLevels } from './TitleEnum'
-import { TitleNativeRef, TitleProps } from './TitleProps'
+import { Skeleton } from '@/components/skeleton'
+import { TitleLevels } from '@/components/title/TitleEnum'
+import { TitleNativeRef, TitleProps } from '@/components/title/TitleProps'
 
 /**
  * Title component

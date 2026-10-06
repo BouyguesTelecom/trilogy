@@ -7,8 +7,7 @@ import { getRadius, Radius } from '@/objects/facets/Radius'
 import { Ref, forwardRef } from 'react'
 import { ImageBackground, Platform, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Skeleton } from '../skeleton'
-import { getPaddingStyle, Padding } from '@/objects/facets/Padding'
+import { Skeleton } from '@/components/skeleton'
 
 /**
  * Box Component

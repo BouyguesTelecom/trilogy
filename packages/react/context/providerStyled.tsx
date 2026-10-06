@@ -1,8 +1,8 @@
 'use client'
 
 import { ReactNode, Suspense, lazy, useMemo, useState } from 'react'
-import versionJSON from '../version.json'
-import { TrilogyContext } from './index'
+import { TrilogyContext } from '@/context/TrilogyContext'
+import versionJSON from '@/version.json'
 
 interface TrilogyProviderStyledProps {
   children: ReactNode

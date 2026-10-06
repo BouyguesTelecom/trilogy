@@ -1,8 +1,8 @@
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
-import { AutoCompleteMenuProps } from './AutoCompleteMenuProps'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
+import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
 
 /**
  * AutoCompleteMenu Component

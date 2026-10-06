@@ -4,7 +4,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import { forwardRef } from 'react'
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native'
-import { BreadcrumbItemNativeRef, BreadcrumbItemProps } from './BreadcrumbItemProps'
+import { BreadcrumbItemNativeRef, BreadcrumbItemProps } from '@/components/breadcrumb/item/BreadcrumbItemProps'
 
 /**
  * Breadcrumb Item Component

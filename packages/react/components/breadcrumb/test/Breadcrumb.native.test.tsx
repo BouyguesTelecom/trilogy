@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react-native'
-import Breadcrumb from '../Breadcrumb.native'
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb.native'
 
 jest.useFakeTimers()
 

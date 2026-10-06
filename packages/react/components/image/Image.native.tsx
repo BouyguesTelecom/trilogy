@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { forwardRef } from 'react'
 import { Image as ImageNative, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { ImageCache, ImageNativeRef, ImageProps } from './ImageProps'
+import { ImageCache, ImageNativeRef, ImageProps } from '@/components/image/ImageProps'
 
 /**
  * Image Component

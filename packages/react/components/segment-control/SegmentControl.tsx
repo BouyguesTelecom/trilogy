@@ -1,11 +1,11 @@
 import { useState, MouseEvent as ReactMouseEvent, ReactNode, cloneElement, forwardRef, useEffect } from 'react'
-import SegmentControlItem from './item'
-import { SegmentControlProps, SegmentControlRef } from './SegmentControlProps'
-import { hashClass } from '@/helpers'
+import SegmentControlItem from '@/components/segment-control/item'
+import { SegmentControlProps, SegmentControlRef } from '@/components/segment-control/SegmentControlProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
-import { getJustifiedClassName } from '@/objects'
-import { ComponentName } from '../enumsComponentsName'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * SegmentControl Component

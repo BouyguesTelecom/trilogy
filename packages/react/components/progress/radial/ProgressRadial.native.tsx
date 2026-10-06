@@ -1,14 +1,16 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { getAlignStyle, TypographyAlign, TypographyBold } from '@/objects'
+import { getAlignStyle } from '@/objects/facets/Alignable'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Skeleton } from '../../skeleton'
-import { ProgressRadialNativeRef, ProgressRadialProps } from './ProgressRadialProps'
-import { AnimatedCircularProgress } from './react-native-circular-progress'
+import { Skeleton } from '@/components/skeleton'
+import { ProgressRadialNativeRef, ProgressRadialProps } from '@/components/progress/radial/ProgressRadialProps'
+import { AnimatedCircularProgress } from '@/components/progress/radial/react-native-circular-progress'
 
 /**
  * Progress Radial component

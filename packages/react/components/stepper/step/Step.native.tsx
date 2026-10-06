@@ -1,8 +1,8 @@
 import { forwardRef, useEffect, useRef } from 'react'
 import { Animated, ColorValue, Easing, StyleSheet } from 'react-native'
 import { Theme } from '@/constants/theme'
-import { StepNativeRef, StepProps } from './StepProps'
-import { getColorStyle, TrilogyColor } from '@/objects'
+import { StepNativeRef, StepProps } from '@/components/stepper/step/StepProps'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

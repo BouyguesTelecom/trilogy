@@ -1,9 +1,10 @@
 import { forwardRef } from "react"
 import { ImageBackground, TouchableOpacity, View as ViewNative } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { getAlignStyle, getJustifyStyle, TrilogyColor } from "@/objects"
-import { getColorStyle } from "@/objects/facets/Color"
-import { ViewNativeRef, ViewProps } from "./ViewProps"
+import { getAlignStyle } from "@/objects/facets/Alignable"
+import { getJustifyStyle } from "@/objects/facets/Justifiable"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
+import { ViewNativeRef, ViewProps } from "@/components/view/ViewProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**

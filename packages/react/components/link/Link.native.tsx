@@ -4,7 +4,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { forwardRef, useState } from 'react'
 import { Linking, Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { LinkNativeRef, LinkPropsNative } from './LinkProps'
+import { LinkNativeRef, LinkPropsNative } from '@/components/link/LinkProps'
 
 /**
  * Link Component

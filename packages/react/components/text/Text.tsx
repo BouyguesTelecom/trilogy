@@ -1,11 +1,11 @@
 import { forwardRef } from 'react'
 import clsx from 'clsx'
-import { TextProps, TextRef } from './TextProps'
-import { TextLevels, TextMarkup, TextMarkupValues } from './TextEnum'
+import { TextProps, TextRef } from '@/components/text/TextProps'
+import { TextLevels, TextMarkup, TextMarkupValues } from '@/components/text/TextEnum'
 import { is } from '@/services/classify'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { useTrilogyContext } from '@/context/index'
-import { ComponentName } from '../enumsComponentsName'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Text Component

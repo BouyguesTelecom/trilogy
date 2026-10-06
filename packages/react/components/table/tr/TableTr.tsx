@@ -1,9 +1,9 @@
 import { forwardRef } from "react"
 import clsx from "clsx"
-import { TableTrProps, TableTrRef } from "./TableTrProps"
+import { TableTrProps, TableTrRef } from "@/components/table/tr/TableTrProps"
 import { hashClass } from "@/helpers/hashClassesHelpers"
 import { is } from "@/services/classify"
-import { useTrilogyContext } from "@/context/index"
+import { useTrilogyContext } from "@/context/TrilogyContext"
 import { getColorClassName } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
 

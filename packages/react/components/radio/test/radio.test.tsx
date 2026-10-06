@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import Radio from '../Radio'
+import Radio from '@/components/radio/Radio'
 
 describe('Radio component', () => {
   it('renders correctly', () => {

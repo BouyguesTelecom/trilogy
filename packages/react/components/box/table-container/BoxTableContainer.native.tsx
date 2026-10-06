@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { BoxTableContainerNativeRef, BoxTableContainerProps } from './BoxTableContainerProps'
+import { BoxTableContainerNativeRef, BoxTableContainerProps } from '@/components/box/table-container/BoxTableContainerProps'
 
 /**
  * Box Table Component

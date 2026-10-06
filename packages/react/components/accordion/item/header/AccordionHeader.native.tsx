@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { AccordionHeaderNativeRef, AccordionHeaderProps } from './AccordionHeaderProps'
+import { AccordionHeaderNativeRef, AccordionHeaderProps } from '@/components/accordion/item/header/AccordionHeaderProps'
 
 /**
  * Accordion Header

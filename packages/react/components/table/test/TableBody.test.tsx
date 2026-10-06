@@ -1,14 +1,11 @@
 import { render } from "@testing-library/react";
-import TableTr from "../tr";
-import {
-  getBackgroundClassName,
-  getColorClassName,
-  TrilogyColor,
-} from "../../../objects";
-import { has, is } from "../../../services";
-import Table from "../Table";
-import TableBody from "../body";
-import TableTd from "../td";
+import TableTr from "@/components/table/tr";
+import { getBackgroundClassName } from "@/objects/atoms/Background";
+import { getColorClassName, TrilogyColor } from "@/objects/facets/Color";
+import { has, is } from "@/services/classify";
+import Table from "@/components/table/Table";
+import TableBody from "@/components/table/body";
+import TableTd from "@/components/table/td";
 
 describe("TableBody", () => {
   it("renders without error", () => {

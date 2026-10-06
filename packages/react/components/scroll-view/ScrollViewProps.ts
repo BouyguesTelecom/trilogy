@@ -1,4 +1,6 @@
-import { Dev, ScrollDirectionEnum, ScrollDirectionEnumValues, TrilogyColor, TrilogyColorValues } from '@/objects'
+import { Dev } from '@/objects/facets/Dev'
+import { ScrollDirectionEnum, ScrollDirectionEnumValues } from '@/objects/facets/ScrollDirection'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { ScrollView } from 'react-native'
 import { ReactNode } from 'react'
 

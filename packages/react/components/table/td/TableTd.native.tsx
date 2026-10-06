@@ -1,8 +1,8 @@
 import { forwardRef } from "react"
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TableTdNativeRef, TableTdProps } from "./TableTdProps"
-import { getColorStyle, TrilogyColor } from "@/objects"
+import { TableTdNativeRef, TableTdProps } from "@/components/table/td/TableTdProps"
+import { getColorStyle, TrilogyColor } from "@/objects/facets/Color"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**

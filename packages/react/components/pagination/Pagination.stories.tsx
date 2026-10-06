@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import PaginationComponent from './Pagination'
+import PaginationComponent from '@/components/pagination/Pagination'
 
 PaginationComponent.displayName = 'Pagination'
 

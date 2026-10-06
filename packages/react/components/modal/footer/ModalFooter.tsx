@@ -1,8 +1,8 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { ModalFooterProps, ModalFooterRef } from './ModalFooterProps'
+import { ModalFooterProps, ModalFooterRef } from '@/components/modal/footer/ModalFooterProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

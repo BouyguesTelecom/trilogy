@@ -2,7 +2,7 @@ import { render, screen, userEvent } from '@testing-library/react-native'
 
 import { Container } from '@/components/container'
 import Hero from '@/components/hero/Hero.native'
-import { TrilogyColor } from '@/objects'
+import { TrilogyColor } from '@/objects/facets/Color'
 
 jest.useFakeTimers()
 

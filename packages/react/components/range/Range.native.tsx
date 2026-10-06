@@ -1,11 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle, TrilogyColor, TypographyBold } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import { forwardRef, useState } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Text, TextLevels } from '../text'
-import { RangeNativeProps, RangeNativeRef } from './RangeProps'
+import { Text, TextLevels } from '@/components/text'
+import { RangeNativeProps, RangeNativeRef } from '@/components/range/RangeProps'
 import { Theme } from '@/constants/theme'
 
 /**

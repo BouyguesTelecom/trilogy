@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import Textarea from "../Textarea";
+import Textarea from "@/components/textarea/Textarea";
 
 describe("Textarea", () => {
   it("renders without crashing", () => {

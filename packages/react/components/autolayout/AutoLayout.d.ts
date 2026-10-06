@@ -1,4 +1,4 @@
-import type { TrilogyComponents } from '../index.d'
+import type { TrilogyComponents } from '@/components/index.d'
 import { ReactChild, ReactNode } from 'react'
 
 export type HandleBetweenChildren = {

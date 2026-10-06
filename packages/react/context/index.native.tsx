@@ -1,3 +1,1 @@
-export const TrilogyContext = () => {
-  return
-}
+export { TrilogyContext } from '@/context/TrilogyContext.native'

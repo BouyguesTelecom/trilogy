@@ -1,12 +1,12 @@
 import { Text } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getStatusClassName } from '@/objects'
-import { is } from '@/services/index'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/objects/facets/Status'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { ProgressProps, ProgressRef } from './ProgressProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { ProgressProps, ProgressRef } from '@/components/progress/ProgressProps'
 
 /**
  * Progress Component

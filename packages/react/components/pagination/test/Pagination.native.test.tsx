@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react-native'
-import Pagination from '../Pagination'
+import Pagination from '@/components/pagination/Pagination'
 
 jest.useFakeTimers()
 

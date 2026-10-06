@@ -5,7 +5,7 @@ import { Alignable } from '@/objects/facets/Alignable'
 import { ReactNode, RefObject, useCallback, useMemo, Children, forwardRef, isValidElement } from 'react'
 import { FlatList, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { RadioTilesContext } from './context'
+import { RadioTilesContext } from '@/components/radio/tiles/context'
 
 /**
  * RadioTiles

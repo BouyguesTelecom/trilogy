@@ -1,2 +1,2 @@
-export { default as DropdownTrigger } from './DropdownTrigger'
-export * from './DropdownTriggerProps'
+export { default as DropdownTrigger } from '@/components/dropdown/trigger/DropdownTrigger'
+export * from '@/components/dropdown/trigger/DropdownTriggerProps'

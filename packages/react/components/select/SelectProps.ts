@@ -1,8 +1,9 @@
 import { TextInput } from 'react-native'
-import { Accessibility, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconName, IconNameValues } from '../icon'
-import { SelectStatus, SelectStatusValues } from './SelectEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { SelectStatus, SelectStatusValues } from '@/components/select/SelectEnum'
 import { BaseSyntheticEvent, FocusEvent as ReactFocusEvent, FocusEventHandler, ReactNode } from 'react'
 
 export interface ISelectOption {

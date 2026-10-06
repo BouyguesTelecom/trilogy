@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import TabPanel from '@/components/tabs/tab-panels/tab-panel'
 import { TabPanelsProps, TabPanelsRef } from '@/components/tabs/tab-panels/TabPanelsProps'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { Children, forwardRef, isValidElement } from 'react'

@@ -2,11 +2,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { createContext, PropsWithChildren, forwardRef } from 'react'
-import { Theme } from '@/constants/theme'
 import { Platform, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Skeleton } from '../skeleton'
-import { CardNativeRef, CardProps } from './CardProps'
+import { Skeleton } from '@/components/skeleton'
+import { CardNativeRef, CardProps } from '@/components/card/CardProps'
 import { getRadius, Radius } from '@/objects/facets/Radius'
 
 export const CardContext = createContext({

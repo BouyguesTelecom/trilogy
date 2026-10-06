@@ -1,12 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { ButtonListDirectionEnum } from './ButtonListEnum'
-import { ButtonListRef, ButtonListWebProps } from './ButtonListProps'
+import { ButtonListDirectionEnum } from '@/components/button/list/ButtonListEnum'
+import { ButtonListRef, ButtonListWebProps } from '@/components/button/list/ButtonListProps'
 
 /**
  * Button List Component

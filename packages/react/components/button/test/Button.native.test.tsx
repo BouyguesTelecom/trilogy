@@ -1,5 +1,5 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import Button from '../Button.native'
+import Button from '@/components/button/Button.native'
 
 jest.useFakeTimers()
 

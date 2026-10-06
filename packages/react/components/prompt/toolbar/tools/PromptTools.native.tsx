@@ -3,7 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { PromptToolsNativeRef, PromptToolsProps } from './PromptToolsProps'
+import { PromptToolsNativeRef, PromptToolsProps } from '@/components/prompt/toolbar/tools/PromptToolsProps'
 
 const PromptTools = forwardRef<PromptToolsNativeRef, PromptToolsProps>(({ ...others }, ref) => {
   const styles = memoStyles({

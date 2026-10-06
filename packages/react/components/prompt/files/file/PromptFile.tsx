@@ -6,13 +6,13 @@ import { FlexBox } from '@/components/flex-box'
 import { Icon } from '@/components/icon'
 import { Image } from '@/components/image'
 import { Text, TextLevels } from '@/components/text'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { Align } from '@/objects'
-import { TypographyBold } from '@/objects/Typography'
+import { Align } from '@/objects/facets/Alignable'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { PromptFileProps, PromptFileRef } from './PromptFileProps'
+import { PromptFileProps, PromptFileRef } from '@/components/prompt/files/file/PromptFileProps'
 
 /**
  * PromptFile component - Displays an individual file attachment with preview and delete option

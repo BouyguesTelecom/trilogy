@@ -1,11 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
-import { getColorStyle, getStatusStyle, TrilogyColor } from '@/objects'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getStatusStyle } from '@/objects/facets/Status'
 import { useEffect, useRef, cloneElement, forwardRef } from 'react'
 import { Animated } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { ProgressNativeRef, ProgressProps } from './ProgressProps'
+import { ProgressNativeRef, ProgressProps } from '@/components/progress/ProgressProps'
 
 /**
  * Progress Component

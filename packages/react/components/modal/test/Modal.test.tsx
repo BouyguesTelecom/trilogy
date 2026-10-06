@@ -2,8 +2,7 @@
 
 // Testing methods
 import { render } from '@testing-library/react'
-import Modal from '../Modal'
-import { ModalBody } from '../index'
+import Modal from '@/components/modal/Modal'
 
 // Component to test
 

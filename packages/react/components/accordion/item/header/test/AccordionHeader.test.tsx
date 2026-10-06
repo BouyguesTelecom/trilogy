@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react'
-import { Accordion, AccordionHeader, AccordionItem } from '../../../index'
-import AccordionBody from '../../body'
+import { Accordion, AccordionHeader, AccordionItem } from '@/components/accordion'
+import AccordionBody from '@/components/accordion/item/body'
 
 describe('AccordionItem', () => {
   it('should render correctly', () => {

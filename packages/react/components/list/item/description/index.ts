@@ -1,5 +1,5 @@
-import ListItemDescription from './ListItemDescription'
+import ListItemDescription from '@/components/list/item/description/ListItemDescription'
 
-export * from './ListItemDescriptionProps'
+export * from '@/components/list/item/description/ListItemDescriptionProps'
 
 export { ListItemDescription }

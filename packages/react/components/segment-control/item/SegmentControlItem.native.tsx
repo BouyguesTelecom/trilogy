@@ -4,7 +4,7 @@ import { useEffect, useState, forwardRef } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { Theme } from '@/constants/theme'
 import { memoStyles } from '@/helpers/memoStyles'
-import { SegmentControlItemNativeRef, SegmentControlItemProps } from './SegmentControlItemProps'
+import { SegmentControlItemNativeRef, SegmentControlItemProps } from '@/components/segment-control/item/SegmentControlItemProps'
 
 /**
  * SegmentControlItem Item Component

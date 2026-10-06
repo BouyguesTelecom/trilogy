@@ -1,13 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { RefObject, forwardRef, useContext } from 'react'
-import { SelectContext } from '../context'
-import { SelectedValue } from '../SelectProps'
-import { SelectOptionProps, SelectOptionRef } from './SelectOptionProps'
+import { SelectContext } from '@/components/select/context'
+import { SelectedValue } from '@/components/select/SelectProps'
+import { SelectOptionProps, SelectOptionRef } from '@/components/select/option/SelectOptionProps'
 
 /**
  * Select Option Component

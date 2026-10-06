@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { JSX, forwardRef } from 'react'
-import { AccordionHeaderProps, AccordionHeaderRef } from './AccordionHeaderProps'
+import { AccordionHeaderProps, AccordionHeaderRef } from '@/components/accordion/item/header/AccordionHeaderProps'
 
 /**
  * Accordion Header

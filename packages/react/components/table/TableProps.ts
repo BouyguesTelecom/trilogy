@@ -1,5 +1,5 @@
-import { Fullwidth } from '../../objects/facets/Fullwidth'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { Fullwidth } from '@/objects/facets/Fullwidth'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
 import { Dev } from '@/objects/facets/Dev'
 import { ReactNode } from 'react'

@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getStatusStyle } from '@/objects'
+import { getStatusStyle } from '@/objects/facets/Status'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useEffect, useState, forwardRef, useId } from 'react'
 import { Pressable } from 'react-native'
@@ -11,7 +11,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated'
-import { SwitchNativeRef, SwitchProps } from './SwitchProps'
+import { SwitchNativeRef, SwitchProps } from '@/components/switch/SwitchProps'
 
 const TRACK_WIDTH = 44
 const TRACK_HEIGHT = 22

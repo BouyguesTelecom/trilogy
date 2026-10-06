@@ -2,13 +2,13 @@ import { Column, Columns } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
-import { Alignable } from '@/objects'
-import { TypographyBold } from '@/objects/Typography'
+import { Alignable } from '@/objects/facets/Alignable'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import { forwardRef, useMemo } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { SelectOptionNativeRef, SelectOptionProps } from './SelectOptionProps'
+import { SelectOptionNativeRef, SelectOptionProps } from '@/components/select/option/SelectOptionProps'
 
 /**
  * Select Option Component

@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { BoxTableContainerProps, BoxTableContainerRef } from './BoxTableContainerProps'
+import { BoxTableContainerProps, BoxTableContainerRef } from '@/components/box/table-container/BoxTableContainerProps'
 
 /**
  * Box Table Component

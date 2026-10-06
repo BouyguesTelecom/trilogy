@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react-native'
-import { Sticker } from '../index'
+import { Sticker } from '@/components/sticker'
 
 jest.useFakeTimers()
 

@@ -1,12 +1,12 @@
 import { Button, ButtonVariant } from '@/components/button'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconName } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { useCallback, useContext, useEffect, useMemo, useState, MouseEvent as ReactMouseEvent, forwardRef } from 'react'
-import { PromptContext } from '../../context'
-import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from './PromptSubmitProps'
+import { PromptContext } from '@/components/prompt/context'
+import { PromptSubmitProps, PromptSubmitRef, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
 
 /**
  * PromptSubmit component - Submit button for prompt with streaming support

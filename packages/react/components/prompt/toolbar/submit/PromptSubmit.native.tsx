@@ -4,9 +4,9 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useCallback, useContext, useEffect, useMemo, useState, forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { PromptContext } from '../../context'
-import PromptButton from '../tools/button/PromptButton.native'
-import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from './PromptSubmitProps'
+import { PromptContext } from '@/components/prompt/context'
+import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
+import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
 import { Theme } from '@/constants/theme'
 
 /**

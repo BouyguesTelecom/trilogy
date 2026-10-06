@@ -1,4 +1,4 @@
-import PromptSubmit from './PromptSubmit'
+import PromptSubmit from '@/components/prompt/toolbar/submit/PromptSubmit'
 
-export * from './PromptSubmitProps'
+export * from '@/components/prompt/toolbar/submit/PromptSubmitProps'
 export { PromptSubmit }

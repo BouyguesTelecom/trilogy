@@ -6,9 +6,9 @@ import { useContext, useEffect, useState, forwardRef } from 'react'
 import { Theme } from '@/constants/theme'
 import { GestureResponderEvent, TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Icon, IconColor, IconName, IconSize } from '../icon'
-import { ChipsNativeRef, ChipsProps } from './ChipsProps'
-import { ChipsContext } from './list/ChipsList.native'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
+import { ChipsNativeRef, ChipsProps } from '@/components/chips/ChipsProps'
+import { ChipsContext } from '@/components/chips/list/ChipsList.native'
 
 /**
  * Chips Component - has to be in a ChipsList component

@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import translation from '@trilogy-ds/locales/lib/breadcrumb'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { BreadcrumbRef, BreadcrumbWebProps } from './BreadcrumbProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { BreadcrumbRef, BreadcrumbWebProps } from '@/components/breadcrumb/BreadcrumbProps'
 
 /**
  * Breadcrumb Component

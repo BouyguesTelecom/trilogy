@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, createContext, forwardRef, useState } from "react"
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TimelineNativeRef, TimelineProps } from "./TimelineProps"
+import { TimelineNativeRef, TimelineProps } from "@/components/timeline/TimelineProps"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 interface IContext {

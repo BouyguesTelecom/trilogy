@@ -1,12 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text, TextLevels } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { TypographyAlign, TypographyBold } from '@/objects'
-import { is } from '@/services'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { useCallback, useEffect, useMemo, useRef, useState, KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent, forwardRef } from 'react'
-import { TimepickerCircularProps, TimepickerCircularRef } from './TimepickerCircularProps'
+import { TimepickerCircularProps, TimepickerCircularRef } from '@/components/timepicker/circular/TimepickerCircularProps'
 
 const CIRCLE_SIZE = 204
 const CIRCLE_THICKNESS = 32

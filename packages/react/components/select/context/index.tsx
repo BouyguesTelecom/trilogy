@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, createContext } from 'react'
-import { SelectChangeEventHandler, SelectedValue } from '../SelectProps'
+import { SelectChangeEventHandler, SelectedValue } from '@/components/select/SelectProps'
 
 interface IContext {
   selectedOptionValues: SelectedValue[]

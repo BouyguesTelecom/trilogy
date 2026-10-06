@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react"
-import { ITrilogyTheme } from "./interfaces"
-import { DEFAULT_TRILOGY_COLORS } from "../objects/facets/defaultColors"
+import { ITrilogyTheme } from "@/context/interfaces"
+import { DEFAULT_TRILOGY_COLORS } from "@/objects/facets/defaultColors"
 
 export interface ITrilogyThemeProvider {
   children?: ReactNode;

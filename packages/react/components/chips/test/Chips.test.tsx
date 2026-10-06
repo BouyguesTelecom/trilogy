@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
-import Chips from "../Chips";
+import Chips from "@/components/chips/Chips";
 
 describe("Chips", () => {
   it("renders the children correctly", () => {

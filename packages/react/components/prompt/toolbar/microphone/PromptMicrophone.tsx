@@ -4,8 +4,8 @@ import { IconName } from '@/components/icon'
 import { OnClickEvent } from '@/events/OnClickEvent'
 import clsx from 'clsx'
 import { useContext, forwardRef } from 'react'
-import { PromptContext } from '../../context'
-import { PromptMicrophoneProps, PromptMicrophoneRef } from './PromptMicrophoneProps'
+import { PromptContext } from '@/components/prompt/context'
+import { PromptMicrophoneProps, PromptMicrophoneRef } from '@/components/prompt/toolbar/microphone/PromptMicrophoneProps'
 
 /**
  * PromptMicrophone component - Voice recording button for prompt input

@@ -1,13 +1,13 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconSize } from '@/components/icon'
 import { Sticker } from '@/components/sticker'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { VariantState } from '@/objects'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { VariantState } from '@/objects/facets/Variant'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef, useId, useRef, useEffect, useState } from 'react'
-import { CheckboxTileProps, CheckboxTileRef } from './CheckboxTileProps'
+import { CheckboxTileProps, CheckboxTileRef } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
 
 /**
  * CheckboxTile

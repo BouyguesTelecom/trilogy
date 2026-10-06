@@ -1,6 +1,6 @@
 // Dependencies
-import { getEnumNames } from '../../../helpers/index'
-import { is } from '../../../services/index'
+import { getEnumNames } from '@/helpers/enumHelpers'
+import { is } from '@/services/classify'
 
 // Testing methods
 import { fireEvent, render, screen } from '@testing-library/react'
@@ -8,10 +8,13 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 // Component to test
-import { Title, TitleLevels } from '../'
-import { TypographyAlign, TypographyBold, TypographyColor, TypographyTransform } from '../../../objects'
+import { Title, TitleLevels } from '@/components/title'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
+import { TypographyTransform } from '@/objects/Typography/TypographyTransform'
 
-import { TitleMarkup } from '../TitleEnum'
+import { TitleMarkup } from '@/components/title/TitleEnum'
 
 describe('Title component', () => {
   test('should have a correct html tag', () => {

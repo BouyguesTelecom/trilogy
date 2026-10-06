@@ -7,11 +7,14 @@ import ModalFooter from '@/components/modal/footer/ModalFooter.native'
 import Modal from '@/components/modal/Modal.native'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import { Align, Justify, TypographyAlign, TypographyBold } from '@/objects'
+import { Align } from '@/objects/facets/Alignable'
+import { Justify } from '@/objects/facets/Justifiable'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import { useCallback, useMemo, useState, RefObject, forwardRef, useEffect } from 'react'
 import { Pressable, TextInput, View } from 'react-native'
-import { TimepickerSelector } from './selector/TimepickerSelector.native'
-import { TimepickerDefaultProps } from './TimepickerDefaultProps'
+import { TimepickerSelector } from '@/components/timepicker/default/selector/TimepickerSelector.native'
+import { TimepickerDefaultProps } from '@/components/timepicker/default/TimepickerDefaultProps'
 
 const generateItems = (count: number) =>
   Array.from({ length: count }, (_, i) => ({

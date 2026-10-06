@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { getColorStyle } from '@/objects'
+import { getColorStyle } from '@/objects/facets/Color'
 import { forwardRef, useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { BoxFooterNativeRef, BoxFooterProps } from './BoxFooterProps'
-import { BoxContext } from '../context/boxContext'
+import { BoxFooterNativeRef, BoxFooterProps } from '@/components/box/footer/BoxFooterProps'
+import { BoxContext } from '@/components/box/context/boxContext'
 import { getPaddingStyle } from '@/objects/facets/Padding'
 
 /**

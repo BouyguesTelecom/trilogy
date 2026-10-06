@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { RowNativeRef, RowProps } from './RowProps'
+import { RowNativeRef, RowProps } from '@/components/rows/row/RowProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

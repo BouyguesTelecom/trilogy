@@ -4,8 +4,8 @@
 import { render, screen } from "@testing-library/react";
 // @ts-ignore
 import renderer from "react-test-renderer";
-import { is } from "../../../services"; // Component to test
-import { Divider } from "..";
+import { is } from "@/services/classify"; // Component to test
+import { Divider } from "@/components/divider";
 
 describe("Divider component", () => {
   test("should have a separator in document", () => {

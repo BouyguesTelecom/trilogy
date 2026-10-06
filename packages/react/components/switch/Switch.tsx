@@ -1,11 +1,11 @@
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getStatusClassName } from '@/objects'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getStatusClassName } from '@/objects/facets/Status'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { useEffect, useState, forwardRef, useId } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { SwitchProps, SwitchRef } from './SwitchProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { SwitchProps, SwitchRef } from '@/components/switch/SwitchProps'
 
 /**
  * Switch Component

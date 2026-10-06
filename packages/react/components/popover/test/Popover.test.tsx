@@ -4,7 +4,7 @@
 import { render } from '@testing-library/react'
 
 // Component to test
-import { Popover } from '../'
+import { Popover } from '@/components/popover'
 import { Link } from '@/components/link'
 
 describe('Popover component', () => {

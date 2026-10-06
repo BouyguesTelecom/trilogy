@@ -2,7 +2,7 @@
 import { PureComponent } from "react"
 import PropTypes from "prop-types"
 import { Animated, Easing } from "react-native"
-import CircularProgress from "./CircularProgress"
+import CircularProgress from "@/components/progress/radial/react-native-circular-progress/CircularProgress"
 
 const AnimatedProgress = Animated.createAnimatedComponent(CircularProgress)
 

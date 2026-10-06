@@ -1,6 +1,6 @@
 import { useEffect, useRef, FC, useState } from 'react'
 import { View, ViewStyle, Animated } from 'react-native'
-import { SkeletonProps } from './SkeletonProps'
+import { SkeletonProps } from '@/components/skeleton/SkeletonProps'
 
 /**
  * Skeleton component to display a loading placeholder with shimmer effect.

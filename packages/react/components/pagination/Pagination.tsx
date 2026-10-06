@@ -1,10 +1,10 @@
 import { Icon, IconName } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { useEffect, useState, forwardRef, useCallback } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { PaginationProps, PaginationRef } from './PaginationProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { PaginationProps, PaginationRef } from '@/components/pagination/PaginationProps'
 
 /**
  * Pagination Component

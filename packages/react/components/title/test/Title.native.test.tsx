@@ -1,6 +1,6 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import Title from '../Title'
-import { TitleLevels } from '../TitleEnum'
+import Title from '@/components/title/Title'
+import { TitleLevels } from '@/components/title/TitleEnum'
 
 jest.useFakeTimers()
 

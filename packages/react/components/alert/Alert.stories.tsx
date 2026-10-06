@@ -3,11 +3,11 @@ import { IconName } from '@/components/icon'
 import { StatusState } from '@/objects/facets/Status'
 import type { Meta, StoryObj } from '@storybook/react'
 import { useContext } from 'react'
-import AlertComponent, { ToasterAlertProvider } from './Alert'
-import { AlertMarkup } from './AlertEnum'
-import { AlertProps, ToasterAlertFloat, ToasterAlertPosition } from './AlertProps'
-import ToasterDocsComponent from './ToasterDocs'
-import ToasterContext from './context'
+import AlertComponent, { ToasterAlertProvider } from '@/components/alert/Alert'
+import { AlertMarkup } from '@/components/alert/AlertEnum'
+import { AlertProps, ToasterAlertFloat, ToasterAlertPosition } from '@/components/alert/AlertProps'
+import ToasterDocsComponent from '@/components/alert/ToasterDocs'
+import ToasterContext from '@/components/alert/context'
 
 type AlertStoryArgs = AlertProps & {
   toastTitle: string

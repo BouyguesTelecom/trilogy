@@ -6,11 +6,11 @@ import { SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getRadiusStyle } from '@/objects/facets/Radius'
-import { TypographyBold } from '@/objects/Typography'
+import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { PromptFileNativeRef, PromptFileProps } from './PromptFileProps'
+import { PromptFileNativeRef, PromptFileProps } from '@/components/prompt/files/file/PromptFileProps'
 
 const HEIGHT_ITEM = 64
 const HEIGHT_IMG_FILE = 40

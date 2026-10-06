@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react-native'
 import { IconName } from '@trilogy-ds/assets'
-import Textarea from '../Textarea'
+import Textarea from '@/components/textarea/Textarea'
 
 jest.useFakeTimers()
 

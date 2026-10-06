@@ -1,5 +1,5 @@
-import Popover from './Popover'
+import Popover from '@/components/popover/Popover'
 
-export * from './PopoverEnum'
+export * from '@/components/popover/PopoverEnum'
 
 export { Popover }

@@ -1,4 +1,7 @@
-import { Accessibility, AlignableProps, Clickable, Dev } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
 import { ReactNode } from 'react'

@@ -2,13 +2,13 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
 import Tab from '@/components/tabs/tab-list/tab/Tab'
 import { TabListProps, TabListRef } from '@/components/tabs/tab-list/TabListProps'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
-import { is } from '@/services'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { useMemo, Children, UIEvent as ReactUIEvent, forwardRef, isValidElement, useCallback, useContext, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { TabsContext } from '../context'
+import { TabsContext } from '@/components/tabs/context'
 
 /**
  * Tabs Nav Component

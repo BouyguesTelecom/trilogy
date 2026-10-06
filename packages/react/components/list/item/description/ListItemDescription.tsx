@@ -1,8 +1,8 @@
 import { forwardRef } from "react"
-import { ListItemDescriptionProps, ListItemDescriptionRef } from "./ListItemDescriptionProps"
+import { ListItemDescriptionProps, ListItemDescriptionRef } from "@/components/list/item/description/ListItemDescriptionProps"
 import clsx from "clsx"
-import { hashClass } from "@/helpers"
-import { useTrilogyContext } from "@/context"
+import { hashClass } from "@/helpers/hashClassesHelpers"
+import { useTrilogyContext } from "@/context/TrilogyContext"
 import { ComponentName } from "@/components/enumsComponentsName"
 
 /**

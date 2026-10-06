@@ -1,10 +1,10 @@
 import { ListProps, ListRef } from '@/components/list/ListProps'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * List Component

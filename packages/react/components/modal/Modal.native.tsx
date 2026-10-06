@@ -1,6 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid } from '@/helpers/device.native'
-import { Alignable, getColorStyle, TrilogyColor } from '@/objects'
+import { Alignable } from '@/objects/facets/Alignable'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useCallback, useEffect, useRef, useState, forwardRef } from 'react'
 import {
   Dimensions,
@@ -11,17 +12,16 @@ import {
   type ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View,
 } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler'
-import { Column, Columns } from '../columns'
-import { Icon, IconName, IconSize } from '../icon'
-import { Title } from '../title'
-import { ModalNativeRef, ModalProps } from './ModalProps'
-import { ModalContext } from './context/ModalContext'
+import { Column, Columns } from '@/components/columns'
+import { Icon, IconName, IconSize } from '@/components/icon'
+import { Title } from '@/components/title'
+import { ModalNativeRef, ModalProps } from '@/components/modal/ModalProps'
+import { ModalContext } from '@/components/modal/context/ModalContext'
 import { Theme } from '@/constants/theme'
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height

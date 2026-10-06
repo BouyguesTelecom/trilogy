@@ -1,5 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction, createContext } from 'react'
-import { ITrilogyTheme } from './interfaces'
+import { ITrilogyTheme } from '@/context/interfaces'
 
 export const defaultTheme: ITrilogyTheme = {
   icons: {},

@@ -1,7 +1,7 @@
 import { IconName } from '@/components/icon'
-import { VariantState } from '@/objects'
+import { VariantState } from '@/objects/facets/Variant'
 import type { Meta, StoryObj } from '@storybook/react'
-import StickerComponent from './Sticker'
+import StickerComponent from '@/components/sticker/Sticker'
 
 StickerComponent.displayName = 'Sticker'
 

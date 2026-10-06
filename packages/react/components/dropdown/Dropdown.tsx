@@ -1,12 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { Children, MutableRefObject, ReactNode, forwardRef, isValidElement, useEffect, useRef } from 'react'
-import { DropdownProvider, useDropdownContext } from './context'
-import { DropdownProps, DropdownRef } from './DropdownProps'
-import DropdownTrigger from './trigger/DropdownTrigger'
+import { DropdownProvider, useDropdownContext } from '@/components/dropdown/context'
+import { DropdownProps, DropdownRef } from '@/components/dropdown/DropdownProps'
+import DropdownTrigger from '@/components/dropdown/trigger/DropdownTrigger'
 
 /**
  * Internal Dropdown Content Component that uses the context

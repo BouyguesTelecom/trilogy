@@ -4,11 +4,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import { Text } from '@/components/text'
 import { forwardRef } from 'react'
-import type { RadioListNativeRef, RadioListProps } from './RadioListProps'
+import type { RadioListNativeRef, RadioListProps } from '@/components/radio/list/RadioListProps'
 import {  } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { isRequiredChild } from '@/helpers/require'
-import { TypographyColor } from '@/objects/Typography'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 
 const { THREE, TWO } = SpacerSize
 const { INSERT_SPACE_BETWEEN } = SpacingMatrixMode

@@ -1,11 +1,11 @@
 import { useEffect, useState, CSSProperties, forwardRef } from 'react'
-import { useTrilogyContext } from '@/context'
-import { FabProps, FabRef } from './FabProps'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { FabProps, FabRef } from '@/components/fab/FabProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { Icon, IconName } from '@/components/icon'
-import { is } from '@/services'
-import { ComponentName } from '../enumsComponentsName'
+import { is } from '@/services/classify'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Fab Component - Floating Action Button

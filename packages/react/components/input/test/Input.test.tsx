@@ -1,10 +1,6 @@
-import { fireEvent, render } from '@testing-library/react'
-import Input from '../Input'
-import { InputStatus, InputType } from '../InputEnum'
-import { IconName } from '../../icon'
-import { Link } from '../../link'
-import { getEnumNames } from '../../../helpers'
-import { TrilogyColor } from '../../../objects'
+import { render } from '@testing-library/react'
+import Input from '@/components/input/Input'
+import { InputType } from '@/components/input/InputEnum'
 
 describe('Input', () => {
   it('should render correctly', () => {

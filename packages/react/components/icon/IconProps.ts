@@ -1,8 +1,13 @@
 import { View } from 'react-native'
-import { Accessibility, AlignableProps, Clickable, Dev, Stacked, TrilogyColor, TrilogyColorValues } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconColor, IconColorValues, IconSize, IconSizeValues } from './IconEnum'
-import { IconName, IconNameValues } from './IconNameEnum'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
+import { Stacked } from '@/objects/facets/Stacked'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { IconColor, IconColorValues, IconSize, IconSizeValues } from '@/components/icon/IconEnum'
+import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 
 /**
  * Icon Interface

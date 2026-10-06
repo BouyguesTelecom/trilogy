@@ -1,6 +1,6 @@
 import { View } from 'react-native'
-import { IconName, IconNameValues } from '../../../components/icon'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
 
 /**

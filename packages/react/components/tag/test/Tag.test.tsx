@@ -2,12 +2,12 @@
 
 // Testing methods
 import { render, screen } from '@testing-library/react'
-import { getColorClassName } from '../../../objects'
-import { getEnumNames } from '../../../helpers'
-import { is } from '../../../services'
+import { getColorClassName } from '@/objects/facets/Color'
+import { getEnumNames } from '@/helpers/enumHelpers'
+import { is } from '@/services/classify'
 
 // Component to test
-import { Tag, TagVariant } from '..'
+import { Tag, TagVariant } from '@/components/tag'
 
 describe('Tag component', () => {
   test('should contain toto as text', () => {

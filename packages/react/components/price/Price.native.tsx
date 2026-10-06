@@ -4,10 +4,12 @@ import { StatesContext } from '@/context/providerStates'
 import { useContext, useMemo, forwardRef } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Alignable, getColorStyle, getTypographyBoldStyle, TrilogyColor, TypographyBold } from '../../objects'
-import { PriceLevel } from './PriceEnum'
-import { checkCents } from './PriceHelpers'
-import { PriceNativeRef, PriceProps } from './PriceProps'
+import { Alignable } from '@/objects/facets/Alignable'
+import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { getTypographyBoldStyle, TypographyBold } from '@/objects/Typography/TypographyBold'
+import { PriceLevel } from '@/components/price/PriceEnum'
+import { checkCents } from '@/components/price/PriceHelpers'
+import { PriceNativeRef, PriceProps } from '@/components/price/PriceProps'
 
 /**
  * Price Component

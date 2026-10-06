@@ -1,10 +1,10 @@
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { createContext, CSSProperties, Ref, forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { CardProps, CardRef } from './CardProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { CardProps, CardRef } from '@/components/card/CardProps'
 
 export const CardContext = createContext({ horizontal: false })
 

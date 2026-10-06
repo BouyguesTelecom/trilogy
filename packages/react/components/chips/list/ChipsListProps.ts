@@ -2,7 +2,7 @@
  * ChipsList Interface
  */
 import { ScrollView, type View } from 'react-native'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
 import { ReactElement, ReactNode } from 'react'
 

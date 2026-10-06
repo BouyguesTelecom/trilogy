@@ -1,7 +1,8 @@
 import { View } from 'react-native'
-import { IconName, IconNameValues } from '../../../components/icon'
-import { Accessibility, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
 
 /**
  * Timeline Marker Interface

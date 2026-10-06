@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Link } from '@/components/link'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { ElementType, forwardRef } from 'react'
-import { BreadcrumbItemPropsWeb, BreadcrumbItemRef } from './BreadcrumbItemProps'
+import { BreadcrumbItemPropsWeb, BreadcrumbItemRef } from '@/components/breadcrumb/item/BreadcrumbItemProps'
 
 /**
  * Breadcrumb Item Component

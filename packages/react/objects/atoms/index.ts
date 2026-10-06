@@ -1,2 +1,2 @@
-export * from './Background'
-export * from './Text'
+export * from '@/objects/atoms/Background'
+export * from '@/objects/atoms/Text'

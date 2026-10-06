@@ -5,8 +5,8 @@ import { TextareaChangeEvent } from '@/components/textarea/TextareaProps'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useContext, useEffect, useImperativeHandle, forwardRef } from 'react'
 import { StyleSheet, TextInput } from 'react-native'
-import { PromptContext } from '../context'
-import { PromptTextareaNativeRef, PromptTextareaProps } from './PromptTextareaProps'
+import { PromptContext } from '@/components/prompt/context'
+import { PromptTextareaNativeRef, PromptTextareaProps } from '@/components/prompt/textarea/PromptTextareaProps'
 
 const PromptTextarea = forwardRef<PromptTextareaNativeRef, PromptTextareaProps>(
   ({ value, onChange, disabled, readOnly, ...others }, ref) => {

@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { PromptToolsProps, PromptToolsRef } from './PromptToolsProps'
+import { PromptToolsProps, PromptToolsRef } from '@/components/prompt/toolbar/tools/PromptToolsProps'
 
 /**
  * PromptTools component - Container for prompt toolbar tools and buttons

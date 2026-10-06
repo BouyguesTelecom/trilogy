@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { createContext, Ref, forwardRef } from 'react'
 import { ScrollView, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { ChipsListNativeRef, ChipsListProps } from './ChipsListProps'
+import { ChipsListNativeRef, ChipsListProps } from '@/components/chips/list/ChipsListProps'
 
 export const ChipsContext = createContext({ isMultiple: false })
 

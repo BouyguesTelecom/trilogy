@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react-native'
-import Box from '../Box.native'
-import BoxContent from '../content/BoxContent.native'
-import BoxHeader from '../header/BoxHeader.native'
+import Box from '@/components/box/Box.native'
+import BoxContent from '@/components/box/content/BoxContent.native'
+import BoxHeader from '@/components/box/header/BoxHeader.native'
 
 jest.useFakeTimers()
 

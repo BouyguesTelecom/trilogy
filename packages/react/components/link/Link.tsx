@@ -1,11 +1,11 @@
 import { Icon, IconSize } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import { ElementType, Ref, forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { LinkProps, LinkRef } from './LinkProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { LinkProps, LinkRef } from '@/components/link/LinkProps'
 
 /**
  * Link Component

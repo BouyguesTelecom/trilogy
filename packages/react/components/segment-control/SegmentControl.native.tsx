@@ -6,8 +6,8 @@ import { useState, MouseEvent as ReactMouseEvent, ReactNode, cloneElement, forwa
 import { Theme } from '@/constants/theme'
 import {} from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import SegmentedControlItem from './item'
-import { SegmentControlNativeRef, SegmentControlProps } from './SegmentControlProps'
+import SegmentedControlItem from '@/components/segment-control/item'
+import { SegmentControlNativeRef, SegmentControlProps } from '@/components/segment-control/SegmentControlProps'
 
 /**
  * SegmentControl Component

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react-native'
-import TimelineContent from '../TimelineContent'
+import TimelineContent from '@/components/timeline/content/TimelineContent'
 
 jest.useFakeTimers()
 

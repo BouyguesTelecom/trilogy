@@ -1,14 +1,14 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getJustifiedClassName } from '@/objects'
-import { is } from '@/services'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getJustifiedClassName } from '@/objects/facets/Justifiable'
+import { is } from '@/services/classify'
 import { isRequiredChild } from '@/helpers/require'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { CheckboxListRef, CheckboxListWebProps } from './CheckboxListProps'
+import { CheckboxListRef, CheckboxListWebProps } from '@/components/checkbox/list/CheckboxListProps'
 import { Text, TextMarkup } from '@/components/text'
-import { TypographyColor } from '@/objects/Typography'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 
 /**
  * Checkbox List Component

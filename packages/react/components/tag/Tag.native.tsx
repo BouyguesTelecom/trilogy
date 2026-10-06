@@ -6,7 +6,7 @@ import { forwardRef } from 'react'
 import { Theme } from '@/constants/theme'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TagNativeRef, TagProps } from './TagProps'
+import { TagNativeRef, TagProps } from '@/components/tag/TagProps'
 
 /**
  * Tag Component

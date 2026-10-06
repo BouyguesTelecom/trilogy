@@ -2,10 +2,10 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { PromptContext } from '@/components/prompt/context'
 import { Select } from '@/components/select'
 import { SelectProps } from '@/components/select/SelectProps'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import clsx from 'clsx'
 import { useContext, useEffect, useImperativeHandle, useRef, useState, forwardRef } from 'react'
-import { PromptSelectRef } from './PromptSelectProps'
+import { PromptSelectRef } from '@/components/prompt/toolbar/tools/select/PromptSelectProps'
 
 const PADDING_SELECT_OPTION = 58
 

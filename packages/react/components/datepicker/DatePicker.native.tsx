@@ -6,7 +6,7 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { forwardRef, useCallback, useEffect, useState, useRef } from 'react'
 import { StyleSheet, TextInput, TouchableOpacity, View, Platform, Modal } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { DatePickerProps } from './DatePickerProps'
+import { DatePickerProps } from '@/components/datepicker/DatePickerProps'
 import { Theme } from '@/constants/theme'
 
 /**

@@ -1,12 +1,12 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName } from '@/components/icon'
 import { PromptContext } from '@/components/prompt/context'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { is } from '@/services'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { MouseEvent, useContext, forwardRef } from 'react'
-import { PromptInputFileProps, PromptInputFileRef } from './PromptInputFileProps'
+import { PromptInputFileProps, PromptInputFileRef } from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
 
 /**
  * PromptInputFile component - File upload button for prompt attachments

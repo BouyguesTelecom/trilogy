@@ -2,7 +2,7 @@
 
 // Testing methods
 import { render, screen } from "@testing-library/react";
-import { AccordionBody } from "../../..";
+import { AccordionBody } from "@/components/accordion";
 
 // Component to test
 

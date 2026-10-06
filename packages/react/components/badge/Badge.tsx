@@ -1,5 +1,5 @@
 import { Icon, IconColor, IconName } from '@/components/icon'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { TrilogyColor } from '@/objects/facets/Color'
 import { StatusState, getStatusClassName } from '@/objects/facets/Status'
@@ -7,8 +7,8 @@ import { getVariantClassName } from '@/objects/facets/Variant'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { BadgeProps, BadgeRef } from './BadgeProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { BadgeProps, BadgeRef } from '@/components/badge/BadgeProps'
 
 /**
  * Badge Component

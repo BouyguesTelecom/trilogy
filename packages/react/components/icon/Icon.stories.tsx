@@ -1,8 +1,9 @@
-import { Alignable, TrilogyColor } from '@/objects'
+import { Alignable } from '@/objects/facets/Alignable'
+import { TrilogyColor } from '@/objects/facets/Color'
 import type { Meta, StoryObj } from '@storybook/react'
-import IconComponent from './Icon'
-import type { IconProps } from './IconProps'
-import { IconColor, IconName, IconSize } from './index'
+import IconComponent from '@/components/icon/Icon'
+import type { IconProps } from '@/components/icon/IconProps'
+import { IconColor, IconName, IconSize } from '@/components/icon'
 
 IconComponent.displayName = 'Icon'
 

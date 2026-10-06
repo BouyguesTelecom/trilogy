@@ -1,8 +1,9 @@
 import { View } from 'react-native'
-import type { DividerProps } from '../../../components/divider/DividerProps'
-import type { RadioProps } from '../../../components/radio/RadioProps'
-import { AlignableProps, Dev } from '../../../objects'
-import { CommonProps } from '../../../objects/facets/CommonProps'
+import type { DividerProps } from '@/components/divider/DividerProps'
+import type { RadioProps } from '@/components/radio/RadioProps'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { ReactElement } from 'react'
 
 type RadioListChildrenTypes = ReactElement<RadioProps | DividerProps> | undefined

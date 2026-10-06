@@ -1,6 +1,6 @@
 // Dependencies
 import { render, screen } from '@testing-library/react'
-import { Button, ButtonList } from '..'
+import { Button, ButtonList } from '@/components/button'
 
 describe('ButtonList component', () => {
   test('should have "buttons" className', () => {

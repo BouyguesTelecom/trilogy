@@ -2,11 +2,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
-import { TypographyAlign } from '@/objects'
+import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useEffect, useRef, useState, forwardRef } from 'react'
 import { Pressable, SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
-import { OtpNativeRef, OtpProps } from './OtpProps'
+import { OtpNativeRef, OtpProps } from '@/components/otp/OtpProps'
 import { Theme } from '@/constants/theme'
 
 /**

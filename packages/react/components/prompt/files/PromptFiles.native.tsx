@@ -3,8 +3,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useContext, useEffect, useMemo, Children, forwardRef } from 'react'
 import { ScrollView, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { PromptContext } from '../context'
-import { PromptFilesNativeRef, PromptFilesProps } from './PromptFilesProps'
+import { PromptContext } from '@/components/prompt/context'
+import { PromptFilesNativeRef, PromptFilesProps } from '@/components/prompt/files/PromptFilesProps'
 
 const PromptFiles = forwardRef<PromptFilesNativeRef, PromptFilesProps>(({ children }, ref) => {
   const { setFiles } = useContext(PromptContext)

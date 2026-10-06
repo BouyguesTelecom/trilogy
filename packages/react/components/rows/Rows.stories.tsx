@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { GapSize } from '../columns/ColumnsTypes'
-import RowsComponent from './Rows'
-import RowComponent from './row/Row'
+import { GapSize } from '@/components/columns/ColumnsTypes'
+import RowsComponent from '@/components/rows/Rows'
+import RowComponent from '@/components/rows/row/Row'
 
 RowsComponent.displayName = 'Rows'
 RowComponent.displayName = 'Row'

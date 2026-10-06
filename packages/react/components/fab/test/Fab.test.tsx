@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react'
-import Fab from '../Fab'
-import { IconName } from '../../icon'
+import Fab from '@/components/fab/Fab'
+import { IconName } from '@/components/icon'
 
 describe('Fab', () => {
   it('renders a button with the given label and icon name', () => {

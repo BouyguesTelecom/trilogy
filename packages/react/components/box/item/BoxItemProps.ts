@@ -1,6 +1,6 @@
 import { View } from 'react-native'
-import { CommonProps } from '../../../objects/facets/CommonProps'
-import { BoxItemSize, BoxItemSizeValues } from './BoxItemEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { BoxItemSize, BoxItemSizeValues } from '@/components/box/item/BoxItemEnum'
 import { Dev } from '@/objects/facets/Dev'
 import { ReactNode } from 'react'
 

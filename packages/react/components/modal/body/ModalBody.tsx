@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
-import { ModalBodyProps, ModalBodyRef } from './ModalBodyProps'
-import { hashClass } from '@/helpers'
+import { ModalBodyProps, ModalBodyRef } from '@/components/modal/body/ModalBodyProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TagListNativeRef, TagListProps } from './TagListProps'
+import { TagListNativeRef, TagListProps } from '@/components/tag/list/TagListProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

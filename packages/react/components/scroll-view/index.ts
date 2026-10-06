@@ -1,3 +1,3 @@
-import ScrollView from './ScrollView'
+import ScrollView from '@/components/scroll-view/ScrollView'
 
 export { ScrollView }

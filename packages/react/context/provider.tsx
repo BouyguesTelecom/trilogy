@@ -1,9 +1,9 @@
 "use client"
 
 import { useLayoutEffect, ReactNode, useState } from 'react'
-import { TrilogyContext } from './index'
-import { version } from '../version'
-import versionJSON from '../version.json'
+import { TrilogyContext } from '@/context/TrilogyContext'
+import { version } from '@/version'
+import versionJSON from '@/version.json'
 
 const getHrefFromAssetUri = (assetUrl: string, theme: string, mangled: boolean) =>  {
   return (assetUrl)

@@ -2,8 +2,9 @@
  * ListItem Interface
  */
 import { ReactNode } from 'react'
-import { Accessibility, Dev } from '../../objects'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
 
 export interface ListProps extends Accessibility, Dev, CommonProps {

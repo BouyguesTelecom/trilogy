@@ -6,7 +6,7 @@ import { forwardRef, useMemo, useState } from 'react'
 import { Theme } from '@/constants/theme'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { DividerNativeRef, DividerProps } from './DividerProps'
+import { DividerNativeRef, DividerProps } from '@/components/divider/DividerProps'
 
 /**
  * Divider Component

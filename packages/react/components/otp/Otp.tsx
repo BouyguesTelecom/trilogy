@@ -1,13 +1,13 @@
 import { Text, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context/index'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { TypographyColor } from '@/objects/Typography'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { is } from '@/services/classify'
 import translation from '@trilogy-ds/locales/lib/otp'
 import clsx from 'clsx'
 import { useEffect, useRef, useState, ChangeEvent, FocusEvent as ReactFocusEvent, KeyboardEvent as ReactKeyboardEvent, forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { OtpProps, OtpRef } from './OtpProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { OtpProps, OtpRef } from '@/components/otp/OtpProps'
 
 type NumberOrNull = number | null
 

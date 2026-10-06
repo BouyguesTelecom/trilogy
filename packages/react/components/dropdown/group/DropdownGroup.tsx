@@ -1,10 +1,10 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { DropdownGroupProps, DropdownGroupRef } from './DropdownGroupProps'
+import { DropdownGroupProps, DropdownGroupRef } from '@/components/dropdown/group/DropdownGroupProps'
 
 /**
  * DropdownGroup Component

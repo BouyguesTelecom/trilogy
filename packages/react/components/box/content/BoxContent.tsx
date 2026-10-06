@@ -1,11 +1,11 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { BoxContentProps, BoxContentRef } from './BoxContentProps'
+import { BoxContentProps, BoxContentRef } from '@/components/box/content/BoxContentProps'
 
 /**
  * Box Content

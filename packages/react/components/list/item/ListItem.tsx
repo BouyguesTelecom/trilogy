@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { getColorClassName, TrilogyColor } from '@/objects'
-import { is } from '@/services'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { getColorClassName, TrilogyColor } from '@/objects/facets/Color'
+import { is } from '@/services/classify'
 import { Icon, IconSize } from '@/components/icon'
-import { ListItemProps, ListItemRef } from './ListItemProps'
+import { ListItemProps, ListItemRef } from '@/components/list/item/ListItemProps'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**

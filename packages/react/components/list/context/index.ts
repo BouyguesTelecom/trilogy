@@ -1,2 +1,2 @@
-export * from './ListContext'
-export * from './ListContextProps'
+export * from '@/components/list/context/ListContext'
+export * from '@/components/list/context/ListContextProps'

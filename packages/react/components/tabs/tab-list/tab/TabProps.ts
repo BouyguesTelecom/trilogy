@@ -1,5 +1,7 @@
 import { IconName, IconNameValues } from '@/components/icon'
-import { Accessibility, Clickable, Dev } from '@/objects'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Clickable } from '@/objects/facets/Clickable'
+import { Dev } from '@/objects/facets/Dev'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { TouchableOpacity } from 'react-native'
 import { ElementType } from 'react'

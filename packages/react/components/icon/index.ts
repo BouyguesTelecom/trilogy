@@ -1,5 +1,5 @@
-import Icon from './Icon'
-export * from './IconEnum'
-export * from './IconNameEnum'
+import Icon from '@/components/icon/Icon'
+export * from '@/components/icon/IconEnum'
+export * from '@/components/icon/IconNameEnum'
 
 export { Icon }

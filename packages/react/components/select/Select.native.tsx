@@ -3,8 +3,8 @@ import Input from '@/components/input/Input.native'
 import { Modal, ModalBody } from '@/components/modal'
 import { useCallback, useEffect, useState, Children, forwardRef, isValidElement, useId, useMemo } from 'react'
 import { Pressable, View } from 'react-native'
-import { SelectNativeProps, SelectNativeRef, SelectedValue } from './SelectProps'
-import SelectOption from './option'
+import { SelectNativeProps, SelectNativeRef, SelectedValue } from '@/components/select/SelectProps'
+import SelectOption from '@/components/select/option'
 
 /**
  * Select Component

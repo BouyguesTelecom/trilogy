@@ -1,5 +1,5 @@
-import type { SpacerSize, SpacerSizeValues } from './SpacerEnum'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import type { SpacerSize, SpacerSizeValues } from '@/components/spacer/SpacerEnum'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
 import { Dev } from '@/objects/facets/Dev'
 

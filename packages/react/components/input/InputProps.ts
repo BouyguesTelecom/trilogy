@@ -1,10 +1,11 @@
 
 import { NativeSyntheticEvent, type TextInput, TextInputSubmitEditingEventData } from 'react-native'
-import { Accessibility, Dev } from '../../objects/facets'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { Dev } from '@/objects/facets/Dev'
 
 import { type ChangeEvent, FocusEventHandler, ReactNode, BaseSyntheticEvent, FormEvent, MouseEvent as ReactMouseEvent } from 'react'
-import { CommonProps } from '../../objects/facets/CommonProps'
-import { IconName, IconNameValues } from '../icon'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { IconName, IconNameValues } from '@/components/icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
@@ -20,7 +21,7 @@ import {
   InputTextContentTypeValues,
   InputType,
   InputTypeValues,
-} from './InputEnum'
+} from '@/components/input/InputEnum'
 
 export interface InputChangeEventWeb {
   inputName: string

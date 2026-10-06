@@ -4,9 +4,9 @@ import { getJustifyStyle } from '@/objects/facets/Justifiable'
 import { useState, Children, forwardRef, useCallback, useMemo } from 'react'
 import { Dimensions, LayoutChangeEvent, ScrollView, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { ColumnsGapValue } from '../columns'
-import { FlexBoxNativeRef, FlexBoxProps } from './FlexBoxProps'
-import { FlexBoxContext } from './context'
+import { ColumnsGapValue } from '@/components/columns'
+import { FlexBoxNativeRef, FlexBoxProps } from '@/components/flex-box/FlexBoxProps'
+import { FlexBoxContext } from '@/components/flex-box/context'
 
 /**
  * @beta

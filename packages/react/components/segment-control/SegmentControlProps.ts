@@ -1,7 +1,8 @@
-import { AlignableProps, Dev } from '@/objects'
+import { AlignableProps } from '@/objects/facets/Alignable'
+import { Dev } from '@/objects/facets/Dev'
 import type { View } from 'react-native'
-import { Clickable } from '../../objects/facets/Clickable'
-import { CommonProps } from '../../objects/facets/CommonProps'
+import { Clickable } from '@/objects/facets/Clickable'
+import { CommonProps } from '@/objects/facets/CommonProps'
 import { ReactNode } from 'react'
 
 /**

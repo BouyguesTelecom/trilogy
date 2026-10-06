@@ -8,8 +8,8 @@ import { getVariantClassName } from '@/objects/facets/Variant'
 import { forwardRef } from 'react'
 import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { ButtonVariant } from './ButtonEnum'
-import { ButtonNativeRef, ButtonProps } from './ButtonProps'
+import { ButtonVariant } from '@/components/button/ButtonEnum'
+import { ButtonNativeRef, ButtonProps } from '@/components/button/ButtonProps'
 import { Theme } from '@/constants/theme'
 
 /**

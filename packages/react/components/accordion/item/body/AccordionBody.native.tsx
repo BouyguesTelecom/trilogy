@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { AccordionBodyNativeRef, AccordionBodyProps } from './AccordionBodyProps'
+import { AccordionBodyNativeRef, AccordionBodyProps } from '@/components/accordion/item/body/AccordionBodyProps'
 
 /**
  * Accordion Body Component

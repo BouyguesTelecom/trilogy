@@ -1,7 +1,8 @@
-import { Dev, VariantProps } from '@/objects'
+import { Dev } from '@/objects/facets/Dev'
+import { VariantProps } from '@/objects/facets/Variant'
 import { TouchableOpacity } from 'react-native'
-import { IconName, IconNameValues } from '../../../../components/icon'
-import { RadioNativeProps, RadioProps } from '../../../../components/radio/RadioProps'
+import { IconName, IconNameValues } from '@/components/icon'
+import { RadioNativeProps, RadioProps } from '@/components/radio/RadioProps'
 import { ReactNode } from 'react'
 
 interface RadioTilePropsCommon extends Dev {

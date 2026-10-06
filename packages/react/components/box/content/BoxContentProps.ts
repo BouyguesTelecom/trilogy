@@ -1,8 +1,8 @@
 import { View } from 'react-native'
-import { BackgroundProps } from '../../../objects/atoms/Background'
-import { Accessibility } from '../../../objects/facets/Accessibility'
-import { CommonProps } from '../../../objects/facets/CommonProps'
-import { Dev } from '../../../objects/facets/Dev'
+import { BackgroundProps } from '@/objects/atoms/Background'
+import { Accessibility } from '@/objects/facets/Accessibility'
+import { CommonProps } from '@/objects/facets/CommonProps'
+import { Dev } from '@/objects/facets/Dev'
 import { ReactNode } from 'react'
 
 /**

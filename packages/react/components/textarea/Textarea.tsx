@@ -1,14 +1,14 @@
 
 import { Icon } from '@/components/icon'
 import { Text, TextLevels, TextMarkup } from '@/components/text'
-import { useTrilogyContext } from '@/context'
-import { hashClass } from '@/helpers'
-import { TypographyColor } from '@/objects'
-import { has, is } from '@/services'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { TypographyColor } from '@/objects/Typography/TypographyColor'
+import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import { useEffect, useState, forwardRef } from 'react'
-import { ComponentName } from '../enumsComponentsName'
-import { TextareaProps, TextareaRef } from './TextareaProps'
+import { ComponentName } from '@/components/enumsComponentsName'
+import { TextareaProps, TextareaRef } from '@/components/textarea/TextareaProps'
 
 /**
  * Textarea Component

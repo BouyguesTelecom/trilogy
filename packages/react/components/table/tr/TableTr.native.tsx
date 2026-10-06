@@ -1,7 +1,7 @@
 import { useState, forwardRef, isValidElement } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { TableTrNativeRef, TableTrPropsNative } from './TableTrProps'
+import { TableTrNativeRef, TableTrPropsNative } from '@/components/table/tr/TableTrProps'
 import { View } from '@/components/view'
 import { Text, TextLevels } from '@/components/text'
 import { ComponentName } from '@/components/enumsComponentsName'

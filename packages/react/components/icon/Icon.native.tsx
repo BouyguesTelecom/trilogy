@@ -9,7 +9,7 @@ import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facet
 import { useContext, ComponentType, forwardRef } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
-import { Skeleton } from '../skeleton'
+import { Skeleton } from '@/components/skeleton'
 
 const resolveSvg = (mod: unknown): ComponentType<Record<string, unknown>> => {
   const asModule = mod as { __esModule?: boolean; default?: ComponentType<Record<string, unknown>> }

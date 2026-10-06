@@ -1,11 +1,11 @@
 import { Columns, GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { useContext, useEffect, useMemo, Children, forwardRef } from 'react'
-import { PromptContext } from '../context'
-import { PromptFilesProps, PromptFilesRef } from './PromptFilesProps'
+import { PromptContext } from '@/components/prompt/context'
+import { PromptFilesProps, PromptFilesRef } from '@/components/prompt/files/PromptFilesProps'
 
 /**
  * PromptFiles component - Container for displaying attached files in a prompt

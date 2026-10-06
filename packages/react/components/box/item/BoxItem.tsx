@@ -1,9 +1,9 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { useTrilogyContext } from '@/context'
+import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { BoxItemProps, BoxItemRef } from './BoxItemProps'
+import { BoxItemProps, BoxItemRef } from '@/components/box/item/BoxItemProps'
 
 /**
  * Box Item Component

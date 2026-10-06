@@ -1,8 +1,7 @@
-import { Alignable } from '@/objects'
+import { Alignable } from '@/objects/facets/Alignable'
 import type { Meta, StoryObj } from '@storybook/react'
-import ImageComponent from './Image'
-import type { ImageProps } from './ImageProps'
-import { RadiusValues } from './ImageProps'
+import ImageComponent from '@/components/image/Image'
+import { type ImageProps, RadiusValues } from '@/components/image/ImageProps'
 
 ImageComponent.displayName = 'Image'
 
