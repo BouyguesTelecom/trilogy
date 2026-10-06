@@ -1,17 +1,17 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { BoxItemNativeRef, BoxItemProps } from './BoxItemProps'
 
 /**
  * Box Item Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param size {BoxItemSize} SMALL|MEDIUM|LARGE|HUGE
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const BoxItem = React.forwardRef<BoxItemNativeRef, BoxItemProps>(({ children, size, testId, ...others }, ref): JSX.Element => {
+const BoxItem = forwardRef<BoxItemNativeRef, BoxItemProps>(({ children, size, testId, ...others }, ref): JSX.Element => {
   const height = Number(size) || 48
   const styles = memoStyles({
     boxItem: {

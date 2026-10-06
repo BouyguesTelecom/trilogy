@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
 import { IconName } from '../../icon'
 import Timeline from '../Timeline'
 import TimelineContent from '../content'

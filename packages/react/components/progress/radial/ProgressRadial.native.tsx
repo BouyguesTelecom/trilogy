@@ -3,7 +3,7 @@ import { Text, TextLevels } from '@/components/text'
 import { Title, TitleLevels } from '@/components/title'
 import { getAlignStyle, TypographyAlign, TypographyBold } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../../skeleton'
@@ -14,7 +14,7 @@ import { AnimatedCircularProgress } from './react-native-circular-progress'
  * Progress Radial component
  * @param label {string} Custom label
  * @param description {string} Custom description
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param skeleton {boolean} Skeleton Progress Radial
  * @param secondValue {number} Second progress percent (for dual progress)
  * @param small {boolean} Display small progress radial
@@ -26,7 +26,7 @@ import { AnimatedCircularProgress } from './react-native-circular-progress'
  * @param secondValueColor {TrilogyColor} Color of the second progress (for dual progress)
  * @param align {Align} Alignment of the component (LEFT|CENTER|RIGHT)
  */
-const ProgressRadial = React.forwardRef<ProgressRadialNativeRef, ProgressRadialProps>(
+const ProgressRadial = forwardRef<ProgressRadialNativeRef, ProgressRadialProps>(
   (
     {
       children,

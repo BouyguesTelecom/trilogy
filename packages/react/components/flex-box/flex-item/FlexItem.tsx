@@ -4,13 +4,13 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { FlexItemProps, FlexItemRef } from '@/components/flex-box/flex-item/FlexItemProps'
 
 /**
  * FlexItem Component - FlexBox Child
  * @param size {FlexItemSize} Size 1-12
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  * @param narrow {boolean} Narrow item
@@ -18,7 +18,7 @@ import { FlexItemProps, FlexItemRef } from '@/components/flex-box/flex-item/Flex
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const FlexItem = React.forwardRef<FlexItemRef, FlexItemProps>(
+const FlexItem = forwardRef<FlexItemRef, FlexItemProps>(
   ({ className, id, size, narrow, verticalAlign, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

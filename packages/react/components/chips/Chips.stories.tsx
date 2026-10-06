@@ -3,7 +3,6 @@ import ChipsComponent from './Chips'
 import type { ChipsProps } from './ChipsProps'
 import ChipsList from './list/ChipsList'
 import type { ChipsListProps } from './list/ChipsListProps'
-import React from 'react'
 
 ChipsComponent.displayName = 'Chips'
 ChipsList.displayName = 'ChipsList'

@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, forwardRef } from 'react'
 import { Theme } from '@/constants/theme'
 import { GestureResponderEvent, TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -19,7 +19,7 @@ import { ChipsContext } from './list/ChipsList.native'
  * @param disabled {boolean} Disabled chips
  * @param testId {string} Test Id for Test Integration
  */
-const Chips = React.forwardRef<ChipsNativeRef, ChipsProps>(
+const Chips = forwardRef<ChipsNativeRef, ChipsProps>(
   ({ children, onClick, disabled, active, testId, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const chipsContext = useContext(ChipsContext)

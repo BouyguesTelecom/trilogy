@@ -1,6 +1,5 @@
 import { Align, Justify, TrilogyColor } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import ViewComponent from './View'
 import { ViewMarkup } from './ViewProps'
 

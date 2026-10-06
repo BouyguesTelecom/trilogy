@@ -3,7 +3,7 @@ import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/Spacin
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import { Text } from '@/components/text'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import type { CheckboxListNativeRef, CheckboxListProps } from './CheckboxListProps'
 import {  } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -24,7 +24,7 @@ const SPACING_MATRIX: SpacingMatrix = [
  * @param children {ReactNode} CheckboxList children
  * @param label {string} Label for the CheckboxList group
  */
-const CheckboxList = React.forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children, label }, ref): JSX.Element => {
+const CheckboxList = forwardRef<CheckboxListNativeRef, CheckboxListProps>(({ children, label }, ref): JSX.Element => {
   const styles = memoStyles({
     label: {
       marginBottom: 8,

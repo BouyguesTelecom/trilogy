@@ -1,11 +1,11 @@
 import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
-import React from 'react'
+import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { PromptToolsNativeRef, PromptToolsProps } from './PromptToolsProps'
 
-const PromptTools = React.forwardRef<PromptToolsNativeRef, PromptToolsProps>(({ ...others }, ref) => {
+const PromptTools = forwardRef<PromptToolsNativeRef, PromptToolsProps>(({ ...others }, ref) => {
   const styles = memoStyles({
     view: {
       flexDirection: 'row',

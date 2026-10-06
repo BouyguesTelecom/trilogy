@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react'
-import * as React from 'react'
 import { TrilogyColor } from '../../../objects'
 import Section from '../Section'
 

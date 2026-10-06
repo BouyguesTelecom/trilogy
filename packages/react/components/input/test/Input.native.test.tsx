@@ -1,7 +1,6 @@
 jest.useFakeTimers()
 
 import { fireEvent, render } from '@testing-library/react-native'
-import * as React from 'react'
 import { PlatformOSType } from 'react-native'
 import { getColorStyle, StatusState, TrilogyColor } from '../../../objects'
 import { IconName } from '../../icon'

@@ -1,24 +1,24 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isAndroid, isIOS } from '@/helpers/device.native'
 import { getColorStyle, ScrollDirectionEnum } from '@/objects'
-import * as React from 'react'
+import { forwardRef, useCallback, useState } from 'react'
 import { RefreshControl, ScrollView as ScrollViewNative, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { ScrollViewNativeRef, ScrollViewProps } from './ScrollViewProps'
 
 /**
  * ScrollView Component
- * @param children {React.ReactNode} ScrollView child
+ * @param children {ReactNode} ScrollView child
  * @param scrollDirection {ScrollDirectionEnum} Scroll direction (VERTICAL | HORIZONTAL)
  * @param id {string} Custom id attribute
- * @param footer {React.ReactNode} Footer element fixed at the bottom
+ * @param footer {ReactNode} Footer element fixed at the bottom
  * @param bounce {boolean} Bounce effect on scroll (iOS)
  * @param centerContent {boolean} Center content in scrollView
  * @param refresh {boolean} Enable pull-to-refresh
  * @param refreshControlColor {TrilogyColor} Color of the refresh control indicator
  * @param onRefresh {Function} Callback when user triggers a refresh
  */
-const ScrollView = React.forwardRef<ScrollViewNativeRef, ScrollViewProps>(
+const ScrollView = forwardRef<ScrollViewNativeRef, ScrollViewProps>(
   (
     {
       children,
@@ -34,13 +34,13 @@ const ScrollView = React.forwardRef<ScrollViewNativeRef, ScrollViewProps>(
     },
     ref,
   ): JSX.Element => {
-    const [refreshing, setRefreshing] = React.useState(false)
+    const [refreshing, setRefreshing] = useState(false)
 
     const wait = (timeout: number) => {
       return new Promise((resolve) => setTimeout(resolve, timeout))
     }
 
-    const onRefreshing = React.useCallback(() => {
+    const onRefreshing = useCallback(() => {
       setRefreshing(true)
       wait(2000).then(() => setRefreshing(false))
     }, [])

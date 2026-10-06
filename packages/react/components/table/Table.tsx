@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { TableBorderEnum, TableProps, TableRef } from './TableProps'
 
@@ -18,7 +18,7 @@ import { TableBorderEnum, TableProps, TableRef } from './TableProps'
  * @param id {string} Custom id attribute
  * @param fullwidth {boolean} Fullwidth table
  */
-const Table = React.forwardRef<TableRef, TableProps>(
+const Table = forwardRef<TableRef, TableProps>(
   (
     { className, id, fullwidth, border = TableBorderEnum.LINES, striped, compact, testId, ...others },
     ref,

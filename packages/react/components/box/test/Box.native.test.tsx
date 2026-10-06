@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react-native'
-import * as React from 'react'
 import Box from '../Box.native'
 import BoxContent from '../content/BoxContent.native'
 import BoxHeader from '../header/BoxHeader.native'

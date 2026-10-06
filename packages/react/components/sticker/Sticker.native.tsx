@@ -3,7 +3,7 @@ import { Icon, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
 import { getColorStyle, getVariantStyle, TrilogyColor, TypographyBold } from '@/objects'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { StickerNativeRef, StickerProps } from './StickerProps'
@@ -18,7 +18,7 @@ import { Theme } from '@/constants/theme'
  * @param label {string} Sticker label text
  * @param accessibilityLabel {string} Accessibility label
  */
-const Sticker = React.forwardRef<StickerNativeRef, StickerProps>(
+const Sticker = forwardRef<StickerNativeRef, StickerProps>(
   ({ variant, small, outlined, label, iconName, accessibilityLabel, ...others }, ref): JSX.Element => {
     const defaultColor = getColorStyle(TrilogyColor.MAIN)
     const styles = memoStyles({

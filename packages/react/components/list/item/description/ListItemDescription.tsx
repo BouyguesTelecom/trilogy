@@ -1,4 +1,4 @@
-import * as React from "react"
+import { forwardRef } from "react"
 import { ListItemDescriptionProps, ListItemDescriptionRef } from "./ListItemDescriptionProps"
 import clsx from "clsx"
 import { hashClass } from "@/helpers"
@@ -7,12 +7,12 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 /**
  * ListItemDescription Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param testId {string} Test Id for Test Integration
  */
-const ListItemDescription = React.forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(({
+const ListItemDescription = forwardRef<ListItemDescriptionRef, ListItemDescriptionProps>(({
   children,
   className,
   testId,

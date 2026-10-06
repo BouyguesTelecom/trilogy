@@ -1,6 +1,5 @@
 import { Alignable } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import ImageComponent from './Image'
 import type { ImageProps } from './ImageProps'
 import { RadiusValues } from './ImageProps'

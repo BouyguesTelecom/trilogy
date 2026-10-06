@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import { Alignable } from '../../objects/facets/Alignable'
 import TagComponent from './Tag'
 import { TagVariant } from './TagEnum'

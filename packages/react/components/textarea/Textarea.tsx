@@ -6,7 +6,7 @@ import { hashClass } from '@/helpers'
 import { TypographyColor } from '@/objects'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { TextareaProps, TextareaRef } from './TextareaProps'
 
@@ -33,7 +33,7 @@ import { TextareaProps, TextareaRef } from './TextareaProps'
  * @param minLength {number} Textarea min length
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  */
-const Textarea = React.forwardRef<TextareaRef, TextareaProps>(
+const Textarea = forwardRef<TextareaRef, TextareaProps>(
   (
     {
       className,

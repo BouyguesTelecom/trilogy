@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers'
 import { getStatusClassName } from '@/objects'
 import { is } from '@/services/index'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { ProgressProps, ProgressRef } from './ProgressProps'
 
@@ -24,7 +24,7 @@ import { ProgressProps, ProgressRef } from './ProgressProps'
  * @param className {string} Additional CSS Classes
  * @param small {boolean} Small progress bar
  */
-const Progress = React.forwardRef<ProgressRef, ProgressProps>(
+const Progress = forwardRef<ProgressRef, ProgressProps>(
   (
     {
       children,

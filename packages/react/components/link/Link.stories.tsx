@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { IconName } from '../icon'
 import LinkComponent from './Link'
 import type { LinkProps } from './LinkProps'
-import React from 'react'
 
 LinkComponent.displayName = 'Link'
 

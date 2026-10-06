@@ -1,6 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
 import { IconName } from '@trilogy-ds/assets'
-import * as React from 'react'
 import Select from '../Select'
 import SelectOption from '../option'
 

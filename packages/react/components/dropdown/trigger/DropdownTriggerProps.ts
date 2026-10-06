@@ -2,12 +2,13 @@ import { TouchableOpacity, View } from 'react-native'
 import { Clickable } from '../../../objects/facets/Clickable'
 import { CommonProps } from '../../../objects/facets/CommonProps'
 import { Dev } from '../../../objects/facets/Dev'
+import { ReactNode } from 'react'
 
 /**
  * DropdownTrigger Interface
  */
 export interface DropdownTriggerProps extends Clickable, CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 export type DropdownTriggerRef = HTMLDivElement

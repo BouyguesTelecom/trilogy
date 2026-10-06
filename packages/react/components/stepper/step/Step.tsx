@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { StepProps, StepRef } from './StepProps'
 
 /**
@@ -19,7 +19,7 @@ import { StepProps, StepRef } from './StepProps'
  * @param className {string} Additional CSS Classes
  * @param label {string} Step label
  */
-const Step = React.forwardRef<StepRef, StepProps>(
+const Step = forwardRef<StepRef, StepProps>(
   ({ className, id, active, current, done, label, iconName, error, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

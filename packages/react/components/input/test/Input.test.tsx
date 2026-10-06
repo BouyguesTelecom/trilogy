@@ -1,7 +1,6 @@
 import { fireEvent, render } from '@testing-library/react'
 import Input from '../Input'
 import { InputStatus, InputType } from '../InputEnum'
-import * as React from 'react'
 import { IconName } from '../../icon'
 import { Link } from '../../link'
 import { getEnumNames } from '../../../helpers'

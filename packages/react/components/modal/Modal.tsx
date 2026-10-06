@@ -6,7 +6,7 @@ import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import translation from '@trilogy-ds/locales/lib/modal'
 import clsx from 'clsx'
-import React, { KeyboardEvent, useCallback, useEffect, useId, useRef, useState } from 'react'
+import { KeyboardEvent, useCallback, useEffect, useId, useRef, useState, MouseEvent as ReactMouseEvent, ReactElement, cloneElement, forwardRef } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { ModalProps, ModalRef } from './ModalProps'
 
@@ -14,8 +14,8 @@ import { ModalProps, ModalRef } from './ModalProps'
  * Modal Component
  * @param active {boolean} Activated Modal
  * @param title {string} Modal title
- * @param children {React.ReactNode} Modal content
- * @param trigger {React.ReactNode} Element that triggers the modal opening
+ * @param children {ReactNode} Modal content
+ * @param trigger {ReactNode} Element that triggers the modal opening
  * @param onClose {Function} Callback when modal closes
  * @param unClosable {boolean} Prevent modal from being closed by the user
  * @param hideCloseButton {boolean} Hide the close button
@@ -29,7 +29,7 @@ import { ModalProps, ModalRef } from './ModalProps'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param onModalHide {Function} Callback after modal is fully hidden
  */
-const Modal = React.forwardRef<ModalRef, ModalProps>(
+const Modal = forwardRef<ModalRef, ModalProps>(
   (
     {
       children,
@@ -58,7 +58,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
     const focusableElementsRef = useRef<NodeListOf<HTMLElement> | null>(null)
     const currentFocusIndexRef = useRef<number>(0)
 
-    const handleClose = React.useCallback(
+    const handleClose = useCallback(
       (onCloseFunc: ClickEvent | undefined, e: OnClickEvent) => {
         if (!unClosable) {
           setDisplay(false)
@@ -125,7 +125,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
 
     return (
       <div onKeyDown={onKeyDown} ref={refModal}>
-        {trigger && React.cloneElement(trigger as React.ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
+        {trigger && cloneElement(trigger as ReactElement, { ref: refBtnModal, 'aria-haspopup': 'dialog' })}
         <div
           data-testid={testId}
           ref={ref}
@@ -145,7 +145,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>(
             <div className={hashClass(styled, clsx('modal-header'))}>
               {!hideCloseButton && !unClosable && (
                 <button
-                  onClick={(e: React.MouseEvent) => {
+                  onClick={(e: ReactMouseEvent) => {
                     handleClose(onClose, e)
                   }}
                   className={hashClass(styled, clsx('modal-close', is('large')))}

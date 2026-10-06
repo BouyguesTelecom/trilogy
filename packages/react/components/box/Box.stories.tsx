@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import BoxComponent from './Box'
 import BoxContent from './content'
 import BoxFooter from './footer'

@@ -1,6 +1,6 @@
 import { TrilogyColor } from '@/objects/facets/Color'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import { ComponentType } from 'react'
 import TableComponent from './Table'
 import type { TableProps } from './TableProps'
 import { TableBorderEnum } from './TableProps'
@@ -38,7 +38,7 @@ interface TableStoryArgs extends TableProps {
 const meta: Meta<TableStoryArgs> = {
   title: 'Components/Table',
   component: Table,
-  subcomponents: { TableHead, TableBody, TableTr, TableTh, TableTd } as Record<string, React.ComponentType<unknown>>,
+  subcomponents: { TableHead, TableBody, TableTr, TableTh, TableTd } as Record<string, ComponentType<unknown>>,
   tags: ['autodocs'],
   parameters: {
     docs: {

@@ -8,7 +8,6 @@ import { TrilogyColor } from '../../objects'
 import { IconSize } from '../icon'
 import { BadgePositionEnum } from './BadgeEnum'
 import { BadgeProps, BadgeVariant } from './BadgeProps'
-import React from 'react'
 
 const meta: Meta<BadgeProps> = {
   title: 'Components/Badge',

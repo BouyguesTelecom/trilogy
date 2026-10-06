@@ -6,7 +6,6 @@ import { ButtonMarkup, ButtonType, ButtonVariant } from './ButtonEnum'
 import type { ButtonProps } from './ButtonProps'
 import { ButtonList } from './list'
 import { ButtonListDirectionEnum } from './list/ButtonListEnum'
-import React from 'react'
 
 ButtonComponent.displayName = 'Button'
 

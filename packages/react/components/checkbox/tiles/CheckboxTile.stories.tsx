@@ -6,7 +6,6 @@ import CheckboxTiles from './CheckboxTiles'
 import type { CheckboxTilesProps } from './CheckboxTilesProps'
 import CheckboxTileComponent from './tile/CheckboxTile'
 import type { CheckboxTileProps } from './tile/CheckboxTileProps'
-import React from 'react'
 
 CheckboxTileComponent.displayName = 'CheckboxTile'
 CheckboxTiles.displayName = 'CheckboxTiles'

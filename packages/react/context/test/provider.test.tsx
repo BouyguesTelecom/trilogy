@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { render } from '@testing-library/react'
 import { TrilogyProvider } from '../provider'
 import { TrilogyContext } from '../index'

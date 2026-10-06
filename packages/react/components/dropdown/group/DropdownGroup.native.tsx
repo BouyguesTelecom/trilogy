@@ -1,8 +1,8 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { DropdownGroupNativeRef, DropdownGroupProps } from './DropdownGroupProps'
 
-const DropdownGroup = React.forwardRef<DropdownGroupNativeRef, DropdownGroupProps>((props, ref): JSX.Element => {
+const DropdownGroup = forwardRef<DropdownGroupNativeRef, DropdownGroupProps>((props, ref): JSX.Element => {
   return (
     <></>
   )

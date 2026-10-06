@@ -2,6 +2,7 @@ import { Fullwidth } from '../../objects/facets/Fullwidth'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { View } from 'react-native'
 import { Dev } from '@/objects/facets/Dev'
+import { ReactNode } from 'react'
 
 export enum TableBorderEnum {
   ALL = 'all',
@@ -10,7 +11,7 @@ export enum TableBorderEnum {
 }
 
 export interface TableProps extends Fullwidth, CommonProps, Dev {
-  children: React.ReactNode
+  children: ReactNode
   border?: TableBorderEnum
   striped?: boolean
   compact?: boolean

@@ -3,7 +3,7 @@ import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef, useId } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
@@ -19,8 +19,8 @@ import { CheckboxNativeRef, CheckboxProps } from './CheckboxProps'
  * @param name {string} Name for checkbox
  * @param testId {string} Test Id for Test Integration
  */
-const Checkbox = React.forwardRef<CheckboxNativeRef, CheckboxProps>(
-  ({ id = React.useId(), checked, name, onChange, disabled, readonly, label, testId }, ref): JSX.Element => {
+const Checkbox = forwardRef<CheckboxNativeRef, CheckboxProps>(
+  ({ id = useId(), checked, name, onChange, disabled, readonly, label, testId }, ref): JSX.Element => {
     const [_checked, setChecked] = useState(checked || false)
 
     useEffect(() => {

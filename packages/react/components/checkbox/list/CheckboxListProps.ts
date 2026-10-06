@@ -3,8 +3,9 @@ import type { CheckboxProps } from '../../../components/checkbox/CheckboxProps'
 import type { DividerProps } from '../../../components/divider/DividerProps'
 import { AlignableProps, Dev } from '../../../objects'
 import { CommonProps } from '../../../objects/facets/CommonProps'
+import { ReactElement } from 'react'
 
-type CheckboxListChildrenTypes = React.ReactElement<CheckboxProps | DividerProps> | undefined
+type CheckboxListChildrenTypes = ReactElement<CheckboxProps | DividerProps> | undefined
 
 /**
  * Checkbox List Interface

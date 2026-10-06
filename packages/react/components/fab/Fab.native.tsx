@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { FabNativeRef, FabProps } from './FabProps'
@@ -23,7 +23,7 @@ import { Theme } from '@/constants/theme'
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  */
-const Fab = React.forwardRef<FabNativeRef, FabProps>(
+const Fab = forwardRef<FabNativeRef, FabProps>(
   (
     { children, accessibilityLabel, iconName, extended, onClick, top, bottom, left, right, disabled, testId },
     ref,

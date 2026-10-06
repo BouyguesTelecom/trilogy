@@ -1,6 +1,5 @@
 import { Align, DirectionEnum, Justify } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import { GapSize } from '../columns'
 import type { FlexItemProps } from './flex-item/FlexItemProps'
 import { FlexBox as Flexbox, FlexItem } from './index'

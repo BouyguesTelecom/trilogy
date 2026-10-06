@@ -3,7 +3,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { CardImageProps, CardImageRef } from './CardImageProps'
 
 /**
@@ -19,7 +19,7 @@ import { CardImageProps, CardImageRef } from './CardImageProps'
  * - -------------------------- WEB PROPERTIES ----------------------------------
  * @param className Additional CSS Classes
  */
-const CardImage = React.forwardRef<CardImageRef, CardImageProps>(
+const CardImage = forwardRef<CardImageRef, CardImageProps>(
   ({ src, alt = '', className, id, size, onClick, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('card-image', size && is(`${size}`), className))

@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactNode, SetStateAction } from 'react'
+import { Dispatch, ReactNode, SetStateAction, createContext } from 'react'
 import { ITrilogyTheme } from './interfaces'
 
 export const defaultTheme: ITrilogyTheme = {
@@ -17,7 +17,7 @@ const defaultContextValue = {
   setTheme: () => undefined,
 }
 
-export const TrilogyThemeContext = React.createContext<ITrilogyThemeContext>(defaultContextValue)
+export const TrilogyThemeContext = createContext<ITrilogyThemeContext>(defaultContextValue)
 
 export const TrilogyThemeProvider = ({ children }: { children: ReactNode }) => {
   return children

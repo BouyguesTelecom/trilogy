@@ -1,4 +1,4 @@
-import { FocusEventHandler } from 'react'
+import { FocusEventHandler, BaseSyntheticEvent, ReactNode } from 'react'
 import { View } from 'react-native'
 import {
   InputChangeEventNative,
@@ -12,7 +12,7 @@ import { CommonProps } from '../../objects/facets/CommonProps'
  * AutoComplete Interface
  */
 export interface AutoCompletePropsWeb<T = string> extends InputProps, CommonProps {
-  children?: (item: T) => React.ReactNode
+  children?: (item: T) => ReactNode
   defaultValue?: string
   value?: string
   data: T[]
@@ -31,7 +31,7 @@ export interface AutoCompletePropsWeb<T = string> extends InputProps, CommonProp
 }
 
 export interface AutoCompletePropsNative<T = string> extends InputProps {
-  children?: (item: T) => React.ReactNode
+  children?: (item: T) => ReactNode
   defaultValue?: string
   value?: string
   data: T[]
@@ -45,7 +45,7 @@ export interface AutoCompletePropsNative<T = string> extends InputProps {
   onIconClick?: (event: InputClickEvent) => void
   getSuggestions?: (search: string) => Promise<T[]>
   debounceSuggestionsTimeout?: number
-  onFocus?: (event: React.BaseSyntheticEvent) => void
+  onFocus?: (event: BaseSyntheticEvent) => void
   onBlur?: (event: unknown) => void
 }
 

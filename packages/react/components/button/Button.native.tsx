@@ -5,7 +5,7 @@ import { getTypographyBoldStyle, TypographyBold } from '@/objects/Typography/Typ
 import { getButtonColorStyle, getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getLoadingClassName } from '@/objects/facets/Loadable'
 import { getVariantClassName } from '@/objects/facets/Variant'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { ButtonVariant } from './ButtonEnum'
@@ -24,7 +24,7 @@ import { Theme } from '@/constants/theme'
  * @param testId {string} Test Id for Test Integration
  * @param iconName {IconName} Icon displayed inside the button
  */
-const Button = React.forwardRef<ButtonNativeRef, ButtonProps>(
+const Button = forwardRef<ButtonNativeRef, ButtonProps>(
   (
     { children, variant, onClick, disabled, loading, fullwidth, testId, accessibilityLabel, iconName, ...others },
     ref,

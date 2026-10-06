@@ -6,13 +6,14 @@ import { CommonProps } from '../../objects/facets/CommonProps'
 import { Fullheight } from '../../objects/facets/Fullheight'
 import { Dev } from '@/objects/facets/Dev'
 import { Radius } from '@/objects/facets/Radius'
+import { ReactNode } from 'react'
 
 /**
  * Card Interface
  */
 
 export interface CardProps extends Fullheight, Clickable, Accessibility, CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   flat?: boolean
   horizontal?: boolean
   floating?: boolean

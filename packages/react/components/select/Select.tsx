@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { SelectContext } from './context'
 import { SelectedValue, SelectProps, SelectRef } from './SelectProps'
@@ -9,7 +9,7 @@ import { SelectDynamic, SelectNative } from './web'
  * @param id {string} Select id
  * @param name {string} Select name
  * @param selected {string} Selected value
- * @param children {React.ReactNode} Children for Select
+ * @param children {ReactNode} Children for Select
  * @param label {string} label for select
  * @param iconName {IconName} icon for left of selector
  * @param onChange {Function} onChange Event
@@ -26,11 +26,11 @@ import { SelectDynamic, SelectNative } from './web'
  * @param onBlur {Function} onBlur Select Event
  * @param custom {boolean} Display native-old select web
  */
-const Select = React.forwardRef<SelectRef, SelectProps>(({ selected, ...props }, ref): JSX.Element => {
-  const [isVisibleOptions, setIsVisibleOptions] = React.useState<boolean>(false)
-  const [selectedOptionValues, setSelectedOptionValues] = React.useState<SelectedValue[] | []>([])
+const Select = forwardRef<SelectRef, SelectProps>(({ selected, ...props }, ref): JSX.Element => {
+  const [isVisibleOptions, setIsVisibleOptions] = useState<boolean>(false)
+  const [selectedOptionValues, setSelectedOptionValues] = useState<SelectedValue[] | []>([])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const value =
       typeof selected === 'string' || typeof selected === 'number'
         ? [selected]

@@ -5,7 +5,7 @@ import { isRequiredChild } from '@/helpers/require'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
 
 /**
@@ -15,12 +15,12 @@ import { CheckboxTilesProps, CheckboxTilesRef } from './CheckboxTilesProps'
  * @param verticalAlign {Alignable}
  * @param numberCols {GridSize | GridItemSize} number of columns for grid layout
  * @param accessibilityLabelledBy {string} Id of the element that labels the group of checkboxes for accessibility
- * @param children {React.ReactNode} CheckboxTile components as children
+ * @param children {ReactNode} CheckboxTile components as children
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const CheckboxTiles = React.forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
+const CheckboxTiles = forwardRef<CheckboxTilesRef, CheckboxTilesProps>(
   (
     { id, className, children, align, verticalAlign, accessibilityLabelledBy, numberCols, testId, ...others },
     ref,

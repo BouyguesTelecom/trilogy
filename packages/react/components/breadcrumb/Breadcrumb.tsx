@@ -2,20 +2,20 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import translation from '@trilogy-ds/locales/lib/breadcrumb'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { BreadcrumbRef, BreadcrumbWebProps } from './BreadcrumbProps'
 
 /**
  * Breadcrumb Component
- * @param children {React.ReactNode} Breadcrumb Children
+ * @param children {ReactNode} Breadcrumb Children
  * @param testId {string} Test id
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  * @param accessibilityLabel {string} Accessibility label
  */
-const Breadcrumb = React.forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
+const Breadcrumb = forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
   ({ children, className, id, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
 

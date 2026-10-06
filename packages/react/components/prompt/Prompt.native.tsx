@@ -1,5 +1,5 @@
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useContext } from 'react'
+import { useContext, forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { ComponentName } from '../enumsComponentsName'
@@ -7,7 +7,7 @@ import { PromptNativeRef, PromptProps } from './PromptProps'
 import { PromptContext, PromptProvider } from './context'
 import { Theme } from '@/constants/theme'
 
-const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {
+const PromptElm = forwardRef<PromptNativeRef, PromptProps>(({ disabled, ...others }, ref) => {
   const { isFocused, isDisabled } = useContext(PromptContext)
 
   const styles = memoStyles({
@@ -30,7 +30,7 @@ const PromptElm = React.forwardRef<PromptNativeRef, PromptProps>(({ disabled, ..
  * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  */
-const Prompt = React.forwardRef<PromptNativeRef, PromptProps>(
+const Prompt = forwardRef<PromptNativeRef, PromptProps>(
   ({ disabled = false, readOnly = false, ...others }, ref) => {
     return (
       <PromptProvider isDisabled={disabled} isReadonly={readOnly}>

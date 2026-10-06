@@ -1,6 +1,6 @@
 import { Alignable } from '@/objects/facets/Alignable'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import { ReactNode } from 'react'
 import Column from './column/Column'
 import ColumnsComponent from './Columns'
 import type { ColumnsProps } from './ColumnsProps'
@@ -9,7 +9,7 @@ import { ColumnsSize, GapSize } from './ColumnsTypes'
 ColumnsComponent.displayName = 'Columns'
 Column.displayName = 'Column'
 
-const Columns = (props: ColumnsProps & { children: React.ReactNode }): JSX.Element => <ColumnsComponent {...props} />
+const Columns = (props: ColumnsProps & { children: ReactNode }): JSX.Element => <ColumnsComponent {...props} />
 Columns.displayName = 'Columns'
 
 interface ColumnsStoryArgs extends ColumnsProps {

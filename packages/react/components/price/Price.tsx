@@ -3,7 +3,7 @@ import { hashClass } from '@/helpers'
 import { Alignable } from '@/objects'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { checkCents } from './PriceHelpers'
 import { PriceProps, PriceRef } from './PriceProps'
@@ -18,7 +18,7 @@ import { PriceProps, PriceRef } from './PriceProps'
  * @param hideCents {boolean} Hide cents from displayed price
  * @param level {PriceLevel} Price custom size
  * @param inverted {boolean} Inverted Price Color
- * @param children {React.ReactNode} Price child elements
+ * @param children {ReactNode} Price child elements
  * @param align {Alignable} Price alignment
  * @param accessibilityLabel {string} Accessibility label
  * @param testId {string} Test Id for Test Integration
@@ -26,7 +26,7 @@ import { PriceProps, PriceRef } from './PriceProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Price = React.forwardRef<PriceRef, PriceProps>(
+const Price = forwardRef<PriceRef, PriceProps>(
   (
     {
       className,

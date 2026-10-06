@@ -1,5 +1,4 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
 import Link from '../Link.native'
 
 jest.useFakeTimers()

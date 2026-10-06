@@ -5,7 +5,7 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React, { MouseEvent, useContext } from 'react'
+import { MouseEvent, useContext, forwardRef } from 'react'
 import { PromptInputFileProps, PromptInputFileRef } from './PromptInputFileProps'
 
 /**
@@ -17,7 +17,7 @@ import { PromptInputFileProps, PromptInputFileRef } from './PromptInputFileProps
  * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  */
-const PromptInputFile = React.forwardRef<PromptInputFileRef, PromptInputFileProps>(
+const PromptInputFile = forwardRef<PromptInputFileRef, PromptInputFileProps>(
   ({ className, onChange, disabled, readOnly, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const { isDisabled, isReadonly } = useContext(PromptContext)

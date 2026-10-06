@@ -3,12 +3,13 @@ import { Dev } from '@/objects/facets/Dev'
 import { AlignableProps } from '@/objects/facets/Alignable'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { View } from 'react-native'
+import { ReactNode } from 'react'
 
 /**
  * Columns Interface
  */
 export interface ColumnsProps extends AlignableProps, CommonProps, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   multiline?: boolean
   scrollable?: boolean
   gap?: GapSize

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import { GapSize } from '../columns/ColumnsTypes'
 import RowsComponent from './Rows'
 import RowComponent from './row/Row'

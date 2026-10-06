@@ -1,8 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import * as React from 'react'
-import { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { BoxHeaderNativeRef, BoxHeaderProps } from './BoxHeaderProps'
@@ -11,17 +10,17 @@ import { BoxContext } from '../context/boxContext'
 
 /**
  * Box Header Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param variant {TrilogyColor} Box Header backgroundColor
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const BoxHeader = React.forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
+const BoxHeader = forwardRef<BoxHeaderNativeRef, BoxHeaderProps>(
   ({ children, variant, testId, ...others }, ref): JSX.Element => {
     const statesContext = useContext(StatesContext)
     const headerBgc = variant ? getColorStyle(variant) : getColorStyle(TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
-    const { padding } = React.useContext(BoxContext)
+    const { padding } = useContext(BoxContext)
 
     const styles = memoStyles({
       boxHeader: {

@@ -1,5 +1,4 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import * as React from 'react'
 import Text from '../../../../text/Text.native'
 import Accordion from '../../../Accordion.native'
 import AccordionBody from '../../../item/body/AccordionBody.native'

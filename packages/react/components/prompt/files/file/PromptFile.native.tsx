@@ -7,7 +7,7 @@ import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getRadiusStyle } from '@/objects/facets/Radius'
 import { TypographyBold } from '@/objects/Typography'
-import React from 'react'
+import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { PromptFileNativeRef, PromptFileProps } from './PromptFileProps'
@@ -16,7 +16,7 @@ const HEIGHT_ITEM = 64
 const HEIGHT_IMG_FILE = 40
 const MAX_WIDTH_FILE = 264
 
-const PromptFile = React.forwardRef<PromptFileNativeRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
+const PromptFile = forwardRef<PromptFileNativeRef, PromptFileProps>(({ onDelete, src, name, type }, ref) => {
   const backgroundTimes = getColorStyle(TrilogyColor.MAIN_FADE)
 
   const styles = memoStyles({

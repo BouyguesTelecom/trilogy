@@ -1,6 +1,5 @@
 import { Alignable, TrilogyColor } from '@/objects'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import IconComponent from './Icon'
 import type { IconProps } from './IconProps'
 import { IconColor, IconName, IconSize } from './index'

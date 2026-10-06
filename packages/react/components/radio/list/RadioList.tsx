@@ -7,7 +7,7 @@ import { getJustifiedClassName } from '@/objects'
 import { TypographyColor } from '@/objects/Typography'
 import { is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { RadioListRef, RadioListWebProps } from './RadioListProps'
 
 /**
@@ -23,7 +23,7 @@ import { RadioListRef, RadioListWebProps } from './RadioListProps'
  * @param horizontalMobile {boolean} Expect mobile screen
  * @param accessibilityLabelledBy {string} aria-labelledby attribute
  */
-const RadioList = React.forwardRef<RadioListRef, RadioListWebProps>(
+const RadioList = forwardRef<RadioListRef, RadioListWebProps>(
   (
     {
       className,

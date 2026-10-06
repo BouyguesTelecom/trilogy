@@ -5,7 +5,7 @@ import { getButtonVariantClassName } from '@/objects/facets/Color'
 import { Loading, LoadingValues } from '@/objects/facets/Loadable'
 import { is } from '@/services/index'
 import clsx from 'clsx'
-import React from 'react'
+import { ElementType, Ref, forwardRef } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { ButtonMarkup, ButtonMarkupValues, ButtonVariant, ButtonVariantValues } from './ButtonEnum'
 import { ButtonProps, ButtonRef } from './ButtonProps'
@@ -28,10 +28,10 @@ import { ButtonProps, ButtonRef } from './ButtonProps'
  * @param to {string} Router link destination
  * @param href {string} Href
  * @param name {string} Button name attribute
- * @param routerLink {React.ElementType} Custom Router Link component
+ * @param routerLink {ElementType} Custom Router Link component
  * @param type {ButtonType} Button type (button|reset|submit)
  */
-const Button = React.forwardRef<ButtonRef, ButtonProps>(
+const Button = forwardRef<ButtonRef, ButtonProps>(
   (
     {
       markup,
@@ -86,7 +86,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
       return (
         <button
           data-testid={testId}
-          ref={ref as React.Ref<HTMLButtonElement>}
+          ref={ref as Ref<HTMLButtonElement>}
           id={id}
           aria-label={accessibilityLabel}
           className={classes}
@@ -110,7 +110,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
       return (
         <input
           data-testid={testId}
-          ref={ref as React.Ref<HTMLInputElement>}
+          ref={ref as Ref<HTMLInputElement>}
           id={id}
           className={classes}
           aria-label={accessibilityLabel}
@@ -129,7 +129,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
     }
 
     if (routerLink && to && !isDisabled) {
-      const RouterLink = (routerLink ? routerLink : 'a') as React.ElementType
+      const RouterLink = (routerLink ? routerLink : 'a') as ElementType
       return (
         <RouterLink
           ref={ref}
@@ -148,7 +148,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>(
     return (
       <a
         data-testid={testId}
-        ref={ref as React.Ref<HTMLAnchorElement>}
+        ref={ref as Ref<HTMLAnchorElement>}
         id={id}
         aria-label={accessibilityLabel}
         className={classes}

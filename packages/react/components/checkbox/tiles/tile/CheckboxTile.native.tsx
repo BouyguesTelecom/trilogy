@@ -5,7 +5,7 @@ import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
 import { View } from '@/components/view'
 import { getColorStyle, TrilogyColor, TypographyAlign, TypographyBold, VariantState } from '@/objects'
-import React, { useContext, useState } from 'react'
+import { useContext, useState, forwardRef, useId } from 'react'
 import { TouchableOpacity, View as ViewRN } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { CheckboxTilesContext } from '../context'
@@ -30,13 +30,13 @@ import { Theme } from '@/constants/theme'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const CheckboxTile = React.forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
+const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
   (
     {
       disabled,
       checked,
       readonly,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,

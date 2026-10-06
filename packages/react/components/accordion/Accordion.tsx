@@ -3,18 +3,18 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 
 /**
  * Accordion Component
- * @param children {React.ReactNode} Accordion items (AccordionItem components)
+ * @param children {ReactNode} Accordion items (AccordionItem components)
  * @param testId {string} Test Id for Test Integration
  * @param accessibilityLabel {string} Accessibility label
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Accordion = React.forwardRef<AccordionRef, AccordionProps>(
+const Accordion = forwardRef<AccordionRef, AccordionProps>(
   ({ id, className, children, testId, ...others }, ref) => {
     const { styled } = useTrilogyContext()
     const classes = hashClass(styled, clsx('accordion', className))

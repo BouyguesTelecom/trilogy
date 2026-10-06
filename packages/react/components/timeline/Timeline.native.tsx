@@ -1,4 +1,4 @@
-import * as React from "react"
+import { Dispatch, SetStateAction, createContext, forwardRef, useState } from "react"
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { TimelineNativeRef, TimelineProps } from "./TimelineProps"
@@ -6,10 +6,10 @@ import { ComponentName } from "@/components/enumsComponentsName"
 
 interface IContext {
   height: number;
-  setHeight: React.Dispatch<React.SetStateAction<number>>;
+  setHeight: Dispatch<SetStateAction<number>>;
 }
 
-export const TimelineHeightContext = React.createContext<IContext>({
+export const TimelineHeightContext = createContext<IContext>({
   height: 0,
   setHeight: () => undefined,
 })
@@ -19,14 +19,14 @@ export const TimelineHeightContext = React.createContext<IContext>({
  * @param children {ReactNode} Text child
 
  */
-const Timeline = React.forwardRef<TimelineNativeRef, TimelineProps>(({ children }, ref): JSX.Element => {
+const Timeline = forwardRef<TimelineNativeRef, TimelineProps>(({ children }, ref): JSX.Element => {
   const styles = memoStyles({
     container: {
       flexDirection: "column",
     },
   })
 
-  const [height, setHeight] = React.useState(0)
+  const [height, setHeight] = useState(0)
 
   return (
     <TimelineHeightContext.Provider

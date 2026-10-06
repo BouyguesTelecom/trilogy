@@ -7,6 +7,7 @@ import { CommonProps } from '../../objects/facets/CommonProps'
 import { Dev } from '../../objects/facets/Dev'
 import { StatusProps } from '../../objects/facets/Status'
 import { AlertMarkup, AlertMarkupValues } from './AlertEnum'
+import { ReactNode } from 'react'
 
 export enum ToasterAlertPosition {
   TOP = 'top',
@@ -18,12 +19,12 @@ export enum ToasterAlertFloat {
 }
 
 export interface ToasterStatusProps extends StatusProps, Clickable, Accessibility, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   className?: string
-  toasterChildren?: React.ReactNode
+  toasterChildren?: ReactNode
   iconName?: IconName | IconNameValues
-  title?: string | React.ReactNode
-  description?: string | React.ReactNode
+  title?: string | ReactNode
+  description?: string | ReactNode
   deletable?: ClickEvent | boolean
   closable?: ClickEvent
   position?: ToasterAlertPosition
@@ -41,8 +42,8 @@ export interface ToasterStatusProps extends StatusProps, Clickable, Accessibilit
  */
 export interface AlertProps extends StatusProps, Clickable, Accessibility, Dev, CommonProps {
   iconName?: IconName | IconNameValues
-  title?: string | React.ReactNode
-  description?: string | React.ReactNode
+  title?: string | ReactNode
+  description?: string | ReactNode
   display?: boolean
   toaster?: boolean
   banner?: boolean

@@ -1,5 +1,5 @@
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { NativeScrollEvent, NativeSyntheticEvent, Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import TimepickerSelectorItem from './item/TimepickerSelectorItem.native'
 

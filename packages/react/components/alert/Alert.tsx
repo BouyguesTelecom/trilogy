@@ -6,8 +6,7 @@ import { hashClass } from '@/helpers'
 import { getStatusClassName, getStatusIconName } from '@/objects/facets/Status'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
-import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { forwardRef, useCallback, useMemo, CSSProperties, useEffect, useRef, useState } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { AlertProps, AlertRef, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from './AlertProps'
 import ToasterContext from './context'
@@ -18,12 +17,12 @@ import ToasterContext from './context'
  * This component displays a toast with various customization options.
  *
  * @param {Object} props - Component properties
- * @param {React.ReactNode} [props.children] - Custom content of the toast
- * @param {React.ReactNode} [props.toasterChildren] - Optional content of the toast
+ * @param {ReactNode} [props.children] - Custom content of the toast
+ * @param {ReactNode} [props.toasterChildren] - Optional content of the toast
  * @param {string} [props.className] - Additional CSS classes
  * @param {IconName | IconNameValues} [props.iconName] - Name of the icon to display
- * @param {string | React.ReactNode} [props.title] - Title of the toast
- * @param {string | React.ReactNode} [props.description] - Description of the toast
+ * @param {string | ReactNode} [props.title] - Title of the toast
+ * @param {string | ReactNode} [props.description] - Description of the toast
  * @param {ClickEvent} [props.closable] - Function for closing the toast
  * @param {ToasterAlertPosition} [props.position] - Position of the toast
  * @param {ToasterAlertFloat} [props.float] - Floating of the toast
@@ -129,7 +128,7 @@ const ToasterAlert = ({
  * @param markup {string} Title markup (h2 | h3 | h4 | h5 | h6 | p)
 
  */
-const Alert = React.forwardRef<AlertRef, AlertProps>(
+const Alert = forwardRef<AlertRef, AlertProps>(
   (
     { banner, status, className, id, iconName, title, description, onClick, display = true, markup, testId, ...others },
     ref,
@@ -141,7 +140,7 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
       clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
     )
 
-    const iconAlert = React.useMemo(() => {
+    const iconAlert = useMemo(() => {
       if (iconName != null) return iconName
       else if (status) return getStatusIconName(status) ?? IconName.INFOS_CIRCLE
       else return IconName.INFOS_CIRCLE
@@ -185,7 +184,7 @@ const Alert = React.forwardRef<AlertRef, AlertProps>(
 
 /**
  * Toaster Alert Provider
- * @param children {React.ReactNode} Custom Toast Content
+ * @param children {ReactNode} Custom Toast Content
  * @param duration {number} Duration in MS (Default: 5000)
  * @param offset {number} Offset position margin (Default: 10 dp)
  * @param onShow {() => void} Fonction appelée lors de l'affichage du toast
@@ -197,7 +196,7 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
   const [duration, setDuration] = useState(5000)
   const timeRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const showToast = React.useCallback(
+  const showToast = useCallback(
     (params: ToasterStatusProps) => {
       setToasterState(params)
       params.onShow?.()

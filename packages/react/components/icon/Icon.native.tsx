@@ -6,14 +6,14 @@ import { TrilogyThemeContext } from '@/context/providerTheme.native'
 import { isIOS } from '@/helpers/device.native'
 import { getAlignStyle } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import React, { useContext } from 'react'
+import { useContext, ComponentType, forwardRef } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../skeleton'
 
-const resolveSvg = (mod: unknown): React.ComponentType<Record<string, unknown>> => {
-  const asModule = mod as { __esModule?: boolean; default?: React.ComponentType<Record<string, unknown>> }
-  return (asModule && asModule.__esModule ? asModule.default : mod) as React.ComponentType<Record<string, unknown>>
+const resolveSvg = (mod: unknown): ComponentType<Record<string, unknown>> => {
+  const asModule = mod as { __esModule?: boolean; default?: ComponentType<Record<string, unknown>> }
+  return (asModule && asModule.__esModule ? asModule.default : mod) as ComponentType<Record<string, unknown>>
 }
 
 /**
@@ -29,7 +29,7 @@ const resolveSvg = (mod: unknown): React.ComponentType<Record<string, unknown>> 
  * @param testId {string} Test Id for Test Integration
  * @param align {Alignable | AlignableValues} Align content
  */
-const Icon = React.forwardRef<IconNativeRef, IconProps>(
+const Icon = forwardRef<IconNativeRef, IconProps>(
   (
     { size, name, circled, stretched, color, backgroundColor, onClick, align, skeleton, testId, ...others },
     ref,

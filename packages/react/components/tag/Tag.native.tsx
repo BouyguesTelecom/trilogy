@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconSize } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getStatusStyle } from '@/objects/facets/Status'
-import React from 'react'
+import { forwardRef } from 'react'
 import { Theme } from '@/constants/theme'
 import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -17,7 +17,7 @@ import { TagNativeRef, TagProps } from './TagProps'
  * @param iconName {IconName} display icon
  * @param testId {string} Test Id for Test Integration
  **/
-const Tag = React.forwardRef<TagNativeRef, TagProps>(
+const Tag = forwardRef<TagNativeRef, TagProps>(
   ({ label, variant, inverted, iconName, small, testId, ...others }, ref): JSX.Element => {
     const textColor = inverted ? getColorStyle(variant as TrilogyColor) : getColorStyle(TrilogyColor.MAIN)
 

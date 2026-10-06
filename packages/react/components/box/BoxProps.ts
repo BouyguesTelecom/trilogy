@@ -8,12 +8,13 @@ import { CommonProps } from '../../objects/facets/CommonProps'
 import { Dev } from '../../objects/facets/Dev'
 import { Fullheight } from '../../objects/facets/Fullheight'
 import { Radius } from '@/objects/facets/Radius'
+import { ReactNode } from 'react'
 
 /**
  * Box Interface
  */
 export interface BoxProps extends BackgroundProps, Clickable, Fullheight, Accessibility, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   skeleton?: boolean
   href?: string
   highlighted?: TrilogyColor | TrilogyColorValues

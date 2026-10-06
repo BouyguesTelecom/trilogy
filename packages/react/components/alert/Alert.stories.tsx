@@ -2,7 +2,7 @@ import { Button, ButtonVariant } from '@/components/button'
 import { IconName } from '@/components/icon'
 import { StatusState } from '@/objects/facets/Status'
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import { useContext } from 'react'
 import AlertComponent, { ToasterAlertProvider } from './Alert'
 import { AlertMarkup } from './AlertEnum'
 import { AlertProps, ToasterAlertFloat, ToasterAlertPosition } from './AlertProps'
@@ -26,7 +26,7 @@ const Alert = (props: AlertProps): JSX.Element => <Alert {...props} />
 Alert.displayName = 'Alert'
 
 const ToasterTrigger = (args: AlertStoryArgs): JSX.Element => {
-  const { show } = React.useContext(ToasterContext)
+  const { show } = useContext(ToasterContext)
 
   const handleShow = () => {
     const toast = {

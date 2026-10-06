@@ -1,14 +1,14 @@
 import { GapSize } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
-import React, { useContext, useEffect, useMemo } from 'react'
+import { useContext, useEffect, useMemo, Children, forwardRef } from 'react'
 import { ScrollView, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { PromptContext } from '../context'
 import { PromptFilesNativeRef, PromptFilesProps } from './PromptFilesProps'
 
-const PromptFiles = React.forwardRef<PromptFilesNativeRef, PromptFilesProps>(({ children }, ref) => {
+const PromptFiles = forwardRef<PromptFilesNativeRef, PromptFilesProps>(({ children }, ref) => {
   const { setFiles } = useContext(PromptContext)
-  const childrenLength = useMemo(() => React.Children.count(children), [children])
+  const childrenLength = useMemo(() => Children.count(children), [children])
 
   const styles = memoStyles({
     scrollViewContainer: {

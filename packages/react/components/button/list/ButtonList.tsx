@@ -4,7 +4,7 @@ import { hashClass } from '@/helpers'
 import { getJustifiedClassName } from '@/objects/facets/Justifiable'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ButtonListDirectionEnum } from './ButtonListEnum'
 import { ButtonListRef, ButtonListWebProps } from './ButtonListProps'
 
@@ -18,7 +18,7 @@ import { ButtonListRef, ButtonListWebProps } from './ButtonListProps'
  * @param direction {ButtonListDirectionEnum} Button list direction
  * @param className {string} Additional CSS Classes
  */
-const ButtonList = React.forwardRef<ButtonListRef, ButtonListWebProps>(
+const ButtonList = forwardRef<ButtonListRef, ButtonListWebProps>(
   ({ className, id, align, direction, testId, ...others }, ref): JSX.Element => {
     const { styled } = useTrilogyContext()
 

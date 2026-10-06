@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 const StyleComponent = ({ children }: { children: ReactNode }): JSX.Element => {
   return <>{children}</>

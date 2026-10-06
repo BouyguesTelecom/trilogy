@@ -8,7 +8,7 @@ import { ReactNode } from 'react'
 export interface CheckboxTileProps extends Omit<CheckboxProps, 'label'>, CommonProps, Dev {
   horizontal?: boolean
   icon?: IconName | IconNameValues
-  description?: string | React.ReactNode
+  description?: string | ReactNode
   sticker?: string
   stickerVariant?: VariantProps['variant']
   label?: string | ReactNode

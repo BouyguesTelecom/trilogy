@@ -3,8 +3,7 @@ import { StatesContext } from '@/context/providerStates'
 import { isAndroid } from '@/helpers/device.native'
 import { getTypographyBoldStyle, setTypographyAlign, setTypographyColor, TypographyBold } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import * as React from 'react'
-import { useContext } from 'react'
+import { forwardRef, useContext } from 'react'
 import { Text as TextNative, TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '../skeleton'
@@ -25,7 +24,7 @@ import { TitleNativeRef, TitleProps } from './TitleProps'
  * @param subtitle {boolean} Subtitle below title
  * @param overline {boolean} Overline above title
  */
-const Title = React.forwardRef<TitleNativeRef, TitleProps>(({
+const Title = forwardRef<TitleNativeRef, TitleProps>(({
   children,
   level,
   style,

@@ -1,5 +1,4 @@
 import { render, screen, userEvent } from '@testing-library/react-native'
-import React from 'react'
 import { Text } from '../../text'
 import View from '../View.native'
 

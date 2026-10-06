@@ -6,6 +6,7 @@ import { Accessibility, Dev, Invertable } from '../../objects/facets'
 import { TextLevels, TextLevelValues, TextMarkup, TextMarkupValues } from './TextEnum'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { Text } from 'react-native'
+import { ReactNode } from 'react'
 
 type Styles = { [key: string]: any }
 
@@ -24,7 +25,7 @@ type Typo =
  */
 export interface TextProps extends Invertable, Accessibility, Dev, CommonProps {
   level?: TextLevels | TextLevelValues
-  children?: React.ReactNode
+  children?: ReactNode
   typo?: Typo | Array<string>
   markup?: TextMarkup | TextMarkupValues
   style?: Styles

@@ -1,5 +1,4 @@
 import { getDefaultNormalizer, render, screen } from '@testing-library/react-native'
-import * as React from 'react'
 import { Text } from '../../text'
 import ProductTour from '../ProductTour'
 

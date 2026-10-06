@@ -7,7 +7,7 @@ import { ReactNode } from 'react'
 interface RadioTilePropsCommon extends Dev {
   horizontal?: boolean
   icon?: IconName | IconNameValues
-  description?: string | React.ReactNode
+  description?: string | ReactNode
   sticker?: string
   stickerVariant?: VariantProps['variant']
   label?: string | ReactNode

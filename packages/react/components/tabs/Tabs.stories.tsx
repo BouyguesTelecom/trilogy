@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import { Alignable } from '../../objects/facets/Alignable'
 import TabsComponent from './Tabs'
 import type { TabsProps } from './TabsProps'

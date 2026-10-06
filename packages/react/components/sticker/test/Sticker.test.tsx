@@ -1,5 +1,4 @@
 // Dependencies
-import * as React from 'react'
 import { is } from '../../../services/index'
 
 // Testing methods

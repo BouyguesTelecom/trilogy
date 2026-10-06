@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { isIOS } from '@/helpers/device.native'
 import { getColorStyle, TrilogyColor } from '@/objects'
-import * as React from 'react'
+import { forwardRef, useContext } from 'react'
 import { ScrollView, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { ModalContext } from '../context/ModalContext'
@@ -9,12 +9,12 @@ import { ModalBodyNativeRef, ModalBodyProps } from './ModalBodyProps'
 
 /**
  * Modal Body Component
- * @param children {React.ReactNode}
+ * @param children {ReactNode}
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const ModalBody = React.forwardRef<ModalBodyNativeRef, ModalBodyProps>(({ children, testId, ...others }, ref): JSX.Element => {
-  const { handleOnScroll, scrollViewRef, isFooter } = React.useContext(ModalContext)
+const ModalBody = forwardRef<ModalBodyNativeRef, ModalBodyProps>(({ children, testId, ...others }, ref): JSX.Element => {
+  const { handleOnScroll, scrollViewRef, isFooter } = useContext(ModalContext)
   const insets = useSafeAreaInsets()
   const defaultBottom = isIOS ? 40 : 16
   const bottomPadding = isFooter ? 8 : isIOS ? Math.max(defaultBottom, insets.bottom) : defaultBottom

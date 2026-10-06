@@ -1,6 +1,6 @@
 import translation from '@trilogy-ds/locales/lib/input'
 import clsx from 'clsx'
-import React, { useCallback, useEffect, useId, useState } from 'react'
+import { useCallback, useEffect, useId, useState, KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent, forwardRef } from 'react'
 import { Text, TextLevels, TextMarkup } from '../../components/text'
 import { useTrilogyContext } from '../../context'
 import { hashClass } from '../../helpers'
@@ -70,14 +70,14 @@ interface IconWrapper {
  * @param forceControl {boolean} Force the control of the input value
  * @param minLength {number} Input min length
  */
-const Input = React.forwardRef<InputRef, InputProp>(
+const Input = forwardRef<InputRef, InputProp>(
   (
     {
       forceControl,
       label,
       sample,
       className,
-      id = React.useId(),
+      id = useId(),
       disabled,
       onChange,
       onKeyPress,
@@ -157,7 +157,7 @@ const Input = React.forwardRef<InputRef, InputProp>(
       }),
     )
 
-    const onPressKey = useCallback((e: React.KeyboardEvent) => {
+    const onPressKey = useCallback((e: ReactKeyboardEvent) => {
       const target = e.target as HTMLInputElement
       return {
         inputName: target.name,
@@ -269,12 +269,12 @@ const Input = React.forwardRef<InputRef, InputProp>(
             minLength={minLength}
             maxLength={maxLength}
             autoComplete={autoCompleteType}
-            onKeyUp={(e: React.KeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e))}
-            onKeyPress={(e: React.KeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e))}
+            onKeyUp={(e: ReactKeyboardEvent) => onKeyUp && onKeyUp(onPressKey(e))}
+            onKeyPress={(e: ReactKeyboardEvent) => onKeyPress && onKeyPress(onPressKey(e))}
             onMouseEnter={(e) => onMouseEnter?.(e)}
             onMouseLeave={(e) => onMouseLeave?.(e)}
             placeholder={placeholder}
-            onClick={(e: React.MouseEvent<Element>) => {
+            onClick={(e: ReactMouseEvent<Element>) => {
               const target = e.target as HTMLFormElement
               if (onClick) {
                 onClick({

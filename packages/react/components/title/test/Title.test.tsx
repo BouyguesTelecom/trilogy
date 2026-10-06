@@ -1,5 +1,4 @@
 // Dependencies
-import * as React from 'react'
 import { getEnumNames } from '../../../helpers/index'
 import { is } from '../../../services/index'
 

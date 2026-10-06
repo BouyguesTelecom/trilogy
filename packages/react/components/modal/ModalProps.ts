@@ -9,7 +9,7 @@ import { View } from 'react-native'
  * Modal Interface
  */
 export interface ModalProps extends Accessibility, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   active?: boolean
   trigger?: ReactNode
   hideCloseButton?: boolean

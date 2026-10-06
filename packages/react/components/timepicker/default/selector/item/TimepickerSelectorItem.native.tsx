@@ -1,7 +1,7 @@
 import { Text } from '@/components/text'
 import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
 import { TypographyColor } from '@/objects/Typography/TypographyColor'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
 
 interface SelectItem {

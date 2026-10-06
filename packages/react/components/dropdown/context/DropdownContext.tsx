@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, ReactNode, FC } from 'react'
 
 interface DropdownContextType {
   isOpen: boolean
@@ -23,7 +23,7 @@ interface DropdownProviderProps {
   onToggle?: (isOpen: boolean) => void
 }
 
-export const DropdownProvider: React.FC<DropdownProviderProps> = ({
+export const DropdownProvider: FC<DropdownProviderProps> = ({
   children,
   defaultOpen = false,
   onToggle,

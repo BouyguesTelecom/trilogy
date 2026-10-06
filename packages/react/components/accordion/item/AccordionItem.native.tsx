@@ -3,15 +3,15 @@ import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { isValidElement, useEffect, useRef, useState } from 'react'
+import { isValidElement, useEffect, useRef, useState, JSXElementConstructor, ReactNode, forwardRef } from 'react'
 import { Animated, Easing, TouchableWithoutFeedback, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { AccordionItemNativeRef, AccordionItemProps } from './AccordionItemProps'
 import { Theme } from '@/constants/theme'
 
 interface AccordionChild {
-  header?: React.ReactNode
-  body?: React.ReactNode
+  header?: ReactNode
+  body?: ReactNode
 }
 
 /**
@@ -20,11 +20,11 @@ interface AccordionChild {
  * @param id {string} id for accordion item
  * @param onClick {ClickEvent} onClick Event
  * @param disabled {boolean} Disabled AccordionItem
- * @param children {React.ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
+ * @param children {ReactNode} Accordion item content (AccordionHeader and AccordionContent components)
  * @param testId {string} Test Id for Test Integration
  * @param open {boolean} Open state of the AccordionItem (for controlled behavior)
  */
-const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProps>(
+const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
   ({ open, id, onClick, disabled, children, testId, ...others }, ref): JSX.Element => {
     const [isActive, setIsActive] = useState<boolean>(Boolean(typeof open !== 'undefined' ? open : false))
     const animatedController = useRef(new Animated.Value(0)).current
@@ -114,7 +114,7 @@ const AccordionItem = React.forwardRef<AccordionItemNativeRef, AccordionItemProp
       if (Array.isArray(children)) {
         children.forEach((child) => {
           if (isValidElement(child) && child.type) {
-            const childType = child.type as React.JSXElementConstructor<unknown> & {
+            const childType = child.type as JSXElementConstructor<unknown> & {
               displayName?: string
               render?: { displayName?: string }
             }

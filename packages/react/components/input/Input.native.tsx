@@ -6,7 +6,7 @@ import { TypographyColor } from '@/objects'
 import { Align } from '@/objects/facets/Alignable'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, forwardRef } from 'react'
 import {
   Keyboard,
   NativeSyntheticEvent,
@@ -67,7 +67,7 @@ export interface InputNativeProps extends InputProps, InputNativeEvents {}
  * @param keyType {KeyType} Key type for submit button
  * @param autoCompleteType {InputAutoCompleteType} Auto complete input type
  */
-const Input = React.forwardRef<InputNativeRef, InputNativeProps>(
+const Input = forwardRef<InputNativeRef, InputNativeProps>(
   (
     {
       defaultValue,

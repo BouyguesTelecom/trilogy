@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { IconName } from '../icon'
 import FabComponent from './Fab'
 import type { FabProps } from './FabProps'
-import React from 'react'
 
 FabComponent.displayName = 'Fab'
 const meta: Meta<FabProps> = {

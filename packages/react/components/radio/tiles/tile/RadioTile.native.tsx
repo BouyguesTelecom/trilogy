@@ -8,7 +8,7 @@ import { VariantState } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyAlign, TypographyColor } from '@/objects/Typography'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useMemo, useState, forwardRef, useId } from 'react'
 import { Theme } from '@/constants/theme'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -30,12 +30,12 @@ import { RadioTilesContext } from '../context'
  * @param sticker {string} sticker label
  * @param stickerVariant {VariantState} Sticker variant
  */
-const RadioTile = React.forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
+const RadioTile = forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
   (
     {
       checked,
       disabled,
-      id = React.useId(),
+      id = useId(),
       label,
       onChange,
       name,

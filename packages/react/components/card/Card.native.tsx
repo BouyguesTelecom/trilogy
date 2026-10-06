@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { createContext, PropsWithChildren } from 'react'
+import { createContext, PropsWithChildren, forwardRef } from 'react'
 import { Theme } from '@/constants/theme'
 import { Platform, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -27,10 +27,10 @@ export const CardContext = createContext({
  * @param reversed {boolean} Reversed card
  * @param active {boolean} Activated card
  * @param id {string} Custom id attribute
- * @param children {React.ReactNode} Card content
+ * @param children {ReactNode} Card content
  * @param fullheight {boolean} Full height card
  */
-const Card = React.forwardRef<CardNativeRef, CardProps>(
+const Card = forwardRef<CardNativeRef, CardProps>(
   (
     { children, flat, horizontal, floating, onClick, skeleton, reversed, fullheight, active, radius, ...others },
     ref,

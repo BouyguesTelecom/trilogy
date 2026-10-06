@@ -1,4 +1,6 @@
-export type OnChangeEvent = React.ChangeEvent<Element>
+import { ChangeEvent as ReactChangeEvent } from 'react'
+
+export type OnChangeEvent = ReactChangeEvent<Element>
 
 /**
  * Change Event Interface

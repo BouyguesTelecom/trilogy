@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { Image as ImageNative, TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { ImageCache, ImageNativeRef, ImageProps } from './ImageProps'
@@ -16,7 +16,7 @@ import { ImageCache, ImageNativeRef, ImageProps } from './ImageProps'
  * @param id {string} Custom id attribute
  * @param cache {ImageCache} Caching strategy for the image
  */
-const Image = React.forwardRef<ImageNativeRef, ImageProps>(
+const Image = forwardRef<ImageNativeRef, ImageProps>(
   ({ src, alt = '', circled, width, height, onClick, cache, testId, ...others }, ref): JSX.Element => {
     const styles = memoStyles({
       image: {

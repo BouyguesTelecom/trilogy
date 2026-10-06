@@ -1,19 +1,19 @@
-import * as React from 'react'
+import { Dispatch, SetStateAction, createContext, useContext } from 'react'
 
 interface ITrilogyContext {
   styled: boolean
   setStyled: (e: boolean) => void
   hash?: string
-  setHash?: React.Dispatch<React.SetStateAction<string|undefined>>
+  setHash?: Dispatch<SetStateAction<string|undefined>>
 }
 
-const TrilogyContext = React.createContext<ITrilogyContext>({
+const TrilogyContext = createContext<ITrilogyContext>({
   styled: false,
   setStyled: () => undefined,
 })
 
 const useTrilogyContext = () => {
-  const context = React.useContext(TrilogyContext)
+  const context = useContext(TrilogyContext)
   if (context === undefined) {
     throw new Error('useTrilogyContext must be used within a TrilogyProvider')
   }

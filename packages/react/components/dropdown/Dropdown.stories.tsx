@@ -6,7 +6,6 @@ import type { DropdownProps } from './DropdownProps'
 import DropdownItem from './item/DropdownItem'
 import type { DropdownItemProps } from './item/DropdownItemProps'
 import DropdownTrigger from './trigger/DropdownTrigger'
-import React from 'react'
 
 DropdownComponent.displayName = 'Dropdown'
 DropdownTrigger.displayName = 'DropdownTrigger'

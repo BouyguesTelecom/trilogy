@@ -1,6 +1,6 @@
-import React from 'react'
+import { createContext } from 'react'
 import { CheckboxTilesContextProps } from './CheckboxTilesContextProps'
 
-export const CheckboxTilesContext = React.createContext<CheckboxTilesContextProps>({
+export const CheckboxTilesContext = createContext<CheckboxTilesContextProps>({
   isGrid: false,
 })

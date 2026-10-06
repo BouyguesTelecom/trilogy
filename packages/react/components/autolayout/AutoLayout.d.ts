@@ -1,4 +1,5 @@
 import type { TrilogyComponents } from '../index.d'
+import { ReactChild, ReactNode } from 'react'
 
 export type HandleBetweenChildren = {
   /**
@@ -9,12 +10,12 @@ export type HandleBetweenChildren = {
   /**
    * The previous child element
    */
-  previousChild: React.ReactChild
+  previousChild: ReactChild
 
   /**
    * The next child element
    */
-  nextChild: React.ReactChild
+  nextChild: ReactChild
 
   /**
    * The previous child type
@@ -33,7 +34,7 @@ export type HandleBetweenChildren = {
 }
 
 export type ParseChildren = {
-  children: React.ReactNode
+  children: ReactNode
 
   /**
    * Decide what to do when facing two particular elements

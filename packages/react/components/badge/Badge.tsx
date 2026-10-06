@@ -6,13 +6,13 @@ import { StatusState, getStatusClassName } from '@/objects/facets/Status'
 import { getVariantClassName } from '@/objects/facets/Variant'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { BadgeProps, BadgeRef } from './BadgeProps'
 
 /**
  * Badge Component
- * @param children {React.ReactNode} Content inside the badge (e.g. Icon)
+ * @param children {ReactNode} Content inside the badge (e.g. Icon)
  * @param label {string|number} Badge content text
  * @param inverted {boolean} Inverted style for Badge
  * @param status {StatusState} Badge status variant (INFO|SUCCESS|WARNING|ERROR)
@@ -24,7 +24,7 @@ import { BadgeProps, BadgeRef } from './BadgeProps'
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const Badge = React.forwardRef<BadgeRef, BadgeProps>(
+const Badge = forwardRef<BadgeRef, BadgeProps>(
   (
     { className, children, id, label, inverted, onClick, variant, position, status, testId, ...others },
     ref,

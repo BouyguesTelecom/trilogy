@@ -1,5 +1,5 @@
-import React from "react"
+import { Children, ReactNode, isValidElement } from "react"
 
-export const isRequiredChild = (children: React.ReactNode) => React.Children.toArray(children).some(
-  (child) => React.isValidElement(child) && child.props.required
+export const isRequiredChild = (children: ReactNode) => Children.toArray(children).some(
+  (child) => isValidElement(child) && child.props.required
 )

@@ -9,7 +9,7 @@ import {
 import { TypographyColor } from '@/objects'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { StatusState } from '@/objects/facets/Status'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { Text, TextInput, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { SpacerSize } from '../spacer'
@@ -42,7 +42,7 @@ import { Theme } from '@/constants/theme'
  * @param keyboardType {InputKeyboardType} Keyboard type
  * @param customHeight {number} Custom textarea height
  */
-const Textarea = React.forwardRef<TextareaNativeRef, TextareaNativeProps>(
+const Textarea = forwardRef<TextareaNativeRef, TextareaNativeProps>(
   (
     {
       defaultValue,

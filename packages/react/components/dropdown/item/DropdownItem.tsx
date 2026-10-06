@@ -3,19 +3,19 @@ import { useTrilogyContext } from '@/context'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
-import * as React from 'react'
+import { KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent, RefObject, forwardRef } from 'react'
 import { Icon, IconSize } from '@/components/icon'
 import { DropdownItemProps, DropdownItemRef } from './DropdownItemProps'
 
 /**
  * DropdownItem Component
- * @param children {React.ReactNode} Children
+ * @param children {ReactNode} Children
  * @param iconName {string} Icon displayed on the left of the text
  * @param active {boolean} Active/selected item state
  * @param disabled {boolean} Disabled item state
  * @param onSelect {Function} Callback called when item is selected
  */
-const DropdownItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
+const DropdownItem = forwardRef<DropdownItemRef, DropdownItemProps>(
   (
     {
       children,
@@ -38,7 +38,7 @@ const DropdownItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
       ),
     )
 
-    const handleClick = (e: React.MouseEvent) => {
+    const handleClick = (e: ReactMouseEvent) => {
       if (disabled) {
         e.preventDefault()
         return
@@ -49,7 +49,7 @@ const DropdownItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
       }
     }
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
+    const handleKeyDown = (e: ReactKeyboardEvent) => {
       if (disabled) return
 
       if (e.key === 'Enter' || e.key === ' ') {
@@ -62,7 +62,7 @@ const DropdownItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
 
     return (
       <button
-        ref={ref as React.RefObject<HTMLButtonElement>}
+        ref={ref as RefObject<HTMLButtonElement>}
         type='button'
         className={classes}
         onClick={handleClick}

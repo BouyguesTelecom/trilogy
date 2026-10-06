@@ -1,7 +1,7 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState, forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { PromptContext } from '../../context'
@@ -17,7 +17,7 @@ import { Theme } from '@/constants/theme'
  * @param disabled {boolean} Whether the submit button is disabled
  * @param readOnly {boolean} Whether the submit button is read-only
  */
-const PromptSubmit = React.forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
+const PromptSubmit = forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
   ({ status = PromptSubmitStatus.STREAMING_OFF, onSubmit, onCancelSubmit, disabled, readOnly, ...others }, ref) => {
     const [statusSubmit, setStatusSubmit] = useState(status)
     const { text, files, setIsSend, setIsTyping, isDisabled } = useContext(PromptContext)

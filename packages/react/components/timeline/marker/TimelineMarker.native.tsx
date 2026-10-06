@@ -5,7 +5,7 @@ import { TimelineItemContext } from '@/components/timeline/item/TimelineItem.nat
 import { TimelineMarkerNativeRef, TimelineMarkerProps } from '@/components/timeline/marker/TimelineMarkerProps'
 import { TimelineHeightContext } from '@/components/timeline/Timeline.native'
 import { getColorStyle, TrilogyColor } from '@/objects'
-import React, { useContext } from 'react'
+import { useContext, forwardRef } from 'react'
 import { View } from 'react-native'
 import { Theme } from '@/constants/theme'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -16,7 +16,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param iconColor {IconColor} Icon Color
  * @param testId {string} Test Id for Test Integration
  */
-const TimelineMarker = React.forwardRef<TimelineMarkerNativeRef, TimelineMarkerProps>(
+const TimelineMarker = forwardRef<TimelineMarkerNativeRef, TimelineMarkerProps>(
   ({ iconName }, ref): JSX.Element => {
     const { active, done, cancel } = useContext(TimelineItemContext)
     const { height } = useContext(TimelineHeightContext)

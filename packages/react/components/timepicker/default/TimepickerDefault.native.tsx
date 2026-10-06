@@ -8,7 +8,7 @@ import Modal from '@/components/modal/Modal.native'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { Align, Justify, TypographyAlign, TypographyBold } from '@/objects'
-import React, { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState, RefObject, forwardRef, useEffect } from 'react'
 import { Pressable, TextInput, View } from 'react-native'
 import { TimepickerSelector } from './selector/TimepickerSelector.native'
 import { TimepickerDefaultProps } from './TimepickerDefaultProps'
@@ -19,7 +19,7 @@ const generateItems = (count: number) =>
     label: i.toString().padStart(2, '0'),
   }))
 
-const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'circular'>>(
+const TimepickerDefault = forwardRef<View, Omit<TimepickerDefaultProps, 'circular'>>(
   (
     { disabled, id, value = '00:00', onChange, step = 1, label, sample, help, required, testId, ...others },
     ref,
@@ -67,7 +67,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
       setDisplay(false)
     }, [hours, minutes])
 
-    React.useEffect(() => {
+    useEffect(() => {
       const { hours: h, minutes: m } = parseTime(value)
       setSelectedHours(h)
       setSelectedMinutes(m)
@@ -92,7 +92,7 @@ const TimepickerDefault = React.forwardRef<View, Omit<TimepickerDefaultProps, 'c
               iconNameRight={'tri-clock'}
               placeholder='--:--'
               value={inputValue}
-              ref={ref as React.RefObject<TextInput>}
+              ref={ref as RefObject<TextInput>}
               {...{ editable: false, pointerEvents: 'none', id }}
               {...others}
             />

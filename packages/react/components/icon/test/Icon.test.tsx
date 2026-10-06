@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { render } from '@testing-library/react'
 import Icon from '../Icon'
 import { IconName } from '../IconNameEnum'

@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import PriceComponent from './Price'
 import { PriceLevel } from './PriceEnum'
 import type { PriceProps } from './PriceProps'
-import React from 'react'
 
 PriceComponent.displayName = 'Price'
 

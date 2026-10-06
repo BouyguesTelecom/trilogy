@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { ProgressRadialItemProps } from './ProgressRadialItemProps'
 import { hashClass } from '@/helpers'
 import clsx from 'clsx'

@@ -3,7 +3,7 @@ import { SpacingMatrix, SpacingMatrixMode } from '@/components/autolayout/Spacin
 import { ComponentName } from '@/components/enumsComponentsName'
 import { SpacerSize } from '@/components/spacer'
 import { Text } from '@/components/text'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import type { RadioListNativeRef, RadioListProps } from './RadioListProps'
 import {  } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
@@ -25,7 +25,7 @@ const SPACING_MATRIX: SpacingMatrix = [
  * @param autolayout {boolean} Apply auto-layout rules
  * @param label {string} RadioList label
  */
-const RadioList = React.forwardRef<RadioListNativeRef, RadioListProps>(({ children, label }, ref): JSX.Element => {
+const RadioList = forwardRef<RadioListNativeRef, RadioListProps>(({ children, label }, ref): JSX.Element => {
   const styles = memoStyles({
       label: {
         marginBottom: 8,

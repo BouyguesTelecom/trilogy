@@ -1,13 +1,14 @@
 import { Dev, ScrollDirectionEnum, ScrollDirectionEnumValues, TrilogyColor, TrilogyColorValues } from '@/objects'
 import { ScrollView } from 'react-native'
+import { ReactNode } from 'react'
 
 /**
  * ScroView Interface
  */
 export interface ScrollViewProps extends Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   className?: string
-  footer?: React.ReactNode
+  footer?: ReactNode
   bounce?: boolean
   centerContent?: boolean
   refresh?: boolean

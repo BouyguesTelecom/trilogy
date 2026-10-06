@@ -3,12 +3,12 @@ import { SpacerSize } from '@/components/spacer'
 import Textarea from '@/components/textarea/Textarea.native'
 import { TextareaChangeEvent } from '@/components/textarea/TextareaProps'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import React, { useContext, useEffect, useImperativeHandle } from 'react'
+import { useContext, useEffect, useImperativeHandle, forwardRef } from 'react'
 import { StyleSheet, TextInput } from 'react-native'
 import { PromptContext } from '../context'
 import { PromptTextareaNativeRef, PromptTextareaProps } from './PromptTextareaProps'
 
-const PromptTextarea = React.forwardRef<PromptTextareaNativeRef, PromptTextareaProps>(
+const PromptTextarea = forwardRef<PromptTextareaNativeRef, PromptTextareaProps>(
   ({ value, onChange, disabled, readOnly, ...others }, ref) => {
     const {
       setText,

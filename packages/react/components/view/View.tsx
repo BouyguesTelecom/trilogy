@@ -3,7 +3,7 @@ import { hashClass } from '@/helpers'
 import { getAlignClassName, getBackgroundClassName, getJustifyClassName, getLoadingClassName } from '@/objects'
 import { has, is } from '@/services'
 import clsx from 'clsx'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from './ViewProps'
 
 /**
@@ -27,7 +27,7 @@ import { ViewMarkup, ViewMarkupValues, ViewProps, ViewRef } from './ViewProps'
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param bottom {boolean} Bottom position
  */
-const View = React.forwardRef<ViewRef, ViewProps>(
+const View = forwardRef<ViewRef, ViewProps>(
   (
     {
       children,

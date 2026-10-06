@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { render } from '@testing-library/react'
 import ProgressRadial from '../ProgressRadial'
 import ProgressRadialItem from '../item'

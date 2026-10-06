@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import { ReactNode } from 'react'
 import ContainerComponent from './Container'
 import type { ContainerProps } from './ContainerProps'
 
 ContainerComponent.displayName = 'Container'
 
-const Container = (props: ContainerProps & { children: React.ReactNode }): JSX.Element => (
+const Container = (props: ContainerProps & { children: ReactNode }): JSX.Element => (
   <ContainerComponent {...props} />
 )
 Container.displayName = 'Container'

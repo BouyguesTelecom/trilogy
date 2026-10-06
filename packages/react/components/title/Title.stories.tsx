@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import { TypographyAlign, TypographyBold, TypographyColor, TypographyTransform } from '../../objects'
 import TitleComponent from './Title'
 import { TitleLevels, TitleMarkup } from './TitleEnum'

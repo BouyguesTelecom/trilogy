@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroProps, HeroRef } from '@/components/hero/HeroProps'
 import { useTrilogyContext } from '@/context'
@@ -9,7 +9,7 @@ import { has, is } from '@/services/classify'
 
 /**
  * Hero Component
- * @param children {React.ReactNode} Hero Children
+ * @param children {ReactNode} Hero Children
  * @param backgroundColor {TrilogyColor} Hero background color
  * @param backgroundSrc {string} If source, it will display background option
  * @param onClick {Function} onClick Event
@@ -21,7 +21,7 @@ import { has, is } from '@/services/classify'
  * @param backgroundHeight {number} Custom height for the background image (overrides default height)
  * @param id {string} Custom id attribute
  */
-const Hero = React.forwardRef<HeroRef, HeroProps>(
+const Hero = forwardRef<HeroRef, HeroProps>(
   (
     { children, backgroundColor, backgroundSrc, inverted, className, id, onClick, overlap, testId, ...others },
     ref,

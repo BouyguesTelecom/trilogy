@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { TypographyBold, TypographyColor } from '@/objects'
-import * as React from 'react'
+import { ReactElement, forwardRef, useEffect, useMemo, useState } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { StepperNativeRef, StepperProps } from './StepperProps'
@@ -17,8 +17,8 @@ interface ICurrentStep {
  * Stepper Component
  * @param children {ReactNode}
  */
-const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ...others }, ref): JSX.Element => {
-  const [currentStep, setCurrentStep] = React.useState<ICurrentStep>({
+const Stepper = forwardRef<StepperNativeRef, StepperProps>(({ children, ...others }, ref): JSX.Element => {
+  const [currentStep, setCurrentStep] = useState<ICurrentStep>({
     step: 0,
     name: '',
     iconName: '',
@@ -48,13 +48,13 @@ const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ..
     },
   })
 
-  const nbChild = React.useMemo<number>(() => {
+  const nbChild = useMemo<number>(() => {
     if (children && Array.isArray(children)) return children.length
     if (children && !Array.isArray(children)) return 1
     return 0
   }, [children])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (children) {
       if (Array.isArray(children)) {
         let haveCurrentStep = false
@@ -78,7 +78,7 @@ const Stepper = React.forwardRef<StepperNativeRef, StepperProps>(({ children, ..
           })
         }
       } else {
-        const child = children as React.ReactElement
+        const child = children as ReactElement
         setCurrentStep({
           step: 1,
           name: child.props.label,

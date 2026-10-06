@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioNativeProps, RadioNativeRef } from '@/components/radio/RadioProps'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects'
-import React from 'react'
+import { forwardRef, useId } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 
@@ -17,8 +17,8 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param name {string} Name for radio
  * @param value {string} Value for radio
  */
-const Radio = React.forwardRef<RadioNativeRef, RadioNativeProps>(
-  ({ id = React.useId(), checked, name, onChange, disabled, readonly, label, value }, ref): JSX.Element => {
+const Radio = forwardRef<RadioNativeRef, RadioNativeProps>(
+  ({ id = useId(), checked, name, onChange, disabled, readonly, label, value }, ref): JSX.Element => {
     const styles = memoStyles({
       container: {
         flexDirection: 'row',

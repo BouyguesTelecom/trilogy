@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import Fab from '../Fab'
 import { IconName } from '../../icon'

@@ -7,7 +7,7 @@ import { Title, TitleLevels } from '@/components/title'
 import { View } from '@/components/view'
 import { Alignable, TrilogyColor, TypographyBold } from '@/objects'
 import { getStatusIconName, getStatusStyle } from '@/objects/facets/Status'
-import * as React from 'react'
+import { FC, forwardRef } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import LibToast from 'react-native-toast-message'
@@ -45,7 +45,7 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
  * @param onClick {Function} onClick Event for all alert
  * @param display {boolean} Display Alert component
  */
-const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
+const Alert = forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {
     const { color, backgroundColor } = getStatusStyle(status)
     let alertView: JSX.Element
@@ -131,7 +131,7 @@ const Alert = React.forwardRef<AlertNativeRef, AlertProps>(
  * @param onClick {Function} onClick Event for all notification
  * @param closable {Function} onClick Event on cross icon
  */
-export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props }) => {
+export const ToasterAlert: FC<{ props: ToasterStatusProps }> = ({ props }) => {
   const { title, description, iconName, status, closable, onClick } = props
   const { color, backgroundColor } = getStatusStyle(status)
 
@@ -182,7 +182,7 @@ export const ToasterAlert: React.FC<{ props: ToasterStatusProps }> = ({ props })
 
 /**
  * Toaster provider
- * @param children {React.ReactNode} Custom Toast Content
+ * @param children {ReactNode} Custom Toast Content
  * @param duration {number} Duration in MS (Default: 5000)
  * @param offset {number} Offset position margin (Default: 10 dp)
  * @param others

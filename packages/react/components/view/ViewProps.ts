@@ -8,6 +8,7 @@ import {
   JustifiableProps,
   Loadable,
 } from '../../objects'
+import { ReactNode } from 'react'
 
 type Styles = { [key: string]: any }
 
@@ -44,7 +45,7 @@ export interface ViewProps
     AlignableProps,
     BackgroundProps,
     Accessibility, Dev {
-  children?: React.ReactNode
+  children?: ReactNode
   className?: string
   style?: Styles
   flexable?: boolean

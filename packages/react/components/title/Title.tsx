@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context/index'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { is } from '@/services'
 import clsx from 'clsx'
-import React from 'react'
+import { forwardRef } from 'react'
 import { ComponentName } from '../enumsComponentsName'
 import { TitleLevels, TitleLevelValues, TitleMarkup, TitleMarkupValues } from './TitleEnum'
 import { TitleProps, TitleRef } from './TitleProps'
@@ -59,7 +59,7 @@ const isCorrectMarkup = (stringMarkup: TitleMarkup | TitleMarkupValues) => {
  * - -------------------------- NATIVE PROPERTIES -------------------------------
  * @param style {Object} Additional styles
  */
-const Title = React.forwardRef<TitleRef, TitleProps>(
+const Title = forwardRef<TitleRef, TitleProps>(
   (
     {
       level = TitleLevels.ONE,

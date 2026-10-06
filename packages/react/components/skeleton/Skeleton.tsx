@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 import { SkeletonProps } from './SkeletonProps'
 
 /**
@@ -11,11 +11,11 @@ import { SkeletonProps } from './SkeletonProps'
  * @param shimmerColor {string} Color of the shimmer animation (default: '#F7F8F8')
  * @param duration {number} Shimmer animation duration in milliseconds (default: 1200)
  * @param borderRadius {number} Border radius of the container (default: 4)
- * @param children {React.ReactNode} Optional children to render inside the skeleton
+ * @param children {ReactNode} Optional children to render inside the skeleton
  * @param testID {string} Test identifier (React Native)
  * @param style {ViewStyle} Custom container style (React Native)
  */
-const Skeleton: React.FC<SkeletonProps> = () => {
+const Skeleton: FC<SkeletonProps> = () => {
   return (
     <></>
   )

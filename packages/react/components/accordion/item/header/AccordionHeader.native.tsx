@@ -1,16 +1,16 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { AccordionHeaderNativeRef, AccordionHeaderProps } from './AccordionHeaderProps'
 
 /**
  * Accordion Header
- * @param children {React.ReactNode} Header content
+ * @param children {ReactNode} Header content
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */
-const AccordionHeader = React.forwardRef<AccordionHeaderNativeRef, AccordionHeaderProps>(
+const AccordionHeader = forwardRef<AccordionHeaderNativeRef, AccordionHeaderProps>(
   ({ children }, ref): JSX.Element => {
     const styles = memoStyles({
       header: {

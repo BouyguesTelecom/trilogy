@@ -4,9 +4,10 @@ import { Accessibility, Dev, StatusState, StatusStateValues } from '../../object
 import { Clickable } from '../../objects/facets/Clickable'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { Invertable } from '../../objects/facets/Invertable'
+import { ReactNode } from 'react'
 
 export interface BadgeProps extends Clickable, Accessibility, Invertable, Dev, CommonProps {
-  children?: React.ReactNode
+  children?: ReactNode
   label?: string | number
   position?: BadgePositionEnum | BadgePositionValues
   status?: StatusState | StatusStateValues

@@ -1,4 +1,4 @@
-import * as React from "react"
+import { forwardRef } from "react"
 import {  } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { TableThNativeRef, TableThProps } from "./TableThProps"
@@ -11,7 +11,7 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * TableTh Component
  * @param children {ReactNode} children of table TH
  */
-const TableTh = React.forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
+const TableTh = forwardRef<TableThNativeRef, TableThProps>(({ children, ...others }, ref): JSX.Element => {
   const styles = memoStyles({
     tableTh: {
       flexDirection: "column",

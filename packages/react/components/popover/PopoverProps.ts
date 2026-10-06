@@ -13,7 +13,7 @@ import { View } from 'react-native'
  * Popover Interface
  */
 export interface PopoverProps {
-  children: React.ReactNode
+  children: ReactNode
   direction?: PopoverDirection | PopoverDirectionValues
   active?: boolean
   arrowPosition?: PopoverArrowPosition | PopoverArrowPositionValues

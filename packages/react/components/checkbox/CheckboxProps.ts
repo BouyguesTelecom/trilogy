@@ -1,4 +1,4 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Accessibility } from '../../objects/facets/Accessibility'
 import { CommonProps } from '../../objects/facets/CommonProps'
@@ -33,7 +33,7 @@ interface CheckboxWithLabel extends CheckboxCommonProps {
 }
 
 interface CheckboxWithChildren extends CheckboxCommonProps {
-  children: React.ReactNode
+  children: ReactNode
   label?: never
 }
 

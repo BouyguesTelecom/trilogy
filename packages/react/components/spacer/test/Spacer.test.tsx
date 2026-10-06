@@ -1,4 +1,3 @@
-import * as React from "react";
 import { render } from "@testing-library/react";
 import Spacer from "../Spacer";
 import { SpacerSize } from "../SpacerEnum";

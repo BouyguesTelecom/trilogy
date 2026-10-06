@@ -1,4 +1,6 @@
-export type ReactElementWithNoText = Exclude<React.ReactElement, string> | boolean | null | undefined
+import { ReactElement } from 'react'
+
+export type ReactElementWithNoText = Exclude<ReactElement, string> | boolean | null | undefined
 export type ArrayOfReactElementWithNoText = Array<ReactElementWithNoText>
 
 export type ReactElementsWithNoText = ReactElementWithNoText | ArrayOfReactElementWithNoText

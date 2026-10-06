@@ -1,6 +1,6 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, RefObject } from 'react'
 
-export const useClickOutside = (ref: React.RefObject<HTMLElement>, callback: () => void) => {
+export const useClickOutside = (ref: RefObject<HTMLElement>, callback: () => void) => {
   const stableCallback = useCallback(callback, [callback])
 
   useEffect(() => {

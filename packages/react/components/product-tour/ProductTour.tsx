@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { has, is } from '@/services'
 import { ProductTourRef, ProductTourWebProps } from './ProductTourProps'
 import { Icon, IconName, IconSize } from '../icon'
@@ -9,7 +9,7 @@ import { ComponentName } from '../enumsComponentsName'
 
 /**
  * Product Tour Component
- * @param children {React.ReactNode} Title child
+ * @param children {ReactNode} Title child
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional css classes
  * @param active {boolean} Display component
@@ -19,7 +19,7 @@ import { ComponentName } from '../enumsComponentsName'
  * @param avatarSrc {string} Display avatar if source
  * @param avatarDirection {AvatarDirection} LEFT|RIGHT
  */
-const ProductTour = React.forwardRef<ProductTourRef, ProductTourWebProps>(({
+const ProductTour = forwardRef<ProductTourRef, ProductTourWebProps>(({
   children,
   className,
   id,

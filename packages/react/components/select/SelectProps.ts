@@ -3,6 +3,7 @@ import { Accessibility, Dev } from '../../objects'
 import { CommonProps } from '../../objects/facets/CommonProps'
 import { IconName, IconNameValues } from '../icon'
 import { SelectStatus, SelectStatusValues } from './SelectEnum'
+import { BaseSyntheticEvent, FocusEvent as ReactFocusEvent, FocusEventHandler, ReactNode } from 'react'
 
 export interface ISelectOption {
   value: string | undefined
@@ -26,15 +27,15 @@ export type SelectChangeEventHandler<T = SelectChangeEvent> = (event: T) => void
 export type SelectNativeChangeEventHandler<T = SelectChangeEventNative> = (event: T) => void
 
 export type SelectedValue = string | number | string[] | undefined
-export type ParamEventSelectFocus = React.FocusEvent | React.BaseSyntheticEvent
+export type ParamEventSelectFocus = ReactFocusEvent | BaseSyntheticEvent
 export type SelectRef = HTMLSelectElement | HTMLInputElement
 export type SelectNativeRef = TextInput
 
 interface Props {
   onFocus?: (event: ParamEventSelectFocus) => void
-  onBlur?: React.FocusEventHandler<HTMLSelectElement> | ((event: unknown) => void)
+  onBlur?: FocusEventHandler<HTMLSelectElement> | ((event: unknown) => void)
   label?: string
-  children?: React.ReactNode
+  children?: ReactNode
   disabled?: boolean
   iconName?: IconName | IconNameValues
   selected?: SelectedValue
