@@ -1,3 +1,4 @@
+import { BackgroundColor } from '@/interfaces/colors'
 import { IconSize, Spacer, SpacerSize, TextLevels, TypographyBold, View } from '@trilogy-ds/react'
 import {
   Box,
@@ -127,7 +128,7 @@ export const BoxScreen = (): JSX.Element => {
       </Columns>
       <Divider />
 
-      <Box active={active} backgroundColor={TrilogyColor.MAIN} inverted>
+      <Box active={active} backgroundColor={BackgroundColor.ACCENT} inverted>
         <BoxHeader>Box active</BoxHeader>
         <BoxContent>
           <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]}>Background : Main Color.</Text>
@@ -135,7 +136,7 @@ export const BoxScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
 
-      <Box backgroundColor={TrilogyColor.MAIN_FADE}>
+      <Box backgroundColor={BackgroundColor.BRAND_SUBTLE}>
         <BoxHeader>Box with Header and Content</BoxHeader>
         <BoxContent>
           <Text>Background color is faded.</Text>
@@ -145,7 +146,7 @@ export const BoxScreen = (): JSX.Element => {
         </BoxFooter>
       </Box>
 
-      <Box backgroundColor={TrilogyColor.SUCCESS_FADE}>
+      <Box backgroundColor={BackgroundColor.SUCCESS_SUBTLE}>
         <BoxContent>
           <Title level={TitleLevels.FOUR}>Simple box</Title>
           <Text>
@@ -159,7 +160,7 @@ export const BoxScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
 
-      <Box backgroundColor={TrilogyColor.INFO} flat inverted>
+      <Box backgroundColor={BackgroundColor.INFORMATION} flat inverted>
         <BoxContent>
           <Icon name={IconName.EYE} />
           <Text>Background color is not faded.</Text>
@@ -168,7 +169,7 @@ export const BoxScreen = (): JSX.Element => {
         </BoxContent>
       </Box>
 
-      <Box backgroundColor={TrilogyColor.INFO} flat inverted>
+      <Box backgroundColor={BackgroundColor.INFORMATION_SUBTLE} flat inverted>
         <BoxContent>
           <Title level={TitleLevels.FOUR}>Flat box</Title>
           <Text>
@@ -179,7 +180,7 @@ export const BoxScreen = (): JSX.Element => {
             efficitur magna ultrices a. In quis bibendum tortor. Nam quam lacus, suscipit a vehicula ac, vehicula eget
             risus.
           </Text>
-          <Box backgroundColor={TrilogyColor.BACKGROUND} flat>
+          <Box backgroundColor={BackgroundColor.PRIMARY} flat>
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Simple box</Title>
               <Columns>
@@ -194,7 +195,7 @@ export const BoxScreen = (): JSX.Element => {
                   </Text>
                 </Column>
                 <Column size={5}>
-                  <Box backgroundColor={TrilogyColor.MAIN} flat inverted>
+                  <Box backgroundColor={BackgroundColor.SECONDARY} flat inverted>
                     <BoxContent>
                       <Title level={TitleLevels.FOUR}>Simple box</Title>
                       <Text>Background color is not faded.</Text>
@@ -230,7 +231,7 @@ export const BoxScreen = (): JSX.Element => {
         <Column size={6}>
           <Box className='is-fullheight' padding='xl'>
             <BoxHeader>Test</BoxHeader>
-            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+            <BoxContent backgroundColor={BackgroundColor.BRAND_SUBTLE}>
               <Title level={TitleLevels.FOUR}>Highlited box padding xl</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
@@ -248,7 +249,7 @@ export const BoxScreen = (): JSX.Element => {
         </Column>
         <Column size={6}>
           <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
-            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+            <BoxContent backgroundColor={BackgroundColor.BRAND_SUBTLE}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
@@ -258,7 +259,7 @@ export const BoxScreen = (): JSX.Element => {
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
             </BoxContent>
-            <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+            <BoxFooter backgroundColor={BackgroundColor.SUCCESS}>
               <Button variant={ButtonVariant.CONVERSION}>Test</Button>
             </BoxFooter>
           </Box>
@@ -266,7 +267,7 @@ export const BoxScreen = (): JSX.Element => {
         <Column size={6}>
           <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
             <BoxHeader>Test</BoxHeader>
-            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+            <BoxContent backgroundColor={BackgroundColor.BRAND_SUBTLE}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
@@ -276,7 +277,7 @@ export const BoxScreen = (): JSX.Element => {
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
             </BoxContent>
-            <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+            <BoxFooter backgroundColor={BackgroundColor.SUCCESS}>
               <Button variant={ButtonVariant.CONVERSION}>Test</Button>
             </BoxFooter>
           </Box>
@@ -284,7 +285,7 @@ export const BoxScreen = (): JSX.Element => {
         <Column size={6}>
           <Box className='is-fullheight' headerOffset>
             <BoxHeader>Test</BoxHeader>
-            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+            <BoxContent backgroundColor={BackgroundColor.BRAND_SUBTLE}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
@@ -294,7 +295,7 @@ export const BoxScreen = (): JSX.Element => {
             <BoxContent>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
             </BoxContent>
-            <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+            <BoxFooter backgroundColor={BackgroundColor.SUCCESS}>
               <Button variant={ButtonVariant.CONVERSION}>Test</Button>
             </BoxFooter>
           </Box>
@@ -302,14 +303,14 @@ export const BoxScreen = (): JSX.Element => {
         <Column size={6}>
           <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
             <BoxHeader>Test</BoxHeader>
-            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+            <BoxContent backgroundColor={BackgroundColor.BRAND_SUBTLE}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
                 ultricies justo ultrices sed leo cras.
               </Text>
             </BoxContent>
-            <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+            <BoxFooter backgroundColor={BackgroundColor.SUCCESS}>
               <Button variant={ButtonVariant.CONVERSION}>Test</Button>
             </BoxFooter>
           </Box>
@@ -317,7 +318,7 @@ export const BoxScreen = (): JSX.Element => {
         <Column size={6}>
           <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
             <BoxHeader>Test</BoxHeader>
-            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+            <BoxContent backgroundColor={BackgroundColor.BRAND_SUBTLE}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
@@ -328,18 +329,7 @@ export const BoxScreen = (): JSX.Element => {
         </Column>
         <Column size={6}>
           <Box highlighted={TrilogyColor.WARNING} className='is-fullheight' headerOffset>
-            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
-              <Title level={TitleLevels.FOUR}>Highlited box</Title>
-              <Text>
-                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
-                ultricies justo ultrices sed leo cras.
-              </Text>
-            </BoxContent>
-          </Box>
-        </Column>
-        <Column size={6}>
-          <Box className='is-fullheight' headerOffset>
-            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+            <BoxContent backgroundColor={BackgroundColor.BRAND_SUBTLE}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
@@ -350,14 +340,25 @@ export const BoxScreen = (): JSX.Element => {
         </Column>
         <Column size={6}>
           <Box className='is-fullheight' headerOffset>
-            <BoxContent backgroundColor={'NEUTRAL_FADE'}>
+            <BoxContent backgroundColor={BackgroundColor.BRAND_SUBTLE}>
               <Title level={TitleLevels.FOUR}>Highlited box</Title>
               <Text>
                 Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
                 ultricies justo ultrices sed leo cras.
               </Text>
             </BoxContent>
-            <BoxFooter backgroundColor={TrilogyColor.SUCCESS}>
+          </Box>
+        </Column>
+        <Column size={6}>
+          <Box className='is-fullheight' headerOffset>
+            <BoxContent backgroundColor={BackgroundColor.BRAND_SUBTLE}>
+              <Title level={TitleLevels.FOUR}>Highlited box</Title>
+              <Text>
+                Eget tincidunt tincidunt id massa sollicitudin. Egestas felis dolor neque nunc. Eget suscipit enim velit
+                ultricies justo ultrices sed leo cras.
+              </Text>
+            </BoxContent>
+            <BoxFooter backgroundColor={BackgroundColor.SUCCESS}>
               <Button variant={ButtonVariant.CONVERSION}>Test</Button>
             </BoxFooter>
           </Box>

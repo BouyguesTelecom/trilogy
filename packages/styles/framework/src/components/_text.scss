@@ -14,7 +14,7 @@
   }
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 
   @include mobile {

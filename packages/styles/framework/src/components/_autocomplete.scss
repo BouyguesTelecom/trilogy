@@ -15,7 +15,7 @@
     &.is-active {
       .autocomplete-menu {
         display: block;
-        border: var(--border);
+        border: var(--border-style);
         padding: calc($spacing-1 + 1px) calc($spacing-2 + 2px);
         border-radius: var(--radius-md);
         max-height: 220px;

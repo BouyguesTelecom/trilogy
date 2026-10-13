@@ -1,0 +1,79 @@
+// Generated from Figma tokens. Do not edit directly.
+
+$bg-colors-all: (
+  'primary': var(--bg-primary),
+  'primary-subtle': var(--bg-primary-subtle),
+  'secondary': var(--bg-secondary),
+  'secondary-subtle': var(--bg-secondary-subtle),
+  'success': var(--bg-success),
+  'success-subtle': var(--bg-success-subtle),
+  'warning': var(--bg-warning),
+  'warning-subtle': var(--bg-warning-subtle),
+  'error': var(--bg-error),
+  'error-subtle': var(--bg-error-subtle),
+  'information': var(--bg-information),
+  'information-subtle': var(--bg-information-subtle),
+  'accent': var(--bg-accent),
+  'accent-subtle': var(--bg-accent-subtle),
+  'brand': var(--bg-brand),
+  'brand-subtle': var(--bg-brand-subtle),
+  'overlay': var(--bg-overlay),
+);
+
+$border-color: (
+  'accent': var(--border-accent),
+  'inverse': var(--border-inverse),
+  'success': var(--border-success),
+  'warning': var(--border-warning),
+  'error': var(--border-error),
+  'information': var(--border-information),
+  'brand': var(--border-brand),
+  'primary': var(--border),
+);
+
+$bg-status: (
+  'success': var(--bg-success),
+  'error': var(--bg-error),
+  'warning': var(--bg-warning),
+  'information': var(--bg-information),
+);
+
+$bg-status-subtle: (
+  'success-subtle': var(--bg-success-subtle),
+  'error-subtle': var(--bg-error-subtle),
+  'warning-subtle': var(--bg-warning-subtle),
+  'information-subtle': var(--bg-information-subtle),
+);
+
+$border-colors-status: (
+  'success': var(--border-success),
+  'error': var(--border-error),
+  'warning': var(--border-warning),
+  'information': var(--border-information),
+);
+
+$colors-status: (
+  'success': var(--text-success),
+  'error': var(--text-error),
+  'warning': var(--text-warning),
+  'information': var(--text-information),
+);
+
+$colors-all: (
+  'link': var(--text-link),
+  'link-hover': var(--text-link-hover),
+  'link-visited': var(--text-link-visited),
+  'success': var(--text-success),
+  'warning': var(--text-warning),
+  'error': var(--text-error),
+  'information': var(--text-information),
+  'primary': var(--text-primary),
+  'secondary': var(--text-secondary),
+  'placeholder': var(--text-placeholder),
+  'selected': var(--text-selected),
+  'inverse': var(--text-inverse),
+  'accent': var(--text-accent),
+  'disabled': var(--text-disabled),
+  'brand': var(--text-brand),
+);
+

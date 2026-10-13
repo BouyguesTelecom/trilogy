@@ -8,7 +8,13 @@ import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef, useCallback, useMemo, CSSProperties, useEffect, useRef, useState } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { AlertProps, AlertRef, ToasterAlertFloat, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
+import {
+  AlertProps,
+  AlertRef,
+  ToasterAlertFloat,
+  ToasterAlertPosition,
+  ToasterStatusProps,
+} from '@/components/alert/AlertProps'
 import ToasterContext from '@/components/alert/context'
 
 /**
@@ -75,7 +81,7 @@ const ToasterAlert = ({
 
   const classes = hashClass(
     styled,
-    clsx('toaster', status && is(getStatusClassName(status)), !status && is('info'), className),
+    clsx('toaster', status && has(`background-${status}`), !status && is('info'), className),
   )
 
   return title && display !== false ? (
@@ -83,7 +89,6 @@ const ToasterAlert = ({
       id={id}
       style={positionStyles}
       onClick={(e) => {
-
         onClick?.(e)
         e.stopPropagation()
       }}
@@ -137,7 +142,7 @@ const Alert = forwardRef<AlertRef, AlertProps>(
 
     const classes = hashClass(
       styled,
-      clsx('alert', has('body'), status && is(getStatusClassName(status)), banner && is('banner'), className),
+      clsx('alert', has('body'), status && has(`background-${status}-subtle`), banner && is('banner'), className),
     )
 
     const iconAlert = useMemo(() => {
@@ -152,7 +157,6 @@ const Alert = forwardRef<AlertRef, AlertProps>(
           ref={ref}
           id={id}
           onClick={(e) => {
-
             onClick?.(e)
             e.stopPropagation()
           }}

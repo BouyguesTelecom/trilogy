@@ -200,25 +200,37 @@ $alignments: (
   font-weight: $weight-semibold !important;
 }
 
-@mixin typography-colors() {
-  @each $name, $color in $colors {
-    $brandName: nth($color, 2);
-    $color: nth($color, 1);
-    $color-invert: invertColor($name);
+// V4
+// @mixin typography-colors() {
+//   @each $name, $color in $colors {
+//     $brandName: nth($color, 2);
+//     $color: nth($color, 1);
+//     $color-invert: invertColor($name);
 
-    .has-text-#{$brandName} {
-      color: $color !important;
-    }
-    .has-text-#{$brandName}-invert {
-      color: $color-invert !important;
-    }
-    .has-background-#{$brandName} {
-      background-color: getColor($name) !important;
-    }
+//     .has-text-#{$brandName} {
+//       color: $color !important;
+//     }
+//     .has-text-#{$brandName}-invert {
+//       color: $color-invert !important;
+//     }
+//     .has-background-#{$brandName} {
+//       background-color: getColor($name) !important;
+//     }
+//   }
+// }
+
+@each $name, $color in $colors-all {
+  .has-text-#{$name} {
+    color: $color !important;
   }
 }
 
-@include typography-colors;
+@each $name, $color in $bg-colors-all {
+  .has-background-#{$name} {
+    background-color: $color !important;
+  }
+}
+
 
 // Visibility
 $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
@@ -429,7 +441,7 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 .is-bordered {
-  border: var(--border);
+  border: var(--border-style);
 }
 
 .is-vertical-paddingless {

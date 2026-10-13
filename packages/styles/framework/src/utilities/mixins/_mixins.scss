@@ -26,7 +26,7 @@
   @include control;
   height: $size-inputs;
   background-color: getColor('background');
-  border: var(--border);
+  border: var(--border-style);
   color: getColor('font');
 
   @include placeholder {
@@ -119,7 +119,7 @@
       }
 
       &:before {
-        border: var(--border);
+        border: var(--border-style);
       }
     }
 
@@ -249,7 +249,7 @@
       display: block;
       position: relative;
       padding: 40px 16px 16px;
-      border: var(--border);
+      border: var(--border-style);
       border-radius: var(--radius-md);
       box-sizing: border-box;
       background-color: getColor('background');

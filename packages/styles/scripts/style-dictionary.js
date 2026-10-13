@@ -8,8 +8,7 @@ const stylesDirectory = path.resolve(configDirectory, '..')
 const modes = ['light', 'dark']
 
 const isPrimitiveToken = (token) => path.basename(token.filePath ?? '') === 'tokens.json'
-const isModeToken = (token, mode) =>
-  modes.includes(token.path[0]) && (mode === undefined || token.path[0] === mode)
+const isModeToken = (token, mode) => modes.includes(token.path[0]) && (mode === undefined || token.path[0] === mode)
 
 // Keep identical semantic paths separate so dark tokens do not overwrite light tokens.
 StyleDictionary.registerParser({
@@ -173,6 +172,125 @@ const formatReactObject = (entries, indent = '  ') => {
   return ['{', ...lines, '}'].join('\n')
 }
 
+const getTokensByCssPrefix = (dictionary, prefix) =>
+  dictionary.allTokens
+    .filter((token) => isModeToken(token, 'light'))
+    .map((token) => ({ token, variable: getCssVariableName(token) }))
+    .filter(({ variable }) => variable?.startsWith(`--${prefix}-`))
+
+const getSemanticTokenName = (variable, prefix) => variable.slice(prefix.length + 1)
+
+const getColorMapDefinitions = (dictionary) => {
+  const backgrounds = getTokensByCssPrefix(dictionary, 'bg')
+  const textColors = getTokensByCssPrefix(dictionary, 'text')
+  const borderColors = getTokensByCssPrefix(dictionary, 'border').filter(
+    ({ variable }) => !variable.startsWith('--border-width-'),
+  )
+  const byName = (entries, prefix) =>
+    new Map(entries.map(({ variable }) => [getSemanticTokenName(variable, prefix), `var(${variable})`]))
+  const backgroundsByName = byName(backgrounds, '--bg')
+  const textByName = byName(textColors, '--text')
+  const bordersByName = byName(borderColors, '--border')
+  // Keep the original brand key and expose primary as a generic border alias.
+  if (bordersByName.has('brand')) bordersByName.set('primary', 'var(--border)')
+  const statuses = [
+    { key: 'success', text: 'success', border: 'success', bg: 'success', subtle: 'success-subtle' },
+    { key: 'error', text: 'error', border: 'error', bg: 'error', subtle: 'error-subtle' },
+    { key: 'warning', text: 'warning', border: 'warning', bg: 'warning', subtle: 'warning-subtle' },
+    { key: 'information', text: 'information', border: 'information', bg: 'information', subtle: 'information-subtle' },
+  ]
+  const statusMap = (field, values) =>
+    new Map(
+      statuses.map(({ key, [field]: tokenName }) => {
+        const value = values.get(tokenName)
+        if (!value) throw new Error(`Missing ${field} status token "${tokenName}" in Figma token set.`)
+        return [key, value]
+      }),
+    )
+
+  return {
+    backgrounds: backgroundsByName,
+    backgroundSolid: new Map([...backgroundsByName].filter(([name]) => !name.endsWith('-subtle'))),
+    backgroundSubtle: new Map([...backgroundsByName].filter(([name]) => name.endsWith('-subtle'))),
+    borders: bordersByName,
+    text: textByName,
+    colorsStatus: statusMap('text', textByName),
+    borderColorsStatus: statusMap('border', bordersByName),
+    bgStatus: statusMap('bg', backgroundsByName),
+    bgStatusSubtle: new Map(
+      [...statusMap('subtle', backgroundsByName)].map(([status, value]) => [`${status}-subtle`, value]),
+    ),
+  }
+}
+
+const formatSassMap = (name, entries) =>
+  [`$${name}: (`, ...[...entries].map(([key, value]) => `  '${key}': ${value},`), ');'].join('\n')
+
+const toEnumMember = (value) =>
+  value
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+    .map((part) => part.toUpperCase())
+    .join('_')
+
+const formatEnum = (name, entries, memberPrefix = '') =>
+  [
+    `export enum ${name} {`,
+    ...[...entries.keys()].map((value) => `  ${memberPrefix}${toEnumMember(value)} = '${value}',`),
+    '}',
+    '',
+    `export type ${name}Values = \`${'${'}${name}}\``,
+  ].join('\n')
+
+const colorMapDefinitions = (dictionary) => getColorMapDefinitions(dictionary)
+
+StyleDictionary.registerFormat({
+  name: 'scss/color-maps/figma',
+  format: ({ dictionary }) => {
+    const maps = colorMapDefinitions(dictionary)
+    return [
+      '// Generated from Figma tokens. Do not edit directly.',
+      formatSassMap('bg-colors-all', maps.backgrounds),
+      formatSassMap('border-color', maps.borders),
+      formatSassMap('bg-status', maps.bgStatus),
+      formatSassMap('bg-status-subtle', maps.bgStatusSubtle),
+      formatSassMap('border-colors-status', maps.borderColorsStatus),
+      formatSassMap('colors-status', maps.colorsStatus),
+      formatSassMap('colors-all', maps.text),
+      '',
+    ].join('\n\n')
+  },
+})
+
+StyleDictionary.registerFormat({
+  name: 'typescript/colors/enums',
+  format: ({ dictionary }) => {
+    const maps = colorMapDefinitions(dictionary)
+    return [
+      '// Generated from Figma tokens. Do not edit directly.',
+      '',
+      formatEnum('BackgroundColor', maps.backgrounds),
+      '',
+      formatEnum('BackgroundColorSolid', maps.backgroundSolid),
+      '',
+      formatEnum('BackgroundColorSubtle', maps.backgroundSubtle),
+      '',
+      formatEnum('BorderColor', maps.borders),
+      '',
+      formatEnum('TextColor', maps.text),
+      '',
+      formatEnum('ColorsStatus', maps.colorsStatus),
+      '',
+      formatEnum('BorderColorsStatus', maps.borderColorsStatus),
+      '',
+      formatEnum('BgStatusSubtle', maps.bgStatusSubtle),
+      '',
+      formatEnum('BgStatus', maps.bgStatus),
+      '',
+    ].join('\n')
+  },
+})
+
 const findTokens = (value, tokens = []) => {
   if (!value || typeof value !== 'object') {
     return tokens
@@ -334,6 +452,10 @@ export default {
           destination: '_tokens.scss',
           format: 'scss/theme/figma',
         },
+        {
+          destination: '_color-maps.scss',
+          format: 'scss/color-maps/figma',
+        },
       ],
     },
     react: {
@@ -349,8 +471,7 @@ export default {
                 name: 'THEME_COLORS_TRILOGY',
                 property: 'colors',
                 modeAware: true,
-                filter: (token) =>
-                  isModeToken(token) && token.path[1] !== 'Radius' && token.path[1] !== 'Spacing',
+                filter: (token) => isModeToken(token) && token.path[1] !== 'Radius' && token.path[1] !== 'Spacing',
               },
               {
                 name: 'THEME_FONTS_TRILOGY',
@@ -369,6 +490,10 @@ export default {
               },
             ],
           },
+        },
+        {
+          destination: '../interfaces/colors.ts',
+          format: 'typescript/colors/enums',
         },
       ],
     },

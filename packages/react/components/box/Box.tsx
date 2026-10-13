@@ -1,6 +1,5 @@
 import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getColorClassName } from '@/objects/facets/Color'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
@@ -65,7 +64,7 @@ const Box = forwardRef<BoxRef, BoxProps>(
         'box',
         shadowless && is('shadowless'),
         className,
-        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundColor && has(`background-${backgroundColor}`),
         backgroundSrc && has('background'),
         inverted && is('inverted'),
         skeleton && is('loading'),

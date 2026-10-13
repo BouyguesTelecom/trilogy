@@ -27,7 +27,7 @@ const BoxFooter = forwardRef<BoxFooterRef, BoxFooterProps>(
         id={id}
         className={hashClass(
           styled,
-          clsx('box-footer', backgroundColor && has(getBackgroundClassName(backgroundColor)), className),
+          clsx('box-footer', backgroundColor && has(`background-${backgroundColor}`), className),
         )}
         {...others}
       >

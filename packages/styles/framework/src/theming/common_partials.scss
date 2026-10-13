@@ -10,8 +10,8 @@
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-full: 9999px;
-  --border: 1px solid #{getColor('stroke')};
-  --border-active: 2px solid #{getColor('main')};
+  --border-style: 1px solid #{var(--border)};
+  --border-active: 2px solid #{var(--focus-border)};
   --spacing-none: 0;
   --spacing-xxs: 4px;
   --spacing-xs: 8px;
