@@ -89,6 +89,11 @@ const getRawTokenValue = (token) => {
 
 const getTokenValue = (token, value, tokenPath = []) => {
   if (value && typeof value === 'object' && typeof value.hex === 'string') {
+    if (typeof value.alpha === 'number' && value.alpha < 1) {
+      if (value.alpha === 0) return 'transparent'
+      const channels = value.components.map((channel) => Math.round(channel * 255))
+      return `rgba(${channels.join(', ')}, ${value.alpha})`
+    }
     return value.hex
   }
 

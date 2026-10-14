@@ -4,10 +4,10 @@ $height-prompt-item: 64px;
     box-shadow: 0 0 0 1px var(--color-stroke);
     border-radius: var(--radius-sm);
     overflow: hidden;
-    background-color: getColor('background');
+    background-color: var(--input-bg);
     &[aria-disabled=true] {
-        background-color: getColor('disabled-fade') !important;
-        border: 1px solid getColor('disabled');
+        background-color: var(--input-bg-disabled) !important;
+        border: 1px solid var(--border-disabled);
     }
     * {
         margin-bottom: 0px !important;
@@ -111,13 +111,13 @@ $height-prompt-item: 64px;
                 right: 0px !important;
             }
             &.active {
-                background-color: getColor('main') !important;
+                background-color: var(--btn-bg-primary) !important;
                 .icon i {
-                    background-color: getColor('background');
+                    background-color: var(--icon-inverse);
                 }
             }
             &[disabled], &.is-disabled {
-                background-color: getColor('disabled-fade') !important;
+                background-color: var(--input-bg-disabled) !important;
                 cursor: not-allowed;
             }
         }
@@ -131,25 +131,26 @@ $height-prompt-item: 64px;
             padding: 0;
         }
         &-tool-submit:not(.active):not(:disabled) {
-            background-color: getColor('disabled-fade') !important;
+            background-color: var(--input-bg-disabled) !important;
+            border-color: var(--input-bg-disabled) !important;
             &:hover {
                 filter: brightness(1) !important;
                 cursor: default !important;
             }
             i {
-                background-color: getColor('disabled') !important;
+                background-color: var(--text-disabled) !important;
             }
         }
         &-tool-submit:disabled {
-            background-color: getColor('disabled') !important;
+            background-color: var(--input-bg-disabled-selected) !important;
             i {
-                background-color: getColor('disabled-fade') !important;
+                background-color: var(--input-bg-disabled) !important;
             }
         }
     }
 
     &-stop_streaming {
-        background-color: getColor('background');
+        background-color: var(--bg-primary);
         height: 16px;
         width: 16px;
         border-radius: var(--radius-xs);

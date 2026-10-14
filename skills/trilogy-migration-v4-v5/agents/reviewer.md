@@ -22,8 +22,8 @@ Auditer un projet consommateur pour identifier les usages documentés incompatib
 5. **Button React/CSS** — `ButtonVariant.CONVERSION` ou `is-conversion` encore utilisé pour une variante visuelle Button au lieu de `ButtonVariant.ACCENT` ou `is-accent`.
 6. **Hero/Section/Box/BoxHeader/Icon React** — `backgroundColor` ou `BoxHeader.variant` encore basé sur `TrilogyColor` au lieu de `BackgroundColor`, selon [react-background-color.md](../rules/react-background-color.md). Pour Icon, auditer uniquement `backgroundColor`, pas `color`.
 7. **IconColor React** — anciens membres de l'enum dans la prop couleur du glyphe encore utilisés, selon [react-icon-color.md](../rules/react-icon-color.md).
-8. **Box/Hero/Icon HTML/CSS** — classes de fond `has-*` legacy encore présentes sur la racine identifiée du composant, à la place de `has-background-*`, selon [html-box.md](../rules/html-box.md), [html-hero.md](../rules/html-hero.md) et [html-icon.md](../rules/html-icon.md).
-9. **Portée** — remplacement global de `TrilogyColor`, de classes de statut/couleur ou du terme « conversion », ou modification sur un élément qui n'est pas identifié comme Alert/Button/Hero/Box/BoxHeader/Icon. Signaler les valeurs sans mapping confirmé et toute identification ambiguë.
+8. **Box/BoxContent/BoxFooter/Hero/Section/Icon HTML/CSS** — suffixes legacy tels que `has-background-info` encore présents au lieu de `has-background-information`. Le préfixe `has-background-` est déjà utilisé en v4 pour ces composants et doit rester inchangé. Suivre [html-box.md](../rules/html-box.md), [html-hero.md](../rules/html-hero.md), [html-section.md](../rules/html-section.md) et [html-icon.md](../rules/html-icon.md); auditer uniquement la racine et le fond d'Icon.
+10. **Portée** — remplacement global de `TrilogyColor`, de classes de statut/couleur ou du terme « conversion », ou modification sur un élément qui n'est pas identifié comme Alert/Button/Hero/Box/BoxHeader/Icon/Section. Signaler les valeurs sans mapping confirmé et toute identification ambiguë.
 
 ## Format du rapport
 

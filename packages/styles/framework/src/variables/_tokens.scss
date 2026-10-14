@@ -74,9 +74,9 @@
   --btn-bg-secondary-pressed: #{$color-neutral-200};
   --btn-border-secondary: #{$color-main-100};
   --btn-text-secondary: #{$color-main-500};
-  --btn-bg-ghost: #FFFFFF;
+  --btn-bg-ghost: transparent;
   --btn-bg-ghost-hover: #{$color-main-50};
-  --btn-border-ghost: #{$color-main-100};
+  --btn-border-ghost: transparent;
   --btn-bg-ghost-pressed: #{$color-main-100};
   --btn-text-ghost: #{$color-main-500};
   --btn-bg-disabled: #{$color-neutral-100};
@@ -108,7 +108,7 @@
   --spacing-xxs: #{$spacing-space01};
   --spacing-none: #{$spacing-space00};
   --layer: #{$color-neutral-50};
-  --bg-overlay: #062B3F;
+  --bg-overlay: rgba(6, 43, 63, 0.10000000149011612);
   --card-background: #{$color-neutral-50};
   --popover: #{$color-main-500};
   --focus-border: #{$color-main-500};
@@ -211,9 +211,9 @@
   --btn-bg-secondary-pressed: #{$color-neutral-200};
   --btn-border-secondary: #{$color-main-100};
   --btn-text-secondary: #{$color-main-500};
-  --btn-bg-ghost: #FFFFFF;
+  --btn-bg-ghost: transparent;
   --btn-bg-ghost-hover: #{$color-main-50};
-  --btn-border-ghost: #{$color-main-100};
+  --btn-border-ghost: transparent;
   --btn-bg-ghost-pressed: #{$color-main-100};
   --btn-text-ghost: #{$color-main-500};
   --btn-bg-disabled: #{$color-neutral-100};
@@ -245,7 +245,7 @@
   --spacing-xxs: #{$spacing-space01};
   --spacing-none: #{$spacing-space00};
   --layer: #{$color-neutral-50};
-  --bg-overlay: #062B3F;
+  --bg-overlay: rgba(6, 43, 63, 0.10000000149011612);
   --card-background: #{$color-neutral-50};
   --popover: #{$color-main-500};
   --focus-border: #{$color-main-500};

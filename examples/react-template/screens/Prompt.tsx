@@ -16,6 +16,7 @@ import { PromptSubmitStatus } from '@trilogy-ds/react/components/prompt/toolbar/
 import { useState } from 'react'
 import { InputFile } from '../components'
 import usePickImage from '../hooks/pickImage/pickImage'
+import { BackgroundColor } from '@/interfaces/colors'
 
 export const PromptScreen = () => {
   const [text, setText] = useState<string>('')
@@ -48,7 +49,7 @@ export const PromptScreen = () => {
   }
 
   return (
-    <Section backgroundColor={TrilogyColor.ACCENT}>
+    <Section backgroundColor={BackgroundColor.ACCENT}>
       <Prompt>
         <PromptFiles>
           {files.map((file, key) => {
