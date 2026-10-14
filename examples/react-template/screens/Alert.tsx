@@ -1,4 +1,4 @@
-import { ColorsStatus } from '@/interfaces/colors'
+import { StatusVariant } from '@/interfaces/status'
 import { isMobile, StatusState } from '@trilogy-ds/react'
 import {
   Alert,
@@ -39,7 +39,7 @@ const ToasterAlertView: React.FC = () => {
       title,
       description,
       iconName: IconName.ALERT,
-      status: ColorsStatus.WARNING,
+      status: StatusVariant.WARNING,
       onClick: () => console.log('onClick'),
       closable: () => alert('closable'),
       onHide: () => console.log('onHide'),
@@ -76,7 +76,7 @@ export const AlertScreen = (): JSX.Element => {
             <Box flat>
               <BoxContent>
                 <Columns multiline>
-                  {Object.values(ColorsStatus).map((alert, index) => {
+                  {Object.values(StatusVariant).map((alert, index) => {
                     return (
                       <Column size={isMobile ? 12 : 6} key={index}>
                         <Title level={TitleLevels.FIVE}>StatusState : {alert}</Title>
@@ -108,7 +108,7 @@ export const AlertScreen = (): JSX.Element => {
                         <Alert
                           markup={markup}
                           display
-                          status={ColorsStatus.INFORMATION}
+                          status={StatusVariant.INFORMATION}
                           title={`Ceci est un <${markup}>`}
                           description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
                         />

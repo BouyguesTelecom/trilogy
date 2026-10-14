@@ -183,6 +183,10 @@ const getSemanticTokenName = (variable, prefix) => variable.slice(prefix.length 
 const getColorMapDefinitions = (dictionary) => {
   const backgrounds = getTokensByCssPrefix(dictionary, 'bg')
   const textColors = getTokensByCssPrefix(dictionary, 'text')
+  const iconColors = getTokensByCssPrefix(dictionary, 'icon').filter(
+    ({ variable }) =>
+      !variable.startsWith('--icon-size-') && !['--icon-selected', '--icon-disabled'].includes(variable),
+  )
   const borderColors = getTokensByCssPrefix(dictionary, 'border').filter(
     ({ variable }) => !variable.startsWith('--border-width-'),
   )
@@ -190,6 +194,12 @@ const getColorMapDefinitions = (dictionary) => {
     new Map(entries.map(({ variable }) => [getSemanticTokenName(variable, prefix), `var(${variable})`]))
   const backgroundsByName = byName(backgrounds, '--bg')
   const textByName = byName(textColors, '--text')
+  const iconColorsByName = byName(iconColors, '--icon')
+  // The primary icon token is named `primary` in Figma but uses the bare --icon variable.
+  const primaryIcon = dictionary.allTokens.find(
+    (token) => isModeToken(token, 'light') && getCssVariableName(token) === '--icon',
+  )
+  if (primaryIcon) iconColorsByName.set('primary', 'var(--icon)')
   const bordersByName = byName(borderColors, '--border')
   // Keep the original brand key and expose primary as a generic border alias.
   if (bordersByName.has('brand')) bordersByName.set('primary', 'var(--border)')
@@ -207,6 +217,36 @@ const getColorMapDefinitions = (dictionary) => {
         return [key, value]
       }),
     )
+  // Public button variant → token suffix.
+  const buttonVariantTokens = [
+    { variant: 'accent', token: 'accent' },
+    { variant: 'primary', token: 'primary' },
+    { variant: 'secondary', token: 'secondary' },
+    { variant: 'ghost', token: 'ghost' },
+  ]
+  const buttonVariantStates = [
+    ['background', (token) => `--btn-bg-${token}`],
+    ['hover-background', (token) => `--btn-bg-${token}-hover`, (token) => `--btn-bg-${token}`],
+    ['pressed-background', (token) => `--btn-bg-${token}-pressed`, (token) => `--btn-bg-${token}`],
+    ['border', (token) => `--btn-border-${token}`],
+    ['hover-border', (token) => `--btn-border-${token}-hover`, (token) => `--btn-border-${token}`],
+    ['pressed-border', (token) => `--btn-border-${token}-pressed`, (token) => `--btn-border-${token}`],
+    ['text', (token) => `--btn-text-${token}`],
+    ['hover-text', (token) => `--btn-text-${token}-hover`, (token) => `--btn-text-${token}`],
+    ['pressed-text', (token) => `--btn-text-${token}-pressed`, (token) => `--btn-text-${token}`],
+  ]
+  const buttonVariants = new Map(
+    buttonVariantTokens.map(({ variant, token }) => [
+      variant,
+      new Map(
+        buttonVariantStates.map(([state, getVariable, getFallback]) => {
+          const variable = getVariable(token)
+          const fallback = getFallback ? `, var(${getFallback(token)})` : ''
+          return [state, `var(${variable}${fallback})`]
+        }),
+      ),
+    ]),
+  )
 
   return {
     backgrounds: backgroundsByName,
@@ -214,9 +254,11 @@ const getColorMapDefinitions = (dictionary) => {
     backgroundSubtle: new Map([...backgroundsByName].filter(([name]) => name.endsWith('-subtle'))),
     borders: bordersByName,
     text: textByName,
+    iconColors: iconColorsByName,
     colorsStatus: statusMap('text', textByName),
     borderColorsStatus: statusMap('border', bordersByName),
     bgStatus: statusMap('bg', backgroundsByName),
+    buttonVariants,
     bgStatusSubtle: new Map(
       [...statusMap('subtle', backgroundsByName)].map(([status, value]) => [`${status}-subtle`, value]),
     ),
@@ -226,6 +268,17 @@ const getColorMapDefinitions = (dictionary) => {
 const formatSassMap = (name, entries) =>
   [`$${name}: (`, ...[...entries].map(([key, value]) => `  '${key}': ${value},`), ');'].join('\n')
 
+const formatNestedSassMap = (name, entries) =>
+  [
+    `$${name}: (`,
+    ...[...entries].flatMap(([key, values]) => [
+      `  '${key}': (`,
+      ...[...values].map(([state, value]) => `    '${state}': ${value},`),
+      '  ),',
+    ]),
+    ');',
+  ].join('\n')
+
 const toEnumMember = (value) =>
   value
     .split(/[^a-zA-Z0-9]+/)
@@ -233,10 +286,10 @@ const toEnumMember = (value) =>
     .map((part) => part.toUpperCase())
     .join('_')
 
-const formatEnum = (name, entries, memberPrefix = '') =>
+const formatEnum = (name, entries, memberPrefix = '', valueTransform = (value) => value) =>
   [
     `export enum ${name} {`,
-    ...[...entries.keys()].map((value) => `  ${memberPrefix}${toEnumMember(value)} = '${value}',`),
+    ...[...entries.keys()].map((value) => `  ${memberPrefix}${toEnumMember(value)} = '${valueTransform(value)}',`),
     '}',
     '',
     `export type ${name}Values = \`${'${'}${name}}\``,
@@ -255,6 +308,8 @@ StyleDictionary.registerFormat({
       formatSassMap('bg-status', maps.bgStatus),
       formatSassMap('bg-status-subtle', maps.bgStatusSubtle),
       formatSassMap('border-colors-status', maps.borderColorsStatus),
+      formatNestedSassMap('button-variants', maps.buttonVariants),
+      formatSassMap('colors-icon', maps.iconColors),
       formatSassMap('colors-status', maps.colorsStatus),
       formatSassMap('colors-all', maps.text),
       '',
@@ -279,13 +334,35 @@ StyleDictionary.registerFormat({
       '',
       formatEnum('TextColor', maps.text),
       '',
-      formatEnum('ColorsStatus', maps.colorsStatus),
+      formatEnum('IconColor', maps.iconColors),
       '',
-      formatEnum('BorderColorsStatus', maps.borderColorsStatus),
+    ].join('\n')
+  },
+})
+
+StyleDictionary.registerFormat({
+  name: 'typescript/status/enums',
+  format: ({ dictionary }) => {
+    const maps = colorMapDefinitions(dictionary)
+    return [
+      '// Generated from Figma tokens. Do not edit directly.',
       '',
-      formatEnum('BgStatusSubtle', maps.bgStatusSubtle),
+      formatEnum('StatusVariant', maps.colorsStatus),
       '',
-      formatEnum('BgStatus', maps.bgStatus),
+      formatEnum('StatusSubtleVariant', maps.bgStatusSubtle),
+      '',
+    ].join('\n')
+  },
+})
+
+StyleDictionary.registerFormat({
+  name: 'typescript/button/enum',
+  format: ({ dictionary }) => {
+    const maps = colorMapDefinitions(dictionary)
+    return [
+      '// Generated from button color mappings. Do not edit directly.',
+      '',
+      formatEnum('ButtonVariant', maps.buttonVariants),
       '',
     ].join('\n')
   },
@@ -494,6 +571,14 @@ export default {
         {
           destination: '../interfaces/colors.ts',
           format: 'typescript/colors/enums',
+        },
+        {
+          destination: '../interfaces/status.ts',
+          format: 'typescript/status/enums',
+        },
+        {
+          destination: '../interfaces/button.ts',
+          format: 'typescript/button/enum',
         },
       ],
     },

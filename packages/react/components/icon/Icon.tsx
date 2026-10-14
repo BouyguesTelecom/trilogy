@@ -8,6 +8,7 @@ import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconProps, IconRef } from '@/components/icon/IconProps'
 import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
+import { BackgroundColor } from '@/interfaces/colors'
 
 /**
  * Icon Component
@@ -28,14 +29,28 @@ import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
  */
 const Icon = forwardRef<IconRef, IconProps>(
   (
-    { className, id, size, name, circled, stretched, color, backgroundColor, onClick, skeleton, align, testId, ...others },
+    {
+      className,
+      id,
+      size,
+      name,
+      circled,
+      stretched,
+      color,
+      backgroundColor,
+      onClick,
+      skeleton,
+      align,
+      testId,
+      ...others
+    },
     ref,
   ): JSX.Element => {
     const { styled } = useTrilogyContext()
 
     const background =
-      (backgroundColor && has(getBackgroundClassName(backgroundColor))) ||
-      (circled && has(getBackgroundClassName(TrilogyColor.MAIN))) ||
+      (backgroundColor && has(`background-${backgroundColor}`)) ||
+      (circled && has(`background-${BackgroundColor.SECONDARY}`)) ||
       ''
 
     const classes = hashClass(
@@ -46,7 +61,7 @@ const Icon = forwardRef<IconRef, IconProps>(
         size && is(size),
         circled && is('circled'),
         circled && !color && has('text-white'),
-        color && is(`${getColorClassName(color as TrilogyColorValues | TrilogyColor)}`),
+        color && is(color),
         skeleton && is('loading'),
         align && clsx(is('flex'), is(getJustifySelfClassName(align))),
         background,

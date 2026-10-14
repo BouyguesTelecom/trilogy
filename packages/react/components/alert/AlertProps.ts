@@ -8,7 +8,7 @@ import { Dev } from '@/objects/facets/Dev'
 import { StatusProps } from '@/objects/facets/Status'
 import { AlertMarkup, AlertMarkupValues } from '@/components/alert/AlertEnum'
 import { ReactNode } from 'react'
-import { ColorsStatus, ColorsStatusValues } from '@/interfaces/colors'
+import { StatusVariant, StatusVariantValues } from '@/interfaces/status'
 
 export enum ToasterAlertPosition {
   TOP = 'top',
@@ -36,7 +36,7 @@ export interface ToasterStatusProps extends Clickable, Accessibility, Dev {
   onShow?: () => void
   onHide?: () => void
   markup?: AlertMarkup | AlertMarkupValues
-  status?: ColorsStatus | ColorsStatusValues
+  status?: StatusVariant | StatusVariantValues
   id?: string
 }
 
@@ -51,7 +51,7 @@ export interface AlertProps extends Clickable, Accessibility, Dev, CommonProps {
   toaster?: boolean
   banner?: boolean
   markup?: AlertMarkup | AlertMarkupValues
-  status?: ColorsStatus | ColorsStatusValues
+  status?: StatusVariant | StatusVariantValues
   id?: string
 }
 

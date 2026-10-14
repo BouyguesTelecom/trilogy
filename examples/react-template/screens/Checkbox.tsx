@@ -144,6 +144,7 @@ export const CheckboxScreen = (): JSX.Element => {
                 aliquam maxime illum laudantium, hic fugiat cupiditate sapiente velit quidem. Voluptates iste nihil
                 similique animi.s'
                 horizontal
+                disabled
               />
             </CheckboxTiles>
             {/* <Text id='ww'>CheckboxTiles horizontal (OLD)</Text>

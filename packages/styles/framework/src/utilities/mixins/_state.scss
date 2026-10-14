@@ -7,7 +7,7 @@
     @include hoverRules();
   }
   &:focus:not(.is-disabled), &:focus-visible:not(.is-disabled) {
-    border: 2px solid currentColor;
+    border: var(--border-input-focused);
   }
 }
 

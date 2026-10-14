@@ -21,7 +21,7 @@ $loader-items-bottom-offset: -40px;
 
     .loader-body {
         visibility: hidden;
-        background-color: getColor('accent');
+        background-color: var(--bg-accent);
         animation: 2.5s linear 0s forwards infinite top_item;
     }
 
@@ -36,7 +36,7 @@ $loader-items-bottom-offset: -40px;
         height: 20px;
         left: calc(50% - 10px);
         z-index: zindex('small');
-        background-color: getColor('font');
+        background-color: var(--bg-secondary);
         animation: 2.5s linear 0s forwards infinite left_item;
     }
 
@@ -44,7 +44,7 @@ $loader-items-bottom-offset: -40px;
         width: 20px;
         height: 20px;
         right: calc(50% - 20px);
-        background-color: getColor('main');
+        background-color: var(--bg-secondary);
         animation: 2.5s linear 0s forwards infinite right_item;
     }
 

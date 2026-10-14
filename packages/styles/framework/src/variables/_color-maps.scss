@@ -52,6 +52,64 @@ $border-colors-status: (
   'information': var(--border-information),
 );
 
+$button-variants: (
+  'accent': (
+    'background': var(--btn-bg-accent),
+    'hover-background': var(--btn-bg-accent-hover, var(--btn-bg-accent)),
+    'pressed-background': var(--btn-bg-accent-pressed, var(--btn-bg-accent)),
+    'border': var(--btn-border-accent),
+    'hover-border': var(--btn-border-accent-hover, var(--btn-border-accent)),
+    'pressed-border': var(--btn-border-accent-pressed, var(--btn-border-accent)),
+    'text': var(--btn-text-accent),
+    'hover-text': var(--btn-text-accent-hover, var(--btn-text-accent)),
+    'pressed-text': var(--btn-text-accent-pressed, var(--btn-text-accent)),
+  ),
+  'primary': (
+    'background': var(--btn-bg-primary),
+    'hover-background': var(--btn-bg-primary-hover, var(--btn-bg-primary)),
+    'pressed-background': var(--btn-bg-primary-pressed, var(--btn-bg-primary)),
+    'border': var(--btn-border-primary),
+    'hover-border': var(--btn-border-primary-hover, var(--btn-border-primary)),
+    'pressed-border': var(--btn-border-primary-pressed, var(--btn-border-primary)),
+    'text': var(--btn-text-primary),
+    'hover-text': var(--btn-text-primary-hover, var(--btn-text-primary)),
+    'pressed-text': var(--btn-text-primary-pressed, var(--btn-text-primary)),
+  ),
+  'secondary': (
+    'background': var(--btn-bg-secondary),
+    'hover-background': var(--btn-bg-secondary-hover, var(--btn-bg-secondary)),
+    'pressed-background': var(--btn-bg-secondary-pressed, var(--btn-bg-secondary)),
+    'border': var(--btn-border-secondary),
+    'hover-border': var(--btn-border-secondary-hover, var(--btn-border-secondary)),
+    'pressed-border': var(--btn-border-secondary-pressed, var(--btn-border-secondary)),
+    'text': var(--btn-text-secondary),
+    'hover-text': var(--btn-text-secondary-hover, var(--btn-text-secondary)),
+    'pressed-text': var(--btn-text-secondary-pressed, var(--btn-text-secondary)),
+  ),
+  'ghost': (
+    'background': var(--btn-bg-ghost),
+    'hover-background': var(--btn-bg-ghost-hover, var(--btn-bg-ghost)),
+    'pressed-background': var(--btn-bg-ghost-pressed, var(--btn-bg-ghost)),
+    'border': var(--btn-border-ghost),
+    'hover-border': var(--btn-border-ghost-hover, var(--btn-border-ghost)),
+    'pressed-border': var(--btn-border-ghost-pressed, var(--btn-border-ghost)),
+    'text': var(--btn-text-ghost),
+    'hover-text': var(--btn-text-ghost-hover, var(--btn-text-ghost)),
+    'pressed-text': var(--btn-text-ghost-pressed, var(--btn-text-ghost)),
+  ),
+);
+
+$colors-icon: (
+  'accent': var(--icon-accent),
+  'inverse': var(--icon-inverse),
+  'success': var(--icon-success),
+  'warning': var(--icon-warning),
+  'error': var(--icon-error),
+  'information': var(--icon-information),
+  'brand': var(--icon-brand),
+  'primary': var(--icon),
+);
+
 $colors-status: (
   'success': var(--text-success),
   'error': var(--text-error),

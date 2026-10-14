@@ -15,11 +15,15 @@ Auditer un projet consommateur pour identifier les usages documentés incompatib
 
 ## Points à vérifier
 
-1. **Alert React** — prop `status` encore liée à `StatusState` au lieu de `ColorsStatus`.
-2. **Statut information React** — `info` ou `StatusState.INFO` encore utilisé pour `Alert`, au lieu de `information` ou `ColorsStatus.INFORMATION`.
-3. **Import enum** — `ColorsStatus` importé d'un chemin non exposé par la version v5 installée.
+1. **Alert React** — prop `status` encore liée à `StatusState` au lieu de `StatusVariant`.
+2. **Statut information React** — `info` ou `StatusState.INFO` encore utilisé pour `Alert`, au lieu de `information` ou `StatusVariant.INFORMATION`.
+3. **Import enum** — `StatusVariant` importé d'un chemin non exposé par la version v5 installée (définition dans `interfaces/status`).
 4. **Alert HTML/CSS** — sur l'élément racine identifié par `alert`, anciennes classes `is-success`, `is-info`, `is-warning` ou `is-error` encore utilisées à la place de leurs classes `has-background-*` v5.
-5. **Portée** — remplacement global de ces classes ou modification sur un élément qui n'est pas identifié comme Alert. Ces cas ne sont pas des corrections attendues ; signaler plutôt toute identification ambiguë.
+5. **Button React/CSS** — `ButtonVariant.CONVERSION` ou `is-conversion` encore utilisé pour une variante visuelle Button au lieu de `ButtonVariant.ACCENT` ou `is-accent`.
+6. **Hero/Section/Box/BoxHeader/Icon React** — `backgroundColor` ou `BoxHeader.variant` encore basé sur `TrilogyColor` au lieu de `BackgroundColor`, selon [react-background-color.md](../rules/react-background-color.md). Pour Icon, auditer uniquement `backgroundColor`, pas `color`.
+7. **IconColor React** — anciens membres de l'enum dans la prop couleur du glyphe encore utilisés, selon [react-icon-color.md](../rules/react-icon-color.md).
+8. **Box/Hero/Icon HTML/CSS** — classes de fond `has-*` legacy encore présentes sur la racine identifiée du composant, à la place de `has-background-*`, selon [html-box.md](../rules/html-box.md), [html-hero.md](../rules/html-hero.md) et [html-icon.md](../rules/html-icon.md).
+9. **Portée** — remplacement global de `TrilogyColor`, de classes de statut/couleur ou du terme « conversion », ou modification sur un élément qui n'est pas identifié comme Alert/Button/Hero/Box/BoxHeader/Icon. Signaler les valeurs sans mapping confirmé et toute identification ambiguë.
 
 ## Format du rapport
 

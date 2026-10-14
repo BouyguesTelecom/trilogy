@@ -34,13 +34,15 @@
   input:checked ~ label.checkbox-label,
   input:checked ~ .checkbox-container {
     &:before {
-      background-color: getColor('main');
+      background-color: var(--input-bg-selected);
+      border-color: var(--input-border-selected);
+
     }
 
     &:after {
       content: "";
       mask-image: url('./assets/icons/all/check.svg');
-      background-color: getColor('background');
+      background-color: var(--icon-inverse);
       mask-size: 18px;
     }
   }

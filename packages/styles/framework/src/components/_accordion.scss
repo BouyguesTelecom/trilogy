@@ -40,7 +40,7 @@
     }
 
     &:has(summary:focus-visible) {
-      outline: var(--border-active);
+      outline: var(--border-outline);
       outline-offset: -2px;
     }
 

@@ -28,7 +28,7 @@ const Section = forwardRef<SectionRef, SectionProps>(
       clsx(
         'section',
         className,
-        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundColor && has(`background-${backgroundColor}`),
         backgroundSrc && has('background'),
         inverted && is('inverted'),
         skeleton && is('loading'),

@@ -47,7 +47,7 @@
       border-top-right-radius: var(--radius-sm) ;
       border-bottom-right-radius: var(--radius-sm) ;
       &:focus-visible{
-        outline: var(--border-active);
+        outline: var(--border-outline);
         outline-offset: -2px;
       }
     }

@@ -11,7 +11,9 @@
   --radius-lg: 24px;
   --radius-full: 9999px;
   --border-style: 1px solid #{var(--border)};
-  --border-active: 2px solid #{var(--focus-border)};
+  --border-input: #{var(--input-border-width-unselected)} solid #{var(--input-border-inactive)};
+  --border-input-focused: #{var(--input-border-width-selected)} solid #{var(--input-border-selected)};
+  --border-outline: 2px solid #{var(--focus-border)};
   --spacing-none: 0;
   --spacing-xxs: 4px;
   --spacing-xs: 8px;

@@ -34,7 +34,7 @@ body:has(.modal.is-active) {
     @include overlay;
 
     content: '';
-    background-color: rgba(#000, 0.86);
+    background-color: var(--bg-overlay);
   }
 
   &.is-active {
@@ -65,9 +65,9 @@ body:has(.modal.is-active) {
   }
 
   .modal-content {
-    background-color: getColor('background');
+    background-color: var(--bg-primary);
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    color: getColor('font');
+    color: var(--text-primary);
     overflow: auto;
     position: relative;
     margin: 0 $modal-content-margin-mobile;
@@ -108,12 +108,12 @@ body:has(.modal.is-active) {
 
     .modal-header {
       padding: $spacing-5;
-      color: getColor('font');
+      color: var(--text-primary);
       font-family: $family-primary;
       font-size: $size-3;
       font-weight: $weight-semibold;
       line-height: 1.1;
-      background-color: getColor('background');
+      background-color: var(--bg-primary);
       z-index: zindex('medium');
       position: sticky;
       top: 0;
@@ -137,24 +137,24 @@ body:has(.modal.is-active) {
       .modal-close {
         @include delete;
 
-        background-color: getColor('background');
+        background-color: var(--bg-primary);
         display: block;
         height: $modal-close-dimensions;
         width: $modal-close-dimensions;
         z-index: zindex('large');
 
         #{$hoverSelector} {
-          background-color: getColor('neutral-fade');
+          background-color: var(--bg-secondary-subtle);
         }
 
         &::after,
         &::before {
-          background-color: getColor('font');
+          background-color: var(--bg-secondary);
         }
 
         &:focus-visible,
         &:focus:focus-visible {
-          outline: 2px solid getColor('font') !important;
+          outline: 2px solid var(--input-border-selected) !important;
           outline-offset: 2px;
         }
         &:focus{
@@ -174,7 +174,7 @@ body:has(.modal.is-active) {
       padding: $spacing-5;
       position: sticky;
       width: 100%;
-      background: getColor('background');
+      background: var(--bg-primary);
       bottom: 0;
 
       .buttons {

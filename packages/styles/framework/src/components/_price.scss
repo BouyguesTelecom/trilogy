@@ -121,7 +121,7 @@ $price-levels: (
   }
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 
   &.has-description {
@@ -162,7 +162,7 @@ $price-levels: (
 
   &.strike {
     position: relative;
-    color: getColor('font-placeholder');
+    color: var(--text-placeholder);
 
     &::before {
       position: absolute;
@@ -171,16 +171,16 @@ $price-levels: (
       top: 50%;
       right: 0;
       border-top: 2px solid;
-      border-color: getColor('font-placeholder');
+      border-color: var(--text-placeholder);
       border-radius: 5px;
       transform: rotate(-20deg);
     }
 
     &.is-inverted {
-      color: getColor('background');
+      color: var(--text-inverse);
 
       &::before {
-        border-color: getColor('background');
+        border-color: var(--border-inverse);
       }
     }
   }

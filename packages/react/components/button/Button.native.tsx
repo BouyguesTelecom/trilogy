@@ -40,7 +40,7 @@ const Button = forwardRef<ButtonNativeRef, ButtonProps>(
       ? TrilogyColor.NEUTRAL
       : variant === ButtonVariant.SECONDARY
       ? TrilogyColor.MAIN_FADE
-      : variant === ButtonVariant.CONVERSION
+      : variant === ButtonVariant.ACCENT
       ? TrilogyColor.ACCENT
       : variant === ButtonVariant.GHOST
       ? 'transparent'

@@ -1,3 +1,4 @@
+import { BackgroundColor } from '@/interfaces/colors'
 import { Alignable, TrilogyColor } from '@trilogy-ds/react'
 import {
   Column,
@@ -108,7 +109,7 @@ export const PriceScreen = (): JSX.Element => {
 
       <Title level={TitleLevels.THREE}>Inverted price</Title>
 
-      <Section backgroundColor={TrilogyColor.MAIN}>
+      <Section backgroundColor={BackgroundColor.SECONDARY}>
         <Price inverted level={PriceLevel.ONE} amount={18.99} mention='(1)' period='months' />
 
         <Price inverted level={PriceLevel.ONE} amount={18.99} mention='(1)' period='months' />

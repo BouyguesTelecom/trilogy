@@ -8,7 +8,6 @@ export const DatePickerScreen = (): JSX.Element => {
     <Section>
       <Text>Date picker</Text>
       <Button
-        variant='CONVERSION'
         onClick={() => {
           setDate('2025-12-10')
         }}

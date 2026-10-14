@@ -20,8 +20,14 @@ Ce skill accompagne l'audit et la migration des projets consommateurs de Trilogy
 
 ## Règles de migration
 
-- [react-alert.md](rules/react-alert.md) — Prop `status` d'Alert, remplacement de `StatusState` par `ColorsStatus` et changement `info` → `information`.
+- [react-alert.md](rules/react-alert.md) — Prop `status` d'Alert, remplacement de `StatusState` par `StatusVariant` (défini dans `interfaces/status`) et changement `info` → `information`.
+- [react-button.md](rules/react-button.md) — Variante visuelle de Button, renommage `ButtonVariant.CONVERSION` → `ButtonVariant.ACCENT` et classe `is-conversion` → `is-accent`.
+- [react-background-color.md](rules/react-background-color.md) — Couleurs de fond de Hero, Section, Box, BoxHeader et Icon : remplacement ciblé de `TrilogyColor` par `BackgroundColor`, y compris les chaînes legacy.
+- [react-icon-color.md](rules/react-icon-color.md) — Renommage ciblé des anciennes valeurs `IconColor` pour la couleur du glyphe d'Icon.
 - [html-alert.md](rules/html-alert.md) — Migration des classes de couleur HTML/CSS d'Alert de `is-*` vers `has-background-*`.
+- [html-box.md](rules/html-box.md) — Sur la racine Box uniquement, migration HTML/CSS des classes `has-*` vers `has-background-*`.
+- [html-hero.md](rules/html-hero.md) — Sur la racine Hero uniquement, migration HTML/CSS des classes `has-*` vers `has-background-*`.
+- [html-icon.md](rules/html-icon.md) — Pour le fond de la racine Icon uniquement, migration HTML/CSS des classes `has-*` vers `has-background-*`.
 - [migration-process.md](rules/migration-process.md) — Méthode générale, précautions et vérifications après migration.
 
 ## Agents

@@ -1,22 +1,22 @@
 // Generated from Figma tokens. Do not edit directly.
 
 export enum BackgroundColor {
-  PRIMARY = 'primary',
-  PRIMARY_SUBTLE = 'primary-subtle',
-  SECONDARY = 'secondary',
-  SECONDARY_SUBTLE = 'secondary-subtle',
-  SUCCESS = 'success',
-  SUCCESS_SUBTLE = 'success-subtle',
-  WARNING = 'warning',
-  WARNING_SUBTLE = 'warning-subtle',
-  ERROR = 'error',
+  PRIMARY = 'primary', //background
+  PRIMARY_SUBTLE = 'primary-subtle', //neutralfade //disabledfade //Strokefade
+  SECONDARY = 'secondary', // main font
+  SECONDARY_SUBTLE = 'secondary-subtle', // mainfade fontfade //neutral  //disabled //Stroke
+  SUCCESS = 'success', //success
+  SUCCESS_SUBTLE = 'success-subtle', //successfade
+  WARNING = 'warning', //waring
+  WARNING_SUBTLE = 'warning-subtle', //warningfade
+  ERROR = 'error', //error
   ERROR_SUBTLE = 'error-subtle',
-  INFORMATION = 'information',
-  INFORMATION_SUBTLE = 'information-subtle',
-  ACCENT = 'accent',
-  ACCENT_SUBTLE = 'accent-subtle',
-  BRAND = 'brand',
-  BRAND_SUBTLE = 'brand-subtle',
+  INFORMATION = 'information', //info
+  INFORMATION_SUBTLE = 'information-subtle', //infofade
+  ACCENT = 'accent', //ACCENT
+  ACCENT_SUBTLE = 'accent-subtle', //ACCENTFADE
+  BRAND = 'brand', //brand
+  BRAND_SUBTLE = 'brand-subtle', //brandfade
   OVERLAY = 'overlay',
 }
 
@@ -82,38 +82,15 @@ export enum TextColor {
 
 export type TextColorValues = `${TextColor}`
 
-export enum ColorsStatus {
+export enum IconColor {
+  ACCENT = 'accent',
+  INVERSE = 'inverse',
   SUCCESS = 'success',
-  ERROR = 'error',
   WARNING = 'warning',
-  INFORMATION = 'information',
-}
-
-export type ColorsStatusValues = `${ColorsStatus}`
-
-export enum BorderColorsStatus {
-  SUCCESS = 'success',
   ERROR = 'error',
-  WARNING = 'warning',
   INFORMATION = 'information',
+  BRAND = 'brand',
+  PRIMARY = 'primary',
 }
 
-export type BorderColorsStatusValues = `${BorderColorsStatus}`
-
-export enum BgStatusSubtle {
-  SUCCESS_SUBTLE = 'success-subtle',
-  ERROR_SUBTLE = 'error-subtle',
-  WARNING_SUBTLE = 'warning-subtle',
-  INFORMATION_SUBTLE = 'information-subtle',
-}
-
-export type BgStatusSubtleValues = `${BgStatusSubtle}`
-
-export enum BgStatus {
-  SUCCESS = 'success',
-  ERROR = 'error',
-  WARNING = 'warning',
-  INFORMATION = 'information',
-}
-
-export type BgStatusValues = `${BgStatus}`
+export type IconColorValues = `${IconColor}`

@@ -3,7 +3,7 @@ import { IconName, IconNameValues } from '@/components/icon'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { StatusProps } from '@/objects/facets/Status'
 import { AlertMarkup, AlertMarkupValues } from '@/components/alert/AlertEnum'
-import { ColorsStatus, ColorsStatusValues } from '@/interfaces/colors'
+import { StatusVariant, StatusVariantValues } from '@/interfaces/status'
 
 /**
  * @param title {string} Notification title content
@@ -23,7 +23,7 @@ export interface ToastProps extends Accessibility {
   closable?: () => void
   onHide?: () => void
   markup?: AlertMarkup | AlertMarkupValues
-  status?: ColorsStatus | ColorsStatusValues
+  status?: StatusVariant | StatusVariantValues
 }
 
 interface ToastConfig {
