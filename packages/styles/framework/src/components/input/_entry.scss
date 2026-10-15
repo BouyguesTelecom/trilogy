@@ -82,7 +82,7 @@
     background-size : 20px;
     -webkit-appearance: none;
     background-repeat: no-repeat;
-    background-color: getColor('background') ;
+    background-color: var(--input-bg) ;
     background-position: center;
   }
 

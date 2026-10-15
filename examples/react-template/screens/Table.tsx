@@ -23,7 +23,7 @@ export const TableScreen = (): JSX.Element => {
     <Section>
       <ScrollView>
         <Table border={TableBorderEnum.ALL} fullwidth>
-          <TableHead backgroundColor='SUCCESS' color='ACCENT'>
+          <TableHead backgroundColor='brand' color='warning'>
             <TableTr>
               <TableTh>Paramètre</TableTh>
               <TableTh>Description</TableTh>

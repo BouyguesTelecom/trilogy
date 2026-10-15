@@ -21,12 +21,8 @@ $status-select: (
       opacity: 1 !important;
     }
 
-    @each $name in $status-select {
-      $color: getColor($name);
-      $color-invert: invertColor($name);
-      $brandName: getColorBrandName($name);
-  
-      &.is-#{$brandName} {
+    @each $name, $color in $border-colors-status {
+      &.is-#{$name} {
         border: 1px solid $color;
       }
     }
@@ -89,7 +85,7 @@ $status-select: (
   }
 
   .select-options {
-    background-color: getColor('background');
+    background-color: var(--input-bg);
 
     li.option {
       padding: $spacing-3 $spacing-4;
@@ -99,8 +95,8 @@ $status-select: (
       @include hover;
 
       &.is-disabled {
-        color: getColor('disabled');
-        background-color: getColor('disabled-fade');
+        color: var(--text-disabled);
+        background-color: var(--input-bg-disabled);
         cursor: not-allowed;
       }
 
@@ -110,7 +106,7 @@ $status-select: (
         &:after {
           content: "" !important;
           mask-image: url('./assets/icons/all/check.svg') !important;
-          background-color: getColor('main') !important;
+          background-color: var(--input-bg-selected) !important;
           mask-size: 18px !important;
           right: 18px !important;
           height: 18px !important;

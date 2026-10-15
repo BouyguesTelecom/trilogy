@@ -7,16 +7,13 @@ $height-prompt-item: 64px;
     background-color: var(--input-bg);
     &[aria-disabled=true] {
         background-color: var(--input-bg-disabled) !important;
-        border: 1px solid var(--border-disabled);
+        border: 1px solid var(--input-border-disabled);
     }
     * {
         margin-bottom: 0px !important;
     }
     &:focus-within {
         box-shadow: 0 0 0 2px currentColor;
-    }
-    &.is-disabled {
-        box-shadow: 0 0 0 1px getColor('disabled') !important;
     }
     &-textarea {
         textarea {
@@ -71,7 +68,7 @@ $height-prompt-item: 64px;
             }
         }
         &-delete {
-            background-color: getColor('main-fade');
+            background-color: var(--bg-secondary-subtle);
             border-radius: var(--radius-full);
             height: 20px;
             width: 20px;

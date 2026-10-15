@@ -10,7 +10,8 @@ import {
   Title,
   TitleLevels,
 } from '@trilogy-ds/react/components'
-import {Column, Columns, TrilogyColor} from '@trilogy-ds/react'
+import { Column, Columns, TrilogyColor } from '@trilogy-ds/react'
+import { BackgroundColor } from '@/interfaces/colors'
 
 export const TagScreen = (): JSX.Element => {
   return (
@@ -18,13 +19,8 @@ export const TagScreen = (): JSX.Element => {
       <Columns>
         <Column>
           <TagList>
-            <Tag
-              iconName={IconName.CHECK_CIRCLE}
-              label={'With icon'}
-              small
-              variant={TagVariant.SUCCESS}
-            />
-            <Tag label={'Without icon'} small variant={'SUCCESS'} />
+            <Tag iconName={IconName.CHECK_CIRCLE} label={'With icon'} small variant={TagVariant.SUCCESS} />
+            <Tag label={'Without icon'} small variant='success' />
             <Tag label={'Without icon'} small />
           </TagList>
         </Column>
@@ -32,7 +28,7 @@ export const TagScreen = (): JSX.Element => {
 
       <Container>
         <TagList>
-          <Tag label='Tag secondaire' variant={TagVariant.INFO} />
+          <Tag label='Tag secondaire' variant={TagVariant.INFORMATION} />
           <Tag label='Tag secondaire' variant={TagVariant.WARNING} />
           <Tag label='Tag secondaire' variant={TagVariant.SUCCESS} />
           <Tag label='Tag secondaire' variant={TagVariant.ERROR} />
@@ -43,7 +39,7 @@ export const TagScreen = (): JSX.Element => {
         <TagList>
           <Tag label='Tag error' iconName={IconName.EXCLAMATION_CIRCLE} variant={TagVariant.ERROR} />
           <Tag label='Tag warning' iconName={IconName.ALERT} variant={TagVariant.WARNING} />
-          <Tag label='Tag info' iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFO} />
+          <Tag label='Tag info' iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFORMATION} />
           <Tag label='Tag success' iconName={IconName.CHECK_CIRCLE} />
         </TagList>
       </Container>
@@ -54,18 +50,18 @@ export const TagScreen = (): JSX.Element => {
         <TagList>
           <Tag small label='Tag error' iconName={IconName.EXCLAMATION_CIRCLE} variant={TagVariant.ERROR} />
           <Tag small label='Tag warning' iconName={IconName.ALERT} variant={TagVariant.WARNING} />
-          <Tag small label='Tag info' iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFO} />
+          <Tag small label='Tag info' iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFORMATION} />
           <Tag small label='Tag success' iconName={IconName.CHECK_CIRCLE} variant={TagVariant.SUCCESS} />
         </TagList>
       </Container>
 
-      <Section inverted backgroundColor={TrilogyColor.MAIN}>
+      <Section inverted backgroundColor={BackgroundColor.SECONDARY}>
         <Title level={TitleLevels.THREE}>Inverted tag</Title>
         <Divider inverted />
         <TagList>
           <Tag inverted label='Tag error' iconName={IconName.EXCLAMATION_CIRCLE} variant={TagVariant.ERROR} />
           <Tag inverted label='Tag wraning' iconName={IconName.ALERT} variant={TagVariant.WARNING} />
-          <Tag inverted label='Tag info' iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFO} />
+          <Tag inverted label='Tag info' iconName={IconName.INFOS_CIRCLE} variant={TagVariant.INFORMATION} />
           <Tag inverted label='Tag success' iconName={IconName.CHECK_CIRCLE} variant={TagVariant.SUCCESS} />
         </TagList>
       </Section>

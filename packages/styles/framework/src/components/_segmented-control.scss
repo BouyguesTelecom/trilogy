@@ -1,12 +1,12 @@
 .segmented-control {
   border-radius: var(--radius-sm);
   padding: $spacing-1;
-  background-color: getColor('background');
+  background-color: var(--input-bg);
   display: flex;
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
-  border: 1px solid getColor('neutral');
+  border: var(--border-input);
 
 
   &.justified-start {
@@ -31,8 +31,8 @@
     font-size: 16px;
     text-align: center;
     border: 2px solid transparent;
-    color: getColor('font');
-    background-color: getColor('background');
+    color: var(--text-primary);
+    background-color: var(--input-bg);
 
     &:not(:last-child) {
       margin-right: 4px;
@@ -51,8 +51,8 @@
     }
 
     &.is-active {
-      background-color: getColor('main');
-      color: invertColor('main');
+      background-color: var(--input-bg-selected);
+      color: var(--text-inverse);
     }
 
     &:disabled{

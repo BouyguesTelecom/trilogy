@@ -50,7 +50,7 @@ const Progress = forwardRef<ProgressRef, ProgressProps>(
       clsx(
         'progress',
         status && is(getStatusClassName(status)),
-        !status && is('primary'),
+        !status && is('secondary'),
         small && is('small'),
         className,
       ),

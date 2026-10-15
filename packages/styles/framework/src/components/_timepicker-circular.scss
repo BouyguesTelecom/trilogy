@@ -4,18 +4,18 @@ $CURSOR_SIZE: 32px;
 .timepicker-circular {
 
   &_dot-hour {
-    background-color: getColor('neutral');
+    background-color: var(--input-bg-disabled-selected);
     &.is-filled {
-        background-color: getColor('main');
+        background-color: var(--input-bg-selected);
     }
   }
 
   &_progress {
-    stroke: getColor('main');
+    stroke: var(--input-bg-selected);
   }
 
   &_progress-container {
-    stroke: getColor('main-fade');
+    stroke: var(--border);
   }
 
   .circle_container {
@@ -28,8 +28,8 @@ $CURSOR_SIZE: 32px;
       width: $CURSOR_SIZE;
       height: $CURSOR_SIZE;
       border-radius: 50%;
-      background-color: getColor('neutral-fade');
-      border: 2px solid getColor('main');
+      background-color: var(--input-bg);
+      border: 2px solid var(--input-bg-selected);
       z-index: 20;
     }
 

@@ -81,7 +81,7 @@ const ToasterAlert = ({
 
   const classes = hashClass(
     styled,
-    clsx('toaster', status && has(`background-${status}`), !status && is('info'), className),
+    clsx('toaster', status && has(`background-${status}-subtle`), !status && is('information'), className),
   )
 
   return title && display !== false ? (

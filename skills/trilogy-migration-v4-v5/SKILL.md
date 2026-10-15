@@ -22,13 +22,18 @@ Ce skill accompagne l'audit et la migration des projets consommateurs de Trilogy
 
 - [react-alert.md](rules/react-alert.md) — Prop `status` d'Alert, remplacement de `StatusState` par `StatusVariant` (défini dans `interfaces/status`) et changement `info` → `information`.
 - [react-button.md](rules/react-button.md) — Variante visuelle de Button, renommage `ButtonVariant.CONVERSION` → `ButtonVariant.ACCENT` et classe `is-conversion` → `is-accent`.
-- [react-background-color.md](rules/react-background-color.md) — Couleurs de fond de Hero, Section, Box, BoxHeader et Icon : remplacement ciblé de `TrilogyColor` par `BackgroundColor`, y compris les chaînes legacy.
+- [react-background-color.md](rules/react-background-color.md) — Couleurs de fond de Hero, Section, Box, BoxHeader, Icon, TableHead et TableBody : remplacement ciblé de `TrilogyColor` par `BackgroundColor`, y compris les chaînes legacy.
+- [react-text-color.md](rules/react-text-color.md) — Prop `color` de TableTr, TableHead et TableBody : remplacement de `TrilogyColor` par `TextColor`.
+- [react-tag.md](rules/react-tag.md) — Prop `variant` de Tag : `TagVariant.INFO` → `TagVariant.INFORMATION`, valeurs en lowercase.
 - [react-icon-color.md](rules/react-icon-color.md) — Renommage ciblé des anciennes valeurs `IconColor` pour la couleur du glyphe d'Icon.
-- [html-alert.md](rules/html-alert.md) — Migration des classes de couleur HTML/CSS d'Alert de `is-*` vers `has-background-*`.
+- [html-alert.md](rules/html-alert.md) — Migration des classes de couleur HTML/CSS d'Alert de `is-*` vers `has-background-*-subtle`.
+- [html-tag.md](rules/html-tag.md) — Sur la racine Tag uniquement, `is-{couleur}` → `has-background-{couleur}-subtle` (`info` → `information`).
+- [html-progress.md](rules/html-progress.md) — Sur `.progress` uniquement, `is-primary` → `is-secondary`.
 - [html-box.md](rules/html-box.md) — Pour Box, BoxContent et BoxFooter, conserver le préfixe v4 `has-background-` et migrer les anciens noms de couleur (notamment `info` → `information`).
 - [html-hero.md](rules/html-hero.md) — Sur la racine Hero uniquement, conserver `has-background-` et migrer les anciens noms de couleur, notamment `info` → `information`.
 - [html-section.md](rules/html-section.md) — Sur la racine Section uniquement, conserver `has-background-` et migrer `info` → `information`.
 - [html-icon.md](rules/html-icon.md) — Pour le fond de la racine Icon uniquement, conserver `has-background-` et migrer les anciens noms de couleur, notamment `info` → `information`.
+- [html-text-color.md](rules/html-text-color.md) — Sur `<tr>`, `<thead>` et `<tbody>` de table uniquement, classes de couleur de texte `is-*` → `has-text-*`.
 - [migration-process.md](rules/migration-process.md) — Méthode générale, précautions et vérifications après migration.
 
 ## Agents

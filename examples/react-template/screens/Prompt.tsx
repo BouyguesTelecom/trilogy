@@ -50,7 +50,7 @@ export const PromptScreen = () => {
 
   return (
     <Section backgroundColor={BackgroundColor.ACCENT}>
-      <Prompt>
+      <Prompt disabled>
         <PromptFiles>
           {files.map((file, key) => {
             return (

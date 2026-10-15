@@ -1,8 +1,8 @@
-# Hero / Box — Migration React v4 → v5 des couleurs de fond
+# BackgroundColor — Migration React v4 → v5 des couleurs de fond
 
 ## Changement
 
-Les props `backgroundColor` de `Hero`, `Section`, `Box`, `BoxContent`, `BoxFooter` et `Icon` utilisent maintenant `BackgroundColor` depuis `interfaces/colors`, à la place de `TrilogyColor` depuis `objects/facets/Color`. `BoxHeader.variant` utilise également `BackgroundColor` en v5.
+Les props `backgroundColor` de `Hero`, `Section`, `Box`, `BoxContent`, `BoxFooter`, `Icon`, `TableHead` et `TableBody` utilisent maintenant `BackgroundColor` depuis `interfaces/colors`, à la place de `TrilogyColor` depuis `objects/facets/Color`. `BoxHeader.variant` utilise également `BackgroundColor` en v5.
 
 Remplacer l'enum en fonction de la prop et de son ancienne valeur. Ne pas convertir toutes les occurrences de `TrilogyColor` dans le projet : cette migration concerne uniquement ces props de couleur de fond et la prop `highlighted` de `Box`, qui utilise également `BackgroundColor` en v5.
 
@@ -45,6 +45,8 @@ Les correspondances reprennent les anciens noms indiqués en commentaires à cô
 <Box backgroundColor={TrilogyColor.MAIN} />
 <BoxHeader variant={TrilogyColor.ACCENT} />
 <Icon name={IconName.INFOS_CIRCLE} backgroundColor={TrilogyColor.INFO_FADE} />
+<TableHead backgroundColor={TrilogyColor.MAIN_FADE} />
+<TableBody backgroundColor={TrilogyColor.NEUTRAL_FADE} />
 
 // Après
 <Hero backgroundColor={BackgroundColor.PRIMARY} />
@@ -52,7 +54,11 @@ Les correspondances reprennent les anciens noms indiqués en commentaires à cô
 <Box backgroundColor={BackgroundColor.SECONDARY} />
 <BoxHeader variant={BackgroundColor.ACCENT} />
 <Icon name={IconName.INFOS_CIRCLE} backgroundColor={BackgroundColor.INFORMATION_SUBTLE} />
+<TableHead backgroundColor={BackgroundColor.SECONDARY_SUBTLE} />
+<TableBody backgroundColor={BackgroundColor.PRIMARY_SUBTLE} />
 ```
+
+Pour `TableHead` et `TableBody`, la prop `color` change aussi d'enum : voir [react-text-color.md](react-text-color.md).
 
 ### Valeurs fournies comme chaînes
 
@@ -87,6 +93,6 @@ Importer `BackgroundColor` depuis le chemin public disponible dans la version v5
 ## Vérifications
 
 - Les imports associés à ces props passent de `TrilogyColor` à `BackgroundColor`.
-- Les props `backgroundColor` de Hero/Section/Box/Icon et composants Box concernés, ainsi que `BoxHeader.variant`, utilisent les accessors `BackgroundColor` ou les valeurs string lower-case valides.
+- Les props `backgroundColor` de Hero/Section/Box/Icon/TableHead/TableBody et composants Box concernés, ainsi que `BoxHeader.variant`, utilisent les accessors `BackgroundColor` ou les valeurs string lower-case valides.
 - Les usages sans correspondance confirmée sont laissés intacts et rapportés.
 - Le projet compile et les tests pertinents passent.
