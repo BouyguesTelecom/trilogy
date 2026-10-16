@@ -19,7 +19,7 @@ export interface IconProps
     Accessibility,
     Dev,
     CommonProps {
-  name: IconName | IconNameValues
+  name: IconName | IconNameValues | (string & {})
   size?: IconSize | IconSizeValues
   circled?: boolean
   stretched?: boolean

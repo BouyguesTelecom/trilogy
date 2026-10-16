@@ -2,7 +2,7 @@ import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { CSSProperties, forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconProps, IconRef } from '@/components/icon/IconProps'
 import { getJustifySelfClassName } from '@/objects/facets/Justifiable'
@@ -67,9 +67,13 @@ const Icon = forwardRef<IconRef, IconProps>(
       ),
     )
 
+    const iconImageStyle = {
+      '--icon-image': `var(--icon-image-${String(name).replace(/^tri-/, '')})`,
+    } as CSSProperties
+
     return (
       <span id={id} onClick={onClick && onClick} className={classes} data-testid={testId} {...others} ref={ref}>
-        <i className={hashClass(styled, clsx(name))} aria-hidden='true' />
+        <i className={hashClass(styled, clsx(name))} style={iconImageStyle} aria-hidden='true' />
       </span>
     )
   },

@@ -32,6 +32,7 @@ $size: (
     width: 1.5em;
     height: 1.5em;
     border-radius: var(--radius-sm);
+    > i,
     [class^="tri-"],
     [class*=" tri-"] {
       &::before {
@@ -41,6 +42,8 @@ $size: (
         margin: 0;
       }
       display: flex;
+      -webkit-mask-image: var(--icon-image);
+      mask-image: var(--icon-image);
       -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
       -webkit-mask-position: center;
