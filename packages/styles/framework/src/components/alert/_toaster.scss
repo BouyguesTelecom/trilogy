@@ -10,16 +10,16 @@ a.toaster {
 }
 
 .toaster {
-  background-color: getColor('info-fade');
+  background-color: var(--bg-information-subtle);
   border-radius: var(--radius-sm);
   margin-bottom: 16px;
   position: relative;
-    margin-left: 24px;
-    margin-right: 24px;
+  margin-left: 24px;
+  margin-right: 24px;
 
     .toaster-close {
         padding-right: 0 !important ;
-        color: getColor('font') !important;
+        color: var(--text-primary) !important;
     }
 
     .text:first-child,
@@ -50,25 +50,19 @@ a.toaster {
         color: currentColor;
     }
 
-    code,
-    pre {
-        background: getColor('background');
-    }
-
     pre code {
         background: transparent;
     }
 
-  @each $name in $colors-feedback {
-    &.is-#{$name} {
-      background-color: fadeColor($name);
-      border: 2px solid getColor($name);
-
-      .icon {
-        color: getColor($name);
-      }
+    @each $name, $color in $bg-status-subtle {
+        $border-color: map-get($border-colors-status, str-slice($name, 1, -8));
+        &.has-background-#{$name} {
+            border: 1px solid $border-color;
+            .alert-icon {
+                color: map-get($colors-status, $name);
+            }
+        }
     }
-  }
 
     &:not(.has-description) > .icon {
         align-self: flex-start;
@@ -101,7 +95,7 @@ a.toaster {
 
     > .body {
         align-self: center;
-        color: getColor('font');
+        color: var(--text-primary);
         margin-bottom: 0;
         flex-grow: 1;
         padding: 1px $spacing-2; /* Fixes flex behavior on Safari mobile */

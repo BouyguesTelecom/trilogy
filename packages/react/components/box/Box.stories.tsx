@@ -5,7 +5,7 @@ import BoxFooter from '@/components/box/footer'
 import BoxHeader from '@/components/box/header'
 import BoxItem from '@/components/box/item'
 import type { BoxProps } from '@/components/box/BoxProps'
-import { TrilogyColor } from '@/objects/facets/Color'
+import { BackgroundColor } from '@/interfaces/colors'
 
 BoxComponent.displayName = 'Box'
 
@@ -23,17 +23,17 @@ interface BoxStoryArgs {
   box_shadowless: boolean
   box_fullheight: boolean
   box_headerOffset: boolean
-  box_backgroundColor?: TrilogyColor
-  box_highlighted?: TrilogyColor
+  box_backgroundColor?: BackgroundColor
+  box_highlighted?: BackgroundColor
   header_enabled: boolean
   header_children: string
-  header_variant?: TrilogyColor
+  header_variant?: BackgroundColor
   content_children: string
   item_enabled: boolean
   item_children: string
   footer_enabled: boolean
   footer_children: string
-  footer_backgroundColor?: TrilogyColor
+  footer_backgroundColor?: BackgroundColor
 }
 
 const meta: Meta<BoxStoryArgs> = {
@@ -87,14 +87,14 @@ const meta: Meta<BoxStoryArgs> = {
     },
     box_backgroundColor: {
       control: 'select',
-      options: [undefined, ...Object.values(TrilogyColor)],
+      options: [undefined, ...Object.values(BackgroundColor)],
       name: 'backgroundColor',
       description: 'Background color for Box',
       table: { category: 'Box' },
     },
     box_highlighted: {
       control: 'select',
-      options: [undefined, ...Object.values(TrilogyColor)],
+      options: [undefined, ...Object.values(BackgroundColor)],
       name: 'highlighted',
       description: 'Left highlighted border color',
       table: { category: 'Box' },
@@ -113,7 +113,7 @@ const meta: Meta<BoxStoryArgs> = {
     },
     header_variant: {
       control: 'select',
-      options: [undefined, ...Object.values(TrilogyColor)],
+      options: [undefined, ...Object.values(BackgroundColor)],
       name: 'variant',
       description: 'Header background color variant',
       table: { category: 'BoxHeader' },
@@ -150,7 +150,7 @@ const meta: Meta<BoxStoryArgs> = {
     },
     footer_backgroundColor: {
       control: 'select',
-      options: [undefined, ...Object.values(TrilogyColor)],
+      options: [undefined, ...Object.values(BackgroundColor)],
       name: 'backgroundColor',
       description: 'Footer background color',
       table: { category: 'BoxFooter' },
@@ -205,9 +205,7 @@ const meta: Meta<BoxStoryArgs> = {
       highlighted={box_highlighted}
     >
       {header_enabled && <BoxHeader variant={header_variant}>{header_children}</BoxHeader>}
-      <BoxContent>
-        {item_enabled ? <BoxItem>{item_children}</BoxItem> : content_children}
-      </BoxContent>
+      <BoxContent>{item_enabled ? <BoxItem>{item_children}</BoxItem> : content_children}</BoxContent>
       {footer_enabled && <BoxFooter backgroundColor={footer_backgroundColor}>{footer_children}</BoxFooter>}
     </BoxComponent>
   ),
@@ -240,7 +238,7 @@ export const WithItem: Story = {
 
 export const Highlighted: Story = {
   args: {
-    box_highlighted: TrilogyColor.INFO,
+    box_highlighted: BackgroundColor.INFORMATION,
   },
 }
 

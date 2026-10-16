@@ -16,9 +16,9 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: getColor('background');
+    background-color: var(--input-bg);
     font-size: $size-normal;
-    border: 1px solid #{getColor('stroke-fade')};
+    border: var(--border-style);
     border-radius: var(--radius-md);
     margin: 8px 0;
     min-height: 56px;
@@ -40,7 +40,7 @@
     }
 
     &:has(summary:focus-visible) {
-      outline: var(--border-active);
+      outline: var(--border-outline);
       outline-offset: -2px;
     }
 

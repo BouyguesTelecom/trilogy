@@ -1,7 +1,7 @@
 import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { is } from '@/services/classify'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
@@ -28,14 +28,14 @@ const Tag = forwardRef<TagRef, TagProps>(
       styled,
       clsx(
         'tag',
-        variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)),
+        variant && has(`background-${variant}-subtle`),
         inverted && is('inverted'),
         small && is('small'),
         className,
       ),
     )
 
-    const tagIconClassNames = clsx(variant && is(getColorClassName(variant as TrilogyColor | TrilogyColorValues)))
+    const tagIconClassNames = clsx(variant && is(variant as TrilogyColor | TrilogyColorValues))
 
     return (
       <span ref={ref} id={id} className={tagClassNames} data-testid={testId} {...others}>

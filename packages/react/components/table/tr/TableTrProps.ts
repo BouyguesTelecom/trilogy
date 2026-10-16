@@ -1,10 +1,10 @@
 import { Clickable } from '@/objects/facets/Clickable'
 import { Dev } from '@/objects/facets/Dev'
 import { Referenceable, ReferenceableNative } from '@/objects/facets/Referenceable'
-import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { TouchableOpacity, View } from 'react-native'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { ReactNode } from 'react'
+import { TextColor, TextColorValues } from '@/interfaces/colors'
 
 interface TableTrPropsWeb extends Clickable, Dev {
   children: ReactNode
@@ -12,7 +12,7 @@ interface TableTrPropsWeb extends Clickable, Dev {
   expanded?: boolean | ReactNode | string
   className?: string
   expansion?: boolean
-  color?: TrilogyColor | TrilogyColorValues
+  color?: TextColor | TextColorValues
 }
 
 export type TableTrPropsNative = TableTrPropsWeb & ReferenceableNative<TouchableOpacity>

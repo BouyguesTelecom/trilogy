@@ -53,13 +53,12 @@ a.alert {
     color: currentColor;
   }
 
-  @each $name in $colors-feedback {
-    &.is-#{$name} {
-      background-color: fadeColor($name);
-      border: 1px solid getColor($name);
-
+  @each $name, $color in $bg-status-subtle {
+    $border-color: map-get($border-colors-status, str-slice($name, 1, -8));
+    &.has-background-#{$name} {
+      border: 1px solid $border-color;
       .alert-icon {
-        color: getColor($name);
+        color: map-get($colors-status, $name);
       }
     }
   }

@@ -340,23 +340,6 @@ $gap: 4px,
         scrollbar-width: none;
       }
     }
-
-    &.has-scrollbar {
-      &::-webkit-scrollbar {
-        height: 8px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background-color: getColor('neutral');
-        border-radius: 8px;
-        margin: 0 8px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: getColor('main-fade');
-        border-radius: var(--radius-sm);
-      }
-    }
   }
 
   @include mobile {

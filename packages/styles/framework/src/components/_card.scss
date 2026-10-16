@@ -16,7 +16,7 @@ $basis-values: (
   flex-direction: column;
   position: relative;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  background-color: getColor('background');
+  background-color: var(--card-background);
 
   &.radius-xs {
     --card-radius: var(--radius-xs);
@@ -60,7 +60,7 @@ $basis-values: (
   }
 
   .card-footer {
-    border-top: 1px solid getColor('neutral');
+    border-top: 1px solid var(--border);
   }
 
   .mention {
@@ -85,7 +85,7 @@ $basis-values: (
 
   &.is-flat {
     box-shadow: none;
-    border: 1px solid #{getColor('stroke-fade')};
+    border: 1px solid var(--border);
 
     .card-content {
       padding-left: 20px;
@@ -99,7 +99,7 @@ $basis-values: (
   }
 
   &.is-active {
-    outline: var(--border-active);
+    outline: var(--border-outline);
 
     .card-content {
 

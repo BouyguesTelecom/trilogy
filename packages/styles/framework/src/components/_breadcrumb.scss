@@ -19,17 +19,17 @@
       content: "";
       width: 18px;
       height: 18px;
-      mask-image: url('./assets/icons/all/arrow-right.svg');
+      mask-image: var(--icon-image-arrow-right);
       mask-position: center;
       mask-repeat: no-repeat;
       mask-size: cover;
-      background-color: #1b3650;
+      background-color: var(--bg-secondary);
       margin-right: $spacing-2;
     }
   }
 
   a {
-    color: getColor('main');
+    color: var(--text-primary);
     text-decoration: underline 2px solid;
     text-underline-offset: 4px;
   }

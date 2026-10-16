@@ -1,5 +1,5 @@
 .fab {
-  background-color: getColor('font');
+  background-color: var(--btn-bg-primary);
   border-radius: var(--radius-sm);
   cursor: pointer;
   height: 56px;
@@ -24,7 +24,7 @@
         to top,
         rgba(0, 0, 0, 0.25),
         rgba(0, 0, 0, 0.25)
-    ) getColor('font');
+    ) var(--btn-bg-primary);
     max-width: 300px;
   }
 
@@ -33,7 +33,7 @@
         to top,
         rgba(0, 0, 0, 0.25),
         rgba(0, 0, 0, 0.25)
-    ) getColor('font');
+    ) var(--btn-bg-primary);
   }
 
   .icon {
@@ -41,7 +41,7 @@
     font-size: 24px !important;
     margin-left: -6px;
     margin-right: 8px;
-    color: white;
+    color: var(--text-inverse);
 
   }
 }

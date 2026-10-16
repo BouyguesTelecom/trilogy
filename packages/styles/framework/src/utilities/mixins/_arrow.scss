@@ -3,7 +3,7 @@
 @mixin arrow( $direction: 'down') {
   background-color: currentColor;
   content: "";
-  mask-image: url('./assets/icons/all/arrow-down.svg');
+  mask-image: var(--icon-image-arrow-down);
 
   @if $direction == 'up' {
     rotate: 180deg;

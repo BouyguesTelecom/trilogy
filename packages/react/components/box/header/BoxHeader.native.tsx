@@ -11,7 +11,7 @@ import { BoxContext } from '@/components/box/context/boxContext'
 /**
  * Box Header Component
  * @param children {ReactNode} Children
- * @param variant {TrilogyColor} Box Header backgroundColor
+ * @param variant {BackgroundColor} Box Header background color
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  */

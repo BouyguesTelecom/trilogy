@@ -1,5 +1,3 @@
-@import "../base/_color.scss";
-
 :root {
   --radius: 8px;
   --radius-medium: 8px;
@@ -10,8 +8,10 @@
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-full: 9999px;
-  --border: 1px solid #{getColor('stroke')};
-  --border-active: 2px solid #{getColor('main')};
+  --border-style: 1px solid #{var(--border)};
+  --border-input: #{var(--input-border-width-unselected)} solid #{var(--input-border-inactive)};
+  --border-input-focused: #{var(--input-border-width-selected)} solid #{var(--input-border-selected)};
+  --border-outline: 2px solid #{var(--focus-border)};
   --spacing-none: 0;
   --spacing-xxs: 4px;
   --spacing-xs: 8px;

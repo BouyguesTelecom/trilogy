@@ -9,6 +9,7 @@ import { forwardRef, useMemo } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { SelectOptionNativeRef, SelectOptionProps } from '@/components/select/option/SelectOptionProps'
+import { IconColor } from '@/interfaces/colors'
 
 /**
  * Select Option Component
@@ -16,64 +17,66 @@ import { SelectOptionNativeRef, SelectOptionProps } from '@/components/select/op
  * @param label {string} Label value
  * @param children {ReactNode}
  */
-const SelectOption = forwardRef<SelectOptionNativeRef, SelectOptionProps>(({ disabled, children, onClick, label, iconName, ...others }, ref): JSX.Element => {
-  const { checked } = others as { checked: string }
+const SelectOption = forwardRef<SelectOptionNativeRef, SelectOptionProps>(
+  ({ disabled, children, onClick, label, iconName, ...others }, ref): JSX.Element => {
+    const { checked } = others as { checked: string }
 
-  const styles = memoStyles({
-        container: {
-          backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
-          width: '100%',
-          paddingVertical: checked && !iconName ? 8.5 : 10,
-        },
-      })
+    const styles = memoStyles({
+      container: {
+        backgroundColor: getColorStyle(disabled ? TrilogyColor.DISABLED_FADE : 'transparent'),
+        width: '100%',
+        paddingVertical: checked && !iconName ? 8.5 : 10,
+      },
+    })
 
-  const textColor = useMemo(() => {
-    switch (true) {
-      case disabled === true:
-        return TrilogyColor.DISABLED
-      default:
-        return TrilogyColor.MAIN
-    }
-  }, [disabled])
+    const textColor = useMemo(() => {
+      switch (true) {
+        case disabled === true:
+          return TrilogyColor.DISABLED
+        default:
+          return TrilogyColor.MAIN
+      }
+    }, [disabled])
 
-  const iconColor = useMemo(() => {
-    switch (true) {
-      case disabled === true:
-        return TrilogyColor.DISABLED
-      default:
-        return TrilogyColor.MAIN
-    }
-  }, [disabled])
+    const iconColor = useMemo(() => {
+      switch (true) {
+        case disabled === true:
+          return IconColor.DISABLED
+        default:
+          return IconColor.PRIMARY
+      }
+    }, [disabled])
 
-  const columnLabelSize = useMemo(() => {
-    return iconName ? (checked && 10) || 11 : (checked && 11) || 12
-  }, [iconName, checked])
+    const columnLabelSize = useMemo(() => {
+      return iconName ? (checked && 10) || 11 : (checked && 11) || 12
+    }, [iconName, checked])
 
-  return (
-    <TouchableOpacity ref={ref} style={[styles.container]} {...others} onPress={onClick}>
-      <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
-        {iconName && (
-          <Column size={1}>
-            <Icon size={IconSize.SMALL} name={iconName} color={iconColor} />
+    return (
+      <TouchableOpacity ref={ref} style={[styles.container]} {...others} onPress={onClick}>
+        <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
+          {iconName && (
+            <Column size={1}>
+              <Icon size={IconSize.SMALL} name={iconName} color={iconColor} />
+            </Column>
+          )}
+          <Column size={columnLabelSize}>
+            <Text
+              typo={[checked && TypographyBold.TEXT_WEIGHT_SEMIBOLD]}
+              {...{ style: { paddingLeft: 8, color: getColorStyle(textColor) } }}
+            >
+              {children || label}
+            </Text>
           </Column>
-        )}
-        <Column size={columnLabelSize}>
-          <Text
-            typo={[checked && TypographyBold.TEXT_WEIGHT_SEMIBOLD]}
-            {...{ style: { paddingLeft: 8, color: getColorStyle(textColor) } }}
-          >
-            {children || label}
-          </Text>
-        </Column>
-        {checked && (
-          <Column size={1}>
-            <Icon size={IconSize.SMALL} name='tri-check' color={iconColor} />
-          </Column>
-        )}
-      </Columns>
-    </TouchableOpacity>
-  )
-})
+          {checked && (
+            <Column size={1}>
+              <Icon size={IconSize.SMALL} name='tri-check' color={iconColor} />
+            </Column>
+          )}
+        </Columns>
+      </TouchableOpacity>
+    )
+  },
+)
 
 SelectOption.displayName = ComponentName.SelectOption
 

@@ -5,15 +5,9 @@ import { Clickable } from '@/objects/facets/Clickable'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
 import { Fullwidth } from '@/objects/facets/Fullwidth'
-import {
-  ButtonMarkup,
-  ButtonMarkupValues,
-  ButtonType,
-  ButtonTypeValues,
-  ButtonVariant,
-  ButtonVariantValues,
-} from '@/components/button/ButtonEnum'
+import { ButtonMarkup, ButtonMarkupValues, ButtonType, ButtonTypeValues } from '@/components/button/ButtonEnum'
 import { ElementType, ReactNode } from 'react'
+import { ButtonVariant, ButtonVariantValues } from '@/interfaces/button'
 
 /**
  * Button Interface

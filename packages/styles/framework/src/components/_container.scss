@@ -8,7 +8,7 @@
 
   &.is-sticky-top,
   &.is-sticky-bottom {
-    background-color: getColor('background');
+    background-color: var(--bg-primary);
   }
 
   &.is-sticky-top {

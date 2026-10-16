@@ -1,6 +1,5 @@
 import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getStatusClassName } from '@/objects/facets/Status'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
 import { useEffect, useState, forwardRef, useId } from 'react'
@@ -80,7 +79,6 @@ const Switch = forwardRef<SwitchRef, SwitchProps>(
               })
             }
           }}
-
           onClick={(e: any) => {
             if (!readonly) {
               setChecked(!_checked)
@@ -99,7 +97,7 @@ const Switch = forwardRef<SwitchRef, SwitchProps>(
           id={`switch-${id}`}
           type='checkbox'
           disabled={disabled}
-          className={hashClass(styled, clsx(status && is(getStatusClassName(status))))}
+          className={hashClass(styled, clsx(status && is(status)))}
           {...others}
         />
         <label htmlFor={`switch-${id}`}>{label}</label>

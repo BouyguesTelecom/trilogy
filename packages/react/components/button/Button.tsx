@@ -1,7 +1,6 @@
 import { Icon } from '@/components/icon'
 import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getButtonVariantClassName } from '@/objects/facets/Color'
 import { Loading, LoadingValues } from '@/objects/facets/Loadable'
 import { is } from '@/services/classify'
 import clsx from 'clsx'
@@ -36,7 +35,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
     {
       markup,
       loading,
-      variant,
+      variant = 'primary',
       href,
       id,
       fullwidth,
@@ -70,13 +69,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       fullwidth?: boolean,
       className?: string,
     ) => {
-      return clsx(
-        'button',
-        loading && is('loading'),
-        variant && is(getButtonVariantClassName(variant)),
-        fullwidth && is('fullwidth'),
-        className,
-      )
+      return clsx('button', loading && is('loading'), variant && is(variant), fullwidth && is('fullwidth'), className)
     }
 
     const classes = hashClass(styled, getClassNames(loading, variant, fullwidth, className))
@@ -93,7 +86,6 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
           disabled={isDisabled}
           name={name}
           onClick={(e) => {
-
             !isDisabled && onClick?.(e)
             e.stopPropagation()
           }}
@@ -116,7 +108,6 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
           aria-label={accessibilityLabel}
           name={name}
           onClick={(e) => {
-
             !isDisabled && onClick?.(e)
             e.stopPropagation()
           }}
@@ -154,7 +145,6 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
         className={classes}
         href={href}
         onClick={(e) => {
-
           !isDisabled && onClick?.(e)
           e.stopPropagation()
         }}

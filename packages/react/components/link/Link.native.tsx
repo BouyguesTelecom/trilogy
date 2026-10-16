@@ -5,6 +5,7 @@ import { forwardRef, useState } from 'react'
 import { Linking, Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { LinkNativeRef, LinkPropsNative } from '@/components/link/LinkProps'
+import { IconColor } from '@/interfaces/colors'
 
 /**
  * Link Component
@@ -62,7 +63,7 @@ const Link = forwardRef<LinkNativeRef, LinkPropsNative>(
                   {children}
                 </Text>
                 <View style={styles.icon}>
-                  <Icon color={TrilogyColor.MAIN} name={iconName} size='small' />
+                  <Icon color={IconColor.PRIMARY} name={iconName} size='small' />
                 </View>
               </View>
             ) : (

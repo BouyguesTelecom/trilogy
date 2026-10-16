@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconSize } from '@/components/icon'
+import { Icon, IconColor, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { isIOS } from '@/helpers/device.native'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
@@ -58,7 +58,7 @@ const Sticker = forwardRef<StickerNativeRef, StickerProps>(
     return (
       <View ref={ref} style={styles.sticker} accessibilityLabel={accessibilityLabel} {...others}>
         {iconName && (
-          <Icon color={TrilogyColor.BACKGROUND} size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />
+          <Icon color={IconColor.INVERSE} size={small ? IconSize.SMALLER : IconSize.SMALL} name={iconName} />
         )}
         {label && (
           <Text style={styles.text} typo={[TypographyBold.TEXT_WEIGHT_SEMIBOLD]}>

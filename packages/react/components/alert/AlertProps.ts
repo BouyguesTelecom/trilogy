@@ -5,9 +5,9 @@ import { Accessibility } from '@/objects/facets/Accessibility'
 import { Clickable } from '@/objects/facets/Clickable'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
-import { StatusProps } from '@/objects/facets/Status'
 import { AlertMarkup, AlertMarkupValues } from '@/components/alert/AlertEnum'
 import { ReactNode } from 'react'
+import { StatusVariant, StatusVariantValues } from '@/interfaces/status'
 
 export enum ToasterAlertPosition {
   TOP = 'top',
@@ -18,7 +18,7 @@ export enum ToasterAlertFloat {
   LEFT = 'left',
 }
 
-export interface ToasterStatusProps extends StatusProps, Clickable, Accessibility, Dev {
+export interface ToasterStatusProps extends Clickable, Accessibility, Dev {
   children?: ReactNode
   className?: string
   toasterChildren?: ReactNode
@@ -35,12 +35,14 @@ export interface ToasterStatusProps extends StatusProps, Clickable, Accessibilit
   onShow?: () => void
   onHide?: () => void
   markup?: AlertMarkup | AlertMarkupValues
+  status?: StatusVariant | StatusVariantValues
+  id?: string
 }
 
 /**
  * Alert Interface
  */
-export interface AlertProps extends StatusProps, Clickable, Accessibility, Dev, CommonProps {
+export interface AlertProps extends Clickable, Accessibility, Dev, CommonProps {
   iconName?: IconName | IconNameValues
   title?: string | ReactNode
   description?: string | ReactNode
@@ -48,6 +50,8 @@ export interface AlertProps extends StatusProps, Clickable, Accessibility, Dev, 
   toaster?: boolean
   banner?: boolean
   markup?: AlertMarkup | AlertMarkupValues
+  status?: StatusVariant | StatusVariantValues
+  id?: string
 }
 
 export type AlertRef = HTMLDivElement

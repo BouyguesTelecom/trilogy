@@ -23,7 +23,7 @@
   &.is-multiple {
     .chips:before {
       content: "";
-      mask-image: url('./assets/icons/all/check.svg');
+      mask-image: var(--icon-image-check);
       background-color: currentColor;
       margin-right: 4px;
       margin-left: -8px;
@@ -39,9 +39,9 @@
 
   .chips {
     align-items: center;
-    background-color: white;
+    background-color: var(--input-bg);
     border-radius: var(--radius-full);
-    color: getColor('font');
+    color: var(--text-primary);
     display: inline-flex;
     font-size: $size-normal;
     height: 32px;
@@ -50,34 +50,20 @@
     padding: 6px $spacing-4;
     white-space: nowrap;
     cursor: pointer;
-    border: var(--border);
+    border: var(--border-style);
     &:not(.is-disabled) {
       &.is-active {
-        background-color: getColor('main');
-        color: white;
-        border: var(--border-active);
+        background-color: var(--input-bg-selected);
+        color: var(--text-inverse);
+        border: var(--border-input-focused);
         padding: 5px ($spacing-4 - 1px);
         #{$hoverSelector} {
-          background-color: getColor('main');
-          color: white;
+          background-color: var(--input-bg-selected);
+          color: var(--text-inverse);
         }
       }
       #{$hoverSelector} {
-        background-color: getColor('neutral-fade');
-      }
-    }
-
-    &.is-inverted {
-      background-color: white;
-      color: getColor('accent');
-
-      &:active,
-      &:hover,
-      &:focus,
-      &:focus-visible,
-      &.is-active {
-        background-color: getColor('accent') !important;
-        color: getColor('background') !important;
+        background-color: var(--input-bg-hover);
       }
     }
   }

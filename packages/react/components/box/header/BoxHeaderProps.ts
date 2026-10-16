@@ -3,7 +3,7 @@
  */
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { AlignableProps } from '@/objects/facets/Alignable'
-import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { BackgroundColor, BackgroundColorValues } from '@/interfaces/colors'
 import { View } from 'react-native'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
@@ -11,7 +11,7 @@ import { ReactNode } from 'react'
 
 export interface BoxHeaderProps extends AlignableProps, Accessibility, CommonProps, Dev {
   children?: ReactNode
-  variant?: TrilogyColor | TrilogyColorValues
+  variant?: BackgroundColor | BackgroundColorValues
 }
 
 export type BoxHeaderRef = HTMLDivElement

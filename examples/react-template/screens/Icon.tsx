@@ -11,15 +11,17 @@ import {
   TitleLevels,
   View,
 } from '@trilogy-ds/react/components'
+import '../assets/index.css'
 
 export const IconScreen = (): JSX.Element => {
   return (
     <Section>
       <View>
+        <Icon name='alien' />
         <Icon skeleton size={IconSize.HUGE} name={IconName.ARROW_UP} align='ALIGNED_CENTER' />
       </View>
 
-      <Icon name={IconName.ARROW_DOWN} color={IconColor.GREY} size={IconSize.SMALL} />
+      <Icon name={IconName.ARROW_DOWN} color={IconColor.ACCENT} size={IconSize.SMALL} />
 
       <Icon size={IconSize.MEDIUM} name={IconName.ARROW_UP} />
 
@@ -111,7 +113,7 @@ export const IconScreen = (): JSX.Element => {
       <Title level={TitleLevels.THREE}>Icon circled</Title>
       <Divider />
 
-      <Icon size={IconSize.LARGE} name={IconName.ARROW_DOWN} circled backgroundColor='ACCENT' />
+      <Icon size={IconSize.LARGE} name={IconName.ARROW_DOWN} circled backgroundColor='accent-subtle' />
     </Section>
   )
 }

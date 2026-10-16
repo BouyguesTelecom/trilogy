@@ -1,3 +1,4 @@
+import { BackgroundColor } from '@/interfaces/colors'
 import { Box, BoxContent, TitleMarkup, TrilogyColor } from '@trilogy-ds/react'
 import {
   Button,
@@ -18,7 +19,7 @@ export const HeroScreen = (): JSX.Element => {
   return (
     <Section>
       <Hero
-        backgroundColor={TrilogyColor.MAIN}
+        backgroundColor={BackgroundColor.SECONDARY}
         overlap={[
           <Container>
             <Box backgroundColor={TrilogyColor.INFO_FADE}>
@@ -51,13 +52,13 @@ export const HeroScreen = (): JSX.Element => {
           <Text>Welcome Message</Text>
           <Title level='ONE'>Hero with image background</Title>
           {/* <button className='button'>Click me !</button> */}
-          <Button markup={ButtonMarkup.BUTTON} variant={'PRIMARY'} onClick={() => alert('Click on hero btn')}>
+          <Button markup={ButtonMarkup.BUTTON} onClick={() => alert('Click on hero btn')}>
             Click me !
           </Button>
         </Container>
       </Hero>
       <Divider />
-      <Hero backgroundColor={TrilogyColor.MAIN} inverted>
+      <Hero backgroundColor={BackgroundColor.ACCENT} inverted>
         <Container>
           <Text>Welcome Message</Text>
           <Title level='TWO'>Hero with Background Color</Title>

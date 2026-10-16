@@ -4,7 +4,6 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroProps, HeroRef } from '@/components/hero/HeroProps'
 import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has, is } from '@/services/classify'
 
 /**
@@ -32,7 +31,7 @@ const Hero = forwardRef<HeroRef, HeroProps>(
       styled,
       clsx(
         'hero',
-        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundColor && has(`background-${backgroundColor}`),
         backgroundSrc && has('background'),
         (inverted && is('inverted')) || is('base'),
         overlap && is('overlapped'),
