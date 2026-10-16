@@ -1,6 +1,5 @@
 import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'

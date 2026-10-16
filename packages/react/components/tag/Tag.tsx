@@ -1,6 +1,6 @@
 import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getColorClassName, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
+import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'

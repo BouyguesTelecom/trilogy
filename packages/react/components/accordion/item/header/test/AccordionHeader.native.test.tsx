@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from '@testing-library/react-native'
+import { render, screen } from '@testing-library/react-native'
 import Text from '@/components/text/Text.native'
 import Accordion from '@/components/accordion/Accordion.native'
 import AccordionBody from '@/components/accordion/item/body/AccordionBody.native'
@@ -22,5 +22,4 @@ describe('Accordion', () => {
 
     expect(screen.getByText('header')).toBeOnTheScreen()
   })
-
 })
