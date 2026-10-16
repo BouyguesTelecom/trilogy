@@ -60,6 +60,20 @@ Les correspondances reprennent les anciens noms indiqués en commentaires à cô
 
 Pour `TableHead` et `TableBody`, la prop `color` change aussi d'enum : voir [react-text-color.md](react-text-color.md).
 
+### Box.highlighted
+
+La prop `highlighted` de `Box` (bordure gauche colorée) accepte maintenant `BackgroundColor` au lieu de `TrilogyColor`. Appliquer le même tableau de correspondances :
+
+```tsx
+// Avant
+<Box highlighted={TrilogyColor.INFO} />
+<Box highlighted='MAIN' />
+
+// Après
+<Box highlighted={BackgroundColor.INFORMATION} />
+<Box highlighted='secondary' />
+```
+
 ### Valeurs fournies comme chaînes
 
 Les valeurs de `BackgroundColor` sont des chaînes lowercase. Remplacer également les anciennes chaînes enum uppercase par leur valeur v5 :
@@ -88,11 +102,10 @@ Importer `BackgroundColor` depuis le chemin public disponible dans la version v5
 
 - Ne pas modifier les autres usages de `TrilogyColor` (couleur de texte, icône, styles internes ou autres composants) par analogie.
 - Pour `Icon`, migrer uniquement `backgroundColor`. La prop `color` relève de `IconColor` et ne suit pas cette conversion.
-- Pour `Box.highlighted`, appliquer le type `BackgroundColor` uniquement si l'usage est bien cette prop et vérifier que la nouvelle valeur correspond au sens de couleur de bordure attendu.
 
 ## Vérifications
 
 - Les imports associés à ces props passent de `TrilogyColor` à `BackgroundColor`.
-- Les props `backgroundColor` de Hero/Section/Box/Icon/TableHead/TableBody et composants Box concernés, ainsi que `BoxHeader.variant`, utilisent les accessors `BackgroundColor` ou les valeurs string lower-case valides.
+- Les props `backgroundColor` de Hero/Section/Box/Icon/TableHead/TableBody et composants Box concernés, ainsi que `BoxHeader.variant` et `Box.highlighted`, utilisent les accessors `BackgroundColor` ou les valeurs string lower-case valides.
 - Les usages sans correspondance confirmée sont laissés intacts et rapportés.
 - Le projet compile et les tests pertinents passent.

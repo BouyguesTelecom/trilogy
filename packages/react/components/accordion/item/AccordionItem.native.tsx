@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconSize } from '@/components/icon'
+import { Icon, IconColor, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
@@ -157,7 +157,7 @@ const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
                 <Icon
                   name={IconName.ARROW_DOWN}
                   size={IconSize.SMALLER}
-                  color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
+                  color={disabled ? IconColor.DISABLED : IconColor.PRIMARY}
                 />
               </Animated.View>
             </View>

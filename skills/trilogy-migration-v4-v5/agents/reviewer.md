@@ -26,7 +26,9 @@ Auditer un projet consommateur pour identifier les usages documentés incompatib
 9. **Table couleur de texte** — prop `color` de TableTr/TableHead/TableBody encore en `TrilogyColor` au lieu de `TextColor` ([react-text-color.md](../rules/react-text-color.md)), ou classe `is-{couleur}` encore présente sur `<tr>`/`<thead>`/`<tbody>` au lieu de `has-text-*` ([html-text-color.md](../rules/html-text-color.md)).
 10. **Tag** — `TagVariant.INFO` ou chaîne uppercase sur la prop `variant` ([react-tag.md](../rules/react-tag.md)), ou classe `is-{couleur}` encore présente sur `.tag` au lieu de `has-background-{couleur}-subtle` ([html-tag.md](../rules/html-tag.md)).
 11. **Progress HTML/CSS** — `is-primary` encore présent sur `.progress` au lieu de `is-secondary` ([html-progress.md](../rules/html-progress.md)).
-12. **Portée** — remplacement global de `TrilogyColor`, de classes de statut/couleur ou du terme « conversion », ou modification sur un élément qui n'est pas identifié comme Alert/Button/Hero/Box/BoxHeader/Icon/Section/Table/Tag/Progress. Signaler les valeurs sans mapping confirmé et toute identification ambiguë.
+12. **ListItem React** — `ListIconStatus.INFO` ou chaîne uppercase sur la prop `status` ([react-list-item.md](../rules/react-list-item.md)).
+13. **Progress React** — `StatusState` ou chaîne uppercase sur la prop `status` de Progress ([react-progress.md](../rules/react-progress.md)).
+14. **Portée** — remplacement global de `TrilogyColor`, de classes de statut/couleur ou du terme « conversion », ou modification sur un élément qui n'est pas identifié comme Alert/Button/Hero/Box/BoxHeader/Icon/Section/Table/Tag/Progress. Signaler les valeurs sans mapping confirmé et toute identification ambiguë.
 
 ## Format du rapport
 

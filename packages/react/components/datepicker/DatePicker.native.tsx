@@ -8,6 +8,7 @@ import { StyleSheet, TextInput, TouchableOpacity, View, Platform, Modal } from '
 import { memoStyles } from '@/helpers/memoStyles'
 import { DatePickerProps } from '@/components/datepicker/DatePickerProps'
 import { Theme } from '@/constants/theme'
+import { IconColor } from '@/interfaces/colors'
 
 /**
  * DatePicker Component
@@ -377,7 +378,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
             disabled={disabled}
             activeOpacity={0.7}
           >
-            <Icon name='tri-calendar' size={IconSize.SMALL} color={TrilogyColor.MAIN} />
+            <Icon name='tri-calendar' size={IconSize.SMALL} color={IconColor.PRIMARY} />
           </TouchableOpacity>
         </View>
 

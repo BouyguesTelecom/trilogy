@@ -11,6 +11,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 import { ButtonVariant } from '@/components/button/ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from '@/components/button/ButtonProps'
 import { Theme } from '@/constants/theme'
+import { IconColor } from '@/interfaces/colors'
 
 /**
  * Button Component
@@ -172,10 +173,10 @@ const Button = forwardRef<ButtonNativeRef, ButtonProps>(
               size={IconSize.SMALL}
               color={
                 disabled
-                  ? TrilogyColor.DISABLED
-                  : variant === 'SECONDARY' || variant === 'GHOST'
-                  ? TrilogyColor.MAIN
-                  : TrilogyColor.BACKGROUND
+                  ? IconColor.DISABLED
+                  : variant === 'secondary' || variant === 'ghost'
+                  ? IconColor.PRIMARY
+                  : IconColor.INVERSE
               }
               testId='button-icon'
             />

@@ -16,7 +16,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@/*": ["../../packages/react/*"]
+      "@/*": ["../../packages/react/*"],
+      "@assets/*": ["../assets/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

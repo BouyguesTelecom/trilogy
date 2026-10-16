@@ -7,7 +7,7 @@ import { Stacked } from '@/objects/facets/Stacked'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { IconSize, IconSizeValues } from '@/components/icon/IconEnum'
 import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
-import { BackgroundColor, BackgroundColorValues, IconColor } from '@/interfaces/colors'
+import { BackgroundColor, BackgroundColorValues, IconColor, IconColorValues } from '@/interfaces/colors'
 
 /**
  * Icon Interface
@@ -23,7 +23,7 @@ export interface IconProps
   size?: IconSize | IconSizeValues
   circled?: boolean
   stretched?: boolean
-  color?: IconColor
+  color?: IconColor | IconColorValues | 'transparent'
   backgroundColor?: BackgroundColor | BackgroundColorValues
   skeleton?: boolean
 }

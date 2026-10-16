@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon } from '@/components/icon'
+import { Icon, IconColor } from '@/components/icon'
 import { TabsContext } from '@/components/tabs/context'
 import { TabNativeRef, TabProps } from '@/components/tabs/tab-list/tab/TabProps'
 import { Text } from '@/components/text'
@@ -57,7 +57,7 @@ const Tab = forwardRef<TabNativeRef, TabProps>(
       },
       text: {
         textAlign: 'center',
-        color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN)
+        color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN),
       },
     })
 
@@ -70,7 +70,7 @@ const Tab = forwardRef<TabNativeRef, TabProps>(
         {iconName && (
           <View style={{ alignSelf: 'center' }}>
             <Icon
-              color={disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN}
+              color={disabled ? IconColor.DISABLED : inverted ? IconColor.INVERSE : IconColor.PRIMARY}
               size='small'
               name={iconName}
             />

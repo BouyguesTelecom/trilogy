@@ -42,7 +42,7 @@ const PromptFile = forwardRef<PromptFileRef, PromptFileProps>(({ onDelete, src, 
       <Card flat className='prompt-files-doc prompt-files-file'>
         <CardContent className='prompt-files-doc-card-content'>
           <FlexBox align={Align.CENTER}>
-            <Box backgroundColor='MAIN_FADE' className='prompt-files-doc-preview'>
+            <Box className='prompt-files-doc-preview'>
               <BoxContent>
                 <Icon name='tri-file-attached' />
               </BoxContent>

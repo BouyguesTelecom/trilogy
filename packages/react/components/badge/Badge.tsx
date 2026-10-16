@@ -9,6 +9,7 @@ import clsx from 'clsx'
 import { forwardRef } from 'react'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { BadgeProps, BadgeRef } from '@/components/badge/BadgeProps'
+import { BackgroundColor } from '@/interfaces/colors'
 
 /**
  * Badge Component
@@ -60,7 +61,7 @@ const Badge = forwardRef<BadgeRef, BadgeProps>(
         break
       case StatusState.INFO:
         iconName = IconName.INFOS_CIRCLE
-        iconColor = IconColor.INFO
+        iconColor = IconColor.INFORMATION
         break
       default:
         break
@@ -74,7 +75,7 @@ const Badge = forwardRef<BadgeRef, BadgeProps>(
           name={iconName}
           className={clsx(position && is(position), 'badge-icon')}
           circled
-          backgroundColor={TrilogyColor.BACKGROUND}
+          backgroundColor={BackgroundColor.PRIMARY}
           color={iconColor}
           id={id}
           {...others}

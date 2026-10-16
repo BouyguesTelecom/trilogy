@@ -18,6 +18,7 @@ import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } 
 import ToasterContext from '@/components/alert/context'
 import { ToasterShowContext } from '@/components/alert/context/ToasterContextProps'
 import { Theme } from '@/constants/theme'
+import { IconColor } from '@/interfaces/colors'
 
 /**
  * Function call by context for showing toast
@@ -83,7 +84,7 @@ const Alert = forwardRef<AlertNativeRef, AlertProps>(
         <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>
           <Column narrow>
             <View style={{ marginTop: -2 }}>
-              <Icon name={iconName ? iconName : getStatusIconName(status)} color={status || TrilogyColor.MAIN} />
+              <Icon name={iconName ? iconName : getStatusIconName(status)} color={status} />
             </View>
           </Column>
           <Column>
@@ -154,7 +155,7 @@ export const ToasterAlert: FC<{ props: ToasterStatusProps }> = ({ props }) => {
     <View style={styles.toaster}>
       <TouchableOpacity style={styles.toasterContainer} onPress={onClick}>
         <Columns>
-          <Column size={1}>{iconName && <Icon name={iconName} color={status || TrilogyColor.MAIN} />}</Column>
+          <Column size={1}>{iconName && <Icon name={iconName} color={status} />}</Column>
           <Column>
             {title && <Title level={TitleLevels.SIX}>{title}</Title>}
             {description && (

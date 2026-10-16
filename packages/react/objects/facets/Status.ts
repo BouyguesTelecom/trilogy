@@ -1,4 +1,5 @@
 import { IconName, IconNameValues } from '@/components/icon'
+import { StatusSubtleVariant, StatusVariant } from '@/interfaces/status'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 
 /**
@@ -47,15 +48,15 @@ export const getStatusClassName = (statusType?: string): string => {
  * @returns { color: string, backgroundColor: string} - color and background color value
  */
 const STATUS_COLORS = {
-  SUCCESS: { color: TrilogyColor.SUCCESS, backgroundColor: TrilogyColor.SUCCESS_FADE },
-  INFO: { color: TrilogyColor.INFO, backgroundColor: TrilogyColor.INFO_FADE },
-  WARNING: { color: TrilogyColor.WARNING, backgroundColor: TrilogyColor.WARNING_FADE },
-  ERROR: { color: TrilogyColor.ERROR, backgroundColor: TrilogyColor.ERROR_FADE },
-  DEFAULT: { color: TrilogyColor.MAIN, backgroundColor: TrilogyColor.MAIN_FADE },
+  success: { color: StatusVariant.SUCCESS, backgroundColor: StatusSubtleVariant.SUCCESS_SUBTLE },
+  information: { color: StatusVariant.INFORMATION, backgroundColor: StatusSubtleVariant.INFORMATION_SUBTLE },
+  warning: { color: StatusVariant.WARNING, backgroundColor: StatusSubtleVariant.WARNING_SUBTLE },
+  error: { color: StatusVariant.ERROR, backgroundColor: StatusSubtleVariant.ERROR_SUBTLE },
+  default: { color: StatusVariant.INFORMATION, backgroundColor: StatusSubtleVariant.INFORMATION_SUBTLE },
 }
 
-export const getStatusStyle = (statusType?: keyof typeof STATUS_COLORS): { color: string, backgroundColor: string} => {
-  const colors = STATUS_COLORS[statusType || 'DEFAULT']
+export const getStatusStyle = (statusType?: keyof typeof STATUS_COLORS): { color: string; backgroundColor: string } => {
+  const colors = STATUS_COLORS[statusType || 'default']
   return {
     color: getColorStyle(colors.color),
     backgroundColor: getColorStyle(colors.backgroundColor),
@@ -71,7 +72,7 @@ export const getStatusIconName = (statusType?: string): IconName | IconNameValue
   switch (statusType) {
     case 'SUCCESS':
       return IconName.CHECK_CIRCLE
-    case 'INFO':
+    case 'INFORMATION':
       return IconName.INFOS_CIRCLE
     case 'WARNING':
       return IconName.ALERT

@@ -1,12 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { TrilogyColor } from '@/objects/facets/Color'
 import { useContext, forwardRef } from 'react'
-import {  } from 'react-native'
+import {} from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { PromptContext } from '@/components/prompt/context'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
-import { PromptMicrophoneNativeRef, PromptMicrophoneProps } from '@/components/prompt/toolbar/microphone/PromptMicrophoneProps'
+import {
+  PromptMicrophoneNativeRef,
+  PromptMicrophoneProps,
+} from '@/components/prompt/toolbar/microphone/PromptMicrophoneProps'
 
 /**
  * PromptMicrophone component - Voice recording button for prompt input
@@ -47,7 +50,7 @@ const PromptMicrophone = forwardRef<PromptMicrophoneNativeRef, PromptMicrophoneP
       >
         <Icon
           size={IconSize.SMALLER}
-          color={isDisable ? TrilogyColor.DISABLED : isListening ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN}
+          color={isDisable ? IconColor.DISABLED : isListening ? IconColor.INVERSE : IconColor.PRIMARY}
           name={IconName.MICRO}
           {...{
             style: [styles.icon],

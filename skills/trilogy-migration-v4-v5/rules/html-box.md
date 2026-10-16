@@ -24,7 +24,7 @@ Pour les autres anciens noms neutres, disabled et stroke, suivre les mappings de
 
 ## Portée obligatoire
 
-Migrer les noms de couleur uniquement sur l'élément de `Box`, `BoxContent` ou `BoxFooter` qui porte `has-background-*`. Ces classes gardent leur préfixe dans v5. La conversion d'information est `has-background-info` → `has-background-information`; ne jamais transformer cela en `has-info` ou ajouter un second `has-background-`. Ne pas faire de remplacement global : d'autres composants et classes peuvent avoir des usages distincts. La prop `Box.highlighted`, qui génère une classe `is-*`, n'est pas couverte par cette règle de fond.
+Migrer les noms de couleur uniquement sur l'élément de `Box`, `BoxContent` ou `BoxFooter` qui porte `has-background-*`. Ces classes gardent leur préfixe dans v5. La conversion d'information est `has-background-info` → `has-background-information`; ne jamais transformer cela en `has-info` ou ajouter un second `has-background-`. Ne pas faire de remplacement global : d'autres composants et classes peuvent avoir des usages distincts.
 
 ```html
 <!-- Avant -->
@@ -41,3 +41,29 @@ Migrer les noms de couleur uniquement sur l'élément de `Box`, `BoxContent` ou 
 ```
 
 Si l'élément Box/BoxContent/BoxFooter ne peut pas être identifié avec certitude, signaler le cas plutôt que modifier la classe.
+
+## Box highlighted
+
+Une Box `is-highlighted` porte aussi une classe `is-{couleur}` pour la couleur de sa bordure gauche. Le préfixe `is-` est conservé ; seul le nom de couleur suit les correspondances du tableau ci-dessus.
+
+| Classe v4 (avec `is-highlighted`) | Classe v5 |
+|-----------------------------------|-----------|
+| `is-white` | `is-primary` |
+| `is-main` | `is-secondary` |
+| `is-main-fade` | `is-secondary-subtle` |
+| `is-info` / `is-info-fade` | `is-information` / `is-information-subtle` |
+| `is-success` / `is-success-fade` | `is-success` / `is-success-subtle` |
+| `is-warning` / `is-warning-fade` | `is-warning` / `is-warning-subtle` |
+| `is-error` / `is-error-fade` | `is-error` / `is-error-subtle` |
+| `is-accent` / `is-accent-fade` | `is-accent` / `is-accent-subtle` |
+| `is-brand` / `is-brand-fade` | `is-brand` / `is-brand-subtle` |
+
+Ne migrer ces classes que sur un élément portant à la fois `box` et `is-highlighted`.
+
+```html
+<!-- Avant -->
+<div class="box is-highlighted is-info">...</div>
+
+<!-- Après -->
+<div class="box is-highlighted is-information">...</div>
+```

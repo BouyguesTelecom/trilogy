@@ -83,6 +83,8 @@ export enum TextColor {
 export type TextColorValues = `${TextColor}`
 
 export enum IconColor {
+  SELECTED = 'selected',
+  DISABLED = 'disabled',
   ACCENT = 'accent',
   INVERSE = 'inverse',
   SUCCESS = 'success',

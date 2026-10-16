@@ -100,6 +100,8 @@ $button-variants: (
 );
 
 $colors-icon: (
+  'selected': var(--icon-selected),
+  'disabled': var(--icon-disabled),
   'accent': var(--icon-accent),
   'inverse': var(--icon-inverse),
   'success': var(--icon-success),

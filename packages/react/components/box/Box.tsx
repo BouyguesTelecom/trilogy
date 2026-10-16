@@ -68,7 +68,7 @@ const Box = forwardRef<BoxRef, BoxProps>(
         backgroundSrc && has('background'),
         inverted && is('inverted'),
         skeleton && is('loading'),
-        highlighted && `${is('highlighted')} ${is(getColorClassName(highlighted))}`,
+        highlighted && `${is('highlighted')} ${is(highlighted)}`,
         flat && is('flat'),
         headerOffset && is('offset-header'),
         fullheight && is('fullheight'),

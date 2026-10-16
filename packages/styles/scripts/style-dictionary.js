@@ -189,8 +189,7 @@ const getColorMapDefinitions = (dictionary) => {
   const backgrounds = getTokensByCssPrefix(dictionary, 'bg')
   const textColors = getTokensByCssPrefix(dictionary, 'text')
   const iconColors = getTokensByCssPrefix(dictionary, 'icon').filter(
-    ({ variable }) =>
-      !variable.startsWith('--icon-size-') && !['--icon-selected', '--icon-disabled'].includes(variable),
+    ({ variable }) => !variable.startsWith('--icon-size-') && !variable.startsWith('--icon-image-'),
   )
   const borderColors = getTokensByCssPrefix(dictionary, 'border').filter(
     ({ variable }) => !variable.startsWith('--border-width-'),

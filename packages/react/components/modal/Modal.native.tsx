@@ -23,6 +23,7 @@ import { Title } from '@/components/title'
 import { ModalNativeRef, ModalProps } from '@/components/modal/ModalProps'
 import { ModalContext } from '@/components/modal/context/ModalContext'
 import { Theme } from '@/constants/theme'
+import { IconColor } from '@/interfaces/colors'
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height
 const DISMISS_THRESHOLD = 150
@@ -178,7 +179,7 @@ const Modal = forwardRef<ModalNativeRef, ModalProps>(
                     {!hideCloseButton && !unClosable && (
                       <Column narrow>
                         <TouchableOpacity onPress={handleClose}>
-                          <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={TrilogyColor.MAIN} />
+                          <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={IconColor.PRIMARY} />
                         </TouchableOpacity>
                       </Column>
                     )}

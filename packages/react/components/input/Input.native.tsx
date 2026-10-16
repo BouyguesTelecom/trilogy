@@ -28,6 +28,7 @@ import {
 import { InputNativeEvents, InputNativeRef, InputProps } from '@/components/input/InputProps'
 import InputGauge from '@/components/input/gauge/InputGauge.native'
 import { Theme } from '@/constants/theme'
+import { IconColor } from '@/interfaces/colors'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
@@ -339,11 +340,11 @@ const Input = forwardRef<InputNativeRef, InputNativeProps>(
                 name={iconNameLeft as unknown as IconName}
                 size={IconSize.SMALL}
                 color={
-                  (status && status === 'success' && StatusState.SUCCESS) ||
-                  (status && status === 'warning' && StatusState.WARNING) ||
-                  (status && status === 'error' && StatusState.ERROR) ||
-                  (disabled && TrilogyColor.DISABLED) ||
-                  TrilogyColor.MAIN
+                  (status && status === 'success' && IconColor.SUCCESS) ||
+                  (status && status === 'warning' && IconColor.WARNING) ||
+                  (status && status === 'error' && IconColor.ERROR) ||
+                  (disabled && IconColor.DISABLED) ||
+                  IconColor.PRIMARY
                 }
               />
             </View>
@@ -374,12 +375,12 @@ const Input = forwardRef<InputNativeRef, InputNativeProps>(
                   }
                   size={IconSize.SMALL}
                   color={
-                    (status && status === 'success' && StatusState.SUCCESS) ||
-                    (status && status === 'warning' && StatusState.WARNING) ||
-                    (status && status === 'error' && StatusState.ERROR) ||
-                    (status && TrilogyColor.MAIN) ||
-                    (disabled && TrilogyColor.DISABLED) ||
-                    TrilogyColor.MAIN
+                    (status && status === 'success' && IconColor.SUCCESS) ||
+                    (status && status === 'warning' && IconColor.WARNING) ||
+                    (status && status === 'error' && IconColor.ERROR) ||
+                    (status && IconColor.PRIMARY) ||
+                    (disabled && IconColor.DISABLED) ||
+                    IconColor.PRIMARY
                   }
                 />
               </TouchableOpacity>
@@ -405,7 +406,7 @@ const Input = forwardRef<InputNativeRef, InputNativeProps>(
                   align={Align.CENTER}
                   name={iconNameRight as unknown as IconName}
                   size={IconSize.SMALL}
-                  color={(disabled && TrilogyColor.DISABLED) || TrilogyColor.MAIN}
+                  color={(disabled && IconColor.DISABLED) || IconColor.PRIMARY}
                 />
               </TouchableOpacity>
             )}
@@ -436,12 +437,12 @@ const Input = forwardRef<InputNativeRef, InputNativeProps>(
                   name={iconPassword}
                   size={IconSize.SMALL}
                   color={
-                    (status && status === 'success' && StatusState.SUCCESS) ||
-                    (status && status === 'warning' && StatusState.WARNING) ||
-                    (status && status === 'error' && StatusState.ERROR) ||
-                    (status && status === 'default' && TrilogyColor.MAIN) ||
-                    (disabled && TrilogyColor.DISABLED) ||
-                    TrilogyColor.MAIN
+                    (status && status === 'success' && IconColor.SUCCESS) ||
+                    (status && status === 'warning' && IconColor.WARNING) ||
+                    (status && status === 'error' && IconColor.ERROR) ||
+                    (status && status === 'default' && IconColor.PRIMARY) ||
+                    (disabled && IconColor.DISABLED) ||
+                    IconColor.PRIMARY
                   }
                 />
               </TouchableOpacity>
@@ -454,7 +455,7 @@ const Input = forwardRef<InputNativeRef, InputNativeProps>(
                   align={Align.CENTER}
                   name={IconName.SEARCH}
                   size={IconSize.SMALL}
-                  color={disabled ? TrilogyColor.DISABLED : TrilogyColor.NEUTRAL}
+                  color={disabled ? IconColor.DISABLED : IconColor.PRIMARY}
                 />
               </View>
               {value.length > 0 && (
@@ -478,7 +479,7 @@ const Input = forwardRef<InputNativeRef, InputNativeProps>(
                     align={Align.CENTER}
                     name={IconName.TIMES_CIRCLE}
                     size={IconSize.SMALL}
-                    color={disabled ? TrilogyColor.DISABLED : TrilogyColor.NEUTRAL}
+                    color={disabled ? IconColor.DISABLED : IconColor.PRIMARY}
                   />
                 </TouchableOpacity>
               )}

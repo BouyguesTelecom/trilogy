@@ -27,7 +27,7 @@ La classe de fond de `<thead>` et `<tbody>` garde son préfixe `has-background-`
 
 ## Portée obligatoire
 
-Ne migrer que les classes de couleur portées par un `<tr>`, `<thead>` ou `<tbody>` d'une table Trilogy. **Ne pas remplacer globalement** `is-success`, `is-info`, etc. : Alert, Button, Box (`highlighted`) et d'autres composants ont leurs propres règles ou gardent ces classes.
+Ne migrer que les classes de couleur portées par un `<tr>`, `<thead>` ou `<tbody>` d'une table Trilogy. **Ne pas remplacer globalement** `is-success`, `is-info`, etc. : Alert, Button, Box (`highlighted`, voir [html-box.md](html-box.md)) et d'autres composants ont leurs propres règles ou gardent ces classes.
 
 ```html
 <!-- Avant -->

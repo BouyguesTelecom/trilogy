@@ -25,6 +25,8 @@ Ce skill accompagne l'audit et la migration des projets consommateurs de Trilogy
 - [react-background-color.md](rules/react-background-color.md) — Couleurs de fond de Hero, Section, Box, BoxHeader, Icon, TableHead et TableBody : remplacement ciblé de `TrilogyColor` par `BackgroundColor`, y compris les chaînes legacy.
 - [react-text-color.md](rules/react-text-color.md) — Prop `color` de TableTr, TableHead et TableBody : remplacement de `TrilogyColor` par `TextColor`.
 - [react-tag.md](rules/react-tag.md) — Prop `variant` de Tag : `TagVariant.INFO` → `TagVariant.INFORMATION`, valeurs en lowercase.
+- [react-list-item.md](rules/react-list-item.md) — Prop `status` de ListItem : `ListIconStatus.INFO` → `ListIconStatus.INFORMATION`, valeurs en lowercase.
+- [react-progress.md](rules/react-progress.md) — Prop `status` de Progress : `StatusState` → `StatusVariant`, `INFO` → `INFORMATION`, valeurs en lowercase.
 - [react-icon-color.md](rules/react-icon-color.md) — Renommage ciblé des anciennes valeurs `IconColor` pour la couleur du glyphe d'Icon.
 - [html-alert.md](rules/html-alert.md) — Migration des classes de couleur HTML/CSS d'Alert de `is-*` vers `has-background-*-subtle`.
 - [html-tag.md](rules/html-tag.md) — Sur la racine Tag uniquement, `is-{couleur}` → `has-background-{couleur}-subtle` (`info` → `information`).

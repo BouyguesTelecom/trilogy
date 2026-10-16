@@ -14,6 +14,7 @@ import { memoStyles } from '@/helpers/memoStyles'
 import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
 import { Theme } from '@/constants/theme'
+import { IconColor } from '@/interfaces/colors'
 
 /**
  * CheckboxTile
@@ -150,7 +151,7 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
           )}
 
           <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
-            {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
+            {_checked && <Icon size={IconSize.SMALLER} color={IconColor.INVERSE} name={IconName.CHECK} />}
           </TouchableOpacity>
 
           {icon && (
@@ -160,7 +161,7 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
                 alignItems: 'center',
               }}
             >
-              <Icon size={IconSize.SMALL} name={icon} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN} />
+              <Icon size={IconSize.SMALL} name={icon} color={disabled ? IconColor.DISABLED : IconColor.PRIMARY} />
             </ViewRN>
           )}
 
@@ -200,7 +201,7 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
         )}
         <View style={{ gap: SpacerSize.TWO }}>
           <TouchableOpacity style={[styles.checkBox]} disabled={disabled} testID={id} onPressIn={handleClick}>
-            {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
+            {_checked && <Icon size={IconSize.SMALLER} color={IconColor.INVERSE} name={IconName.CHECK} />}
           </TouchableOpacity>
           {icon && (
             <View
@@ -210,7 +211,7 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
                 justifyContent: 'center',
               }}
             >
-              <Icon size={IconSize.SMALL} color={disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN} name={icon} />
+              <Icon size={IconSize.SMALL} color={disabled ? IconColor.DISABLED : IconColor.PRIMARY} name={icon} />
             </View>
           )}
           {label && typeof label.valueOf() === 'string' ? (

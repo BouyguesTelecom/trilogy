@@ -17,7 +17,7 @@ interface InputGaugeProps {
 interface DataVerifyProps {
   type?: string
   display: boolean
-  color: string
+  color: IconColor
   iconName: IconName
   index: number
 }
@@ -89,7 +89,7 @@ const InputGauge = ({ validationRules, inputValue, securityRules }: InputGaugePr
               key={`${id}_${rule.label}`}
               display={true}
               type={rule.label}
-              color={rule.validate ? IconColor.SUCCESS : IconColor.NEUTRAL}
+              color={rule.validate ? IconColor.SUCCESS : IconColor.PRIMARY}
               iconName={rule.validate ? IconName.CHECK_CIRCLE : IconName.TIMES}
             />
           ))}
