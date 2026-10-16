@@ -19,7 +19,7 @@
       content: "";
       width: 18px;
       height: 18px;
-      mask-image: url('./assets/icons/all/arrow-right.svg');
+      mask-image: var(--icon-image-arrow-right);
       mask-position: center;
       mask-repeat: no-repeat;
       mask-size: cover;

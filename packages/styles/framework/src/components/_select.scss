@@ -105,7 +105,7 @@ $status-select: (
 
         &:after {
           content: "" !important;
-          mask-image: url('./assets/icons/all/check.svg') !important;
+          mask-image: var(--icon-image-check) !important;
           background-color: var(--input-bg-selected) !important;
           mask-size: 18px !important;
           right: 18px !important;

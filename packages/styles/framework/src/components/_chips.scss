@@ -23,7 +23,7 @@
   &.is-multiple {
     .chips:before {
       content: "";
-      mask-image: url('./assets/icons/all/check.svg');
+      mask-image: var(--icon-image-check);
       background-color: currentColor;
       margin-right: 4px;
       margin-left: -8px;

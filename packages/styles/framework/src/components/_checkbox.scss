@@ -41,7 +41,7 @@
 
     &:after {
       content: "";
-      mask-image: url('./assets/icons/all/check.svg');
+      mask-image: var(--icon-image-check);
       background-color: var(--icon-inverse);
       mask-size: 18px;
     }

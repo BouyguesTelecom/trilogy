@@ -46,7 +46,7 @@
     .step-label {
       &::before {
         content: "";
-        mask-image: url('./assets/icons/all/times.svg') !important;
+        mask-image: var(--icon-image-times) !important;
         background-color: var(--step-bg-error) !important;
         border-width: 0;
         mask-size: 20px;
@@ -76,7 +76,7 @@
     .step-label {
       &::before {
         content: "";
-        mask-image: url('./assets/icons/all/check-circle.svg');
+        mask-image: var(--icon-image-check-circle);
         background-color: var(--step-bg-done);
         border-width: 0;
         min-width: 20px;
