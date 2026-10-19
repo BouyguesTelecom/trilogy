@@ -490,8 +490,8 @@ StyleDictionary.registerFormat({
 StyleDictionary.registerFormat({
   name: 'typescript/theme/react',
   format: ({ dictionary, options }) => {
-    const exports = options.exports || [options]
-    const declarations = exports.map(({ name, property, filter, modeAware }) => {
+    const themeSections = options.themeSections || [options]
+    const declarations = themeSections.map(({ property, filter, modeAware }) => {
       const value = modeAware
         ? `{\n${modes
             .map((mode) => {
@@ -501,17 +501,13 @@ StyleDictionary.registerFormat({
             .join('\n')}\n}`
         : formatReactObject(getReactTokens(dictionary, filter))
 
-      return { name, property, value }
+      return { property, value }
     })
 
     const themeObject = declarations
       .map(({ property, value }) => `  ${property}: ${value.replace(/\n/g, '\n  ')},`)
       .join('\n')
-    const aliases = declarations.map(({ name, property }) => `export const ${name} = THEME_TRILOGY.${property}`)
-
-    return `// Generated from figma tokens. Do not edit directly.\n\nexport const THEME_TRILOGY = {\n  defaultMode: 'light',\n${themeObject}\n} as const\n\nexport const THEMES_TRILOGY = {\n  trilogy: THEME_TRILOGY,\n} as const\n\n${aliases.join(
-      '\n',
-    )}\n`
+    return `// Generated from figma tokens. Do not edit directly.\n\nexport const THEME_TRILOGY = {\n${themeObject}\n} as const\n\ntype WidenThemeValues<T> = T extends string\n  ? string\n  : T extends number\n    ? number\n    : T extends boolean\n      ? boolean\n      : T extends readonly unknown[]\n        ? { [K in keyof T]: WidenThemeValues<T[K]> }\n        : T extends object\n          ? { -readonly [K in keyof T]: WidenThemeValues<T[K]> }\n          : T\n\nexport type TrilogyTheme = WidenThemeValues<typeof THEME_TRILOGY>\nexport type TrilogyThemeMode = keyof TrilogyTheme['colors']\nexport type ActiveTrilogyTheme = Omit<TrilogyTheme, 'colors'> & {\n  colors: TrilogyTheme['colors'][TrilogyThemeMode]\n}\n`
   },
 })
 
@@ -547,25 +543,21 @@ export default {
           destination: 'index.ts',
           format: 'typescript/theme/react',
           options: {
-            exports: [
+            themeSections: [
               {
-                name: 'THEME_COLORS_TRILOGY',
                 property: 'colors',
                 modeAware: true,
                 filter: (token) => isModeToken(token) && token.path[1] !== 'Radius' && token.path[1] !== 'Spacing',
               },
               {
-                name: 'THEME_FONTS_TRILOGY',
                 property: 'fonts',
                 filter: (token) => token.filePath?.includes('sm.tokens') && token.path[0] === 'Font',
               },
               {
-                name: 'THEME_RADIUS_TRILOGY',
                 property: 'radius',
                 filter: (token) => isModeToken(token, 'light') && token.path[1] === 'Radius',
               },
               {
-                name: 'THEME_SPACINGS_TRILOGY',
                 property: 'spacings',
                 filter: (token) => isModeToken(token, 'light') && token.path[1] === 'Spacing',
               },

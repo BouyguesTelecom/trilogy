@@ -9,7 +9,6 @@
     "url": "https://github.com/BouyguesTelecom/trilogy"
   },
   "scripts": {
-    "mobile": "npm --workspace=examples/mobile run ios",
     "prebuild": "npm run build:version && ./scripts/install-hooks.sh",
     "build": "npm run build:locale-fr && npm run build:locale-en && npm run build --workspace=@trilogy-ds/assets && npm run build --workspace=@trilogy-ds/styles && npm run build --workspace=@trilogy-ds/react && npm run build --workspace=@trilogy-ds/vanilla && npx tsx scripts/defaultProps.ts",
     "build:autolayout": "esbuild --platform=node --bundle packages/styles/scripts/autolayout.ts --outfile=scripts/dist/autolayout.cjs --sourcemap",
@@ -24,11 +23,9 @@
     "create:autolayout": "npm --workspace=@trilogy-ds/styles run build:autolayout && npm run create:autolayout",
     "lint": "eslint packages/react --ext .ts,.tsx --fix && npm run check-types",
     "optimise:svg": "npm --workspace=@trilogy-ds/assets run optimise:icons",
-    "start": "npm --workspace=@trilogy-ds/react-template run start",
-    "setup:native": "cd examples/mobile && npm i && npm run setup:native",
-    "start:native": "cd examples/mobile && npm run start",
-    "setup:native:expo": "cd examples/mobile-expo && npm i",
-    "start:native:expo": "cd examples/mobile-expo && npm run start",
+    "start": "npm --workspace=examples/react run web",
+    "setup:native:expo": "npm install --workspace=examples/react",
+    "start:native:expo": "npm --workspace=examples/react run start",
     "storybook": "npm --workspace=@trilogy-ds/storybook run dev",
     "style:size-limit": "cd config && size-limit",
     "test": "npm --workspace=@trilogy-ds/react run test",
@@ -36,7 +33,7 @@
     "check-types": "npm --workspace=@trilogy-ds/react run check-types",
     "watch:css": "npm --workspace=@trilogy-ds/styles run watch:css",
     "watch:cssMangled": "npm --workspace=@trilogy-ds/styles run watch:cssMangled",
-    "pages": "cd examples/react-template && npm run build && rimraf ../../docs/templates && mkdir -p ../../docs/templates && cp -R ./dist/* ../../docs/templates",
+    "pages": "npm --workspace=examples/react run web:build && rimraf docs/templates && mkdir -p docs/templates && cp -R examples/react/dist-web/. docs/templates/",
     "serve:vanilla": "npm --workspace=@trilogy-ds/vanilla run serve",
     "setup": "npm i && npm run build && npm i && npm start",
     "postinstall": "./scripts/install-hooks.sh"
@@ -90,7 +87,7 @@
     "packages/vanilla",
     "packages/storybook",
     "packages/locales/en",
-    "examples/react-template"
+    "examples/react"
   ],
   "engineStrict": true,
   "engines": {

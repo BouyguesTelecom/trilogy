@@ -1,7 +1,6 @@
 // Generated from figma tokens. Do not edit directly.
 
 export const THEME_TRILOGY = {
-  defaultMode: 'light',
   colors: {
     light: {
       "background": "#E5EEF3",
@@ -329,11 +328,20 @@ export const THEME_TRILOGY = {
   },
 } as const
 
-export const THEMES_TRILOGY = {
-  trilogy: THEME_TRILOGY,
-} as const
+type WidenThemeValues<T> = T extends string
+  ? string
+  : T extends number
+    ? number
+    : T extends boolean
+      ? boolean
+      : T extends readonly unknown[]
+        ? { [K in keyof T]: WidenThemeValues<T[K]> }
+        : T extends object
+          ? { -readonly [K in keyof T]: WidenThemeValues<T[K]> }
+          : T
 
-export const THEME_COLORS_TRILOGY = THEME_TRILOGY.colors
-export const THEME_FONTS_TRILOGY = THEME_TRILOGY.fonts
-export const THEME_RADIUS_TRILOGY = THEME_TRILOGY.radius
-export const THEME_SPACINGS_TRILOGY = THEME_TRILOGY.spacings
+export type TrilogyTheme = WidenThemeValues<typeof THEME_TRILOGY>
+export type TrilogyThemeMode = keyof TrilogyTheme['colors']
+export type ActiveTrilogyTheme = Omit<TrilogyTheme, 'colors'> & {
+  colors: TrilogyTheme['colors'][TrilogyThemeMode]
+}

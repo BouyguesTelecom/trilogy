@@ -1,0 +1,51 @@
+import { Button, Calendar, Spacer, Text, View, ChangeEventCalendar } from '@trilogy-ds/react'
+import { useState } from 'react'
+import { Screen } from '@/components/screen'
+
+const minDate = new Date(2025, 9, 10)
+const maxDate = new Date(2032, 11, 20)
+const disabledDates = [new Date(2025, 10, 4), new Date(2025, 10, 10)]
+
+export default function CalendarScreen(): JSX.Element {
+  const [value, setValue] = useState<ChangeEventCalendar>(new Date(2025, 10, 30))
+  const [values, setValues] = useState<ChangeEventCalendar>([])
+
+  return (
+    <Screen>
+      <View>
+        <Text>Simple Calendar</Text>
+        <Button onClick={() => setValue(new Date(2025, 9, 11))} variant='accent'>
+          {`Set Date ${new Date(2025, 9, 11).toLocaleDateString()}`}
+        </Button>
+
+        <Spacer size={16} />
+
+        <Calendar
+          onMonthChange={(e) => console.log(e)}
+          disabledDates={disabledDates}
+          maxDate={maxDate}
+          minDate={minDate}
+          value={value}
+          onChange={(e) => {
+            setValue(e)
+          }}
+        />
+      </View>
+      <View>
+        <Text>Range Calendar</Text>
+        <Button onClick={() => setValues([new Date(2025, 9, 11), new Date(2025, 9, 20)])} variant='accent'>
+          {`Set Date [${new Date(2025, 9, 11).toLocaleDateString()}, ${new Date(2025, 9, 20).toLocaleDateString()} ]`}
+        </Button>
+
+        <Spacer size={16} />
+
+        <Calendar
+          value={values}
+          onChange={(e) => {
+            setValues(e)
+          }}
+        />
+      </View>
+    </Screen>
+  )
+}
