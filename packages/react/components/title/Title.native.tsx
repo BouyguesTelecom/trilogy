@@ -36,6 +36,7 @@ const Title = forwardRef<TitleNativeRef, TitleProps>(({
   accessibilityLabel,
   subtitle,
   overline,
+  testId,
   ...others
 }, ref): JSX.Element => {
   const statesContext = useContext(StatesContext)
@@ -111,6 +112,8 @@ const Title = forwardRef<TitleNativeRef, TitleProps>(({
       maxFontSizeMultiplier={1.3}
       accessible={!!titleAccessibilityLabel}
       accessibilityLabel={titleAccessibilityLabel}
+      testID={testId}
+      nativeID={testId}
       style={[styles.text, style]}
       {...others}
     >
