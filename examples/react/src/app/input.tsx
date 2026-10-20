@@ -17,7 +17,6 @@ import {
 } from '@trilogy-ds/react'
 import * as React from 'react'
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
 
 export default function InputScreen(): JSX.Element {
   const [valueTextInput, setValueTextInput] = React.useState<string | undefined>()
@@ -25,14 +24,6 @@ export default function InputScreen(): JSX.Element {
   const [inputSearch, setInputSearch] = React.useState('')
   const [inputFormated2, setInputFormated2] = React.useState('06 12 34 56 78')
   const [inputFormated3, setInputFormated3] = React.useState('1234 5678 9012 3456')
-
-  const form = useForm<{
-    toto: string
-  }>({
-    defaultValues: {
-      toto: 'test value',
-    },
-  })
 
   useEffect(() => {
     setLeavingDate(leavingDate)
@@ -58,17 +49,6 @@ export default function InputScreen(): JSX.Element {
         placeholder='ReadOnly input'
         readOnly
       />
-
-      <Title level={4}>Input react-hook-form control</Title>
-      {!isMobile && (
-        <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>
-          <Input {...form.register('toto', { required: true })} accessibilityLabel='label' label='label' />
-          <Button type='submit' variant='primary'>
-            Submit
-          </Button>
-          <Spacer size={SpacerSize.FIVE} />
-        </form>
-      )}
 
       <Title level={4}>Input with label and without accessibilityLabel</Title>
       <Input

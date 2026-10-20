@@ -14,7 +14,6 @@ import {
   TitleLevels,
 } from '@trilogy-ds/react'
 import * as React from 'react'
-import { useForm } from 'react-hook-form'
 
 export default function SelectView(): JSX.Element {
   const [option4, setOption4] = React.useState<string>('opt_one')
@@ -22,36 +21,9 @@ export default function SelectView(): JSX.Element {
   const [option, setOption] = React.useState<string | undefined>('opt_two')
   const [option2, setOption2] = React.useState<string | undefined>('opt_one')
 
-  const POSTALCODE = [
-    { code: '92300', name: 'City 1' },
-    { code: '91800', name: 'City 2' },
-    { code: '92800', name: 'City 3' },
-  ]
-  const { register, handleSubmit } = useForm()
-  const onSubmit = (data) => console.log(data)
   return (
     <>
       <Section>
-        <Title level={TitleLevels.THREE}>Select for react-hook-form</Title>
-        <Box flat>
-          <BoxContent>
-            {!isMobile && (
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Select label={'label'} {...register('gender')} sample='Select sample' help='Select helper'>
-                  {POSTALCODE.map((postalcode) => (
-                    <SelectOption
-                      key={postalcode.code}
-                      value={postalcode.code}
-                      label={postalcode.code + ' - ' + postalcode.name}
-                    />
-                  ))}
-                </Select>
-                <input type='submit' />
-              </form>
-            )}
-          </BoxContent>
-        </Box>
-
         <Spacer size={SpacerSize.FOUR} />
         <Title level={TitleLevels.THREE}>Select custom disabled</Title>
         <Box flat>
