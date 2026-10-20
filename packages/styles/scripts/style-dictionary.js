@@ -187,6 +187,10 @@ const getSemanticTokenName = (variable, prefix) => variable.slice(prefix.length 
 
 const getColorMapDefinitions = (dictionary) => {
   const backgrounds = getTokensByCssPrefix(dictionary, 'bg')
+  const inputBackgrounds = getTokensByCssPrefix(dictionary, 'input-bg')
+  const inputBorderColors = getTokensByCssPrefix(dictionary, 'input-border').filter(
+    ({ variable }) => !variable.startsWith('--input-border-width-'),
+  )
   const textColors = getTokensByCssPrefix(dictionary, 'text')
   const iconColors = getTokensByCssPrefix(dictionary, 'icon').filter(
     ({ variable }) => !variable.startsWith('--icon-size-') && !variable.startsWith('--icon-image-'),
@@ -197,6 +201,11 @@ const getColorMapDefinitions = (dictionary) => {
   const byName = (entries, prefix) =>
     new Map(entries.map(({ variable }) => [getSemanticTokenName(variable, prefix), `var(${variable})`]))
   const backgroundsByName = byName(backgrounds, '--bg')
+  const inputBackgroundsByName = byName(inputBackgrounds, '--input-bg')
+  const primaryInputBackground = dictionary.allTokens.find(
+    (token) => isModeToken(token, 'light') && getCssVariableName(token) === '--input-bg',
+  )
+  if (primaryInputBackground) inputBackgroundsByName.set('primary', 'var(--input-bg)')
   const textByName = byName(textColors, '--text')
   const iconColorsByName = byName(iconColors, '--icon')
   // The primary icon token is named `primary` in Figma but uses the bare --icon variable.
@@ -254,6 +263,8 @@ const getColorMapDefinitions = (dictionary) => {
 
   return {
     backgrounds: backgroundsByName,
+    inputBackgrounds: inputBackgroundsByName,
+    inputBorderColors: byName(inputBorderColors, '--input-border'),
     backgroundSolid: new Map([...backgroundsByName].filter(([name]) => !name.endsWith('-subtle'))),
     backgroundSubtle: new Map([...backgroundsByName].filter(([name]) => name.endsWith('-subtle'))),
     borders: bordersByName,
@@ -339,6 +350,10 @@ StyleDictionary.registerFormat({
       formatEnum('TextColor', maps.text),
       '',
       formatEnum('IconColor', maps.iconColors),
+      '',
+      formatEnum('InputBg', maps.inputBackgrounds),
+      '',
+      formatEnum('InputBorderColor', maps.inputBorderColors),
       '',
     ].join('\n')
   },

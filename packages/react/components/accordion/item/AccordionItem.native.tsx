@@ -2,17 +2,43 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconColor, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Spacer, SpacerSize } from '@/components/spacer'
-import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { isValidElement, useEffect, useRef, useState, JSXElementConstructor, ReactNode, forwardRef } from 'react'
-import { Animated, Easing, TouchableWithoutFeedback, View } from 'react-native'
-import { memoStyles } from '@/helpers/memoStyles'
+import {
+  Children,
+  isValidElement,
+  useEffect,
+  useMemo,
+  useState,
+  JSXElementConstructor,
+  ReactNode,
+  forwardRef,
+  useCallback,
+} from 'react'
+import { GestureResponderEvent, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
+import Animated, {
+  Easing,
+  LinearTransition,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated'
 import { AccordionItemNativeRef, AccordionItemProps } from '@/components/accordion/item/AccordionItemProps'
-import { Theme } from '@/constants/theme'
+import { useBackgroundColor } from '@/hooks/useBackgroundColor'
+import { useBorderColor } from '@/hooks/useBorderColor'
+import { useInputBorderColor } from '@/hooks/useInputBorderColor'
+import { useThemeSelector } from '@/hooks/useThemeSelector'
+import { BackgroundColor, BorderColor, InputBg, InputBorderColor } from '@/interfaces/colors'
+import { useInputBg } from '@/hooks/useInputBg'
 
 interface AccordionChild {
   header?: ReactNode
   body?: ReactNode
 }
+
+const animationConfig = {
+  duration: 300,
+  easing: Easing.inOut(Easing.ease),
+}
+const layoutTransition = LinearTransition.duration(animationConfig.duration).easing(animationConfig.easing)
 
 /**
  * Accordion Item Component
@@ -26,155 +52,98 @@ interface AccordionChild {
  */
 const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
   ({ open, id, onClick, disabled, children, testId, ...others }, ref): JSX.Element => {
-    const [isActive, setIsActive] = useState<boolean>(Boolean(typeof open !== 'undefined' ? open : false))
-    const animatedController = useRef(new Animated.Value(0)).current
-    const [bodySectionHeight, setBodySectionHeight] = useState<number>(0)
-    const [childs, setChilds] = useState<AccordionChild>({
-      header: undefined,
-      body: undefined,
-    })
+    const [isActive, setIsActive] = useState(Boolean(open))
+    const rotation = useSharedValue(open ? 180 : 0)
+    const arrowStyle = useAnimatedStyle(() => ({
+      transform: [{ rotateZ: `${rotation.value}deg` }],
+    }))
 
-    const styles = memoStyles({
-      item: {
-        width: '100%',
-        padding: 5,
-        borderRadius: Theme.radius.md,
-        backgroundColor: disabled ? getColorStyle(TrilogyColor.DISABLED_FADE) : getColorStyle(TrilogyColor.BACKGROUND),
-        borderWidth: 1,
-        borderColor: (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) || getColorStyle(TrilogyColor.STROKE_FADE),
-      },
-      bodyBackground: {
-        borderRadius: Theme.radius.md,
-        backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
-        overflow: 'hidden',
-      },
-      titleContainer: {
-        minWidth: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingLeft: 10,
-        paddingRight: 5,
-        paddingTop: 5,
-        paddingBottom: 5,
-        borderColor: getColorStyle(TrilogyColor.BACKGROUND),
-      },
-      bodyContainer: {
-        padding: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
-        position: 'absolute',
-        bottom: 0,
-        borderRadius: Theme.radius.md,
-        left: 0,
-        right: 0,
-      },
-    })
-
-    const bodyHeight = animatedController.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, bodySectionHeight],
-    })
-
-    const arrowAngle = animatedController.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0rad', `${Math.PI}rad`],
-    })
-
-    useEffect(() => {
-      setIsActive(open || false)
-    }, [open])
-
-    const toggleListItem = () => {
-      if (isActive) {
-        Animated.timing(animatedController, {
-          duration: 300,
-          toValue: 0,
-          easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-          useNativeDriver: false,
-        }).start()
-      } else {
-        Animated.timing(animatedController, {
-          duration: 300,
-          toValue: 1,
-          easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-          useNativeDriver: false,
-        }).start()
-      }
-      setIsActive(!isActive)
-    }
-
-    useEffect(() => {
-      open ? animatedController.setValue(1) : animatedController.setValue(0)
-    }, [open])
-
-    useEffect(() => {
-      const newChilds: AccordionChild = {}
-      if (Array.isArray(children)) {
-        children.forEach((child) => {
-          if (isValidElement(child) && child.type) {
-            const childType = child.type as JSXElementConstructor<unknown> & {
-              displayName?: string
-              render?: { displayName?: string }
-            }
-
-            const childName = childType?.displayName || childType?.render?.displayName
-
-            switch (childName) {
-              case 'AccordionHeader':
-                newChilds.header = child
-                break
-              case 'AccordionBody':
-                newChilds.body = child
-                break
-              default:
-                break
-            }
-          }
-        })
-        setChilds(newChilds)
-      }
+    const childs = useMemo(() => {
+      const result: AccordionChild = {}
+      Children.forEach(children, (child) => {
+        if (!isValidElement(child)) return
+        const childType = child.type as JSXElementConstructor<unknown> & {
+          displayName?: string
+          render?: { displayName?: string }
+        }
+        const name = childType.displayName || childType.render?.displayName
+        if (name === ComponentName.AccordionHeader) result.header = child
+        if (name === ComponentName.AccordionBody) result.body = child
+      })
+      return result
     }, [children])
 
+    const backgroundDisabled = useInputBg(InputBg.DISABLED)
+    const borderDisabled = useInputBorderColor(InputBorderColor.DISABLED)
+    const backgroundColor = useBackgroundColor(BackgroundColor.PRIMARY)
+    const borderColor = useBorderColor(BorderColor.PRIMARY)
+    const borderRadius = useThemeSelector((theme) => theme.radius.radiusMd)
+
+    const themeStyles = useMemo(
+      () => ({
+        item: {
+          borderRadius,
+          backgroundColor: disabled ? backgroundDisabled : backgroundColor,
+          borderColor: disabled ? borderDisabled : borderColor,
+        },
+        bodyBackground: { borderRadius, backgroundColor },
+        titleContainer: { borderColor: backgroundColor },
+        bodyContainer: { borderRadius },
+      }),
+      [backgroundColor, backgroundDisabled, borderDisabled, borderColor, borderRadius, disabled],
+    )
+
+    const onPress = useCallback(
+      (e: GestureResponderEvent) => {
+        if (!disabled) {
+          setIsActive((active) => !active)
+          if (onClick) onClick(e as any)
+        }
+      },
+      [disabled, onClick],
+    )
+
+    useEffect(() => {
+      setIsActive(Boolean(open))
+    }, [open])
+
+    useEffect(() => {
+      rotation.value = withTiming(isActive ? 180 : 0, animationConfig)
+    }, [isActive, rotation])
+
     return (
-      <>
-        <View style={styles.item} ref={ref}>
-          <TouchableWithoutFeedback
-            style={styles.item}
-            testID={id || testId || ''}
-            onPress={(e: any) => {
-              if (!disabled) {
-                toggleListItem()
-                if (onClick) onClick(e)
-              }
-            }}
-            {...others}
-          >
-            <View style={styles.titleContainer}>
-              {childs.header && <View>{childs.header}</View>}
-              <Animated.View style={{ transform: [{ rotateZ: arrowAngle }] }}>
-                <Icon
-                  name={IconName.ARROW_DOWN}
-                  size={IconSize.SMALLER}
-                  color={disabled ? IconColor.DISABLED : IconColor.PRIMARY}
-                />
-              </Animated.View>
-            </View>
-          </TouchableWithoutFeedback>
-          <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
-            <View
-              style={styles.bodyContainer}
-              onLayout={(e: any) => {
-                setBodySectionHeight(e.nativeEvent.layout.height)
-              }}
-            >
-              {childs.body && <View>{childs.body}</View>}
-            </View>
-          </Animated.View>
-        </View>
-        <Spacer size={SpacerSize.TWO} />
-      </>
+      <Animated.View layout={layoutTransition} style={[styles.item, themeStyles.item]} ref={ref}>
+        <TouchableWithoutFeedback
+          disabled={disabled}
+          accessibilityRole='button'
+          accessibilityState={{ expanded: isActive, disabled: Boolean(disabled) }}
+          testID={id || testId || ''}
+          onPress={onPress}
+          {...others}
+        >
+          <View style={[styles.titleContainer, themeStyles.titleContainer]}>
+            {childs.header && <View>{childs.header}</View>}
+            <Animated.View style={arrowStyle}>
+              <Icon
+                name={IconName.ARROW_DOWN}
+                size={IconSize.SMALLER}
+                color={disabled ? IconColor.DISABLED : IconColor.PRIMARY}
+              />
+            </Animated.View>
+          </View>
+        </TouchableWithoutFeedback>
+        <Animated.View
+          layout={layoutTransition}
+          style={[styles.bodyBackground, themeStyles.bodyBackground, !isActive && styles.collapsed]}
+          pointerEvents={isActive ? 'auto' : 'none'}
+          accessibilityElementsHidden={!isActive}
+          importantForAccessibility={isActive ? 'auto' : 'no-hide-descendants'}
+        >
+          <View style={[styles.bodyContainer, themeStyles.bodyContainer]}>
+            {childs.body && <View>{childs.body}</View>}
+          </View>
+        </Animated.View>
+      </Animated.View>
     )
   },
 )
@@ -182,3 +151,31 @@ const AccordionItem = forwardRef<AccordionItemNativeRef, AccordionItemProps>(
 AccordionItem.displayName = ComponentName.AccordionItem
 
 export default AccordionItem
+
+const styles = StyleSheet.create({
+  item: {
+    width: '100%',
+    padding: 5,
+    borderWidth: 1,
+  },
+  bodyBackground: {
+    overflow: 'hidden',
+  },
+  collapsed: {
+    height: 0,
+  },
+  titleContainer: {
+    minWidth: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingLeft: 10,
+    paddingRight: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
+  bodyContainer: {
+    padding: 10,
+  },
+})

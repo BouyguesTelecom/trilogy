@@ -96,3 +96,25 @@ export enum IconColor {
 }
 
 export type IconColorValues = `${IconColor}`
+
+export enum InputBg {
+  DISABLED = 'disabled',
+  DISABLED_SELECTED = 'disabled-selected',
+  INACTIVE = 'inactive',
+  SELECTED = 'selected',
+  SELECTED_HOVER = 'selected-hover',
+  SELECTED_PRESSED = 'selected-pressed',
+  HOVER = 'hover',
+  PRESSED = 'pressed',
+  PRIMARY = 'primary',
+}
+
+export type InputBgValues = `${InputBg}`
+
+export enum InputBorderColor {
+  SELECTED = 'selected',
+  INACTIVE = 'inactive',
+  DISABLED = 'disabled',
+}
+
+export type InputBorderColorValues = `${InputBorderColor}`

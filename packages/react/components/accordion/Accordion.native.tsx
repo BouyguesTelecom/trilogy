@@ -3,6 +3,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { forwardRef, useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useThemeSelector } from '@/hooks/useThemeSelector'
+import { SpacerSize } from '@/components/spacer/SpacerEnum'
 
 /**
  * Accordion Component
@@ -25,5 +26,6 @@ const styles = StyleSheet.create({
   accordion: {
     width: '100%',
     minHeight: 10,
+    gap: SpacerSize.TWO,
   },
 })

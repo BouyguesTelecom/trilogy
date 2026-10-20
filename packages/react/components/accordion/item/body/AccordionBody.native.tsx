@@ -1,7 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { forwardRef } from 'react'
 import { View } from 'react-native'
-import { memoStyles } from '@/helpers/memoStyles'
 import { AccordionBodyNativeRef, AccordionBodyProps } from '@/components/accordion/item/body/AccordionBodyProps'
 
 /**
@@ -12,12 +11,8 @@ import { AccordionBodyNativeRef, AccordionBodyProps } from '@/components/accordi
  */
 const AccordionBody = forwardRef<AccordionBodyNativeRef, AccordionBodyProps>(
   ({ children, testId, ...others }, ref): JSX.Element => {
-    const styles = memoStyles({
-      accordionBody: {},
-    })
-
     return (
-      <View ref={ref} style={[styles.accordionBody]} testID={testId} {...others}>
+      <View ref={ref} testID={testId} {...others}>
         {children}
       </View>
     )
