@@ -1,198 +1,160 @@
+import { forwardRef, useContext, useMemo } from 'react'
+import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import type { ViewStyle } from 'react-native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconSize } from '@/components/icon/IconEnum'
-import { IconNativeRef, IconProps } from '@/components/icon/IconProps'
-import { StatesContext } from '@/context/providerStates'
-import { TrilogyThemeContext } from '@/context/providerTheme.native'
-import { isIOS } from '@/helpers/device.native'
-import { getAlignStyle } from '@/objects/facets/Alignable'
-import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
-import { useContext, ComponentType, forwardRef } from 'react'
-import { TouchableOpacity, View } from 'react-native'
-import { memoStyles } from '@/helpers/memoStyles'
+import type { IconNativeRef, IconProps } from '@/components/icon/IconProps'
 import { Skeleton } from '@/components/skeleton'
+import { StatesContext } from '@/context/providerStates'
+import { getAlignStyle } from '@/objects/facets/Alignable'
+import { useThemeSelector } from '@/hooks/useThemeSelector'
+import { useIconColor } from '@/hooks/useIconColor'
+import { useBackgroundColor } from '@/hooks/useBackgroundColor'
 
-const resolveSvg = (mod: unknown): ComponentType<Record<string, unknown>> => {
-  const asModule = mod as { __esModule?: boolean; default?: ComponentType<Record<string, unknown>> }
-  return (asModule && asModule.__esModule ? asModule.default : mod) as ComponentType<Record<string, unknown>>
+const sizes = {
+  smaller: { icon: 16, circle: 38, skeleton: 10 },
+  small: { icon: 20, circle: 32, skeleton: 15 },
+  medium: { icon: 30, circle: 48, skeleton: 25 },
+  large: { icon: 44, circle: 66, skeleton: 35 },
+  huge: { icon: 66, circle: 99, skeleton: 50 },
 }
 
-/**
- * Icon Component
- * @param name {IconName} Icon name
- * @param size {IconSize} Size of Icon
- * @param circled {boolean} Display icon with circular background
- * @param stretched {boolean} Stretched icon
- * @param color {IconColor} Custom Icon Color
- * @param backgroundColor {TrilogyColor} Custom Background color (only if circled)
- * @param onClick {Function} onClick Event Icon
- * @param skeleton {boolean} Icon Skeleton
- * @param testId {string} Test Id for Test Integration
- * @param align {Alignable | AlignableValues} Align content
- */
+/** Renders an already-loaded font. Font loading is the application's responsibility. */
 const Icon = forwardRef<IconNativeRef, IconProps>(
   (
-    { size, name, circled, stretched, color, backgroundColor, onClick, align, skeleton, testId, ...others },
+    {
+      name,
+      size = IconSize.SMALL,
+      color,
+      backgroundColor,
+      circled,
+      stretched,
+      skeleton,
+      align,
+      onClick,
+      testId,
+      ...others
+    },
     ref,
   ): JSX.Element => {
-    const {
-      theme: { icons },
-    } = useContext(TrilogyThemeContext)
-
-    const statesContext = useContext(StatesContext)
-    const style = {}
-
-    const defaultSize =
-      (size === IconSize.HUGE && 66) ||
-      (size === IconSize.LARGE && 44) ||
-      (size === IconSize.MEDIUM && 30) ||
-      (size === IconSize.SMALL && 20) ||
-      (size === IconSize.SMALLER && 16) ||
-      20
-
-    const iconColor =
-      (color && getColorStyle(color as TrilogyColor | TrilogyColorValues)) ||
-      (statesContext.inverted && getColorStyle(TrilogyColor.BACKGROUND)) ||
-      getColorStyle(TrilogyColor.MAIN)
-
-    const background =
-      (backgroundColor && getColorStyle(backgroundColor)) || (circled && getColorStyle(TrilogyColor.MAIN)) || ''
-
-    const iconSkeletonRadius =
-      (size === IconSize.HUGE && 50) ||
-      (size === IconSize.LARGE && 35) ||
-      (size === IconSize.MEDIUM && 25) ||
-      (size === IconSize.SMALL && 15) ||
-      (size === IconSize.SMALLER && 10) ||
-      15
-
-    const circledWidth =
-      (size === IconSize.HUGE && 99) ||
-      (size === IconSize.LARGE && 66) ||
-      (size === IconSize.MEDIUM && 48) ||
-      (size === IconSize.SMALL && 32) ||
-      (size === IconSize.SMALLER && 38) ||
-      32
-
-    const styles = memoStyles({
-      rootView: {
-        alignSelf: getAlignStyle(align),
-      },
-      iconCircled: {
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      icon: {
-        transform: isIOS ? (stretched && [{ skewX: '20deg' }]) || [{ skewX: '0deg' }] : [],
-      },
-      iconContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: defaultSize,
-        height: defaultSize,
-      },
-      stretched: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: circledWidth + 15,
-        height: circledWidth,
-        backgroundColor: iconColor,
-        borderTopRightRadius: 10,
-        transform: isIOS ? (stretched && [{ skewX: '-20deg' }]) || [{ skewX: '0deg' }] : [],
-      },
-      skeleton: {
-        width: circledWidth,
-        height: circledWidth,
-        borderRadius: iconSkeletonRadius,
-        backgroundColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-        overflow: 'hidden',
-      },
-      circled: {
-        width: circledWidth,
-        height: circledWidth,
-        borderRadius: circledWidth,
-        backgroundColor: background,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
+    const { inverted } = useContext(StatesContext)
+    const fontFamily = useThemeSelector((theme) => {
+      const family = theme.icons?.fontFamily
+      if (typeof family === 'string') return family
+      if (Platform.OS === 'android') return family?.android
+      if (Platform.OS === 'ios') return family?.ios
+      return family?.default
     })
-
-    const IconSkeleton = (): JSX.Element => (
-      <Skeleton
-        style={styles.skeleton}
-        width={circledWidth}
-        height={circledWidth}
-        borderRadius={iconSkeletonRadius}
-        testID='skeleton-id'
-      />
+    const glyph = useThemeSelector((theme) => {
+      const map = theme.icons?.glyphMap
+      if (!map) return undefined
+      const key = name.replace(/^tri-(?:picto-)?/, '')
+      const value = Object.prototype.hasOwnProperty.call(map, name)
+        ? map[name]
+        : Object.prototype.hasOwnProperty.call(map, key)
+        ? map[key]
+        : undefined
+      if (typeof value === 'string') return value
+      if (typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= 0x10ffff) {
+        return String.fromCodePoint(value)
+      }
+      return undefined
+    })
+    const resolvedColor = useIconColor(
+      color === 'transparent' ? 'primary' : color ?? (inverted ? 'inverse' : 'primary'),
+    )
+    const inverseColor = useIconColor('inverse')
+    const background = useBackgroundColor(backgroundColor ?? 'secondary')
+    const skeletonBackground = useBackgroundColor('primary-subtle')
+    const iconColor = color === 'transparent' ? 'transparent' : resolvedColor
+    const dimensions = sizes[size]
+    const dynamicStyles = useMemo(
+      () => ({
+        root: { alignSelf: getAlignStyle(align) as ViewStyle['alignSelf'] },
+        container: { width: dimensions.icon, height: dimensions.icon },
+        circle: {
+          width: dimensions.circle,
+          height: dimensions.circle,
+          borderRadius: dimensions.circle,
+          backgroundColor: background,
+        },
+        stretched: { width: dimensions.circle + 15, height: dimensions.circle, backgroundColor: iconColor },
+        glyph: { fontFamily, fontSize: dimensions.icon, color: stretched && !circled ? inverseColor : iconColor },
+        skeleton: { backgroundColor: skeletonBackground },
+      }),
+      [align, dimensions, fontFamily, background, iconColor, inverseColor, stretched, circled, skeletonBackground],
     )
 
     if (skeleton) {
-      return <IconSkeleton />
+      return (
+        <Skeleton
+          style={dynamicStyles.skeleton}
+          width={dimensions.circle}
+          height={dimensions.circle}
+          borderRadius={dimensions.skeleton}
+          testID='skeleton-id'
+        />
+      )
     }
 
-    let iconView: JSX.Element = <View></View>
-
-    if (name && icons) {
-      const iconKey = name.toString().replace('tri-picto-', '').replace('tri-', '')
-      const SvgComponent = resolveSvg(icons[iconKey])
-      if (SvgComponent) {
-        if (stretched && !circled) {
-        iconView = (
-          <View style={styles.stretched} testID={`${testId}-stretched`}>
-            <SvgComponent
-              style={[styles.iconCircled, styles.icon]}
-              width={defaultSize}
-              height={defaultSize}
-              color={getColorStyle(TrilogyColor.BACKGROUND)}
-            />
-          </View>
-        )
-      } else if (circled) {
-        iconView = (
-          <View style={styles.circled} testID={`${testId}-circled`}>
-            <SvgComponent
-              style={[styles.iconCircled, styles.icon]}
-              width={defaultSize}
-              height={defaultSize}
-              color={iconColor}
-            />
-          </View>
-        )
-      } else {
-        iconView = (
-          <View style={styles.iconContainer} {...others}>
-            <SvgComponent
-              style={[styles.icon, style]}
-              width={defaultSize}
-              height={defaultSize}
-              color={iconColor}
-            />
-          </View>
-        )
-        }
-      }
-    }
-
-    return onClick ? (
-      <View style={styles.rootView} testID={testId} ref={ref}>
-        <TouchableOpacity
-          style={{ width: '100%' }}
-          onPress={onClick}
-          activeOpacity={0.85}
-          testID={`${testId}-pressable`}
+    // No SVG fallback and no replacement character from a system font.
+    const iconView =
+      fontFamily && glyph !== undefined ? (
+        <View
+          {...others}
+          testID={stretched && !circled ? `${testId}-stretched` : circled ? `${testId}-circled` : undefined}
+          style={[
+            styles.center,
+            stretched && !circled
+              ? [styles.stretched, dynamicStyles.stretched]
+              : circled
+              ? dynamicStyles.circle
+              : dynamicStyles.container,
+          ]}
         >
-          {iconView}
-        </TouchableOpacity>
-      </View>
-    ) : (
-      <View style={styles.rootView} testID={testId} ref={ref}>
-        {iconView}
+          <Text
+            accessible={false}
+            allowFontScaling={false}
+            selectable={false}
+            style={[styles.glyph, dynamicStyles.glyph, stretched && Platform.OS === 'ios' && styles.counterSkew]}
+          >
+            {glyph}
+          </Text>
+        </View>
+      ) : null
+
+    return (
+      <View style={dynamicStyles.root} testID={testId} ref={ref}>
+        {onClick ? (
+          <TouchableOpacity
+            style={styles.pressable}
+            onPress={onClick}
+            activeOpacity={0.85}
+            testID={`${testId}-pressable`}
+          >
+            {iconView}
+          </TouchableOpacity>
+        ) : (
+          iconView
+        )}
       </View>
     )
   },
 )
 
 Icon.displayName = ComponentName.Icon
-
 export default Icon
+
+const styles = StyleSheet.create({
+  center: { alignItems: 'center', justifyContent: 'center' },
+  glyph: {
+    fontWeight: 'normal',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    includeFontPadding: false,
+    textAlign: 'center',
+  },
+  pressable: { width: '100%' },
+  stretched: { borderTopRightRadius: 10, transform: Platform.OS === 'ios' ? [{ skewX: '-20deg' }] : [] },
+  counterSkew: { transform: [{ skewX: '20deg' }] },
+})

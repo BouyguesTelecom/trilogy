@@ -1,5 +1,8 @@
 // Generated from figma tokens. Do not edit directly.
 
+import type { TrilogyThemeIcons } from './ThemeIcons'
+export type { ThemeIcons, TrilogyThemeIcons } from './ThemeIcons'
+
 export const THEME_TRILOGY = {
   colors: {
     light: {
@@ -340,7 +343,7 @@ type WidenThemeValues<T> = T extends string
           ? { -readonly [K in keyof T]: WidenThemeValues<T[K]> }
           : T
 
-export type TrilogyTheme = WidenThemeValues<typeof THEME_TRILOGY>
+export type TrilogyTheme = WidenThemeValues<typeof THEME_TRILOGY> & TrilogyThemeIcons
 export type TrilogyThemeMode = keyof TrilogyTheme['colors']
 export type ActiveTrilogyTheme = Omit<TrilogyTheme, 'colors'> & {
   colors: TrilogyTheme['colors'][TrilogyThemeMode]

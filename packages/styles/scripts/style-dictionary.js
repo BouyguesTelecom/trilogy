@@ -522,7 +522,7 @@ StyleDictionary.registerFormat({
     const themeObject = declarations
       .map(({ property, value }) => `  ${property}: ${value.replace(/\n/g, '\n  ')},`)
       .join('\n')
-    return `// Generated from figma tokens. Do not edit directly.\n\nexport const THEME_TRILOGY = {\n${themeObject}\n} as const\n\ntype WidenThemeValues<T> = T extends string\n  ? string\n  : T extends number\n    ? number\n    : T extends boolean\n      ? boolean\n      : T extends readonly unknown[]\n        ? { [K in keyof T]: WidenThemeValues<T[K]> }\n        : T extends object\n          ? { -readonly [K in keyof T]: WidenThemeValues<T[K]> }\n          : T\n\nexport type TrilogyTheme = WidenThemeValues<typeof THEME_TRILOGY>\nexport type TrilogyThemeMode = keyof TrilogyTheme['colors']\nexport type ActiveTrilogyTheme = Omit<TrilogyTheme, 'colors'> & {\n  colors: TrilogyTheme['colors'][TrilogyThemeMode]\n}\n`
+    return `// Generated from figma tokens. Do not edit directly.\n\nimport type { TrilogyThemeIcons } from './ThemeIcons'\nexport type { ThemeIcons, TrilogyThemeIcons } from './ThemeIcons'\n\nexport const THEME_TRILOGY = {\n${themeObject}\n} as const\n\ntype WidenThemeValues<T> = T extends string\n  ? string\n  : T extends number\n    ? number\n    : T extends boolean\n      ? boolean\n      : T extends readonly unknown[]\n        ? { [K in keyof T]: WidenThemeValues<T[K]> }\n        : T extends object\n          ? { -readonly [K in keyof T]: WidenThemeValues<T[K]> }\n          : T\n\nexport type TrilogyTheme = WidenThemeValues<typeof THEME_TRILOGY> & TrilogyThemeIcons\nexport type TrilogyThemeMode = keyof TrilogyTheme['colors']\nexport type ActiveTrilogyTheme = Omit<TrilogyTheme, 'colors'> & {\n  colors: TrilogyTheme['colors'][TrilogyThemeMode]\n}\n`
   },
 })
 
