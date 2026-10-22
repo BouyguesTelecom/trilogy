@@ -2,8 +2,8 @@
   content:'';
   flex: 1;
   height: 1px;
-  background-color: getColor('neutral');
-  border: 1px solid #{getColor('stroke-fade')};
+  background-color: var(--border);
+  border: 1px solid var(--border);
   border-radius: var(--radius-full);
 }
 

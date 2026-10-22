@@ -12,7 +12,7 @@ interface IParams {
 
 export const useGauge = ({ validationRules, inputValue, securityRules }: IParams) => {
   const [points, setPoints] = useState<number>(0)
-  const initStateVerifies = { isVerify: false, color: IconColor.NEUTRAL }
+  const initStateVerifies = { isVerify: false, color: IconColor.PRIMARY }
   const [isLengthVerify, setIsLengthVerify] = useState(initStateVerifies)
   const [isSpecialCharsVerify, setIsSpecialCharsVerify] = useState(initStateVerifies)
   const [isNumberVerify, setIsNumberVerify] = useState(initStateVerifies)

@@ -1,6 +1,8 @@
 import { TrilogyThemeContext } from '@/context/providerTheme'
 import { useContext } from 'react'
 import { DEFAULT_TRILOGY_COLORS } from '@/objects/facets/defaultColors'
+import { BackgroundColor, BackgroundColorValues } from '@/interfaces/colors'
+import { THEME_TRILOGY } from '@/theme'
 
 /**
  * Trilogy color
@@ -58,8 +60,8 @@ export const getColorClassName = (trilogyColor: TrilogyColor | TrilogyColorValue
  */
 export const getButtonVariantClassName = (trilogyColor?: string): string => {
   switch (trilogyColor) {
-    case 'CONVERSION':
-      return 'conversion'
+    case 'ACCENT':
+      return 'accent'
     case 'PRIMARY':
       return 'primary'
     case 'SECONDARY':
@@ -102,21 +104,38 @@ export const getButtonColorStyle = (buttonVariant?: string): TrilogyColor => {
  * @param index {number} - Index of color ( 1 for BG )
  * @returns {string} - Color style value
  */
-export const getColorStyle = (trilogyColor: TrilogyColor | TrilogyColorValues | 'transparent'): string => {
+export const getColorStyle = (
+  trilogyColor: TrilogyColor | TrilogyColorValues | BackgroundColor | BackgroundColorValues | 'transparent',
+): string => {
+  const backgroundToken = Object.values(BackgroundColor).includes(trilogyColor as BackgroundColor)
+    ? `bg${String(trilogyColor)
+        .split('-')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join('')}`
+    : undefined
+  const themeColorTokens: Record<string, string> = THEME_TRILOGY.colors.light as unknown as Record<string, string>
+
   if (typeof navigator !== 'undefined' && navigator.userAgent === undefined) {
     const { theme } = useContext(TrilogyThemeContext)
-    const colorsStyle = theme?.colors || colors
+    const colorsStyle = (theme?.colors || colors) as Record<string, any>
 
-    const colorArray = colorsStyle[trilogyColor] || colorsStyle.default
+    if (backgroundToken) {
+      return colorsStyle[backgroundToken] || themeColorTokens[backgroundToken]
+    }
+
     if (trilogyColor === 'transparent') return 'transparent'
+    const legacyColor = trilogyColor as unknown as TrilogyColor
+    const colorArray = colorsStyle[legacyColor] || colorsStyle.default
 
-    if (!trilogyColor || !colors[trilogyColor]) {
+    if (!legacyColor || !colors[legacyColor]) {
       return colorsStyle.default
     }
     return colorArray[0]
   } else {
     if (trilogyColor === 'transparent') return 'transparent'
-    return colors[trilogyColor][0] || colors[TrilogyColor.MAIN][0]
+    if (backgroundToken) return themeColorTokens[backgroundToken]
+    const legacyColor = trilogyColor as unknown as TrilogyColor
+    return colors[legacyColor][0] || colors[TrilogyColor.MAIN][0]
   }
 }
 

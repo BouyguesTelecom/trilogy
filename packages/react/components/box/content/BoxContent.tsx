@@ -1,7 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { has } from '@/services/classify'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
@@ -25,7 +24,7 @@ const BoxContent = forwardRef<BoxContentRef, BoxContentProps>(
       styled,
       clsx(
         'box-content',
-        backgroundColor && has(getBackgroundClassName(backgroundColor)),
+        backgroundColor && has(`background-${backgroundColor}`),
         backgroundSrc && has('background'),
         className,
       ),

@@ -19,12 +19,8 @@
   width: 100%;
 
   // Colors
-  @each $name in $colors-brand-functionnal {
-    $color: getColor($name);
-    $color-invert: invertColor($name);
-    $brandName: getColorBrandName($name);
-
-    &.is-#{$brandName} {
+  @each $name, $color in $border-colors-status {
+    &.is-#{$name} {
       border: 1px solid $color;
     }
   }
@@ -74,7 +70,7 @@
   }
 
   &::-webkit-search-cancel-button{
-    $colorSvg: encodecolor(getColorValue('main'));
+    $colorSvg: encodecolor(var(--icon));
     position:absolute;
     right: 0px;
     bottom : 0px;
@@ -86,7 +82,7 @@
     background-size : 20px;
     -webkit-appearance: none;
     background-repeat: no-repeat;
-    background-color: getColor('background') ;
+    background-color: var(--input-bg) ;
     background-position: center;
   }
 
@@ -94,7 +90,7 @@
     padding-right: 45px;
     &:hover:not(:focus){
       &::-webkit-search-cancel-button {
-        background-color: getColor('main-fade');
+        background-color: var(--bg-information-subtle);
       }
     }
     &:focus{

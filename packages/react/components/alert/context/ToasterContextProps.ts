@@ -1,8 +1,8 @@
 import { ToasterAlertFloat, ToasterAlertPosition } from '@/components/alert/AlertProps'
 import { IconName, IconNameValues } from '@/components/icon'
 import { Accessibility } from '@/objects/facets/Accessibility'
-import { StatusProps } from '@/objects/facets/Status'
 import { AlertMarkup, AlertMarkupValues } from '@/components/alert/AlertEnum'
+import { StatusVariant, StatusVariantValues } from '@/interfaces/status'
 
 /**
  * @param title {string} Notification title content
@@ -13,7 +13,7 @@ import { AlertMarkup, AlertMarkupValues } from '@/components/alert/AlertEnum'
  * @param closable {Function} onClick Event on cross icon
  * @param onHide {Function} onClick Event on hide
  */
-export interface ToastProps extends StatusProps, Accessibility {
+export interface ToastProps extends Accessibility {
   title: string
   id?: string
   description?: string
@@ -22,6 +22,7 @@ export interface ToastProps extends StatusProps, Accessibility {
   closable?: () => void
   onHide?: () => void
   markup?: AlertMarkup | AlertMarkupValues
+  status?: StatusVariant | StatusVariantValues
 }
 
 interface ToastConfig {

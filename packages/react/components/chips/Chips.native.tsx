@@ -70,7 +70,7 @@ const Chips = forwardRef<ChipsNativeRef, ChipsProps>(
       >
         {chipsContext.isMultiple && active && (
           <>
-            <Icon size={IconSize.SMALLER} color={IconColor.WHITE} name={IconName.CHECK} />
+            <Icon size={IconSize.SMALLER} color={IconColor.INVERSE} name={IconName.CHECK} />
             <Spacer horizontal size={SpacerSize.ONE} />
           </>
         )}

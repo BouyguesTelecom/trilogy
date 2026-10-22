@@ -1,0 +1,165 @@
+import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  Button,
+  ButtonList,
+  ButtonVariant,
+  Column,
+  Columns,
+  Divider,
+  Icon,
+  IconName,
+  IconSize,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalSize,
+  Section,
+  Text,
+  Title,
+  TitleLevels,
+  IconColor,
+} from '@trilogy-ds/react'
+import { useState } from 'react'
+
+export default function ModalScreen(): JSX.Element {
+  const [openModal1, setOpenModal1] = useState(false)
+  const [openModal2, setOpenModal2] = useState(false)
+  const [openModal3, setOpenModal3] = useState(false)
+  const [openModal4, setOpenModal4] = useState(false)
+  const [openModal5, setOpenModal5] = useState(false)
+
+  return (
+    <>
+      <Section>
+        <Title level={TitleLevels.THREE}>Modal</Title>
+
+        <Divider />
+
+        <Modal
+          title='Hello'
+          size={ModalSize.SMALL}
+          trigger={<Button onClick={() => setOpenModal1(true)}>Click to open modal</Button>}
+          active={openModal1}
+          onClose={() => setOpenModal1(false)}
+        >
+          <ModalBody>
+            <Text>Modal content</Text>
+            <Accordion id='accordion-1'>
+              <AccordionItem id='ONE' open>
+                <AccordionHeader>
+                  <Title level={6}>Hello World 1</Title>
+                </AccordionHeader>
+                <AccordionBody data-id='totooooo-test-id'>
+                  <Columns>
+                    <Column>
+                      <Text>Accordion Body 1</Text>
+                    </Column>
+                  </Columns>
+                </AccordionBody>
+              </AccordionItem>
+              <AccordionItem id='TWO'>
+                <AccordionHeader>
+                  <Title level={6}>Hello World 2</Title>
+                </AccordionHeader>
+                <AccordionBody>
+                  <Text>Accordion Body 2</Text>
+                </AccordionBody>
+              </AccordionItem>
+              <AccordionItem id='THREE'>
+                <AccordionHeader>
+                  <Title level={6}>Hello World 3</Title>
+                </AccordionHeader>
+                <AccordionBody>
+                  <Text>Accordion Body 3</Text>
+                </AccordionBody>
+              </AccordionItem>
+              <AccordionItem disabled id='FOUR'>
+                <AccordionHeader>
+                  <Title level={6}>Hello World 4</Title>
+                </AccordionHeader>
+                <AccordionBody>
+                  <Text>Accordion Body 4</Text>
+                </AccordionBody>
+              </AccordionItem>
+            </Accordion>
+          </ModalBody>
+          <ModalFooter>
+            <ButtonList>
+              <Button variant={ButtonVariant.SECONDARY} onClick={() => setOpenModal1(false)}>
+                Fermer
+              </Button>
+              <Button onClick={() => setOpenModal1(false)}>Ajouter</Button>
+            </ButtonList>
+          </ModalFooter>
+        </Modal>
+        <Divider />
+
+        <Modal
+          title='Hello'
+          trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal2(true)} />}
+          active={openModal2}
+          onClose={() => setOpenModal2(false)}
+        >
+          <ModalBody>
+            <Text>Modal content</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={() => setOpenModal2(false)}>Close</Button>
+          </ModalFooter>
+        </Modal>
+        <Divider />
+
+        <Modal
+          title='Hello'
+          trigger={<Icon name={IconName.EYE} size={IconSize.LARGE} onClick={() => setOpenModal3(true)} />}
+          active={openModal3}
+          onClose={() => setOpenModal3(false)}
+          panel
+        >
+          <ModalBody>
+            <Text>Modal content</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={() => setOpenModal3(false)}>Close</Button>
+          </ModalFooter>
+        </Modal>
+        <Divider />
+        <Modal
+          trigger={<Button onClick={() => setOpenModal4(true)}>Unclosable Modal</Button>}
+          unClosable
+          active={openModal4}
+          onClose={() => setOpenModal4(false)}
+        >
+          <ModalBody>
+            <Text>Modal content</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={() => setOpenModal4(false)}>Close Modal</Button>
+          </ModalFooter>
+        </Modal>
+        <Divider />
+
+        <Modal
+          trigger={
+            <Button variant={ButtonVariant.PRIMARY} onClick={() => setOpenModal5(true)}>
+              Hide close button Modal
+            </Button>
+          }
+          hideCloseButton
+          active={openModal5}
+          onClose={() => setOpenModal5(false)}
+        >
+          <ModalBody>
+            <Text>Modal content</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={() => setOpenModal5(false)}>Close Modal</Button>
+          </ModalFooter>
+        </Modal>
+      </Section>
+    </>
+  )
+}

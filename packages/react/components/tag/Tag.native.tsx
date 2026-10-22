@@ -59,7 +59,7 @@ const Tag = forwardRef<TagNativeRef, TagProps>(
         {iconName && (
           <View style={styles.icon}>
             <Icon
-              color={IconColor[variant || IconColor.BACKGROUND]}
+              color={variant || IconColor.INVERSE}
               size={small ? IconSize.SMALLER : IconSize.SMALL}
               name={iconName}
               testId={`${testId}-icon`}

@@ -1,11 +1,11 @@
 .is-inverted {
-  color: getColor('background');
+  color: var(--text-inverse);
 }
 
 .is-inverted {
   .box, .section, .view, .hero {
     &:not(.is-inverted) {
-      color: getColor('font');
+      color: var(--text-primary);
     }
   }
 }

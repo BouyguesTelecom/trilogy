@@ -23,12 +23,14 @@
     "prebuild": "npm run copy:icons",
     "build": "npm run build:autolayout && npm run create:autolayout && vite --config vite.config.js build",
     "watch:css": "vite --config vite.config.js build -- --watch",
-    "copy:icons": "mkdir -p ./dist/default/assets/icons && cp -R ../assets/lib/icons/all ./dist/default/assets/icons/."
+    "copy:icons": "mkdir -p ./dist/default/assets/icons && cp -R ../assets/lib/icons/all ./dist/default/assets/icons/.",
+    "tokens:build": "style-dictionary build --config scripts/style-dictionary.js"
   },
   "devDependencies": {
     "esbuild": "^0.28.1",
     "glob": "^13.0.6",
     "sass": "^1.71.1",
+    "style-dictionary": "^5.5.2",
     "vite": "^4.5.2"
   }
 }

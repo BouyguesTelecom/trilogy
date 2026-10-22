@@ -2,7 +2,6 @@ import { IconName, IconNameValues } from '@/components/icon/IconNameEnum'
 import { Referenceable, ReferenceableNative } from '@/objects/facets/Referenceable'
 
 import { TextInput } from 'react-native'
-import { IconStatus } from '@/components/icon'
 import {
   InputAutoCapitalize,
   InputAutoCapitalizeValues,
@@ -20,6 +19,7 @@ import {
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { Dev } from '@/objects/facets/Dev'
 import { CommonProps } from '@/objects/facets/CommonProps'
+import { IconColor } from '../icon'
 
 export interface TextareaChangeEvent {
   textareaName: string
@@ -35,7 +35,7 @@ type TextareaPropsWeb = Accessibility &
     value?: string
     disabled?: boolean
     onChange?: TextareaChangeEventHandler
-    status?: InputStatus | InputStatusValues | IconStatus
+    status?: InputStatus | InputStatusValues | IconColor
     help?: string
     /** @deprecated */
     name?: string

@@ -63,7 +63,7 @@ const Modal = ({
         <Button variant={ButtonVariant.SECONDARY} onClick={() => setOpen(false)}>
           {footerSecondaryChildren}
         </Button>
-        <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpen(false)}>
+        <Button variant={ButtonVariant.ACCENT} onClick={() => setOpen(false)}>
           {footerPrimaryChildren}
         </Button>
       </ModalFooter>
@@ -217,7 +217,7 @@ const meta: Meta<ModalStoryArgs> = {
           <Button variant={ButtonVariant.SECONDARY} onClick={() => setOpen(false)}>
             {footerSecondaryChildren}
           </Button>
-          <Button variant={ButtonVariant.CONVERSION} onClick={() => setOpen(false)}>
+          <Button variant={ButtonVariant.ACCENT} onClick={() => setOpen(false)}>
             {footerPrimaryChildren}
           </Button>
         </ModalFooter>

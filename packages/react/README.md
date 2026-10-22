@@ -106,7 +106,7 @@ See how to setup your environment for [Android](https://reactnative.dev/docs/env
 
 ### Example
 
-Check out our [example project](https://github.com/BouyguesTelecom/trilogy/tree/master/examples/react-template) using Trilogy for consumption.
+Check out our [example project](https://github.com/BouyguesTelecom/trilogy/tree/master/examples/react) using Trilogy for web and native consumption.
 
 ### Contributing
 

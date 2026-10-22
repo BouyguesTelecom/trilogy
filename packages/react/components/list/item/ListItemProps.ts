@@ -9,10 +9,10 @@ import { Dev } from '@/objects/facets/Dev'
 import { CommonProps } from '@/objects/facets/CommonProps'
 
 export enum ListIconStatus {
-  SUCCESS = 'SUCCESS',
-  INFO = 'INFO',
-  WARNING = 'WARNING',
-  ERROR = 'ERROR',
+  SUCCESS = 'success',
+  INFORMATION = 'information',
+  WARNING = 'warning',
+  ERROR = 'error',
 }
 
 export type ListIconStatusValues = `${ListIconStatus}`

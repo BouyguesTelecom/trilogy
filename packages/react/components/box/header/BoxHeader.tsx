@@ -1,7 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { useTrilogyContext } from '@/context/TrilogyContext'
 import { hashClass } from '@/helpers/hashClassesHelpers'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
 import { getAlignClassName } from '@/objects/facets/Alignable'
 import { has, is } from '@/services/classify'
 import clsx from 'clsx'
@@ -11,7 +10,7 @@ import { BoxHeaderProps, BoxHeaderRef } from '@/components/box/header/BoxHeaderP
 /**
  * Box Header Component
  * @param children {ReactNode} Children
- * @param variant {TrilogyColor} Box Header backgroundColor
+ * @param variant {BackgroundColor} Box Header background color
  * @param id {string} Custom id attribute
  * @param testId {string} Test Id for Test Integration
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -31,7 +30,7 @@ const BoxHeader = forwardRef<BoxHeaderRef, BoxHeaderProps>(
     }
     const classes = hashClass(
       styled,
-      clsx('box-header', className, variant && has(getBackgroundClassName(variant)), align && alignClass),
+      clsx('box-header', className, variant && has(`background-${variant}`), align && alignClass),
     )
 
     return (

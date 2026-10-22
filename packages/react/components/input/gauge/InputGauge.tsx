@@ -18,7 +18,7 @@ interface DataVerifyProps {
   dataAttribute?: { [key: string]: string | boolean | number }
   type?: string
   display: boolean
-  color: string
+  color: IconColor
   iconName: IconName
   classes?: string
   styled?: boolean
@@ -104,7 +104,7 @@ const InputGauge = ({ validationRules, styled, inputValue, securityRules }: Inpu
               key={`${id}_${rule.label}`}
               display={true}
               type={rule.label}
-              color={rule.validate ? IconColor.SUCCESS : IconColor.NEUTRAL}
+              color={rule.validate ? IconColor.SUCCESS : IconColor.PRIMARY}
               iconName={rule.validate ? IconName.CHECK_CIRCLE : IconName.TIMES}
               styled={styled}
               dataAttribute={rule.dataAttribute}

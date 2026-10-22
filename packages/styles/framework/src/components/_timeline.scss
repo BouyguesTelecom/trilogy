@@ -1,16 +1,14 @@
 @use 'sass:math';
 @import "../utilities/spacing";
 
-$timeline-marker-color: getColor('neutral-fade') !default;
+$timeline-marker-color: var(--input-bg-inactive) !default;
 $timeline-marker-icon-size: 2.85em !default;
-$timeline-line-color: getColor('neutral-fade') !default;
+$timeline-line-color: var(--input-bg-inactive) !default;
 $timeline-marker-size: 0.8em !default;
 $timeline-marker-border-size: 0.1em !default;
 $timeline-marker-border: $timeline-marker-border-size solid $timeline-marker-color !default;
 $timeline-line-width: 0.125em !default;
 $timeline-line-style: solid !default;
-$timeline-line: $timeline-line-width $timeline-line-style $timeline-line-color !default;
-$timeline-content-padding: 1em 0 0 16px !default;
 $timeline-rtl-content-padding: 1em 2em 0 0 !default;
 $timeline-icon-size: $size-small !default;
 $timeline-header-width: 4em !default;
@@ -32,8 +30,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
   }
 
   .timeline-item {
-    --font-color: #{getColor('neutral')};
-    --bg-color: #{getColor('background')};
+    --font-color: var(--input-bg-inactive);
+    --bg-color: var(--bg-primary);
     display: flex;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -60,8 +58,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     }
 
     &.active, &.done {
-      --font-color: #{getColor('main')};
-      --bg-color: #{getColor('background')};
+      --font-color: var(--input-bg-selected);
+      --bg-color: var(--bg-primary);
     }
 
     &.active {
@@ -73,8 +71,8 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
     }
 
     &.cancel {
-      --font-color: #{getColor('neutral')};
-      --bg-color: #{getColor('neutral-fade')};
+      --font-color: var(--input-bg-inactive);
+      --bg-color: var(--bg-primary);
     }
 
     .timeline-marker {
@@ -120,11 +118,11 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
       &.is-outlined {
         .image {
-          background: getColor('background');
+          background: var(--bg-primary);
         }
 
         &.is-icon {
-          background: getColor('background');
+          background: var(--bg-primary);
 
           > i {
             color: $timeline-marker-color;
@@ -139,7 +137,7 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
       .heading {
         font-size: $text-12;
-        color: getColor('font');
+        color: var(--text-primary);
         font-family: $family-primary;
         text-transform: none;
         letter-spacing: 0;
@@ -149,17 +147,6 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
 
       p {
         margin-bottom: 4px;
-      }
-    }
-
-    @each $name in $colors-brand-functionnal {
-      $color: getColor($name);
-      $brandName: getColorBrandName($name);
-
-      &.is-#{$brandName} {
-        &::before {
-          background-color: $color;
-        }
       }
     }
   }
@@ -229,17 +216,6 @@ $timeline-image-dimensions: 16 24 32 48 64 96 128 !default;
           height: 100%;
           position: absolute;
           top: 0;
-        }
-      }
-
-      @each $name, $pair in $colors-brand-functionnal {
-        $color: getColor($name);
-        $brandName: getColorBrandName($name);
-
-        &.is-#{$brandName} {
-          &::before {
-            background-color: $color;
-          }
         }
       }
     }

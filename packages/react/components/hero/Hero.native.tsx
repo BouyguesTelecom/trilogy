@@ -96,7 +96,8 @@ const Hero = forwardRef<HeroNativeRef, HeroProps>(
               setOverlapHeight(height)
             }}
           >
-            <Box backgroundColor={TrilogyColor.NEUTRAL_FADE}>
+            {/* <Box backgroundColor={TrilogyColor.NEUTRAL_FADE}> TODOV5 */}
+            <Box>
               <View style={{ marginBottom: secondOverlapHeight / 2 }} />
               {overlap && typeof overlap !== 'boolean' ? overlap[0] : null}
             </Box>

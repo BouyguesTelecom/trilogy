@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useEffect, useRef, useState, forwardRef } from 'react'
@@ -125,7 +125,7 @@ const Pagination = forwardRef<PaginationNativeRef, PaginationNativeProps>(
             }
           }}
         >
-          <Icon name={IconName.ARROW_LEFT} size={IconSize.SMALL} color={TrilogyColor.MAIN} />
+          <Icon name={IconName.ARROW_LEFT} size={IconSize.SMALL} color={IconColor.PRIMARY} />
         </TouchableOpacity>
 
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -161,7 +161,7 @@ const Pagination = forwardRef<PaginationNativeRef, PaginationNativeProps>(
             }
           }}
         >
-          <Icon name={IconName.ARROW_RIGHT} size={IconSize.SMALL} color={TrilogyColor.MAIN} />
+          <Icon name={IconName.ARROW_RIGHT} size={IconSize.SMALL} color={IconColor.PRIMARY} />
         </TouchableOpacity>
       </View>
     )

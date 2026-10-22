@@ -1,11 +1,10 @@
-import { forwardRef } from "react"
-import clsx from "clsx"
-import { TableTrProps, TableTrRef } from "@/components/table/tr/TableTrProps"
-import { hashClass } from "@/helpers/hashClassesHelpers"
-import { is } from "@/services/classify"
-import { useTrilogyContext } from "@/context/TrilogyContext"
-import { getColorClassName } from "@/objects/facets/Color"
-import { ComponentName } from "@/components/enumsComponentsName"
+import { forwardRef } from 'react'
+import clsx from 'clsx'
+import { TableTrProps, TableTrRef } from '@/components/table/tr/TableTrProps'
+import { hashClass } from '@/helpers/hashClassesHelpers'
+import { has, is } from '@/services/classify'
+import { useTrilogyContext } from '@/context/TrilogyContext'
+import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
  * Table TR Component
@@ -19,31 +18,24 @@ import { ComponentName } from "@/components/enumsComponentsName"
  * @param color {TrilogyColor} Higlight color
  * @param ref {RefObject<HTMLTableRowElement>} Ref of the row
  */
-const TableTr = forwardRef<TableTrRef, TableTrProps>(({
-  className,
-  id,
-  expandable,
-  expanded,
-  expansion,
-  color,
-  testId,
-  ...others
-}, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
+const TableTr = forwardRef<TableTrRef, TableTrProps>(
+  ({ className, id, expandable, expanded, expansion, color, testId, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
 
-  const classes = hashClass(
-    styled,
-    clsx(
-      className,
-      expandable && is("expandable"),
-      expanded && is("expanded"),
-      expansion && is("expansion"),
-      color && getColorClassName(color)
+    const classes = hashClass(
+      styled,
+      clsx(
+        className,
+        expandable && is('expandable'),
+        expanded && is('expanded'),
+        expansion && is('expansion'),
+        color && has(`text-${color}`),
+      ),
     )
-  )
 
-  return <tr ref={ref} id={id} className={classes} data-testid={testId} {...others} />
-})
+    return <tr ref={ref} id={id} className={classes} data-testid={testId} {...others} />
+  },
+)
 
 TableTr.displayName = ComponentName.TableTr
 export default TableTr

@@ -7,7 +7,7 @@ import { useEffect, useState, forwardRef, useId } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { CheckboxNativeRef, CheckboxProps } from '@/components/checkbox/CheckboxProps'
-
+import { IconColor } from '@/interfaces/colors'
 /**
  * Checkbox Component
  * @param checked {boolean} Checked Checkbox
@@ -76,7 +76,7 @@ const Checkbox = forwardRef<CheckboxNativeRef, CheckboxProps>(
           testID={testId || id}
           onPressIn={() => handleClick()}
         >
-          {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
+          {_checked && <Icon size={IconSize.SMALLER} color={IconColor.INVERSE} name={IconName.CHECK} />}
         </TouchableOpacity>
         {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}
       </TouchableOpacity>

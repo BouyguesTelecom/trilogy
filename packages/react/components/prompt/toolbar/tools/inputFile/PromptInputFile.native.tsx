@@ -1,12 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { PromptContext } from '@/components/prompt/context'
 import { TrilogyColor } from '@/objects/facets/Color'
 import { useContext, forwardRef } from 'react'
-import {  } from 'react-native'
+import {} from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
-import { PromptInputFileNativeRef, PromptInputFileProps } from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
+import {
+  PromptInputFileNativeRef,
+  PromptInputFileProps,
+} from '@/components/prompt/toolbar/tools/inputFile/PromptInputFileProps'
 
 const PromptInputFile = forwardRef<PromptInputFileNativeRef, PromptInputFileProps>(
   ({ onChange, disabled, readOnly, ...others }, ref) => {
@@ -32,7 +35,7 @@ const PromptInputFile = forwardRef<PromptInputFileNativeRef, PromptInputFileProp
         {...others}
       >
         <Icon
-          color={isDisable ? TrilogyColor.DISABLED : TrilogyColor.MAIN}
+          color={isDisable ? IconColor.DISABLED : IconColor.PRIMARY}
           size={IconSize.SMALLER}
           name={IconName.PARPERCLIP}
           {...{

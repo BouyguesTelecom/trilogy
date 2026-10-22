@@ -1,9 +1,9 @@
 import { AccordionNativeRef, AccordionProps } from '@/components/accordion/AccordionProps'
 import { ComponentName } from '@/components/enumsComponentsName'
-import { forwardRef } from 'react'
-import { View } from 'react-native'
-import { memoStyles } from '@/helpers/memoStyles'
-import { Theme } from '@/constants/theme'
+import { forwardRef, useMemo } from 'react'
+import { StyleSheet, View } from 'react-native'
+import { useThemeSelector } from '@/hooks/useThemeSelector'
+import { SpacerSize } from '@/components/spacer/SpacerEnum'
 
 /**
  * Accordion Component
@@ -13,16 +13,19 @@ import { Theme } from '@/constants/theme'
  * @param id {string} Custom id attribute
  */
 const Accordion = forwardRef<AccordionNativeRef, AccordionProps>(({ testId, ...others }, ref): JSX.Element => {
-  const styles = memoStyles({
-    accordion: {
-      width: '100%',
-      minHeight: 10,
-      borderRadius: Theme.radius.md,
-    },
-  })
+  const borderRadius = useThemeSelector((theme) => theme.radius.radiusMd)
+  const themeStyles = useMemo(() => ({ borderRadius }), [borderRadius])
 
-  return <View ref={ref} testID={testId} style={styles.accordion} {...others} />
+  return <View ref={ref} testID={testId} style={[styles.accordion, themeStyles]} {...others} />
 })
 
 Accordion.displayName = ComponentName.Accordion
 export default Accordion
+
+const styles = StyleSheet.create({
+  accordion: {
+    width: '100%',
+    minHeight: 10,
+    gap: SpacerSize.TWO,
+  },
+})

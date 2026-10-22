@@ -18,15 +18,15 @@
     }
   }
 
-  &.is-info {
-    background-color: getColor('info');
-    color: getColor('background');
+  &.is-info, &.is-information {
+    background-color: var(--bg-information);
+    color: var(--text-inverse);
   }
 
   &.has-overlay {
     position: relative;
     z-index: zindex('void');
-    color: getColor('background');
+    color:  var(--text-inverse);
 
     &::before {
       @include overlay;

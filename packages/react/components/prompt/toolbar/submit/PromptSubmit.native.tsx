@@ -1,12 +1,16 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useCallback, useContext, useEffect, useMemo, useState, forwardRef } from 'react'
 import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { PromptContext } from '@/components/prompt/context'
 import PromptButton from '@/components/prompt/toolbar/tools/button/PromptButton.native'
-import { PromptSubmitNativeRef, PromptSubmitProps, PromptSubmitStatus } from '@/components/prompt/toolbar/submit/PromptSubmitProps'
+import {
+  PromptSubmitNativeRef,
+  PromptSubmitProps,
+  PromptSubmitStatus,
+} from '@/components/prompt/toolbar/submit/PromptSubmitProps'
 import { Theme } from '@/constants/theme'
 
 /**
@@ -67,7 +71,7 @@ const PromptSubmit = forwardRef<PromptSubmitNativeRef, PromptSubmitProps>(
         ) : (
           <Icon
             size={IconSize.SMALLER}
-            color={TrilogyColor[isDisable ? 'DISABLED_FADE' : !isActive ? 'DISABLED' : 'BACKGROUND']}
+            color={isDisable ? IconColor.DISABLED : !isActive ? IconColor.DISABLED : IconColor.PRIMARY}
             name={IconName.ARROW_HIGH}
             {...{
               style: styles.icon,

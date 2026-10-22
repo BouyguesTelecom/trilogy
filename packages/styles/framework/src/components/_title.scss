@@ -83,12 +83,12 @@ $title-levels-mobile: (
     }
 
     &.is-inverted {
-      color: getColor('background');
+      color: var(--text-inverse);
     }
 
     .details {
       font-size: 80%;
-      color: getColor('neutral');
+      color: var(--text-secondary);
       font-weight: $weight-normal;
     }
 
@@ -129,23 +129,23 @@ $title-levels-mobile: (
 }
 
 .subtitle {
-  color: getColor('font');
+  color: var(--text-primary);
   font-size: $subtitle-size;
   font-weight: $subtitle-weight;
   line-height: $subtitle-line-height;
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 }
 
 .overline {
-  color: getColor('font');
+  color: var(--text-primary);
   font-size: $overline-size;
   font-weight: $overline-weight;
   line-height: $overline-line-height;
 
   &.is-inverted {
-    color: getColor('background');
+    color: var(--text-inverse);
   }
 }

@@ -4,12 +4,12 @@
   padding: 24px;
   border-radius: var(--radius-lg);
   border-spacing: 0 8px;
-  background-color: getColor('background');
+  background-color: var(--layer);
 
   button {
     all: unset;
     &:focus-visible:not(.is-disabled, .is-active), &:hover:not(.is-disabled, .is-active){
-      background-color: getColor('main-fade');
+      background-color: var(--input-bg-hover);
     }
     
     &.is-active:hover, &.is-active:focus-visible,
@@ -21,33 +21,21 @@
   &-range.calendar-range-init {
     .calendar-week-day:not(.calendar-date-in-range) {
       button:focus-visible:not(.is-disabled, .is-active), button:hover:not(.is-disabled, .is-active){
-        background-color: getColor('main');
-        color: getColor('background');
+        background-color: var(--input-bg-selected);
+        color: var(--input-bg);
       }
     } 
   }
 
   &-date-in-range {
     button:not(.is-disabled, .is-active){
-      background-color: getColor('main-fade');
+      background-color: var(--input-bg-hover);
       border-radius: 0px;
       &:hover {
         filter: brightness(95%) ;
-        border-radius: 4px;
       }
     }
 
-    &.calendar-date-rounded-left {
-      button:not(.is-disabled, .is-active){
-        border-radius: 8px 0 0 8px;
-      }
-    }
-
-    &.calendar-date-rounded-right {
-      button:not(.is-disabled, .is-active){
-        border-radius: 0px 8px 8px 0;
-      }
-    }
   }
 
   &-next-month, &-prev-month {
@@ -68,15 +56,15 @@
     vertical-align: middle;
     &-disabled {
       button {
-        color: getColor('disabled');
-        background-color: getColor('disabled-fade');
+        color: var(--btn-text-disabled);
+        background-color: var(--btn-bg-disabled);
       }
     }
     &-label {
       padding: 4px;
       text-align: center !important;
       width: 36px;
-      color: getColor('font-placeholder');
+      color: var(--text-secondary);
     } 
     button {
       display: block;
@@ -101,8 +89,8 @@
   }
 
   &-active-date button {
-    background-color: getColor('main');
-    color: getColor('background');
+    background-color: var(--input-bg-selected);
+    color: var(--text-inverse);
   }
 
   &-header-dropdown {

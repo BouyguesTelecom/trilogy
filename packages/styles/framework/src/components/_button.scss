@@ -21,9 +21,7 @@ $button-border-width: 2px !default;
 .button {
   @include control;
   @include unselectable;
-  @extend %buttons-states;
 
-  background-color: white;
   border-width: $button-border-width;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -35,31 +33,57 @@ $button-border-width: 2px !default;
   font-weight: $weight-semibold;
   height: $size-inputs;
 
+  &:focus:focus-visible {
+    outline: 2px solid var(--input-border-selected) !important;
+    outline-offset: 2px;
+  }
+
   @include mobile {
     width: 100%;
   }
 
-  @each $name, $pair in $button-colors {
-    $variantName: nth($pair, 1);
-    $colorBG: getColor(#{nth($pair, 2)});
-    $colorText: getColor(nth($pair, 3));
+  @each $name, $variant in $button-variants {
+    $colorBG: map-get($variant, 'background');
+    $colorHoverBG: map-get($variant, 'hover-background');
+    $colorPressedBG: map-get($variant, 'pressed-background');
+    $colorText: map-get($variant, 'text');
+    $colorHoverText: map-get($variant, 'hover-text');
+    $colorPressedText: map-get($variant, 'pressed-text');
+    $colorBorder: map-get($variant, 'border');
+    $colorHoverBorder: map-get($variant, 'hover-border');
+    $colorPressedBorder: map-get($variant, 'pressed-border');
 
-    &.is-#{$variantName} {
+    &.is-#{$name} {
       background-color: $colorBG;
       color: $colorText;
-    }
-  }
+      border: 1px solid $colorBorder;
 
-  &.is-ghost:hover:not([disabled]) {
-    background-color: var(--color-main-fade);
-    filter: none !important;
+      #{$hoverSelector} {
+        background-color: $colorHoverBG;
+        color: $colorHoverText;
+        border-color: $colorHoverBorder;
+      }
+
+      &:active:not(:disabled):not([aria-disabled=true]):not(.inactive) {
+        background-color: $colorPressedBG;
+        color: $colorPressedText;
+        border-color: $colorPressedBorder;
+      }
+
+      &.is-loading {
+        filter: none;
+        &::after {
+          @include spinner($colorText);
+        }
+      }
+    }
   }
 
   &[disabled],
   &[aria-disabled=true] {
-    border-color: transparent !important;
-    background-color: getColor('main-fade') !important;
-    color: getColor('disabled') !important
+    border-color: var(--btn-bg-disabled) !important;
+    background-color: var(--btn-bg-disabled) !important;
+    color: var(--btn-text-disabled) !important
   }
 
   [aria-disabled=true] {
@@ -72,13 +96,5 @@ $button-border-width: 2px !default;
   .icon:not([class*='has-background-']) {
     width: auto;
   }
-
-  &.is-loading {
-    background-color: getColor('neutral');
-    &::after {
-      @include spinner('neutral-fade');
-    }
-  }
-
 }
 

@@ -69,7 +69,7 @@ $tag-delete-margin: 1px !default;
 
     &.is-inverted {
       .tag {
-        background-color: getColor('background');
+        background-color: var(--bg-primary);
       }
     }
 
@@ -78,9 +78,9 @@ $tag-delete-margin: 1px !default;
 
 .tag {
   align-items: center;
-  background-color: getColor('neutral-fade');
+  background-color: var(--bg-information-subtle);
   border-radius: var(--radius-full);
-  color: getColor('font');
+  color: var(--text-primary);
   display: inline-flex;
   font-size: $size-medium;
   font-weight: $weight-medium;
@@ -102,13 +102,11 @@ $tag-delete-margin: 1px !default;
     line-height: 15px;
   }
 
-  @each $name in $colors-feedback {
-    &.is-#{$name}:not(.is-inverted) {
-      background-color: fadeColor($name);
-    }
-    &.is-inverted.is-#{$name} {
-      color: getColor($name);
-      background-color: invertColor($name);
+  @each $name, $color in $bg-status-subtle {
+    $text-color: map-get($border-colors-status, str-slice($name, 1, -8));
+    &.is-inverted.has-background-#{$name} {
+      background-color: var(--bg-primary) !important;
+      color:  $text-color;
     }
   }
 }

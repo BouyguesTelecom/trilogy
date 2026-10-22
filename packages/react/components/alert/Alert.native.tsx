@@ -1,23 +1,21 @@
 import { Column, Columns } from '@/components/columns'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon, IconName, IconSize } from '@/components/icon'
-import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
-import { Title, TitleLevels } from '@/components/title'
 import { View } from '@/components/view'
-import { Alignable } from '@/objects/facets/Alignable'
-import { TrilogyColor } from '@/objects/facets/Color'
+import { Align } from '@/objects/facets/Alignable'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
-import { getStatusIconName, getStatusStyle } from '@/objects/facets/Status'
-import { FC, forwardRef } from 'react'
-import { TouchableOpacity } from 'react-native'
-import { memoStyles } from '@/helpers/memoStyles'
+import { getStatusIconName } from '@/objects/facets/Status'
+import { FC, forwardRef, useMemo } from 'react'
+import { StyleSheet, Pressable } from 'react-native'
 import LibToast from 'react-native-toast-message'
-import { Row, Rows } from '@/components/rows'
 import { AlertNativeRef, AlertProps, ToasterAlertPosition, ToasterStatusProps } from '@/components/alert/AlertProps'
 import ToasterContext from '@/components/alert/context'
 import { ToasterShowContext } from '@/components/alert/context/ToasterContextProps'
-import { Theme } from '@/constants/theme'
+import { useBorderColor } from '@/hooks/useBorderColor'
+import { useBackgroundSubtleColor } from '@/hooks/useBackgroundSubtleColor'
+import { useRadius } from '@/hooks/useRadius'
+import { Spacer, SpacerSize } from '@/components/spacer'
 
 /**
  * Function call by context for showing toast
@@ -49,74 +47,58 @@ const showToast: ToasterShowContext = (params: ToasterStatusProps) => {
  */
 const Alert = forwardRef<AlertNativeRef, AlertProps>(
   ({ banner, status, iconName, title, description, onClick, display = true, ...others }, ref): JSX.Element => {
-    const { color, backgroundColor } = getStatusStyle(status)
     let alertView: JSX.Element
 
-    const styles = memoStyles({
-      container: {
-        width: '100%',
-        paddingTop: 12,
-        borderColor: status !== undefined ? color : backgroundColor,
-        paddingBottom: 12,
+    const borderColor = useBorderColor(status ?? 'information')
+    const backgroundColor = useBackgroundSubtleColor(status ? `${status}-subtle` : 'information-subtle')
+    const borderRadius = useRadius('md')
+
+    const containerStyles = useMemo(
+      () => ({
+        borderColor,
+        backgroundColor,
+        borderRadius: banner ? 0 : borderRadius,
         borderWidth: banner ? 0 : 1,
-        backgroundColor: backgroundColor,
-        borderRadius: banner ? 0 : Theme.radius.md,
-        alignItems: 'baseline',
         textAlign: banner ? 'center' : 'left',
-        paddingLeft: 12,
-        paddingRight: 12,
-      },
-      description: {
-        justifyContent: 'center',
-        textAlignVertical: 'center',
-        paddingLeft: 8,
-      },
-      containerTitle: {
-        paddingLeft: 8,
-        fontWeight: 'bold',
-      },
-    })
+      }),
+      [borderColor, backgroundColor, borderRadius, banner],
+    )
 
     // eslint-disable-next-line prefer-const
     alertView = (
-      <View style={[styles.container, (others as any).style]} ref={ref}>
-        <Columns gap={2} verticalAlign={Alignable.ALIGNED_START}>
+      <View style={[styles.container, containerStyles, (others as any).style]} ref={ref}>
+        <Columns gap={4} verticalAlign={Align.START}>
           <Column narrow>
-            <View style={{ marginTop: -2 }}>
-              <Icon name={iconName ? iconName : getStatusIconName(status)} color={status || TrilogyColor.MAIN} />
+            <View>
+              <Icon name={iconName ? iconName : getStatusIconName(status)} color={status} />
             </View>
           </Column>
           <Column>
-            <Rows {...{ style: { flexGrow: 1 } }} gap={description ? 2 : 0}>
-              <Row>
-                <Text style={[styles.containerTitle]} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
-                  {title}
-                </Text>
-              </Row>
-              {description && <Spacer size={SpacerSize.ONE} />}
-              <Row>
-                {description && typeof description.valueOf() === 'string' ? (
-                  <Text level={TextLevels.TWO} style={styles.description}>
-                    {description}
-                  </Text>
-                ) : (
-                  <View style={styles.description}>{description}</View>
-                )}
-              </Row>
-            </Rows>
+            <Text style={[styles.containerTitle]} level={TextLevels.ONE} typo={TypographyBold.TEXT_WEIGHT_SEMIBOLD}>
+              {title}
+            </Text>
+            {description && <Spacer size={SpacerSize.ONE} />}
+
+            {description && typeof description.valueOf() === 'string' ? (
+              <Text level={TextLevels.TWO} style={styles.description}>
+                {description}
+              </Text>
+            ) : (
+              <View style={styles.description}>{description}</View>
+            )}
           </Column>
+          {(others as any).closable && (
+            <Column narrow>
+              <Pressable onPress={(others as any).closable}>
+                <Icon name={IconName.TIMES} size={IconSize.SMALLER} />
+              </Pressable>
+            </Column>
+          )}
         </Columns>
       </View>
     )
 
-    if (onClick && display)
-      return (
-        <View>
-          <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
-            {alertView}
-          </TouchableOpacity>
-        </View>
-      )
+    if (onClick && display) return <Pressable onPress={onClick}>{alertView}</Pressable>
 
     if (!onClick && display) return alertView
 
@@ -135,50 +117,21 @@ const Alert = forwardRef<AlertNativeRef, AlertProps>(
  */
 export const ToasterAlert: FC<{ props: ToasterStatusProps }> = ({ props }) => {
   const { title, description, iconName, status, closable, onClick } = props
-  const { color, backgroundColor } = getStatusStyle(status)
-
-  const styles = memoStyles({
-    toaster: {
-      padding: 24,
-    },
-    toasterContainer: {
-      borderWidth: 1,
-      borderColor: color,
-      backgroundColor: backgroundColor,
-      padding: 14,
-      borderRadius: Theme.radius.md,
-    },
-  })
 
   return (
-    <View style={styles.toaster}>
-      <TouchableOpacity style={styles.toasterContainer} onPress={onClick}>
-        <Columns>
-          <Column size={1}>{iconName && <Icon name={iconName} color={status || TrilogyColor.MAIN} />}</Column>
-          <Column>
-            {title && <Title level={TitleLevels.SIX}>{title}</Title>}
-            {description && (
-              <>
-                <Spacer size={SpacerSize.TWO} />
-                <Text level={TextLevels.THREE}>{description}</Text>
-              </>
-            )}
-          </Column>
-          {closable && (
-            <Column size={1}>
-              <TouchableOpacity
-                onPress={(e) => {
-                  LibToast.hide()
-                  closable(e)
-                }}
-              >
-                <Icon name={IconName.TIMES} size={IconSize.SMALL} />
-              </TouchableOpacity>
-            </Column>
-          )}
-        </Columns>
-      </TouchableOpacity>
-    </View>
+    <Alert
+      title={title}
+      description={description}
+      iconName={iconName}
+      status={status}
+      onClick={onClick}
+      {...{
+        closable: (e: any) => {
+          LibToast.hide()
+          closable?.(e)
+        },
+      }}
+    />
   )
 }
 
@@ -189,11 +142,14 @@ export const ToasterAlert: FC<{ props: ToasterStatusProps }> = ({ props }) => {
  * @param offset {number} Offset position margin (Default: 10 dp)
  * @param others
  */
-export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Element => {
-  const toastConfig = {
-    tomatoToast: ToasterAlert,
-  }
+const toastConfig = {
+  tomatoToast: ({ props }: { props: ToasterStatusProps }) => {
+    'use no memo'
+    return <ToasterAlert props={props} />
+  },
+}
 
+export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Element => {
   return (
     <ToasterContext.Provider value={{ show: showToast, hide: LibToast.hide }}>
       {children}
@@ -205,3 +161,18 @@ export const ToasterAlertProvider = ({ children }: ToasterStatusProps): JSX.Elem
 Alert.displayName = ComponentName.Alert
 
 export default Alert
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    padding: 12,
+    gap: 8,
+  },
+  description: {
+    justifyContent: 'center',
+    textAlignVertical: 'center',
+  },
+  containerTitle: {
+    fontWeight: 'bold',
+  },
+})

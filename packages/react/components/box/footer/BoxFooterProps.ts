@@ -1,16 +1,16 @@
 import { Accessibility } from '@/objects/facets/Accessibility'
-import { TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { Dev } from '@/objects/facets/Dev'
 import { View } from 'react-native'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { ReactNode } from 'react'
+import { BackgroundColor, BackgroundColorValues } from '@/interfaces/colors'
 
 /**
  * Box Footer Interface
  */
 export interface BoxFooterProps extends Accessibility, Dev, CommonProps {
   children?: ReactNode
-  backgroundColor?: TrilogyColor | TrilogyColorValues
+  backgroundColor?: BackgroundColor | BackgroundColorValues
 }
 
 export type BoxFooterRef = HTMLDivElement

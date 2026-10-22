@@ -1,4 +1,6 @@
 import { RadiusValues } from '@/components/image/ImageProps'
+import { Radius } from '@/interfaces/radius'
+export { Radius } from '@/interfaces/radius'
 
 export const getRadiusStyle = (radius?: RadiusValues) => {
   switch (radius) {
@@ -28,12 +30,4 @@ export const getRadius = (radius?: Radius | `${Radius}`) => {
     default:
       return 0
   }
-}
-
-export enum Radius {
-  XS = 'xs',
-  SM = 'sm',
-  MD = 'md',
-  LG = 'lg',
-  FULL = 'full',
 }

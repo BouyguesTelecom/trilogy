@@ -10,6 +10,7 @@ import { useCallback, useEffect, useState, forwardRef } from 'react'
 import {
   Keyboard,
   NativeSyntheticEvent,
+  Pressable,
   TextInput,
   TextInputSubmitEditingEventData,
   TouchableOpacity,
@@ -28,6 +29,7 @@ import {
 import { InputNativeEvents, InputNativeRef, InputProps } from '@/components/input/InputProps'
 import InputGauge from '@/components/input/gauge/InputGauge.native'
 import { Theme } from '@/constants/theme'
+import { IconColor } from '@/interfaces/colors'
 
 export interface InputNativeProps extends InputProps, InputNativeEvents {}
 
@@ -108,11 +110,7 @@ const Input = forwardRef<InputNativeRef, InputNativeProps>(
   ): JSX.Element => {
     const inputTestId = testId ? testId : placeholder ? placeholder : 'NotSpecified'
     const inputAccessibilityLabel = accessibilityLabel ? accessibilityLabel : placeholder ? placeholder : 'NotSpecified'
-    const inputIcon = new Map()
     const inputColor = getColorStyle(TrilogyColor.MAIN)
-    inputIcon.set(InputStatus.SUCCESS, IconName.CHECK_CIRCLE)
-    inputIcon.set(InputStatus.WARNING, IconName.EXCLAMATION_CIRCLE)
-    inputIcon.set(InputStatus.ERROR, IconName.EXCLAMATION_CIRCLE)
 
     const [value, setValue] = useState<string>(defaultValue || '')
     const [email, setEmail] = useState<string>('')
@@ -332,157 +330,70 @@ const Input = forwardRef<InputNativeRef, InputNativeProps>(
               <Text style={styles.domain}>{email}</Text>
             </Text>
           )}
-          {hasIcon && type !== InputType.PASSWORD && type !== InputType.SEARCH && (
-            <View style={styles.inputIconLeft}>
-              <Icon
-                align={Align.START}
-                name={iconNameLeft as unknown as IconName}
-                size={IconSize.SMALL}
-                color={
-                  (status && status === 'success' && StatusState.SUCCESS) ||
-                  (status && status === 'warning' && StatusState.WARNING) ||
-                  (status && status === 'error' && StatusState.ERROR) ||
-                  (disabled && TrilogyColor.DISABLED) ||
-                  TrilogyColor.MAIN
+          {(iconNameRight || type === InputType.PASSWORD || (type === InputType.SEARCH && value.length > 0)) && (
+            <Pressable
+              style={styles.inputContainerRight}
+              onPress={(e) => {
+                if (type !== InputType.SEARCH) {
+                  onIconClick?.({
+                    inputName: (name && name) || '',
+                    inputValue: value,
+                    target: e,
+                  })
                 }
-              />
-            </View>
-          )}
-          {hasIcon &&
-            type !== InputType.SEARCH &&
-            status &&
-            status !== InputStatus.DEFAULT &&
-            type !== InputType.PASSWORD && (
-              <TouchableOpacity
-                style={styles.inputContainer}
-                activeOpacity={onIconClick ? 0.2 : 1}
-                onPress={(e) => {
-                  onIconClick?.({
-                    inputName: (name && name) || '',
-                    inputValue: value,
-                    target: e,
-                  })
-                }}
-              >
-                <Icon
-                  testId='icon-status-id'
-                  align={Align.CENTER}
-                  name={
-                    (iconNameLeft as unknown as IconName) ||
-                    (iconNameRight as unknown as IconName) ||
-                    inputIcon.get(status).replace('tri-', '').replace('ui-', '')
-                  }
-                  size={IconSize.SMALL}
-                  color={
-                    (status && status === 'success' && StatusState.SUCCESS) ||
-                    (status && status === 'warning' && StatusState.WARNING) ||
-                    (status && status === 'error' && StatusState.ERROR) ||
-                    (status && TrilogyColor.MAIN) ||
-                    (disabled && TrilogyColor.DISABLED) ||
-                    TrilogyColor.MAIN
-                  }
-                />
-              </TouchableOpacity>
-            )}
-          {iconNameRight &&
-            !iconNameLeft &&
-            type !== InputType.SEARCH &&
-            type !== InputType.PASSWORD &&
-            (!status || status === InputStatus.DEFAULT) && (
-              <TouchableOpacity
-                style={styles.inputContainerRight}
-                activeOpacity={onIconClick ? 0.2 : 1}
-                onPress={(e) => {
-                  onIconClick?.({
-                    inputName: (name && name) || '',
-                    inputValue: value,
-                    target: e,
-                  })
-                }}
-              >
-                <Icon
-                  testId='icon-right-id'
-                  align={Align.CENTER}
-                  name={iconNameRight as unknown as IconName}
-                  size={IconSize.SMALL}
-                  color={(disabled && TrilogyColor.DISABLED) || TrilogyColor.MAIN}
-                />
-              </TouchableOpacity>
-            )}
-          {type === InputType.PASSWORD && (
-            <>
-              {iconNameLeft && (
-                <View style={[{ paddingLeft: 10 }, styles.inputContainerLeft]}>
-                  <Icon name={iconNameLeft} />
-                </View>
-              )}
-              <TouchableOpacity
-                style={styles.inputContainerRight}
-                onPress={() => {
-                  onIconClick?.({
-                    inputName: (name && name) || '',
-                    inputValue: value,
-                  })
+
+                if (type === InputType.PASSWORD) {
                   if (iconPassword === IconName.EYE) {
                     setIconPassword(IconName.EYE_SLASH)
                   } else {
                     setIconPassword(IconName.EYE)
                   }
-                }}
-              >
-                <Icon
-                  testId='password-id'
-                  align={Align.CENTER}
-                  name={iconPassword}
-                  size={IconSize.SMALL}
-                  color={
-                    (status && status === 'success' && StatusState.SUCCESS) ||
-                    (status && status === 'warning' && StatusState.WARNING) ||
-                    (status && status === 'error' && StatusState.ERROR) ||
-                    (status && status === 'default' && TrilogyColor.MAIN) ||
-                    (disabled && TrilogyColor.DISABLED) ||
-                    TrilogyColor.MAIN
-                  }
-                />
-              </TouchableOpacity>
-            </>
+                }
+
+                if (type === InputType.SEARCH && value.length > 0) {
+                  onChange?.({
+                    inputName: (name && name) || '',
+                    inputValue: '',
+                    inputSelectionStart: null,
+                  })
+                  onIconClick?.({
+                    inputName: (name && name) || '',
+                    inputValue: '',
+                  })
+                  setValue('')
+                }
+              }}
+            >
+              <Icon
+                testId={
+                  type === InputType.PASSWORD
+                    ? 'password-id'
+                    : type === InputType.SEARCH
+                    ? 'search-id'
+                    : 'icon-right-id'
+                }
+                align={Align.CENTER}
+                name={
+                  type === InputType.PASSWORD
+                    ? iconPassword
+                    : type === InputType.SEARCH
+                    ? IconName.TIMES_CIRCLE
+                    : (iconNameRight as unknown as IconName)
+                }
+                size={IconSize.SMALL}
+                color={disabled ? IconColor.DISABLED : undefined}
+              />
+            </Pressable>
           )}
-          {type === InputType.SEARCH && !status && (
-            <>
-              <View style={styles.inputContainerLeft}>
-                <Icon
-                  align={Align.CENTER}
-                  name={IconName.SEARCH}
-                  size={IconSize.SMALL}
-                  color={disabled ? TrilogyColor.DISABLED : TrilogyColor.NEUTRAL}
-                />
-              </View>
-              {value.length > 0 && (
-                <TouchableOpacity
-                  testID='search-id'
-                  style={styles.inputContainerRight}
-                  onPressIn={() => {
-                    onChange?.({
-                      inputName: (name && name) || '',
-                      inputValue: '',
-                      inputSelectionStart: null,
-                    })
-                    onIconClick?.({
-                      inputName: (name && name) || '',
-                      inputValue: '',
-                    })
-                    setValue('')
-                  }}
-                >
-                  <Icon
-                    align={Align.CENTER}
-                    name={IconName.TIMES_CIRCLE}
-                    size={IconSize.SMALL}
-                    color={disabled ? TrilogyColor.DISABLED : TrilogyColor.NEUTRAL}
-                  />
-                </TouchableOpacity>
-              )}
-            </>
+          {(iconNameLeft || type === InputType.SEARCH) && (
+            <View style={styles.inputIconLeft}>
+              <Icon
+                align={Align.START}
+                name={type === InputType.SEARCH ? IconName.SEARCH : (iconNameLeft as unknown as IconName)}
+                size={IconSize.SMALL}
+                color={disabled ? IconColor.DISABLED : undefined}
+              />
+            </View>
           )}
         </View>
         {help && typeof help === 'string' ? (

@@ -93,7 +93,7 @@ const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
         break
       case StatusState.INFO:
         iconName = IconName.INFOS_CIRCLE
-        iconColor = IconColor.INFO
+        iconColor = IconColor.INFORMATION
         break
       default:
         break

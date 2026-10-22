@@ -81,7 +81,7 @@ const Fab = forwardRef<FabNativeRef, FabProps>(
           <>
             <Icon
               name={iconName as IconName}
-              color={IconColor.WHITE}
+              color={IconColor.INVERSE}
               size={IconSize.MEDIUM}
               align={Alignable.ALIGNED_CENTER}
             />
@@ -92,7 +92,7 @@ const Fab = forwardRef<FabNativeRef, FabProps>(
         ) : (
           <Icon
             name={iconName as IconName}
-            color={IconColor.WHITE}
+            color={IconColor.INVERSE}
             size={IconSize.MEDIUM}
             align={Alignable.ALIGNED_CENTER}
           />

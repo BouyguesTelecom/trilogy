@@ -7,7 +7,7 @@ $CURSOR_SIZE: 30px;
     position: absolute;
     left: 0;
     right: 0;
-    background-color: getColor('background');
+    background-color: var(--input-bg);
     border-radius: var(--radius-md);
     padding: 16px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -34,7 +34,7 @@ $CURSOR_SIZE: 30px;
       top: 50%;
       transform: translate(-50%, -50%);
       height: 90%;
-      background-color: getColor('neutral');
+      background-color: var(--border);
       width: 1px;
     }
   }
@@ -62,8 +62,8 @@ $CURSOR_SIZE: 30px;
       justify-content: center;
       
       &.is-active {
-        background-color: getColor('main');
-        color: getColor('background');
+        background-color: var(--input-bg-selected);
+        color: var(--text-inverse);
       }
 
       &:hover:not(.is-active) {

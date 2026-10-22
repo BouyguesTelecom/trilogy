@@ -1,0 +1,34 @@
+import { Button, DatePicker, Section, Text } from '@trilogy-ds/react'
+import { useState } from 'react'
+
+export default function DatePickerScreen(): JSX.Element {
+  const [date, setDate] = useState<string | null>(null)
+
+  return (
+    <Section>
+      <Text>Date picker</Text>
+      <Button
+        onClick={() => {
+          setDate('2025-12-10')
+        }}
+      >
+        Set Date 2025-12-10
+      </Button>
+
+      <DatePicker
+        maxDate='2026-12-24'
+        minDate='2025-12-01'
+        data-cy='birthday'
+        onChange={(e) => {
+          setDate(e)
+          console.log(e)
+        }}
+        value={date}
+        label='Input label without accessibilityLabel'
+        sample='Input sample'
+        help='Search helper input'
+        required
+      />
+    </Section>
+  )
+}

@@ -3,9 +3,7 @@ import clsx from 'clsx'
 import { TableHeadProps, TableHeadRef } from '@/components/table/head/TableHeadProps'
 import { hashClass } from '@/helpers/hashClassesHelpers'
 import { useTrilogyContext } from '@/context/TrilogyContext'
-import { has, is } from '@/services/classify'
-import { getBackgroundClassName } from '@/objects/atoms/Background'
-import { getColorClassName } from '@/objects/facets/Color'
+import { has } from '@/services/classify'
 import { ComponentName } from '@/components/enumsComponentsName'
 
 /**
@@ -16,18 +14,16 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param color {TrilogyColor} text color
  * @param backgroundColor {TrilogyColor} background color
  */
-const TableHead = forwardRef<TableHeadRef, TableHeadProps>(({ className, id, color, backgroundColor, testId, ...others }, ref): JSX.Element => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(
-    styled,
-    clsx(
-      className,
-      backgroundColor && has(getBackgroundClassName(backgroundColor)),
-      color && is(getColorClassName(color)),
-    ),
-  )
-  return <thead ref={ref} id={id} className={classes} data-testid={testId} {...others} />
-})
+const TableHead = forwardRef<TableHeadRef, TableHeadProps>(
+  ({ className, id, color, backgroundColor, testId, ...others }, ref): JSX.Element => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(
+      styled,
+      clsx(className, backgroundColor && has(`background-${backgroundColor}`), color && has(`text-${color}`)),
+    )
+    return <thead ref={ref} id={id} className={classes} data-testid={testId} {...others} />
+  },
+)
 
 TableHead.displayName = ComponentName.TableHead
 export default TableHead
