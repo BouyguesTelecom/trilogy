@@ -15,6 +15,8 @@ import {
 export default function IconScreen(): JSX.Element {
   return (
     <Section>
+      <Icon name='alien' color={IconColor.ACCENT} size={IconSize.SMALL} />
+
       <Icon name={IconName.ARROW_DOWN} color={IconColor.ACCENT} size={IconSize.SMALL} />
 
       <Icon size={IconSize.MEDIUM} name={IconName.ARROW_UP} />

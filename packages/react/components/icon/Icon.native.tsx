@@ -1,6 +1,5 @@
 import { forwardRef, useContext, useMemo } from 'react'
-import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import type { ViewStyle } from 'react-native'
+import { Platform, StyleSheet, Text, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { IconSize } from '@/components/icon/IconEnum'
 import type { IconNativeRef, IconProps } from '@/components/icon/IconProps'
@@ -38,6 +37,7 @@ const Icon = forwardRef<IconNativeRef, IconProps>(
     ref,
   ): JSX.Element => {
     const { inverted } = useContext(StatesContext)
+
     const fontFamily = useThemeSelector((theme) => {
       const family = theme.icons?.fontFamily
       if (typeof family === 'string') return family
@@ -45,9 +45,10 @@ const Icon = forwardRef<IconNativeRef, IconProps>(
       if (Platform.OS === 'ios') return family?.ios
       return family?.default
     })
+
     const glyph = useThemeSelector((theme) => {
       const map = theme.icons?.glyphMap
-      if (!map) return undefined
+      if (!map || !name) return undefined
       const key = name.replace(/^tri-(?:picto-)?/, '')
       const value = Object.prototype.hasOwnProperty.call(map, name)
         ? map[name]
@@ -60,25 +61,32 @@ const Icon = forwardRef<IconNativeRef, IconProps>(
       }
       return undefined
     })
+
     const resolvedColor = useIconColor(
       color === 'transparent' ? 'primary' : color ?? (inverted ? 'inverse' : 'primary'),
     )
+
     const inverseColor = useIconColor('inverse')
     const background = useBackgroundColor(backgroundColor ?? 'secondary')
     const skeletonBackground = useBackgroundColor('primary-subtle')
     const iconColor = color === 'transparent' ? 'transparent' : resolvedColor
     const dimensions = sizes[size]
-    const dynamicStyles = useMemo(
+    const dynamicStyles = useMemo<{
+      root: ViewStyle
+      circle: ViewStyle
+      stretched: ViewStyle
+      glyph: TextStyle
+      skeleton: ViewStyle
+    }>(
       () => ({
         root: { alignSelf: getAlignStyle(align) as ViewStyle['alignSelf'] },
-        container: { width: dimensions.icon, height: dimensions.icon },
         circle: {
           width: dimensions.circle,
           height: dimensions.circle,
           borderRadius: dimensions.circle,
           backgroundColor: background,
         },
-        stretched: { width: dimensions.circle + 15, height: dimensions.circle, backgroundColor: iconColor },
+        stretched: { width: dimensions.circle + 15, backgroundColor: iconColor },
         glyph: { fontFamily, fontSize: dimensions.icon, color: stretched && !circled ? inverseColor : iconColor },
         skeleton: { backgroundColor: skeletonBackground },
       }),
@@ -105,11 +113,8 @@ const Icon = forwardRef<IconNativeRef, IconProps>(
           testID={stretched && !circled ? `${testId}-stretched` : circled ? `${testId}-circled` : undefined}
           style={[
             styles.center,
-            stretched && !circled
-              ? [styles.stretched, dynamicStyles.stretched]
-              : circled
-              ? dynamicStyles.circle
-              : dynamicStyles.container,
+            stretched ? [styles.stretched, dynamicStyles.stretched] : undefined,
+            circled ? dynamicStyles.circle : undefined,
           ]}
         >
           <Text

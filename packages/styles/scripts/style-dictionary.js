@@ -360,6 +360,25 @@ StyleDictionary.registerFormat({
 })
 
 StyleDictionary.registerFormat({
+  name: 'typescript/radius/enum',
+  format: ({ dictionary }) => {
+    const entries = new Map(
+      getReactTokens(dictionary, (token) => isModeToken(token, 'light') && token.path[1] === 'Radius').map(
+        ({ key }) => [key.replace(/^radius/, '').toLowerCase(), key],
+      ),
+    )
+    return [
+      '// Generated from Figma tokens. Do not edit directly.',
+      '',
+      formatEnum('Radius', entries).replace('RadiusValues', 'RadiusTokenValues'),
+      '',
+      `export const RADIUS_TOKENS = ${JSON.stringify(Object.fromEntries(entries), null, 2)} as const`,
+      '',
+    ].join('\n')
+  },
+})
+
+StyleDictionary.registerFormat({
   name: 'typescript/status/enums',
   format: ({ dictionary }) => {
     const maps = colorMapDefinitions(dictionary)
@@ -590,6 +609,10 @@ export default {
         {
           destination: '../interfaces/button.ts',
           format: 'typescript/button/enum',
+        },
+        {
+          destination: '../interfaces/radius.ts',
+          format: 'typescript/radius/enum',
         },
       ],
     },
