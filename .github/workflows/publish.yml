@@ -21,7 +21,6 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
           package-manager-cache: false
 
       - name: Extract version tag
@@ -39,11 +38,6 @@ jobs:
             echo "IS_PRERELEASE=false" >> $GITHUB_ENV
           fi
 
-      - name: Change version for React package 📌
-        run: |
-          npm version --workspace packages/react --no-git-tag-version "$VERSION" \
-          || echo "Version already set, continuing..."
-
       - name: Install dependencies & build
         run: |
           npm i --legacy-peer-deps
@@ -56,60 +50,80 @@ jobs:
           npm run check-types
           npm run test:native
 
+      # ==========================================
+      # 1. PUBLISH REACT
+      # ==========================================
       - name: Publish React package on NPMJS Registry 📦
         run: |
+          npm version --workspace packages/react --no-git-tag-version "$VERSION" || echo "Version already set"
+          cd packages/react
           if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --workspace packages/react --access public --tag "$NPM_TAG" --provenance
+            npm publish --access public --tag "$NPM_TAG" --provenance
           else
-            npm publish --workspace packages/react --access public --provenance
+            npm publish --access public --provenance
           fi
 
+      # ==========================================
+      # 2. PUBLISH ASSETS
+      # ==========================================
       - name: Publish Assets package on NPM 📦
         run: |
-          npm version --workspace packages/assets --no-git-tag-version "$VERSION" \
-          || echo "Version already set"
+          npm version --workspace packages/assets --no-git-tag-version "$VERSION" || echo "Version already set"
+          cd packages/assets
           if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --workspace packages/assets --access public --tag "$NPM_TAG" --provenance
+            npm publish --access public --tag "$NPM_TAG" --provenance
           else
-            npm publish --workspace packages/assets --access public --provenance
+            npm publish --access public --provenance
           fi
 
+      # ==========================================
+      # 3. PUBLISH STYLES
+      # ==========================================
       - name: Publish Styles package on NPM 📦
         run: |
-          npm version --workspace packages/styles --no-git-tag-version "$VERSION" \
-          || echo "Version already set"
+          npm version --workspace packages/styles --no-git-tag-version "$VERSION" || echo "Version already set"
+          cd packages/styles
           if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --workspace packages/styles --access public --tag "$NPM_TAG" --provenance
+            npm publish --access public --tag "$NPM_TAG" --provenance
           else
-            npm publish --workspace packages/styles --access public --provenance
+            npm publish --access public --provenance
           fi
 
+      # ==========================================
+      # 4. PUBLISH VANILLA
+      # ==========================================
       - name: Publish Vanilla package on NPM 📦
         run: |
-          npm version --workspace packages/vanilla --no-git-tag-version "$VERSION" \
-          || echo "Version already set"
+          npm version --workspace packages/vanilla --no-git-tag-version "$VERSION" || echo "Version already set"
+          cd packages/vanilla
           if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --workspace packages/vanilla --access public --tag "$NPM_TAG" --provenance
+            npm publish --access public --tag "$NPM_TAG" --provenance
           else
-            npm publish --workspace packages/vanilla --access public --provenance
+            npm publish --access public --provenance
           fi
 
+      # ==========================================
+      # 5. PUBLISH LOCALE (EN)
+      # ==========================================
       - name: Publish Locale package (en) on NPM 📦
         run: |
-          npm version --prefix packages/locales/en --no-git-tag-version "${VERSION}-en" \
-          || echo "Version already set"
+          npm version --prefix packages/locales/en --no-git-tag-version "${VERSION}-en" || echo "Version already set"
+          cd packages/locales/en
           if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish packages/locales/en --access public --tag "${NPM_TAG}-en" --provenance
+            npm publish --access public --tag "${NPM_TAG}-en" --provenance
           else
-            npm publish packages/locales/en --access public --tag en --provenance
+            npm publish --access public --tag en --provenance
           fi
 
+      # ==========================================
+      # 6. PUBLISH LOCALE (FR)
+      # ==========================================
       - name: Publish Locale package (fr) on NPM 📦
         run: |
-          npm version --prefix packages/locales/fr --no-git-tag-version "${VERSION}-fr" \
-          || echo "Version already set"
+          npm version --prefix packages/locales/fr --no-git-tag-version "${VERSION}-fr" || echo "Version already set"
+          cd packages/locales/fr
           if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish packages/locales/fr --access public --tag "${NPM_TAG}-fr" --provenance
+            npm publish --access public --tag "${NPM_TAG}-fr" --provenance
           else
-            npm publish packages/locales/fr --access public --tag fr --provenance
+            npm publish --access public --tag fr --provenance
           fi
