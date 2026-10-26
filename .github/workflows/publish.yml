@@ -55,12 +55,19 @@ jobs:
       # ==========================================
       - name: Publish React package on NPMJS Registry 📦
         run: |
-          npm version --workspace packages/react --no-git-tag-version "$VERSION" || echo "Version already set"
           cd packages/react
-          if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --access public --tag "$NPM_TAG" --provenance
+          npm version --no-git-tag-version "$VERSION" || echo "Version already set"
+          PKG_NAME=$(node -p "require('./package.json').name")
+          
+          # Vérification si déjà publié
+          if npm view "$PKG_NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "⚠️ $PKG_NAME@$VERSION est déjà publié sur NPM. Étape ignorée."
           else
-            npm publish --access public --provenance
+            if [ "$IS_PRERELEASE" = "true" ]; then
+              npm publish --access public --tag "$NPM_TAG" --provenance
+            else
+              npm publish --access public --provenance
+            fi
           fi
 
       # ==========================================
@@ -68,12 +75,19 @@ jobs:
       # ==========================================
       - name: Publish Assets package on NPM 📦
         run: |
-          npm version --workspace packages/assets --no-git-tag-version "$VERSION" || echo "Version already set"
           cd packages/assets
-          if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --access public --tag "$NPM_TAG" --provenance
+          npm version --no-git-tag-version "$VERSION" || echo "Version already set"
+          PKG_NAME=$(node -p "require('./package.json').name")
+          
+          # Vérification si déjà publié
+          if npm view "$PKG_NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "⚠️ $PKG_NAME@$VERSION est déjà publié sur NPM. Étape ignorée."
           else
-            npm publish --access public --provenance
+            if [ "$IS_PRERELEASE" = "true" ]; then
+              npm publish --access public --tag "$NPM_TAG" --provenance
+            else
+              npm publish --access public --provenance
+            fi
           fi
 
       # ==========================================
@@ -81,12 +95,19 @@ jobs:
       # ==========================================
       - name: Publish Styles package on NPM 📦
         run: |
-          npm version --workspace packages/styles --no-git-tag-version "$VERSION" || echo "Version already set"
           cd packages/styles
-          if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --access public --tag "$NPM_TAG" --provenance
+          npm version --no-git-tag-version "$VERSION" || echo "Version already set"
+          PKG_NAME=$(node -p "require('./package.json').name")
+          
+          # Vérification si déjà publié
+          if npm view "$PKG_NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "⚠️ $PKG_NAME@$VERSION est déjà publié sur NPM. Étape ignorée."
           else
-            npm publish --access public --provenance
+            if [ "$IS_PRERELEASE" = "true" ]; then
+              npm publish --access public --tag "$NPM_TAG" --provenance
+            else
+              npm publish --access public --provenance
+            fi
           fi
 
       # ==========================================
@@ -94,12 +115,19 @@ jobs:
       # ==========================================
       - name: Publish Vanilla package on NPM 📦
         run: |
-          npm version --workspace packages/vanilla --no-git-tag-version "$VERSION" || echo "Version already set"
           cd packages/vanilla
-          if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --access public --tag "$NPM_TAG" --provenance
+          npm version --no-git-tag-version "$VERSION" || echo "Version already set"
+          PKG_NAME=$(node -p "require('./package.json').name")
+          
+          # Vérification si déjà publié
+          if npm view "$PKG_NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "⚠️ $PKG_NAME@$VERSION est déjà publié sur NPM. Étape ignorée."
           else
-            npm publish --access public --provenance
+            if [ "$IS_PRERELEASE" = "true" ]; then
+              npm publish --access public --tag "$NPM_TAG" --provenance
+            else
+              npm publish --access public --provenance
+            fi
           fi
 
       # ==========================================
@@ -107,12 +135,20 @@ jobs:
       # ==========================================
       - name: Publish Locale package (en) on NPM 📦
         run: |
-          npm version --prefix packages/locales/en --no-git-tag-version "${VERSION}-en" || echo "Version already set"
           cd packages/locales/en
-          if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --access public --tag "${NPM_TAG}-en" --provenance
+          npm version --no-git-tag-version "${VERSION}-en" || echo "Version already set"
+          PKG_NAME=$(node -p "require('./package.json').name")
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          
+          # Vérification si déjà publié
+          if npm view "$PKG_NAME@$PKG_VERSION" version >/dev/null 2>&1; then
+            echo "⚠️ $PKG_NAME@$PKG_VERSION est déjà publié sur NPM. Étape ignorée."
           else
-            npm publish --access public --tag en --provenance
+            if [ "$IS_PRERELEASE" = "true" ]; then
+              npm publish --access public --tag "${NPM_TAG}-en" --provenance
+            else
+              npm publish --access public --tag en --provenance
+            fi
           fi
 
       # ==========================================
@@ -120,10 +156,18 @@ jobs:
       # ==========================================
       - name: Publish Locale package (fr) on NPM 📦
         run: |
-          npm version --prefix packages/locales/fr --no-git-tag-version "${VERSION}-fr" || echo "Version already set"
           cd packages/locales/fr
-          if [ "$IS_PRERELEASE" = "true" ]; then
-            npm publish --access public --tag "${NPM_TAG}-fr" --provenance
+          npm version --no-git-tag-version "${VERSION}-fr" || echo "Version already set"
+          PKG_NAME=$(node -p "require('./package.json').name")
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          
+          # Vérification si déjà publié
+          if npm view "$PKG_NAME@$PKG_VERSION" version >/dev/null 2>&1; then
+            echo "⚠️ $PKG_NAME@$PKG_VERSION est déjà publié sur NPM. Étape ignorée."
           else
-            npm publish --access public --tag fr --provenance
+            if [ "$IS_PRERELEASE" = "true" ]; then
+              npm publish --access public --tag "${NPM_TAG}-fr" --provenance
+            else
+              npm publish --access public --tag fr --provenance
+            fi
           fi
