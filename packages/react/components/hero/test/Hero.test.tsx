@@ -21,7 +21,7 @@ describe('Hero', () => {
     const heroElement = container.querySelector('.hero')
     expect(heroElement).toHaveStyle({
       backgroundImage: 'url(/path/to/image.jpg)',
-    })
+    } as any)
   })
 
   it('adds variant class to the root element if variant is provided', () => {
