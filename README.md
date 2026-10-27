@@ -1,159 +1,140 @@
-# Turborepo starter
+<div align='center'>
 
-This Turborepo starter is maintained by the Turborepo core team.
+# Trilogy DS
 
-## Using this example
+## 🚀 [Quick Start](#usage)
 
-Run the following command:
+Trilogy DS, developed by Bouygues Telecom, is a multiplatform design system ( Web / React / React Native ) with reusable components with same codebase.
 
+</div>
+
+[![npm](https://img.shields.io/npm/v/@trilogy-ds/react?style=for-the-badge&logo=npm&logoColor=white&color=D44A4A)](https://www.npmjs.com/package/@trilogy-ds/react)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Storybook](https://img.shields.io/badge/-Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
+---
+
+### 🚨 Prerequisites
+
+#### Web
+
+- [Node.js](https://nodejs.org/en/) (>= 18.0.0)
+- [npm](https://www.npmjs.com/) (>= 9.0.0)
+
+#### Mobile (Android / IOS)
+
+- [Java](https://www.java.com/fr/download/manual.jsp)
+- [cocoapods](https://cocoapods.org/) (>= 1.10.1) (only for ios)
+- [Xcode](https://developer.apple.com/xcode/) (>= 12.5.1) (only for ios)
+- [Android Studio](https://developer.android.com/studio) (>= 4.2.2) (only for android)
+
+See how to setup your environment for [Android](https://reactnative.dev/docs/environment-setup) and [IOS](https://reactnative.dev/docs/environment-setup)
+
+### 👷 Mobile Usage with Expo
+If you haven't already installed Expo CLI, you can install it globally:
 ```sh
-npx create-turbo@latest
+npm install -g expo-cli
 ```
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `@next/eslint-plugin-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
+Setup Expo for Native Development:
 ```sh
-cd my-turborepo
-turbo build
+npm run setup:native:expo
 ```
 
-Without global `turbo`, use your package manager:
-
+Build the Project:
 ```sh
-cd my-turborepo
-npx turbo build
-pnpm exec turbo build
-pnpm exec turbo build
+npm run build
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
+Start the Expo Project:
 ```sh
-turbo build --filter=docs
+npm run start:native:expo
 ```
 
-Without global `turbo`:
+Install the Test Application:
 
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+- [ANDROID] - Press "a" to install the test application on Android.
+- [iOS] - Press "i" to install the test application on iOS.
+
+---
+
+## Usage
+
+```
+npm i @trilogy-ds/react
 ```
 
-### Develop
+```tsx
+import { Button, Text } from '@trilogy-ds/react';
 
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
+<Button variant='PRIMARY'>My Button</Button>
+<Text level='1'>My Text</Text>
 ```
 
-Without global `turbo`, use your package manager:
+### Trilogy Provider - Import directly css styles
 
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
+The TrilogyProvider simplifies integrating Trilogy style into your app by wrapping your entry point with a provider. It offers two props for customization:
+
+- `mangled` [optional]: Apply compressed styling for performance.
+- `injectTrilogyAssets`: Inject Trilogy assets directly into the DOM.
+
+#### Web Usage
+
+1. Import the `TrilogyProvider` component:
+
+   ```tsx
+   import { TrilogyProvider } from "@trilogy-ds/react/lib/context/provider"
+   ```
+
+2. Wrap your app's root component with it:
+
+   ```tsx
+     <TrilogyProvider mangled injectTrilogyAssets>
+       <App />
+     </TrilogyProvider>
+   ```
+
+#### Native Usage
+
+1. Import the `TrilogyThemeProvider` along with `SVGicons` & colors from trilogy-assets library:
+
+   ```tsx
+   import { TrilogyThemeProvider, defaultTheme } from '@trilogy-ds/react/lib/context/providerTheme'
+   import { SVGicons } from '@trilogy-ds/assets/lib/iconsPath'
+   ```
+
+2. Wrap your app's root component with it:
+
+   ```tsx
+     const theme = {
+       ...defaultTheme,
+       icons: SVGicons,
+       // here: override theme colors
+     }
+
+     <TrilogyThemeProvider theme={theme}>
+       <AppNative />
+     </TrilogyThemeProvider>
+   ```
+
+---
+
+## 🤖 AI Agent Skill
+
+[![skills.sh](https://skills.sh/b/BouyguesTelecom/trilogy)](https://skills.sh/BouyguesTelecom/trilogy)
+
+This repository includes an [AI agent skill](skills/trilogy-ds/) that teaches coding agents (Claude, Copilot, Cursor, Codex, etc.) how to build UIs with the Trilogy design system.
+
+### Install the skill
+
+```bash
+npx skills add BouyguesTelecom/trilogy
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+The skill covers:
+- Page structure (`Section` → `Container` → content)
+- Grid system (12-column `Columns`/`Column`, responsive `FlexBox`)
+- Component composition patterns (Card, Accordion, Tabs, Price, etc.)
+- Enum usage (uppercase vs lowercase accessors)
+- Self-contained landing page generation (HTML + JSX)
