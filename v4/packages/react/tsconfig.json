@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "inlineSourceMap": true,
+    "resolveJsonModule": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "target": "ES5",
+    "outDir": "./lib",
+    "preserveConstEnums": true,
+    "forceConsistentCasingInFileNames": false,
+    "experimentalDecorators": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "./**/*.json",
+    "./**/*.ts",
+    "./**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "./jest*",
+    "jest/snapshotResolver.ts",
+    "./fileTransformer.cjs",
+    "./package.json",
+    "./coverage",
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
