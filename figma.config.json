@@ -1,6 +1,7 @@
 {
   "codeConnect": {
-    "include": ["packages/react/src/components/**/*.figma.ts"],
-    "label": "React"
+    "include": ["packages/react/src/components/button/button.figma.ts"],
+    "label": "React",
+    "language": "jsx"
   }
 }

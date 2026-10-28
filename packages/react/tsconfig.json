@@ -8,6 +8,7 @@
     "lib": ["DOM", "es2022", "DOM.Iterable"],
     "jsx": "react-jsx",
     "noEmit": true,
+    "types": ["@figma/code-connect/figma-types"],
     "paths": {
       "@/*": ["./src/*"]
     }

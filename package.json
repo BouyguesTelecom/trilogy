@@ -1,6 +1,7 @@
 {
   "name": "trilogy-v5",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",

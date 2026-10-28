@@ -1,13 +1,23 @@
-export enum ButtonVariant {
-  Primary = "primary",
-  Secondary = "secondary",
-  Ghost = "ghost",
-  Conversion = "conversion",
+import { AccessibilityProps } from "@/interfaces/accessibilityProps"
+
+import {
+  ButtonFigmaProps,
+  ButtonVariant,
+} from "@/components/button/button.generated"
+
+export enum ButtonMarkup {
+  button = "button",
+  input = "input",
+  div = "div",
 }
 
-export interface ButtonProps {
+export enum ButtonType {
+  button = "button",
+  reset = "reset",
+  submit = "submit",
+}
+
+export interface ButtonProps extends ButtonFigmaProps, AccessibilityProps {
   variant?: ButtonVariant
-  iconLeft?: string
-  iconRight?: string
-  disabled?: boolean
+  markup?: ButtonMarkup
 }

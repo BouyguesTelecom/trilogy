@@ -1,6 +1,6 @@
 import { forwardRef, PropsWithChildren } from "react"
 
-import type { ButtonProps } from "./button.types"
+import type { ButtonProps } from "@/components/button/button.types"
 
 export const Button = forwardRef<
   HTMLButtonElement,
