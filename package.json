@@ -9,11 +9,13 @@
     "check-types": "turbo run check-types",
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "turbo build && changeset publish"
+    "release": "turbo build && changeset publish",
+    "figma-publish": "node scripts/figma-publish.js"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",
     "@commitlint/config-conventional": "^21.2.4",
+    "@figma/code-connect": "^2.0.2",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@types/react": "^19.3.0",
     "eslint": "^10.13.0",

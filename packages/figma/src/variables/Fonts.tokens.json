@@ -1,0 +1,131 @@
+{
+  "Family": {
+    "primary": {
+      "$type": "string",
+      "$value": "Bouygues Read",
+      "$description": "Token typographique sémantique → Font/font-family-1. Valeur commune à Light et Dark.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:63:3",
+        "com.figma.scopes": [
+          "FONT_FAMILY"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--font-family-primary)"
+        },
+        "com.figma.type": "string",
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:ed23e7193fa7e74402ca3fd393584658a39ed371/-1:-1",
+          "targetVariableName": "Font/font-family-1",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "secondary": {
+      "$type": "string",
+      "$value": "Bouygues Speak Corpo",
+      "$description": "Token typographique sémantique → Font/font-family-2. Valeur commune à Light et Dark.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:63:4",
+        "com.figma.scopes": [
+          "FONT_FAMILY"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--font-family-secondary)"
+        },
+        "com.figma.type": "string",
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2356403a746c5ec597b79ce5dbbbf0645b2f904d/-1:-1",
+          "targetVariableName": "Font/font-family-2",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    }
+  },
+  "Weight": {
+    "regular": {
+      "$type": "number",
+      "$value": 400,
+      "$description": "Token typographique sémantique → Font/font-weight-100. Valeur commune à Light et Dark.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:63:5",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--font-weight-regular)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:76d8b92c692533e532d97a0aece57c586fd718d9/-1:-1",
+          "targetVariableName": "Font/font-weight-100",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "medium": {
+      "$type": "number",
+      "$value": 500,
+      "$description": "Token typographique sémantique → Font/font-weight-200. Valeur commune à Light et Dark.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:63:6",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--font-weight-medium)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:38dde7d09682b922bbfb8108c2c96338fb5bef28/-1:-1",
+          "targetVariableName": "Font/font-weight-200",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "semibold": {
+      "$type": "number",
+      "$value": 600,
+      "$description": "Token typographique sémantique → Font/font-weight-300. Valeur commune à Light et Dark.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:63:7",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--font-weight-semibold)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:15a6ab26877a4745f9b6290c47a87fbcc9c30f8f/-1:-1",
+          "targetVariableName": "Font/font-weight-300",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "bold": {
+      "$type": "number",
+      "$value": 700,
+      "$description": "Token typographique sémantique → Font/font-weight-400. Valeur commune à Light et Dark.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:63:8",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--font-weight-bold)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:7bbbf130d01916f391c851426e2e53ba98a8f8a2/-1:-1",
+          "targetVariableName": "Font/font-weight-400",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Valeurs"
+  }
+}

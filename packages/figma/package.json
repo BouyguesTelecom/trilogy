@@ -1,0 +1,12 @@
+{
+  "name": "figma",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "upload-files": "node ./scripts/upload-files.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
