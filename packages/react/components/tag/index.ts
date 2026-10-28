@@ -1,6 +1,0 @@
-import Tag from '@/components/tag/Tag'
-import TagList from '@/components/tag/list'
-
-export * from '@/components/tag/TagEnum'
-
-export { Tag, TagList }

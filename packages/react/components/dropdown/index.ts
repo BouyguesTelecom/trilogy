@@ -1,6 +1,0 @@
-export { default as Dropdown } from '@/components/dropdown/Dropdown'
-export * from '@/components/dropdown/DropdownProps'
-export * from '@/components/dropdown/item'
-export * from '@/components/dropdown/group'
-export * from '@/components/dropdown/trigger'
-export * from '@/components/dropdown/context'

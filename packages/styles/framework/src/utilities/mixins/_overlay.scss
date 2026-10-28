@@ -1,7 +1,0 @@
-@mixin overlay($offset: 0) {
-  position: absolute;
-  top: $offset;
-  bottom: $offset;
-  left: $offset;
-  right: $offset;
-}

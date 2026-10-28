@@ -1,98 +1,38 @@
-# OSX
-#
-.DS_Store
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Xcode
-#
-doc
-build/
-/lib/
-.expo
-dist
-docs/storybook/storybook-static
-.dist
-.build
-build
-web_modules
+# Dependencies
 node_modules
-.idea
-.vscode
-.expo
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-storybook-static
-test-results
-*.test.tsx.snap
+.pnp
+.pnp.js
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
 coverage
-styles/fonts/src/glyphs/all/optimized
 
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
-local.properties
-*.iml
+# Turbo
+.turbo
 
-# Visual Studio Code
-#
-.vscode/
+# Vercel
+.vercel
 
-# node.js
-#
-node_modules/
-npm-debug.log
-yarn-error.log
+# Build Outputs
+.next/
+out/
+build
+dist
 
-# BUCK
-buck-out/
-\.buckd/
-*.keystore
-!debug.keystore
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-*/fastlane/report.xml
-*/fastlane/Preview.html
-*/fastlane/screenshots
-
-# Bundle artifact
-*.jsbundle
-
-# CocoaPods
-/native-old/ios/Pods/
-
-/native-old/ios/Podfile.lock
-
-# LOCK
-yarn.lock
-
-styles/components/css
-mangled
-!packages/react/components/styleComponent/mangled
-
-#generated files
-packages/react/components/icon/iconsPath.ts
-packages/styles/assets/icons/*.scss
-/docs/templates/
-
-# CodeGraph
-.codegraph/
+# Misc
+.DS_Store
+*.pem
