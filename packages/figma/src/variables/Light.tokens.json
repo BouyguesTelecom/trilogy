@@ -5,14 +5,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9254902005195618,
-          0.9843137264251709,
-          0.9921568632125854
+          0.8980392217636108,
+          0.9333333373069763,
+          0.9529411792755127
         ],
         "alpha": 1,
-        "hex": "#ECFBFD"
+        "hex": "#E5EEF3"
       },
-      "$description": "Background sémantique. Light → Color/Main Brand/50 ; Dark → Color/Main Brand/900. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Main/50 ; Dark → Color/Main/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:3",
         "com.figma.scopes": [
@@ -24,7 +24,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:47d51e71eb7d7b0a9fa09b378fe2ff5c885cf93c/-1:-1",
-          "targetVariableName": "Color/Main Brand/50",
+          "targetVariableName": "Color/Main/50",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -35,14 +35,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9803921580314636,
-          0.9803921580314636,
-          0.9803921580314636
+          1,
+          1,
+          1
         ],
         "alpha": 1,
-        "hex": "#FAFAFA"
+        "hex": "#FFFFFF"
       },
-      "$description": "Background sémantique. Light → Color/Neutral/50 ; Dark → Color/Main Brand/800. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Main/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:4",
         "com.figma.scopes": [
@@ -65,14 +65,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9607843160629272,
-          0.9607843160629272,
-          0.9607843160629272
+          0.9686274528503418,
+          0.9686274528503418,
+          0.9686274528503418
         ],
         "alpha": 1,
-        "hex": "#F5F5F5"
+        "hex": "#F7F7F7"
       },
-      "$description": "Background sémantique. Light → Color/Neutral/100 ; Dark → Color/Main Brand/800. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/100 ; Dark → Color/Main/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:5",
         "com.figma.scopes": [
@@ -95,14 +95,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.6117647290229797,
-          0.7450980544090271
+          0.0235294122248888,
+          0.16862745583057404,
+          0.24705882370471954
         ],
         "alpha": 1,
-        "hex": "#009CBE"
+        "hex": "#062B3F"
       },
-      "$description": "Background sémantique. Light → Color/Main Brand/500 ; Dark → Color/Main Brand/300. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Main/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:6",
         "com.figma.scopes": [
@@ -114,7 +114,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
-          "targetVariableName": "Color/Main Brand/500",
+          "targetVariableName": "Color/Main/500",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -125,14 +125,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9803921580314636,
-          0.9803921580314636,
-          0.9803921580314636
+          1,
+          1,
+          1
         ],
         "alpha": 1,
-        "hex": "#FAFAFA"
+        "hex": "#FFFFFF"
       },
-      "$description": "Background sémantique. Light → Color/Neutral/50 ; Dark → Color/Main Brand/300. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Main/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:7",
         "com.figma.scopes": [
@@ -155,14 +155,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.13333334028720856,
-          0.772549033164978,
-          0.3686274588108063
+          0.14901961386203766,
+          0.48627451062202454,
+          0.3176470696926117
         ],
         "alpha": 1,
-        "hex": "#22C55E"
+        "hex": "#267C51"
       },
-      "$description": "Background sémantique. Light → Color/Success/500 ; Dark → Color/Success/400. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Success/500 ; Dark → Color/Success/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:8",
         "com.figma.scopes": [
@@ -185,14 +185,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
+          0.9058823585510254,
           0.9411764740943909,
-          0.9921568632125854,
-          0.95686274766922
+          0.9254902005195618
         ],
         "alpha": 1,
-        "hex": "#F0FDF4"
+        "hex": "#E7F0EC"
       },
-      "$description": "Background sémantique. Light → Color/Success/50 ; Dark → Color/Success/900. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Success/50 ; Dark → Color/Success/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:9",
         "com.figma.scopes": [
@@ -215,14 +215,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9607843160629272,
-          0.6196078658103943,
-          0.04313725605607033
+          0.9647058844566345,
+          0.7333333492279053,
+          0.20000000298023224
         ],
         "alpha": 1,
-        "hex": "#F59E0B"
+        "hex": "#F6BB33"
       },
-      "$description": "Background sémantique. Light → Color/Warning/500 ; Dark → Color/Warning/400. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Warning/500 ; Dark → Color/Warning/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:10",
         "com.figma.scopes": [
@@ -245,14 +245,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          1,
-          0.9843137264251709,
-          0.9215686321258545
+          0.95686274766922,
+          0.9372549057006836,
+          0.8941176533699036
         ],
         "alpha": 1,
-        "hex": "#FFFBEB"
+        "hex": "#F4EFE4"
       },
-      "$description": "Background sémantique. Light → Color/Warning/50 ; Dark → Color/Warning/900. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Warning/50 ; Dark → Color/Warning/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:11",
         "com.figma.scopes": [
@@ -275,14 +275,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9372549057006836,
-          0.2666666805744171,
-          0.2666666805744171
+          0.8313725590705872,
+          0.1764705926179886,
+          0.007843137718737125
         ],
         "alpha": 1,
-        "hex": "#EF4444"
+        "hex": "#D42D02"
       },
-      "$description": "Background sémantique. Light → Color/Error/500 ; Dark → Color/Error/400. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Error/500 ; Dark → Color/Error/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:12",
         "com.figma.scopes": [
@@ -305,14 +305,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9960784316062927,
-          0.9490196108818054,
-          0.9490196108818054
+          0.95686274766922,
+          0.9058823585510254,
+          0.8901960849761963
         ],
         "alpha": 1,
-        "hex": "#FEF2F2"
+        "hex": "#F4E7E3"
       },
-      "$description": "Background sémantique. Light → Color/Error/50 ; Dark → Color/Error/900. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Error/50 ; Dark → Color/Error/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:13",
         "com.figma.scopes": [
@@ -335,14 +335,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.23137255012989044,
-          0.5098039507865906,
-          0.9647058844566345
+          0,
+          0.7372549176216125,
+          0.8549019694328308
         ],
         "alpha": 1,
-        "hex": "#3B82F6"
+        "hex": "#00BCDA"
       },
-      "$description": "Background sémantique. Light → Color/Information/500 ; Dark → Color/Information/400. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Information/500 ; Dark → Color/Information/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:14",
         "com.figma.scopes": [
@@ -365,14 +365,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9372549057006836,
-          0.9647058844566345,
-          1
+          0.8901960849761963,
+          0.9490196108818054,
+          0.95686274766922
         ],
         "alpha": 1,
-        "hex": "#EFF6FF"
+        "hex": "#E3F2F4"
       },
-      "$description": "Background sémantique. Light → Color/Information/50 ; Dark → Color/Information/900. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Information/50 ; Dark → Color/Information/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:15",
         "com.figma.scopes": [
@@ -402,7 +402,7 @@
         "alpha": 1,
         "hex": "#CC4E0A"
       },
-      "$description": "Background sémantique. Light → Color/Accent/500 ; Dark → Color/Accent/400. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Accent/500 ; Dark → Color/Accent/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:16",
         "com.figma.scopes": [
@@ -432,7 +432,7 @@
         "alpha": 1,
         "hex": "#FAEDE7"
       },
-      "$description": "Background sémantique. Light → Color/Accent/50 ; Dark → Color/Accent/900. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Accent/50 ; Dark → Color/Accent/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:17",
         "com.figma.scopes": [
@@ -455,14 +455,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.6117647290229797,
-          0.7450980544090271
+          0.800000011920929,
+          0.9490196108818054,
+          0.9725490212440491
         ],
         "alpha": 1,
-        "hex": "#009CBE"
+        "hex": "#CCF2F8"
       },
-      "$description": "Background sémantique. Light → Color/Main Brand/500 ; Dark → Color/Main Brand/400. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Brand/500 ; Dark → Color/Brand/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:18",
         "com.figma.scopes": [
@@ -473,8 +473,8 @@
           "WEB": "var(--background-brand)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
-          "targetVariableName": "Color/Main Brand/500",
+          "targetVariableId": "VariableID:6be1a1089b3501ea0bf990449d599abf3d2000b7/-1:-1",
+          "targetVariableName": "Color/Brand/500",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -485,14 +485,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9254902005195618,
-          0.9843137264251709,
-          0.9921568632125854
+          0.8980392217636108,
+          0.9450980424880981,
+          0.9490196108818054
         ],
         "alpha": 1,
-        "hex": "#ECFBFD"
+        "hex": "#E5F1F2"
       },
-      "$description": "Background sémantique. Light → Color/Main Brand/50 ; Dark → Color/Main Brand/900. Mappage de la capture utilisateur. Main et Brand de la capture utilisent la gamme existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Brand/50 ; Dark → Color/Brand/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:10:19",
         "com.figma.scopes": [
@@ -503,8 +503,8 @@
           "WEB": "var(--background-brand-subtle)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:47d51e71eb7d7b0a9fa09b378fe2ff5c885cf93c/-1:-1",
-          "targetVariableName": "Color/Main Brand/50",
+          "targetVariableId": "VariableID:f89817f84220d62c163ee8d26524deeca849f98c/-1:-1",
+          "targetVariableName": "Color/Brand/50",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -515,14 +515,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.8039215803146362,
-          0.9529411792755127,
-          0.9725490212440491
+          0.7333333492279053,
+          0.7764706015586853,
+          0.8039215803146362
         ],
         "alpha": 1,
-        "hex": "#CDF3F8"
+        "hex": "#BBC6CD"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Main Brand/100 ; Dark → Color/Main Brand/800",
+      "$description": "Alias sémantique direct. Light → Color/Main/100 ; Dark → Color/Main/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:14",
         "com.figma.scopes": [
@@ -534,7 +534,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:02e90ba303bc2d15c254934f57704f08cd2aa3d5/-1:-1",
-          "targetVariableName": "Color/Main Brand/100",
+          "targetVariableName": "Color/Main/100",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -545,14 +545,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.6352941393852234,
-          0.9019607901573181,
-          0.9372549057006836
+          0.6078431606292725,
+          0.6666666865348816,
+          0.7098039388656616
         ],
         "alpha": 1,
-        "hex": "#A2E6EF"
+        "hex": "#9BAAB5"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Main Brand/200 ; Dark → Color/Main Brand/700",
+      "$description": "Alias sémantique direct. Light → Color/Main/200 ; Dark → Color/Main/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:15",
         "com.figma.scopes": [
@@ -564,7 +564,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:ff395d4f846b96777d8f81c117a7451ac0f88fa1/-1:-1",
-          "targetVariableName": "Color/Main Brand/200",
+          "targetVariableName": "Color/Main/200",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -575,14 +575,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9607843160629272,
-          0.9607843160629272,
-          0.9607843160629272
+          0.9686274528503418,
+          0.9686274528503418,
+          0.9686274528503418
         ],
         "alpha": 1,
-        "hex": "#F5F5F5"
+        "hex": "#F7F7F7"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Neutral/100 ; Dark → Color/Main Brand/700",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/100 ; Dark → Color/Main/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:16",
         "com.figma.scopes": [
@@ -605,14 +605,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.8980392217636108,
-          0.8980392217636108,
-          0.8980392217636108
+          0.9490196108818054,
+          0.9490196108818054,
+          0.9490196108818054
         ],
         "alpha": 1,
-        "hex": "#E5E5E5"
+        "hex": "#F2F2F2"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Neutral/200 ; Dark → Color/Main Brand/600",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/200 ; Dark → Color/Main/600. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:17",
         "com.figma.scopes": [
@@ -635,14 +635,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.4941176474094391,
-          0.6078431606292725
+          0.01568627543747425,
+          0.1411764770746231,
+          0.2078431397676468
         ],
         "alpha": 1,
-        "hex": "#007E9B"
+        "hex": "#042435"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Main Brand/600 ; Dark → Color/Main Brand/200",
+      "$description": "Alias sémantique direct. Light → Color/Main/600 ; Dark → Color/Main/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:18",
         "com.figma.scopes": [
@@ -654,7 +654,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:0c1ed0f43583d62fa6359520e97b9f2167ed3508/-1:-1",
-          "targetVariableName": "Color/Main Brand/600",
+          "targetVariableName": "Color/Main/600",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -665,14 +665,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.3921568691730499,
-          0.48235294222831726
+          0.01568627543747425,
+          0.10980392247438431,
+          0.16078431904315948
         ],
         "alpha": 1,
-        "hex": "#00647B"
+        "hex": "#041C29"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Main Brand/700 ; Dark → Color/Main Brand/100",
+      "$description": "Alias sémantique direct. Light → Color/Main/700 ; Dark → Color/Main/100. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:19",
         "com.figma.scopes": [
@@ -684,7 +684,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:10dafb14847d8b5770127526fe62c76a3768ee5d/-1:-1",
-          "targetVariableName": "Color/Main Brand/700",
+          "targetVariableName": "Color/Main/700",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -695,14 +695,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.08627451211214066,
-          0.6392157077789307,
-          0.29019609093666077
+          0.11372549086809158,
+          0.40392157435417175,
+          0.25882354378700256
         ],
         "alpha": 1,
-        "hex": "#16A34A"
+        "hex": "#1D6742"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Success/600 ; Dark → Color/Success/300",
+      "$description": "Alias sémantique direct. Light → Color/Success/600 ; Dark → Color/Success/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:20",
         "com.figma.scopes": [
@@ -725,14 +725,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.08235294371843338,
-          0.501960813999176,
-          0.239215686917305
+          0.09803921729326248,
+          0.3176470696926117,
+          0.2078431397676468
         ],
         "alpha": 1,
-        "hex": "#15803D"
+        "hex": "#195135"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Success/700 ; Dark → Color/Success/200",
+      "$description": "Alias sémantique direct. Light → Color/Success/700 ; Dark → Color/Success/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:21",
         "com.figma.scopes": [
@@ -755,14 +755,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.8509804010391235,
-          0.46666666865348816,
-          0.0235294122248888
+          0.9372549057006836,
+          0.658823549747467,
+          0.019607843831181526
         ],
         "alpha": 1,
-        "hex": "#D97706"
+        "hex": "#EFA805"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Warning/600 ; Dark → Color/Warning/300",
+      "$description": "Alias sémantique direct. Light → Color/Warning/600 ; Dark → Color/Warning/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:22",
         "com.figma.scopes": [
@@ -785,14 +785,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.7058823704719543,
-          0.32549020648002625,
-          0.03529411926865578
+          0.7254902124404907,
+          0.5137255191802979,
+          0.0313725508749485
         ],
         "alpha": 1,
-        "hex": "#B45309"
+        "hex": "#B98308"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Warning/700 ; Dark → Color/Warning/200",
+      "$description": "Alias sémantique direct. Light → Color/Warning/700 ; Dark → Color/Warning/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:23",
         "com.figma.scopes": [
@@ -815,14 +815,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.8627451062202454,
-          0.14901961386203766,
-          0.14901961386203766
+          0.686274528503418,
+          0.1411764770746231,
+          0
         ],
         "alpha": 1,
-        "hex": "#DC2626"
+        "hex": "#AF2400"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Error/600 ; Dark → Color/Error/300",
+      "$description": "Alias sémantique direct. Light → Color/Error/600 ; Dark → Color/Error/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:24",
         "com.figma.scopes": [
@@ -845,14 +845,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.7254902124404907,
-          0.10980392247438431,
-          0.10980392247438431
+          0.5411764979362488,
+          0.11372549086809158,
+          0.003921568859368563
         ],
         "alpha": 1,
-        "hex": "#B91C1C"
+        "hex": "#8A1D01"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Error/700 ; Dark → Color/Error/200",
+      "$description": "Alias sémantique direct. Light → Color/Error/700 ; Dark → Color/Error/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:25",
         "com.figma.scopes": [
@@ -875,14 +875,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.14509804546833038,
-          0.38823530077934265,
-          0.9215686321258545
+          0,
+          0.6039215922355652,
+          0.7019608020782471
         ],
         "alpha": 1,
-        "hex": "#2563EB"
+        "hex": "#009AB3"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Information/600 ; Dark → Color/Information/300",
+      "$description": "Alias sémantique direct. Light → Color/Information/600 ; Dark → Color/Information/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:26",
         "com.figma.scopes": [
@@ -905,14 +905,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.11372549086809158,
-          0.30588236451148987,
-          0.8470588326454163
+          0,
+          0.47843137383461,
+          0.5568627715110779
         ],
         "alpha": 1,
-        "hex": "#1D4ED8"
+        "hex": "#007A8E"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Information/700 ; Dark → Color/Information/200",
+      "$description": "Alias sémantique direct. Light → Color/Information/700 ; Dark → Color/Information/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:27",
         "com.figma.scopes": [
@@ -942,7 +942,7 @@
         "alpha": 1,
         "hex": "#BA4709"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Accent/600 ; Dark → Color/Accent/300",
+      "$description": "Alias sémantique direct. Light → Color/Accent/600 ; Dark → Color/Accent/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:28",
         "com.figma.scopes": [
@@ -972,7 +972,7 @@
         "alpha": 1,
         "hex": "#913707"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Accent/700 ; Dark → Color/Accent/200",
+      "$description": "Alias sémantique direct. Light → Color/Accent/700 ; Dark → Color/Accent/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:29",
         "com.figma.scopes": [
@@ -995,14 +995,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.4941176474094391,
-          0.6078431606292725
+          0.5098039507865906,
+          0.886274516582489,
+          0.9450980424880981
         ],
         "alpha": 1,
-        "hex": "#007E9B"
+        "hex": "#82E2F1"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Main Brand/600 ; Dark → Color/Main Brand/300",
+      "$description": "Alias sémantique direct. Light → Color/Brand/600 ; Dark → Color/Brand/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:30",
         "com.figma.scopes": [
@@ -1013,8 +1013,8 @@
           "WEB": "var(--background-brand-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:0c1ed0f43583d62fa6359520e97b9f2167ed3508/-1:-1",
-          "targetVariableName": "Color/Main Brand/600",
+          "targetVariableId": "VariableID:2ffbcfe395936b3d4f2103b839bfa737e9b0b37a/-1:-1",
+          "targetVariableName": "Color/Brand/600",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1025,14 +1025,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.3921568691730499,
-          0.48235294222831726
+          0.2549019753932953,
+          0.8117647171020508,
+          0.8980392217636108
         ],
         "alpha": 1,
-        "hex": "#00647B"
+        "hex": "#41CFE5"
       },
-      "$description": "État proposé : assombrissement en Light et éclaircissement en Dark. Alias direct de primitive, à valider. Light → Color/Main Brand/700 ; Dark → Color/Main Brand/200",
+      "$description": "Alias sémantique direct. Light → Color/Brand/700 ; Dark → Color/Brand/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:31",
         "com.figma.scopes": [
@@ -1043,8 +1043,8 @@
           "WEB": "var(--background-brand-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:10dafb14847d8b5770127526fe62c76a3768ee5d/-1:-1",
-          "targetVariableName": "Color/Main Brand/700",
+          "targetVariableId": "VariableID:11fd563e004ea8282ca47becbeb61f09654aa926/-1:-1",
+          "targetVariableName": "Color/Brand/700",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1055,14 +1055,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9803921580314636,
-          0.9803921580314636,
-          0.9803921580314636
+          1,
+          1,
+          1
         ],
         "alpha": 1,
-        "hex": "#FAFAFA"
+        "hex": "#FFFFFF"
       },
-      "$description": "Primitive demandée : Color/Neutral/50. Même référence en Light et Dark, aucun mappage Dark distinct fourni. Main et Brand utilisent la gamme Main Brand existante.",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Neutral/50. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:25:2",
         "com.figma.scopes": [
@@ -1085,14 +1085,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.8039215803146362,
-          0.9529411792755127,
-          0.9725490212440491
+          0.7960784435272217,
+          0.9098039269447327,
+          0.9254902005195618
         ],
         "alpha": 1,
-        "hex": "#CDF3F8"
+        "hex": "#CBE8EC"
       },
-      "$description": "Primitive demandée : Color/Main Brand/100. Même référence en Light et Dark, aucun mappage Dark distinct fourni. Main et Brand utilisent la gamme Main Brand existante.",
+      "$description": "Alias sémantique direct. Light → Color/Brand/100 ; Dark → Color/Brand/100. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:25:3",
         "com.figma.scopes": [
@@ -1103,8 +1103,8 @@
           "WEB": "var(--background-field-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:02e90ba303bc2d15c254934f57704f08cd2aa3d5/-1:-1",
-          "targetVariableName": "Color/Main Brand/100",
+          "targetVariableId": "VariableID:d132824fd5a87c2310b9f1e7049a78395fd277ca/-1:-1",
+          "targetVariableName": "Color/Brand/100",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1115,14 +1115,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.14901961386203766,
-          0.14901961386203766,
-          0.14901961386203766
+          0.3843137323856354,
+          0.4313725531101227,
+          0.5058823823928833
         ],
         "alpha": 1,
-        "hex": "#262626"
+        "hex": "#626E81"
       },
-      "$description": "Primitive demandée : Color/Neutral/800. Même référence en Light et Dark, aucun mappage Dark distinct fourni. Main et Brand utilisent la gamme Main Brand existante.",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/800 ; Dark → Color/Neutral/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:25:4",
         "com.figma.scopes": [
@@ -1145,14 +1145,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.6117647290229797,
-          0.7450980544090271
+          0.0235294122248888,
+          0.16862745583057404,
+          0.24705882370471954
         ],
         "alpha": 1,
-        "hex": "#009CBE"
+        "hex": "#062B3F"
       },
-      "$description": "Primitive demandée : Color/Main Brand/500. Même référence en Light et Dark, aucun mappage Dark distinct fourni. Main et Brand utilisent la gamme Main Brand existante.",
+      "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Main/500. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:25:5",
         "com.figma.scopes": [
@@ -1164,7 +1164,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
-          "targetVariableName": "Color/Main Brand/500",
+          "targetVariableName": "Color/Main/500",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1175,14 +1175,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.3921568691730499,
-          0.48235294222831726
+          0.01568627543747425,
+          0.10980392247438431,
+          0.16078431904315948
         ],
         "alpha": 1,
-        "hex": "#00647B"
+        "hex": "#041C29"
       },
-      "$description": "Primitive demandée : Color/Main Brand/700. Même référence en Light et Dark, aucun mappage Dark distinct fourni. Main et Brand utilisent la gamme Main Brand existante.",
+      "$description": "Alias sémantique direct. Light → Color/Main/700 ; Dark → Color/Main/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:25:6",
         "com.figma.scopes": [
@@ -1194,7 +1194,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:10dafb14847d8b5770127526fe62c76a3768ee5d/-1:-1",
-          "targetVariableName": "Color/Main Brand/700",
+          "targetVariableName": "Color/Main/700",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1212,7 +1212,7 @@
         "alpha": 0,
         "hex": "#000000"
       },
-      "$description": "Alias de la primitive Color/Transparent dans les deux modes.",
+      "$description": "Alias sémantique direct. Light → Color/Transparent ; Dark → Color/Transparent. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:35:3",
         "com.figma.scopes": [
@@ -1237,14 +1237,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.13333334028720856,
-          0.772549033164978,
-          0.3686274588108063
+          0.14901961386203766,
+          0.48627451062202454,
+          0.3176470696926117
         ],
         "alpha": 1,
-        "hex": "#22C55E"
+        "hex": "#267C51"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Success/500 ; Dark → Color/Success/300. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Success/500 ; Dark → Color/Success/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:2",
         "com.figma.scopes": [
@@ -1266,14 +1266,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9607843160629272,
-          0.6196078658103943,
-          0.04313725605607033
+          0.9647058844566345,
+          0.7333333492279053,
+          0.20000000298023224
         ],
         "alpha": 1,
-        "hex": "#F59E0B"
+        "hex": "#F6BB33"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Warning/500 ; Dark → Color/Warning/300. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Warning/500 ; Dark → Color/Warning/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:3",
         "com.figma.scopes": [
@@ -1295,14 +1295,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9372549057006836,
-          0.2666666805744171,
-          0.2666666805744171
+          0.8313725590705872,
+          0.1764705926179886,
+          0.007843137718737125
         ],
         "alpha": 1,
-        "hex": "#EF4444"
+        "hex": "#D42D02"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Error/500 ; Dark → Color/Error/300. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Error/500 ; Dark → Color/Error/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:4",
         "com.figma.scopes": [
@@ -1324,14 +1324,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.23137255012989044,
-          0.5098039507865906,
-          0.9647058844566345
+          0,
+          0.7372549176216125,
+          0.8549019694328308
         ],
         "alpha": 1,
-        "hex": "#3B82F6"
+        "hex": "#00BCDA"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Information/500 ; Dark → Color/Information/300. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Information/500 ; Dark → Color/Information/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:5",
         "com.figma.scopes": [
@@ -1353,14 +1353,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.6117647290229797,
-          0.7450980544090271
+          0.0235294122248888,
+          0.16862745583057404,
+          0.24705882370471954
         ],
         "alpha": 1,
-        "hex": "#009CBE"
+        "hex": "#062B3F"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Main Brand/500 ; Dark → Color/Neutral/50. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Neutral/50. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:6",
         "com.figma.scopes": [
@@ -1371,7 +1371,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
-          "targetVariableName": "Color/Main Brand/500",
+          "targetVariableName": "Color/Main/500",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1382,14 +1382,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.1411764770746231,
-          0.7215686440467834,
-          0.8078431487083435
+          0.3176470696926117,
+          0.41960784792900085,
+          0.49803921580314636
         ],
         "alpha": 1,
-        "hex": "#24B8CE"
+        "hex": "#516B7F"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Main Brand/400 ; Dark → Color/Neutral/600. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Main/400 ; Dark → Color/Neutral/600. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:7",
         "com.figma.scopes": [
@@ -1400,7 +1400,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:a711faabbd8b8b0a4a7e319b750e10b2ab41238b/-1:-1",
-          "targetVariableName": "Color/Main Brand/400",
+          "targetVariableName": "Color/Main/400",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1411,14 +1411,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.1411764770746231,
-          0.7215686440467834,
-          0.8078431487083435
+          0.3176470696926117,
+          0.41960784792900085,
+          0.49803921580314636
         ],
         "alpha": 1,
-        "hex": "#24B8CE"
+        "hex": "#516B7F"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Main Brand/400 ; Dark → Color/Neutral/700. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Main/400 ; Dark → Color/Neutral/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:8",
         "com.figma.scopes": [
@@ -1429,7 +1429,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:a711faabbd8b8b0a4a7e319b750e10b2ab41238b/-1:-1",
-          "targetVariableName": "Color/Main Brand/400",
+          "targetVariableName": "Color/Main/400",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1440,14 +1440,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.6117647290229797,
-          0.7450980544090271
+          0.0235294122248888,
+          0.16862745583057404,
+          0.24705882370471954
         ],
         "alpha": 1,
-        "hex": "#009CBE"
+        "hex": "#062B3F"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Main Brand/500 ; Dark → Color/Neutral/700. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Neutral/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:9",
         "com.figma.scopes": [
@@ -1458,7 +1458,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
-          "targetVariableName": "Color/Main Brand/500",
+          "targetVariableName": "Color/Main/500",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1469,14 +1469,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9803921580314636,
-          0.9803921580314636,
-          0.9803921580314636
+          1,
+          1,
+          1
         ],
         "alpha": 1,
-        "hex": "#FAFAFA"
+        "hex": "#FFFFFF"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Neutral/50 ; Dark → Color/Main Brand/900. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Main/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:10",
         "com.figma.scopes": [
@@ -1505,7 +1505,7 @@
         "alpha": 1,
         "hex": "#CC4E0A"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Accent/500 ; Dark → Color/Accent/300. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Accent/500 ; Dark → Color/Accent/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:11",
         "com.figma.scopes": [
@@ -1527,14 +1527,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.14901961386203766,
-          0.14901961386203766,
-          0.14901961386203766
+          0.3843137323856354,
+          0.4313725531101227,
+          0.5058823823928833
         ],
         "alpha": 1,
-        "hex": "#262626"
+        "hex": "#626E81"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Neutral/800 ; Dark → Color/Neutral/700. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/800 ; Dark → Color/Neutral/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:12",
         "com.figma.scopes": [
@@ -1556,14 +1556,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.6117647290229797,
-          0.7450980544090271
+          0.800000011920929,
+          0.9490196108818054,
+          0.9725490212440491
         ],
         "alpha": 1,
-        "hex": "#009CBE"
+        "hex": "#CCF2F8"
       },
-      "$description": "Couleur de texte — correspondances de la capture utilisateur. Light → Color/Main Brand/500 ; Dark → Color/Main Brand/300. Main et Brand utilisent la gamme primitive existante Main Brand.",
+      "$description": "Alias sémantique direct. Light → Color/Brand/500 ; Dark → Color/Brand/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:13",
         "com.figma.scopes": [
@@ -1573,8 +1573,8 @@
           "WEB": "var(--color-brand)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
-          "targetVariableName": "Color/Main Brand/500",
+          "targetVariableId": "VariableID:6be1a1089b3501ea0bf990449d599abf3d2000b7/-1:-1",
+          "targetVariableName": "Color/Brand/500",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1587,14 +1587,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.8039215803146362,
-          0.9529411792755127,
-          0.9725490212440491
+          0.7333333492279053,
+          0.7764706015586853,
+          0.8039215803146362
         ],
         "alpha": 1,
-        "hex": "#CDF3F8"
+        "hex": "#BBC6CD"
       },
-      "$description": "Couleur de bordure de la capture utilisateur ; le token border est nommé primary. Main et Brand utilisent Main Brand. Light → Color/Main Brand/100 ; Dark → Color/Main Brand/100",
+      "$description": "Alias sémantique direct. Light → Color/Main/100 ; Dark → Color/Main/100. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:32",
         "com.figma.scopes": [
@@ -1605,7 +1605,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:02e90ba303bc2d15c254934f57704f08cd2aa3d5/-1:-1",
-          "targetVariableName": "Color/Main Brand/100",
+          "targetVariableName": "Color/Main/100",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1623,7 +1623,7 @@
         "alpha": 1,
         "hex": "#CC4E0A"
       },
-      "$description": "Couleur de bordure de la capture utilisateur ; le token border est nommé primary. Main et Brand utilisent Main Brand. Light → Color/Accent/500 ; Dark → Color/Accent/400",
+      "$description": "Alias sémantique direct. Light → Color/Accent/500 ; Dark → Color/Accent/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:33",
         "com.figma.scopes": [
@@ -1645,14 +1645,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9803921580314636,
-          0.9803921580314636,
-          0.9803921580314636
+          1,
+          1,
+          1
         ],
         "alpha": 1,
-        "hex": "#FAFAFA"
+        "hex": "#FFFFFF"
       },
-      "$description": "Couleur de bordure de la capture utilisateur ; le token border est nommé primary. Main et Brand utilisent Main Brand. Light → Color/Neutral/50 ; Dark → Color/Main Brand/900",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Main/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:34",
         "com.figma.scopes": [
@@ -1674,14 +1674,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.13333334028720856,
-          0.772549033164978,
-          0.3686274588108063
+          0.14901961386203766,
+          0.48627451062202454,
+          0.3176470696926117
         ],
         "alpha": 1,
-        "hex": "#22C55E"
+        "hex": "#267C51"
       },
-      "$description": "Couleur de bordure de la capture utilisateur ; le token border est nommé primary. Main et Brand utilisent Main Brand. Light → Color/Success/500 ; Dark → Color/Success/400",
+      "$description": "Alias sémantique direct. Light → Color/Success/500 ; Dark → Color/Success/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:35",
         "com.figma.scopes": [
@@ -1703,14 +1703,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9607843160629272,
-          0.6196078658103943,
-          0.04313725605607033
+          0.9647058844566345,
+          0.7333333492279053,
+          0.20000000298023224
         ],
         "alpha": 1,
-        "hex": "#F59E0B"
+        "hex": "#F6BB33"
       },
-      "$description": "Couleur de bordure de la capture utilisateur ; le token border est nommé primary. Main et Brand utilisent Main Brand. Light → Color/Warning/500 ; Dark → Color/Warning/400",
+      "$description": "Alias sémantique direct. Light → Color/Warning/500 ; Dark → Color/Warning/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:36",
         "com.figma.scopes": [
@@ -1732,14 +1732,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9372549057006836,
-          0.2666666805744171,
-          0.2666666805744171
+          0.8313725590705872,
+          0.1764705926179886,
+          0.007843137718737125
         ],
         "alpha": 1,
-        "hex": "#EF4444"
+        "hex": "#D42D02"
       },
-      "$description": "Couleur de bordure de la capture utilisateur ; le token border est nommé primary. Main et Brand utilisent Main Brand. Light → Color/Error/500 ; Dark → Color/Error/400",
+      "$description": "Alias sémantique direct. Light → Color/Error/500 ; Dark → Color/Error/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:37",
         "com.figma.scopes": [
@@ -1761,14 +1761,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.23137255012989044,
-          0.5098039507865906,
-          0.9647058844566345
+          0,
+          0.7372549176216125,
+          0.8549019694328308
         ],
         "alpha": 1,
-        "hex": "#3B82F6"
+        "hex": "#00BCDA"
       },
-      "$description": "Couleur de bordure de la capture utilisateur ; le token border est nommé primary. Main et Brand utilisent Main Brand. Light → Color/Information/500 ; Dark → Color/Information/400",
+      "$description": "Alias sémantique direct. Light → Color/Information/500 ; Dark → Color/Information/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:38",
         "com.figma.scopes": [
@@ -1790,14 +1790,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.6117647290229797,
-          0.7450980544090271
+          0.800000011920929,
+          0.9490196108818054,
+          0.9725490212440491
         ],
         "alpha": 1,
-        "hex": "#009CBE"
+        "hex": "#CCF2F8"
       },
-      "$description": "Couleur de bordure de la capture utilisateur ; le token border est nommé primary. Main et Brand utilisent Main Brand. Light → Color/Main Brand/500 ; Dark → Color/Main Brand/500",
+      "$description": "Alias sémantique direct. Light → Color/Brand/500 ; Dark → Color/Brand/500. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:22:39",
         "com.figma.scopes": [
@@ -1807,8 +1807,8 @@
           "WEB": "var(--border-brand)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
-          "targetVariableName": "Color/Main Brand/500",
+          "targetVariableId": "VariableID:6be1a1089b3501ea0bf990449d599abf3d2000b7/-1:-1",
+          "targetVariableName": "Color/Brand/500",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1819,14 +1819,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.14901961386203766,
-          0.14901961386203766,
-          0.14901961386203766
+          0.3843137323856354,
+          0.4313725531101227,
+          0.5058823823928833
         ],
         "alpha": 1,
-        "hex": "#262626"
+        "hex": "#626E81"
       },
-      "$description": "Primitive demandée : Color/Neutral/800. Même référence en Light et Dark, aucun mappage Dark distinct fourni. Main et Brand utilisent la gamme Main Brand existante.",
+      "$description": "Alias sémantique direct. Light → Color/Neutral/800 ; Dark → Color/Neutral/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:25:8",
         "com.figma.scopes": [
@@ -1848,14 +1848,14 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0,
-          0.6117647290229797,
-          0.7450980544090271
+          0.0235294122248888,
+          0.16862745583057404,
+          0.24705882370471954
         ],
         "alpha": 1,
-        "hex": "#009CBE"
+        "hex": "#062B3F"
       },
-      "$description": "Primitive demandée : Color/Main Brand/500. Même référence en Light et Dark, aucun mappage Dark distinct fourni. Main et Brand utilisent la gamme Main Brand existante.",
+      "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Main/500. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:25:9",
         "com.figma.scopes": [
@@ -1866,7 +1866,7 @@
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
-          "targetVariableName": "Color/Main Brand/500",
+          "targetVariableName": "Color/Main/500",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
@@ -1884,7 +1884,7 @@
         "alpha": 0,
         "hex": "#000000"
       },
-      "$description": "Alias de la primitive Color/Transparent dans les deux modes.",
+      "$description": "Alias sémantique direct. Light → Color/Transparent ; Dark → Color/Transparent. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
         "com.figma.variableId": "VariableID:35:4",
         "com.figma.scopes": [

@@ -1,0 +1,55 @@
+
+// Do not edit directly, this file was auto-generated.
+
+@use "sass:string";
+
+$backgrounds: (
+  background,
+  background-primary,
+  background-primary-subtle,
+  background-secondary,
+  background-secondary-subtle,
+  background-success,
+  background-success-subtle,
+  background-warning,
+  background-warning-subtle,
+  background-error,
+  background-error-subtle,
+  background-information,
+  background-information-subtle,
+  background-accent,
+  background-accent-subtle,
+  background-brand,
+  background-brand-subtle,
+  background-hover,
+  background-pressed,
+  background-primary-hover,
+  background-primary-pressed,
+  background-secondary-hover,
+  background-secondary-pressed,
+  background-success-hover,
+  background-success-pressed,
+  background-warning-hover,
+  background-warning-pressed,
+  background-error-hover,
+  background-error-pressed,
+  background-information-hover,
+  background-information-pressed,
+  background-accent-hover,
+  background-accent-pressed,
+  background-brand-hover,
+  background-brand-pressed,
+  background-field,
+  background-field-hover,
+  background-field-disabled,
+  background-field-focus,
+  background-field-pressed,
+  background-transparent,
+);
+
+// background-primary -> .bg-primary
+@each $token in $backgrounds {
+  .bg#{string.slice($token, 11)} {
+    background-color: var(--#{$token});
+  }
+}

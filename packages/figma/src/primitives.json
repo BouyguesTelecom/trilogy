@@ -222,20 +222,20 @@
         }
       }
     },
-    "Main Brand": {
+    "Main": {
       "50": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9254902005195618,
-            0.9843137264251709,
-            0.9921568632125854
+            0.8980392217636108,
+            0.9333333373069763,
+            0.9529411792755127
           ],
           "alpha": 1,
-          "hex": "#ECFBFD"
+          "hex": "#E5EEF3"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #E5EEF3.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:13",
           "com.figma.scopes": [
@@ -248,14 +248,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8039215803146362,
-            0.9529411792755127,
-            0.9725490212440491
+            0.7333333492279053,
+            0.7764706015586853,
+            0.8039215803146362
           ],
           "alpha": 1,
-          "hex": "#CDF3F8"
+          "hex": "#BBC6CD"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #BBC6CD.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:14",
           "com.figma.scopes": [
@@ -268,14 +268,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.6352941393852234,
-            0.9019607901573181,
-            0.9372549057006836
+            0.6078431606292725,
+            0.6666666865348816,
+            0.7098039388656616
           ],
           "alpha": 1,
-          "hex": "#A2E6EF"
+          "hex": "#9BAAB5"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #9BAAB5.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:15",
           "com.figma.scopes": [
@@ -288,14 +288,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.3921568691730499,
-            0.8235294222831726,
-            0.8823529481887817
+            0.4274509847164154,
+            0.5137255191802979,
+            0.5803921818733215
           ],
           "alpha": 1,
-          "hex": "#64D2E1"
+          "hex": "#6D8394"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #6D8394.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:16",
           "com.figma.scopes": [
@@ -308,14 +308,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.1411764770746231,
-            0.7215686440467834,
-            0.8078431487083435
+            0.3176470696926117,
+            0.41960784792900085,
+            0.49803921580314636
           ],
           "alpha": 1,
-          "hex": "#24B8CE"
+          "hex": "#516B7F"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #516B7F.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:17",
           "com.figma.scopes": [
@@ -328,14 +328,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0,
-            0.6117647290229797,
-            0.7450980544090271
+            0.0235294122248888,
+            0.16862745583057404,
+            0.24705882370471954
           ],
           "alpha": 1,
-          "hex": "#009CBE"
+          "hex": "#062B3F"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #062B3F.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:18",
           "com.figma.scopes": [
@@ -348,14 +348,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0,
-            0.4941176474094391,
-            0.6078431606292725
+            0.01568627543747425,
+            0.1411764770746231,
+            0.2078431397676468
           ],
           "alpha": 1,
-          "hex": "#007E9B"
+          "hex": "#042435"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #042435.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:19",
           "com.figma.scopes": [
@@ -368,14 +368,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0,
-            0.3921568691730499,
-            0.48235294222831726
+            0.01568627543747425,
+            0.10980392247438431,
+            0.16078431904315948
           ],
           "alpha": 1,
-          "hex": "#00647B"
+          "hex": "#041C29"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #041C29.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:20",
           "com.figma.scopes": [
@@ -388,14 +388,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.04313725605607033,
-            0.3019607961177826,
-            0.3764705955982208
+            0.01568627543747425,
+            0.0784313753247261,
+            0.11372549086809158
           ],
           "alpha": 1,
-          "hex": "#0B4D60"
+          "hex": "#04141D"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #04141D.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:21",
           "com.figma.scopes": [
@@ -408,14 +408,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.03921568766236305,
-            0.2235294133424759,
-            0.2823529541492462
+            0.01568627543747425,
+            0.0470588244497776,
+            0.062745101749897
           ],
           "alpha": 1,
-          "hex": "#0A3948"
+          "hex": "#040C10"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #040C10.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:22",
           "com.figma.scopes": [
@@ -430,14 +430,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9372549057006836,
-            0.9647058844566345,
-            1
+            0.8901960849761963,
+            0.9490196108818054,
+            0.95686274766922
           ],
           "alpha": 1,
-          "hex": "#EFF6FF"
+          "hex": "#E3F2F4"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #E3F2F4.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:23",
           "com.figma.scopes": [
@@ -450,14 +450,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8588235378265381,
-            0.9176470637321472,
-            0.9960784316062927
+            0.772549033164978,
+            0.9215686321258545,
+            0.9450980424880981
           ],
           "alpha": 1,
-          "hex": "#DBEAFE"
+          "hex": "#C5EBF1"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #C5EBF1.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:24",
           "com.figma.scopes": [
@@ -470,14 +470,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.7490196228027344,
-            0.8588235378265381,
-            0.9960784316062927
+            0.6078431606292725,
+            0.9058823585510254,
+            0.9529411792755127
           ],
           "alpha": 1,
-          "hex": "#BFDBFE"
+          "hex": "#9BE7F3"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #9BE7F3.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:25",
           "com.figma.scopes": [
@@ -490,14 +490,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.5764706134796143,
-            0.772549033164978,
-            0.9921568632125854
+            0.4313725531101227,
+            0.8941176533699036,
+            0.9686274528503418
           ],
           "alpha": 1,
-          "hex": "#93C5FD"
+          "hex": "#6EE4F7"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #6EE4F7.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:26",
           "com.figma.scopes": [
@@ -510,14 +510,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.3764705955982208,
-            0.6470588445663452,
-            0.9803921580314636
+            0.250980406999588,
+            0.886274516582489,
+            0.9882352948188782
           ],
           "alpha": 1,
-          "hex": "#60A5FA"
+          "hex": "#40E2FC"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #40E2FC.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:27",
           "com.figma.scopes": [
@@ -530,14 +530,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.23137255012989044,
-            0.5098039507865906,
-            0.9647058844566345
+            0,
+            0.7372549176216125,
+            0.8549019694328308
           ],
           "alpha": 1,
-          "hex": "#3B82F6"
+          "hex": "#00BCDA"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #00BCDA.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:28",
           "com.figma.scopes": [
@@ -550,14 +550,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.14509804546833038,
-            0.38823530077934265,
-            0.9215686321258545
+            0,
+            0.6039215922355652,
+            0.7019608020782471
           ],
           "alpha": 1,
-          "hex": "#2563EB"
+          "hex": "#009AB3"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #009AB3.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:29",
           "com.figma.scopes": [
@@ -570,14 +570,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.11372549086809158,
-            0.30588236451148987,
-            0.8470588326454163
+            0,
+            0.47843137383461,
+            0.5568627715110779
           ],
           "alpha": 1,
-          "hex": "#1D4ED8"
+          "hex": "#007A8E"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #007A8E.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:30",
           "com.figma.scopes": [
@@ -590,14 +590,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.11764705926179886,
-            0.250980406999588,
-            0.686274528503418
+            0.019607843831181526,
+            0.33725491166114807,
+            0.38823530077934265
           ],
           "alpha": 1,
-          "hex": "#1E40AF"
+          "hex": "#055663"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #055663.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:31",
           "com.figma.scopes": [
@@ -610,14 +610,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.11764705926179886,
-            0.22745098173618317,
-            0.5411764979362488
+            0.03921568766236305,
+            0.1921568661928177,
+            0.21960784494876862
           ],
           "alpha": 1,
-          "hex": "#1E3A8A"
+          "hex": "#0A3138"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #0A3138.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:32",
           "com.figma.scopes": [
@@ -632,14 +632,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
+            0.9058823585510254,
             0.9411764740943909,
-            0.9921568632125854,
-            0.95686274766922
+            0.9254902005195618
           ],
           "alpha": 1,
-          "hex": "#F0FDF4"
+          "hex": "#E7F0EC"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #E7F0EC.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:33",
           "com.figma.scopes": [
@@ -652,14 +652,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8627451062202454,
-            0.9882352948188782,
-            0.9058823585510254
+            0.8156862854957581,
+            0.9058823585510254,
+            0.8588235378265381
           ],
           "alpha": 1,
-          "hex": "#DCFCE7"
+          "hex": "#D0E7DB"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #D0E7DB.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:34",
           "com.figma.scopes": [
@@ -672,14 +672,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.7333333492279053,
-            0.9686274528503418,
-            0.8156862854957581
+            0.6901960968971252,
+            0.8705882430076599,
+            0.7803921699523926
           ],
           "alpha": 1,
-          "hex": "#BBF7D0"
+          "hex": "#B0DEC7"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #B0DEC7.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:35",
           "com.figma.scopes": [
@@ -692,14 +692,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.5254902243614197,
-            0.9372549057006836,
-            0.6745098233222961
+            0.5568627715110779,
+            0.843137264251709,
+            0.6980392336845398
           ],
           "alpha": 1,
-          "hex": "#86EFAC"
+          "hex": "#8ED7B2"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #8ED7B2.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:36",
           "com.figma.scopes": [
@@ -712,14 +712,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.29019609093666077,
-            0.8705882430076599,
-            0.501960813999176
+            0.42352941632270813,
+            0.8156862854957581,
+            0.6196078658103943
           ],
           "alpha": 1,
-          "hex": "#4ADE80"
+          "hex": "#6CD09E"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #6CD09E.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:37",
           "com.figma.scopes": [
@@ -732,14 +732,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.13333334028720856,
-            0.772549033164978,
-            0.3686274588108063
+            0.14901961386203766,
+            0.48627451062202454,
+            0.3176470696926117
           ],
           "alpha": 1,
-          "hex": "#22C55E"
+          "hex": "#267C51"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #267C51.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:38",
           "com.figma.scopes": [
@@ -752,14 +752,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.08627451211214066,
-            0.6392157077789307,
-            0.29019609093666077
+            0.11372549086809158,
+            0.40392157435417175,
+            0.25882354378700256
           ],
           "alpha": 1,
-          "hex": "#16A34A"
+          "hex": "#1D6742"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #1D6742.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:39",
           "com.figma.scopes": [
@@ -772,14 +772,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.08235294371843338,
-            0.501960813999176,
-            0.239215686917305
+            0.09803921729326248,
+            0.3176470696926117,
+            0.2078431397676468
           ],
           "alpha": 1,
-          "hex": "#15803D"
+          "hex": "#195135"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #195135.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:40",
           "com.figma.scopes": [
@@ -792,14 +792,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.08627451211214066,
-            0.3960784375667572,
-            0.20392157137393951
+            0.0784313753247261,
+            0.2235294133424759,
+            0.15294118225574493
           ],
           "alpha": 1,
-          "hex": "#166534"
+          "hex": "#143927"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #143927.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:41",
           "com.figma.scopes": [
@@ -812,14 +812,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.0784313753247261,
-            0.32549020648002625,
-            0.1764705926179886
+            0.05882352963089943,
+            0.12941177189350128,
+            0.0941176488995552
           ],
           "alpha": 1,
-          "hex": "#14532D"
+          "hex": "#0F2118"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #0F2118.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:42",
           "com.figma.scopes": [
@@ -834,14 +834,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            1,
-            0.9843137264251709,
-            0.9215686321258545
+            0.95686274766922,
+            0.9372549057006836,
+            0.8941176533699036
           ],
           "alpha": 1,
-          "hex": "#FFFBEB"
+          "hex": "#F4EFE4"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F4EFE4.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:43",
           "com.figma.scopes": [
@@ -854,14 +854,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9960784316062927,
-            0.9529411792755127,
+            0.9411764740943909,
+            0.8901960849761963,
             0.7803921699523926
           ],
           "alpha": 1,
-          "hex": "#FEF3C7"
+          "hex": "#F0E3C7"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F0E3C7.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:44",
           "com.figma.scopes": [
@@ -874,14 +874,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9921568632125854,
-            0.9019607901573181,
-            0.5411764979362488
+            0.9372549057006836,
+            0.843137264251709,
+            0.6235294342041016
           ],
           "alpha": 1,
-          "hex": "#FDE68A"
+          "hex": "#EFD79F"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #EFD79F.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:45",
           "com.figma.scopes": [
@@ -894,14 +894,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9882352948188782,
-            0.8274509906768799,
-            0.3019607961177826
+            0.9490196108818054,
+            0.7960784435272217,
+            0.45098039507865906
           ],
           "alpha": 1,
-          "hex": "#FCD34D"
+          "hex": "#F2CB73"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F2CB73.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:46",
           "com.figma.scopes": [
@@ -914,14 +914,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9843137264251709,
-            0.7490196228027344,
-            0.1411764770746231
+            0.95686274766922,
+            0.7529411911964417,
+            0.2823529541492462
           ],
           "alpha": 1,
-          "hex": "#FBBF24"
+          "hex": "#F4C048"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F4C048.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:47",
           "com.figma.scopes": [
@@ -934,14 +934,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9607843160629272,
-            0.6196078658103943,
-            0.04313725605607033
+            0.9647058844566345,
+            0.7333333492279053,
+            0.20000000298023224
           ],
           "alpha": 1,
-          "hex": "#F59E0B"
+          "hex": "#F6BB33"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F6BB33.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:48",
           "com.figma.scopes": [
@@ -954,14 +954,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8509804010391235,
-            0.46666666865348816,
-            0.0235294122248888
+            0.9372549057006836,
+            0.658823549747467,
+            0.019607843831181526
           ],
           "alpha": 1,
-          "hex": "#D97706"
+          "hex": "#EFA805"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #EFA805.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:49",
           "com.figma.scopes": [
@@ -974,14 +974,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.7058823704719543,
-            0.32549020648002625,
-            0.03529411926865578
+            0.7254902124404907,
+            0.5137255191802979,
+            0.0313725508749485
           ],
           "alpha": 1,
-          "hex": "#B45309"
+          "hex": "#B98308"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #B98308.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:50",
           "com.figma.scopes": [
@@ -994,14 +994,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.572549045085907,
-            0.250980406999588,
-            0.054901961237192154
+            0.5098039507865906,
+            0.3686274588108063,
+            0.05098039284348488
           ],
           "alpha": 1,
-          "hex": "#92400E"
+          "hex": "#825E0D"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #825E0D.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:51",
           "com.figma.scopes": [
@@ -1014,14 +1014,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.47058823704719543,
-            0.2078431397676468,
-            0.05882352963089943
+            0.2862745225429535,
+            0.21960784494876862,
+            0.062745101749897
           ],
           "alpha": 1,
-          "hex": "#78350F"
+          "hex": "#493810"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #493810.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:52",
           "com.figma.scopes": [
@@ -1036,14 +1036,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9960784316062927,
-            0.9490196108818054,
-            0.9490196108818054
+            0.95686274766922,
+            0.9058823585510254,
+            0.8901960849761963
           ],
           "alpha": 1,
-          "hex": "#FEF2F2"
+          "hex": "#F4E7E3"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F4E7E3.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:53",
           "com.figma.scopes": [
@@ -1056,14 +1056,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9960784316062927,
-            0.886274516582489,
-            0.886274516582489
+            0.9450980424880981,
+            0.8078431487083435,
+            0.7764706015586853
           ],
           "alpha": 1,
-          "hex": "#FEE2E2"
+          "hex": "#F1CEC6"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F1CEC6.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:54",
           "com.figma.scopes": [
@@ -1076,14 +1076,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9960784316062927,
-            0.7921568751335144,
-            0.7921568751335144
+            0.9490196108818054,
+            0.6823529601097107,
+            0.6117647290229797
           ],
           "alpha": 1,
-          "hex": "#FECACA"
+          "hex": "#F2AE9C"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F2AE9C.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:55",
           "com.figma.scopes": [
@@ -1096,14 +1096,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9882352948188782,
-            0.6470588445663452,
-            0.6470588445663452
+            0.9647058844566345,
+            0.545098066329956,
+            0.43529412150382996
           ],
           "alpha": 1,
-          "hex": "#FCA5A5"
+          "hex": "#F68B6F"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F68B6F.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:56",
           "com.figma.scopes": [
@@ -1116,14 +1116,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9725490212440491,
-            0.4431372582912445,
-            0.4431372582912445
+            0.9803921580314636,
+            0.40784314274787903,
+            0.25882354378700256
           ],
           "alpha": 1,
-          "hex": "#F87171"
+          "hex": "#FA6842"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #FA6842.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:57",
           "com.figma.scopes": [
@@ -1136,14 +1136,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9372549057006836,
-            0.2666666805744171,
-            0.2666666805744171
+            0.8313725590705872,
+            0.1764705926179886,
+            0.007843137718737125
           ],
           "alpha": 1,
-          "hex": "#EF4444"
+          "hex": "#D42D02"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #D42D02.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:58",
           "com.figma.scopes": [
@@ -1156,14 +1156,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8627451062202454,
-            0.14901961386203766,
-            0.14901961386203766
+            0.686274528503418,
+            0.1411764770746231,
+            0
           ],
           "alpha": 1,
-          "hex": "#DC2626"
+          "hex": "#AF2400"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #AF2400.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:59",
           "com.figma.scopes": [
@@ -1176,14 +1176,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.7254902124404907,
-            0.10980392247438431,
-            0.10980392247438431
+            0.5411764979362488,
+            0.11372549086809158,
+            0.003921568859368563
           ],
           "alpha": 1,
-          "hex": "#B91C1C"
+          "hex": "#8A1D01"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #8A1D01.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:60",
           "com.figma.scopes": [
@@ -1196,14 +1196,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.6000000238418579,
-            0.10588235408067703,
-            0.10588235408067703
+            0.3803921639919281,
+            0.09803921729326248,
+            0.0235294122248888
           ],
           "alpha": 1,
-          "hex": "#991B1B"
+          "hex": "#611906"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #611906.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:61",
           "com.figma.scopes": [
@@ -1216,14 +1216,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.49803921580314636,
-            0.11372549086809158,
-            0.11372549086809158
+            0.21176470816135406,
+            0.07450980693101883,
+            0.03921568766236305
           ],
           "alpha": 1,
-          "hex": "#7F1D1D"
+          "hex": "#36130A"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #36130A.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:62",
           "com.figma.scopes": [
@@ -1238,14 +1238,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9803921580314636,
-            0.9803921580314636,
-            0.9803921580314636
+            1,
+            1,
+            1
           ],
           "alpha": 1,
-          "hex": "#FAFAFA"
+          "hex": "#FFFFFF"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #FFFFFF.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:63",
           "com.figma.scopes": [
@@ -1258,14 +1258,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9607843160629272,
-            0.9607843160629272,
-            0.9607843160629272
+            0.9686274528503418,
+            0.9686274528503418,
+            0.9686274528503418
           ],
           "alpha": 1,
-          "hex": "#F5F5F5"
+          "hex": "#F7F7F7"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F7F7F7.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:64",
           "com.figma.scopes": [
@@ -1278,14 +1278,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8980392217636108,
-            0.8980392217636108,
-            0.8980392217636108
+            0.9490196108818054,
+            0.9490196108818054,
+            0.9490196108818054
           ],
           "alpha": 1,
-          "hex": "#E5E5E5"
+          "hex": "#F2F2F2"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F2F2F2.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:65",
           "com.figma.scopes": [
@@ -1298,14 +1298,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8313725590705872,
-            0.8313725590705872,
-            0.8313725590705872
+            0.9176470637321472,
+            0.9215686321258545,
+            0.9215686321258545
           ],
           "alpha": 1,
-          "hex": "#D4D4D4"
+          "hex": "#EAEBEB"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #EAEBEB.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:66",
           "com.figma.scopes": [
@@ -1318,14 +1318,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.6392157077789307,
-            0.6392157077789307,
-            0.6392157077789307
+            0.8666666746139526,
+            0.8705882430076599,
+            0.8745098114013672
           ],
           "alpha": 1,
-          "hex": "#A3A3A3"
+          "hex": "#DDDEDF"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #DDDEDF.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:67",
           "com.figma.scopes": [
@@ -1338,14 +1338,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.45098039507865906,
-            0.45098039507865906,
-            0.45098039507865906
+            0.9176470637321472,
+            0.9254902005195618,
+            0.9372549057006836
           ],
           "alpha": 1,
-          "hex": "#737373"
+          "hex": "#EAECEF"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #EAECEF.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:68",
           "com.figma.scopes": [
@@ -1358,14 +1358,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.32156863808631897,
-            0.32156863808631897,
-            0.32156863808631897
+            0.729411780834198,
+            0.7529411911964417,
+            0.7921568751335144
           ],
           "alpha": 1,
-          "hex": "#525252"
+          "hex": "#BAC0CA"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #BAC0CA.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:69",
           "com.figma.scopes": [
@@ -1378,14 +1378,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.250980406999588,
-            0.250980406999588,
-            0.250980406999588
+            0.5490196347236633,
+            0.5921568870544434,
+            0.6549019813537598
           ],
           "alpha": 1,
-          "hex": "#404040"
+          "hex": "#8C97A7"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #8C97A7.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:70",
           "com.figma.scopes": [
@@ -1398,14 +1398,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.14901961386203766,
-            0.14901961386203766,
-            0.14901961386203766
+            0.3843137323856354,
+            0.4313725531101227,
+            0.5058823823928833
           ],
           "alpha": 1,
-          "hex": "#262626"
+          "hex": "#626E81"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #626E81.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:71",
           "com.figma.scopes": [
@@ -1418,16 +1418,218 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.09019608050584793,
-            0.09019608050584793,
-            0.09019608050584793
+            0.239215686917305,
+            0.2705882489681244,
+            0.3176470696926117
           ],
           "alpha": 1,
-          "hex": "#171717"
+          "hex": "#3D4551"
         },
-        "$description": "Proposition de gamme, non officielle — à valider.",
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #3D4551.",
         "$extensions": {
           "com.figma.variableId": "VariableID:4:72",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "Brand": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8980392217636108,
+            0.9450980424880981,
+            0.9490196108818054
+          ],
+          "alpha": 1,
+          "hex": "#E5F1F2"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #E5F1F2.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:2",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7960784435272217,
+            0.9098039269447327,
+            0.9254902005195618
+          ],
+          "alpha": 1,
+          "hex": "#CBE8EC"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #CBE8EC.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:3",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6509804129600525,
+            0.8745098114013672,
+            0.9098039269447327
+          ],
+          "alpha": 1,
+          "hex": "#A6DFE8"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #A6DFE8.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:4",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4941176474094391,
+            0.8470588326454163,
+            0.9058823585510254
+          ],
+          "alpha": 1,
+          "hex": "#7ED8E7"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #7ED8E7.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:5",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.34117648005485535,
+            0.8235294222831726,
+            0.8980392217636108
+          ],
+          "alpha": 1,
+          "hex": "#57D2E5"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #57D2E5.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:6",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.800000011920929,
+            0.9490196108818054,
+            0.9725490212440491
+          ],
+          "alpha": 1,
+          "hex": "#CCF2F8"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #CCF2F8.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:7",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5098039507865906,
+            0.886274516582489,
+            0.9450980424880981
+          ],
+          "alpha": 1,
+          "hex": "#82E2F1"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #82E2F1.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:8",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2549019753932953,
+            0.8117647171020508,
+            0.8980392217636108
+          ],
+          "alpha": 1,
+          "hex": "#41CFE5"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #41CFE5.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:9",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.13333334028720856,
+            0.6352941393852234,
+            0.7176470756530762
+          ],
+          "alpha": 1,
+          "hex": "#22A2B7"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #22A2B7.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:10",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.125490203499794,
+            0.3686274588108063,
+            0.40784314274787903
+          ],
+          "alpha": 1,
+          "hex": "#205E68"
+        },
+        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #205E68.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:128:11",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]

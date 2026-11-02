@@ -11,7 +11,8 @@
     "changeset": "changeset",
     "version": "changeset version",
     "release": "turbo build && changeset publish",
-    "figma-publish": "node scripts/figma-publish.js"
+    "figma-publish": "node scripts/figma-publish.js",
+    "build:tokens": "node scripts/build-tokens.js"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",
@@ -26,6 +27,7 @@
     "prettier": "3.9.6",
     "react": "^19.3.1",
     "react-native": "^0.88.0",
+    "style-dictionary": "^5.7.1",
     "turbo": "^2.11.10",
     "typescript": "7.0.2"
   },
