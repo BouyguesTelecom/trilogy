@@ -1,7 +1,14 @@
-import { createContext } from "react";
+import { createContext, type Context } from "react"
 
-export const StatesContext = createContext({
-  inverted: false,
-  active: false,
-  flat: false,
-});
+export interface StatesContextValue {
+  inverted: boolean
+  active: boolean
+  flat: boolean
+}
+
+export const StatesContext: Context<StatesContextValue> =
+  createContext<StatesContextValue>({
+    inverted: false,
+    active: false,
+    flat: false,
+  })

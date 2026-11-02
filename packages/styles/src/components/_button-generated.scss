@@ -1,0 +1,58 @@
+// Do not edit directly, this file was auto-generated.
+
+$buttonVariants: (
+  primary: (
+    background: var(--background-information),
+    border: var(--border-primary),
+    text: var(--color-inverse),
+    radius: var(--radius-sm),
+    borderWidth: var(--border-width-sm),
+    padding: var(--spacing-sm),
+  ),
+  secondary: (
+    background: var(--background-brand-subtle),
+    border: var(--border-primary),
+    text: var(--color-primary),
+    radius: var(--radius-sm),
+    borderWidth: var(--border-width-sm),
+    padding: var(--spacing-sm),
+  ),
+  ghost: (
+    background: var(--background-transparent),
+    border: var(--border-transparent),
+    text: var(--color-primary),
+    radius: var(--radius-sm),
+    borderWidth: var(--border-width-sm),
+    padding: var(--spacing-sm),
+  ),
+  conversion: (
+    background: var(--background-accent),
+    border: var(--border-accent),
+    text: var(--color-inverse),
+    radius: var(--radius-sm),
+    borderWidth: var(--border-width-sm),
+    padding: var(--spacing-sm),
+  ),
+);
+
+@each $variant, $props in $buttonVariants {
+  .button.is-#{$variant} {
+    @each $prop, $value in $props {
+      @if $prop == "background" {
+        background-color: $value;
+      } @else if $prop == "text" or $prop == "color" {
+        color: $value;
+      } @else if $prop == "border" {
+        border-color: $value;
+      } @else if $prop == "borderWidth" {
+        border-width: $value;
+      } @else if $prop == "radius" {
+        border-radius: $value;
+      } @else if $prop == "padding" {
+        padding: $value;
+      } @else {
+        #{$prop}: $value;
+      }
+    }
+  }
+}

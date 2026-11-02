@@ -1900,6 +1900,35 @@
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
+    },
+    "main": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0235294122248888,
+          0.16862745583057404,
+          0.24705882370471954
+        ],
+        "alpha": 1,
+        "hex": "#062B3F"
+      },
+      "$description": "Couleur de bordure. Alias direct vers Color/Main/500 dans les modes Light et Dark.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:140:2",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--border-main)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
+          "targetVariableName": "Color/Main/500",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
     }
   },
   "$extensions": {

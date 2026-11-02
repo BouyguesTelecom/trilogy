@@ -1,4 +1,4 @@
 export interface ChangeEvent {
-  preventDefault(): void;
-  stopPropagation(): void;
+  preventDefault(): void
+  stopPropagation(): void
 }

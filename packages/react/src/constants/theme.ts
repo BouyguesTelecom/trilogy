@@ -325,7 +325,7 @@ export const DEFAULT_THEME_TRILOGY = {
     spacingXxs: 4,
     spacingNone: 0,
   },
-} as const;
+} as const
 
 type WidenThemeValues<T> = T extends string
   ? string
@@ -337,28 +337,28 @@ type WidenThemeValues<T> = T extends string
         ? { [K in keyof T]: WidenThemeValues<T[K]> }
         : T extends object
           ? { -readonly [K in keyof T]: WidenThemeValues<T[K]> }
-          : T;
+          : T
 
 export type TrilogyTheme = WidenThemeValues<typeof DEFAULT_THEME_TRILOGY> &
-  TrilogyThemeIcons;
-export type TrilogyThemeMode = keyof TrilogyTheme["colors"];
+  TrilogyThemeIcons
+export type TrilogyThemeMode = keyof TrilogyTheme["colors"]
 export type ActiveTrilogyTheme = Omit<TrilogyTheme, "colors"> & {
-  colors: TrilogyTheme["colors"][TrilogyThemeMode];
-};
+  colors: TrilogyTheme["colors"][TrilogyThemeMode]
+}
 
 /** The consumer embeds or loads the font before rendering icons. */
 export interface ThemeIcons {
   fontFamily:
     | string
     | {
-        ios: string;
-        android: string;
-        default?: string;
-      };
+        ios: string
+        android: string
+        default?: string
+      }
   /** Numeric Unicode code points, or literal characters (not hexadecimal strings). */
-  glyphMap: Readonly<Record<string, number | string>>;
+  glyphMap: Readonly<Record<string, number | string>>
 }
 
 export interface TrilogyThemeIcons {
-  icons?: ThemeIcons;
+  icons?: ThemeIcons
 }

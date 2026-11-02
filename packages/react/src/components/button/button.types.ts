@@ -1,13 +1,14 @@
-import { AccessibilityProps } from "@/interfaces/accessibilityProps"
+import { ElementType } from "react"
 
-import {
-  ButtonGeneratedProps,
-  ButtonVariant,
-} from "@/components/button/button.generated"
+import { AccessibilityProps } from "../../interfaces/accessibilityProps"
+import { CommonProps } from "../../interfaces/commonProps"
+import { OnClickProps } from "../../interfaces/onClickProps"
+import { ButtonGeneratedProps } from "./button.generated"
 
 export enum ButtonMarkup {
   button = "button",
   input = "input",
+  a = "a",
   div = "div",
 }
 
@@ -17,7 +18,17 @@ export enum ButtonType {
   submit = "submit",
 }
 
-export interface ButtonProps extends ButtonGeneratedProps, AccessibilityProps {
-  variant?: ButtonVariant
-  markup?: ButtonMarkup
+export interface ButtonProps
+  extends ButtonGeneratedProps, AccessibilityProps, CommonProps, OnClickProps {
+  markup?: ButtonMarkup | `${ButtonMarkup}`
+  loading?: boolean
+  disabled?: boolean
+  href?: string
+  to?: string
+  name?: string
+  routerLink?: ElementType
+  type?: ButtonType | `${ButtonType}`
+  fullwidth?: boolean
+  iconLeftName?: string
+  iconNameRight?: string
 }

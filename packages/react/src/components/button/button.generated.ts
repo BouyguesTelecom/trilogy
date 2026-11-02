@@ -6,7 +6,6 @@ export enum ButtonVariant {
 }
 
 export interface ButtonGeneratedProps {
-  iconLeft?: string
-  iconRight?: string
-  disabled?: boolean
+  label?: string
+  variant?: ButtonVariant
 }

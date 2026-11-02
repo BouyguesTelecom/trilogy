@@ -1,1 +1,3 @@
-export { Button } from "@/components/button/button"
+export { Button } from "./button"
+export * from "./button.types"
+export * from "./button.generated"

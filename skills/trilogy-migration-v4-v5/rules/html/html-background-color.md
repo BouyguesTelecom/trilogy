@@ -2,32 +2,32 @@
 
 ## Changement de classe pour les couleurs de fond
 
-| Classe v4                         | Classe v5                 |
-| --------------------------------- | ------------------------- |
-| `has-background-success`          | `bg-success`              |
-| `has-background-success-fade`     | `bg-success-subtle`       |
-| `has-background-warning`          | `bg-warning`              |
-| `has-background-warning-fade`     | `bg-warning-subtle`       |
-| `has-background-error`            | `bg-error`                |
-| `has-background-error-fade`       | `bg-error-subtle`         |
-| `has-background-info`             | `bg-information`          |
-| `has-background-info-fade`        | `bg-information-subtle`   |
-| `has-background-accent`           | `bg-accent`               |
-| `has-background-accent-fade`      | `bg-accent-subtle`        |
-| `has-background-brand`            | `bg-brand`                |
-| `has-background-brand-fade`       | `bg-brand-subtle`         |
-| `has-background-disabled`         | `bg-disabled`             |
-| `has-background-disabled-fade`    | `bg-disabled`             |
-| `has-background-main`             | `bg-primary`              |
-| `has-background-main-fade`        | `bg-primary-subtle`       |
-| `has-background-font-placeholder` | `bg-placeholder`          |
-| `has-background-stroke`           | `bg-secondary`            |
-| `has-background-stroke-fade`      | `bg-secondary-subtle`     |
-| `has-background-neutral`          | `bg-secondary`            |
-| `has-background-neutral-fade`     | `bg-secondary-subtle`     |
-| `has-background-background`       | `bg-inverse`              |
-| `has-background-white`            | `bg-inverse`              |
-| `has-background-grey`             | `bg-secondary`            |
+| Classe v4                         | Classe v5               |
+| --------------------------------- | ----------------------- |
+| `has-background-success`          | `bg-success`            |
+| `has-background-success-fade`     | `bg-success-subtle`     |
+| `has-background-warning`          | `bg-warning`            |
+| `has-background-warning-fade`     | `bg-warning-subtle`     |
+| `has-background-error`            | `bg-error`              |
+| `has-background-error-fade`       | `bg-error-subtle`       |
+| `has-background-info`             | `bg-information`        |
+| `has-background-info-fade`        | `bg-information-subtle` |
+| `has-background-accent`           | `bg-accent`             |
+| `has-background-accent-fade`      | `bg-accent-subtle`      |
+| `has-background-brand`            | `bg-brand`              |
+| `has-background-brand-fade`       | `bg-brand-subtle`       |
+| `has-background-disabled`         | `bg-disabled`           |
+| `has-background-disabled-fade`    | `bg-disabled`           |
+| `has-background-main`             | `bg-primary`            |
+| `has-background-main-fade`        | `bg-primary-subtle`     |
+| `has-background-font-placeholder` | `bg-placeholder`        |
+| `has-background-stroke`           | `bg-secondary`          |
+| `has-background-stroke-fade`      | `bg-secondary-subtle`   |
+| `has-background-neutral`          | `bg-secondary`          |
+| `has-background-neutral-fade`     | `bg-secondary-subtle`   |
+| `has-background-background`       | `bg-inverse`            |
+| `has-background-white`            | `bg-inverse`            |
+| `has-background-grey`             | `bg-secondary`          |
 
 ## Exemples d'application
 

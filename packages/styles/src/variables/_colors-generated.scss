@@ -67,6 +67,7 @@
   --border-disabled: #{$color-neutral-800};
   --border-focus: #{$color-main-500};
   --border-transparent: #{$color-transparent};
+  --border-main: #{$color-main-500};
 }
 
 [data-theme="dark"] {
@@ -134,4 +135,5 @@
   --border-disabled: #{$color-neutral-800};
   --border-focus: #{$color-main-500};
   --border-transparent: #{$color-transparent};
+  --border-main: #{$color-main-500};
 }

@@ -423,3 +423,16 @@ await primitives.buildAllPlatforms()
 await colors.buildAllPlatforms()
 await dimensions.buildAllPlatforms()
 await fonts.buildAllPlatforms()
+
+// Génération des index de dossiers
+await fs.promises.writeFile(
+  path.join(variablesBuildPath, "_index.scss"),
+  `@import "primitives-generated";\n@import "colors-generated";\n@import "dimensions-generated";\n@import "fonts-generated";\n`,
+  "utf8"
+)
+
+await fs.promises.writeFile(
+  path.join(helpersBuildPath, "_index.scss"),
+  `@import "colors-generated";\n@import "dimensions-generated";\n@import "fonts-generated";\n`,
+  "utf8"
+)

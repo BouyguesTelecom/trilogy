@@ -3,7 +3,11 @@
   "version": "5.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "lint": "expo lint",
+    "build": "tsdown",
+    "figma:generate-props": "node scripts/generate-figma-props.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -12,11 +16,34 @@
     "tsdown": "^0.23.1"
   },
   "exports": {
+    ".": {
+      "react-native": {
+        "types": "./dist/native/index.d.ts",
+        "default": "./dist/native/index.js"
+      },
+      "import": {
+        "types": "./dist/web/index.d.ts",
+        "default": "./dist/web/index.js"
+      },
+      "require": {
+        "types": "./dist/web/index.d.cts",
+        "default": "./dist/web/index.cjs"
+      }
+    },
+    "./package.json": "./package.json",
     "./*": {
-      "types": "./dist/web/components/*/index.d.ts",
-      "react-native": "./dist/native/components/*/index.d.ts",
-      "import": "./dist/web/components/*/index.js",
-      "require": "./dist/web/components/*/index.cjs.js"
+      "react-native": {
+        "types": "./dist/native/*/index.d.ts",
+        "default": "./dist/native/*/index.js"
+      },
+      "import": {
+        "types": "./dist/web/*/index.d.ts",
+        "default": "./dist/web/*/index.js"
+      },
+      "require": {
+        "types": "./dist/web/*/index.d.cts",
+        "default": "./dist/web/*/index.cjs"
+      }
     }
   }
 }
