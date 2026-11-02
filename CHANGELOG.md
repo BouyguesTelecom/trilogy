@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 - Fix FlexBox responsive alignment to follow its query container without changing alignment helpers on other components (web).
+-Fix prop radius=full on Box component
 
 ## [4.20.3] - 2026-10-26
 - Fix padding of Section component
