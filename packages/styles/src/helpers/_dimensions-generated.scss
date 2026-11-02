@@ -1,0 +1,61 @@
+
+// Do not edit directly, this file was auto-generated.
+
+$radius: (
+  radius-full,
+  radius-lg,
+  radius-md,
+  radius-sm,
+  radius-xs,
+  radius-none,
+);
+
+$spacing: (
+  spacing-xxxl,
+  spacing-xxl,
+  spacing-xl,
+  spacing-lg,
+  spacing-md,
+  spacing-sm,
+  spacing-xs,
+  spacing-xxs,
+  spacing-none,
+);
+
+$border-widths: (
+  border-width-sm,
+  border-width-md,
+  border-width-lg,
+);
+
+$icon-sizes: (
+  icon-size-xs,
+  icon-size-sm,
+  icon-size-md,
+  icon-size-lg,
+);
+
+@each $token in $radius {
+  .#{$token} {
+    border-radius: var(--#{$token});
+  }
+}
+
+@each $token in $spacing {
+  .#{$token} {
+    padding: var(--#{$token});
+  }
+}
+
+@each $token in $border-widths {
+  .#{$token} {
+    border-width: var(--#{$token});
+  }
+}
+
+@each $token in $icon-sizes {
+  .#{$token} {
+    width: var(--#{$token});
+    height: var(--#{$token});
+  }
+}

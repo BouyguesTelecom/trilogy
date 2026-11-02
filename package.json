@@ -10,9 +10,7 @@
     "check-types": "turbo run check-types",
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "turbo build && changeset publish",
-    "figma-publish": "node scripts/figma-publish.js",
-    "build:tokens": "node scripts/build-tokens.js"
+    "release": "turbo build && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",

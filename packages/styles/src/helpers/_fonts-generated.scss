@@ -1,0 +1,26 @@
+
+// Do not edit directly, this file was auto-generated.
+
+$font-families: (
+  font-family-primary,
+  font-family-secondary,
+);
+
+$font-weights: (
+  font-weight-regular,
+  font-weight-medium,
+  font-weight-semibold,
+  font-weight-bold,
+);
+
+@each $token in $font-families {
+  .#{$token} {
+    font-family: var(--#{$token});
+  }
+}
+
+@each $token in $font-weights {
+  .#{$token} {
+    font-weight: var(--#{$token});
+  }
+}

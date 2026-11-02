@@ -5,9 +5,11 @@ import StyleDictionary from "style-dictionary"
 import { fileHeader } from "style-dictionary/utils"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const root = path.resolve(__dirname, "..")
+const root = path.resolve(__dirname, "../../..")
+const stylesDir = path.resolve(__dirname, "..")
 const figmaDir = path.join(root, "packages/figma/src")
-const buildPath = `${path.join(root, "packages/styles/src/variables")}/`
+const variablesBuildPath = `${path.join(stylesDir, "src/variables")}/`
+const helpersBuildPath = `${path.join(stylesDir, "src/helpers")}/`
 
 const THEMES = {
   Light: ':root,\n[data-theme="light"]',
@@ -66,6 +68,17 @@ StyleDictionary.registerTransform({
   },
 })
 
+// Uses the Figma WEB code syntax: "var(--radius-full)" -> "radius-full"
+StyleDictionary.registerTransform({
+  name: "trilogy/name/single",
+  type: "name",
+  transform: (token) => {
+    const web = token.$extensions?.["com.figma.codeSyntax"]?.WEB
+    const match = web?.match(/var\(--([\w-]+)\)/)
+    return match ? match[1] : primitiveName(token.path)
+  },
+})
+
 // Points to the primitive SCSS variable the Figma variable is aliased to
 StyleDictionary.registerTransform({
   name: "trilogy/alias",
@@ -101,16 +114,34 @@ StyleDictionary.registerFormat({
   },
 })
 
-// Themes share the same names, so the first theme is enough to list the variables
 StyleDictionary.registerFormat({
-  name: "trilogy/scss-helpers",
+  name: "trilogy/scss-root",
+  format: async ({ dictionary, file }) => {
+    const header = await fileHeader({ file, commentStyle: "short" })
+    const vars = dictionary.allTokens.map(({ name, $value }) => {
+      const value =
+        typeof $value === "string" && $value.startsWith("$")
+          ? `#{${$value}}`
+          : $value
+      return `  --${name}: ${value};`
+    })
+    return `${header}:root {\n${vars.join("\n")}\n}\n`
+  },
+})
+
+// Helpers pour les couleurs (backgrounds, text-colors, border-colors)
+StyleDictionary.registerFormat({
+  name: "trilogy/scss-helpers-colors",
   format: async ({ dictionary, file }) => {
     const header = await fileHeader({ file, commentStyle: "short" })
     const theme = Object.keys(THEMES)[0]
-    const backgrounds = dictionary.allTokens
+    const tokens = dictionary.allTokens
       .filter((token) => token.path[0] === theme)
       .map(({ name }) => name.slice(theme.length + 1))
-      .filter((name) => /^background(-|$)/.test(name))
+
+    const backgrounds = tokens.filter((name) => /^background(-|$)/.test(name))
+    const textColors = tokens.filter((name) => /^color(-|$)/.test(name))
+    const borderColors = tokens.filter((name) => /^border(-|$)/.test(name))
 
     return `${header}@use "sass:string";
 
@@ -118,10 +149,121 @@ $backgrounds: (
 ${backgrounds.map((name) => `  ${name},`).join("\n")}
 );
 
+$text-colors: (
+${textColors.map((name) => `  ${name},`).join("\n")}
+);
+
+$border-colors: (
+${borderColors.map((name) => `  ${name},`).join("\n")}
+);
+
 // background-primary -> .bg-primary
 @each $token in $backgrounds {
   .bg#{string.slice($token, 11)} {
     background-color: var(--#{$token});
+  }
+}
+
+// color-primary -> .text-primary
+@each $token in $text-colors {
+  .text#{string.slice($token, 6)} {
+    color: var(--#{$token});
+  }
+}
+
+// border-primary -> .border-primary
+@each $token in $border-colors {
+  .border#{string.slice($token, 7)} {
+    border-color: var(--#{$token});
+  }
+}
+`
+  },
+})
+
+// Helpers pour les dimensions (radius, spacing, border-width, icon-size)
+StyleDictionary.registerFormat({
+  name: "trilogy/scss-helpers-dimensions",
+  format: async ({ dictionary, file }) => {
+    const header = await fileHeader({ file, commentStyle: "short" })
+    const tokens = dictionary.allTokens.map(({ name }) => name)
+
+    const radius = tokens.filter((name) => /^radius(-|$)/.test(name))
+    const spacing = tokens.filter((name) => /^spacing(-|$)/.test(name))
+    const borderWidth = tokens.filter((name) => /^border-width(-|$)/.test(name))
+    const iconSize = tokens.filter((name) => /^icon-size(-|$)/.test(name))
+
+    return `${header}$radius: (
+${radius.map((name) => `  ${name},`).join("\n")}
+);
+
+$spacing: (
+${spacing.map((name) => `  ${name},`).join("\n")}
+);
+
+$border-widths: (
+${borderWidth.map((name) => `  ${name},`).join("\n")}
+);
+
+$icon-sizes: (
+${iconSize.map((name) => `  ${name},`).join("\n")}
+);
+
+@each $token in $radius {
+  .#{$token} {
+    border-radius: var(--#{$token});
+  }
+}
+
+@each $token in $spacing {
+  .#{$token} {
+    padding: var(--#{$token});
+  }
+}
+
+@each $token in $border-widths {
+  .#{$token} {
+    border-width: var(--#{$token});
+  }
+}
+
+@each $token in $icon-sizes {
+  .#{$token} {
+    width: var(--#{$token});
+    height: var(--#{$token});
+  }
+}
+`
+  },
+})
+
+// Helpers pour les polices (font-family, font-weight)
+StyleDictionary.registerFormat({
+  name: "trilogy/scss-helpers-fonts",
+  format: async ({ dictionary, file }) => {
+    const header = await fileHeader({ file, commentStyle: "short" })
+    const tokens = dictionary.allTokens.map(({ name }) => name)
+
+    const fontFamilies = tokens.filter((name) => /^font-family(-|$)/.test(name))
+    const fontWeights = tokens.filter((name) => /^font-weight(-|$)/.test(name))
+
+    return `${header}$font-families: (
+${fontFamilies.map((name) => `  ${name},`).join("\n")}
+);
+
+$font-weights: (
+${fontWeights.map((name) => `  ${name},`).join("\n")}
+);
+
+@each $token in $font-families {
+  .#{$token} {
+    font-family: var(--#{$token});
+  }
+}
+
+@each $token in $font-weights {
+  .#{$token} {
+    font-weight: var(--#{$token});
   }
 }
 `
@@ -148,14 +290,18 @@ StyleDictionary.registerTransform({
   name: "trilogy/px",
   type: "value",
   filter: (token) =>
-    token.$type === "number" && !token.path.some((p) => /weight/i.test(p)),
+    token.$type === "number" &&
+    !token.path.some((p) => /weight/i.test(p)) &&
+    !token.$extensions?.["com.figma.aliasData"]?.targetVariableName,
   transform: (token) => (token.$value === 0 ? "0" : `${token.$value}px`),
 })
 
 StyleDictionary.registerTransform({
   name: "trilogy/string",
   type: "value",
-  filter: (token) => token.$type === "string",
+  filter: (token) =>
+    token.$type === "string" &&
+    !token.$extensions?.["com.figma.aliasData"]?.targetVariableName,
   transform: (token) => `"${token.$value}"`,
 })
 
@@ -171,7 +317,7 @@ const primitives = new StyleDictionary({
         "trilogy/px",
         "trilogy/string",
       ],
-      buildPath,
+      buildPath: variablesBuildPath,
       files: [
         {
           destination: "_primitives-generated.scss",
@@ -196,7 +342,7 @@ const colors = new StyleDictionary({
   platforms: {
     scss: {
       transforms: ["trilogy/name/theme", "trilogy/alias", "trilogy/color"],
-      buildPath,
+      buildPath: variablesBuildPath,
       files: [
         {
           destination: "_colors-generated.scss",
@@ -206,11 +352,67 @@ const colors = new StyleDictionary({
     },
     helpers: {
       transforms: ["trilogy/name/theme"],
-      buildPath: `${path.join(root, "packages/styles/src/utils")}/`,
+      buildPath: helpersBuildPath,
       files: [
         {
-          destination: "_helpers-generated.scss",
-          format: "trilogy/scss-helpers",
+          destination: "_colors-generated.scss",
+          format: "trilogy/scss-helpers-colors",
+        },
+      ],
+    },
+  },
+})
+
+const dimensions = new StyleDictionary({
+  source: [path.join(figmaDir, "variables/Dimensions.tokens.json")],
+  usesDtcg: true,
+  log: { verbosity: "verbose" },
+  platforms: {
+    scss: {
+      transforms: ["trilogy/name/single", "trilogy/alias", "trilogy/px"],
+      buildPath: variablesBuildPath,
+      files: [
+        {
+          destination: "_dimensions-generated.scss",
+          format: "trilogy/scss-root",
+        },
+      ],
+    },
+    helpers: {
+      transforms: ["trilogy/name/single"],
+      buildPath: helpersBuildPath,
+      files: [
+        {
+          destination: "_dimensions-generated.scss",
+          format: "trilogy/scss-helpers-dimensions",
+        },
+      ],
+    },
+  },
+})
+
+const fonts = new StyleDictionary({
+  source: [path.join(figmaDir, "variables/Fonts.tokens.json")],
+  usesDtcg: true,
+  log: { verbosity: "verbose" },
+  platforms: {
+    scss: {
+      transforms: ["trilogy/name/single", "trilogy/alias", "trilogy/string"],
+      buildPath: variablesBuildPath,
+      files: [
+        {
+          destination: "_fonts-generated.scss",
+          format: "trilogy/scss-root",
+        },
+      ],
+    },
+    helpers: {
+      transforms: ["trilogy/name/single"],
+      buildPath: helpersBuildPath,
+      files: [
+        {
+          destination: "_fonts-generated.scss",
+          format: "trilogy/scss-helpers-fonts",
         },
       ],
     },
@@ -219,3 +421,5 @@ const colors = new StyleDictionary({
 
 await primitives.buildAllPlatforms()
 await colors.buildAllPlatforms()
+await dimensions.buildAllPlatforms()
+await fonts.buildAllPlatforms()

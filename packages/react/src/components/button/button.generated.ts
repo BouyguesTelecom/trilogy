@@ -5,7 +5,7 @@ export enum ButtonVariant {
   conversion = "conversion",
 }
 
-export interface ButtonFigmaProps {
+export interface ButtonGeneratedProps {
   iconLeft?: string
   iconRight?: string
   disabled?: boolean

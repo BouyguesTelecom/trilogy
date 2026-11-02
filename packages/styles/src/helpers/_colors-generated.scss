@@ -47,9 +47,52 @@ $backgrounds: (
   background-transparent,
 );
 
+$text-colors: (
+  color-success,
+  color-warning,
+  color-error,
+  color-information,
+  color-primary,
+  color-secondary,
+  color-placeholder,
+  color-selected,
+  color-inverse,
+  color-accent,
+  color-disabled,
+  color-brand,
+);
+
+$border-colors: (
+  border-primary,
+  border-accent,
+  border-inverse,
+  border-success,
+  border-warning,
+  border-error,
+  border-information,
+  border-brand,
+  border-disabled,
+  border-focus,
+  border-transparent,
+);
+
 // background-primary -> .bg-primary
 @each $token in $backgrounds {
   .bg#{string.slice($token, 11)} {
     background-color: var(--#{$token});
+  }
+}
+
+// color-primary -> .text-primary
+@each $token in $text-colors {
+  .text#{string.slice($token, 6)} {
+    color: var(--#{$token});
+  }
+}
+
+// border-primary -> .border-primary
+@each $token in $border-colors {
+  .border#{string.slice($token, 7)} {
+    border-color: var(--#{$token});
   }
 }

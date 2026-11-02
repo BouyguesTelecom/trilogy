@@ -1,7 +1,7 @@
 import { AccessibilityProps } from "@/interfaces/accessibilityProps"
 
 import {
-  ButtonFigmaProps,
+  ButtonGeneratedProps,
   ButtonVariant,
 } from "@/components/button/button.generated"
 
@@ -17,7 +17,7 @@ export enum ButtonType {
   submit = "submit",
 }
 
-export interface ButtonProps extends ButtonFigmaProps, AccessibilityProps {
+export interface ButtonProps extends ButtonGeneratedProps, AccessibilityProps {
   variant?: ButtonVariant
   markup?: ButtonMarkup
 }
