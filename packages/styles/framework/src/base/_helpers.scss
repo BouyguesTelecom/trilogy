@@ -791,18 +791,19 @@ $align-values: (
 }
 
 @each $alignment, $align-items in $align-values {
-  .is-aligned-#{$alignment} {
+  // FlexBox owns these breakpoints so container queries can override the viewport.
+  .is-aligned-#{$alignment}:not(:where(.flex-box)) {
     align-items: #{$align-items} !important;
   }
 
   @include mobile {
-    .is-aligned-#{$alignment}-mobile {
+    .is-aligned-#{$alignment}-mobile:not(:where(.flex-box)) {
       align-items: #{$align-items} !important;
     }
   }
 
   @include tablet {
-    .is-aligned-#{$alignment}-tablet {
+    .is-aligned-#{$alignment}-tablet:not(:where(.flex-box)) {
       align-items: #{$align-items} !important;
     }
   }
@@ -820,7 +821,7 @@ $align-values: (
   }
 
   @include desktop {
-    .is-aligned-#{$alignment}-desktop {
+    .is-aligned-#{$alignment}-desktop:not(:where(.flex-box)) {
       align-items: #{$align-items} !important;
     }
   }
@@ -832,7 +833,7 @@ $align-values: (
   }
 
   @include widescreen {
-    .is-aligned-#{$alignment}-widescreen {
+    .is-aligned-#{$alignment}-widescreen:not(:where(.flex-box)) {
       align-items: #{$align-items} !important;
     }
   }
@@ -844,7 +845,7 @@ $align-values: (
   }
 
   @include fullhd {
-    .is-aligned-#{$alignment}-fullhd {
+    .is-aligned-#{$alignment}-fullhd:not(:where(.flex-box)) {
       align-items: #{$align-items} !important;
     }
   }
@@ -856,7 +857,7 @@ $align-values: (
 }
 
 // FIXME : à supprimer car double-emploi avec .is-aligned-center (et même pas de spécificité par breakpoint)
-.is-aligned-center {
+.is-aligned-center:not(:where(.flex-box)) {
   align-items: center !important;
 }
 

@@ -1,3 +1,4 @@
+import { Fragment, useEffect, useRef, useState } from 'react'
 import {
   Align,
   Alignable,
@@ -10,6 +11,7 @@ import {
   TrilogyColor,
   TypographyBold,
   View,
+  isMobile,
 } from '@trilogy-ds/react'
 import {
   Box,
@@ -28,9 +30,126 @@ import {
   TitleLevels,
 } from '@trilogy-ds/react/components'
 
+const summaryOffers = [
+  { title: 'Bbox WiFi 7', description: 'Avec TV et répéteur inclus', price: 'Prix seul : 43,99 €/mois', symbol: '⌁' },
+  {
+    title: 'Forfait 250 Go',
+    description: '40 Go inclus dans plus de 160 destinations',
+    price: 'Prix seul : 29,99 €/mois',
+    symbol: '5G',
+  },
+  {
+    title: 'prime',
+    description: 'Streaming en illimité et livraisons en accéléré',
+    price: 'Prix seul : 6,99 €/mois',
+    symbol: '✓',
+  },
+]
+
+const PackSummaryExample = (): JSX.Element => {
+  const [requestedWidth, setRequestedWidth] = useState(820)
+  const [containerWidth, setContainerWidth] = useState(0)
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+    const observer = new ResizeObserver(() => setContainerWidth(Math.round(container.getBoundingClientRect().width)))
+    const updateViewport = () => setViewportWidth(window.innerWidth)
+    observer.observe(container)
+    window.addEventListener('resize', updateViewport)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', updateViewport)
+    }
+  }, [])
+
+  return (
+    <Section backgroundColor={TrilogyColor.MAIN_FADE}>
+      <Title level={TitleLevels.THREE}>Pack One — reproduction de l’alignement responsive</Title>
+      <Text>
+        Page : {viewportWidth} px · Container : {containerWidth} px. Sous 1024 px de container, les offres doivent
+        rester en colonne et centrées, même sur une page desktop.
+      </Text>
+      <label htmlFor='pack-summary-width'>Largeur du container : {requestedWidth} px</label>
+      <input
+        id='pack-summary-width'
+        type='range'
+        min={360}
+        max={1200}
+        step={10}
+        value={requestedWidth}
+        onChange={(event) => setRequestedWidth(Number(event.target.value))}
+        style={{ display: 'block', width: '100%', maxWidth: 480, marginBottom: 24 }}
+      />
+      <div
+        ref={containerRef}
+        className='query-container_410'
+        id='pack-summary-container'
+        style={{ width: requestedWidth, maxWidth: '100%', margin: '0 auto' }}
+      >
+        <Box padding='lg' shadowless>
+          <BoxContent>
+            <FlexBox
+              gap={GapSize.FIVE}
+              className='is-fullwidth'
+              justify={Justify.CENTER}
+              direction={{ mobile: DirectionEnum.COLUMN, tablet: DirectionEnum.COLUMN, desktop: DirectionEnum.ROW }}
+            >
+              <FlexBox
+                id='pack-summary-offers'
+                gap={{ mobile: GapSize.FOUR, tablet: GapSize.FOUR, desktop: GapSize.FIVE }}
+                align={{ mobile: Align.CENTER, tablet: Align.CENTER, desktop: Align.END }}
+                direction={{ mobile: DirectionEnum.COLUMN, tablet: DirectionEnum.COLUMN, desktop: DirectionEnum.ROW }}
+              >
+                {summaryOffers.map((offer, index) => (
+                  <Fragment key={offer.title}>
+                    {index > 0 && (
+                      <span aria-label='plus' style={{ fontSize: 32, alignSelf: 'center' }}>
+                        ⊕
+                      </span>
+                    )}
+                    <div style={{ width: 150, minHeight: index === 1 ? 144 : 120 }}>
+                      <Text marginless>{offer.symbol}</Text>
+                      <Title level={TitleLevels.FIVE}>{offer.title}</Title>
+                      <Text level={TextLevels.THREE} marginless>
+                        {offer.description}
+                      </Text>
+                      <Text level={TextLevels.THREE} marginless>
+                        {offer.price}
+                      </Text>
+                    </div>
+                  </Fragment>
+                ))}
+              </FlexBox>
+              <FlexBox
+                gap={GapSize.FIVE}
+                align={Align.CENTER}
+                direction={{ mobile: DirectionEnum.COLUMN, tablet: DirectionEnum.COLUMN, desktop: DirectionEnum.ROW }}
+              >
+                <span aria-label='égal' style={{ fontSize: 32 }}>
+                  ⊜
+                </span>
+                <FlexBox direction={DirectionEnum.COLUMN} align={Align.CENTER} gap={GapSize.FOUR}>
+                  <Text marginless>
+                    <s>80,97 €</s> <strong style={{ fontSize: 32 }}>54,99 €</strong>/mois
+                  </Text>
+                  <Button variant={ButtonVariant.CONVERSION}>Choisir le pack One</Button>
+                </FlexBox>
+              </FlexBox>
+            </FlexBox>
+          </BoxContent>
+        </Box>
+      </div>
+    </Section>
+  )
+}
+
 export const FlexBoxScreen = (): JSX.Element => {
   return (
     <Section backgroundColor={TrilogyColor.NEUTRAL_FADE}>
+      {!isMobile && <PackSummaryExample />}
       <Container className='container_410'>
         <Title level={TitleLevels.THREE}>Container Query Test</Title>
         <FlexBox wrap={{ fullhd: true }} gap={GapSize.FOUR} align={Alignable.ALIGNED_CENTER} scrollable>
@@ -70,15 +189,14 @@ export const FlexBoxScreen = (): JSX.Element => {
             </Box>
           </FlexItem>
           <FlexItem size={4}>
-            <Box fullheight backgroundColor={TrilogyColor.SUCCESS_FADE}>
-            </Box>
+            <Box fullheight backgroundColor={TrilogyColor.SUCCESS_FADE}></Box>
           </FlexItem>
         </FlexBox>
         <FlexBox>
           <FlexItem>
             <Box fullheight>
               <BoxContent>
-                <FlexBox direction={DirectionEnum.COLUMN} fullheight> 
+                <FlexBox direction={DirectionEnum.COLUMN} fullheight>
                   <FlexItem>
                     <Box backgroundColor={TrilogyColor.MAIN_FADE} />
                     <Box backgroundColor={TrilogyColor.MAIN_FADE} />
@@ -90,15 +208,13 @@ export const FlexBoxScreen = (): JSX.Element => {
                     <Button variant='CONVERSION'>Button</Button>
                   </FlexItem>
                 </FlexBox>
-
               </BoxContent>
             </Box>
-
           </FlexItem>
           <FlexItem>
             <Box fullheight>
               <BoxContent className='box-content_410'>
-                <FlexBox fullheight direction={DirectionEnum.COLUMN}> 
+                <FlexBox fullheight direction={DirectionEnum.COLUMN}>
                   <FlexItem>
                     <Box backgroundColor={TrilogyColor.MAIN_FADE} />
                     <Box backgroundColor={TrilogyColor.MAIN_FADE} />
@@ -109,25 +225,23 @@ export const FlexBoxScreen = (): JSX.Element => {
                     <Button variant='CONVERSION'>Button</Button>
                   </FlexItem>
                 </FlexBox>
-
               </BoxContent>
             </Box>
-
           </FlexItem>
         </FlexBox>
-        </Container>
-        <Title level={TitleLevels.THREE}>Props mobile</Title>
-        <FlexBox mobile>
-          <FlexItem size={4}>
-            <Box backgroundColor={TrilogyColor.MAIN_FADE} />
-          </FlexItem>
-          <FlexItem size={4}>
-            <Box backgroundColor={TrilogyColor.MAIN_FADE} />
-          </FlexItem>
-          <FlexItem size={4}>
-            <Box backgroundColor={TrilogyColor.MAIN_FADE} />
-          </FlexItem>
-        </FlexBox>
+      </Container>
+      <Title level={TitleLevels.THREE}>Props mobile</Title>
+      <FlexBox mobile>
+        <FlexItem size={4}>
+          <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+        </FlexItem>
+        <FlexItem size={4}>
+          <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+        </FlexItem>
+        <FlexItem size={4}>
+          <Box backgroundColor={TrilogyColor.MAIN_FADE} />
+        </FlexItem>
+      </FlexBox>
 
       <Box backgroundColor={TrilogyColor.MAIN_FADE}>
         <BoxContent>
