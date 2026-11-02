@@ -355,11 +355,16 @@
     }
   }
 
-  // A query container replaces viewport alignment, even when none of the
-  // responsive classes matches its width. Preserve any non-responsive value.
+  // Only reset responsive alignment inside a query container.
+  // Preserve any non-responsive value and leave other FlexBoxes untouched.
   @container (min-width: 0px) {
-    &[class] {
-      align-items: var(--flex-box-align);
+    @each $breakpoint in mobile, tablet, desktop, widescreen, fullhd {
+      &.is-aligned-start-#{$breakpoint},
+      &.is-aligned-end-#{$breakpoint},
+      &.is-aligned-center-#{$breakpoint},
+      &.is-aligned-stretch-#{$breakpoint} {
+        align-items: var(--flex-box-align);
+      }
     }
   }
 
