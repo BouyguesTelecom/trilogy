@@ -2,6 +2,8 @@
 
 .flex-box {
   display: flex;
+  // Reset on each FlexBox to avoid inheriting a nested parent's base alignment.
+  --flex-box-align: normal;
   --ColumnGap : 8px;
   gap: var(--ColumnGap);
   flex-direction: row;
@@ -248,18 +250,22 @@
 
   // ALIGN ITEMS
   &.is-aligned-start {
+    --flex-box-align: flex-start;
     align-items: flex-start;
   }
 
   &.is-aligned-end {
+    --flex-box-align: flex-end;
     align-items: flex-end;
   }
 
   &.is-aligned-center {
+    --flex-box-align: center;
     align-items: center;
   }
 
   &.is-aligned-stretch {
+    --flex-box-align: stretch;
     align-items: stretch;
   }
 
@@ -349,6 +355,19 @@
     }
   }
 
+  // Only reset responsive alignment inside a query container.
+  // Preserve any non-responsive value and leave other FlexBoxes untouched.
+  @container (min-width: 0px) {
+    @each $breakpoint in mobile, tablet, desktop, widescreen, fullhd {
+      &.is-aligned-start-#{$breakpoint},
+      &.is-aligned-end-#{$breakpoint},
+      &.is-aligned-center-#{$breakpoint},
+      &.is-aligned-stretch-#{$breakpoint} {
+        align-items: var(--flex-box-align);
+      }
+    }
+  }
+
   @include container-mobile {
     &.is-aligned-start-mobile {
       align-items: flex-start;
@@ -397,6 +416,42 @@
     }
 
     &.is-aligned-stretch-desktop {
+      align-items: stretch;
+    }
+  }
+
+  @include container-widescreen {
+    &.is-aligned-start-widescreen {
+      align-items: flex-start;
+    }
+
+    &.is-aligned-end-widescreen {
+      align-items: flex-end;
+    }
+
+    &.is-aligned-center-widescreen {
+      align-items: center;
+    }
+
+    &.is-aligned-stretch-widescreen {
+      align-items: stretch;
+    }
+  }
+
+  @include container-fullhd {
+    &.is-aligned-start-fullhd {
+      align-items: flex-start;
+    }
+
+    &.is-aligned-end-fullhd {
+      align-items: flex-end;
+    }
+
+    &.is-aligned-center-fullhd {
+      align-items: center;
+    }
+
+    &.is-aligned-stretch-fullhd {
       align-items: stretch;
     }
   }
