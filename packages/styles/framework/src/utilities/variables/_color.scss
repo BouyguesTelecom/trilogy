@@ -57,6 +57,22 @@ $fade-colors: (
   }
 }
 
+@function getBorder( $active: '' ) {
+   @if global-variable-exists(suffix-theme) {
+    @if $active == 'active' {
+      @return var(--border-active-#{$suffix-theme});
+    } @else {
+      @return var(--border-#{$suffix-theme});
+    }
+  } @else {
+    @if $active == 'active' {
+      @return var(--border-active);
+    } @else {
+      @return var(--border);
+    }
+  }
+}
+
 @function getColorValue( $name ) {
   @return #{nth(map-get($colors,$name),1)}
 }
