@@ -66,6 +66,7 @@ a.box {
 
   &.is-active {
     outline: var(--border-active);
+    outline-offset: -2px;
   }
 
   &.is-offset-header {
