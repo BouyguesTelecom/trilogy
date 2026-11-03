@@ -50,12 +50,12 @@
     padding: 6px $spacing-4;
     white-space: nowrap;
     cursor: pointer;
-    border: var(--border);
+    border: getBorder();
     &:not(.is-disabled) {
       &.is-active {
         background-color: getColor('main');
         color: white;
-        border: var(--border-active);
+        border: getBorder('active');
         padding: 5px ($spacing-4 - 1px);
         #{$hoverSelector} {
           background-color: getColor('main');
