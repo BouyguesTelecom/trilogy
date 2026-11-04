@@ -41,6 +41,16 @@ function getComponentName(rawName) {
   return name.charAt(0).toLowerCase() + name.slice(1)
 }
 
+// "components/button/buttonList" -> "button/buttonList" ; "components/button" -> "button"
+function getComponentDirName(rawName) {
+  return rawName
+    .split("/")
+    .map((s) => s.trim())
+    .filter((s, i) => !(i === 0 && s.toLowerCase() === "components"))
+    .map((s) => s.charAt(0).toLowerCase() + s.slice(1))
+    .join("/")
+}
+
 async function fetchPageData(fileKey, nodeId) {
   const url = `https://api.figma.com/v1/files/${fileKey}/nodes?ids=${nodeId}`
   const response = await fetch(url, {
@@ -158,7 +168,10 @@ async function main() {
 
   for (const compNode of components) {
     const componentName = getComponentName(compNode.name)
-    const targetDir = path.join(componentsDir, componentName)
+    const targetDir = path.join(
+      componentsDir,
+      getComponentDirName(compNode.name)
+    )
     const targetFile = path.join(targetDir, `${componentName}.generated.ts`)
 
     let metadata = null

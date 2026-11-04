@@ -5,8 +5,8 @@ import {
   RefAttributes,
 } from "react"
 
-import { clsx, getClassName } from "../.."
-import { useHashClass } from "../../hooks/useHashClass.web"
+import { clsx, getClassName } from "../../.."
+import { useHashClass } from "../../../hooks/useHashClass.web"
 import { ButtonListProps } from "./buttonList.types"
 
 export type ButtonListRef = HTMLDivElement
