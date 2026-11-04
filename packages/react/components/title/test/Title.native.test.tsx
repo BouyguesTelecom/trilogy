@@ -23,4 +23,16 @@ describe('Title', () => {
     await user.press(screen.getByText('Title level 1'))
     expect(onClick).toHaveBeenCalled()
   })
+
+  it('should forward testId as testID and nativeID', () => {
+    render(
+      <Title level={TitleLevels.ONE} testId='my-title'>
+        Title level 1
+      </Title>,
+    )
+
+    const title = screen.getByTestId('my-title')
+    expect(title).toBeOnTheScreen()
+    expect(title.props.nativeID).toBe('my-title')
+  })
 })
