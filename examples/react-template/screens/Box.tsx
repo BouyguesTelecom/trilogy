@@ -27,7 +27,7 @@ export const BoxScreen = (): JSX.Element => {
 
   return (
     <Section>
-      <Box fullheight {...{ style: { alignItems: 'center' } }}>
+      <Box active flat fullheight {...{ style: { alignItems: 'center' } }}>
         <BoxContent>
           <Columns verticalAlign={Alignable.ALIGNED_CENTER}>
             <Column narrow>
