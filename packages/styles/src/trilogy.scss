@@ -1,4 +1,4 @@
-@import "variables/index";
-@import "base/index";
-@import "helpers/index";
-@import "components/index";
+@use "variables/index" as variables;
+@use "base/index" as base;
+@use "helpers/index" as helpers;
+@use "components/index" as components;

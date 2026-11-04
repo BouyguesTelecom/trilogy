@@ -1,6 +1,8 @@
 
 // Do not edit directly, this file was auto-generated.
 
+@use "primitives-generated" as *;
+
 :root {
   --radius-full: #{$radius-500};
   --radius-lg: #{$radius-400};

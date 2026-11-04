@@ -2,56 +2,120 @@
 
 $buttonVariants: (
   primary: (
-    background: var(--background-information),
-    border: var(--border-primary),
-    text: var(--color-inverse),
-    radius: var(--radius-sm),
-    borderWidth: var(--border-width-sm),
-    padding: var(--spacing-sm),
+    "default": (
+      background: var(--background-secondary),
+      border: var(--border-main),
+      radius: var(--radius-sm),
+      padding: var(--spacing-sm),
+      borderWidth: var(--border-width-sm),
+      text: var(--color-inverse),
+    ),
+    "hover": (
+      background: var(--background-secondary-hover),
+      border: var(--border-primary),
+    ),
+    "pressed": (
+      background: var(--background-secondary-pressed),
+      border: var(--border-primary),
+    ),
   ),
   secondary: (
-    background: var(--background-brand-subtle),
-    border: var(--border-primary),
-    text: var(--color-primary),
-    radius: var(--radius-sm),
-    borderWidth: var(--border-width-sm),
-    padding: var(--spacing-sm),
+    "default": (
+      background: var(--background-primary),
+      border: var(--border-primary),
+      radius: var(--radius-sm),
+      padding: var(--spacing-sm),
+      borderWidth: var(--border-width-sm),
+      text: var(--color-primary),
+    ),
+    "hover": (
+      background: var(--background-primary-hover),
+    ),
+    "pressed": (
+      background: var(--background-primary-pressed),
+    ),
   ),
   ghost: (
-    background: var(--background-transparent),
-    border: var(--border-transparent),
-    text: var(--color-primary),
-    radius: var(--radius-sm),
-    borderWidth: var(--border-width-sm),
-    padding: var(--spacing-sm),
+    "default": (
+      background: var(--background-transparent),
+      border: var(--border-transparent),
+      radius: var(--radius-sm),
+      padding: var(--spacing-sm),
+      borderWidth: var(--border-width-sm),
+      text: var(--color-primary),
+    ),
+    "hover": (
+      background: var(--background-primary-hover),
+    ),
+    "pressed": (
+      background: var(--background-primary-pressed),
+    ),
   ),
   conversion: (
-    background: var(--background-accent),
-    border: var(--border-accent),
-    text: var(--color-inverse),
-    radius: var(--radius-sm),
-    borderWidth: var(--border-width-sm),
-    padding: var(--spacing-sm),
+    "default": (
+      background: var(--background-accent),
+      border: var(--border-accent),
+      radius: var(--radius-sm),
+      padding: var(--spacing-sm),
+      borderWidth: var(--border-width-sm),
+      text: var(--color-inverse),
+    ),
+    "hover": (
+      background: var(--background-accent-hover),
+    ),
+    "pressed": (
+      background: var(--background-accent-pressed),
+    ),
   ),
 );
 
-@each $variant, $props in $buttonVariants {
-  .button.is-#{$variant} {
-    @each $prop, $value in $props {
-      @if $prop == "background" {
-        background-color: $value;
-      } @else if $prop == "text" or $prop == "color" {
-        color: $value;
-      } @else if $prop == "border" {
-        border-color: $value;
-      } @else if $prop == "borderWidth" {
-        border-width: $value;
-      } @else if $prop == "radius" {
-        border-radius: $value;
-      } @else if $prop == "padding" {
-        padding: $value;
+@mixin button-props($props) {
+  @each $prop, $value in $props {
+    @if $prop == "background" {
+      background-color: $value;
+    } @else if $prop == "text" or $prop == "color" {
+      color: $value;
+    } @else if $prop == "border" {
+      border-color: $value;
+    } @else if $prop == "borderWidth" {
+      border-style: solid;
+      border-width: $value;
+    } @else if $prop == "radius" {
+      border-radius: $value;
+    } @else if $prop == "padding" {
+      padding: $value;
+    } @else {
+      #{$prop}: $value;
+    }
+  }
+}
+
+@each $variant, $states in $buttonVariants {
+  .button.#{$variant} {
+    @each $state, $props in $states {
+      @if $state == "default" {
+        @include button-props($props);
+      } @else if $state == "hover" {
+        &:hover {
+          @include button-props($props);
+        }
+      } @else if $state == "focus" {
+        &:focus-visible {
+          @include button-props($props);
+        }
+      } @else if $state == "pressed" {
+        &:active {
+          @include button-props($props);
+        }
+      } @else if $state == "disabled" {
+        &:disabled,
+        &[aria-disabled="true"] {
+          @include button-props($props);
+        }
       } @else {
-        #{$prop}: $value;
+        &.is-#{$state} {
+          @include button-props($props);
+        }
       }
     }
   }

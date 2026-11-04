@@ -15,6 +15,9 @@ if (!FIGMA_API_KEY) {
 const FILE_KEY = process.env.FIGMA_FILE_KEY || "du5IDsc76TxdC7vctI1h7I"
 const PAGE_NODE_ID = (process.argv[2] || "35:117").replace("-", ":")
 
+// Propriétés Figma qui décrivent un état d'interaction (gérées côté CSS)
+const INTERACTION_PROPS = new Set(["state"])
+
 function cleanPropName(raw) {
   // Figma ajoute parfois un hash : "Label#35:0" -> "label"
   const name = raw.split("#")[0].trim()
@@ -98,12 +101,20 @@ function generateComponentTypes(node, metadata) {
   for (const [rawName, def] of Object.entries(propDefs)) {
     const propName = cleanPropName(rawName)
 
-    if (def.type === "VARIANT") {
-      const enumName = metadata?.enumName
-        ? toPascalCase(metadata.enumName)
-        : `${pascalComponentName}${toPascalCase(propName)}`
+    // hover / pressed / focus / disabled sont gérés en CSS, pas par une prop
+    if (INTERACTION_PROPS.has(propName)) continue
 
-      const options = metadata?.variantValues || def.variantOptions || []
+    if (def.type === "VARIANT") {
+      // enumName / variantValues décrivent uniquement la propriété principale
+      const isMain =
+        !metadata?.variantProperty || metadata.variantProperty === propName
+      const enumName =
+        isMain && metadata?.enumName
+          ? toPascalCase(metadata.enumName)
+          : `${pascalComponentName}${toPascalCase(propName)}`
+
+      const options =
+        (isMain && metadata?.variantValues) || def.variantOptions || []
       const enumMembers = options
         .map((opt) => `  ${opt} = "${opt}",`)
         .join("\n")

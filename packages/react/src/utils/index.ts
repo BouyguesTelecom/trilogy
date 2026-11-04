@@ -1,2 +1,2 @@
 export * from "./clsx"
-export * from "./getClassName"
+export * from "./getClassName.web"

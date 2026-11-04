@@ -3,6 +3,11 @@ import fs from "node:fs/promises"
 import path from "node:path"
 import process from "node:process"
 
+import {
+  extractVariantsData,
+  generateComponentScss,
+} from "./component-variants.js"
+
 // Charge les variables d'environnement (.env à la racine)
 process.loadEnvFile(path.resolve(import.meta.dirname, "../../../.env"))
 
@@ -64,33 +69,6 @@ function getComponentName(rawName) {
   return name.charAt(0).toLowerCase() + name.slice(1)
 }
 
-function toCamelCase(str) {
-  return str
-    .replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ""))
-    .replace(/^(.)/, (m) => m.toLowerCase())
-}
-
-// Convertit les clés du variant (background, border, text, ...) en propriétés CSS valides
-function propKeyToCss(key) {
-  switch (key) {
-    case "background":
-      return "background-color"
-    case "text":
-    case "color":
-      return "color"
-    case "border":
-      return "border-color"
-    case "borderWidth":
-      return "border-width"
-    case "radius":
-      return "border-radius"
-    case "padding":
-      return "padding"
-    default:
-      return key.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
-  }
-}
-
 async function fetchPageData(fileKey, nodeId) {
   const url = `https://api.figma.com/v1/files/${fileKey}/nodes?ids=${nodeId}`
   const response = await fetch(url, {
@@ -128,143 +106,6 @@ function collectComponentSets(node) {
   }
 
   return sets
-}
-
-// Extrait la map de variantes { primary: { background: "var(--...)", ... }, ... }
-function extractVariantsData(compSetNode, pageData, variableMap) {
-  const compSetMeta = pageData.componentSets?.[compSetNode.id]
-  let metadata = null
-
-  if (compSetMeta?.description) {
-    try {
-      metadata = JSON.parse(compSetMeta.description)
-    } catch {
-      // pas de JSON dans la description
-    }
-  }
-
-  // 1. Si les variantes avec leurs CSS sont déclarées dans la description JSON du componentSet
-  if (metadata?.variants && typeof metadata.variants === "object") {
-    const variants = {}
-    for (const [variantName, tokens] of Object.entries(metadata.variants)) {
-      variants[variantName] = {}
-      for (const [tokenProp, tokenInfo] of Object.entries(tokens)) {
-        const cssVal =
-          tokenInfo.css || variableMap.get(tokenInfo.variableId) || null
-        if (cssVal) {
-          variants[variantName][tokenProp] = cssVal
-        }
-      }
-    }
-    return variants
-  }
-
-  // 2. Sinon, parcours des composants enfants (variants) et extraction de boundVariables
-  const variants = {}
-  if (compSetNode.children) {
-    for (const child of compSetNode.children) {
-      if (child.type !== "COMPONENT") continue
-
-      // Ex: child.name = "variant=primary" ou "primary"
-      const variantMatch = child.name.match(/(?:variant=)?([^,]+)/)
-      const variantName = variantMatch ? variantMatch[1].trim() : child.name
-
-      variants[variantName] = {}
-
-      // Description spécifique au composant enfant si disponible
-      const childMeta = pageData.components?.[child.id]
-      if (childMeta?.description) {
-        try {
-          const childJson = JSON.parse(childMeta.description)
-          if (childJson.tokens) {
-            for (const [prop, info] of Object.entries(childJson.tokens)) {
-              const cssVal = info.css || variableMap.get(info.variableId)
-              if (cssVal) variants[variantName][prop] = cssVal
-            }
-          }
-        } catch {
-          // description texte
-        }
-      }
-
-      // Complète avec boundVariables s'il reste des propriétés non trouvées
-      const bv = child.boundVariables || {}
-      if (!variants[variantName].background && bv.fills?.[0]?.id) {
-        const css = variableMap.get(bv.fills[0].id)
-        if (css) variants[variantName].background = css
-      }
-      if (!variants[variantName].border && bv.strokes?.[0]?.id) {
-        const css = variableMap.get(bv.strokes[0].id)
-        if (css) variants[variantName].border = css
-      }
-      if (
-        !variants[variantName].radius &&
-        bv.rectangleCornerRadii?.RECTANGLE_TOP_LEFT_CORNER_RADIUS?.id
-      ) {
-        const css = variableMap.get(
-          bv.rectangleCornerRadii.RECTANGLE_TOP_LEFT_CORNER_RADIUS.id
-        )
-        if (css) variants[variantName].radius = css
-      }
-      if (!variants[variantName].padding && bv.paddingTop?.id) {
-        const css = variableMap.get(bv.paddingTop.id)
-        if (css) variants[variantName].padding = css
-      }
-      if (
-        !variants[variantName].borderWidth &&
-        bv.individualStrokeWeights?.BORDER_TOP_WEIGHT?.id
-      ) {
-        const css = variableMap.get(
-          bv.individualStrokeWeights.BORDER_TOP_WEIGHT.id
-        )
-        if (css) variants[variantName].borderWidth = css
-      }
-    }
-  }
-
-  return Object.keys(variants).length ? variants : null
-}
-
-function generateComponentScss(componentName, variants) {
-  const varMapName = `$${toCamelCase(componentName)}Variants`
-
-  // Génération de la map SCSS
-  const mapEntries = []
-  for (const [variantName, props] of Object.entries(variants)) {
-    const propLines = Object.entries(props)
-      .map(([propKey, cssVal]) => `    ${propKey}: ${cssVal},`)
-      .join("\n")
-    mapEntries.push(`  ${variantName}: (\n${propLines}\n  ),`)
-  }
-
-  return `// Do not edit directly, this file was auto-generated.
-
-${varMapName}: (
-${mapEntries.join("\n")}
-);
-
-@each $variant, $props in ${varMapName} {
-  .${componentName}.is-#{$variant} {
-    @each $prop, $value in $props {
-      @if $prop == "background" {
-        background-color: $value;
-      } @else if $prop == "text" or $prop == "color" {
-        color: $value;
-      } @else if $prop == "border" {
-        border-color: $value;
-      } @else if $prop == "borderWidth" {
-        border-width: $value;
-      } @else if $prop == "radius" {
-        border-radius: $value;
-      } @else if $prop == "padding" {
-        padding: $value;
-      } @else {
-        #{$prop}: $value;
-      }
-    }
-  }
-}
-`
 }
 
 async function main() {
@@ -310,7 +151,7 @@ async function main() {
   if (generatedNames.length) {
     const indexPath = path.join(stylesComponentsDir, "_index.scss")
     const indexContent =
-      generatedNames.map((name) => `@import "${name}-generated";`).join("\n") +
+      generatedNames.map((name) => `@forward "${name}-generated";`).join("\n") +
       "\n"
     await fs.writeFile(indexPath, indexContent, "utf8")
     const relIndexPath = path.relative(root, indexPath)

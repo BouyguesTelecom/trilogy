@@ -1,7 +1,7 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native"
 
 import type { ActiveTrilogyTheme } from "../constants/theme"
-import { useTheme } from "../hooks/useTheme"
+import { useTheme } from "../hooks/useTheme.native"
 
 type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle }
 /**

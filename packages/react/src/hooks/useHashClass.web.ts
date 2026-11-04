@@ -1,19 +1,12 @@
-import { useTrilogyContext } from "../contexts/trilogyContext.web"
+import { useTrilogyMangled } from "./useTrilogyMangled.web"
 
-/**
- * Used to hash classes if styled components
- * @param mangled Apply only if mangled props
- * @param classes String classes
- */
-export const useHashClass = (classes: string): string => {
-  const { hash, mangled } = useTrilogyContext()
-
+export function useHashClass(classes: string): string {
+  const { mangled, hash } = useTrilogyMangled()
   if (classes.trim().length < 1) return ""
-  if (mangled) {
-    return classes
-      .split(" ")
-      .map((classe: string) => (classe = `${classe}_${hash}`))
-      .join(" ")
-  }
+  if (!mangled) return classes
+
   return classes
+    .split(" ")
+    .map((name) => `${name}_${hash}`)
+    .join(" ")
 }

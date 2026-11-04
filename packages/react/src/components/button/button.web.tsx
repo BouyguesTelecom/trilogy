@@ -46,9 +46,9 @@ export const Button: ForwardRefExoticComponent<
     const classes = useHashClass(
       clsx(
         "button",
-        variant && `is-${variant}`,
-        loading && "is-loading",
-        fullwidth && "is-fullwidth",
+        variant && variant,
+        loading && "loading",
+        fullwidth && "fullwidth",
         className
       )
     )

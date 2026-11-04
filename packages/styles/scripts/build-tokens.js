@@ -110,7 +110,7 @@ StyleDictionary.registerFormat({
         })
       return `${selector} {\n${vars.join("\n")}\n}`
     })
-    return `${header}${blocks.join("\n\n")}\n`
+    return `${header}@use "primitives-generated" as *;\n\n${blocks.join("\n\n")}\n`
   },
 })
 
@@ -125,7 +125,7 @@ StyleDictionary.registerFormat({
           : $value
       return `  --${name}: ${value};`
     })
-    return `${header}:root {\n${vars.join("\n")}\n}\n`
+    return `${header}@use "primitives-generated" as *;\n\n:root {\n${vars.join("\n")}\n}\n`
   },
 })
 
@@ -427,12 +427,12 @@ await fonts.buildAllPlatforms()
 // Génération des index de dossiers
 await fs.promises.writeFile(
   path.join(variablesBuildPath, "_index.scss"),
-  `@import "primitives-generated";\n@import "colors-generated";\n@import "dimensions-generated";\n@import "fonts-generated";\n`,
+  `@forward "primitives-generated";\n@forward "colors-generated";\n@forward "dimensions-generated";\n@forward "fonts-generated";\n`,
   "utf8"
 )
 
 await fs.promises.writeFile(
   path.join(helpersBuildPath, "_index.scss"),
-  `@import "colors-generated";\n@import "dimensions-generated";\n@import "fonts-generated";\n`,
+  `@forward "colors-generated";\n@forward "dimensions-generated";\n@forward "fonts-generated";\n`,
   "utf8"
 )

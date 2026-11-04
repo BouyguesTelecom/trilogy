@@ -1,4 +1,4 @@
-@import "primitives-generated";
-@import "colors-generated";
-@import "dimensions-generated";
-@import "fonts-generated";
+@forward "primitives-generated";
+@forward "colors-generated";
+@forward "dimensions-generated";
+@forward "fonts-generated";
