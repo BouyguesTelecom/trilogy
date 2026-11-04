@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.20.4] - 2026-11-04
+- Fix radius box highlighted (web)
+- Fix position border active Box (web)
+- Fix style divider (web)
+- Fix var border (web)
+- Fix box full radius
+
 ## [4.20.3] - 2026-10-26
 - Fix padding of Section component
 
