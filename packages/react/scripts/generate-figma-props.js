@@ -24,6 +24,11 @@ function cleanPropName(raw) {
   return name.charAt(0).toLowerCase() + name.slice(1)
 }
 
+// "flex-start" -> "flexStart" (clé d'enum valide, la valeur reste "flex-start")
+function toEnumKey(str) {
+  return str.replace(/[\s_-]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ""))
+}
+
 function toPascalCase(str) {
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (match) => match.toUpperCase())
@@ -116,7 +121,7 @@ function generateComponentTypes(node, metadata) {
       const options =
         (isMain && metadata?.variantValues) || def.variantOptions || []
       const enumMembers = options
-        .map((opt) => `  ${opt} = "${opt}",`)
+        .map((opt) => `  ${toEnumKey(opt)} = "${opt}",`)
         .join("\n")
 
       enums.push(`export enum ${enumName} {\n${enumMembers}\n}`)

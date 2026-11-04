@@ -1,8 +1,8 @@
-import { SCREEN_ROUTES } from "@/data/screenRoutes"
-import { useRouter } from "@/libs/router"
 import { Pressable, StyleSheet, Text, View } from "react-native"
 
-import { Screen } from "@/components/screen"
+import { Screen } from "../components/screen"
+import { SCREEN_ROUTES } from "../data/screenRoutes"
+import { useRouter } from "../libs/router"
 
 export default function HomeScreen() {
   const router = useRouter()

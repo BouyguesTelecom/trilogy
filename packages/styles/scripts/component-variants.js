@@ -201,3 +201,54 @@ ${entries.join("\n")}
 }
 `
 }
+
+// Les props Figma portent le nom de la propriété CSS (valeurs CSS directes), sauf direction
+const LAYOUT_PROPS = {
+  direction: "flex-direction",
+  alignItems: "align-items",
+  justifyContent: "justify-content",
+}
+
+// Composant de mise en page : ses props sont direction / alignItems / justifyContent, pas des variants de style
+export function isLayoutComponentSet(compSetNode) {
+  const props = Object.keys(compSetNode.componentPropertyDefinitions ?? {})
+  return props.length > 0 && props.every((prop) => prop in LAYOUT_PROPS)
+}
+
+/** { defaults: { direction: "column", ... }, options: { alignItems: ["center", ...] }, gap: "var(--spacing-md)" } */
+export function extractLayoutData(compSetNode, variableMap) {
+  const definitions = compSetNode.componentPropertyDefinitions
+  const defaults = {}
+  const options = {}
+  for (const [prop, def] of Object.entries(definitions)) {
+    defaults[prop] = def.defaultValue
+    options[prop] = def.variantOptions
+  }
+
+  const gapId = compSetNode.children?.[0]?.boundVariables?.itemSpacing?.id
+  return { defaults, options, gap: gapId && variableMap.get(gapId) }
+}
+
+export function generateLayoutScss(componentName, { defaults, options, gap }) {
+  const base = Object.entries(defaults).map(
+    ([prop, value]) => `  ${LAYOUT_PROPS[prop]}: ${value};`
+  )
+  if (gap) base.push(`  gap: ${gap};`)
+
+  const modifiers = Object.entries(options).flatMap(([prop, values]) =>
+    values.map(
+      (value) =>
+        `.${componentName}.${LAYOUT_PROPS[prop]}-${value} {\n  ${LAYOUT_PROPS[prop]}: ${value};\n}`
+    )
+  )
+
+  return `// Do not edit directly, this file was auto-generated.
+
+.${componentName} {
+  display: flex;
+${base.join("\n")}
+}
+
+${modifiers.join("\n\n")}
+`
+}

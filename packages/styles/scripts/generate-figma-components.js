@@ -4,8 +4,11 @@ import path from "node:path"
 import process from "node:process"
 
 import {
+  extractLayoutData,
   extractVariantsData,
   generateComponentScss,
+  generateLayoutScss,
+  isLayoutComponentSet,
 } from "./component-variants.js"
 
 // Charge les variables d'environnement (.env à la racine)
@@ -129,14 +132,20 @@ async function main() {
 
   for (const compSet of componentSets) {
     const componentName = getComponentName(compSet.name)
-    const variants = extractVariantsData(compSet, pageData, variableMap)
-
-    if (!variants) {
-      console.log(`⚠ [${compSet.name}] : Aucune variante détectée, ignoré.`)
-      continue
+    let scssContent
+    if (isLayoutComponentSet(compSet)) {
+      scssContent = generateLayoutScss(
+        componentName,
+        extractLayoutData(compSet, variableMap)
+      )
+    } else {
+      const variants = extractVariantsData(compSet, pageData, variableMap)
+      if (!variants) {
+        console.log(`⚠ [${compSet.name}] : Aucune variante détectée, ignoré.`)
+        continue
+      }
+      scssContent = generateComponentScss(componentName, variants)
     }
-
-    const scssContent = generateComponentScss(componentName, variants)
     const outputFile = path.join(
       stylesComponentsDir,
       `_${componentName}-generated.scss`

@@ -15,10 +15,11 @@ import { ButtonMarkup, type ButtonProps } from "./button.types"
 
 export type ButtonRef =
   HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement
+type Props = PropsWithChildren<ButtonProps>
 
 export const Button: ForwardRefExoticComponent<
-  PropsWithChildren<ButtonProps> & RefAttributes<ButtonRef>
-> = forwardRef<ButtonRef, PropsWithChildren<ButtonProps>>(
+  Props & RefAttributes<ButtonRef>
+> = forwardRef<ButtonRef, Props>(
   (
     {
       markup,
