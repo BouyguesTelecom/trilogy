@@ -114,10 +114,15 @@ $alignments: (
 
 // Typography
 @mixin typography-size($target: '') {
+  $suffix: '';
+  @if $target != '' {
+    $suffix: '-' + $target;
+  }
+
   @each $size in $sizes {
     $i: index($sizes, $size);
 
-    .is-size-#{$i}#{if($target == '', '', '-' + $target)} {
+    .is-size-#{$i}#{$suffix} {
       font-size: $size !important;
     }
   }
@@ -429,7 +434,7 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex';
 }
 
 .is-bordered {
-  border: var(--border);
+  border: getBorder();
 }
 
 .is-vertical-paddingless {

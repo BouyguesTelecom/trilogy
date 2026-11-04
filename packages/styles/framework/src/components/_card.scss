@@ -99,7 +99,7 @@ $basis-values: (
   }
 
   &.is-active {
-    outline: var(--border-active);
+    outline: getBorder('active');
 
     .card-content {
 

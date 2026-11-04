@@ -65,7 +65,7 @@ a.box {
   }
 
   &.is-active {
-    outline: var(--border-active);
+    outline: getBorder('active');
     outline-offset: -2px;
   }
 
@@ -194,7 +194,7 @@ a.box {
   .box-footer:not(.is-borderless):not([class*="has-background"])::before {
     content: '';
     display: block;
-    border-top: var(--border);
+    border-top: getBorder();
     position: relative;
     top: calc(var(--padding-box) * -1);
   }
