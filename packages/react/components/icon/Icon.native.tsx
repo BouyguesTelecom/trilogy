@@ -138,50 +138,40 @@ const Icon = forwardRef<IconNativeRef, IconProps>(
       const SvgComponent = resolveSvg(icons[iconKey])
       if (SvgComponent) {
         if (stretched && !circled) {
-        iconView = (
-          <View style={styles.stretched} testID={`${testId}-stretched`}>
-            <SvgComponent
-              style={[styles.iconCircled, styles.icon]}
-              width={defaultSize}
-              height={defaultSize}
-              color={getColorStyle(TrilogyColor.BACKGROUND)}
-            />
-          </View>
-        )
-      } else if (circled) {
-        iconView = (
-          <View style={styles.circled} testID={`${testId}-circled`}>
-            <SvgComponent
-              style={[styles.iconCircled, styles.icon]}
-              width={defaultSize}
-              height={defaultSize}
-              color={iconColor}
-            />
-          </View>
-        )
-      } else {
-        iconView = (
-          <View style={styles.iconContainer} {...others}>
-            <SvgComponent
-              style={[styles.icon, style]}
-              width={defaultSize}
-              height={defaultSize}
-              color={iconColor}
-            />
-          </View>
-        )
+          iconView = (
+            <View style={styles.stretched} testID={`${testId}-stretched`}>
+              <SvgComponent
+                style={[styles.iconCircled, styles.icon]}
+                width={defaultSize}
+                height={defaultSize}
+                color={getColorStyle(TrilogyColor.BACKGROUND)}
+              />
+            </View>
+          )
+        } else if (circled) {
+          iconView = (
+            <View style={styles.circled} testID={`${testId}-circled`}>
+              <SvgComponent
+                style={[styles.iconCircled, styles.icon]}
+                width={defaultSize}
+                height={defaultSize}
+                color={iconColor}
+              />
+            </View>
+          )
+        } else {
+          iconView = (
+            <View style={styles.iconContainer} {...others}>
+              <SvgComponent style={[styles.icon, style]} width={defaultSize} height={defaultSize} color={iconColor} />
+            </View>
+          )
         }
       }
     }
 
     return onClick ? (
       <View style={styles.rootView} testID={testId} ref={ref}>
-        <TouchableOpacity
-          style={{ width: '100%' }}
-          onPress={onClick}
-          activeOpacity={0.85}
-          testID={`${testId}-pressable`}
-        >
+        <TouchableOpacity style={{ width: '100%' }} onPress={onClick} activeOpacity={1} testID={`${testId}-pressable`}>
           {iconView}
         </TouchableOpacity>
       </View>

@@ -27,6 +27,7 @@ const BreadcrumbItem = forwardRef<BreadcrumbItemNativeRef, BreadcrumbItemProps>(
 
     return (
       <TouchableOpacity
+        activeOpacity={1}
         ref={ref}
         testID={testId}
         onPress={(e) => {

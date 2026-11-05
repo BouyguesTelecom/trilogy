@@ -1,5 +1,5 @@
 import { ComponentName } from '@/components/enumsComponentsName'
-import { Icon, IconName, IconSize } from '@/components/icon'
+import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { SpacerSize } from '@/components/spacer'
 import { Sticker } from '@/components/sticker'
 import { Text, TextLevels } from '@/components/text'
@@ -8,12 +8,14 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
 import { VariantState } from '@/objects/facets/Variant'
-import { useContext, useState, forwardRef, useId } from 'react'
+import { useContext, useState, forwardRef, useId, Ref } from 'react'
 import { TouchableOpacity, View as ViewRN } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { CheckboxTilesContext } from '@/components/checkbox/tiles/context'
 import { CheckboxTileNativeRef, CheckboxTileProps } from '@/components/checkbox/tiles/tile/CheckboxTileProps'
 import { Theme } from '@/constants/theme'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
 
 /**
  * CheckboxTile
@@ -53,6 +55,7 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
     },
     ref,
   ): JSX.Element => {
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
     const [_checked, setChecked] = useState<boolean>(checked || false)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
     const { isGrid } = useContext(CheckboxTilesContext)
@@ -136,12 +139,15 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
 
     if (horizontal) {
       return (
-        <TouchableOpacity
+        <AnimatedPressable
           testID={testId}
-          ref={ref}
+          ref={ref as Ref<ViewRN>}
           disabled={disabled}
-          style={styles.horizontal}
-          onPress={() => handleClick()}
+          style={[styles.horizontal, animatedStyle]}
+          onPress={() => {
+            handleAnimate()
+            handleClick()
+          }}
         >
           {sticker && (
             <ViewRN style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
@@ -149,8 +155,14 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
             </ViewRN>
           )}
 
-          <TouchableOpacity style={styles.checkBox} disabled={disabled} testID={id} onPressIn={() => handleClick()}>
-            {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
+          <TouchableOpacity
+            style={styles.checkBox}
+            disabled={disabled}
+            testID={id}
+            onPressIn={() => handleClick()}
+            activeOpacity={1}
+          >
+            {_checked && <Icon size={IconSize.SMALLER} color={IconColor.BACKGROUND} name={IconName.CHECK} />}
           </TouchableOpacity>
 
           {icon && (
@@ -180,17 +192,20 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
               description
             )}
           </View>
-        </TouchableOpacity>
+        </AnimatedPressable>
       )
     }
 
     return (
-      <TouchableOpacity
+      <AnimatedPressable
         testID={testId}
-        ref={ref}
+        ref={ref as Ref<ViewRN>}
         disabled={disabled}
-        style={styles.tile}
-        onPress={handleClick}
+        style={[styles.tile, animatedStyle]}
+        onPress={() => {
+          handleAnimate()
+          handleClick()
+        }}
         {...others}
       >
         {sticker && (
@@ -199,8 +214,14 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
           </ViewRN>
         )}
         <View style={{ gap: SpacerSize.TWO }}>
-          <TouchableOpacity style={[styles.checkBox]} disabled={disabled} testID={id} onPressIn={handleClick}>
-            {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
+          <TouchableOpacity
+            style={[styles.checkBox]}
+            disabled={disabled}
+            testID={id}
+            onPressIn={handleClick}
+            activeOpacity={1}
+          >
+            {_checked && <Icon size={IconSize.SMALLER} color={IconColor.BACKGROUND} name={IconName.CHECK} />}
           </TouchableOpacity>
           {icon && (
             <View
@@ -230,7 +251,7 @@ const CheckboxTile = forwardRef<CheckboxTileNativeRef, CheckboxTileProps>(
             </Text>
           )}
         </View>
-      </TouchableOpacity>
+      </AnimatedPressable>
     )
   },
 )
