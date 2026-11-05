@@ -1,5 +1,5 @@
-import { forwardRef } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { forwardRef, Ref } from 'react'
+import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { FabNativeRef, FabProps } from '@/components/fab/FabProps'
 import { Alignable } from '@/objects/facets/Alignable'
@@ -10,6 +10,8 @@ import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Text } from '@/components/text'
 import { Theme } from '@/constants/theme'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 /**
  * Fab Component - Floating Action Button
@@ -31,6 +33,7 @@ const Fab = forwardRef<FabNativeRef, FabProps>(
     { children, accessibilityLabel, iconName, extended, onClick, top, bottom, left, right, disabled, testId },
     ref,
   ): JSX.Element => {
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
     const styles = memoStyles({
       button: {
         backgroundColor: getColorStyle(TrilogyColor.MAIN),
@@ -69,11 +72,14 @@ const Fab = forwardRef<FabNativeRef, FabProps>(
     })
 
     return (
-      <TouchableOpacity
-        ref={ref}
-        style={[styles.button, extended && styles.extended]}
+      <AnimatedPressable
+        ref={ref as Ref<View>}
+        style={[styles.button, extended && styles.extended, animatedStyle]}
         accessibilityLabel={accessibilityLabel}
-        onPress={(e?: unknown) => onClick?.(e)}
+        onPress={(e?: unknown) => {
+          handleAnimate()
+          onClick?.(e)
+        }}
         disabled={disabled}
         testID={testId}
       >
@@ -97,7 +103,7 @@ const Fab = forwardRef<FabNativeRef, FabProps>(
             align={Alignable.ALIGNED_CENTER}
           />
         )}
-      </TouchableOpacity>
+      </AnimatedPressable>
     )
   },
 )

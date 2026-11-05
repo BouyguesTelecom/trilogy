@@ -11,7 +11,7 @@ import { AutoCompleteItemProps } from '@/components/autocomplete/item/AutoComple
  */
 const AutoCompleteItemNative = ({ item, testId, onSelect }: AutoCompleteItemProps): JSX.Element => {
   return (
-    <TouchableOpacity style={styles.itemList} onPress={onSelect} testID={testId}>
+    <TouchableOpacity style={styles.itemList} onPress={onSelect} testID={testId} activeOpacity={1}>
       <Text>{getLabel(item)}</Text>
     </TouchableOpacity>
   )

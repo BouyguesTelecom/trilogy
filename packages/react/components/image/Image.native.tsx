@@ -53,12 +53,21 @@ const Image = forwardRef<ImageNativeRef, ImageProps>(
           }
 
     const image = (
-      <ImageNative testID={testId} ref={ref} resizeMode={circled ? undefined : 'contain'} style={styles.image} accessibilityLabel={alt} source={imageSource} {...others} alt={alt} />
+      <ImageNative
+        testID={testId}
+        ref={ref}
+        resizeMode={circled ? undefined : 'contain'}
+        style={styles.image}
+        accessibilityLabel={alt}
+        source={imageSource}
+        {...others}
+        alt={alt}
+      />
     )
 
     return onClick ? (
       <View>
-        <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
+        <TouchableOpacity onPress={onClick} activeOpacity={1}>
           {image}
         </TouchableOpacity>
       </View>

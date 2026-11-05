@@ -1,10 +1,15 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { useEffect, useState, forwardRef } from 'react'
-import { Text, TouchableOpacity } from 'react-native'
+import { useEffect, useState, forwardRef, Ref } from 'react'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { View, Text } from 'react-native'
 import { Theme } from '@/constants/theme'
 import { memoStyles } from '@/helpers/memoStyles'
-import { SegmentControlItemNativeRef, SegmentControlItemProps } from '@/components/segment-control/item/SegmentControlItemProps'
+import {
+  SegmentControlItemNativeRef,
+  SegmentControlItemProps,
+} from '@/components/segment-control/item/SegmentControlItemProps'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 /**
  * SegmentControlItem Item Component
@@ -16,7 +21,14 @@ import { SegmentControlItemNativeRef, SegmentControlItemProps } from '@/componen
  */
 const SegmentControlItem = forwardRef<SegmentControlItemNativeRef, SegmentControlItemProps>(
   ({ active, children, onClick, disabled, ...others }, ref): JSX.Element => {
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
+
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
+
+    const mainColor = getColorStyle(TrilogyColor.MAIN)
+    const disabledFadeColor = getColorStyle(TrilogyColor.DISABLED_FADE)
+    const bgColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const disabledColor = getColorStyle(TrilogyColor.DISABLED)
 
     const styles = memoStyles({
       tabsItem: {
@@ -25,17 +37,11 @@ const SegmentControlItem = forwardRef<SegmentControlItemNativeRef, SegmentContro
         marginRight: 4,
         borderRadius: Theme.radius.sm,
         alignItems: 'center',
-        backgroundColor:
-          (activeItem && getColorStyle(TrilogyColor.MAIN)) ||
-          (disabled && getColorStyle(TrilogyColor.DISABLED_FADE)) ||
-          getColorStyle(TrilogyColor.BACKGROUND),
+        backgroundColor: (activeItem && mainColor) || (disabled && disabledFadeColor) || bgColor,
       },
       text: {
         paddingHorizontal: 10,
-        color:
-          (activeItem && getColorStyle(TrilogyColor.BACKGROUND)) ||
-          (!activeItem && disabled && getColorStyle(TrilogyColor.DISABLED)) ||
-          getColorStyle(TrilogyColor.MAIN),
+        color: (activeItem && bgColor) || (!activeItem && disabled && disabledColor) || mainColor,
         marginVertical: 12,
         fontSize: 16,
         textAlign: 'center',
@@ -49,12 +55,13 @@ const SegmentControlItem = forwardRef<SegmentControlItemNativeRef, SegmentContro
     }, [active])
 
     return (
-      <TouchableOpacity
-        ref={ref}
+      <AnimatedPressable
+        ref={ref as Ref<View>}
         disabled={disabled}
-        style={[styles.tabsItem]}
+        style={[styles.tabsItem, animatedStyle]}
         onPress={(e?: unknown) => {
           if (!disabled) {
+            handleAnimate()
             setActiveItem(active || false)
             if (onClick) {
               onClick(e)
@@ -68,7 +75,7 @@ const SegmentControlItem = forwardRef<SegmentControlItemNativeRef, SegmentContro
             {String(children)}
           </Text>
         )}
-      </TouchableOpacity>
+      </AnimatedPressable>
     )
   },
 )

@@ -1,6 +1,6 @@
 import { Dev } from '@/objects/facets/Dev'
 import { VariantProps } from '@/objects/facets/Variant'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { IconName, IconNameValues } from '@/components/icon'
 import { RadioNativeProps, RadioProps } from '@/components/radio/RadioProps'
 import { ReactNode } from 'react'
@@ -18,4 +18,4 @@ export interface RadioTileProps extends Omit<RadioProps, 'label'>, RadioTileProp
 export interface RadioTileNativeProps extends Omit<RadioNativeProps, 'label'>, RadioTilePropsCommon {}
 
 export type RadioTileRef = HTMLDivElement
-export type RadioTileNativeRef = TouchableOpacity
+export type RadioTileNativeRef = TouchableOpacity | View
