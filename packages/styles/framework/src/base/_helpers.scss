@@ -900,4 +900,7 @@ $spacings-values: (
   .padding-#{$spacing} {
     padding: var(--spacing-#{$spacing}) !important;
   }
+  .gap-#{$spacing} {
+    gap: var(--spacing-#{$spacing}) !important;
+  }
 }

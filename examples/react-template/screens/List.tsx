@@ -1,3 +1,4 @@
+import { Spacing } from '@/objects/facets/Spacing'
 import {
   AutoLayout,
   Column,
@@ -7,13 +8,17 @@ import {
   ListIconStatus,
   ListItem,
   Section,
+  Select,
   Text,
   TextLevels,
   Title,
   TitleLevels,
+  SelectOption,
 } from '@trilogy-ds/react/components'
+import { useState } from 'react'
 
 export const ListScreen = (): JSX.Element => {
+  const [gap, setGap] = useState<Spacing | `${Spacing}`>('md')
   return (
     <Section>
       <AutoLayout>
@@ -149,6 +154,40 @@ export const ListScreen = (): JSX.Element => {
                 <Text>Test</Text>
               </Column>
             </Columns>
+          </ListItem>
+        </List>
+
+        <Title level={TitleLevels.THREE}>List gap xxs</Title>
+
+        <Select
+          selected={gap}
+          onChange={(e) => {
+            setGap(e?.selectValue as Spacing)
+          }}
+        >
+          <SelectOption value='none'>Gap none</SelectOption>
+          <SelectOption value='xxs'>Gap xxs</SelectOption>
+          <SelectOption value='xs'>Gap xs</SelectOption>
+          <SelectOption value='sm'>Gap sm</SelectOption>
+          <SelectOption value='md'>Gap md</SelectOption>
+          <SelectOption value='lg'>Gap lg</SelectOption>
+          <SelectOption value='xl'>Gap xl</SelectOption>
+          <SelectOption value='xxl'>Gap xxl</SelectOption>
+          <SelectOption value='xxxl'>Gap xxxl</SelectOption>
+        </Select>
+        <List gap={gap}>
+          <ListItem>
+            <Text level={TextLevels.ONE}>
+              Ceci est un titre eci est un titre eci est un titre eci est un titre eci est un titre eci est un titre eci
+              est un titre eci est un titre eci est un titre eci est un titre eci est un titre eci est un titre eci est
+              un titre eci est un titre eci est un titre eci est un titre
+            </Text>
+          </ListItem>
+          <ListItem>
+            <Text level={TextLevels.ONE}>Lorem ipsum dolor sit, amet consectetur adipisicing elit</Text>
+          </ListItem>
+          <ListItem>
+            <Text level={TextLevels.ONE}>test</Text>
           </ListItem>
         </List>
       </AutoLayout>
