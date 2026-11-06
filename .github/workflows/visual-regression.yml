@@ -11,7 +11,7 @@ permissions:
 jobs:
   visual-regression:
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       has_diff: ${{ steps.visual-result.outputs.has_diff }}
 
