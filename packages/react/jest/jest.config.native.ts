@@ -1,6 +1,13 @@
 export default {
   rootDir: '..',
   moduleNameMapper: {
+    '^react$': '<rootDir>/node_modules/react',
+    '^react/package.json$': '<rootDir>/node_modules/react/package.json',
+    '^react-test-renderer$': '<rootDir>/node_modules/react-test-renderer',
+    '^react-test-renderer/package.json$': '<rootDir>/node_modules/react-test-renderer/package.json',
+    '^react-native$': '<rootDir>/node_modules/react-native',
+    '^react-native/(.*)$': '<rootDir>/node_modules/react-native/$1',
+    '^react-native/package.json$': '<rootDir>/node_modules/react-native/package.json',
     '^@/(.*)': '<rootDir>/$1',
   },
   testEnvironment: 'node',
