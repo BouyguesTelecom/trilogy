@@ -2,7 +2,7 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { getStatusStyle } from '@/objects/facets/Status'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { useEffect, useState, forwardRef, useId } from 'react'
-import { Pressable } from 'react-native'
+import { LayoutChangeEvent, Pressable } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import Animated, {
   interpolate,
@@ -100,7 +100,7 @@ const Switch = forwardRef<SwitchNativeRef, SwitchProps>(
       >
         <Animated.View
           style={[styles.track, trackAnimatedStyle]}
-          onLayout={(e) => {
+          onLayout={(e: LayoutChangeEvent) => {
             height.value = e.nativeEvent.layout.height
             width.value = e.nativeEvent.layout.width
           }}

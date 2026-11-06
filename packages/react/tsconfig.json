@@ -27,7 +27,8 @@
     "forceConsistentCasingInFileNames": false,
     "experimentalDecorators": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "react-native": ["./node_modules/react-native"]
     }
   },
   "include": [
