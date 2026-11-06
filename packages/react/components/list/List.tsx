@@ -11,22 +11,25 @@ import { ComponentName } from '@/components/enumsComponentsName'
  * @param children {ReactNode} List items (ListItem components)
  * @param divider {boolean} Add a divider between list items
  * @param ordered {boolean} Display as an ordered list (ol) instead of unordered (ul)
+ * @param gap {Spacing} Space between items
  * @param testId {string} Test Id for Test Integration
  * @param id {string} Custom id attribute
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS Classes
  */
-const List = forwardRef<ListRef, ListProps>(({ className, id, children, testId, divider, ordered, ...others }, ref) => {
-  const { styled } = useTrilogyContext()
-  const classes = hashClass(styled, clsx('list', divider && has('divider'), className))
-  const Tag = ordered ? 'ol' : 'ul'
+const List = forwardRef<ListRef, ListProps>(
+  ({ className, id, children, testId, divider, ordered, gap, ...others }, ref) => {
+    const { styled } = useTrilogyContext()
+    const classes = hashClass(styled, clsx('list', divider && has('divider'), gap && `gap-${gap}`, className))
+    const Tag = ordered ? 'ol' : 'ul'
 
-  return (
-    <Tag ref={ref as any} id={id} data-testid={testId} className={classes} {...others}>
-      {children}
-    </Tag>
-  )
-})
+    return (
+      <Tag ref={ref as any} id={id} data-testid={testId} className={classes} {...others}>
+        {children}
+      </Tag>
+    )
+  },
+)
 
 List.displayName = ComponentName.List
 export default List
