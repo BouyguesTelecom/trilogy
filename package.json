@@ -12,7 +12,8 @@
     "start:mobile": "pnpm --filter @trilogy-ds/cross-app start:mobile",
     "figma:generate-props": "pnpm --filter @trilogy-ds/react figma:generate-props",
     "figma:generate-components": "pnpm --filter @trilogy-ds/styles figma:generate-components",
-    "release": "turbo build && changeset publish"
+    "release": "turbo build && changeset publish",
+    "start": "pnpm start:web"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",

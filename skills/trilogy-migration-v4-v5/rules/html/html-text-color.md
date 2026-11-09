@@ -48,4 +48,4 @@
 ## Précautions de portée
 
 - **Cible** : Ne migrer que les classes appliquées comme utilitaires de couleur sur du texte (`<span>`, `<p>`, titres, labels, etc.).
-- **Composants** : Ne pas remplacer à l'aveugle les modificateurs de variantes ou d'états d'autres composants v4 (ex. `.button.is-primary`, modificateurs d'input ou de card), sauf lorsqu'il s'agit explicitement de la classe utilitaire de couleur de texte.
+- **Composants** : Ne pas remplacer à l'aveugle les modificateurs de variantes ou d'états d'autres composants v4 (ex. `.button.is-primary`, modificateurs d'input ou de card), sauf lorsqu'il s'agit explicitement de la classe utilitaire de couleur de texte. Les variantes de bouton sont traitées dans [html-button.md](html-button.md).

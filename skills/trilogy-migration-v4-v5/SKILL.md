@@ -24,6 +24,7 @@ Ce skill accompagne l'audit et la migration des projets consommateurs de Trilogy
 - [react-text-color.md](rules/react/react-text-color.md) — Remplacement des classes de couleur de texte v4 (`is-*`) dans la prop `className` des composants React (JSX/TSX).
 - [html-background-color.md](rules/html/html-background-color.md) — Remplacement des classes HTML/CSS de couleur de fond v4 (`has-background-*`) par les classes v5 (`bg-*`).
 - [react-background-color.md](rules/react/react-background-color.md) — Remplacement des classes de couleur de fond v4 (`has-background-*`) dans la prop `className` des composants React (JSX/TSX).
+- [html-button.md](rules/html/html-button.md) — Remplacement des classes HTML/CSS de variantes et modificateurs de bouton v4 (`is-primary`, `is-secondary`, `is-conversion`, `is-ghost`, `is-loading`, `is-fullwidth`) par les classes v5 sans préfixe (`primary`, `secondary`, `conversion`, `ghost`, `loading`, `fullwidth`).
 - [migration-process.md](rules/migration-process.md) — Méthode générale, précautions et vérifications après migration.
 
 ## Agents
