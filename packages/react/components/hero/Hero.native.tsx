@@ -6,6 +6,8 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { HeroNativeRef, HeroProps } from '@/components/hero/HeroProps'
 import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 /**
  * Hero Component
@@ -22,6 +24,7 @@ const Hero = forwardRef<HeroNativeRef, HeroProps>(
     { children, backgroundSrc, onClick, overlap, inverted, backgroundColor, backgroundHeight, testId, ...others },
     ref,
   ): JSX.Element => {
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
     const [overlapHeight, setOverlapHeight] = useState<number>(0)
     const [secondOverlapHeight, setSecondOverlapHeight] = useState<number>(0)
 
@@ -130,9 +133,15 @@ const Hero = forwardRef<HeroNativeRef, HeroProps>(
 
     return onClick ? (
       <View testID={testId} ref={ref}>
-        <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
+        <AnimatedPressable
+          onPress={(e) => {
+            handleAnimate()
+            onClick?.(e)
+          }}
+          style={animatedStyle}
+        >
           {heroView}
-        </TouchableOpacity>
+        </AnimatedPressable>
       </View>
     ) : (
       <View testID={testId} ref={ref} style={{ width: '100%' }}>

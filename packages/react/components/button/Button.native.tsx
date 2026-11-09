@@ -5,12 +5,14 @@ import { getTypographyBoldStyle, TypographyBold } from '@/objects/Typography/Typ
 import { getButtonColorStyle, getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { getLoadingClassName } from '@/objects/facets/Loadable'
 import { getVariantClassName } from '@/objects/facets/Variant'
-import { forwardRef } from 'react'
-import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
+import { forwardRef, Ref } from 'react'
+import { ActivityIndicator, Text, View as RNView } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { ButtonVariant } from '@/components/button/ButtonEnum'
 import { ButtonNativeRef, ButtonProps } from '@/components/button/ButtonProps'
 import { Theme } from '@/constants/theme'
+import { AnimatedPressable } from '../animatedPressable/AinmatedPressable.native'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
 
 /**
  * Button Component
@@ -29,6 +31,7 @@ const Button = forwardRef<ButtonNativeRef, ButtonProps>(
     { children, variant, onClick, disabled, loading, fullwidth, testId, accessibilityLabel, iconName, ...others },
     ref,
   ): JSX.Element => {
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
     const loaderColor = getColorStyle(TrilogyColor.BACKGROUND)
     const isLoading = typeof loading === 'string' && getLoadingClassName(loading) === 'loading'
 
@@ -127,14 +130,17 @@ const Button = forwardRef<ButtonNativeRef, ButtonProps>(
       : 'NotSpecified'
 
     return (
-      <TouchableOpacity
-        ref={ref}
+      <AnimatedPressable
+        ref={ref as Ref<RNView>}
         accessible={!!buttonAccessibilityLabel}
         accessibilityLabel={buttonAccessibilityLabel}
         testID={buttonTestId}
         disabled={disabled || loading}
-        style={[styles.button, fullwidth && styles.fullwidth]}
-        onPress={(e?: unknown) => onClick?.(e)}
+        style={[styles.button, fullwidth && styles.fullwidth, animatedStyle]}
+        onPress={(e?: unknown) => {
+          handleAnimate()
+          onClick?.(e)
+        }}
         {...others}
       >
         {loading && typeof loading === 'string' && getLoadingClassName(loading) === 'loading' && (
@@ -184,7 +190,7 @@ const Button = forwardRef<ButtonNativeRef, ButtonProps>(
             </Text>
           </View>
         )}
-      </TouchableOpacity>
+      </AnimatedPressable>
     )
   },
 )

@@ -177,7 +177,7 @@ const Modal = forwardRef<ModalNativeRef, ModalProps>(
                     </Column>
                     {!hideCloseButton && !unClosable && (
                       <Column narrow>
-                        <TouchableOpacity onPress={handleClose}>
+                        <TouchableOpacity onPress={handleClose} activeOpacity={1}>
                           <Icon name={IconName.TIMES} size={IconSize.MEDIUM} color={TrilogyColor.MAIN} />
                         </TouchableOpacity>
                       </Column>

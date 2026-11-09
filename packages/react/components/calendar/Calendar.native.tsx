@@ -55,9 +55,7 @@ const Calendar = forwardRef<View, CalendarProps>(
     },
     ref,
   ) => {
-    const [visibleMonth, setVisibleMonth] = useState<Date>(
-      value instanceof Date ? value : value[0] || currentDate,
-    )
+    const [visibleMonth, setVisibleMonth] = useState<Date>(value instanceof Date ? value : value[0] || currentDate)
     const [activeDate, setActiveDate] = useState<ChangeEventCalendar>(value)
     const [dateEndHovered, setDateEndHovered] = useState<Date>()
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(false)
@@ -532,6 +530,7 @@ const Calendar = forwardRef<View, CalendarProps>(
 
       return (
         <TouchableOpacity
+          activeOpacity={1}
           testID={testId}
           key={dayIndex}
           disabled={isDisabled}
@@ -586,6 +585,7 @@ const Calendar = forwardRef<View, CalendarProps>(
         <View style={styles.header}>
           <View style={styles.headerRow}>
             <TouchableOpacity
+              activeOpacity={1}
               onPress={() => handleClickNextPrevMonth(-1)}
               disabled={isPrevDisabled}
               accessible={true}
@@ -601,6 +601,7 @@ const Calendar = forwardRef<View, CalendarProps>(
             <View style={styles.monthYearContainer}>
               <View style={styles.dropdownContainer}>
                 <TouchableOpacity
+                  activeOpacity={1}
                   style={styles.monthSelector}
                   accessible={true}
                   accessibilityRole='button'
@@ -616,6 +617,7 @@ const Calendar = forwardRef<View, CalendarProps>(
                   </View>
                 </TouchableOpacity>
                 <TouchableOpacity
+                  activeOpacity={1}
                   style={styles.yearSelector}
                   accessible={true}
                   accessibilityRole='button'
@@ -634,6 +636,7 @@ const Calendar = forwardRef<View, CalendarProps>(
             </View>
 
             <TouchableOpacity
+              activeOpacity={1}
               onPress={() => handleClickNextPrevMonth(1)}
               disabled={isNextDisabled}
               accessible={true}
@@ -685,6 +688,7 @@ const Calendar = forwardRef<View, CalendarProps>(
               <ScrollView style={styles.pickerScrollView}>
                 {months.map((monthName, monthIndex) => (
                   <TouchableOpacity
+                    activeOpacity={1}
                     key={monthIndex}
                     style={[
                       styles.pickerItem,
@@ -734,6 +738,7 @@ const Calendar = forwardRef<View, CalendarProps>(
               <ScrollView style={styles.pickerScrollView}>
                 {yearsBetween.map((year) => (
                   <TouchableOpacity
+                    activeOpacity={1}
                     key={year.value}
                     style={[
                       styles.pickerItem,

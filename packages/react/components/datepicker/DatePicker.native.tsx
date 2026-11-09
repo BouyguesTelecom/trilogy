@@ -375,7 +375,7 @@ const DatePicker = forwardRef<View, DatePickerProps>(
             style={styles.iconContainer}
             onPress={handleOpenCalendar}
             disabled={disabled}
-            activeOpacity={0.7}
+            activeOpacity={1}
           >
             <Icon name='tri-calendar' size={IconSize.SMALL} color={TrilogyColor.MAIN} />
           </TouchableOpacity>

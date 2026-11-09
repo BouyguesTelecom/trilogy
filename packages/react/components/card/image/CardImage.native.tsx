@@ -58,7 +58,7 @@ const CardImage = forwardRef<CardImageNativeRef, CardImageProps>(
 
     return onClick ? (
       <View>
-        <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
+        <TouchableOpacity onPress={onClick} activeOpacity={1}>
           {image}
         </TouchableOpacity>
       </View>
