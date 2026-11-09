@@ -18,6 +18,11 @@ $buttonVariants: (
       background: var(--background-secondary-pressed),
       border: var(--border-primary),
     ),
+    "disabled": (
+      background: var(--background-field),
+      border: var(--border-disabled),
+      text: var(--color-disabled),
+    ),
   ),
   secondary: (
     "default": (
@@ -33,6 +38,11 @@ $buttonVariants: (
     ),
     "pressed": (
       background: var(--background-primary-pressed),
+    ),
+    "disabled": (
+      background: var(--background-field),
+      border: var(--border-disabled),
+      text: var(--color-disabled),
     ),
   ),
   ghost: (
@@ -50,6 +60,11 @@ $buttonVariants: (
     "pressed": (
       background: var(--background-primary-pressed),
     ),
+    "disabled": (
+      background: var(--background-field),
+      border: var(--border-disabled),
+      text: var(--color-disabled),
+    ),
   ),
   conversion: (
     "default": (
@@ -65,6 +80,11 @@ $buttonVariants: (
     ),
     "pressed": (
       background: var(--background-accent-pressed),
+    ),
+    "disabled": (
+      background: var(--background-field),
+      border: var(--border-disabled),
+      text: var(--color-disabled),
     ),
   ),
 );

@@ -45,6 +45,23 @@ export default function ButtonScreen() {
           <Button variant="conversion">Conversion</Button>
         </ButtonList>
       </Wrapper>
+
+      <Wrapper title="Disabled Buttons">
+        <ButtonList direction="row">
+          <Button variant="primary" disabled>
+            Primary
+          </Button>
+          <Button variant="secondary" disabled>
+            Secondary
+          </Button>
+          <Button variant="ghost" disabled>
+            Ghost
+          </Button>
+          <Button variant="conversion" disabled>
+            Conversion
+          </Button>
+        </ButtonList>
+      </Wrapper>
     </Screen>
   )
 }
