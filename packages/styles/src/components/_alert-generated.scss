@@ -1,0 +1,69 @@
+// Do not edit directly, this file was auto-generated.
+
+$alertVariants: (
+  information: (
+    "default": (
+      background: var(--background-information-subtle),
+      border: var(--border-information),
+      radius: var(--radius-md),
+      borderWidth: var(--border-width-sm),
+      text: var(--color-primary),
+    ),
+  ),
+  success: (
+    "default": (
+      background: var(--background-success-subtle),
+      border: var(--border-success),
+      radius: var(--radius-md),
+      borderWidth: var(--border-width-sm),
+      text: var(--color-primary),
+    ),
+  ),
+  error: (
+    "default": (
+      background: var(--background-error-subtle),
+      border: var(--border-error),
+      borderWidth: var(--border-width-sm),
+      text: var(--color-primary),
+    ),
+  ),
+  warning: (
+    "default": (
+      background: var(--background-warning-subtle),
+      border: var(--border-warning),
+      borderWidth: var(--border-width-sm),
+      text: var(--color-primary),
+    ),
+  ),
+);
+
+@mixin alert-props($props) {
+  @each $prop, $value in $props {
+    @if $prop == "background" {
+      background-color: $value;
+    } @else if $prop == "text" or $prop == "color" {
+      color: $value;
+    } @else if $prop == "border" {
+      border-color: $value;
+    } @else if $prop == "borderWidth" {
+      border-style: solid;
+      border-width: $value;
+    } @else if $prop == "radius" {
+      border-radius: $value;
+    } @else if $prop == "padding" {
+      padding: $value;
+    } @else {
+      #{$prop}: $value;
+    }
+  }
+}
+
+@each $variant, $states in $alertVariants {
+  .alert.#{$variant} {
+    @each $state, $props in $states {
+      @if $state == "default" {
+        @include alert-props($props);
+      }
+    }
+  }
+}

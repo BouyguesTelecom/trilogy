@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "expo lint",
     "build": "tsdown",
-    "figma:generate-props": "node scripts/generate-figma-props.js"
+    "figma:props": "node scripts/generate-figma-props.js"
   },
   "keywords": [],
   "author": "",

@@ -77,7 +77,18 @@ export function extractVariantsData(compSetNode, pageData, variableMap) {
   } catch {
     // description en texte libre
   }
-  const variantProp = metadata?.variantProperty ?? "variant"
+  // Figma recopie la description à la duplication d'un component set : on ignore celle d'un autre composant
+  if (metadata?.componentPath && metadata.componentPath !== compSetNode.name) {
+    metadata = null
+  }
+
+  const definitions = compSetNode.componentPropertyDefinitions ?? {}
+  const variantProp =
+    Object.entries(definitions).find(
+      ([name, def]) => def.type === "VARIANT" && name !== STATE_PROP
+    )?.[0] ??
+    metadata?.variantProperty ??
+    "variant"
 
   const variants = {}
   for (const child of compSetNode.children ?? []) {
@@ -125,22 +136,82 @@ const toCamelCase = (str) =>
     .replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ""))
     .replace(/^(.)/, (m) => m.toLowerCase())
 
-export function generateComponentScss(componentName, variants) {
+// Une prop "state" dans Figma suffit à structurer par états, même avec la seule valeur "default"
+export const hasStateProperty = (compSetNode) =>
+  STATE_PROP in (compSetNode.componentPropertyDefinitions ?? {})
+
+export function generateComponentScss(
+  componentName,
+  variants,
+  { stateful = false } = {}
+) {
   const mapName = `$${toCamelCase(componentName)}Variants`
   const mixin = `${componentName}-props`
 
-  const entries = Object.entries(variants).map(([variant, states]) => {
-    const body = Object.entries(states)
+  const states = new Set(
+    Object.values(variants).flatMap((byState) =>
+      Object.entries(byState)
+        .filter(([, props]) => Object.keys(props).length)
+        .map(([state]) => state)
+    )
+  )
+  const hasStates = stateful || [...states].some((state) => state !== "default")
+
+  const toLines = (props, indent) =>
+    Object.entries(props)
+      .map(([key, css]) => `${indent}${key}: ${css},`)
+      .join("\n")
+
+  const entries = Object.entries(variants).map(([variant, byState]) => {
+    // Sans état (ex. alert) : la map est à plat, variant -> props
+    if (!hasStates)
+      return `  ${variant}: (\n${toLines(byState.default ?? {}, "    ")}\n  ),`
+
+    const body = Object.entries(byState)
       .filter(([, props]) => Object.keys(props).length)
-      .map(([state, props]) => {
-        const lines = Object.entries(props)
-          .map(([key, css]) => `      ${key}: ${css},`)
-          .join("\n")
-        return `    "${state}": (\n${lines}\n    ),`
-      })
+      .map(
+        ([state, props]) =>
+          `    "${state}": (\n${toLines(props, "      ")}\n    ),`
+      )
       .join("\n")
     return `  ${variant}: (\n${body}\n  ),`
   })
+
+  const STATE_SELECTORS = {
+    hover: "&:hover",
+    focus: "&:focus-visible",
+    pressed: "&:active",
+    disabled: '&:disabled,\n        &[aria-disabled="true"]',
+  }
+  const branch = (state, body) => `@if $state == "${state}" {\n${body}\n      }`
+  const include = `        @include ${mixin}($props);`
+  const stateRules = [
+    branch("default", include),
+    ...[...states]
+      .filter((state) => state !== "default")
+      .map((state) =>
+        branch(
+          state,
+          `        ${STATE_SELECTORS[state] ?? `&.${state}`} {\n  ${include}\n        }`
+        )
+      ),
+  ]
+    .map((rule, i) => (i ? rule.replace(/^@if/, "if") : rule))
+    .join(" @else ")
+
+  const rules = hasStates
+    ? `@each $variant, $states in ${mapName} {
+  .${componentName}.#{$variant} {
+    @each $state, $props in $states {
+      ${stateRules}
+    }
+  }
+}`
+    : `@each $variant, $props in ${mapName} {
+  .${componentName}.#{$variant} {
+    @include ${mixin}($props);
+  }
+}`
 
   return `// Do not edit directly, this file was auto-generated.
 
@@ -169,36 +240,7 @@ ${entries.join("\n")}
   }
 }
 
-@each $variant, $states in ${mapName} {
-  .${componentName}.#{$variant} {
-    @each $state, $props in $states {
-      @if $state == "default" {
-        @include ${mixin}($props);
-      } @else if $state == "hover" {
-        &:hover {
-          @include ${mixin}($props);
-        }
-      } @else if $state == "focus" {
-        &:focus-visible {
-          @include ${mixin}($props);
-        }
-      } @else if $state == "pressed" {
-        &:active {
-          @include ${mixin}($props);
-        }
-      } @else if $state == "disabled" {
-        &:disabled,
-        &[aria-disabled="true"] {
-          @include ${mixin}($props);
-        }
-      } @else {
-        &.is-#{$state} {
-          @include ${mixin}($props);
-        }
-      }
-    }
-  }
-}
+${rules}
 `
 }
 

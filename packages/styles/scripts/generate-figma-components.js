@@ -8,6 +8,7 @@ import {
   extractVariantsData,
   generateComponentScss,
   generateLayoutScss,
+  hasStateProperty,
   isLayoutComponentSet,
 } from "./component-variants.js"
 
@@ -144,7 +145,9 @@ async function main() {
         console.log(`⚠ [${compSet.name}] : Aucune variante détectée, ignoré.`)
         continue
       }
-      scssContent = generateComponentScss(componentName, variants)
+      scssContent = generateComponentScss(componentName, variants, {
+        stateful: hasStateProperty(compSet),
+      })
     }
     const outputFile = path.join(
       stylesComponentsDir,

@@ -106,10 +106,10 @@ function generateComponentTypes(node, metadata) {
   const enums = []
   const interfaceProps = []
 
-  const hasInstanceSwap = Object.values(propDefs).some(
-    (d) => d.type === "INSTANCE_SWAP"
+  const hasReactNode = Object.values(propDefs).some(
+    (d) => d.type === "INSTANCE_SWAP" || d.type === "SLOT"
   )
-  const headerImport = hasInstanceSwap
+  const headerImport = hasReactNode
     ? `import type React from "react"\n\n`
     : ""
 
@@ -140,7 +140,7 @@ function generateComponentTypes(node, metadata) {
       interfaceProps.push(`  ${propName}?: string`)
     } else if (def.type === "BOOLEAN") {
       interfaceProps.push(`  ${propName}?: boolean`)
-    } else if (def.type === "INSTANCE_SWAP") {
+    } else if (def.type === "INSTANCE_SWAP" || def.type === "SLOT") {
       interfaceProps.push(`  ${propName}?: React.ReactNode`)
     }
   }

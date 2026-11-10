@@ -119,10 +119,6 @@ $buttonVariants: (
         &:hover {
           @include button-props($props);
         }
-      } @else if $state == "focus" {
-        &:focus-visible {
-          @include button-props($props);
-        }
       } @else if $state == "pressed" {
         &:active {
           @include button-props($props);
@@ -130,10 +126,6 @@ $buttonVariants: (
       } @else if $state == "disabled" {
         &:disabled,
         &[aria-disabled="true"] {
-          @include button-props($props);
-        }
-      } @else {
-        &.is-#{$state} {
           @include button-props($props);
         }
       }
