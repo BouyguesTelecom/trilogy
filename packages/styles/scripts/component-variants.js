@@ -14,10 +14,41 @@ export function parseVariantName(name, variantProp = "variant") {
   return props
 }
 
-const findText = (node) =>
-  node.type === "TEXT" ? node : node.children?.map(findText).find(Boolean)
+const findText = (node, { skipInstances = false } = {}) =>
+  node.type === "TEXT"
+    ? node
+    : node.children
+        ?.filter((child) => !(skipInstances && child.type === "INSTANCE"))
+        .map((child) => findText(child, { skipInstances }))
+        .find(Boolean)
 
 const firstId = (alias) => (Array.isArray(alias) ? alias[0]?.id : alias?.id)
+
+const LAYOUT_ALIGN = {
+  MIN: "flex-start",
+  CENTER: "center",
+  MAX: "flex-end",
+  SPACE_BETWEEN: "space-between",
+  BASELINE: "baseline",
+}
+
+// Auto-layout avec espacement -> flexbox ; le gap utilise la variable liée, sinon la valeur en px
+// Sans gap, on ne génère rien : un display:flex isolé changerait par exemple le rendu d'un <button>
+function readLayoutTokens(node, variableMap) {
+  if (!["HORIZONTAL", "VERTICAL"].includes(node.layoutMode)) return {}
+  if (!node.itemSpacing) return {}
+
+  const tokens = {
+    display: "flex",
+    "flex-direction": node.layoutMode === "HORIZONTAL" ? "row" : "column",
+    "justify-content": LAYOUT_ALIGN[node.primaryAxisAlignItems ?? "MIN"],
+    "align-items": LAYOUT_ALIGN[node.counterAxisAlignItems ?? "MIN"],
+  }
+  tokens.gap =
+    variableMap.get(node.boundVariables?.itemSpacing?.id) ??
+    `${node.itemSpacing}px`
+  return tokens
+}
 
 // Variables liées d'abord (à jour), description JSON en secours : Figma la recopie à la duplication d'un variant
 function readTokens(child, meta, variableMap) {
@@ -36,6 +67,8 @@ function readTokens(child, meta, variableMap) {
     const css = id && variableMap.get(id)
     if (css) tokens[prop] = css
   }
+
+  Object.assign(tokens, readLayoutTokens(child, variableMap))
 
   if (meta?.description) {
     try {
@@ -128,7 +161,31 @@ export function extractVariantsData(compSetNode, pageData, variableMap) {
     )
     variants[name] = keepDifferences(Object.fromEntries(sorted))
   }
-  return variants
+  return extractCommonDefault(variants)
+}
+
+// Valeurs identiques dans l'état default de tous les variants -> clé "default" (classe de base, ex. .button)
+function extractCommonDefault(variants) {
+  const names = Object.keys(variants)
+  if (names.length < 2) return variants
+
+  const first = variants[names[0]].default ?? {}
+  const common = Object.fromEntries(
+    Object.entries(first).filter(([key, value]) =>
+      names.every((name) => variants[name].default?.[key] === value)
+    )
+  )
+  if (!Object.keys(common).length) return variants
+
+  const result = { default: { default: common } }
+  for (const name of names) {
+    const { default: own = {}, ...otherStates } = variants[name]
+    const specific = Object.fromEntries(
+      Object.entries(own).filter(([key]) => !(key in common))
+    )
+    result[name] = { default: specific, ...otherStates }
+  }
+  return result
 }
 
 const toCamelCase = (str) =>
@@ -136,84 +193,65 @@ const toCamelCase = (str) =>
     .replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ""))
     .replace(/^(.)/, (m) => m.toLowerCase())
 
-// Une prop "state" dans Figma suffit à structurer par états, même avec la seule valeur "default"
-export const hasStateProperty = (compSetNode) =>
-  STATE_PROP in (compSetNode.componentPropertyDefinitions ?? {})
+const STATE_SELECTORS = {
+  hover: "&:hover",
+  focus: "&:focus-visible",
+  pressed: "&:active",
+  disabled: '&:disabled,\n    &[aria-disabled="true"]',
+}
 
-export function generateComponentScss(
-  componentName,
-  variants,
-  { stateful = false } = {}
-) {
+// Chaque variant est à plat : props de l'état default, puis une sous-map par autre état
+export function generateComponentScss(componentName, variants) {
   const mapName = `$${toCamelCase(componentName)}Variants`
   const mixin = `${componentName}-props`
-
-  const states = new Set(
-    Object.values(variants).flatMap((byState) =>
-      Object.entries(byState)
-        .filter(([, props]) => Object.keys(props).length)
-        .map(([state]) => state)
-    )
-  )
-  const hasStates = stateful || [...states].some((state) => state !== "default")
 
   const toLines = (props, indent) =>
     Object.entries(props)
       .map(([key, css]) => `${indent}${key}: ${css},`)
       .join("\n")
 
-  const entries = Object.entries(variants).map(([variant, byState]) => {
-    // Sans état (ex. alert) : la map est à plat, variant -> props
-    if (!hasStates)
-      return `  ${variant}: (\n${toLines(byState.default ?? {}, "    ")}\n  ),`
+  const states = new Set()
+  const entries = Object.entries(variants).flatMap(([variant, byState]) => {
+    const { default: own = {}, ...others } = byState
+    const nested = Object.entries(others).filter(
+      ([, props]) => Object.keys(props).length
+    )
+    if (!Object.keys(own).length && !nested.length) return []
 
-    const body = Object.entries(byState)
-      .filter(([, props]) => Object.keys(props).length)
-      .map(
+    nested.forEach(([state]) => states.add(state))
+    const body = [
+      toLines(own, "    "),
+      ...nested.map(
         ([state, props]) =>
-          `    "${state}": (\n${toLines(props, "      ")}\n    ),`
-      )
-      .join("\n")
-    return `  ${variant}: (\n${body}\n  ),`
+          `    ${state}: (\n${toLines(props, "      ")}\n    ),`
+      ),
+    ].filter(Boolean)
+    return `  ${variant}: (\n${body.join("\n")}\n  ),`
   })
 
-  const STATE_SELECTORS = {
-    hover: "&:hover",
-    focus: "&:focus-visible",
-    pressed: "&:active",
-    disabled: '&:disabled,\n        &[aria-disabled="true"]',
-  }
-  const branch = (state, body) => `@if $state == "${state}" {\n${body}\n      }`
-  const include = `        @include ${mixin}($props);`
-  const stateRules = [
-    branch("default", include),
-    ...[...states]
-      .filter((state) => state !== "default")
-      .map((state) =>
-        branch(
-          state,
-          `        ${STATE_SELECTORS[state] ?? `&.${state}`} {\n  ${include}\n        }`
-        )
-      ),
-  ]
-    .map((rule, i) => (i ? rule.replace(/^@if/, "if") : rule))
-    .join(" @else ")
-
-  const rules = hasStates
-    ? `@each $variant, $states in ${mapName} {
-  .${componentName}.#{$variant} {
-    @each $state, $props in $states {
+  const stateRules = [...states]
+    .map((state, i) => {
+      const selector = (STATE_SELECTORS[state] ?? `&.${state}`).replaceAll(
+        "\n    ",
+        "\n        "
+      )
+      return `${i ? " @else if" : "@if"} $state == "${state}" {
+        ${selector} {
+          @include ${mixin}($value);
+        }
+      }`
+    })
+    .join("")
+  const stateLoop = stateRules
+    ? `
+    @each $state, $value in $props {
       ${stateRules}
-    }
-  }
-}`
-    : `@each $variant, $props in ${mapName} {
-  .${componentName}.#{$variant} {
-    @include ${mixin}($props);
-  }
-}`
+    }`
+    : ""
 
   return `// Do not edit directly, this file was auto-generated.
+
+@use "sass:meta";
 
 ${mapName}: (
 ${entries.join("\n")}
@@ -221,7 +259,9 @@ ${entries.join("\n")}
 
 @mixin ${mixin}($props) {
   @each $prop, $value in $props {
-    @if $prop == "background" {
+    @if meta.type-of($value) == "map" {
+      // état : géré par le sélecteur du variant
+    } @else if $prop == "background" {
       background-color: $value;
     } @else if $prop == "text" or $prop == "color" {
       color: $value;
@@ -240,7 +280,16 @@ ${entries.join("\n")}
   }
 }
 
-${rules}
+// "default" = valeurs communes, appliquées sur la classe de base sans variant
+@each $variant, $props in ${mapName} {
+  $selector: ".${componentName}.#{$variant}";
+  @if $variant == "default" {
+    $selector: ".${componentName}";
+  }
+  #{$selector} {
+    @include ${mixin}($props);${stateLoop}
+  }
+}
 `
 }
 
@@ -292,5 +341,81 @@ ${base.join("\n")}
 }
 
 ${modifiers.join("\n\n")}
+`
+}
+
+const ALIGN_VALUES = {
+  MIN: "flex-start",
+  CENTER: "center",
+  MAX: "flex-end",
+  SPACE_BETWEEN: "space-between",
+  BASELINE: "baseline",
+}
+
+// Variable liée en priorité, sinon la valeur brute en px
+const spacing = (node, key, variableMap) => {
+  const css = variableMap.get(node.boundVariables?.[key]?.id)
+  return css ?? `${node[key] ?? 0}px`
+}
+
+// Typographie du premier texte : variable liée en priorité, sinon la valeur brute
+function readTypographyDeclarations(node, variableMap) {
+  // Le texte d'une instance (ex. alertTitle dans alertContent) porte ses propres règles
+  const text = findText(node, { skipInstances: true })
+  if (!text) return []
+
+  const bound = (key) => variableMap.get(firstId(text.boundVariables?.[key]))
+  const style = text.style ?? {}
+  const declarations = []
+
+  const family =
+    bound("fontFamily") ?? (style.fontFamily && `"${style.fontFamily}"`)
+  if (family) declarations.push(`font-family: ${family};`)
+
+  const size = bound("fontSize") ?? (style.fontSize && `${style.fontSize}px`)
+  if (size) declarations.push(`font-size: ${size};`)
+
+  const weight = bound("fontWeight") ?? style.fontWeight
+  if (weight) declarations.push(`font-weight: ${weight};`)
+
+  return declarations
+}
+
+// Composant sans variants : auto-layout (direction, alignements, gap, padding) et typographie de son texte
+export function generateStandaloneScss(componentName, node, variableMap) {
+  const declarations = []
+
+  if (["HORIZONTAL", "VERTICAL"].includes(node.layoutMode)) {
+    declarations.push(
+      "display: flex;",
+      `flex-direction: ${node.layoutMode === "HORIZONTAL" ? "row" : "column"};`,
+      `justify-content: ${ALIGN_VALUES[node.primaryAxisAlignItems] ?? "flex-start"};`,
+      `align-items: ${ALIGN_VALUES[node.counterAxisAlignItems] ?? "flex-start"};`
+    )
+
+    if (node.itemSpacing) {
+      declarations.push(`gap: ${spacing(node, "itemSpacing", variableMap)};`)
+    }
+
+    const padding = [
+      "paddingTop",
+      "paddingRight",
+      "paddingBottom",
+      "paddingLeft",
+    ]
+    if (padding.some((key) => node[key])) {
+      const values = padding.map((key) => spacing(node, key, variableMap))
+      declarations.push(`padding: ${values.join(" ")};`)
+    }
+  }
+
+  declarations.push(...readTypographyDeclarations(node, variableMap))
+  if (!declarations.length) return null
+
+  return `// Do not edit directly, this file was auto-generated.
+
+.${componentName} {
+${declarations.map((line) => `  ${line}`).join("\n")}
+}
 `
 }

@@ -11,7 +11,7 @@ const Wrapper = ({
   title: string
 }) => {
   return (
-    <View style={{ borderWidth: 1, borderColor: "black" }}>
+    <View>
       <Text>{title}</Text>
       {children}
     </View>

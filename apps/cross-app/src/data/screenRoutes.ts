@@ -1,1 +1,1 @@
-export const SCREEN_ROUTES = ["button"] as const
+export const SCREEN_ROUTES = ["button", "alert"] as const

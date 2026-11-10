@@ -8,7 +8,7 @@ import {
   extractVariantsData,
   generateComponentScss,
   generateLayoutScss,
-  hasStateProperty,
+  generateStandaloneScss,
   isLayoutComponentSet,
 } from "./component-variants.js"
 
@@ -65,6 +65,46 @@ async function loadTokensVariableMap() {
       // ignore si un fichier n'existe pas
     }
   }
+
+  // Les polices sont liées aux primitives dans Figma : on les rattache au token sémantique de même valeur
+  try {
+    const fonts = JSON.parse(
+      await fs.readFile(
+        path.join(figmaVariablesDir, "Fonts.tokens.json"),
+        "utf8"
+      )
+    )
+    const webByFamily = new Map()
+    for (const token of Object.values(fonts.Family ?? {})) {
+      const web = token.$extensions?.["com.figma.codeSyntax"]?.WEB
+      if (web) webByFamily.set(token.$value, web)
+    }
+
+    const primitives = JSON.parse(
+      await fs.readFile(
+        path.join(figmaVariablesDir, "../primitives.json"),
+        "utf8"
+      )
+    )
+    const walkPrimitives = (o) => {
+      for (const k in o) {
+        if (k.startsWith("$")) continue
+        const v = o[k]
+        if (v && v.$value !== undefined) {
+          const varId = v.$extensions?.["com.figma.variableId"]
+          if (varId && webByFamily.has(v.$value)) {
+            map.set(varId, webByFamily.get(v.$value))
+          }
+        } else if (v && typeof v === "object") {
+          walkPrimitives(v)
+        }
+      }
+    }
+    walkPrimitives(primitives)
+  } catch {
+    // ignore si un fichier n'existe pas
+  }
+
   return map
 }
 
@@ -95,10 +135,11 @@ async function fetchPageData(fileKey, nodeId) {
   return pageData
 }
 
+// Component sets et composants autonomes (sans variants)
 function collectComponentSets(node) {
   const sets = []
 
-  if (node.type === "COMPONENT_SET") {
+  if (node.type === "COMPONENT_SET" || node.type === "COMPONENT") {
     sets.push(node)
     return sets
   }
@@ -134,7 +175,13 @@ async function main() {
   for (const compSet of componentSets) {
     const componentName = getComponentName(compSet.name)
     let scssContent
-    if (isLayoutComponentSet(compSet)) {
+    if (compSet.type === "COMPONENT") {
+      scssContent = generateStandaloneScss(componentName, compSet, variableMap)
+      if (!scssContent) {
+        console.log(`⚠ [${compSet.name}] : Ni auto-layout ni texte, ignoré.`)
+        continue
+      }
+    } else if (isLayoutComponentSet(compSet)) {
       scssContent = generateLayoutScss(
         componentName,
         extractLayoutData(compSet, variableMap)
@@ -145,9 +192,7 @@ async function main() {
         console.log(`⚠ [${compSet.name}] : Aucune variante détectée, ignoré.`)
         continue
       }
-      scssContent = generateComponentScss(componentName, variants, {
-        stateful: hasStateProperty(compSet),
-      })
+      scssContent = generateComponentScss(componentName, variants)
     }
     const outputFile = path.join(
       stylesComponentsDir,
@@ -161,6 +206,15 @@ async function main() {
   }
 
   if (generatedNames.length) {
+    // Supprime les fichiers générés d'un composant qui n'existe plus ou n'a plus de styles
+    for (const file of await fs.readdir(stylesComponentsDir)) {
+      const match = file.match(/^_(.+)-generated\.scss$/)
+      if (match && !generatedNames.includes(match[1])) {
+        await fs.rm(path.join(stylesComponentsDir, file))
+        console.log(`🗑 [${match[1]}] : fichier obsolète supprimé`)
+      }
+    }
+
     const indexPath = path.join(stylesComponentsDir, "_index.scss")
     const indexContent =
       generatedNames.map((name) => `@forward "${name}-generated";`).join("\n") +

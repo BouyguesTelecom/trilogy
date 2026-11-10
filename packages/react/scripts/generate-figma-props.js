@@ -109,9 +109,7 @@ function generateComponentTypes(node, metadata) {
   const hasReactNode = Object.values(propDefs).some(
     (d) => d.type === "INSTANCE_SWAP" || d.type === "SLOT"
   )
-  const headerImport = hasReactNode
-    ? `import type React from "react"\n\n`
-    : ""
+  const headerImport = hasReactNode ? `import type React from "react"\n\n` : ""
 
   for (const [rawName, def] of Object.entries(propDefs)) {
     const propName = cleanPropName(rawName)

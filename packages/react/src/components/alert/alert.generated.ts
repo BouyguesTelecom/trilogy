@@ -1,5 +1,3 @@
-import type React from "react"
-
 export enum AlertStatus {
   information = "information",
   warning = "warning",
@@ -9,7 +7,5 @@ export enum AlertStatus {
 
 export interface AlertGeneratedProps {
   toaster?: boolean
-  description?: React.ReactNode
-  title?: React.ReactNode
   status?: AlertStatus
 }

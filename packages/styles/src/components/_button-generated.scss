@@ -1,87 +1,74 @@
 // Do not edit directly, this file was auto-generated.
 
+@use "sass:meta";
+
 $buttonVariants: (
+  default: (
+    radius: var(--radius-sm),
+    padding: var(--spacing-sm),
+    borderWidth: var(--border-width-sm),
+  ),
   primary: (
-    "default": (
-      background: var(--background-secondary),
-      border: var(--border-main),
-      radius: var(--radius-sm),
-      padding: var(--spacing-sm),
-      borderWidth: var(--border-width-sm),
-      text: var(--color-inverse),
-    ),
-    "hover": (
+    background: var(--background-secondary),
+    border: var(--border-main),
+    text: var(--color-inverse),
+    hover: (
       background: var(--background-secondary-hover),
       border: var(--border-primary),
     ),
-    "pressed": (
+    pressed: (
       background: var(--background-secondary-pressed),
       border: var(--border-primary),
     ),
-    "disabled": (
+    disabled: (
       background: var(--background-field),
       border: var(--border-disabled),
       text: var(--color-disabled),
     ),
   ),
   secondary: (
-    "default": (
-      background: var(--background-primary),
-      border: var(--border-primary),
-      radius: var(--radius-sm),
-      padding: var(--spacing-sm),
-      borderWidth: var(--border-width-sm),
-      text: var(--color-primary),
-    ),
-    "hover": (
+    background: var(--background-primary),
+    border: var(--border-primary),
+    text: var(--color-primary),
+    hover: (
       background: var(--background-primary-hover),
     ),
-    "pressed": (
+    pressed: (
       background: var(--background-primary-pressed),
     ),
-    "disabled": (
+    disabled: (
       background: var(--background-field),
       border: var(--border-disabled),
       text: var(--color-disabled),
     ),
   ),
   ghost: (
-    "default": (
-      background: var(--background-transparent),
-      border: var(--border-transparent),
-      radius: var(--radius-sm),
-      padding: var(--spacing-sm),
-      borderWidth: var(--border-width-sm),
-      text: var(--color-primary),
-    ),
-    "hover": (
+    background: var(--background-transparent),
+    border: var(--border-transparent),
+    text: var(--color-primary),
+    hover: (
       background: var(--background-primary-hover),
     ),
-    "pressed": (
+    pressed: (
       background: var(--background-primary-pressed),
     ),
-    "disabled": (
+    disabled: (
       background: var(--background-field),
       border: var(--border-disabled),
       text: var(--color-disabled),
     ),
   ),
   conversion: (
-    "default": (
-      background: var(--background-accent),
-      border: var(--border-accent),
-      radius: var(--radius-sm),
-      padding: var(--spacing-sm),
-      borderWidth: var(--border-width-sm),
-      text: var(--color-inverse),
-    ),
-    "hover": (
+    background: var(--background-accent),
+    border: var(--border-accent),
+    text: var(--color-inverse),
+    hover: (
       background: var(--background-accent-hover),
     ),
-    "pressed": (
+    pressed: (
       background: var(--background-accent-pressed),
     ),
-    "disabled": (
+    disabled: (
       background: var(--background-field),
       border: var(--border-disabled),
       text: var(--color-disabled),
@@ -91,7 +78,9 @@ $buttonVariants: (
 
 @mixin button-props($props) {
   @each $prop, $value in $props {
-    @if $prop == "background" {
+    @if meta.type-of($value) == "map" {
+      // état : géré par le sélecteur du variant
+    } @else if $prop == "background" {
       background-color: $value;
     } @else if $prop == "text" or $prop == "color" {
       color: $value;
@@ -110,23 +99,27 @@ $buttonVariants: (
   }
 }
 
-@each $variant, $states in $buttonVariants {
-  .button.#{$variant} {
-    @each $state, $props in $states {
-      @if $state == "default" {
-        @include button-props($props);
-      } @else if $state == "hover" {
+// "default" = valeurs communes, appliquées sur la classe de base sans variant
+@each $variant, $props in $buttonVariants {
+  $selector: ".button.#{$variant}";
+  @if $variant == "default" {
+    $selector: ".button";
+  }
+  #{$selector} {
+    @include button-props($props);
+    @each $state, $value in $props {
+      @if $state == "hover" {
         &:hover {
-          @include button-props($props);
+          @include button-props($value);
         }
       } @else if $state == "pressed" {
         &:active {
-          @include button-props($props);
+          @include button-props($value);
         }
       } @else if $state == "disabled" {
         &:disabled,
         &[aria-disabled="true"] {
-          @include button-props($props);
+          @include button-props($value);
         }
       }
     }
