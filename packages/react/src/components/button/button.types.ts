@@ -29,6 +29,4 @@ export interface ButtonProps
   routerLink?: ElementType
   type?: ButtonType | `${ButtonType}`
   fullwidth?: boolean
-  iconLeftName?: string
-  iconNameRight?: string
 }

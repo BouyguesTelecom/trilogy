@@ -1,6 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native"
 
-import { Screen } from "../components/screen"
 import { SCREEN_ROUTES } from "../data/screenRoutes"
 import { useRouter } from "../libs/router"
 
@@ -8,20 +7,18 @@ export default function HomeScreen() {
   const router = useRouter()
 
   return (
-    <Screen>
-      <View style={styles.container}>
-        <Text style={styles.title}>Trilogy Explorer</Text>
-        {SCREEN_ROUTES.map((screen) => (
-          <Pressable
-            key={screen}
-            style={styles.button}
-            onPress={() => router.push(screen)}
-          >
-            <Text style={styles.buttonText}>{screen}</Text>
-          </Pressable>
-        ))}
-      </View>
-    </Screen>
+    <View style={styles.container}>
+      <Text style={styles.title}>Trilogy Explorer</Text>
+      {SCREEN_ROUTES.map((screen) => (
+        <Pressable
+          key={screen}
+          style={styles.button}
+          onPress={() => router.push(screen)}
+        >
+          <Text style={styles.buttonText}>{screen}</Text>
+        </Pressable>
+      ))}
+    </View>
   )
 }
 

@@ -433,6 +433,7 @@ const DIMENSION_GROUPS = {
   Spacing: "spacings",
   Border: "borderWidths",
   Icon: "iconSizes",
+  Size: "sizes",
 }
 
 // Nom du token : "var(--radius-sm)" -> "radiusSm" ; sans code syntax web, "font-" + chemin
@@ -469,7 +470,9 @@ StyleDictionary.registerFormat({
     const dimensions = Object.entries(DIMENSION_GROUPS).map(([group, name]) => {
       const entries = tokens
         .filter(
-          (token) => token.path[0] === "Dimensions" && token.path[1] === group
+          (token) =>
+            token.path[0] === "Dimensions" &&
+            token.path[1].toLowerCase() === group.toLowerCase()
         )
         .map((token) => [
           themeKey({ ...token, path: token.path.slice(1) }),

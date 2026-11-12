@@ -10,7 +10,6 @@ import {
 
 import { useHashClass } from "../../hooks/useHashClass.web"
 import { clsx } from "../../utils/clsx"
-import { Icon } from "../icon"
 import { ButtonMarkup, type ButtonProps } from "./button.types"
 
 export type ButtonRef =
@@ -37,8 +36,6 @@ export const Button: ForwardRefExoticComponent<
       name,
       routerLink,
       type,
-      iconLeftName,
-      iconNameRight,
       testId,
       ...others
     },
@@ -123,13 +120,7 @@ export const Button: ForwardRefExoticComponent<
         onClick={handleClick}
         {...others}
       >
-        {iconLeftName && (
-          <Icon name={iconLeftName} className="button-icon-left" />
-        )}
         {children}
-        {iconNameRight && (
-          <Icon name={iconNameRight} className="button-icon-right" />
-        )}
       </Component>
     )
   }

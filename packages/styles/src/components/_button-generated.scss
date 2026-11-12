@@ -5,8 +5,8 @@
 $buttonVariants: (
   default: (
     radius: var(--radius-sm),
-    padding: var(--spacing-sm),
     borderWidth: var(--border-width-sm),
+    padding: var(--spacing-sm),
   ),
   primary: (
     background: var(--background-secondary),
@@ -14,11 +14,11 @@ $buttonVariants: (
     text: var(--color-inverse),
     hover: (
       background: var(--background-secondary-hover),
-      border: var(--border-primary),
+      border: var(--border-main-hover),
     ),
     pressed: (
       background: var(--background-secondary-pressed),
-      border: var(--border-primary),
+      border: var(--border-main-pressed),
     ),
     disabled: (
       background: var(--background-field),
@@ -29,12 +29,15 @@ $buttonVariants: (
   secondary: (
     background: var(--background-primary),
     border: var(--border-primary),
+    height: var(--size-md),
     text: var(--color-primary),
     hover: (
       background: var(--background-primary-hover),
+      border: var(--border-main-hover),
     ),
     pressed: (
       background: var(--background-primary-pressed),
+      border: var(--border-main-pressed),
     ),
     disabled: (
       background: var(--background-field),
@@ -45,6 +48,7 @@ $buttonVariants: (
   ghost: (
     background: var(--background-transparent),
     border: var(--border-transparent),
+    height: var(--size-md),
     text: var(--color-primary),
     hover: (
       background: var(--background-primary-hover),
@@ -61,12 +65,15 @@ $buttonVariants: (
   conversion: (
     background: var(--background-accent),
     border: var(--border-accent),
+    height: var(--size-md),
     text: var(--color-inverse),
     hover: (
       background: var(--background-accent-hover),
+      border: var(--border-accent-hover),
     ),
     pressed: (
       background: var(--background-accent-pressed),
+      border: var(--border-accent-pressed),
     ),
     disabled: (
       background: var(--background-field),

@@ -191,6 +191,11 @@ export const DEFAULT_THEME_TRILOGY = {
     iconSizeMd: 32,
     iconSizeLg: 66,
   },
+  sizes: {
+    sizeXs: 16,
+    sizeSm: 32,
+    sizeMd: 48,
+  },
 } as const
 
 type WidenThemeValues<T> = T extends string

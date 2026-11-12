@@ -61,6 +61,7 @@ function readTokens(child, meta, variableMap) {
     radius: bv.rectangleCornerRadii?.RECTANGLE_TOP_LEFT_CORNER_RADIUS?.id,
     padding: bv.paddingTop?.id,
     borderWidth: bv.individualStrokeWeights?.BORDER_TOP_WEIGHT?.id,
+    height: bv.size?.y?.id ?? bv.height?.id,
     text: firstId(findText(child)?.boundVariables?.fills),
   }
   for (const [prop, id] of Object.entries(bound)) {

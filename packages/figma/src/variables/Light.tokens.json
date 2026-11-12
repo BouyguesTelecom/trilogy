@@ -1947,6 +1947,9 @@
         "com.figma.scopes": [
           "STROKE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--border-main-hover)"
+        },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:0c1ed0f43583d62fa6359520e97b9f2167ed3508/-1:-1",
           "targetVariableName": "Color/Main/600",
@@ -1972,6 +1975,9 @@
         "com.figma.scopes": [
           "STROKE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--border-accent-hover)"
+        },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:8654bf8346b5408ebdc5e0e76356440581b5ae0f/-1:-1",
           "targetVariableName": "Color/Accent/600",
@@ -1997,6 +2003,9 @@
         "com.figma.scopes": [
           "STROKE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--border-main-pressed)"
+        },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:10dafb14847d8b5770127526fe62c76a3768ee5d/-1:-1",
           "targetVariableName": "Color/Main/700",
@@ -2022,6 +2031,9 @@
         "com.figma.scopes": [
           "STROKE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--border-accent-pressed)"
+        },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:20262308d149e975057722f1d0e78f31b08eb5fd/-1:-1",
           "targetVariableName": "Color/Accent/700",

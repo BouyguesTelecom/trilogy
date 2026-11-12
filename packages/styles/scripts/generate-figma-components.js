@@ -32,6 +32,19 @@ const stylesComponentsDir = path.resolve(
 const figmaVariablesDir = path.join(root, "packages/figma/src/variables")
 
 // Construit un dictionnaire variableId -> syntaxe de code web var(--...) depuis les tokens locaux
+// Même règle que primitiveName() de build-tokens.js
+const kebab = (str) =>
+  String(str)
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/[\s_]+/g, "-")
+    .toLowerCase()
+
+const tokenName = (segments) => {
+  const [first, ...rest] = segments.map(kebab)
+  if (rest.length && rest[0].startsWith(`${first}-`)) return rest.join("-")
+  return [first, ...rest].join("-")
+}
+
 async function loadTokensVariableMap() {
   const map = new Map()
   const files = [
@@ -47,16 +60,19 @@ async function loadTokensVariableMap() {
       const raw = await fs.readFile(filePath, "utf8")
       const data = JSON.parse(raw)
 
-      function walk(o) {
+      function walk(o, segments = []) {
         for (const k in o) {
           if (k.startsWith("$")) continue
           const v = o[k]
           if (v && v.$value !== undefined) {
             const varId = v.$extensions?.["com.figma.variableId"]
-            const web = v.$extensions?.["com.figma.codeSyntax"]?.WEB
-            if (varId && web) map.set(varId, web)
+            // Sans code syntax web, build-tokens nomme la variable CSS d'après son chemin
+            const web =
+              v.$extensions?.["com.figma.codeSyntax"]?.WEB ??
+              `var(--${tokenName([...segments, k])})`
+            if (varId) map.set(varId, web)
           } else {
-            walk(v)
+            walk(v, [...segments, k])
           }
         }
       }
@@ -216,9 +232,16 @@ async function main() {
     }
 
     const indexPath = path.join(stylesComponentsDir, "_index.scss")
+    // Les partials écrits à la main (ex. _button.scss) restent dans l'index
+    const handWritten = (await fs.readdir(stylesComponentsDir))
+      .map((file) => file.match(/^_(.+)\.scss$/)?.[1])
+      .filter(
+        (name) => name && name !== "index" && !name.endsWith("-generated")
+      )
     const indexContent =
-      generatedNames.map((name) => `@forward "${name}-generated";`).join("\n") +
-      "\n"
+      [...generatedNames.map((name) => `${name}-generated`), ...handWritten]
+        .map((name) => `@forward "${name}";`)
+        .join("\n") + "\n"
     await fs.writeFile(indexPath, indexContent, "utf8")
     const relIndexPath = path.relative(root, indexPath)
     console.log(`✔ [index] -> ${relIndexPath}`)

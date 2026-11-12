@@ -1763,7 +1763,7 @@
   "Font": {
     "font-family-1": {
       "$type": "string",
-      "$value": "Bouygues Read",
+      "$value": "roboto",
       "$description": "Famille de la capture.",
       "$extensions": {
         "com.figma.variableId": "VariableID:4:83",
@@ -1775,7 +1775,7 @@
     },
     "font-family-2": {
       "$type": "string",
-      "$value": "Bouygues Speak Corpo",
+      "$value": "alatsi",
       "$description": "Famille de la capture.",
       "$extensions": {
         "com.figma.variableId": "VariableID:4:84",
@@ -2085,6 +2085,38 @@
         "com.figma.variableId": "VariableID:29:8",
         "com.figma.scopes": [
           "WIDTH_HEIGHT"
+        ]
+      }
+    }
+  },
+  "size": {
+    "size01": {
+      "$type": "number",
+      "$value": 16,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:293:466",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "size02": {
+      "$type": "number",
+      "$value": 32,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:293:467",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "size03": {
+      "$type": "number",
+      "$value": 48,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:293:468",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
         ]
       }
     }

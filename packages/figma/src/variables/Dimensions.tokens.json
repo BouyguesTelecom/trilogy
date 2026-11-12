@@ -447,6 +447,65 @@
       }
     }
   },
+  "size": {
+    "xs": {
+      "$type": "number",
+      "$value": 16,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:293:469",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--size-xs)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:95d7fad1ff0b0b744344e36a27f0a38309277a60/-1:-1",
+          "targetVariableName": "size/size01",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "sm": {
+      "$type": "number",
+      "$value": 32,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:293:470",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--size-sm)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:286521574194ed90aba149b99198568064ac0baf/-1:-1",
+          "targetVariableName": "size/size02",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "md": {
+      "$type": "number",
+      "$value": 48,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:293:471",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--size-md)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:d61384a17ef7219684c0e8ec4591a7b5dc7ca290/-1:-1",
+          "targetVariableName": "size/size03",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    }
+  },
   "$extensions": {
     "com.figma.modeName": "Valeurs"
   }

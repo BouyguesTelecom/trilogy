@@ -1,7 +1,7 @@
 import { Button, ButtonList } from "@trilogy-ds/react"
 import { Text, View } from "react-native"
 
-import { Screen } from "../components/screen"
+import { IconCamera } from "../components"
 
 const Wrapper = ({
   children,
@@ -11,18 +11,24 @@ const Wrapper = ({
   title: string
 }) => {
   return (
-    <View>
-      <Text>{title}</Text>
+    <>
+      <View>
+        <Text style={{ textAlign: "center" }}>{title}</Text>
+      </View>
       {children}
-    </View>
+      <View />
+    </>
   )
 }
 
 export default function ButtonScreen() {
   return (
-    <Screen>
+    <>
       <Wrapper title="Buttons">
-        <Button variant="primary">Primary</Button>
+        <Button variant="primary">
+          <IconCamera />
+          Primarsfdsfsfskny <IconCamera />
+        </Button>
         <Button variant="secondary">Secondary</Button>
         <Button variant="ghost">Ghost</Button>
         <Button variant="conversion">Conversion</Button>
@@ -62,6 +68,6 @@ export default function ButtonScreen() {
           </Button>
         </ButtonList>
       </Wrapper>
-    </Screen>
+    </>
   )
 }
