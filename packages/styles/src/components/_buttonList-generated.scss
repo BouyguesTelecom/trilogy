@@ -2,52 +2,5 @@
 
 .buttonList {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   gap: var(--spacing-md);
-}
-
-.buttonList.align-items-center {
-  align-items: center;
-}
-
-.buttonList.align-items-flex-start {
-  align-items: flex-start;
-}
-
-.buttonList.align-items-flex-end {
-  align-items: flex-end;
-}
-
-.buttonList.align-items-stretch {
-  align-items: stretch;
-}
-
-.buttonList.justify-content-center {
-  justify-content: center;
-}
-
-.buttonList.justify-content-flex-start {
-  justify-content: flex-start;
-}
-
-.buttonList.justify-content-flex-end {
-  justify-content: flex-end;
-}
-
-.buttonList.justify-content-space-between {
-  justify-content: space-between;
-}
-
-.buttonList.justify-content-space-around {
-  justify-content: space-around;
-}
-
-.buttonList.flex-direction-column {
-  flex-direction: column;
-}
-
-.buttonList.flex-direction-row {
-  flex-direction: row;
 }

@@ -71,6 +71,14 @@ function readTokens(child, meta, variableMap) {
 
   Object.assign(tokens, readLayoutTokens(child, variableMap))
 
+  // Composant de typographie (ex. title) : sans autre propriété de style, le variant ne se distingue que par son texte
+  if (!Object.keys(tokens).length) {
+    for (const line of readTypographyDeclarations(child, variableMap)) {
+      const [, key, value] = line.match(/^([\w-]+): (.*);$/)
+      tokens[key] = value
+    }
+  }
+
   if (meta?.description) {
     try {
       for (const [prop, info] of Object.entries(
@@ -119,7 +127,8 @@ export function extractVariantsData(compSetNode, pageData, variableMap) {
   const definitions = compSetNode.componentPropertyDefinitions ?? {}
   const variantProp =
     Object.entries(definitions).find(
-      ([name, def]) => def.type === "VARIANT" && name !== STATE_PROP
+      ([name, def]) =>
+        def.type === "VARIANT" && name !== STATE_PROP && !HELPER_PROPS.has(name)
     )?.[0] ??
     metadata?.variantProperty ??
     "variant"
@@ -294,54 +303,34 @@ ${entries.join("\n")}
 `
 }
 
-// Les props Figma portent le nom de la propriété CSS (valeurs CSS directes), sauf direction
-const LAYOUT_PROPS = {
-  direction: "flex-direction",
-  alignItems: "align-items",
-  justifyContent: "justify-content",
-}
+// Props nommées comme une propriété CSS : gérées par les helpers (_flexbox.scss…), aucun CSS généré
+const HELPER_PROPS = new Set([
+  "direction",
+  "alignItems",
+  "justifyContent",
+  "textAlign",
+])
 
-// Composant de mise en page : ses props sont direction / alignItems / justifyContent, pas des variants de style
+// Composant de mise en page : ses props sont toutes gérées par les helpers, pas des variants de style
 export function isLayoutComponentSet(compSetNode) {
   const props = Object.keys(compSetNode.componentPropertyDefinitions ?? {})
-  return props.length > 0 && props.every((prop) => prop in LAYOUT_PROPS)
+  return props.length > 0 && props.every((prop) => HELPER_PROPS.has(prop))
 }
 
-/** { defaults: { direction: "column", ... }, options: { alignItems: ["center", ...] }, gap: "var(--spacing-md)" } */
+/** { gap: "var(--spacing-md)" } */
 export function extractLayoutData(compSetNode, variableMap) {
-  const definitions = compSetNode.componentPropertyDefinitions
-  const defaults = {}
-  const options = {}
-  for (const [prop, def] of Object.entries(definitions)) {
-    defaults[prop] = def.defaultValue
-    options[prop] = def.variantOptions
-  }
-
   const gapId = compSetNode.children?.[0]?.boundVariables?.itemSpacing?.id
-  return { defaults, options, gap: gapId && variableMap.get(gapId) }
+  return { gap: gapId && variableMap.get(gapId) }
 }
 
-export function generateLayoutScss(componentName, { defaults, options, gap }) {
-  const base = Object.entries(defaults).map(
-    ([prop, value]) => `  ${LAYOUT_PROPS[prop]}: ${value};`
-  )
-  if (gap) base.push(`  gap: ${gap};`)
-
-  const modifiers = Object.entries(options).flatMap(([prop, values]) =>
-    values.map(
-      (value) =>
-        `.${componentName}.${LAYOUT_PROPS[prop]}-${value} {\n  ${LAYOUT_PROPS[prop]}: ${value};\n}`
-    )
-  )
+export function generateLayoutScss(componentName, { gap }) {
+  const declarations = ["display: flex;", gap && `gap: ${gap};`].filter(Boolean)
 
   return `// Do not edit directly, this file was auto-generated.
 
 .${componentName} {
-  display: flex;
-${base.join("\n")}
+${declarations.map((line) => `  ${line}`).join("\n")}
 }
-
-${modifiers.join("\n\n")}
 `
 }
 

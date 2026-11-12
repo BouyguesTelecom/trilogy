@@ -1,0 +1,70 @@
+// Do not edit directly, this file was auto-generated.
+
+@use "sass:meta";
+
+$titleVariants: (
+  one: (
+    font-family: var(--font-family-secondary),
+    font-size: var(--font-size-xxxxl),
+    font-weight: var(--font-weight-medium),
+  ),
+  two: (
+    font-family: var(--font-family-secondary),
+    font-size: var(--font-size-xxxl),
+    font-weight: var(--font-weight-medium),
+  ),
+  three: (
+    font-family: var(--font-family-primary),
+    font-size: var(--font-size-xxl),
+    font-weight: var(--font-weight-semibold),
+  ),
+  four: (
+    font-family: var(--font-family-primary),
+    font-size: var(--font-size-xl),
+    font-weight: var(--font-weight-semibold),
+  ),
+  five: (
+    font-family: var(--font-family-primary),
+    font-size: var(--font-size-md),
+    font-weight: var(--font-weight-semibold),
+  ),
+  six: (
+    font-family: var(--font-family-primary),
+    font-size: var(--font-size-base),
+    font-weight: var(--font-weight-semibold),
+  ),
+);
+
+@mixin title-props($props) {
+  @each $prop, $value in $props {
+    @if meta.type-of($value) == "map" {
+      // état : géré par le sélecteur du variant
+    } @else if $prop == "background" {
+      background-color: $value;
+    } @else if $prop == "text" or $prop == "color" {
+      color: $value;
+    } @else if $prop == "border" {
+      border-color: $value;
+    } @else if $prop == "borderWidth" {
+      border-style: solid;
+      border-width: $value;
+    } @else if $prop == "radius" {
+      border-radius: $value;
+    } @else if $prop == "padding" {
+      padding: $value;
+    } @else {
+      #{$prop}: $value;
+    }
+  }
+}
+
+// "default" = valeurs communes, appliquées sur la classe de base sans variant
+@each $variant, $props in $titleVariants {
+  $selector: ".title.#{$variant}";
+  @if $variant == "default" {
+    $selector: ".title";
+  }
+  #{$selector} {
+    @include title-props($props);
+  }
+}

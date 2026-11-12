@@ -14,12 +14,17 @@ const build = (colors: Colors): AlertDescriptionStyles =>
     text: {
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeSm,
-      fontWeight: String(theme.fonts.fontWeightRegular) as TextStyle["fontWeight"],
+      fontWeight: String(
+        theme.fonts.fontWeightRegular
+      ) as TextStyle["fontWeight"],
       color: colors.colorPrimary,
     },
   })
 
-export const alertDescriptionStyles: Record<"light" | "dark", AlertDescriptionStyles> = {
+export const alertDescriptionStyles: Record<
+  "light" | "dark",
+  AlertDescriptionStyles
+> = {
   light: build(theme.colors.light),
   dark: build(theme.colors.dark),
 }

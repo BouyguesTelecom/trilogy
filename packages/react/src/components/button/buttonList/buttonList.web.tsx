@@ -7,6 +7,11 @@ import {
 
 import { clsx, getClassName } from "../../.."
 import { useHashClass } from "../../../hooks/useHashClass.web"
+import {
+  ButtonListAlignItems,
+  ButtonListDirection,
+  ButtonListJustifyContent,
+} from "./buttonList.generated"
 import { ButtonListProps } from "./buttonList.types"
 
 export type ButtonListRef = HTMLDivElement
@@ -17,9 +22,9 @@ export const ButtonList: ForwardRefExoticComponent<
 > = forwardRef<ButtonListRef, Props>(
   (
     {
-      alignItems,
-      direction,
-      justifyContent,
+      alignItems = ButtonListAlignItems.center,
+      direction = ButtonListDirection.column,
+      justifyContent = ButtonListJustifyContent.center,
       className,
       id,
       testId,

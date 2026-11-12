@@ -6,7 +6,8 @@ type AlertContentStyles = {
   view: ViewStyle
 }
 
-export const alertContentStyles: AlertContentStyles = StyleSheet.create<AlertContentStyles>({
+export const alertContentStyles: AlertContentStyles =
+  StyleSheet.create<AlertContentStyles>({
     view: {
       flexDirection: "column",
       justifyContent: "flex-start",
