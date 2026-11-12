@@ -8,7 +8,7 @@ import {
 } from "react"
 
 import { useHashClass } from "../../../hooks/useHashClass.web"
-import { clsx } from "../../../utils/clsx.web"
+import { clsx } from "../../../utils/clsx"
 import {
   AlertDescriptionMarkup,
   type AlertDescriptionProps,
