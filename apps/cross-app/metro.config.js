@@ -20,6 +20,15 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     )
   }
 
+  // Le consommateur pointe cet alias vers son propre thème
+  if (moduleName === "@trilogy-react/theme") {
+    return context.resolveRequest(
+      context,
+      path.join(trilogySrc, "constants/theme.ts"),
+      platform
+    )
+  }
+
   if (
     moduleName.startsWith("@/") &&
     context.originModulePath.startsWith(`${trilogyRoot}${path.sep}`)

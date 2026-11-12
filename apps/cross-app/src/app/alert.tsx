@@ -4,22 +4,8 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@trilogy-ds/react"
-import { Text, View } from "react-native"
 
-const Wrapper = ({
-  children,
-  title,
-}: {
-  children: React.ReactNode
-  title: string
-}) => {
-  return (
-    <>
-      <Text>{title}</Text>
-      {children}
-    </>
-  )
-}
+import { Wrapper } from "../components/wrapper"
 
 export default function AlertScreen() {
   return (

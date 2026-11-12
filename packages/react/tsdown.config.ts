@@ -42,7 +42,7 @@ export default defineConfig([
     platform: "neutral",
     dts: true,
     unbundle: true,
-    external: [/^react(\/|$)/, /^react-native(\/|$)/],
+    external: [/^react(\/|$)/, /^react-native(\/|$)/, /^@trilogy-react\//],
     inputOptions: { resolve: { extensions: ext("native") } },
   },
 ])

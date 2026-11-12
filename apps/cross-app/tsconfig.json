@@ -6,7 +6,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/assets/*": ["./assets/*"],
-      "@trilogy-ds/react": ["../../packages/react/src/index.ts"]
+      "@trilogy-ds/react": ["../../packages/react/src/index.ts"],
+      "@trilogy-react/theme": ["../../packages/react/src/constants/theme.ts"]
     }
   },
   "include": [

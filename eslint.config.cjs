@@ -10,6 +10,14 @@ module.exports = defineConfig([
   },
   {
     // La détection auto de eslint-plugin-react appelle context.getFilename (retiré d'ESLint 10)
-    settings: { react: { version: "19.3" } },
+    settings: {
+      react: { version: "19.3" },
+      // Les alias (ex. @trilogy-react/theme) sont dans les tsconfig des packages, pas à la racine
+      "import/resolver": {
+        typescript: {
+          project: ["packages/*/tsconfig.json", "apps/*/tsconfig.json"],
+        },
+      },
+    },
   },
 ])

@@ -1,0 +1,37 @@
+$aligns: ("center", "flex-start", "flex-end", "stretch");
+
+$justifies: (
+  "center",
+  "flex-start",
+  "flex-end",
+  "space-between",
+  "space-around"
+);
+
+$wraps: ("nowrap", "wrap", "wrap-reverse");
+
+$directions: ("row", "column");
+
+@each $justify in $justifies {
+  .justify-content-#{$justify} {
+    justify-content: $justify;
+  }
+}
+
+@each $align in $aligns {
+  .align-items-#{$align} {
+    align-items: $align;
+  }
+}
+
+@each $direction in $directions {
+  .flex-direction-#{$direction} {
+    flex-direction: $direction;
+  }
+}
+
+@each $wrap in $wraps {
+  .flex-wrap-#{$wrap} {
+    flex-wrap: $wrap;
+  }
+}

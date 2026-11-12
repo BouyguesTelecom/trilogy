@@ -1,29 +1,11 @@
 import { Button, ButtonList } from "@trilogy-ds/react"
-import { Text, View } from "react-native"
 
-import { IconCamera } from "../components"
-
-const Wrapper = ({
-  children,
-  title,
-}: {
-  children: React.ReactNode
-  title: string
-}) => {
-  return (
-    <>
-      <View>
-        <Text style={{ textAlign: "center" }}>{title}</Text>
-      </View>
-      {children}
-      <View />
-    </>
-  )
-}
+import { IconCamera, ScrollView } from "../components"
+import { Wrapper } from "../components/wrapper"
 
 export default function ButtonScreen() {
   return (
-    <>
+    <ScrollView>
       <Wrapper title="Buttons">
         <Button variant="primary">
           <IconCamera />
@@ -68,6 +50,6 @@ export default function ButtonScreen() {
           </Button>
         </ButtonList>
       </Wrapper>
-    </>
+    </ScrollView>
   )
 }

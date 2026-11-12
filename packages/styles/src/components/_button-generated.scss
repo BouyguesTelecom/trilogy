@@ -6,6 +6,7 @@ $buttonVariants: (
   default: (
     radius: var(--radius-sm),
     borderWidth: var(--border-width-sm),
+    height: var(--size-md),
     padding: var(--spacing-sm),
   ),
   primary: (
@@ -29,7 +30,6 @@ $buttonVariants: (
   secondary: (
     background: var(--background-primary),
     border: var(--border-primary),
-    height: var(--size-md),
     text: var(--color-primary),
     hover: (
       background: var(--background-primary-hover),
@@ -48,7 +48,6 @@ $buttonVariants: (
   ghost: (
     background: var(--background-transparent),
     border: var(--border-transparent),
-    height: var(--size-md),
     text: var(--color-primary),
     hover: (
       background: var(--background-primary-hover),
@@ -65,7 +64,6 @@ $buttonVariants: (
   conversion: (
     background: var(--background-accent),
     border: var(--border-accent),
-    height: var(--size-md),
     text: var(--color-inverse),
     hover: (
       background: var(--background-accent-hover),

@@ -11,6 +11,7 @@ import {
   generateStandaloneScss,
   isLayoutComponentSet,
 } from "./component-variants.js"
+import { generateNativeStyles } from "./native-styles.js"
 
 // Charge les variables d'environnement (.env à la racine)
 process.loadEnvFile(path.resolve(import.meta.dirname, "../../../.env"))
@@ -29,6 +30,7 @@ const stylesComponentsDir = path.resolve(
   import.meta.dirname,
   "../src/components"
 )
+const reactComponentsDir = path.join(root, "packages/react/src/components")
 const figmaVariablesDir = path.join(root, "packages/figma/src/variables")
 
 // Construit un dictionnaire variableId -> syntaxe de code web var(--...) depuis les tokens locaux
@@ -191,6 +193,7 @@ async function main() {
   for (const compSet of componentSets) {
     const componentName = getComponentName(compSet.name)
     let scssContent
+    let nativeContent
     if (compSet.type === "COMPONENT") {
       scssContent = generateStandaloneScss(componentName, compSet, variableMap)
       if (!scssContent) {
@@ -209,6 +212,23 @@ async function main() {
         continue
       }
       scssContent = generateComponentScss(componentName, variants)
+
+      // "components/button/buttonList" -> dossier button/buttonList dans le package react
+      const dirSegments = compSet.name
+        .split("/")
+        .map((segment) => segment.trim())
+        .filter(
+          (segment, i) => !(i === 0 && segment.toLowerCase() === "components")
+        )
+        .map((segment) => segment.charAt(0).toLowerCase() + segment.slice(1))
+      nativeContent = {
+        file: path.join(
+          reactComponentsDir,
+          ...dirSegments,
+          `${componentName}.styles.native.ts`
+        ),
+        content: generateNativeStyles(componentName, variants),
+      }
     }
     const outputFile = path.join(
       stylesComponentsDir,
@@ -218,6 +238,14 @@ async function main() {
     await fs.writeFile(outputFile, scssContent, "utf8")
     const relPath = path.relative(root, outputFile)
     console.log(`✔ [${compSet.name}] -> ${relPath}`)
+
+    if (nativeContent) {
+      await fs.mkdir(path.dirname(nativeContent.file), { recursive: true })
+      await fs.writeFile(nativeContent.file, nativeContent.content, "utf8")
+      console.log(
+        `✔ [${compSet.name}] -> ${path.relative(root, nativeContent.file)}`
+      )
+    }
     generatedNames.push(componentName)
   }
 

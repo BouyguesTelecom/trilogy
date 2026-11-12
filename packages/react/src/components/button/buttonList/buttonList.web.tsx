@@ -16,7 +16,16 @@ export const ButtonList: ForwardRefExoticComponent<
   Props & RefAttributes<ButtonListRef>
 > = forwardRef<ButtonListRef, Props>(
   (
-    { alignItems, direction, justifyContent, className, id, testId, children },
+    {
+      alignItems,
+      direction,
+      justifyContent,
+      className,
+      id,
+      testId,
+      children,
+      wrap,
+    },
     ref
   ) => {
     const classes = useHashClass(
@@ -25,6 +34,7 @@ export const ButtonList: ForwardRefExoticComponent<
         alignItems && getClassName("align-items", alignItems),
         direction && getClassName("flex-direction", direction),
         justifyContent && getClassName("justify-content", justifyContent),
+        wrap && getClassName("flex-wrap", wrap),
         className
       )
     )
