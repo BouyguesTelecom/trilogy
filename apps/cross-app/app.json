@@ -14,10 +14,11 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "output": "server"    
+      "output": "server"
     },
     "plugins": [
       "expo-router",
+      "@react-native-vector-icons/fontawesome-free-solid",
       [
         "expo-splash-screen",
         {

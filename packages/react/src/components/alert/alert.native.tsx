@@ -4,7 +4,7 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { Text, View } from "react-native"
+import { View } from "react-native"
 
 import type { AlertProps } from "./alert.types"
 

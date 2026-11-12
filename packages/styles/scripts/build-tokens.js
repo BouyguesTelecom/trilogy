@@ -10,6 +10,7 @@ const stylesDir = path.resolve(__dirname, "..")
 const figmaDir = path.join(root, "packages/figma/src")
 const variablesBuildPath = `${path.join(stylesDir, "src/variables")}/`
 const helpersBuildPath = `${path.join(stylesDir, "src/helpers")}/`
+const reactConstantsPath = `${path.join(root, "packages/react/src/constants")}/`
 
 const THEMES = {
   Light: ':root,\n[data-theme="light"]',
@@ -419,10 +420,128 @@ const fonts = new StyleDictionary({
   },
 })
 
+const camelCase = (str) => str.replace(/-(\w)/g, (_, c) => c.toUpperCase())
+
+const tsValue = (value) =>
+  typeof value === "object"
+    ? JSON.stringify(colorToCss(value))
+    : JSON.stringify(value)
+
+// Dimensions.<group>.<token> -> clé du groupe dans le thème
+const DIMENSION_GROUPS = {
+  Radius: "radius",
+  Spacing: "spacings",
+  Border: "borderWidths",
+  Icon: "iconSizes",
+}
+
+// Nom du token : "var(--radius-sm)" -> "radiusSm" ; sans code syntax web, "font-" + chemin
+const themeKey = (token, fallbackPrefix = "") => {
+  const web = token.$extensions?.["com.figma.codeSyntax"]?.WEB
+  const match = web?.match(/var\(--([\w-]+)\)/)
+  return camelCase(
+    match
+      ? match[1]
+      : `${fallbackPrefix}${token.path.slice(1).map(kebab).join("-")}`
+  )
+}
+
+StyleDictionary.registerFormat({
+  name: "trilogy/ts-theme",
+  format: ({ dictionary }) => {
+    const tokens = dictionary.allTokens
+    const block = (entries, indent) =>
+      entries
+        .map(([key, value]) => `${indent}${key}: ${tsValue(value)},`)
+        .join("\n")
+
+    const colors = Object.keys(THEMES).map((theme) => {
+      const entries = tokens
+        .filter((token) => token.path[0] === theme)
+        .map((token) => [themeKey(token), token.$value])
+      return `    ${theme.toLowerCase()}: {\n${block(entries, "      ")}\n    },`
+    })
+
+    const fonts = tokens
+      .filter((token) => token.path[0] === "Fonts")
+      .map((token) => [themeKey(token, "font-"), token.$value])
+
+    const dimensions = Object.entries(DIMENSION_GROUPS).map(([group, name]) => {
+      const entries = tokens
+        .filter(
+          (token) => token.path[0] === "Dimensions" && token.path[1] === group
+        )
+        .map((token) => [
+          themeKey({ ...token, path: token.path.slice(1) }),
+          token.$value,
+        ])
+      return `  ${name}: {\n${block(entries, "    ")}\n  },`
+    })
+
+    return `// Generated from figma tokens. Do not edit directly.
+export const DEFAULT_THEME_TRILOGY = {
+  colors: {
+${colors.join("\n")}
+  },
+  fonts: {
+${block(fonts, "    ")}
+  },
+${dimensions.join("\n")}
+} as const
+
+type WidenThemeValues<T> = T extends string
+  ? string
+  : T extends number
+    ? number
+    : T extends boolean
+      ? boolean
+      : T extends readonly unknown[]
+        ? { [K in keyof T]: WidenThemeValues<T[K]> }
+        : T extends object
+          ? { -readonly [K in keyof T]: WidenThemeValues<T[K]> }
+          : T
+
+export type TrilogyTheme = WidenThemeValues<typeof DEFAULT_THEME_TRILOGY>
+export type TrilogyThemeMode = keyof TrilogyTheme["colors"]
+export type ActiveTrilogyTheme = Omit<TrilogyTheme, "colors"> & {
+  colors: TrilogyTheme["colors"][TrilogyThemeMode]
+}
+`
+  },
+})
+
+// Nom unique par chemin pour éviter les collisions Light/Dark ou Background/Color (themeKey calcule la vraie clé)
+StyleDictionary.registerTransform({
+  name: "trilogy/name/path",
+  type: "name",
+  transform: (token) => token.path.join("/"),
+})
+
+const theme = new StyleDictionary({
+  source: [
+    ...Object.keys(THEMES).map((name) =>
+      path.join(figmaDir, `variables/${name}.tokens.json`)
+    ),
+    path.join(figmaDir, "variables/Dimensions.tokens.json"),
+    path.join(figmaDir, "variables/Fonts.tokens.json"),
+  ],
+  parsers: ["trilogy/theme"],
+  usesDtcg: true,
+  log: { verbosity: "verbose" },
+  platforms: {
+    ts: {
+      transforms: ["trilogy/name/path"],
+      buildPath: reactConstantsPath,
+      files: [{ destination: "theme.ts", format: "trilogy/ts-theme" }],
+    },
+  },
+})
+
 await primitives.buildAllPlatforms()
 await colors.buildAllPlatforms()
 await dimensions.buildAllPlatforms()
 await fonts.buildAllPlatforms()
+await theme.buildAllPlatforms()
 
 // Génération des index de dossiers
 await fs.promises.writeFile(

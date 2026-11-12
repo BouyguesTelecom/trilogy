@@ -2,7 +2,7 @@
   "Family": {
     "primary": {
       "$type": "string",
-      "$value": "Bouygues Read",
+      "$value": "roboto",
       "$description": "Token typographique sémantique → Font/font-family-1. Valeur commune à Light et Dark.",
       "$extensions": {
         "com.figma.variableId": "VariableID:63:3",
@@ -23,7 +23,7 @@
     },
     "secondary": {
       "$type": "string",
-      "$value": "Bouygues Speak Corpo",
+      "$value": "alatsi",
       "$description": "Token typographique sémantique → Font/font-family-2. Valeur commune à Light et Dark.",
       "$extensions": {
         "com.figma.variableId": "VariableID:63:4",
@@ -119,6 +119,152 @@
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:7bbbf130d01916f391c851426e2e53ba98a8f8a2/-1:-1",
           "targetVariableName": "Font/font-weight-400",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    }
+  },
+  "Size": {
+    "xs": {
+      "$type": "number",
+      "$value": 12,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:283:349",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:a74d0411e8290729c7edf6fc745e5856981280f1/-1:-1",
+          "targetVariableName": "Font/font-size-50",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "sm": {
+      "$type": "number",
+      "$value": 14,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:283:350",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:7db0b238ea98614ec542ba5f90830c46ea8944d9/-1:-1",
+          "targetVariableName": "Font/font-size-100",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "base": {
+      "$type": "number",
+      "$value": 16,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:283:353",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:a80e9194179a61e0a41658f3a94fa89b25e46498/-1:-1",
+          "targetVariableName": "Font/font-size-200",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "md": {
+      "$type": "number",
+      "$value": 20,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:283:354",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:d888e674f30b6613f08fd75e8c39bea0550bd70f/-1:-1",
+          "targetVariableName": "Font/font-size-400",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "lg": {
+      "$type": "number",
+      "$value": 22,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:283:355",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:cdb4478507a2e17b062c046dd5d68119914f9338/-1:-1",
+          "targetVariableName": "Font/font-size-500",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "xl": {
+      "$type": "number",
+      "$value": 24,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:283:356",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:b26695a29cc40ba3ff9af78acf2e8b404153c4ef/-1:-1",
+          "targetVariableName": "Font/font-size-600",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "xxl": {
+      "$type": "number",
+      "$value": 28,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:283:357",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:59b4be544b4cca8e5b23ff16602d04f92338c5b2/-1:-1",
+          "targetVariableName": "Font/font-size-700",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "xxxl": {
+      "$type": "number",
+      "$value": 36,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:283:358",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:dcbf1abf43aefc7cbcbcfe8b8068271fa2703cef/-1:-1",
+          "targetVariableName": "Font/font-size-800",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "xxxxl": {
+      "$type": "number",
+      "$value": 48,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:283:359",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:70860d11509fa83077450da6e63c3365373b3c31/-1:-1",
+          "targetVariableName": "Font/font-size-900",
           "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }

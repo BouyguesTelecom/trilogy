@@ -1929,6 +1929,106 @@
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
+    },
+    "main-hover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6078431606292725,
+          0.6666666865348816,
+          0.7098039388656616
+        ],
+        "alpha": 1,
+        "hex": "#9BAAB5"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:214:2",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:ff395d4f846b96777d8f81c117a7451ac0f88fa1/-1:-1",
+          "targetVariableName": "Color/Main/200",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "accent-hover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8666666746139526,
+          0.5333333611488342,
+          0.35686275362968445
+        ],
+        "alpha": 1,
+        "hex": "#DD885B"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:214:3",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:6c37b980f3ec615fa285465740a08890aee4460e/-1:-1",
+          "targetVariableName": "Color/Accent/300",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "main-pressed": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7333333492279053,
+          0.7764706015586853,
+          0.8039215803146362
+        ],
+        "alpha": 1,
+        "hex": "#BBC6CD"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:214:4",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:02e90ba303bc2d15c254934f57704f08cd2aa3d5/-1:-1",
+          "targetVariableName": "Color/Main/100",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
+    },
+    "accent-pressed": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9098039269447327,
+          0.6823529601097107,
+          0.5568627715110779
+        ],
+        "alpha": 1,
+        "hex": "#E8AE8E"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:214:5",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:74c02d03709adb11cbe7704740d04de295ac1a25/-1:-1",
+          "targetVariableName": "Color/Accent/200",
+          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetName": "Primitive_BouyguesTelecom"
+        }
+      }
     }
   },
   "$extensions": {

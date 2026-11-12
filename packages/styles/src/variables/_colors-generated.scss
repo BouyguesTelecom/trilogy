@@ -70,6 +70,10 @@
   --border-focus: #{$color-main-500};
   --border-transparent: #{$color-transparent};
   --border-main: #{$color-main-500};
+  --border-main-hover: #{$color-main-600};
+  --border-accent-hover: #{$color-accent-600};
+  --border-main-pressed: #{$color-main-700};
+  --border-accent-pressed: #{$color-accent-700};
 }
 
 [data-theme="dark"] {
@@ -138,4 +142,8 @@
   --border-focus: #{$color-main-500};
   --border-transparent: #{$color-transparent};
   --border-main: #{$color-main-500};
+  --border-main-hover: #{$color-main-200};
+  --border-accent-hover: #{$color-accent-300};
+  --border-main-pressed: #{$color-main-100};
+  --border-accent-pressed: #{$color-accent-200};
 }

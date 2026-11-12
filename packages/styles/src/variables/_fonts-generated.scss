@@ -10,4 +10,13 @@
   --font-weight-medium: #{$font-weight-200};
   --font-weight-semibold: #{$font-weight-300};
   --font-weight-bold: #{$font-weight-400};
+  --size-xs: #{$font-size-50};
+  --size-sm: #{$font-size-100};
+  --size-base: #{$font-size-200};
+  --size-md: #{$font-size-400};
+  --size-lg: #{$font-size-500};
+  --size-xl: #{$font-size-600};
+  --size-xxl: #{$font-size-700};
+  --size-xxxl: #{$font-size-800};
+  --size-xxxxl: #{$font-size-900};
 }
