@@ -360,7 +360,7 @@ const spacing = (node, key, variableMap) => {
 }
 
 // Typographie du premier texte : variable liée en priorité, sinon la valeur brute
-function readTypographyDeclarations(node, variableMap) {
+function readTypographyDeclarations(node, variableMap, { color = false } = {}) {
   // Le texte d'une instance (ex. alertTitle dans alertContent) porte ses propres règles
   const text = findText(node, { skipInstances: true })
   if (!text) return []
@@ -379,11 +379,15 @@ function readTypographyDeclarations(node, variableMap) {
   const weight = bound("fontWeight") ?? style.fontWeight
   if (weight) declarations.push(`font-weight: ${weight};`)
 
+  // La couleur n'est pas écrite en CSS (héritée) ; le natif n'hérite pas, il la lit sur le texte
+  const textColor = color && bound("fills")
+  if (textColor) declarations.push(`color: ${textColor};`)
+
   return declarations
 }
 
 // Composant sans variants : auto-layout (direction, alignements, gap, padding) et typographie de son texte
-export function generateStandaloneScss(componentName, node, variableMap) {
+export function standaloneDeclarations(node, variableMap, options) {
   const declarations = []
 
   if (["HORIZONTAL", "VERTICAL"].includes(node.layoutMode)) {
@@ -410,7 +414,12 @@ export function generateStandaloneScss(componentName, node, variableMap) {
     }
   }
 
-  declarations.push(...readTypographyDeclarations(node, variableMap))
+  declarations.push(...readTypographyDeclarations(node, variableMap, options))
+  return declarations
+}
+
+export function generateStandaloneScss(componentName, node, variableMap) {
+  const declarations = standaloneDeclarations(node, variableMap)
   if (!declarations.length) return null
 
   return `// Do not edit directly, this file was auto-generated.

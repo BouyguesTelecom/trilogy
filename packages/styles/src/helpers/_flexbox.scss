@@ -14,24 +14,24 @@ $directions: ("row", "column");
 
 @each $justify in $justifies {
   .justify-content-#{$justify} {
-    justify-content: $justify;
+    justify-content: #{$justify};
   }
 }
 
 @each $align in $aligns {
   .align-items-#{$align} {
-    align-items: $align;
+    align-items: #{$align};
   }
 }
 
 @each $direction in $directions {
   .flex-direction-#{$direction} {
-    flex-direction: $direction;
+    flex-direction: #{$direction};
   }
 }
 
 @each $wrap in $wraps {
   .flex-wrap-#{$wrap} {
-    flex-wrap: $wrap;
+    flex-wrap: #{$wrap};
   }
 }

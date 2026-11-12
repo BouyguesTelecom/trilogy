@@ -10,8 +10,10 @@
     "version": "changeset version",
     "start:web": "pnpm --filter @trilogy-ds/cross-app start:web",
     "start:mobile": "pnpm --filter @trilogy-ds/cross-app start:mobile",
-    "figma:generate-props": "pnpm --filter @trilogy-ds/react figma:generate-props",
-    "figma:generate-components": "pnpm --filter @trilogy-ds/styles figma:generate-components",
+    "generate": "node scripts/generate/index.js",
+    "generate:tokens": "node scripts/generate/index.js tokens",
+    "generate:components": "node scripts/generate/index.js components",
+    "generate:props": "node scripts/generate/index.js props",
     "release": "turbo build && changeset publish",
     "start": "pnpm start:web"
   },

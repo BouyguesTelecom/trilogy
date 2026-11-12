@@ -1,8 +1,19 @@
-#!/usr/bin/env node
 import fs from "node:fs/promises"
 import path from "node:path"
-import process from "node:process"
 
+import { getComponentDirSegments, getComponentName } from "./lib/figma.js"
+import {
+  generateNativeStandaloneStyles,
+  generateNativeStyles,
+} from "./lib/native-styles.js"
+import {
+  FIGMA_SRC,
+  FIGMA_VARIABLES,
+  REACT_SRC,
+  ROOT,
+  STYLES_SRC,
+} from "./lib/paths.js"
+import { writeScssIndex } from "./lib/scss-index.js"
 import {
   extractLayoutData,
   extractVariantsData,
@@ -10,28 +21,11 @@ import {
   generateLayoutScss,
   generateStandaloneScss,
   isLayoutComponentSet,
-} from "./component-variants.js"
-import { generateNativeStyles } from "./native-styles.js"
+  standaloneDeclarations,
+} from "./lib/variants.js"
 
-// Charge les variables d'environnement (.env à la racine)
-process.loadEnvFile(path.resolve(import.meta.dirname, "../../../.env"))
-
-const FIGMA_API_KEY = process.env.FIGMA_API_KEY
-if (!FIGMA_API_KEY) {
-  console.error("❌ Variable FIGMA_API_KEY introuvable dans le .env")
-  process.exit(1)
-}
-
-const FILE_KEY = process.env.FIGMA_FILE_KEY || "du5IDsc76TxdC7vctI1h7I"
-const PAGE_NODE_ID = (process.argv[2] || "35:117").replace("-", ":")
-
-const root = path.resolve(import.meta.dirname, "../../..")
-const stylesComponentsDir = path.resolve(
-  import.meta.dirname,
-  "../src/components"
-)
-const reactComponentsDir = path.join(root, "packages/react/src/components")
-const figmaVariablesDir = path.join(root, "packages/figma/src/variables")
+const stylesComponentsDir = path.join(STYLES_SRC, "components")
+const reactComponentsDir = path.join(REACT_SRC, "components")
 
 // Construit un dictionnaire variableId -> syntaxe de code web var(--...) depuis les tokens locaux
 // Même règle que primitiveName() de build-tokens.js
@@ -58,7 +52,7 @@ async function loadTokensVariableMap() {
 
   for (const file of files) {
     try {
-      const filePath = path.join(figmaVariablesDir, file)
+      const filePath = path.join(FIGMA_VARIABLES, file)
       const raw = await fs.readFile(filePath, "utf8")
       const data = JSON.parse(raw)
 
@@ -87,10 +81,7 @@ async function loadTokensVariableMap() {
   // Les polices sont liées aux primitives dans Figma : on les rattache au token sémantique de même valeur
   try {
     const fonts = JSON.parse(
-      await fs.readFile(
-        path.join(figmaVariablesDir, "Fonts.tokens.json"),
-        "utf8"
-      )
+      await fs.readFile(path.join(FIGMA_VARIABLES, "Fonts.tokens.json"), "utf8")
     )
     const webByFamily = new Map()
     for (const token of Object.values(fonts.Family ?? {})) {
@@ -99,10 +90,7 @@ async function loadTokensVariableMap() {
     }
 
     const primitives = JSON.parse(
-      await fs.readFile(
-        path.join(figmaVariablesDir, "../primitives.json"),
-        "utf8"
-      )
+      await fs.readFile(path.join(FIGMA_SRC, "primitives.json"), "utf8")
     )
     const walkPrimitives = (o) => {
       for (const k in o) {
@@ -126,33 +114,6 @@ async function loadTokensVariableMap() {
   return map
 }
 
-function getComponentName(rawName) {
-  const name = rawName.split("/").pop().trim()
-  return name.charAt(0).toLowerCase() + name.slice(1)
-}
-
-async function fetchPageData(fileKey, nodeId) {
-  const url = `https://api.figma.com/v1/files/${fileKey}/nodes?ids=${nodeId}`
-  const response = await fetch(url, {
-    headers: { "X-Figma-Token": FIGMA_API_KEY },
-  })
-
-  if (!response.ok) {
-    throw new Error(
-      `Erreur API Figma (${response.status}) : ${response.statusText}`
-    )
-  }
-
-  const data = await response.json()
-  const pageData = data.nodes[nodeId]
-
-  if (!pageData?.document) {
-    throw new Error(`Page ou frame introuvable pour le node ID ${nodeId}`)
-  }
-
-  return pageData
-}
-
 // Component sets et composants autonomes (sans variants)
 function collectComponentSets(node) {
   const sets = []
@@ -171,15 +132,12 @@ function collectComponentSets(node) {
   return sets
 }
 
-async function main() {
+export async function generateComponents(pageData) {
   console.log(`📡 Chargement des correspondances de variables locales...`)
   const variableMap = await loadTokensVariableMap()
   console.log(
     `✔ ${variableMap.size} variables locales identifiées avec leur codeSyntax WEB`
   )
-
-  console.log(`📡 Récupération de la page Figma (node-id: ${PAGE_NODE_ID})...`)
-  const pageData = await fetchPageData(FILE_KEY, PAGE_NODE_ID)
 
   const componentSets = collectComponentSets(pageData.document)
   console.log(
@@ -196,6 +154,10 @@ async function main() {
     let nativeContent
     if (compSet.type === "COMPONENT") {
       scssContent = generateStandaloneScss(componentName, compSet, variableMap)
+      nativeContent = generateNativeStandaloneStyles(
+        componentName,
+        standaloneDeclarations(compSet, variableMap, { color: true })
+      )
       if (!scssContent) {
         console.log(`⚠ [${compSet.name}] : Ni auto-layout ni texte, ignoré.`)
         continue
@@ -213,22 +175,7 @@ async function main() {
       }
       scssContent = generateComponentScss(componentName, variants)
 
-      // "components/button/buttonList" -> dossier button/buttonList dans le package react
-      const dirSegments = compSet.name
-        .split("/")
-        .map((segment) => segment.trim())
-        .filter(
-          (segment, i) => !(i === 0 && segment.toLowerCase() === "components")
-        )
-        .map((segment) => segment.charAt(0).toLowerCase() + segment.slice(1))
-      nativeContent = {
-        file: path.join(
-          reactComponentsDir,
-          ...dirSegments,
-          `${componentName}.styles.native.ts`
-        ),
-        content: generateNativeStyles(componentName, variants),
-      }
+      nativeContent = generateNativeStyles(componentName, variants)
     }
     const outputFile = path.join(
       stylesComponentsDir,
@@ -236,15 +183,18 @@ async function main() {
     )
 
     await fs.writeFile(outputFile, scssContent, "utf8")
-    const relPath = path.relative(root, outputFile)
+    const relPath = path.relative(ROOT, outputFile)
     console.log(`✔ [${compSet.name}] -> ${relPath}`)
 
     if (nativeContent) {
-      await fs.mkdir(path.dirname(nativeContent.file), { recursive: true })
-      await fs.writeFile(nativeContent.file, nativeContent.content, "utf8")
-      console.log(
-        `✔ [${compSet.name}] -> ${path.relative(root, nativeContent.file)}`
+      const nativeFile = path.join(
+        reactComponentsDir,
+        ...getComponentDirSegments(compSet.name),
+        `${componentName}.styles.native.ts`
       )
+      await fs.mkdir(path.dirname(nativeFile), { recursive: true })
+      await fs.writeFile(nativeFile, nativeContent, "utf8")
+      console.log(`✔ [${compSet.name}] -> ${path.relative(ROOT, nativeFile)}`)
     }
     generatedNames.push(componentName)
   }
@@ -259,24 +209,12 @@ async function main() {
       }
     }
 
-    const indexPath = path.join(stylesComponentsDir, "_index.scss")
-    // Les partials écrits à la main (ex. _button.scss) restent dans l'index
-    const handWritten = (await fs.readdir(stylesComponentsDir))
-      .map((file) => file.match(/^_(.+)\.scss$/)?.[1])
-      .filter(
-        (name) => name && name !== "index" && !name.endsWith("-generated")
-      )
-    const indexContent =
-      [...generatedNames.map((name) => `${name}-generated`), ...handWritten]
-        .map((name) => `@forward "${name}";`)
-        .join("\n") + "\n"
-    await fs.writeFile(indexPath, indexContent, "utf8")
-    const relIndexPath = path.relative(root, indexPath)
-    console.log(`✔ [index] -> ${relIndexPath}`)
+    await writeScssIndex(
+      stylesComponentsDir,
+      generatedNames.map((name) => `${name}-generated`)
+    )
+    console.log(
+      `✔ [index] -> ${path.relative(ROOT, path.join(stylesComponentsDir, "_index.scss"))}`
+    )
   }
 }
-
-main().catch((err) => {
-  console.error("❌", err.message)
-  process.exit(1)
-})

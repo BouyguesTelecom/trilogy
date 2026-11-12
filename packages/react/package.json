@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "expo lint",
-    "build": "tsdown",
-    "figma:props": "node scripts/generate-figma-props.js"
+    "build": "tsdown"
   },
   "keywords": [],
   "author": "",

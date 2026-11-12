@@ -1,14 +1,17 @@
 import {
   forwardRef,
+  useMemo,
+  type ComponentRef,
   type ForwardRefExoticComponent,
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { View } from "react-native"
+import { Text, useColorScheme } from "react-native"
 
+import { alertDescriptionStyles } from "./alertDescription.styles.native"
 import type { AlertDescriptionProps } from "./alertDescription.types"
 
-export type AlertDescriptionNativeRef = View
+export type AlertDescriptionNativeRef = ComponentRef<typeof Text>
 
 export const AlertDescription: ForwardRefExoticComponent<
   PropsWithChildren<AlertDescriptionProps> &
@@ -16,8 +19,22 @@ export const AlertDescription: ForwardRefExoticComponent<
 > = forwardRef<
   AlertDescriptionNativeRef,
   PropsWithChildren<AlertDescriptionProps>
->(({ children, testId }, ref) => {
-  return <View testID={testId}>{children} </View>
+>(({ children, id, testId }, ref) => {
+  const mode = useColorScheme() === "dark" ? "dark" : "light"
+
+  const generatedStyles = useMemo(() => alertDescriptionStyles[mode], [mode])
+
+  return (
+    <Text
+      ref={ref}
+      id={id}
+      testID={testId}
+      nativeID={testId}
+      style={[generatedStyles.text]}
+    >
+      {children}
+    </Text>
+  )
 })
 
 AlertDescription.displayName = "AlertDescription"

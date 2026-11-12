@@ -4,6 +4,7 @@
 
 $alertVariants: (
   default: (
+    radius: var(--radius-md),
     padding: var(--spacing-md),
     borderWidth: var(--border-width-sm),
     text: var(--color-primary),
@@ -16,12 +17,10 @@ $alertVariants: (
   information: (
     background: var(--background-information-subtle),
     border: var(--border-information),
-    radius: var(--radius-md),
   ),
   success: (
     background: var(--background-success-subtle),
     border: var(--border-success),
-    radius: var(--radius-md),
   ),
   error: (
     background: var(--background-error-subtle),

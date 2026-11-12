@@ -1,19 +1,8 @@
-#!/usr/bin/env node
 import fs from "node:fs/promises"
 import path from "node:path"
-import process from "node:process"
 
-// Charge les variables d'environnement (.env à la racine)
-process.loadEnvFile(path.resolve(import.meta.dirname, "../../../.env"))
-
-const FIGMA_API_KEY = process.env.FIGMA_API_KEY
-if (!FIGMA_API_KEY) {
-  console.error("❌ Variable FIGMA_API_KEY introuvable dans le .env")
-  process.exit(1)
-}
-
-const FILE_KEY = process.env.FIGMA_FILE_KEY || "du5IDsc76TxdC7vctI1h7I"
-const PAGE_NODE_ID = (process.argv[2] || "35:117").replace("-", ":")
+import { getComponentDirSegments, getComponentName } from "./lib/figma.js"
+import { REACT_SRC, ROOT } from "./lib/paths.js"
 
 // Propriétés Figma qui décrivent un état d'interaction (gérées côté CSS)
 const INTERACTION_PROPS = new Set(["state"])
@@ -33,44 +22,6 @@ function toPascalCase(str) {
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (match) => match.toUpperCase())
     .replace(/[\s-_]+/g, "")
-}
-
-function getComponentName(rawName) {
-  // Ex: "components/button" -> "button", "Button" -> "button"
-  const name = rawName.split("/").pop().trim()
-  return name.charAt(0).toLowerCase() + name.slice(1)
-}
-
-// "components/button/buttonList" -> "button/buttonList" ; "components/button" -> "button"
-function getComponentDirName(rawName) {
-  return rawName
-    .split("/")
-    .map((s) => s.trim())
-    .filter((s, i) => !(i === 0 && s.toLowerCase() === "components"))
-    .map((s) => s.charAt(0).toLowerCase() + s.slice(1))
-    .join("/")
-}
-
-async function fetchPageData(fileKey, nodeId) {
-  const url = `https://api.figma.com/v1/files/${fileKey}/nodes?ids=${nodeId}`
-  const response = await fetch(url, {
-    headers: { "X-Figma-Token": FIGMA_API_KEY },
-  })
-
-  if (!response.ok) {
-    throw new Error(
-      `Erreur API Figma (${response.status}) : ${response.statusText}`
-    )
-  }
-
-  const data = await response.json()
-  const pageData = data.nodes[nodeId]
-
-  if (!pageData?.document) {
-    throw new Error(`Page ou frame introuvable pour le node ID ${nodeId}`)
-  }
-
-  return pageData
 }
 
 // Recherche récursivement tous les composants (COMPONENT_SET ou COMPONENT autonome)
@@ -152,12 +103,8 @@ function generateComponentTypes(node, metadata) {
 `
 }
 
-async function main() {
-  const root = path.resolve(import.meta.dirname, "../../..")
-  const componentsDir = path.resolve(import.meta.dirname, "../src/components")
-
-  console.log(`📡 Récupération de la page Figma (node-id: ${PAGE_NODE_ID})...`)
-  const pageData = await fetchPageData(FILE_KEY, PAGE_NODE_ID)
+export async function generateProps(pageData) {
+  const componentsDir = path.join(REACT_SRC, "components")
 
   const components = collectComponents(pageData.document)
   console.log(
@@ -168,7 +115,7 @@ async function main() {
     const componentName = getComponentName(compNode.name)
     const targetDir = path.join(
       componentsDir,
-      getComponentDirName(compNode.name)
+      ...getComponentDirSegments(compNode.name)
     )
     const targetFile = path.join(targetDir, `${componentName}.generated.ts`)
 
@@ -188,12 +135,7 @@ async function main() {
     await fs.mkdir(targetDir, { recursive: true })
     await fs.writeFile(targetFile, content, "utf8")
 
-    const relPath = path.relative(root, targetFile)
+    const relPath = path.relative(ROOT, targetFile)
     console.log(`✔ [${compNode.name}] -> ${relPath}`)
   }
 }
-
-main().catch((err) => {
-  console.error("❌", err.message)
-  process.exit(1)
-})

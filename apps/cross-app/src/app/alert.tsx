@@ -1,3 +1,4 @@
+import { IconCamera } from "@/components"
 import {
   Alert,
   AlertContent,
@@ -12,9 +13,57 @@ export default function AlertScreen() {
     <>
       <Wrapper title="Buttons">
         <Alert status="success">
+          <IconCamera />
           <AlertContent>
-            <AlertTitle>Title</AlertTitle>
-            <AlertDescription>Description</AlertDescription>
+            <AlertTitle>Lorem, ipsum dolor sit amet</AlertTitle>
+            <AlertDescription>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum
+              odit temporibus vel voluptatibus dicta cumque! Vero, tempore hic
+              cumque nobis ipsum nulla aperiam deserunt animi. Id voluptate
+              cupiditate optio molestiae.
+            </AlertDescription>
+          </AlertContent>
+        </Alert>
+
+        <Alert status="warning">
+          <IconCamera />
+          <AlertContent>
+            <AlertTitle>Lorem, ipsum dolor sit amet</AlertTitle>
+            <AlertDescription>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum
+              odit temporibus vel voluptatibus dicta cumque! Vero, tempore hic
+              cumque nobis ipsum nulla aperiam deserunt animi. Id voluptate
+              cupiditate optio molestiae.
+            </AlertDescription>
+          </AlertContent>
+        </Alert>
+
+        <Alert status="error">
+          <IconCamera />
+          <AlertContent>
+            <AlertTitle>Lorem, ipsum dolor sit amet</AlertTitle>
+            <AlertDescription>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum
+              odit temporibus vel voluptatibus dicta cumque! Vero, tempore hic
+              cumque nobis ipsum nulla aperiam deserunt animi. Id voluptate
+              cupiditate optio molestiae.Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Illum odit temporibus vel voluptatibus dicta
+              cumque! Vero, tempore hic cumque nobis ipsum nulla aperiam
+              deserunt animi. Id voluptate cupiditate optio molestiae.
+            </AlertDescription>
+          </AlertContent>
+        </Alert>
+
+        <Alert status="information">
+          <IconCamera />
+          <AlertContent>
+            <AlertTitle>Lorem, ipsum dolor sit amet</AlertTitle>
+            <AlertDescription>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum
+              odit temporibus vel voluptatibus dicta cumque! Vero, tempore hic
+              cumque nobis ipsum nulla aperiam deserunt animi. Id voluptate
+              cupiditate optio molestiae.
+            </AlertDescription>
           </AlertContent>
         </Alert>
       </Wrapper>

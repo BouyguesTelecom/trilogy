@@ -10,10 +10,7 @@ export type AlertVariantStyles = {
   disabledText?: TextStyle
 }
 
-export type AlertStyles = Record<
-  "light" | "dark",
-  Record<string, AlertVariantStyles>
->
+export type AlertStyles = Record<"light" | "dark", Record<string, AlertVariantStyles>>
 
 type Colors = Record<keyof (typeof theme.colors)["light"], string>
 
@@ -22,17 +19,17 @@ type AlertBaseStyles = {
 }
 
 // Valeurs identiques quel que soit le variant et le mode
-export const alertBaseStyles: AlertBaseStyles =
-  StyleSheet.create<AlertBaseStyles>({
-    base: {
-      padding: theme.spacings.spacingMd,
-      borderWidth: theme.borderWidths.borderWidthSm,
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "flex-start",
-      gap: theme.spacings.spacingSm,
-    },
-  })
+export const alertBaseStyles: AlertBaseStyles = StyleSheet.create<AlertBaseStyles>({
+  base: {
+    borderRadius: theme.radius.radiusMd,
+    padding: theme.spacings.spacingMd,
+    borderWidth: theme.borderWidths.borderWidthSm,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    gap: theme.spacings.spacingSm,
+  },
+})
 
 // Appelé une fois par mode au chargement du module, pas au rendu
 const build = (colors: Colors): Record<string, AlertVariantStyles> => ({
@@ -40,7 +37,6 @@ const build = (colors: Colors): Record<string, AlertVariantStyles> => ({
     view: {
       backgroundColor: colors.backgroundInformationSubtle,
       borderColor: colors.borderInformation,
-      borderRadius: theme.radius.radiusMd,
     },
     text: {
       color: colors.colorPrimary,
@@ -50,7 +46,6 @@ const build = (colors: Colors): Record<string, AlertVariantStyles> => ({
     view: {
       backgroundColor: colors.backgroundSuccessSubtle,
       borderColor: colors.borderSuccess,
-      borderRadius: theme.radius.radiusMd,
     },
     text: {
       color: colors.colorPrimary,

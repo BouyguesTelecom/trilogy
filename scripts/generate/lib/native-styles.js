@@ -18,6 +18,7 @@ const RN_PROPS = {
   "justify-content": ["view", "justifyContent"],
   "align-items": ["view", "alignItems"],
   text: ["text", "color"],
+  color: ["text", "color"],
   "font-family": ["text", "fontFamily"],
   "font-size": ["text", "fontSize"],
   "font-weight": ["text", "fontWeight"],
@@ -172,6 +173,64 @@ ${variantBlocks.join("\n")}
 })
 
 export const ${componentName}Styles: ${stylesType} = {
+  light: build(theme.colors.light),
+  dark: build(theme.colors.dark),
+}
+`
+}
+
+// Composant sans variants (ex. alertTitle) : un style de vue et/ou de texte ; par mode si une couleur en dépend
+export function generateNativeStandaloneStyles(componentName, declarations) {
+  const props = {}
+  for (const line of declarations) {
+    const [, key, value] = line.match(/^([\w-]+): (.*);$/)
+    // Les raccourcis à plusieurs valeurs (ex. padding: a b c d) n'existent pas en natif
+    if (/\s/.test(value) && !value.startsWith('"')) continue
+    props[key] = value
+  }
+  const { view, text } = toRn(props)
+  if (!view.size && !text.size) return null
+
+  const byMode = [...view.keys(), ...text.keys()].some((prop) =>
+    MODE_PROPS.has(prop)
+  )
+  const pascalName = pascalCase(componentName)
+  const stylesType = `${pascalName}Styles`
+
+  const fields = [
+    ["view", "ViewStyle", view],
+    ["text", "TextStyle", text],
+  ].filter(([, , map]) => map.size)
+
+  const type = `type ${stylesType} = {\n${fields.map(([name, kind]) => `  ${name}: ${kind}`).join("\n")}\n}`
+  const body = fields
+    .map(([name, , map]) => `    ${name}: ${literal([], map, "    ")},`)
+    .join("\n")
+  const create = `StyleSheet.create<${stylesType}>({\n${body}\n  })`
+
+  const header = `// Do not edit directly, this file was auto-generated.
+import { DEFAULT_THEME_TRILOGY as theme } from "${THEME_ALIAS}"
+import { StyleSheet, ${fields.map(([, kind]) => `type ${kind}`).join(", ")} } from "react-native"
+`
+
+  if (!byMode) {
+    return `${header}
+${type}
+
+export const ${componentName}Styles: ${stylesType} = ${create}
+`
+  }
+
+  return `${header}
+type Colors = Record<keyof (typeof theme.colors)["light"], string>
+
+${type}
+
+// Appelé une fois par mode au chargement du module, pas au rendu
+const build = (colors: Colors): ${stylesType} =>
+  ${create}
+
+export const ${componentName}Styles: Record<"light" | "dark", ${stylesType}> = {
   light: build(theme.colors.light),
   dark: build(theme.colors.dark),
 }

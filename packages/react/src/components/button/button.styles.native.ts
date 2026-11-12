@@ -10,10 +10,7 @@ export type ButtonVariantStyles = {
   disabledText?: TextStyle
 }
 
-export type ButtonStyles = Record<
-  "light" | "dark",
-  Record<string, ButtonVariantStyles>
->
+export type ButtonStyles = Record<"light" | "dark", Record<string, ButtonVariantStyles>>
 
 type Colors = Record<keyof (typeof theme.colors)["light"], string>
 
@@ -22,15 +19,14 @@ type ButtonBaseStyles = {
 }
 
 // Valeurs identiques quel que soit le variant et le mode
-export const buttonBaseStyles: ButtonBaseStyles =
-  StyleSheet.create<ButtonBaseStyles>({
-    base: {
-      borderRadius: theme.radius.radiusSm,
-      borderWidth: theme.borderWidths.borderWidthSm,
-      height: theme.sizes.sizeMd,
-      padding: theme.spacings.spacingSm,
-    },
-  })
+export const buttonBaseStyles: ButtonBaseStyles = StyleSheet.create<ButtonBaseStyles>({
+  base: {
+    borderRadius: theme.radius.radiusSm,
+    borderWidth: theme.borderWidths.borderWidthSm,
+    height: theme.sizes.sizeMd,
+    padding: theme.spacings.spacingSm,
+  },
+})
 
 // Appelé une fois par mode au chargement du module, pas au rendu
 const build = (colors: Colors): Record<string, ButtonVariantStyles> => ({

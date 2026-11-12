@@ -14,7 +14,6 @@ export const Wrapper = ({
         padding: 16,
         borderRadius: 8,
         marginBottom: 16,
-        textAlign: "center",
       }}
     >
       {title && (
@@ -24,7 +23,9 @@ export const Wrapper = ({
           {title}
         </div>
       )}
-      {children}
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        {children}
+      </div>
     </div>
   )
 }

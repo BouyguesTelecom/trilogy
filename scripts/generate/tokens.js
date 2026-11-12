@@ -1,16 +1,15 @@
 import fs from "node:fs"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
 import StyleDictionary from "style-dictionary"
 import { fileHeader } from "style-dictionary/utils"
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const root = path.resolve(__dirname, "../../..")
-const stylesDir = path.resolve(__dirname, "..")
-const figmaDir = path.join(root, "packages/figma/src")
-const variablesBuildPath = `${path.join(stylesDir, "src/variables")}/`
-const helpersBuildPath = `${path.join(stylesDir, "src/helpers")}/`
-const reactConstantsPath = `${path.join(root, "packages/react/src/constants")}/`
+import { FIGMA_SRC, REACT_SRC, STYLES_SRC } from "./lib/paths.js"
+import { writeScssIndex } from "./lib/scss-index.js"
+
+const figmaDir = FIGMA_SRC
+const variablesBuildPath = `${path.join(STYLES_SRC, "variables")}/`
+const helpersBuildPath = `${path.join(STYLES_SRC, "helpers")}/`
+const reactConstantsPath = `${path.join(REACT_SRC, "constants")}/`
 
 const THEMES = {
   Light: ':root,\n[data-theme="light"]',
@@ -540,21 +539,23 @@ const theme = new StyleDictionary({
   },
 })
 
-await primitives.buildAllPlatforms()
-await colors.buildAllPlatforms()
-await dimensions.buildAllPlatforms()
-await fonts.buildAllPlatforms()
-await theme.buildAllPlatforms()
+export async function generateTokens() {
+  await primitives.buildAllPlatforms()
+  await colors.buildAllPlatforms()
+  await dimensions.buildAllPlatforms()
+  await fonts.buildAllPlatforms()
+  await theme.buildAllPlatforms()
 
-// Génération des index de dossiers
-await fs.promises.writeFile(
-  path.join(variablesBuildPath, "_index.scss"),
-  `@forward "primitives-generated";\n@forward "colors-generated";\n@forward "dimensions-generated";\n@forward "fonts-generated";\n`,
-  "utf8"
-)
-
-await fs.promises.writeFile(
-  path.join(helpersBuildPath, "_index.scss"),
-  `@forward "colors-generated";\n@forward "dimensions-generated";\n@forward "fonts-generated";\n`,
-  "utf8"
-)
+  // Index de dossiers
+  await writeScssIndex(variablesBuildPath, [
+    "primitives-generated",
+    "colors-generated",
+    "dimensions-generated",
+    "fonts-generated",
+  ])
+  await writeScssIndex(helpersBuildPath, [
+    "colors-generated",
+    "dimensions-generated",
+    "fonts-generated",
+  ])
+}

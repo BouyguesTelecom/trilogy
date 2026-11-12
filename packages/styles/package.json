@@ -5,8 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "sass --no-source-map src/trilogy.scss dist/default/trilogy.css",
-    "build:tokens": "node scripts/build-tokens.js",
-    "figma:components": "node scripts/generate-figma-components.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
