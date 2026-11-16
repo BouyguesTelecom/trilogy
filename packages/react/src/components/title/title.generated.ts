@@ -16,6 +16,13 @@ export enum TitleTextAlign {
 export enum TitleColor {
   primary = "primary",
   secondary = "secondary",
+  information = "information",
+  accent = "accent",
+  success = "success",
+  warning = "warning",
+  error = "error",
+  brand = "brand",
+  inverse = "inverse",
 }
 
 export interface TitleGeneratedProps {

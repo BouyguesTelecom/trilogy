@@ -138,6 +138,14 @@ export function extractVariantsData(compSetNode, pageData, variableMap) {
     if (child.type !== "COMPONENT") continue
 
     const props = parseVariantName(child.name, variantProp)
+
+    // Les props gérées par helper ne changent pas le style du variant : seule leur valeur par défaut est lue
+    const isHelperValue = Object.entries(props).some(
+      ([prop, value]) =>
+        HELPER_PROPS.has(prop) && value !== definitions[prop]?.defaultValue
+    )
+    if (isHelperValue) continue
+
     const variant = props[variantProp] ?? Object.values(props)[0]
     const state = props[STATE_PROP] ?? "default"
 
@@ -309,6 +317,7 @@ const HELPER_PROPS = new Set([
   "alignItems",
   "justifyContent",
   "textAlign",
+  "color",
 ])
 
 // Composant de mise en page : ses props sont toutes gérées par les helpers, pas des variants de style

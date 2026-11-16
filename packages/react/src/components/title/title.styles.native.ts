@@ -17,7 +17,7 @@ type Colors = Record<keyof (typeof theme.colors)["light"], string>
 const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
   one: StyleSheet.create<TitleVariantStyles>({
     text: {
-      color: colors.colorSecondary,
+      color: colors.colorPrimary,
       fontFamily: theme.fonts.fontFamilySecondary,
       fontSize: theme.fonts.fontSizeXxxxl,
       fontWeight: String(
@@ -27,7 +27,7 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
   }),
   two: StyleSheet.create<TitleVariantStyles>({
     text: {
-      color: colors.colorSecondary,
+      color: colors.colorPrimary,
       fontFamily: theme.fonts.fontFamilySecondary,
       fontSize: theme.fonts.fontSizeXxxl,
       fontWeight: String(
@@ -37,7 +37,7 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
   }),
   three: StyleSheet.create<TitleVariantStyles>({
     text: {
-      color: colors.colorSecondary,
+      color: colors.colorPrimary,
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeXxl,
       fontWeight: String(
@@ -47,7 +47,7 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
   }),
   four: StyleSheet.create<TitleVariantStyles>({
     text: {
-      color: colors.colorSecondary,
+      color: colors.colorPrimary,
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeXl,
       fontWeight: String(
@@ -57,7 +57,7 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
   }),
   five: StyleSheet.create<TitleVariantStyles>({
     text: {
-      color: colors.colorSecondary,
+      color: colors.colorPrimary,
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeMd,
       fontWeight: String(
@@ -67,7 +67,7 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
   }),
   six: StyleSheet.create<TitleVariantStyles>({
     text: {
-      color: colors.colorSecondary,
+      color: colors.colorPrimary,
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeBase,
       fontWeight: String(
