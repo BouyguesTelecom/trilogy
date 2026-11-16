@@ -13,7 +13,13 @@ export enum TitleTextAlign {
   center = "center",
 }
 
+export enum TitleColor {
+  primary = "primary",
+  secondary = "secondary",
+}
+
 export interface TitleGeneratedProps {
   level?: TitleLevel
   textAlign?: TitleTextAlign
+  color?: TitleColor
 }

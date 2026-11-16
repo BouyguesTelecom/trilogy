@@ -1,13 +1,9 @@
 // Do not edit directly, this file was auto-generated.
 import { DEFAULT_THEME_TRILOGY as theme } from "@trilogy-react/theme"
-import { StyleSheet, type TextStyle, type ViewStyle } from "react-native"
+import { StyleSheet, type TextStyle } from "react-native"
 
 export type TitleVariantStyles = {
-  view: ViewStyle
-  pressed?: ViewStyle
-  disabled?: ViewStyle
   text: TextStyle
-  disabledText?: TextStyle
 }
 
 export type TitleStyles = Record<
@@ -17,17 +13,11 @@ export type TitleStyles = Record<
 
 type Colors = Record<keyof (typeof theme.colors)["light"], string>
 
-type TitleBaseStyles = {}
-
-// Valeurs identiques quel que soit le variant et le mode
-export const titleBaseStyles: TitleBaseStyles =
-  StyleSheet.create<TitleBaseStyles>({})
-
 // Appelé une fois par mode au chargement du module, pas au rendu
 const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
   one: StyleSheet.create<TitleVariantStyles>({
-    view: {},
     text: {
+      color: colors.colorSecondary,
       fontFamily: theme.fonts.fontFamilySecondary,
       fontSize: theme.fonts.fontSizeXxxxl,
       fontWeight: String(
@@ -36,8 +26,8 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
     },
   }),
   two: StyleSheet.create<TitleVariantStyles>({
-    view: {},
     text: {
+      color: colors.colorSecondary,
       fontFamily: theme.fonts.fontFamilySecondary,
       fontSize: theme.fonts.fontSizeXxxl,
       fontWeight: String(
@@ -46,8 +36,8 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
     },
   }),
   three: StyleSheet.create<TitleVariantStyles>({
-    view: {},
     text: {
+      color: colors.colorSecondary,
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeXxl,
       fontWeight: String(
@@ -56,8 +46,8 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
     },
   }),
   four: StyleSheet.create<TitleVariantStyles>({
-    view: {},
     text: {
+      color: colors.colorSecondary,
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeXl,
       fontWeight: String(
@@ -66,8 +56,8 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
     },
   }),
   five: StyleSheet.create<TitleVariantStyles>({
-    view: {},
     text: {
+      color: colors.colorSecondary,
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeMd,
       fontWeight: String(
@@ -76,8 +66,8 @@ const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
     },
   }),
   six: StyleSheet.create<TitleVariantStyles>({
-    view: {},
     text: {
+      color: colors.colorSecondary,
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeBase,
       fontWeight: String(

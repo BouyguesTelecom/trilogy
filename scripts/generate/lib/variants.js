@@ -71,8 +71,8 @@ function readTokens(child, meta, variableMap) {
 
   Object.assign(tokens, readLayoutTokens(child, variableMap))
 
-  // Composant de typographie (ex. title) : sans autre propriété de style, le variant ne se distingue que par son texte
-  if (!Object.keys(tokens).length) {
+  // Composant de typographie (ex. title) : sans autre propriété que la couleur du texte, le variant ne se distingue que par sa typographie
+  if (Object.keys(tokens).every((key) => key === "text")) {
     for (const line of readTypographyDeclarations(child, variableMap)) {
       const [, key, value] = line.match(/^([\w-]+): (.*);$/)
       tokens[key] = value

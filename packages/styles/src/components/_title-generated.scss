@@ -3,6 +3,9 @@
 @use "sass:meta";
 
 $titleVariants: (
+  default: (
+    text: var(--color-secondary),
+  ),
   one: (
     font-family: var(--font-family-secondary),
     font-size: var(--font-size-xxxxl),

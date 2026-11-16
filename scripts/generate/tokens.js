@@ -3,6 +3,7 @@ import path from "node:path"
 import StyleDictionary from "style-dictionary"
 import { fileHeader } from "style-dictionary/utils"
 
+import { THEME_ALIAS } from "./lib/native-styles.js"
 import { FIGMA_SRC, REACT_SRC, STYLES_SRC } from "./lib/paths.js"
 import { writeScssIndex } from "./lib/scss-index.js"
 
@@ -512,6 +513,45 @@ export type ActiveTrilogyTheme = Omit<TrilogyTheme, "colors"> & {
   },
 })
 
+// Équivalent natif des helpers .text-* : un style de couleur de texte par token et par mode
+StyleDictionary.registerFormat({
+  name: "trilogy/ts-text-color-styles",
+  format: ({ dictionary }) => {
+    const firstTheme = Object.keys(THEMES)[0]
+    const keysOf = (theme) =>
+      dictionary.allTokens
+        .filter((token) => token.path[0] === theme)
+        .map((token) => themeKey(token))
+        .filter((key) => /^color[A-Z]/.test(key))
+
+    // colorPrimary -> primary (même suffixe que la classe .text-primary)
+    const suffix = (key) => key.charAt(5).toLowerCase() + key.slice(6)
+    const names = keysOf(firstTheme).map(suffix)
+
+    return `// Generated from figma tokens. Do not edit directly.
+import { DEFAULT_THEME_TRILOGY as theme } from "${THEME_ALIAS}"
+import { StyleSheet, type TextStyle } from "react-native"
+
+type Colors = Record<keyof (typeof theme.colors)["light"], string>
+
+export type TextColor = ${names.map((name) => `"${name}"`).join(" | ")}
+
+// Appelé une fois par mode au chargement du module, pas au rendu
+const build = (colors: Colors): Record<TextColor, TextStyle> =>
+  StyleSheet.create<Record<TextColor, TextStyle>>({
+${keysOf(firstTheme)
+  .map((key) => `    ${suffix(key)}: { color: colors.${key} },`)
+  .join("\n")}
+  })
+
+export const textColorStyles: Record<"light" | "dark", Record<TextColor, TextStyle>> = {
+  light: build(theme.colors.light),
+  dark: build(theme.colors.dark),
+}
+`
+  },
+})
+
 // Nom unique par chemin pour éviter les collisions Light/Dark ou Background/Color (themeKey calcule la vraie clé)
 StyleDictionary.registerTransform({
   name: "trilogy/name/path",
@@ -534,7 +574,13 @@ const theme = new StyleDictionary({
     ts: {
       transforms: ["trilogy/name/path"],
       buildPath: reactConstantsPath,
-      files: [{ destination: "theme.ts", format: "trilogy/ts-theme" }],
+      files: [
+        { destination: "theme.ts", format: "trilogy/ts-theme" },
+        {
+          destination: "colors.styles.native.ts",
+          format: "trilogy/ts-text-color-styles",
+        },
+      ],
     },
   },
 })

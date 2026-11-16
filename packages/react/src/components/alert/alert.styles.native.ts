@@ -4,10 +4,7 @@ import { StyleSheet, type TextStyle, type ViewStyle } from "react-native"
 
 export type AlertVariantStyles = {
   view: ViewStyle
-  pressed?: ViewStyle
-  disabled?: ViewStyle
   text: TextStyle
-  disabledText?: TextStyle
 }
 
 export type AlertStyles = Record<

@@ -117,47 +117,57 @@ export function generateNativeStyles(componentName, variants) {
   }
 
   // Chaque style ne contient que ses différences : l'ordre des tableaux côté composant fait le reste
-  const variantBlocks = []
-  for (const [variant, byState] of Object.entries(variants)) {
-    if (variant === "default") continue
+  const variantFields = Object.entries(variants)
+    .filter(([variant]) => variant !== "default")
+    .map(([variant, byState]) => {
+      const own = toRn(byState.default)
+      const pressed = toRn(byState.pressed)
+      const disabled = toRn(byState.disabled)
+      return {
+        variant,
+        fields: {
+          view: without(merge(common.view, own.view), baseView),
+          pressed: pressed.view,
+          disabled: disabled.view,
+          text: without(merge(common.text, own.text), baseText),
+          disabledText: disabled.text,
+        },
+      }
+    })
 
-    const own = toRn(byState.default)
-    const view = without(merge(common.view, own.view), baseView)
-    const text = without(merge(common.text, own.text), baseText)
-    const pressed = toRn(byState.pressed)
-    const disabled = toRn(byState.disabled)
-
-    const fields = [
-      ["view", view, true],
-      ["pressed", pressed.view],
-      ["disabled", disabled.view],
-      ["text", text, true],
-      ["disabledText", disabled.text],
-    ]
-      .filter(([, map, required]) => required || map.size)
-      .map(([name, map]) => `    ${name}: ${literal([], map, "    ")},`)
-
-    variantBlocks.push(
-      `  ${objectKey(variant)}: StyleSheet.create<${variantType}>({\n${fields.join("\n")}\n  }),`
-    )
+  // Le type ne déclare que les clés utilisées ; une clé absente d'un variant est optionnelle
+  const FIELD_TYPES = {
+    view: "ViewStyle",
+    pressed: "ViewStyle",
+    disabled: "ViewStyle",
+    text: "TextStyle",
+    disabledText: "TextStyle",
   }
+  const typeLines = Object.entries(FIELD_TYPES)
+    .filter(([name]) => variantFields.some(({ fields }) => fields[name].size))
+    .map(([name, kind]) => {
+      const required = variantFields.every(({ fields }) => fields[name].size)
+      return `  ${name}${required ? "" : "?"}: ${kind}`
+    })
+  const usedKinds = [...new Set(typeLines.map((l) => l.split(": ")[1]))]
+  const imports = ["StyleSheet", ...usedKinds.map((kind) => `type ${kind}`)]
+  if (baseView.size && !usedKinds.includes("ViewStyle"))
+    imports.push("type ViewStyle")
+  if (baseText.size && !usedKinds.includes("TextStyle"))
+    imports.push("type TextStyle")
 
-  return `// Do not edit directly, this file was auto-generated.
-import { DEFAULT_THEME_TRILOGY as theme } from "${THEME_ALIAS}"
-import { StyleSheet, type TextStyle, type ViewStyle } from "react-native"
+  const variantBlocks = variantFields.map(
+    ({ variant, fields }) =>
+      `  ${objectKey(variant)}: StyleSheet.create<${variantType}>({\n${Object.entries(
+        fields
+      )
+        .filter(([, map]) => map.size)
+        .map(([name, map]) => `    ${name}: ${literal([], map, "    ")},`)
+        .join("\n")}\n  }),`
+  )
 
-export type ${variantType} = {
-  view: ViewStyle
-  pressed?: ViewStyle
-  disabled?: ViewStyle
-  text: TextStyle
-  disabledText?: TextStyle
-}
-
-export type ${stylesType} = Record<"light" | "dark", Record<string, ${variantType}>>
-
-type Colors = Record<keyof (typeof theme.colors)["light"], string>
-
+  const baseBlock = baseKeys.length
+    ? `
 type ${baseType} = {
 ${baseKeys.join("\n")}
 }
@@ -166,7 +176,21 @@ ${baseKeys.join("\n")}
 export const ${componentName}BaseStyles: ${baseType} = StyleSheet.create<${baseType}>({
 ${baseEntries.join("\n")}
 })
+`
+    : ""
 
+  return `// Do not edit directly, this file was auto-generated.
+import { DEFAULT_THEME_TRILOGY as theme } from "${THEME_ALIAS}"
+import { ${imports.join(", ")} } from "react-native"
+
+export type ${variantType} = {
+${typeLines.join("\n")}
+}
+
+export type ${stylesType} = Record<"light" | "dark", Record<string, ${variantType}>>
+
+type Colors = Record<keyof (typeof theme.colors)["light"], string>
+${baseBlock}
 // Appelé une fois par mode au chargement du module, pas au rendu
 const build = (colors: Colors): Record<string, ${variantType}> => ({
 ${variantBlocks.join("\n")}

@@ -4,10 +4,10 @@ import { StyleSheet, type TextStyle, type ViewStyle } from "react-native"
 
 export type ButtonVariantStyles = {
   view: ViewStyle
-  pressed?: ViewStyle
-  disabled?: ViewStyle
+  pressed: ViewStyle
+  disabled: ViewStyle
   text: TextStyle
-  disabledText?: TextStyle
+  disabledText: TextStyle
 }
 
 export type ButtonStyles = Record<
