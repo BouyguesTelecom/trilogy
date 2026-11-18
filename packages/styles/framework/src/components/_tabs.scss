@@ -113,8 +113,30 @@ $height-arrow-small:30px;
       }
     }
 
+    &:has(.tab .sticker) {
+      height: 109px;
+
+      > .tab {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+
+        // Bottom-aligned content: offset the 1px border growth to avoid a jump
+        &.is-active,
+        &:hover:not([disabled]) {
+          padding-bottom: 11px;
+        }
+
+        .sticker {
+          margin-bottom: 28px;
+        }
+      }
+    }
+
     > .tab {
       display: inline-block;
+      vertical-align: bottom;
       line-height: normal;
       font-family: $family-primary;
       height: calc(100% - 4px);

@@ -1,5 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
+import { Sticker } from '@/components/sticker'
 import { TabsContext } from '@/components/tabs/context'
 import { TabProps, TabRef } from '@/components/tabs/tab-list/tab/TabProps'
 import { Text } from '@/components/text'
@@ -16,6 +17,7 @@ import { MouseEvent as ReactMouseEvent, forwardRef, useCallback, useContext, use
  * @param iconName {IconNameValues | IconName} add icon name
  * @param disabled {boolean} disable tab item
  * @param label {string} Tab content
+ * @param sticker {string | TabSticker} Sticker label, or { label, iconName, variant }, displayed above the tab
  * @param to {string} Link
  * @param href {string} <a />
  * - -------------------------- WEB PROPERTIES -------------------------------
@@ -25,7 +27,19 @@ import { MouseEvent as ReactMouseEvent, forwardRef, useCallback, useContext, use
  */
 const Tab = forwardRef<TabRef, TabProps>(
   (
-    { active, className, onClick, routerLink = 'a', iconName, label, disabled, testId, ariaControls, ...others },
+    {
+      active,
+      className,
+      onClick,
+      routerLink = 'a',
+      iconName,
+      label,
+      sticker,
+      disabled,
+      testId,
+      ariaControls,
+      ...others
+    },
     ref,
   ) => {
     const { styled } = useTrilogyContext()
@@ -36,6 +50,8 @@ const Tab = forwardRef<TabRef, TabProps>(
 
     const isActive = useMemo(() => activeIndex === index, [activeIndex, index])
     const classes = hashClass(styled, clsx('tab', className, { 'is-active': isActive }))
+
+    const stickerProps = typeof sticker === 'string' ? { label: sticker } : sticker
 
     const handleClick = useCallback(
       (e: ReactMouseEvent) => {
@@ -66,6 +82,7 @@ const Tab = forwardRef<TabRef, TabProps>(
         onClick={handleClick}
         {...props}
       >
+        {stickerProps && <Sticker small className='tab-sticker' {...stickerProps} />}
         <div className={hashClass(styled, 'tab-icon')}>
           {iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}
         </div>
