@@ -62,6 +62,7 @@ export const TabScreen = (): JSX.Element => {
           <Tabs fullwidth>
             <TabList>
               <Tab
+                sticker={{ label: 'New', iconName: IconName.ALERT }}
                 active={index === 0}
                 label='Tab long text content 1'
                 iconName={IconName.ALERT}
@@ -87,7 +88,7 @@ export const TabScreen = (): JSX.Element => {
           <Title className='is-centered'>Small size</Title>
           <Tabs small>
             <TabList>
-              <Tab label='Tab 1' iconName={IconName.ALERT} />
+              <Tab label='Tab 1' iconName={IconName.ALERT} sticker={{ label: 'New', iconName: IconName.ALERT }} />
               <Tab label='Tab 2' iconName={IconName.ALERT} />
               <Tab label='Tab 3' iconName={IconName.ALERT} />
             </TabList>
@@ -113,7 +114,7 @@ export const TabScreen = (): JSX.Element => {
           <Title className='is-centered'>Alignable start</Title>
           <Tabs>
             <TabList align={Alignable.ALIGNED_START}>
-              <Tab label='Tab 1' iconName={IconName.ALERT} />
+              <Tab label='Tab 1' iconName={IconName.ALERT} sticker={{ label: 'New', iconName: IconName.ALERT }} />
               <Tab label='Tab 2' iconName={IconName.ALERT} />
               <Tab label='Tab 3' iconName={IconName.ALERT} />
             </TabList>
@@ -138,7 +139,7 @@ export const TabScreen = (): JSX.Element => {
           <Tabs>
             <TabList align={Alignable.ALIGNED_END}>
               <Tab label='Tab 1' iconName={IconName.ALERT} />
-              <Tab label='Tab 2' iconName={IconName.ALERT} />
+              <Tab label='Tab 2' iconName={IconName.ALERT} sticker={{ label: 'New', iconName: IconName.ALERT }} />
               <Tab label='Tab 3' iconName={IconName.ALERT} />
             </TabList>
             <TabPanels>
@@ -164,7 +165,14 @@ export const TabScreen = (): JSX.Element => {
           <Tabs>
             <TabList align={Alignable.ALIGNED_START}>
               {[...Array(isMobile ? 8 : 16).keys()].map((_, i) => {
-                return <Tab key={i} label={`Tab ${i + 1}`} iconName={IconName.ALERT} />
+                return (
+                  <Tab
+                    key={i}
+                    label={`Tab ${i + 1}`}
+                    iconName={IconName.ALERT}
+                    sticker={i % 2 === 0 ? { label: 'New', iconName: IconName.ALERT } : undefined}
+                  />
+                )
               })}
             </TabList>
             <TabPanels>

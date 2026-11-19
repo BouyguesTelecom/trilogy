@@ -1,4 +1,5 @@
 import { IconName, IconNameValues } from '@/components/icon'
+import { StickerProps } from '@/components/sticker/StickerProps'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { Clickable } from '@/objects/facets/Clickable'
 import { Dev } from '@/objects/facets/Dev'
@@ -9,6 +10,8 @@ import { ElementType } from 'react'
 /**
  * Tabs Item Interface
  */
+export type TabSticker = Pick<StickerProps, 'label' | 'iconName' | 'variant'>
+
 export interface TabProps extends Clickable, Accessibility, Dev, CommonProps {
   active?: boolean
   to?: string
@@ -16,6 +19,7 @@ export interface TabProps extends Clickable, Accessibility, Dev, CommonProps {
   routerLink?: ElementType
   iconName?: IconNameValues | IconName
   label?: string
+  sticker?: string | TabSticker
   disabled?: boolean
   ariaControls?: string
 }

@@ -1,5 +1,6 @@
 import { ComponentName } from '@/components/enumsComponentsName'
 import { Icon } from '@/components/icon'
+import { Sticker } from '@/components/sticker'
 import { TabsContext } from '@/components/tabs/context'
 import { TabNativeRef, TabProps } from '@/components/tabs/tab-list/tab/TabProps'
 import { Text } from '@/components/text'
@@ -17,14 +18,16 @@ import { memoStyles } from '@/helpers/memoStyles'
  * @param iconName {IconNameValues | IconName} add icon name
  * @param disabled {boolean} disable tab item
  * @param label {string} Tab content
+ * @param sticker {string | TabSticker} Sticker label, or { label, iconName, variant }, displayed above the tab
  * @param to {string} Link
  * @param href {string} Link
  */
 const Tab = forwardRef<TabNativeRef, TabProps>(
-  ({ active, onClick, to, href, iconName, label, disabled, ...others }, ref) => {
+  ({ active, onClick, to, href, iconName, label, sticker, disabled, ...others }, ref) => {
     const { index, ...props } = others as any
     const { activeIndex, setActiveIndex, inverted, fullwidth } = useContext(TabsContext)
     const isActive = useMemo(() => activeIndex === index, [activeIndex, index])
+    const stickerProps = typeof sticker === 'string' ? { label: sticker } : sticker
 
     const handleClick = useCallback(
       (e: GestureResponderEvent) => {
@@ -42,8 +45,11 @@ const Tab = forwardRef<TabNativeRef, TabProps>(
         flex: fullwidth ? 1 : undefined,
         flexBasis: fullwidth ? 0 : undefined,
         minWidth: fullwidth ? 0 : undefined,
-        paddingVertical: 4,
+        paddingTop: 4,
+        // Keep content still when the active border grows from 1px to 2px
+        paddingBottom: isActive ? 3 : 4,
         paddingHorizontal: 12,
+        justifyContent: 'flex-end',
         borderBottomWidth: isActive ? 2 : 1,
         borderBottomColor: getColorStyle(
           isActive && disabled
@@ -57,7 +63,8 @@ const Tab = forwardRef<TabNativeRef, TabProps>(
       },
       text: {
         textAlign: 'center',
-        color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN)
+        alignSelf: 'center',
+        color: getColorStyle(disabled ? TrilogyColor.DISABLED : inverted ? TrilogyColor.BACKGROUND : TrilogyColor.MAIN),
       },
     })
 
@@ -67,6 +74,11 @@ const Tab = forwardRef<TabNativeRef, TabProps>(
 
     return (
       <TouchableOpacity ref={ref} activeOpacity={1} style={styles.tab} onPress={handleClick} {...props}>
+        {stickerProps && (
+          <View style={{ alignSelf: 'center', marginBottom: 12 }}>
+            <Sticker small label={stickerProps.label} iconName={stickerProps.iconName} variant={stickerProps.variant} />
+          </View>
+        )}
         {iconName && (
           <View style={{ alignSelf: 'center' }}>
             <Icon
