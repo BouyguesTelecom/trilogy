@@ -86,7 +86,7 @@ const Tab = forwardRef<TabRef, TabProps>(
         <div className={hashClass(styled, 'tab-icon')}>
           {iconName && <Icon size={small ? 'small' : 'medium'} name={iconName} />}
         </div>
-        {label && <Text>{label}</Text>}
+        {label && <Text data-label={label}>{label}</Text>}
       </Tag>
     )
   },

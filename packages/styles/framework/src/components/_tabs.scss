@@ -131,6 +131,16 @@ $height-arrow-small:30px;
         .sticker {
           margin-bottom: 28px;
         }
+
+        // Reserve the bold width so activating a tab does not shift the row
+        [data-label]::after {
+          content: attr(data-label);
+          display: block;
+          height: 0;
+          overflow: hidden;
+          visibility: hidden;
+          font-weight: $weight-bold;
+        }
       }
     }
 
