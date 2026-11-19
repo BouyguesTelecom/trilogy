@@ -29,10 +29,10 @@ export const TabScreen = (): JSX.Element => {
           <Tabs>
             <TabList>
               <Tab
+                sticker='New'
                 active={index === 0}
                 label='Tab 1'
                 iconName={IconName.ALERT}
-                href='/hello'
                 onClick={() => setIndex(0)}
               />
               <Tab active={index === 1} label='Tab 2' iconName={IconName.ALERT} onClick={() => setIndex(1)} />
