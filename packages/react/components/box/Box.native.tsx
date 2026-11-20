@@ -5,9 +5,11 @@ import { StatesContext } from '@/context/providerStates'
 import { getColorStyle, TrilogyColor, TrilogyColorValues } from '@/objects/facets/Color'
 import { getRadius, Radius } from '@/objects/facets/Radius'
 import { Ref, forwardRef } from 'react'
-import { ImageBackground, Platform, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, Platform, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '@/components/skeleton'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 /**
  * Box Component
@@ -50,6 +52,7 @@ const Box = forwardRef<BoxNativeRef, BoxProps>(
     },
     ref,
   ): JSX.Element => {
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
     const colorBgc = getColorStyle(TrilogyColor.BACKGROUND)
     const boxRadius = getRadius(radius ?? Radius.LG)
 
@@ -116,16 +119,22 @@ const Box = forwardRef<BoxNativeRef, BoxProps>(
           }}
         >
           <View style={[styles.box, !flat && styles.shadow, (others as any)?.style]}>
-            <TouchableOpacity
-              ref={ref as Ref<TouchableOpacity>}
-              onPress={(e?: unknown) => onClick?.(e)}
+            <AnimatedPressable
               testID={boxTestId}
-              style={{
-                overflow: 'hidden',
-                borderRadius: boxRadius,
-                borderTopLeftRadius: boxRadius - (highlighted ? 2.5 : 0),
-                borderBottomLeftRadius: boxRadius - (highlighted ? 2.5 : 0),
+              ref={ref as Ref<View>}
+              onPress={(e) => {
+                handleAnimate()
+                onClick?.(e)
               }}
+              style={[
+                animatedStyle,
+                {
+                  overflow: 'hidden',
+                  borderRadius: boxRadius,
+                  borderTopLeftRadius: boxRadius - (highlighted ? 2.5 : 0),
+                  borderBottomLeftRadius: boxRadius - (highlighted ? 2.5 : 0),
+                },
+              ]}
             >
               {backgroundSrc ? (
                 <ImageBackground
@@ -144,7 +153,7 @@ const Box = forwardRef<BoxNativeRef, BoxProps>(
                   </StatesContext.Provider>
                 </>
               )}
-            </TouchableOpacity>
+            </AnimatedPressable>
           </View>
         </BoxContext.Provider>
       )

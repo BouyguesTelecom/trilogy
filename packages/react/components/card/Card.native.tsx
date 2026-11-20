@@ -7,6 +7,8 @@ import { memoStyles } from '@/helpers/memoStyles'
 import { Skeleton } from '@/components/skeleton'
 import { CardNativeRef, CardProps } from '@/components/card/CardProps'
 import { getRadius, Radius } from '@/objects/facets/Radius'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 export const CardContext = createContext({
   floating: false,
@@ -36,6 +38,7 @@ const Card = forwardRef<CardNativeRef, CardProps>(
   ): JSX.Element => {
     const borderColor = getColorStyle(TrilogyColor.STROKE_FADE)
     const cardRadius = getRadius(radius ?? Radius.LG)
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
 
     const styles = memoStyles({
       card: {
@@ -125,9 +128,16 @@ const Card = forwardRef<CardNativeRef, CardProps>(
           }}
         >
           <View style={{ width: '100%' }}>
-            <TouchableOpacity testID='card-click-test' style={{ width: '100%' }} onPress={onClick} activeOpacity={0.85}>
+            <AnimatedPressable
+              testID='card-click-test'
+              style={[{ width: '100%' }, animatedStyle]}
+              onPress={(e) => {
+                handleAnimate()
+                onClick?.(e)
+              }}
+            >
               <ShadowWrapper>{cardView}</ShadowWrapper>
-            </TouchableOpacity>
+            </AnimatedPressable>
           </View>
         </CardContext.Provider>
       </StatesContext.Provider>

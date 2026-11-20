@@ -57,7 +57,7 @@ const TimelineContent = forwardRef<TimelineContentNativeRef, TimelineContentProp
           </Text>
         )}
         {linkLabel && linkTo && (
-          <TouchableOpacity testID='click-id'>
+          <TouchableOpacity testID='click-id' activeOpacity={1}>
             <View style={styles.link}>
               <Link to={linkTo}>{linkLabel}</Link>
             </View>

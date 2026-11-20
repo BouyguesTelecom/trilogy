@@ -25,119 +25,108 @@ import { TitleNativeRef, TitleProps } from '@/components/title/TitleProps'
  * @param subtitle {boolean} Subtitle below title
  * @param overline {boolean} Overline above title
  */
-const Title = forwardRef<TitleNativeRef, TitleProps>(({
-  children,
-  level,
-  style,
-  inverted,
-  typo,
-  onClick,
-  skeleton,
-  accessibilityLabel,
-  subtitle,
-  overline,
-  ...others
-}, ref): JSX.Element => {
-  const statesContext = useContext(StatesContext)
-  const color = setTypographyColor(typo, inverted || statesContext.inverted, skeleton)
-  const colorOverline = getColorStyle(TrilogyColor.MAIN)
+const Title = forwardRef<TitleNativeRef, TitleProps>(
+  (
+    { children, level, style, inverted, typo, onClick, skeleton, accessibilityLabel, subtitle, overline, ...others },
+    ref,
+  ): JSX.Element => {
+    const statesContext = useContext(StatesContext)
+    const color = setTypographyColor(typo, inverted || statesContext.inverted, skeleton)
+    const colorOverline = getColorStyle(TrilogyColor.MAIN)
 
-  const fontFamily =
-    level && [TitleLevels.ONE, TitleLevels.TWO].includes(level)
-      ? TypographyBold.TEXT_WEIGHT_BOLD
-      : TypographyBold.TEXT_WEIGHT_SEMIBOLD
+    const fontFamily =
+      level && [TitleLevels.ONE, TitleLevels.TWO].includes(level)
+        ? TypographyBold.TEXT_WEIGHT_BOLD
+        : TypographyBold.TEXT_WEIGHT_SEMIBOLD
 
-  const titlesLevels = () => {
-    switch (level) {
-      case TitleLevels.ONE:
-        return 28
-      case TitleLevels.TWO:
-        return 24
-      case TitleLevels.THREE:
-        return 22
-      case TitleLevels.FOUR:
-        return 20
-      case TitleLevels.FIVE:
-        return 18
-      case TitleLevels.SIX:
-        return 16
-      default:
-        return 16
+    const titlesLevels = () => {
+      switch (level) {
+        case TitleLevels.ONE:
+          return 28
+        case TitleLevels.TWO:
+          return 24
+        case TitleLevels.THREE:
+          return 22
+        case TitleLevels.FOUR:
+          return 20
+        case TitleLevels.FIVE:
+          return 18
+        case TitleLevels.SIX:
+          return 16
+        default:
+          return 16
+      }
     }
-  }
 
-  const getAlignSelf = () => {
-    switch (true) {
-      case setTypographyAlign(typo) === 'left':
-        return 'flex-start'
-      case setTypographyAlign(typo) === 'center':
-        return 'center'
-      case setTypographyAlign(typo) === 'right':
-        return 'flex-end'
-      default:
-        return 'flex-start'
+    const getAlignSelf = () => {
+      switch (true) {
+        case setTypographyAlign(typo) === 'left':
+          return 'flex-start'
+        case setTypographyAlign(typo) === 'center':
+          return 'center'
+        case setTypographyAlign(typo) === 'right':
+          return 'flex-end'
+        default:
+          return 'flex-start'
+      }
     }
-  }
 
-  const styles = memoStyles({
-    text: {
-      fontFamily: getTypographyBoldStyle(fontFamily),
-      fontSize: titlesLevels(),
-      color: ((overline || subtitle) && !level && colorOverline) || color,
-      textAlign: setTypographyAlign(typo),
-      textTransform: overline && !level ? 'uppercase' : undefined,
-      alignSelf: getAlignSelf(),
-    },
-    skeleton: {
-      minWidth: 10,
-      alignSelf: getAlignSelf(),
-      borderRadius: 5,
-      borderWidth: 0.1,
-      borderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
-      overflow: 'hidden',
-      height: titlesLevels(),
-    },
-  })
+    const styles = memoStyles({
+      text: {
+        fontFamily: getTypographyBoldStyle(fontFamily),
+        fontSize: titlesLevels(),
+        color: ((overline || subtitle) && !level && colorOverline) || color,
+        textAlign: setTypographyAlign(typo),
+        textTransform: overline && !level ? 'uppercase' : undefined,
+        alignSelf: getAlignSelf(),
+      },
+      skeleton: {
+        minWidth: 10,
+        alignSelf: getAlignSelf(),
+        borderRadius: 5,
+        borderWidth: 0.1,
+        borderColor: getColorStyle(TrilogyColor.NEUTRAL_FADE),
+        overflow: 'hidden',
+        height: titlesLevels(),
+      },
+    })
 
-  const titleAccessibilityLabel = accessibilityLabel
-    ? accessibilityLabel
-    : typeof children === 'string'
-    ? children
-    : undefined
+    const titleAccessibilityLabel = accessibilityLabel
+      ? accessibilityLabel
+      : typeof children === 'string'
+      ? children
+      : undefined
 
-  let titleView = (
-    <TextNative
-      ref={ref}
-      maxFontSizeMultiplier={1.3}
-      accessible={!!titleAccessibilityLabel}
-      accessibilityLabel={titleAccessibilityLabel}
-      style={[styles.text, style]}
-      {...others}
-    >
-      {children}
-    </TextNative>
-  )
-
-  if (skeleton) {
-    titleView = (
-      <Skeleton
-        style={styles.skeleton}
-        height={titlesLevels()}
-        borderRadius={5}
+    let titleView = (
+      <TextNative
+        ref={ref}
+        maxFontSizeMultiplier={1.3}
+        accessible={!!titleAccessibilityLabel}
+        accessibilityLabel={titleAccessibilityLabel}
+        style={[styles.text, style]}
+        {...others}
       >
-        {titleView}
-      </Skeleton>
+        {children}
+      </TextNative>
     )
-  }
 
-  return onClick ? (
-    <TouchableOpacity onPress={onClick} activeOpacity={0.85}>
-      {titleView}
-    </TouchableOpacity>
-  ) : (
-    titleView
-  )
-})
+    if (skeleton) {
+      titleView = (
+        <Skeleton style={styles.skeleton} height={titlesLevels()} borderRadius={5}>
+          {titleView}
+        </Skeleton>
+      )
+    }
+
+    return onClick ? (
+      <TouchableOpacity onPress={onClick} activeOpacity={1}>
+        {titleView}
+      </TouchableOpacity>
+    ) : (
+      titleView
+    )
+  },
+)
 
 Title.displayName = ComponentName.Title
 

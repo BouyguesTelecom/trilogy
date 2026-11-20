@@ -2,9 +2,11 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { RadioNativeProps, RadioNativeRef } from '@/components/radio/RadioProps'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { forwardRef, useId } from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { forwardRef, Ref, useId } from 'react'
+import { View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 /**
  * Radio Component
@@ -19,6 +21,7 @@ import { memoStyles } from '@/helpers/memoStyles'
  */
 const Radio = forwardRef<RadioNativeRef, RadioNativeProps>(
   ({ id = useId(), checked, name, onChange, disabled, readonly, label, value }, ref): JSX.Element => {
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
     const styles = memoStyles({
       container: {
         flexDirection: 'row',
@@ -65,12 +68,20 @@ const Radio = forwardRef<RadioNativeRef, RadioNativeProps>(
     }
 
     return (
-      <TouchableOpacity ref={ref} disabled={disabled} style={styles.container} onPress={() => handleClick(value ?? '')}>
+      <AnimatedPressable
+        ref={ref as Ref<View>}
+        disabled={disabled}
+        style={[styles.container, animatedStyle]}
+        onPress={() => {
+          handleAnimate()
+          handleClick(value ?? '')
+        }}
+      >
         <View style={styles.radio} testID={id}>
           {checked && <View style={styles.icon} />}
         </View>
         {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}
-      </TouchableOpacity>
+      </AnimatedPressable>
     )
   },
 )

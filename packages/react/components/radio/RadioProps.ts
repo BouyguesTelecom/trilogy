@@ -1,4 +1,4 @@
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { Dev } from '@/objects/facets/Dev'
 import { CommonProps } from '@/objects/facets/CommonProps'
@@ -33,4 +33,4 @@ export interface RadioNativeProps extends Omit<RadioProps, 'onChange'> {
 }
 
 export type RadioRef = HTMLDivElement
-export type RadioNativeRef = TouchableOpacity
+export type RadioNativeRef = TouchableOpacity | View

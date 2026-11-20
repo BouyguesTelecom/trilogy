@@ -5,9 +5,11 @@ import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { StatusState } from '@/objects/facets/Status'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { forwardRef } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Theme } from '@/constants/theme'
+import { AnimatedPressable } from '../animatedPressable/AinmatedPressable.native'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
 
 /**
  * Badge Component
@@ -25,6 +27,7 @@ const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
   ({ children, label, onClick, testId, variant, inverted, position, status, ...others }, ref): JSX.Element => {
     const badgeColor = getColorStyle(variant || TrilogyColor.MAIN)
     const textColor = getColorStyle(TrilogyColor.BACKGROUND)
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
 
     const styles = memoStyles({
       container: {
@@ -125,11 +128,18 @@ const Badge = forwardRef<BadgeNativeRef, BadgeProps>(
 
     return onClick ? (
       <View {...others} ref={ref}>
-        <TouchableOpacity onPress={onClick} activeOpacity={0.85} testID={testId}>
+        <AnimatedPressable
+          onPress={(e) => {
+            handleAnimate()
+            onClick?.(e)
+          }}
+          testID={testId}
+          style={animatedStyle}
+        >
           <View style={styles.badge} {...others}>
             <Text style={styles.text}>{label}</Text>
           </View>
-        </TouchableOpacity>
+        </AnimatedPressable>
       </View>
     ) : (
       <View style={styles.badge} {...others} ref={ref}>

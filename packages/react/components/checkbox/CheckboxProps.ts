@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { CommonProps } from '@/objects/facets/CommonProps'
 import { Dev } from '@/objects/facets/Dev'
@@ -38,4 +38,4 @@ interface CheckboxWithChildren extends CheckboxCommonProps {
 }
 
 export type CheckboxRef = HTMLDivElement
-export type CheckboxNativeRef = TouchableOpacity
+export type CheckboxNativeRef = TouchableOpacity | View

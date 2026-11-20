@@ -4,6 +4,7 @@ import { TrilogyColor, getColorStyle } from '@/objects/facets/Color'
 import AutoCompleteItemNative from '@/components/autocomplete/item/AutoCompleteIem.native'
 import { AutoCompleteMenuProps } from '@/components/autocomplete/menu/AutoCompleteMenuProps'
 import { Theme } from '@/constants/theme'
+import { useCallback } from 'react'
 
 /**
  * AutoCompleteMenu Component
@@ -14,14 +15,33 @@ import { Theme } from '@/constants/theme'
  * @param handleSelectItem {Function} Callback when selecting an item
  */
 const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteMenuProps): JSX.Element => {
+  const backgroundColor = getColorStyle(TrilogyColor.BACKGROUND)
+  const borderColor = getColorStyle(TrilogyColor.STROKE)
+
+  const renderItem = useCallback(
+    ({ item }: { item: string }) => {
+      return (
+        <AutoCompleteItemNative
+          item={item}
+          onSelect={() => {
+            handleSelectItem && handleSelectItem(item)
+          }}
+        />
+      )
+    },
+    [handleSelectItem],
+  )
+
+  const keyExtractor = useCallback((item: string, index: number) => String(index), [])
+
   const styles = memoStyles({
     list: {
       marginTop: 6,
       marginBottom: 6,
-      backgroundColor: getColorStyle(TrilogyColor.BACKGROUND),
+      backgroundColor: backgroundColor,
       borderWidth: 1,
       borderRadius: Theme.radius.md,
-      borderColor: getColorStyle(TrilogyColor.STROKE),
+      borderColor: borderColor,
       width: '100%',
       maxHeight: 165,
       flexGrow: 1,
@@ -35,15 +55,8 @@ const AutoCompleteMenuNative = ({ suggestions, handleSelectItem }: AutoCompleteM
       scrollEnabled={true}
       style={styles.list}
       data={suggestions}
-      renderItem={({ item }) =>
-        AutoCompleteItemNative({
-          item: item,
-          onSelect: () => {
-            handleSelectItem && handleSelectItem(item)
-          },
-        })
-      }
-      keyExtractor={(item, index) => String(index)}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
     />
   )
 }

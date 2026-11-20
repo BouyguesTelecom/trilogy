@@ -1,4 +1,4 @@
-import type { TouchableOpacity } from 'react-native'
+import type { TouchableOpacity, View } from 'react-native'
 import { Clickable } from '@/objects/facets/Clickable'
 import { Dev } from '@/objects/facets/Dev'
 import { CommonProps } from '@/objects/facets/CommonProps'
@@ -14,4 +14,4 @@ export interface SegmentControlItemProps extends Clickable, CommonProps, Dev {
 }
 
 export type SegmentControlItemRef = HTMLButtonElement
-export type SegmentControlItemNativeRef = TouchableOpacity
+export type SegmentControlItemNativeRef = TouchableOpacity | View

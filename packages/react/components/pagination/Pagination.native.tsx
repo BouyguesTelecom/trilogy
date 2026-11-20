@@ -8,6 +8,8 @@ import { memoStyles } from '@/helpers/memoStyles'
 import { Pager } from '@/components/pagination/PaginationEnum'
 import { PaginationNativeProps, PaginationNativeRef } from '@/components/pagination/PaginationProps'
 import { Theme } from '@/constants/theme'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 /**
  * Pagination Component
@@ -19,6 +21,7 @@ import { Theme } from '@/constants/theme'
  */
 const Pagination = forwardRef<PaginationNativeRef, PaginationNativeProps>(
   ({ length, defaultPage = 1, onClick, testId, ...others }, ref): JSX.Element => {
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
     const [currentPage, setCurrentPage] = useState<number>(defaultPage)
     const [arrayPage] = useState<Array<number>>(Array.from(Array(length + 1).keys()))
     const prevCurrentPage = useRef<number>(currentPage)
@@ -118,6 +121,7 @@ const Pagination = forwardRef<PaginationNativeRef, PaginationNativeProps>(
     return (
       <View ref={ref} style={styles.container} testID={testId} {...others}>
         <TouchableOpacity
+          activeOpacity={1}
           onPress={() => {
             if (currentPage !== 1) {
               setCurrentPage(currentPage - 1)
@@ -136,15 +140,16 @@ const Pagination = forwardRef<PaginationNativeRef, PaginationNativeProps>(
           )}
           {pager.pages.map((pageNumber) => (
             <View key={pageNumber}>
-              <TouchableOpacity
-                style={currentPage === pageNumber ? styles.rounded : styles.textContainer}
-                onPress={() => {
+              <AnimatedPressable
+                style={[currentPage === pageNumber ? styles.rounded : styles.textContainer, animatedStyle]}
+                onPress={(e) => {
+                  handleAnimate()
                   setCurrentPage(pageNumber)
                   prevCurrentPage.current = pageNumber
                 }}
               >
                 <Text style={currentPage === pageNumber ? styles.textCurrent : styles.text}>{pageNumber}</Text>
-              </TouchableOpacity>
+              </AnimatedPressable>
             </View>
           ))}
           {!pager.pages.includes(length) && (
@@ -154,6 +159,7 @@ const Pagination = forwardRef<PaginationNativeRef, PaginationNativeProps>(
           )}
         </View>
         <TouchableOpacity
+          activeOpacity={1}
           onPress={() => {
             if (currentPage !== Math.max(length)) {
               setCurrentPage(currentPage + 1)

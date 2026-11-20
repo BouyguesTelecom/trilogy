@@ -1,4 +1,4 @@
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { ClickEvent } from '@/events/OnClickEvent'
 import { Accessibility } from '@/objects/facets/Accessibility'
 import { Clickable } from '@/objects/facets/Clickable'
@@ -17,4 +17,4 @@ export interface ChipsProps extends Clickable, Accessibility, Dev, CommonProps {
 }
 
 export type ChipsRef = HTMLButtonElement
-export type ChipsNativeRef = TouchableOpacity
+export type ChipsNativeRef = TouchableOpacity | View

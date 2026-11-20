@@ -11,7 +11,10 @@ import { useCallback, useEffect, useMemo, useRef, useState, forwardRef } from 'r
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Svg, { Circle } from 'react-native-svg'
-import { TimepickerCircularNativeRef, TimepickerCircularProps } from '@/components/timepicker/circular/TimepickerCircularProps'
+import {
+  TimepickerCircularNativeRef,
+  TimepickerCircularProps,
+} from '@/components/timepicker/circular/TimepickerCircularProps'
 
 const CIRCLE_SIZE = 204
 const CIRCLE_THICKNESS = 32
@@ -443,7 +446,12 @@ const TimepickerCircular = forwardRef<TimepickerCircularNativeRef, TimepickerCir
                 },
               ]}
             >
-              <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={styles.inputWrapper}
+                onPress={handleInputPress}
+                disabled={disabled}
+              >
                 <View
                   style={[
                     styles.input,
@@ -471,7 +479,12 @@ const TimepickerCircular = forwardRef<TimepickerCircularNativeRef, TimepickerCir
                 <Text typo={[TypographyBold.TEXT_WEIGHT_BOLD]}>:</Text>
               </View>
 
-              <TouchableOpacity style={styles.inputWrapper} onPress={handleInputPress} disabled={disabled}>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={styles.inputWrapper}
+                onPress={handleInputPress}
+                disabled={disabled}
+              >
                 <View
                   style={[
                     styles.input,

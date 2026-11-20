@@ -3,10 +3,12 @@ import { Icon, IconSize } from '@/components/icon'
 import { IconName } from '@/components/icon/IconNameEnum'
 import { Text } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { useEffect, useState, forwardRef, useId } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { useEffect, useState, forwardRef, useId, Ref } from 'react'
+import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { CheckboxNativeRef, CheckboxProps } from '@/components/checkbox/CheckboxProps'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 /**
  * Checkbox Component
@@ -22,6 +24,14 @@ import { CheckboxNativeRef, CheckboxProps } from '@/components/checkbox/Checkbox
 const Checkbox = forwardRef<CheckboxNativeRef, CheckboxProps>(
   ({ id = useId(), checked, name, onChange, disabled, readonly, label, testId }, ref): JSX.Element => {
     const [_checked, setChecked] = useState(checked || false)
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
+    const borderDisabled = getColorStyle(TrilogyColor.DISABLED)
+    const borderMain = getColorStyle(TrilogyColor.MAIN)
+    const borderStroke = getColorStyle(TrilogyColor.STROKE)
+    const backgroundDisabled = getColorStyle(TrilogyColor.DISABLED_FADE)
+    const backgroundMain = getColorStyle(TrilogyColor.MAIN)
+    const colorDisabled = getColorStyle(TrilogyColor.DISABLED)
+    const colorMain = getColorStyle(TrilogyColor.MAIN)
 
     useEffect(() => {
       setChecked(checked || false)
@@ -35,22 +45,18 @@ const Checkbox = forwardRef<CheckboxNativeRef, CheckboxProps>(
       checkBox: {
         alignItems: 'center',
         justifyContent: 'flex-start',
-        borderColor: getColorStyle(
-          disabled ? TrilogyColor.DISABLED : _checked ? TrilogyColor.MAIN : TrilogyColor.STROKE,
-        ),
+        borderColor: disabled ? borderDisabled : _checked ? borderMain : borderStroke,
         borderWidth: 0.6,
         width: 19,
         height: 19,
         borderRadius: 4,
         marginRight: 10,
         marginLeft: 0,
-        backgroundColor: getColorStyle(
-          disabled ? TrilogyColor.DISABLED_FADE : _checked ? TrilogyColor.MAIN : 'transparent',
-        ),
+        backgroundColor: disabled ? backgroundDisabled : _checked ? backgroundMain : 'transparent',
       },
       label: {
         marginTop: 2,
-        color: getColorStyle(disabled ? TrilogyColor.DISABLED : TrilogyColor.MAIN),
+        color: disabled ? colorDisabled : colorMain,
       },
     })
 
@@ -69,17 +75,26 @@ const Checkbox = forwardRef<CheckboxNativeRef, CheckboxProps>(
     }
 
     return (
-      <TouchableOpacity ref={ref} disabled={disabled} style={styles.container} onPress={() => handleClick()}>
+      <AnimatedPressable
+        ref={ref as Ref<View>}
+        disabled={disabled}
+        style={[styles.container, animatedStyle]}
+        onPress={() => {
+          handleAnimate()
+          handleClick()
+        }}
+      >
         <TouchableOpacity
           style={styles.checkBox}
           disabled={disabled}
           testID={testId || id}
           onPressIn={() => handleClick()}
+          activeOpacity={1}
         >
           {_checked && <Icon size={IconSize.SMALLER} color={TrilogyColor.BACKGROUND} name={IconName.CHECK} />}
         </TouchableOpacity>
         {label && typeof label.valueOf() === 'string' ? <Text style={styles.label}>{String(label)}</Text> : label}
-      </TouchableOpacity>
+      </AnimatedPressable>
     )
   },
 )

@@ -9,11 +9,13 @@ import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
 import { TypographyAlign } from '@/objects/Typography/TypographyAlign'
 import { TypographyColor } from '@/objects/Typography/TypographyColor'
 import { TypographyBold } from '@/objects/Typography/TypographyBold'
-import { useCallback, useContext, useMemo, useState, forwardRef, useId } from 'react'
+import { useCallback, useContext, useMemo, useState, forwardRef, useId, Ref } from 'react'
 import { Theme } from '@/constants/theme'
 import { TouchableOpacity, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { RadioTilesContext } from '@/components/radio/tiles/context'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 /**
  * radioTile Component
@@ -51,6 +53,7 @@ const RadioTile = forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
     },
     ref,
   ): JSX.Element => {
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
     const { isGrid } = useContext(RadioTilesContext)
     const [stickerHeight, setStickerHeight] = useState<number>(0)
 
@@ -100,17 +103,25 @@ const RadioTile = forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
     }, [horizontal, disabled])
 
     const handleChange = useCallback(() => {
-      if (onChange && !readonly && !disabled)
+      if (onChange && !readonly && !disabled) {
+        handleAnimate()
         onChange({
           radioValue: value || '',
           radioName: name || '',
           radioChecked: true,
           radioId: id,
         })
+      }
     }, [value, name, id, disabled, readonly, onChange])
 
     return (
-      <TouchableOpacity ref={ref} disabled={disabled} style={[styles.container]} onPress={handleChange} {...others}>
+      <AnimatedPressable
+        ref={ref as Ref<View>}
+        disabled={disabled}
+        style={[styles.container, animatedStyle]}
+        onPress={handleChange}
+        {...others}
+      >
         <InputRadio checked={checked} disabled={disabled} />
         {sticker && (
           <View style={styles.sticker} onLayout={(e) => setStickerHeight(e.nativeEvent.layout.height)}>
@@ -140,7 +151,7 @@ const RadioTile = forwardRef<RadioTileNativeRef, RadioTileNativeProps>(
             description
           )}
         </View>
-      </TouchableOpacity>
+      </AnimatedPressable>
     )
   },
 )

@@ -2,13 +2,15 @@ import { ComponentName } from '@/components/enumsComponentsName'
 import { Spacer, SpacerSize } from '@/components/spacer'
 import { Text, TextLevels } from '@/components/text'
 import { getColorStyle, TrilogyColor } from '@/objects/facets/Color'
-import { useContext, useEffect, useState, forwardRef } from 'react'
+import { useContext, useEffect, useState, forwardRef, Ref } from 'react'
 import { Theme } from '@/constants/theme'
-import { GestureResponderEvent, TouchableOpacity } from 'react-native'
+import { GestureResponderEvent, View } from 'react-native'
 import { memoStyles } from '@/helpers/memoStyles'
 import { Icon, IconColor, IconName, IconSize } from '@/components/icon'
 import { ChipsNativeRef, ChipsProps } from '@/components/chips/ChipsProps'
 import { ChipsContext } from '@/components/chips/list/ChipsList.native'
+import { useAnimatedPressable } from '@/hooks/useAnimatedPressable'
+import { AnimatedPressable } from '@/components/animatedPressable/AinmatedPressable.native'
 
 /**
  * Chips Component - has to be in a ChipsList component
@@ -23,6 +25,7 @@ const Chips = forwardRef<ChipsNativeRef, ChipsProps>(
   ({ children, onClick, disabled, active, testId, ...others }, ref): JSX.Element => {
     const [activeItem, setActiveItem] = useState<boolean>(active || false)
     const chipsContext = useContext(ChipsContext)
+    const { animatedStyle, handleAnimate } = useAnimatedPressable()
 
     useEffect(() => {
       setActiveItem(active || false)
@@ -55,12 +58,13 @@ const Chips = forwardRef<ChipsNativeRef, ChipsProps>(
     })
 
     return (
-      <TouchableOpacity
+      <AnimatedPressable
         testID={testId}
-        ref={ref}
+        ref={ref as Ref<View>}
         disabled={disabled}
-        style={styles.chips}
+        style={[styles.chips, animatedStyle]}
         onPress={(e?: GestureResponderEvent) => {
+          handleAnimate()
           setActiveItem(active || false)
           if (onClick) {
             onClick(e)
@@ -77,7 +81,7 @@ const Chips = forwardRef<ChipsNativeRef, ChipsProps>(
         <Text level={TextLevels.TWO} style={styles.text}>
           {children}
         </Text>
-      </TouchableOpacity>
+      </AnimatedPressable>
     )
   },
 )
