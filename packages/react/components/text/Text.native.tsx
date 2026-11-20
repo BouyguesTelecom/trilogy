@@ -20,6 +20,7 @@ import { TextNativeRef, TextProps } from '@/components/text/TextProps'
  * @param typo {string} Text typo
  * @param skeleton {Boolean} Text Skeleton
  * @param accessibilityLabel {string}
+ * @param testId {string} Test Id for Test Integration (forwarded as testID and nativeID)
  * @param numberOfLines {number} Ellipsis after limit number of lines
  * @param others
  */
@@ -31,6 +32,7 @@ const Text = forwardRef<TextNativeRef, TextProps>(({
   typo,
   skeleton,
   accessibilityLabel,
+  testId,
   numberOfLines = 0,
   ...others
 }, ref): JSX.Element => {
@@ -92,6 +94,8 @@ const Text = forwardRef<TextNativeRef, TextProps>(({
       maxFontSizeMultiplier={1.3}
       accessible={!!textAccessibilityLabel}
       accessibilityLabel={textAccessibilityLabel}
+      testID={testId}
+      nativeID={testId}
       style={[styles.text, style]}
       {...others}
     >
