@@ -1,5 +1,3 @@
 export * from "./accessibilityProps"
 export * from "./commonProps"
 export * from "./onClickProps"
-export * from "./clickEvent/clickEvent"
-export * from "./changeEvent/changeEvent"

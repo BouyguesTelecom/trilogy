@@ -1,8 +1,8 @@
 import { ElementType } from "react"
+import { AccessibilityProps } from "@/interfaces/accessibilityProps"
+import { CommonProps } from "@/interfaces/commonProps"
+import { OnClickProps } from "@/interfaces/onClickProps"
 
-import { AccessibilityProps } from "../../interfaces/accessibilityProps"
-import { CommonProps } from "../../interfaces/commonProps"
-import { OnClickProps } from "../../interfaces/onClickProps"
 import { ButtonGeneratedProps } from "./button.generated"
 
 export enum ButtonMarkup {

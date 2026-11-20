@@ -1,7 +1,7 @@
-import { useTrilogyMangled } from "./useTrilogyMangled.web"
+import { useTrilogyContext } from "./useTrilogyContext.web"
 
 export function useHashClass(classes: string): string {
-  const { mangled, hash } = useTrilogyMangled()
+  const { mangled, hash } = useTrilogyContext()
   if (classes.trim().length < 1) return ""
   if (!mangled) return classes
 

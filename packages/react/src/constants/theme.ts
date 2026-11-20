@@ -1,5 +1,5 @@
 // Generated from figma tokens. Do not edit directly.
-export const DEFAULT_THEME_TRILOGY = {
+export const theme = {
   colors: {
     light: {
       background: "#e5eef3",
@@ -210,7 +210,7 @@ type WidenThemeValues<T> = T extends string
           ? { -readonly [K in keyof T]: WidenThemeValues<T[K]> }
           : T
 
-export type TrilogyTheme = WidenThemeValues<typeof DEFAULT_THEME_TRILOGY>
+export type TrilogyTheme = WidenThemeValues<typeof theme>
 export type TrilogyThemeMode = keyof TrilogyTheme["colors"]
 export type ActiveTrilogyTheme = Omit<TrilogyTheme, "colors"> & {
   colors: TrilogyTheme["colors"][TrilogyThemeMode]

@@ -10,7 +10,11 @@
     "jsx": "react-jsx",
     "isolatedDeclarations": true,
     "noEmit": true,
-    "paths": { "@trilogy-react/theme": ["./src/constants/theme.ts"] },
+    "paths": {
+      "@/*": ["./src/*"],
+      "@version": ["./version.json"],
+      "@trilogy-react/theme": ["./src/constants/theme.ts"]
+    },
     "types": ["@figma/code-connect/figma-types"]
   },
   "include": ["src"],

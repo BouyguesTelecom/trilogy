@@ -1,5 +1,5 @@
 // Do not edit directly, this file was auto-generated.
-import { DEFAULT_THEME_TRILOGY as theme } from "@trilogy-react/theme"
+import { theme } from "@trilogy-react/theme"
 import { StyleSheet, type TextStyle } from "react-native"
 
 type Colors = Record<keyof (typeof theme.colors)["light"], string>

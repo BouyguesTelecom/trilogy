@@ -5,9 +5,10 @@ import {
   type Ref,
   type RefAttributes,
 } from "react"
+import { clsx } from "@/utils/clsx"
 
-import { useHashClass } from "../../../hooks/useHashClass.web"
-import { clsx } from "../../../utils/clsx"
+import { useHashClass } from "@/hooks/useHashClass.web"
+
 import { type AlertContentProps } from "./alertContent.types"
 
 export type AlertContentRef = HTMLElement

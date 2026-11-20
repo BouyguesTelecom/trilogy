@@ -6,7 +6,7 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { DEFAULT_THEME_TRILOGY as theme } from "@trilogy-react/theme"
+import { theme } from "@trilogy-react/theme"
 import {
   StyleSheet,
   Text,
@@ -14,7 +14,11 @@ import {
   type GestureResponderEvent,
 } from "react-native"
 
-import { Pressable, type PressableRef } from "../pressable/pressable.native"
+import {
+  Pressable,
+  type PressableRef,
+} from "@/components/pressable/pressable.native"
+
 import { buttonBaseStyles, buttonStyles } from "./button.styles.native"
 import type { ButtonProps } from "./button.types"
 

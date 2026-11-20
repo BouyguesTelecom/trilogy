@@ -1,6 +1,12 @@
+import { fileURLToPath } from "node:url"
 import { defineConfig } from "tsdown"
 
 import { collectEntries } from "./scripts/entries.js"
+
+const aliases = {
+  "@": fileURLToPath(new URL("./src", import.meta.url)),
+  "@version": fileURLToPath(new URL("./version.json", import.meta.url)),
+}
 
 const ext = (platform: "web" | "native") => [
   `.${platform}.ts`,
@@ -31,6 +37,7 @@ export default defineConfig([
     platform: "browser",
     dts: true,
     unbundle: true,
+    alias: aliases,
     external: [/^react(\/|$)/, /^react-dom(\/|$)/, /^react-native(\/|$)/],
     plugins: [useClient],
     inputOptions: { resolve: { extensions: ext("web") } },
@@ -42,6 +49,7 @@ export default defineConfig([
     platform: "neutral",
     dts: true,
     unbundle: true,
+    alias: aliases,
     external: [/^react(\/|$)/, /^react-native(\/|$)/, /^@trilogy-react\//],
     inputOptions: { resolve: { extensions: ext("native") } },
   },

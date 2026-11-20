@@ -1,6 +1,6 @@
-import { DEFAULT_THEME_TRILOGY } from "@trilogy-react/theme"
+import { theme } from "@trilogy-react/theme"
 
-const { fontFamilyPrimary, fontFamilySecondary } = DEFAULT_THEME_TRILOGY.fonts
+const { fontFamilyPrimary, fontFamilySecondary } = theme.fonts
 
 // Les clés sont les familles du thème : elles doivent correspondre à fontFamily dans les styles générés
 export const nativeThemeFonts = {

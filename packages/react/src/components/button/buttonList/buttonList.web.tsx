@@ -4,9 +4,10 @@ import {
   PropsWithChildren,
   RefAttributes,
 } from "react"
+import { clsx, getClassName } from "@/utils"
 
-import { clsx, getClassName } from "../../.."
-import { useHashClass } from "../../../hooks/useHashClass.web"
+import { useHashClass } from "@/hooks/useHashClass.web"
+
 import {
   ButtonListAlignItems,
   ButtonListDirection,

@@ -1,5 +1,16 @@
-import { CommonProps } from "../../interfaces/commonProps"
-import { AlertGeneratedProps } from "./alert.generated"
+import { CommonProps } from "@/interfaces/commonProps"
+
+export enum AlertStatus {
+  information = "information",
+  warning = "warning",
+  success = "success",
+  error = "error",
+}
+
+export interface AlertGeneratedProps {
+  toaster?: boolean
+  status?: AlertStatus
+}
 
 export enum AlertMarkup {
   p = "p",

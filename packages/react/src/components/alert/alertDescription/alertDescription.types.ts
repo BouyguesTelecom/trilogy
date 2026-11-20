@@ -1,4 +1,5 @@
-import { CommonProps } from "../../../interfaces/commonProps"
+import { CommonProps } from "@/interfaces/commonProps"
+
 import { AlertDescriptionGeneratedProps } from "./alertDescription.generated"
 
 export enum AlertDescriptionMarkup {

@@ -7,9 +7,10 @@ import {
   type Ref,
   type RefAttributes,
 } from "react"
+import { clsx } from "@/utils/clsx"
 
-import { useHashClass } from "../../hooks/useHashClass.web"
-import { clsx } from "../../utils/clsx"
+import { useHashClass } from "@/hooks/useHashClass.web"
+
 import { ButtonMarkup, type ButtonProps } from "./button.types"
 
 export type ButtonRef =
