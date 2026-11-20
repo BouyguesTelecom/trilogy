@@ -1,14 +1,14 @@
 import {
   forwardRef,
-  useMemo,
   type ComponentRef,
   type ForwardRefExoticComponent,
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { Text, useColorScheme } from "react-native"
+import { Text, TextStyle } from "react-native"
 
-import { alertDescriptionStyles } from "./alertDescription.styles.native"
+import { makeStyle } from "@/hooks/useMakeStyle.native"
+
 import type { AlertDescriptionProps } from "./alertDescription.types"
 
 export type AlertDescriptionNativeRef = ComponentRef<typeof Text>
@@ -20,9 +20,7 @@ export const AlertDescription: ForwardRefExoticComponent<
   AlertDescriptionNativeRef,
   PropsWithChildren<AlertDescriptionProps>
 >(({ children, id, testId }, ref) => {
-  const mode = useColorScheme() === "dark" ? "dark" : "light"
-
-  const generatedStyles = useMemo(() => alertDescriptionStyles[mode], [mode])
+  const styles = useStyles()
 
   return (
     <Text
@@ -30,7 +28,7 @@ export const AlertDescription: ForwardRefExoticComponent<
       id={id}
       testID={testId}
       nativeID={testId}
-      style={[generatedStyles.text]}
+      style={[styles.base.text]}
     >
       {children}
     </Text>
@@ -38,3 +36,16 @@ export const AlertDescription: ForwardRefExoticComponent<
 })
 
 AlertDescription.displayName = "AlertDescription"
+
+const useStyles = makeStyle((theme) => ({
+  base: {
+    text: {
+      fontFamily: theme.fonts.fontFamilyPrimary,
+      fontSize: theme.fonts.fontSizeSm,
+      fontWeight: String(
+        theme.fonts.fontWeightRegular
+      ) as TextStyle["fontWeight"],
+      color: theme.colors.colorPrimary,
+    },
+  },
+}))

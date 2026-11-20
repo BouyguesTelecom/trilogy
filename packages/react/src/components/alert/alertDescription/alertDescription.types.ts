@@ -1,7 +1,5 @@
 import { CommonProps } from "@/interfaces/commonProps"
 
-import { AlertDescriptionGeneratedProps } from "./alertDescription.generated"
-
 export enum AlertDescriptionMarkup {
   p = "p",
   h2 = "h2",
@@ -10,7 +8,6 @@ export enum AlertDescriptionMarkup {
   h5 = "h5",
   h6 = "h6",
 }
-export interface AlertDescriptionProps
-  extends AlertDescriptionGeneratedProps, CommonProps {
+export interface AlertDescriptionProps extends CommonProps {
   markup?: AlertDescriptionMarkup
 }
