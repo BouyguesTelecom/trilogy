@@ -1,5 +1,5 @@
 export { Alert } from "./alert"
 export * from "./alert.types"
-export * from "./alertTitle"
-export * from "./alertDescription"
-export * from "./alertContent"
+export * from "./title"
+export * from "./description"
+export * from "./content"
