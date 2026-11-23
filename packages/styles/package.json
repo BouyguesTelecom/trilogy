@@ -6,7 +6,8 @@
   "scripts": {
     "build": "sass --no-source-map src/trilogy.scss dist/default/trilogy.css",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate:scss": "node scripts/tokens.js"
+    "generate:scss": "node scripts/tokens.js scss",
+    "generate:interfaces": "node scripts/tokens.js interfaces"
   },
   "keywords": [],
   "author": "",

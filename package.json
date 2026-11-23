@@ -11,6 +11,7 @@
     "start:web": "pnpm --filter @trilogy-ds/cross-app start:web",
     "start:mobile": "pnpm --filter @trilogy-ds/cross-app start:mobile",
     "generate:scss": "pnpm --filter @trilogy-ds/styles generate:scss",
+    "generate:interfaces": "node packages/styles/scripts/tokens.js interfaces",
     "figma:fetch": "pnpm --filter @trilogy-ds/figma fetch",
     "storybook": "npm run storybook --prefix packages/storybook",
     "build-storybook": "npm run build-storybook --prefix packages/storybook",

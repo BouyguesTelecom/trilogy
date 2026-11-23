@@ -1,3 +1,6 @@
 export * from "./accessibilityProps"
+export * from "./backgroundColors"
+export * from "./borderColors"
 export * from "./commonProps"
 export * from "./onClickProps"
+export * from "./textColors"

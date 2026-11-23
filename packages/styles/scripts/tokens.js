@@ -8,6 +8,7 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const repoRoot = path.resolve(scriptDir, "../../..")
 const figmaDir = path.join(repoRoot, "packages/figma/src")
 const outputDir = path.join(repoRoot, "packages/styles/src/variables")
+const interfacesDir = path.join(repoRoot, "packages/react/src/interfaces")
 
 const tokenSources = {
   primitives: {
@@ -44,6 +45,82 @@ const kebabCase = (part) =>
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "")
     .toLowerCase()
+
+const camelCase = (value) =>
+  value.replace(/-([a-z0-9])/g, (_, character) => character.toUpperCase())
+
+function colorTokenEntries(tokens, groupName) {
+  const group = tokens[groupName]
+  if (!group || typeof group !== "object") {
+    throw new Error(`Missing "${groupName}" token group in Figma JSON.`)
+  }
+
+  return Object.entries(group)
+    .filter(([, token]) => token?.$type === "color")
+    .filter(([name]) => !/(^|[-/])(hover|pressed)([-/]|$)/i.test(name))
+    .map(([name]) => {
+      const kebabName = kebabCase(name)
+      return { memberName: camelCase(kebabName), value: kebabName }
+    })
+}
+
+function renderColorEnum(enumName, entries, sourceGroup) {
+  const members = new Set()
+  for (const { memberName } of entries) {
+    if (members.has(memberName)) {
+      throw new Error(`Duplicate ${enumName} enum member "${memberName}".`)
+    }
+    members.add(memberName)
+  }
+
+  return [
+    `// Generated from the Figma ${sourceGroup} token group. Do not edit directly.`,
+    "// Enum values match the semantic token names from Figma.",
+    `export enum ${enumName} {`,
+    ...entries.map(({ memberName, value }) => `  ${memberName} = "${value}",`),
+    "}",
+    "",
+  ].join("\n")
+}
+
+async function generateColorEnums() {
+  const lightTokens = JSON.parse(
+    await readFile(tokenSources.light.source, "utf8")
+  )
+  const enumFiles = [
+    {
+      fileName: "backgroundColors.ts",
+      enumName: "BackgroundColors",
+      groupName: "Background",
+    },
+    {
+      fileName: "borderColors.ts",
+      enumName: "BorderColors",
+      groupName: "Border",
+    },
+    {
+      fileName: "textColors.ts",
+      enumName: "TextColors",
+      groupName: "Color",
+    },
+  ]
+
+  await mkdir(interfacesDir, { recursive: true })
+  await Promise.all(
+    enumFiles.map(({ fileName, enumName, groupName }) =>
+      writeFile(
+        path.join(interfacesDir, fileName),
+        renderColorEnum(
+          enumName,
+          colorTokenEntries(lightTokens, groupName),
+          groupName
+        )
+      )
+    )
+  )
+
+  console.log(`Color enums generated from Figma tokens in ${interfacesDir}`)
+}
 
 function tokenNameFromPath(parts) {
   const [category, ...rest] = parts
@@ -168,6 +245,17 @@ async function buildSource(source, selector, unitStrategy) {
 }
 
 async function main() {
+  const task = process.argv[2] ?? "all"
+  if (task === "interfaces") {
+    await generateColorEnums()
+    return
+  }
+  if (task !== "all" && task !== "scss") {
+    throw new Error(`Unsupported generation task "${task}".`)
+  }
+
+  if (task === "all") await generateColorEnums()
+
   await mkdir(outputDir, { recursive: true })
 
   const primitives = await buildSource(

@@ -21,3 +21,13 @@ npm run figma:fetch -- --file-key <figma-file-key>
 Les réponses brutes de l’API sont conservées dans `packages/figma/.cache/`, un dossier ignoré par Git. `--output-dir <path>` permet de choisir un autre dossier pour ces réponses. Ajoutez `--no-variables` pour ne télécharger que le document Figma.
 
 Les fichiers de tokens dans `src/` sont remplacés par les collections récupérées depuis Figma. Le script ne publie pas de changements vers Figma.
+
+## Générer les enums de couleurs React
+
+Après avoir récupéré les tokens, générez les enums `BackgroundColors`, `BorderColors` et `TextColors` utilisés par le package React :
+
+```sh
+pnpm generate:interfaces
+```
+
+Le script lit `variables/Light.tokens.json` et met à jour les fichiers correspondants dans `packages/react/src/interfaces/`.

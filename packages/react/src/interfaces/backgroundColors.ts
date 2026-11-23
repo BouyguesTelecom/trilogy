@@ -1,0 +1,25 @@
+// Generated from the Figma Background token group. Do not edit directly.
+// Enum values match the semantic token names from Figma.
+export enum BackgroundColors {
+  background = "background",
+  primary = "primary",
+  primarySubtle = "primary-subtle",
+  secondary = "secondary",
+  secondarySubtle = "secondary-subtle",
+  success = "success",
+  successSubtle = "success-subtle",
+  warning = "warning",
+  warningSubtle = "warning-subtle",
+  error = "error",
+  errorSubtle = "error-subtle",
+  information = "information",
+  informationSubtle = "information-subtle",
+  accent = "accent",
+  accentSubtle = "accent-subtle",
+  brand = "brand",
+  brandSubtle = "brand-subtle",
+  field = "field",
+  fieldDisabled = "field-disabled",
+  fieldFocus = "field-focus",
+  transparent = "transparent",
+}
