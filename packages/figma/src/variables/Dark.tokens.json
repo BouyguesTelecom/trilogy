@@ -14,7 +14,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/50 ; Dark → Color/Main/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:3",
+        "com.figma.variableId": "VariableID:24:48",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -23,9 +23,9 @@
           "WEB": "var(--background)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:55088a153d5bc0325eecb19e083d5f8c71461249/-1:-1",
+          "targetVariableId": "VariableID:24:16",
           "targetVariableName": "Color/Main/900",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -44,7 +44,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Main/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:4",
+        "com.figma.variableId": "VariableID:24:49",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -53,9 +53,9 @@
           "WEB": "var(--background-primary)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:8205a038b10496f707e341d6979b3893ff773b64/-1:-1",
+          "targetVariableId": "VariableID:24:15",
           "targetVariableName": "Color/Main/800",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -74,7 +74,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/100 ; Dark → Color/Main/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:5",
+        "com.figma.variableId": "VariableID:24:50",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -83,9 +83,9 @@
           "WEB": "var(--background-primary-subtle)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:8205a038b10496f707e341d6979b3893ff773b64/-1:-1",
+          "targetVariableId": "VariableID:24:15",
           "targetVariableName": "Color/Main/800",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -104,7 +104,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Main/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:6",
+        "com.figma.variableId": "VariableID:24:51",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -113,9 +113,9 @@
           "WEB": "var(--background-secondary)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:dbc0d7eea54cd45eb89aad9004de2cc0a077ae44/-1:-1",
+          "targetVariableId": "VariableID:24:10",
           "targetVariableName": "Color/Main/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -134,7 +134,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Main/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:7",
+        "com.figma.variableId": "VariableID:24:52",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -143,9 +143,9 @@
           "WEB": "var(--background-secondary-subtle)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:dbc0d7eea54cd45eb89aad9004de2cc0a077ae44/-1:-1",
+          "targetVariableId": "VariableID:24:10",
           "targetVariableName": "Color/Main/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -164,7 +164,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Success/500 ; Dark → Color/Success/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:8",
+        "com.figma.variableId": "VariableID:24:53",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -173,9 +173,9 @@
           "WEB": "var(--background-success)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:9d0dc6f98e65750ed4fc5ced71386c31d626d796/-1:-1",
-          "targetVariableName": "Color/Success/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:37",
+          "targetVariableName": "Color/success/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -194,7 +194,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Success/50 ; Dark → Color/Success/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:9",
+        "com.figma.variableId": "VariableID:24:54",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -203,9 +203,9 @@
           "WEB": "var(--background-success-subtle)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:d50de391c988559b1d95703b210754cd6ee61b66/-1:-1",
-          "targetVariableName": "Color/Success/900",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:42",
+          "targetVariableName": "Color/success/900",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -224,7 +224,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Warning/500 ; Dark → Color/Warning/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:10",
+        "com.figma.variableId": "VariableID:24:55",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -233,9 +233,9 @@
           "WEB": "var(--background-warning)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:c9b08220597c8f02a91751ece068411437a6534e/-1:-1",
-          "targetVariableName": "Color/Warning/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:47",
+          "targetVariableName": "Color/warning/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -254,7 +254,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Warning/50 ; Dark → Color/Warning/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:11",
+        "com.figma.variableId": "VariableID:24:56",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -263,9 +263,9 @@
           "WEB": "var(--background-warning-subtle)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:89dac3c16e3895e7e7e6457a38793c635c942624/-1:-1",
-          "targetVariableName": "Color/Warning/900",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:52",
+          "targetVariableName": "Color/warning/900",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -284,7 +284,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Error/500 ; Dark → Color/Error/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:12",
+        "com.figma.variableId": "VariableID:24:57",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -293,9 +293,9 @@
           "WEB": "var(--background-error)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:8929e5b4c0f9bd3c13fd84d3f3ce3c4ee9e23476/-1:-1",
-          "targetVariableName": "Color/Error/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:57",
+          "targetVariableName": "Color/error/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -314,7 +314,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Error/50 ; Dark → Color/Error/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:13",
+        "com.figma.variableId": "VariableID:24:58",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -323,9 +323,9 @@
           "WEB": "var(--background-error-subtle)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:bc9e5abf14febceaa19250943a79568860d0ec07/-1:-1",
-          "targetVariableName": "Color/Error/900",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:62",
+          "targetVariableName": "Color/error/900",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -344,7 +344,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Information/500 ; Dark → Color/Information/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:14",
+        "com.figma.variableId": "VariableID:24:59",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -353,9 +353,9 @@
           "WEB": "var(--background-information)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:fef5a3f5b13976925d165fb7132bcb0a8d7a6399/-1:-1",
-          "targetVariableName": "Color/Information/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:27",
+          "targetVariableName": "Color/information/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -374,7 +374,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Information/50 ; Dark → Color/Information/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:15",
+        "com.figma.variableId": "VariableID:24:60",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -383,9 +383,9 @@
           "WEB": "var(--background-information-subtle)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:00ee2193bca2a3184c14079fec36f06741892075/-1:-1",
-          "targetVariableName": "Color/Information/900",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:32",
+          "targetVariableName": "Color/information/900",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -404,7 +404,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Accent/500 ; Dark → Color/Accent/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:16",
+        "com.figma.variableId": "VariableID:24:61",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -413,9 +413,9 @@
           "WEB": "var(--background-accent)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:dc0436734020421932b5258f7f05bbeb39d50073/-1:-1",
-          "targetVariableName": "Color/Accent/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:7",
+          "targetVariableName": "Color/accent/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -434,7 +434,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Accent/50 ; Dark → Color/Accent/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:17",
+        "com.figma.variableId": "VariableID:24:62",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -443,9 +443,9 @@
           "WEB": "var(--background-accent-subtle)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:75225e90abf77bf60d34f9794e69bd905ba06c48/-1:-1",
-          "targetVariableName": "Color/Accent/900",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:12",
+          "targetVariableName": "Color/accent/900",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -464,7 +464,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Brand/500 ; Dark → Color/Brand/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:18",
+        "com.figma.variableId": "VariableID:24:63",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -473,9 +473,9 @@
           "WEB": "var(--background-brand)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:9f4c38562d1f6adbfcaeff5530a7bdad44c60823/-1:-1",
+          "targetVariableId": "VariableID:24:21",
           "targetVariableName": "Color/Brand/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -494,7 +494,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Brand/50 ; Dark → Color/Brand/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:10:19",
+        "com.figma.variableId": "VariableID:24:64",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -503,9 +503,9 @@
           "WEB": "var(--background-brand-subtle)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:235fb32b17cc1a188f835c8816d41bf088c85991/-1:-1",
+          "targetVariableId": "VariableID:24:26",
           "targetVariableName": "Color/Brand/900",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -524,7 +524,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/100 ; Dark → Color/Main/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:14",
+        "com.figma.variableId": "VariableID:24:65",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -533,9 +533,9 @@
           "WEB": "var(--background-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:8205a038b10496f707e341d6979b3893ff773b64/-1:-1",
+          "targetVariableId": "VariableID:24:15",
           "targetVariableName": "Color/Main/800",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -554,7 +554,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/200 ; Dark → Color/Main/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:15",
+        "com.figma.variableId": "VariableID:24:66",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -563,9 +563,9 @@
           "WEB": "var(--background-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:10dafb14847d8b5770127526fe62c76a3768ee5d/-1:-1",
+          "targetVariableId": "VariableID:24:14",
           "targetVariableName": "Color/Main/700",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -584,7 +584,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/100 ; Dark → Color/Main/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:16",
+        "com.figma.variableId": "VariableID:24:67",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -593,9 +593,9 @@
           "WEB": "var(--background-primary-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:10dafb14847d8b5770127526fe62c76a3768ee5d/-1:-1",
+          "targetVariableId": "VariableID:24:14",
           "targetVariableName": "Color/Main/700",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -614,7 +614,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/200 ; Dark → Color/Main/600. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:17",
+        "com.figma.variableId": "VariableID:24:68",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -623,9 +623,9 @@
           "WEB": "var(--background-primary-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:0c1ed0f43583d62fa6359520e97b9f2167ed3508/-1:-1",
+          "targetVariableId": "VariableID:24:13",
           "targetVariableName": "Color/Main/600",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -644,7 +644,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/600 ; Dark → Color/Main/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:18",
+        "com.figma.variableId": "VariableID:24:69",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -653,9 +653,9 @@
           "WEB": "var(--background-secondary-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:ff395d4f846b96777d8f81c117a7451ac0f88fa1/-1:-1",
+          "targetVariableId": "VariableID:24:9",
           "targetVariableName": "Color/Main/200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -674,7 +674,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/700 ; Dark → Color/Main/100. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:19",
+        "com.figma.variableId": "VariableID:24:70",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -683,9 +683,9 @@
           "WEB": "var(--background-secondary-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:02e90ba303bc2d15c254934f57704f08cd2aa3d5/-1:-1",
+          "targetVariableId": "VariableID:24:8",
           "targetVariableName": "Color/Main/100",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -704,7 +704,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Success/600 ; Dark → Color/Success/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:20",
+        "com.figma.variableId": "VariableID:24:71",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -713,9 +713,9 @@
           "WEB": "var(--background-success-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:0987db8a2090cb307d776bf037845973636ab174/-1:-1",
-          "targetVariableName": "Color/Success/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:36",
+          "targetVariableName": "Color/success/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -734,7 +734,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Success/700 ; Dark → Color/Success/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:21",
+        "com.figma.variableId": "VariableID:24:72",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -743,9 +743,9 @@
           "WEB": "var(--background-success-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:5b4b0a3c4d63e8a812444dcae4521dc8f7873d08/-1:-1",
-          "targetVariableName": "Color/Success/200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:35",
+          "targetVariableName": "Color/success/200",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -764,7 +764,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Warning/600 ; Dark → Color/Warning/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:22",
+        "com.figma.variableId": "VariableID:24:73",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -773,9 +773,9 @@
           "WEB": "var(--background-warning-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:824146978c01cf6157d646901e6948c5842b88a4/-1:-1",
-          "targetVariableName": "Color/Warning/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:46",
+          "targetVariableName": "Color/warning/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -794,7 +794,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Warning/700 ; Dark → Color/Warning/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:23",
+        "com.figma.variableId": "VariableID:24:74",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -803,9 +803,9 @@
           "WEB": "var(--background-warning-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:7d5c786ab3e59e60d9edd8aa651d7603ee587067/-1:-1",
-          "targetVariableName": "Color/Warning/200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:45",
+          "targetVariableName": "Color/warning/200",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -824,7 +824,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Error/600 ; Dark → Color/Error/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:24",
+        "com.figma.variableId": "VariableID:24:75",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -833,9 +833,9 @@
           "WEB": "var(--background-error-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:fd0eced4b51966a586ab678ac024dc08799f22a2/-1:-1",
-          "targetVariableName": "Color/Error/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:56",
+          "targetVariableName": "Color/error/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -854,7 +854,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Error/700 ; Dark → Color/Error/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:25",
+        "com.figma.variableId": "VariableID:24:76",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -863,9 +863,9 @@
           "WEB": "var(--background-error-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:2a9fbe0fb3253b059f2bee1e376ac6c0fd40a7e3/-1:-1",
-          "targetVariableName": "Color/Error/200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:55",
+          "targetVariableName": "Color/error/200",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -884,7 +884,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Information/600 ; Dark → Color/Information/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:26",
+        "com.figma.variableId": "VariableID:24:77",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -893,9 +893,9 @@
           "WEB": "var(--background-information-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:be093f34406e2e31f80301c262b1b90d1508dd18/-1:-1",
-          "targetVariableName": "Color/Information/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:26",
+          "targetVariableName": "Color/information/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -914,7 +914,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Information/700 ; Dark → Color/Information/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:27",
+        "com.figma.variableId": "VariableID:24:78",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -923,9 +923,9 @@
           "WEB": "var(--background-information-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:9750f82eb8adbe9e160883154a136e670be329fb/-1:-1",
-          "targetVariableName": "Color/Information/200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:25",
+          "targetVariableName": "Color/information/200",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -944,7 +944,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Accent/600 ; Dark → Color/Accent/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:28",
+        "com.figma.variableId": "VariableID:24:79",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -953,9 +953,9 @@
           "WEB": "var(--background-accent-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:6c37b980f3ec615fa285465740a08890aee4460e/-1:-1",
-          "targetVariableName": "Color/Accent/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:6",
+          "targetVariableName": "Color/accent/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -974,7 +974,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Accent/700 ; Dark → Color/Accent/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:29",
+        "com.figma.variableId": "VariableID:24:80",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -983,9 +983,9 @@
           "WEB": "var(--background-accent-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:74c02d03709adb11cbe7704740d04de295ac1a25/-1:-1",
-          "targetVariableName": "Color/Accent/200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:5",
+          "targetVariableName": "Color/accent/200",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1004,7 +1004,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Brand/600 ; Dark → Color/Brand/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:30",
+        "com.figma.variableId": "VariableID:24:81",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -1013,9 +1013,9 @@
           "WEB": "var(--background-brand-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:b019f346ddebf3a7e17cb705123cc33958b4c7db/-1:-1",
+          "targetVariableId": "VariableID:24:20",
           "targetVariableName": "Color/Brand/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1034,7 +1034,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Brand/700 ; Dark → Color/Brand/200. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:31",
+        "com.figma.variableId": "VariableID:24:82",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -1043,9 +1043,9 @@
           "WEB": "var(--background-brand-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:9691f15cf4f077a6c0dd71559777231778e9b279/-1:-1",
+          "targetVariableId": "VariableID:24:19",
           "targetVariableName": "Color/Brand/200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1064,7 +1064,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Neutral/50. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:25:2",
+        "com.figma.variableId": "VariableID:24:83",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -1073,9 +1073,9 @@
           "WEB": "var(--background-field)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:52a4245c7057694cc9300d9aaf0b52e7f217cf97/-1:-1",
-          "targetVariableName": "Color/Neutral/50",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:63",
+          "targetVariableName": "Color/neutral/50",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1094,7 +1094,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Brand/100 ; Dark → Color/Brand/100. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:25:3",
+        "com.figma.variableId": "VariableID:24:84",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -1103,9 +1103,9 @@
           "WEB": "var(--background-field-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:d132824fd5a87c2310b9f1e7049a78395fd277ca/-1:-1",
+          "targetVariableId": "VariableID:24:18",
           "targetVariableName": "Color/Brand/100",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1124,7 +1124,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/800 ; Dark → Color/Neutral/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:25:4",
+        "com.figma.variableId": "VariableID:24:85",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -1133,9 +1133,9 @@
           "WEB": "var(--background-field-disabled)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:b7e7a19a76851eda752b81bd1ef9924b4756ed38/-1:-1",
-          "targetVariableName": "Color/Neutral/800",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:71",
+          "targetVariableName": "Color/neutral/800",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1154,7 +1154,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Main/500. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:25:5",
+        "com.figma.variableId": "VariableID:24:86",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -1163,9 +1163,9 @@
           "WEB": "var(--background-field-focus)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
+          "targetVariableId": "VariableID:24:12",
           "targetVariableName": "Color/Main/500",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1184,7 +1184,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/700 ; Dark → Color/Main/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:25:6",
+        "com.figma.variableId": "VariableID:24:87",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -1193,9 +1193,9 @@
           "WEB": "var(--background-field-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:10dafb14847d8b5770127526fe62c76a3768ee5d/-1:-1",
+          "targetVariableId": "VariableID:24:14",
           "targetVariableName": "Color/Main/700",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1214,7 +1214,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Transparent ; Dark → Color/Transparent. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:35:3",
+        "com.figma.variableId": "VariableID:24:88",
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -1223,9 +1223,9 @@
           "WEB": "var(--background-transparent)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:7c8c705afa9ad8bcb85f9ebcb38f529fb0813c0c/-1:-1",
+          "targetVariableId": "VariableID:24:6",
           "targetVariableName": "Color/Transparent",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1246,7 +1246,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Success/500 ; Dark → Color/Success/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:2",
+        "com.figma.variableId": "VariableID:24:89",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1254,9 +1254,9 @@
           "WEB": "var(--color-success)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:0987db8a2090cb307d776bf037845973636ab174/-1:-1",
-          "targetVariableName": "Color/Success/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:36",
+          "targetVariableName": "Color/success/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1275,7 +1275,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Warning/500 ; Dark → Color/Warning/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:3",
+        "com.figma.variableId": "VariableID:24:90",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1283,9 +1283,9 @@
           "WEB": "var(--color-warning)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:824146978c01cf6157d646901e6948c5842b88a4/-1:-1",
-          "targetVariableName": "Color/Warning/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:46",
+          "targetVariableName": "Color/warning/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1304,7 +1304,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Error/500 ; Dark → Color/Error/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:4",
+        "com.figma.variableId": "VariableID:24:91",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1312,9 +1312,9 @@
           "WEB": "var(--color-error)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:fd0eced4b51966a586ab678ac024dc08799f22a2/-1:-1",
-          "targetVariableName": "Color/Error/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:56",
+          "targetVariableName": "Color/error/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1333,7 +1333,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Information/500 ; Dark → Color/Information/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:5",
+        "com.figma.variableId": "VariableID:24:92",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1341,9 +1341,9 @@
           "WEB": "var(--color-information)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:be093f34406e2e31f80301c262b1b90d1508dd18/-1:-1",
-          "targetVariableName": "Color/Information/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:26",
+          "targetVariableName": "Color/information/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1362,7 +1362,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Neutral/50. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:6",
+        "com.figma.variableId": "VariableID:24:93",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1370,9 +1370,9 @@
           "WEB": "var(--color-primary)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:52a4245c7057694cc9300d9aaf0b52e7f217cf97/-1:-1",
-          "targetVariableName": "Color/Neutral/50",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:63",
+          "targetVariableName": "Color/neutral/50",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1391,7 +1391,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/400 ; Dark → Color/Neutral/600. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:7",
+        "com.figma.variableId": "VariableID:24:94",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1399,9 +1399,9 @@
           "WEB": "var(--color-secondary)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:ca4c1596d124574b77c07e4fe2c1248580784389/-1:-1",
-          "targetVariableName": "Color/Neutral/600",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:69",
+          "targetVariableName": "Color/neutral/600",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1420,7 +1420,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/400 ; Dark → Color/Neutral/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:8",
+        "com.figma.variableId": "VariableID:24:95",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1428,9 +1428,9 @@
           "WEB": "var(--color-placeholder)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:d2390eb9f53f05d3f27db19e4cdeda7b76fb2f3e/-1:-1",
-          "targetVariableName": "Color/Neutral/700",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:70",
+          "targetVariableName": "Color/neutral/700",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1449,7 +1449,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Neutral/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:9",
+        "com.figma.variableId": "VariableID:24:96",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1457,9 +1457,9 @@
           "WEB": "var(--color-selected)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:d2390eb9f53f05d3f27db19e4cdeda7b76fb2f3e/-1:-1",
-          "targetVariableName": "Color/Neutral/700",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:70",
+          "targetVariableName": "Color/neutral/700",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1478,7 +1478,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Main/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:10",
+        "com.figma.variableId": "VariableID:24:97",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1486,9 +1486,9 @@
           "WEB": "var(--color-inverse)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:55088a153d5bc0325eecb19e083d5f8c71461249/-1:-1",
+          "targetVariableId": "VariableID:24:16",
           "targetVariableName": "Color/Main/900",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1507,7 +1507,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Accent/500 ; Dark → Color/Accent/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:11",
+        "com.figma.variableId": "VariableID:24:98",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1515,9 +1515,9 @@
           "WEB": "var(--color-accent)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:6c37b980f3ec615fa285465740a08890aee4460e/-1:-1",
-          "targetVariableName": "Color/Accent/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:6",
+          "targetVariableName": "Color/accent/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1536,7 +1536,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/800 ; Dark → Color/Neutral/700. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:12",
+        "com.figma.variableId": "VariableID:24:99",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1544,9 +1544,9 @@
           "WEB": "var(--color-disabled)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:d2390eb9f53f05d3f27db19e4cdeda7b76fb2f3e/-1:-1",
-          "targetVariableName": "Color/Neutral/700",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:70",
+          "targetVariableName": "Color/neutral/700",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1565,7 +1565,7 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Brand/500 ; Dark → Color/Brand/300. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:13",
+        "com.figma.variableId": "VariableID:24:100",
         "com.figma.scopes": [
           "TEXT_FILL"
         ],
@@ -1573,9 +1573,9 @@
           "WEB": "var(--color-brand)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:b019f346ddebf3a7e17cb705123cc33958b4c7db/-1:-1",
+          "targetVariableId": "VariableID:24:20",
           "targetVariableName": "Color/Brand/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1596,17 +1596,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/100 ; Dark → Color/Main/100. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:32",
+        "com.figma.variableId": "VariableID:28:2",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-primary)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:02e90ba303bc2d15c254934f57704f08cd2aa3d5/-1:-1",
+          "targetVariableId": "VariableID:24:8",
           "targetVariableName": "Color/Main/100",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1625,17 +1625,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Accent/500 ; Dark → Color/Accent/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:33",
+        "com.figma.variableId": "VariableID:28:3",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-accent)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:dc0436734020421932b5258f7f05bbeb39d50073/-1:-1",
-          "targetVariableName": "Color/Accent/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:7",
+          "targetVariableName": "Color/accent/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1654,17 +1654,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/50 ; Dark → Color/Main/900. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:34",
+        "com.figma.variableId": "VariableID:28:4",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-inverse)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:55088a153d5bc0325eecb19e083d5f8c71461249/-1:-1",
+          "targetVariableId": "VariableID:24:16",
           "targetVariableName": "Color/Main/900",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1683,17 +1683,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Success/500 ; Dark → Color/Success/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:35",
+        "com.figma.variableId": "VariableID:28:5",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-success)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:9d0dc6f98e65750ed4fc5ced71386c31d626d796/-1:-1",
-          "targetVariableName": "Color/Success/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:37",
+          "targetVariableName": "Color/success/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1712,17 +1712,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Warning/500 ; Dark → Color/Warning/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:36",
+        "com.figma.variableId": "VariableID:28:6",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-warning)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:c9b08220597c8f02a91751ece068411437a6534e/-1:-1",
-          "targetVariableName": "Color/Warning/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:47",
+          "targetVariableName": "Color/warning/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1741,17 +1741,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Error/500 ; Dark → Color/Error/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:37",
+        "com.figma.variableId": "VariableID:28:7",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-error)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:8929e5b4c0f9bd3c13fd84d3f3ce3c4ee9e23476/-1:-1",
-          "targetVariableName": "Color/Error/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:57",
+          "targetVariableName": "Color/error/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1770,17 +1770,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Information/500 ; Dark → Color/Information/400. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:38",
+        "com.figma.variableId": "VariableID:28:8",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-information)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:fef5a3f5b13976925d165fb7132bcb0a8d7a6399/-1:-1",
-          "targetVariableName": "Color/Information/400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:27",
+          "targetVariableName": "Color/information/400",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1799,17 +1799,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Brand/500 ; Dark → Color/Brand/500. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:22:39",
+        "com.figma.variableId": "VariableID:28:9",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-brand)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:6be1a1089b3501ea0bf990449d599abf3d2000b7/-1:-1",
+          "targetVariableId": "VariableID:24:22",
           "targetVariableName": "Color/Brand/500",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1828,17 +1828,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Neutral/800 ; Dark → Color/Neutral/800. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:25:8",
+        "com.figma.variableId": "VariableID:28:10",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-disabled)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:b7e7a19a76851eda752b81bd1ef9924b4756ed38/-1:-1",
-          "targetVariableName": "Color/Neutral/800",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:71",
+          "targetVariableName": "Color/neutral/800",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1857,17 +1857,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Main/500 ; Dark → Color/Main/500. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:25:9",
+        "com.figma.variableId": "VariableID:28:11",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-focus)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
+          "targetVariableId": "VariableID:24:12",
           "targetVariableName": "Color/Main/500",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1886,17 +1886,17 @@
       },
       "$description": "Alias sémantique direct. Light → Color/Transparent ; Dark → Color/Transparent. Main et Brand sont deux gammes distinctes ; couleurs corrigées selon les captures du 2 novembre 2026.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:35:4",
+        "com.figma.variableId": "VariableID:28:12",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-transparent)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:7c8c705afa9ad8bcb85f9ebcb38f529fb0813c0c/-1:-1",
+          "targetVariableId": "VariableID:24:6",
           "targetVariableName": "Color/Transparent",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1915,17 +1915,17 @@
       },
       "$description": "Couleur de bordure. Alias direct vers Color/Main/500 dans les modes Light et Dark.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:140:2",
+        "com.figma.variableId": "VariableID:28:13",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-main)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:cb884b738e7170c924d45940f4b33797013fe291/-1:-1",
+          "targetVariableId": "VariableID:24:12",
           "targetVariableName": "Color/Main/500",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1943,17 +1943,17 @@
         "hex": "#9BAAB5"
       },
       "$extensions": {
-        "com.figma.variableId": "VariableID:214:2",
+        "com.figma.variableId": "VariableID:28:14",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-main-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:ff395d4f846b96777d8f81c117a7451ac0f88fa1/-1:-1",
+          "targetVariableId": "VariableID:24:9",
           "targetVariableName": "Color/Main/200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1971,17 +1971,17 @@
         "hex": "#DD885B"
       },
       "$extensions": {
-        "com.figma.variableId": "VariableID:214:3",
+        "com.figma.variableId": "VariableID:28:15",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-accent-hover)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:6c37b980f3ec615fa285465740a08890aee4460e/-1:-1",
-          "targetVariableName": "Color/Accent/300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:6",
+          "targetVariableName": "Color/accent/300",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -1999,17 +1999,17 @@
         "hex": "#BBC6CD"
       },
       "$extensions": {
-        "com.figma.variableId": "VariableID:214:4",
+        "com.figma.variableId": "VariableID:28:16",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-main-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:02e90ba303bc2d15c254934f57704f08cd2aa3d5/-1:-1",
+          "targetVariableId": "VariableID:24:8",
           "targetVariableName": "Color/Main/100",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -2027,17 +2027,17 @@
         "hex": "#E8AE8E"
       },
       "$extensions": {
-        "com.figma.variableId": "VariableID:214:5",
+        "com.figma.variableId": "VariableID:28:17",
         "com.figma.scopes": [
-          "STROKE"
+          "STROKE_COLOR"
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--border-accent-pressed)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:74c02d03709adb11cbe7704740d04de295ac1a25/-1:-1",
-          "targetVariableName": "Color/Accent/200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableId": "VariableID:3:5",
+          "targetVariableName": "Color/accent/200",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }

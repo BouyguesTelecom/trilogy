@@ -5,7 +5,7 @@
       "$value": 9999,
       "$description": "Alias de Radius/radius-500. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:13",
+        "com.figma.variableId": "VariableID:24:117",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
@@ -13,9 +13,9 @@
           "WEB": "var(--radius-full)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:aa4bfbf84c5eb6309ee8db18eb584ce7c9d72a3b/-1:-1",
+          "targetVariableId": "VariableID:24:37",
           "targetVariableName": "Radius/radius-500",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -25,7 +25,7 @@
       "$value": 24,
       "$description": "Alias de Radius/radius-400. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:14",
+        "com.figma.variableId": "VariableID:24:118",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
@@ -33,9 +33,9 @@
           "WEB": "var(--radius-lg)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:d3753736b98872f495a05674829cfb540360a3f5/-1:-1",
+          "targetVariableId": "VariableID:24:36",
           "targetVariableName": "Radius/radius-400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -45,7 +45,7 @@
       "$value": 16,
       "$description": "Alias de Radius/radius-300. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:15",
+        "com.figma.variableId": "VariableID:24:119",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
@@ -53,9 +53,9 @@
           "WEB": "var(--radius-md)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:ded6f0a932e5ad1280a061342a06823accad3fb3/-1:-1",
+          "targetVariableId": "VariableID:24:35",
           "targetVariableName": "Radius/radius-300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -65,7 +65,7 @@
       "$value": 8,
       "$description": "Alias de Radius/radius-200. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:16",
+        "com.figma.variableId": "VariableID:24:120",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
@@ -73,9 +73,9 @@
           "WEB": "var(--radius-sm)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:8f695d549520d42375b7b63d2290d9bde64420e8/-1:-1",
+          "targetVariableId": "VariableID:24:34",
           "targetVariableName": "Radius/radius-200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -85,7 +85,7 @@
       "$value": 4,
       "$description": "Alias de Radius/radius-100. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:17",
+        "com.figma.variableId": "VariableID:24:121",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
@@ -93,9 +93,9 @@
           "WEB": "var(--radius-xs)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:c12cd467654f6cbb9daeb9535b3ca5b5031dde2c/-1:-1",
+          "targetVariableId": "VariableID:24:33",
           "targetVariableName": "Radius/radius-100",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -105,7 +105,7 @@
       "$value": 0,
       "$description": "Alias de Radius/radius-000. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:18",
+        "com.figma.variableId": "VariableID:24:122",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
@@ -113,9 +113,9 @@
           "WEB": "var(--radius-none)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:779bed54447eede043a511174cb540460eb55f4b/-1:-1",
+          "targetVariableId": "VariableID:24:32",
           "targetVariableName": "Radius/radius-000",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -127,7 +127,7 @@
       "$value": 40,
       "$description": "Alias de Spacing/Space07. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:19",
+        "com.figma.variableId": "VariableID:24:123",
         "com.figma.scopes": [
           "GAP"
         ],
@@ -135,9 +135,9 @@
           "WEB": "var(--spacing-xxxl)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:ecbc334405440f1d63aab670c73a65d713194265/-1:-1",
+          "targetVariableId": "VariableID:3:79",
           "targetVariableName": "Spacing/Space07",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -147,7 +147,7 @@
       "$value": 40,
       "$description": "Alias de Spacing/Space07. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:20",
+        "com.figma.variableId": "VariableID:24:124",
         "com.figma.scopes": [
           "GAP"
         ],
@@ -155,9 +155,9 @@
           "WEB": "var(--spacing-xxl)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:ecbc334405440f1d63aab670c73a65d713194265/-1:-1",
+          "targetVariableId": "VariableID:3:79",
           "targetVariableName": "Spacing/Space07",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -167,7 +167,7 @@
       "$value": 32,
       "$description": "Alias de Spacing/Space06. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:21",
+        "com.figma.variableId": "VariableID:24:125",
         "com.figma.scopes": [
           "GAP"
         ],
@@ -175,9 +175,9 @@
           "WEB": "var(--spacing-xl)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:74519e4e54b79a408dfadf8cd866eb422df8081d/-1:-1",
+          "targetVariableId": "VariableID:3:78",
           "targetVariableName": "Spacing/Space06",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -187,7 +187,7 @@
       "$value": 24,
       "$description": "Alias de Spacing/Space05. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:22",
+        "com.figma.variableId": "VariableID:24:126",
         "com.figma.scopes": [
           "GAP"
         ],
@@ -195,9 +195,9 @@
           "WEB": "var(--spacing-lg)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:a1374cc14678f29034141f6bed4816e03c34acae/-1:-1",
+          "targetVariableId": "VariableID:3:77",
           "targetVariableName": "Spacing/Space05",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -207,7 +207,7 @@
       "$value": 16,
       "$description": "Alias de Spacing/Space04. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:23",
+        "com.figma.variableId": "VariableID:24:127",
         "com.figma.scopes": [
           "GAP"
         ],
@@ -215,9 +215,9 @@
           "WEB": "var(--spacing-md)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:20b83b01b22d3d4e274244c358860db36a348fbe/-1:-1",
+          "targetVariableId": "VariableID:3:76",
           "targetVariableName": "Spacing/Space04",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -227,7 +227,7 @@
       "$value": 12,
       "$description": "Alias de Spacing/Space03. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:24",
+        "com.figma.variableId": "VariableID:24:128",
         "com.figma.scopes": [
           "GAP"
         ],
@@ -235,9 +235,9 @@
           "WEB": "var(--spacing-sm)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:790034e786fcb4c35315cb3056b9a73c15086e93/-1:-1",
+          "targetVariableId": "VariableID:3:75",
           "targetVariableName": "Spacing/Space03",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -247,7 +247,7 @@
       "$value": 8,
       "$description": "Alias de Spacing/Space02. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:25",
+        "com.figma.variableId": "VariableID:24:129",
         "com.figma.scopes": [
           "GAP"
         ],
@@ -255,9 +255,9 @@
           "WEB": "var(--spacing-xs)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:bc90b7878d2a4db7c11a57c03964529d71ded1a1/-1:-1",
+          "targetVariableId": "VariableID:3:74",
           "targetVariableName": "Spacing/Space02",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -267,7 +267,7 @@
       "$value": 4,
       "$description": "Alias de Spacing/Space01. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:26",
+        "com.figma.variableId": "VariableID:24:130",
         "com.figma.scopes": [
           "GAP"
         ],
@@ -275,9 +275,9 @@
           "WEB": "var(--spacing-xxs)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:8d57aa4fd71e2c138d286c6eb26fbd54b9d4eb6e/-1:-1",
+          "targetVariableId": "VariableID:3:73",
           "targetVariableName": "Spacing/Space01",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -287,7 +287,7 @@
       "$value": 0,
       "$description": "Alias de Spacing/Space00. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:27",
+        "com.figma.variableId": "VariableID:24:131",
         "com.figma.scopes": [
           "GAP"
         ],
@@ -295,9 +295,9 @@
           "WEB": "var(--spacing-none)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:8803883c81d93763ed45a7d187a0deb6a0490f78/-1:-1",
+          "targetVariableId": "VariableID:24:27",
           "targetVariableName": "Spacing/Space00",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -309,7 +309,7 @@
       "$value": 1,
       "$description": "Alias de Border/border-width-100. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:28",
+        "com.figma.variableId": "VariableID:24:132",
         "com.figma.scopes": [
           "STROKE_FLOAT"
         ],
@@ -317,9 +317,9 @@
           "WEB": "var(--border-width-sm)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:3088e975d2ee9f0546f482150280ecda59edaf90/-1:-1",
+          "targetVariableId": "VariableID:24:38",
           "targetVariableName": "Border/border-width-100",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -329,7 +329,7 @@
       "$value": 2,
       "$description": "Alias de Border/border-width-200. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:29",
+        "com.figma.variableId": "VariableID:24:133",
         "com.figma.scopes": [
           "STROKE_FLOAT"
         ],
@@ -337,9 +337,9 @@
           "WEB": "var(--border-width-md)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:d595016cabf262faee85ca5327b295a3471a7f0a/-1:-1",
+          "targetVariableId": "VariableID:24:39",
           "targetVariableName": "Border/border-width-200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -349,7 +349,7 @@
       "$value": 4,
       "$description": "Alias de Border/border-width-300. Mappage repris de la capture utilisateur. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:30",
+        "com.figma.variableId": "VariableID:24:134",
         "com.figma.scopes": [
           "STROKE_FLOAT"
         ],
@@ -357,9 +357,9 @@
           "WEB": "var(--border-width-lg)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:23f7f260157f0ffb470c74b691cef8745ffd586b/-1:-1",
+          "targetVariableId": "VariableID:24:40",
           "targetVariableName": "Border/border-width-300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -371,7 +371,7 @@
       "$value": 16,
       "$description": "Taille d’icône xs : 16 px. Alias direct de Icon/icon-size-100. Commune à Light et Dark.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:29:3",
+        "com.figma.variableId": "VariableID:24:135",
         "com.figma.scopes": [
           "WIDTH_HEIGHT"
         ],
@@ -379,9 +379,9 @@
           "WEB": "var(--icon-size-xs)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:15cfe54f2f1ea48c8f152bc3fd22acfd9333264b/-1:-1",
+          "targetVariableId": "VariableID:24:41",
           "targetVariableName": "Icon/icon-size-100",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -391,7 +391,7 @@
       "$value": 20,
       "$description": "Taille d’icône sm : 20 px. Alias direct de Icon/icon-size-200. Commune à Light et Dark.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:29:5",
+        "com.figma.variableId": "VariableID:24:136",
         "com.figma.scopes": [
           "WIDTH_HEIGHT"
         ],
@@ -399,9 +399,9 @@
           "WEB": "var(--icon-size-sm)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:549f772071ffe763298516ce2c18383efb4ae78c/-1:-1",
+          "targetVariableId": "VariableID:24:42",
           "targetVariableName": "Icon/icon-size-200",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -411,7 +411,7 @@
       "$value": 32,
       "$description": "Taille d’icône md : 32 px. Alias direct de Icon/icon-size-300. Commune à Light et Dark.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:29:7",
+        "com.figma.variableId": "VariableID:24:137",
         "com.figma.scopes": [
           "WIDTH_HEIGHT"
         ],
@@ -419,9 +419,9 @@
           "WEB": "var(--icon-size-md)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:6a0ddf9f75999e255ceaae5da9edd484f4d68996/-1:-1",
+          "targetVariableId": "VariableID:24:43",
           "targetVariableName": "Icon/icon-size-300",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -431,7 +431,7 @@
       "$value": 66,
       "$description": "Taille d’icône lg : 66 px. Alias direct de Icon/icon-size-400. Commune à Light et Dark.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:29:9",
+        "com.figma.variableId": "VariableID:24:138",
         "com.figma.scopes": [
           "WIDTH_HEIGHT"
         ],
@@ -439,9 +439,9 @@
           "WEB": "var(--icon-size-lg)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:def036fc991639e8d962a389e2148cbd1c9986ec/-1:-1",
+          "targetVariableId": "VariableID:24:44",
           "targetVariableName": "Icon/icon-size-400",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -452,7 +452,7 @@
       "$type": "number",
       "$value": 16,
       "$extensions": {
-        "com.figma.variableId": "VariableID:293:469",
+        "com.figma.variableId": "VariableID:24:139",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ],
@@ -460,9 +460,9 @@
           "WEB": "var(--size-xs)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:95d7fad1ff0b0b744344e36a27f0a38309277a60/-1:-1",
+          "targetVariableId": "VariableID:24:45",
           "targetVariableName": "size/size01",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -471,7 +471,7 @@
       "$type": "number",
       "$value": 32,
       "$extensions": {
-        "com.figma.variableId": "VariableID:293:470",
+        "com.figma.variableId": "VariableID:24:140",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ],
@@ -479,9 +479,9 @@
           "WEB": "var(--size-sm)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:286521574194ed90aba149b99198568064ac0baf/-1:-1",
+          "targetVariableId": "VariableID:24:46",
           "targetVariableName": "size/size02",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }
@@ -490,7 +490,7 @@
       "$type": "number",
       "$value": 48,
       "$extensions": {
-        "com.figma.variableId": "VariableID:293:471",
+        "com.figma.variableId": "VariableID:24:141",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ],
@@ -498,9 +498,9 @@
           "WEB": "var(--size-md)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:d61384a17ef7219684c0e8ec4591a7b5dc7ca290/-1:-1",
+          "targetVariableId": "VariableID:24:47",
           "targetVariableName": "size/size03",
-          "targetVariableSetId": "VariableCollectionId:d4fc6f25530627e0557cbc2581c581479bb69830/-1:-1",
+          "targetVariableSetId": "VariableCollectionId:3:2",
           "targetVariableSetName": "Primitive_BouyguesTelecom"
         }
       }

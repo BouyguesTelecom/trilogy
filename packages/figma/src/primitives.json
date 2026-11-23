@@ -1,26 +1,6 @@
 {
   "Color": {
-    "Transparent": {
-      "$type": "color",
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0,
-          0,
-          0
-        ],
-        "alpha": 0,
-        "hex": "#000000"
-      },
-      "$description": "Couleur transparente, alpha 0.",
-      "$extensions": {
-        "com.figma.variableId": "VariableID:35:2",
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ]
-      }
-    },
-    "Accent": {
+    "accent": {
       "50": {
         "$type": "color",
         "$value": {
@@ -33,11 +13,12 @@
           "alpha": 1,
           "hex": "#FAEDE7"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:3",
+          "com.figma.variableId": "VariableID:3:3",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
       },
@@ -53,11 +34,12 @@
           "alpha": 1,
           "hex": "#EFC8B3"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:4",
+          "com.figma.variableId": "VariableID:3:4",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
       },
@@ -73,11 +55,12 @@
           "alpha": 1,
           "hex": "#E8AE8E"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:5",
+          "com.figma.variableId": "VariableID:3:5",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
       },
@@ -93,11 +76,12 @@
           "alpha": 1,
           "hex": "#DD885B"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:6",
+          "com.figma.variableId": "VariableID:3:6",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
       },
@@ -113,11 +97,12 @@
           "alpha": 1,
           "hex": "#D6713B"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:7",
+          "com.figma.variableId": "VariableID:3:7",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
       },
@@ -133,11 +118,12 @@
           "alpha": 1,
           "hex": "#CC4E0A"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:8",
+          "com.figma.variableId": "VariableID:3:8",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
       },
@@ -153,11 +139,12 @@
           "alpha": 1,
           "hex": "#BA4709"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:9",
+          "com.figma.variableId": "VariableID:3:9",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
       },
@@ -173,11 +160,12 @@
           "alpha": 1,
           "hex": "#913707"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:10",
+          "com.figma.variableId": "VariableID:3:10",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
       },
@@ -193,11 +181,12 @@
           "alpha": 1,
           "hex": "#702B06"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:11",
+          "com.figma.variableId": "VariableID:3:11",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
       },
@@ -213,13 +202,1306 @@
           "alpha": 1,
           "hex": "#562104"
         },
-        "$description": "Valeur exacte de la capture utilisateur.",
+        "$description": "Valeur reprise de la capture fournie.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:12",
+          "com.figma.variableId": "VariableID:3:12",
           "com.figma.scopes": [
-            "ALL_SCOPES"
+            "ALL_FILLS",
+            "STROKE_COLOR"
           ]
         }
+      }
+    },
+    "main-brand": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9254902005195618,
+            0.9843137264251709,
+            0.9921568632125854
+          ],
+          "alpha": 1,
+          "hex": "#ECFBFD"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:13",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8156862854957581,
+            0.9529411792755127,
+            0.9725490212440491
+          ],
+          "alpha": 1,
+          "hex": "#D0F3F8"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:14",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6352941393852234,
+            0.9019607901573181,
+            0.9372549057006836
+          ],
+          "alpha": 1,
+          "hex": "#A2E6EF"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:15",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.40784314274787903,
+            0.8313725590705872,
+            0.886274516582489
+          ],
+          "alpha": 1,
+          "hex": "#68D4E2"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:16",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.16862745583057404,
+            0.7333333492279053,
+            0.8156862854957581
+          ],
+          "alpha": 1,
+          "hex": "#2BBBD0"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:17",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.6117647290229797,
+            0.7450980544090271
+          ],
+          "alpha": 1,
+          "hex": "#009CBE"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:18",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.4941176474094391,
+            0.6078431606292725
+          ],
+          "alpha": 1,
+          "hex": "#007E9B"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:19",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.3921568691730499,
+            0.48627451062202454
+          ],
+          "alpha": 1,
+          "hex": "#00647C"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:20",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0313725508749485,
+            0.3019607961177826,
+            0.3764705955982208
+          ],
+          "alpha": 1,
+          "hex": "#084D60"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:21",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.03921568766236305,
+            0.2235294133424759,
+            0.2823529541492462
+          ],
+          "alpha": 1,
+          "hex": "#0A3948"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:22",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      }
+    },
+    "information": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8901960849761963,
+            0.9490196108818054,
+            0.95686274766922
+          ],
+          "alpha": 1,
+          "hex": "#E3F2F4"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:23",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.772549033164978,
+            0.9215686321258545,
+            0.9450980424880981
+          ],
+          "alpha": 1,
+          "hex": "#C5EBF1"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:24",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6078431606292725,
+            0.9058823585510254,
+            0.9529411792755127
+          ],
+          "alpha": 1,
+          "hex": "#9BE7F3"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:25",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4313725531101227,
+            0.8941176533699036,
+            0.9686274528503418
+          ],
+          "alpha": 1,
+          "hex": "#6EE4F7"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:26",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.250980406999588,
+            0.886274516582489,
+            0.9882352948188782
+          ],
+          "alpha": 1,
+          "hex": "#40E2FC"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:27",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.7372549176216125,
+            0.8549019694328308
+          ],
+          "alpha": 1,
+          "hex": "#00BCDA"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:28",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.6039215922355652,
+            0.7019608020782471
+          ],
+          "alpha": 1,
+          "hex": "#009AB3"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:29",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.47843137383461,
+            0.5568627715110779
+          ],
+          "alpha": 1,
+          "hex": "#007A8E"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:30",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.019607843831181526,
+            0.33725491166114807,
+            0.38823530077934265
+          ],
+          "alpha": 1,
+          "hex": "#055663"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:31",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.03921568766236305,
+            0.1921568661928177,
+            0.21960784494876862
+          ],
+          "alpha": 1,
+          "hex": "#0A3138"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:32",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      }
+    },
+    "success": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9058823585510254,
+            0.9411764740943909,
+            0.9254902005195618
+          ],
+          "alpha": 1,
+          "hex": "#E7F0EC"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:33",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8156862854957581,
+            0.9058823585510254,
+            0.8588235378265381
+          ],
+          "alpha": 1,
+          "hex": "#D0E7DB"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:34",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6901960968971252,
+            0.8705882430076599,
+            0.7803921699523926
+          ],
+          "alpha": 1,
+          "hex": "#B0DEC7"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:35",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5568627715110779,
+            0.843137264251709,
+            0.6980392336845398
+          ],
+          "alpha": 1,
+          "hex": "#8ED7B2"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:36",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.42352941632270813,
+            0.8156862854957581,
+            0.6196078658103943
+          ],
+          "alpha": 1,
+          "hex": "#6CD09E"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:37",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.14901961386203766,
+            0.48627451062202454,
+            0.3176470696926117
+          ],
+          "alpha": 1,
+          "hex": "#267C51"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:38",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.11372549086809158,
+            0.40392157435417175,
+            0.25882354378700256
+          ],
+          "alpha": 1,
+          "hex": "#1D6742"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:39",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.09803921729326248,
+            0.3176470696926117,
+            0.2078431397676468
+          ],
+          "alpha": 1,
+          "hex": "#195135"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:40",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0784313753247261,
+            0.2235294133424759,
+            0.15294118225574493
+          ],
+          "alpha": 1,
+          "hex": "#143927"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:41",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.05882352963089943,
+            0.12941177189350128,
+            0.0941176488995552
+          ],
+          "alpha": 1,
+          "hex": "#0F2118"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:42",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      }
+    },
+    "warning": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.95686274766922,
+            0.9372549057006836,
+            0.8941176533699036
+          ],
+          "alpha": 1,
+          "hex": "#F4EFE4"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:43",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9411764740943909,
+            0.8901960849761963,
+            0.7803921699523926
+          ],
+          "alpha": 1,
+          "hex": "#F0E3C7"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:44",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9372549057006836,
+            0.843137264251709,
+            0.6235294342041016
+          ],
+          "alpha": 1,
+          "hex": "#EFD79F"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:45",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9490196108818054,
+            0.7960784435272217,
+            0.45098039507865906
+          ],
+          "alpha": 1,
+          "hex": "#F2CB73"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:46",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.95686274766922,
+            0.7529411911964417,
+            0.2823529541492462
+          ],
+          "alpha": 1,
+          "hex": "#F4C048"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:47",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9647058844566345,
+            0.7333333492279053,
+            0.20000000298023224
+          ],
+          "alpha": 1,
+          "hex": "#F6BB33"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:48",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9372549057006836,
+            0.658823549747467,
+            0.019607843831181526
+          ],
+          "alpha": 1,
+          "hex": "#EFA805"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:49",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7254902124404907,
+            0.5137255191802979,
+            0.0313725508749485
+          ],
+          "alpha": 1,
+          "hex": "#B98308"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:50",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5098039507865906,
+            0.3686274588108063,
+            0.05098039284348488
+          ],
+          "alpha": 1,
+          "hex": "#825E0D"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:51",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2862745225429535,
+            0.21960784494876862,
+            0.062745101749897
+          ],
+          "alpha": 1,
+          "hex": "#493810"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:52",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      }
+    },
+    "error": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.95686274766922,
+            0.9058823585510254,
+            0.8901960849761963
+          ],
+          "alpha": 1,
+          "hex": "#F4E7E3"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:53",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9450980424880981,
+            0.8078431487083435,
+            0.7764706015586853
+          ],
+          "alpha": 1,
+          "hex": "#F1CEC6"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:54",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9490196108818054,
+            0.6823529601097107,
+            0.6117647290229797
+          ],
+          "alpha": 1,
+          "hex": "#F2AE9C"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:55",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9647058844566345,
+            0.545098066329956,
+            0.43529412150382996
+          ],
+          "alpha": 1,
+          "hex": "#F68B6F"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:56",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9803921580314636,
+            0.40784314274787903,
+            0.25882354378700256
+          ],
+          "alpha": 1,
+          "hex": "#FA6842"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:57",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8313725590705872,
+            0.1764705926179886,
+            0.007843137718737125
+          ],
+          "alpha": 1,
+          "hex": "#D42D02"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:58",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.686274528503418,
+            0.1411764770746231,
+            0
+          ],
+          "alpha": 1,
+          "hex": "#AF2400"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:59",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5411764979362488,
+            0.11372549086809158,
+            0.003921568859368563
+          ],
+          "alpha": 1,
+          "hex": "#8A1D01"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:60",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3803921639919281,
+            0.09803921729326248,
+            0.0235294122248888
+          ],
+          "alpha": 1,
+          "hex": "#611906"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:61",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.21176470816135406,
+            0.07450980693101883,
+            0.03921568766236305
+          ],
+          "alpha": 1,
+          "hex": "#36130A"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:62",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      }
+    },
+    "neutral": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#FFFFFF"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:63",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9686274528503418,
+            0.9686274528503418,
+            0.9686274528503418
+          ],
+          "alpha": 1,
+          "hex": "#F7F7F7"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:64",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9490196108818054,
+            0.9490196108818054,
+            0.9490196108818054
+          ],
+          "alpha": 1,
+          "hex": "#F2F2F2"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:65",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9176470637321472,
+            0.9215686321258545,
+            0.9215686321258545
+          ],
+          "alpha": 1,
+          "hex": "#EAEBEB"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:66",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8666666746139526,
+            0.8705882430076599,
+            0.8745098114013672
+          ],
+          "alpha": 1,
+          "hex": "#DDDEDF"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:67",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9176470637321472,
+            0.9254902005195618,
+            0.9372549057006836
+          ],
+          "alpha": 1,
+          "hex": "#EAECEF"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:68",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.729411780834198,
+            0.7529411911964417,
+            0.7921568751335144
+          ],
+          "alpha": 1,
+          "hex": "#BAC0CA"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:69",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5490196347236633,
+            0.5921568870544434,
+            0.6549019813537598
+          ],
+          "alpha": 1,
+          "hex": "#8C97A7"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:70",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3843137323856354,
+            0.4313725531101227,
+            0.5058823823928833
+          ],
+          "alpha": 1,
+          "hex": "#626E81"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:71",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.239215686917305,
+            0.2705882489681244,
+            0.3176470696926117
+          ],
+          "alpha": 1,
+          "hex": "#3D4551"
+        },
+        "$description": "Gamme proposée, à valider ; ne constitue pas une palette officielle.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:72",
+          "com.figma.scopes": [
+            "ALL_FILLS",
+            "STROKE_COLOR"
+          ]
+        }
+      }
+    },
+    "Transparent": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0,
+        "hex": "#000000"
+      },
+      "$description": "Couleur transparente, alpha 0.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:24:6",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
       }
     },
     "Main": {
@@ -237,7 +1519,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #E5EEF3.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:13",
+          "com.figma.variableId": "VariableID:24:7",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -257,7 +1539,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #BBC6CD.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:14",
+          "com.figma.variableId": "VariableID:24:8",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -277,7 +1559,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #9BAAB5.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:15",
+          "com.figma.variableId": "VariableID:24:9",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -297,7 +1579,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #6D8394.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:16",
+          "com.figma.variableId": "VariableID:24:10",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -317,7 +1599,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #516B7F.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:17",
+          "com.figma.variableId": "VariableID:24:11",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -337,7 +1619,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #062B3F.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:18",
+          "com.figma.variableId": "VariableID:24:12",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -357,7 +1639,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #042435.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:19",
+          "com.figma.variableId": "VariableID:24:13",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -377,7 +1659,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #041C29.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:20",
+          "com.figma.variableId": "VariableID:24:14",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -397,7 +1679,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #04141D.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:21",
+          "com.figma.variableId": "VariableID:24:15",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -417,1017 +1699,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #040C10.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:4:22",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      }
-    },
-    "Information": {
-      "50": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.8901960849761963,
-            0.9490196108818054,
-            0.95686274766922
-          ],
-          "alpha": 1,
-          "hex": "#E3F2F4"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #E3F2F4.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:23",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "100": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.772549033164978,
-            0.9215686321258545,
-            0.9450980424880981
-          ],
-          "alpha": 1,
-          "hex": "#C5EBF1"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #C5EBF1.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:24",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "200": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.6078431606292725,
-            0.9058823585510254,
-            0.9529411792755127
-          ],
-          "alpha": 1,
-          "hex": "#9BE7F3"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #9BE7F3.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:25",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "300": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.4313725531101227,
-            0.8941176533699036,
-            0.9686274528503418
-          ],
-          "alpha": 1,
-          "hex": "#6EE4F7"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #6EE4F7.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:26",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "400": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.250980406999588,
-            0.886274516582489,
-            0.9882352948188782
-          ],
-          "alpha": 1,
-          "hex": "#40E2FC"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #40E2FC.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:27",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "500": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0,
-            0.7372549176216125,
-            0.8549019694328308
-          ],
-          "alpha": 1,
-          "hex": "#00BCDA"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #00BCDA.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:28",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "600": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0,
-            0.6039215922355652,
-            0.7019608020782471
-          ],
-          "alpha": 1,
-          "hex": "#009AB3"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #009AB3.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:29",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "700": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0,
-            0.47843137383461,
-            0.5568627715110779
-          ],
-          "alpha": 1,
-          "hex": "#007A8E"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #007A8E.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:30",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "800": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.019607843831181526,
-            0.33725491166114807,
-            0.38823530077934265
-          ],
-          "alpha": 1,
-          "hex": "#055663"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #055663.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:31",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "900": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.03921568766236305,
-            0.1921568661928177,
-            0.21960784494876862
-          ],
-          "alpha": 1,
-          "hex": "#0A3138"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #0A3138.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:32",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      }
-    },
-    "Success": {
-      "50": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9058823585510254,
-            0.9411764740943909,
-            0.9254902005195618
-          ],
-          "alpha": 1,
-          "hex": "#E7F0EC"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #E7F0EC.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:33",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "100": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.8156862854957581,
-            0.9058823585510254,
-            0.8588235378265381
-          ],
-          "alpha": 1,
-          "hex": "#D0E7DB"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #D0E7DB.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:34",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "200": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.6901960968971252,
-            0.8705882430076599,
-            0.7803921699523926
-          ],
-          "alpha": 1,
-          "hex": "#B0DEC7"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #B0DEC7.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:35",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "300": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.5568627715110779,
-            0.843137264251709,
-            0.6980392336845398
-          ],
-          "alpha": 1,
-          "hex": "#8ED7B2"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #8ED7B2.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:36",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "400": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.42352941632270813,
-            0.8156862854957581,
-            0.6196078658103943
-          ],
-          "alpha": 1,
-          "hex": "#6CD09E"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #6CD09E.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:37",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "500": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.14901961386203766,
-            0.48627451062202454,
-            0.3176470696926117
-          ],
-          "alpha": 1,
-          "hex": "#267C51"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #267C51.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:38",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "600": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.11372549086809158,
-            0.40392157435417175,
-            0.25882354378700256
-          ],
-          "alpha": 1,
-          "hex": "#1D6742"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #1D6742.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:39",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "700": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.09803921729326248,
-            0.3176470696926117,
-            0.2078431397676468
-          ],
-          "alpha": 1,
-          "hex": "#195135"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #195135.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:40",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "800": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.0784313753247261,
-            0.2235294133424759,
-            0.15294118225574493
-          ],
-          "alpha": 1,
-          "hex": "#143927"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #143927.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:41",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "900": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.05882352963089943,
-            0.12941177189350128,
-            0.0941176488995552
-          ],
-          "alpha": 1,
-          "hex": "#0F2118"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #0F2118.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:42",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      }
-    },
-    "Warning": {
-      "50": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.95686274766922,
-            0.9372549057006836,
-            0.8941176533699036
-          ],
-          "alpha": 1,
-          "hex": "#F4EFE4"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F4EFE4.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:43",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "100": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9411764740943909,
-            0.8901960849761963,
-            0.7803921699523926
-          ],
-          "alpha": 1,
-          "hex": "#F0E3C7"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F0E3C7.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:44",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "200": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9372549057006836,
-            0.843137264251709,
-            0.6235294342041016
-          ],
-          "alpha": 1,
-          "hex": "#EFD79F"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #EFD79F.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:45",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "300": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9490196108818054,
-            0.7960784435272217,
-            0.45098039507865906
-          ],
-          "alpha": 1,
-          "hex": "#F2CB73"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F2CB73.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:46",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "400": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.95686274766922,
-            0.7529411911964417,
-            0.2823529541492462
-          ],
-          "alpha": 1,
-          "hex": "#F4C048"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F4C048.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:47",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "500": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9647058844566345,
-            0.7333333492279053,
-            0.20000000298023224
-          ],
-          "alpha": 1,
-          "hex": "#F6BB33"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F6BB33.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:48",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "600": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9372549057006836,
-            0.658823549747467,
-            0.019607843831181526
-          ],
-          "alpha": 1,
-          "hex": "#EFA805"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #EFA805.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:49",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "700": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.7254902124404907,
-            0.5137255191802979,
-            0.0313725508749485
-          ],
-          "alpha": 1,
-          "hex": "#B98308"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #B98308.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:50",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "800": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.5098039507865906,
-            0.3686274588108063,
-            0.05098039284348488
-          ],
-          "alpha": 1,
-          "hex": "#825E0D"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #825E0D.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:51",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "900": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.2862745225429535,
-            0.21960784494876862,
-            0.062745101749897
-          ],
-          "alpha": 1,
-          "hex": "#493810"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #493810.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:52",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      }
-    },
-    "Error": {
-      "50": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.95686274766922,
-            0.9058823585510254,
-            0.8901960849761963
-          ],
-          "alpha": 1,
-          "hex": "#F4E7E3"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F4E7E3.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:53",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "100": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9450980424880981,
-            0.8078431487083435,
-            0.7764706015586853
-          ],
-          "alpha": 1,
-          "hex": "#F1CEC6"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F1CEC6.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:54",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "200": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9490196108818054,
-            0.6823529601097107,
-            0.6117647290229797
-          ],
-          "alpha": 1,
-          "hex": "#F2AE9C"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F2AE9C.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:55",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "300": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9647058844566345,
-            0.545098066329956,
-            0.43529412150382996
-          ],
-          "alpha": 1,
-          "hex": "#F68B6F"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F68B6F.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:56",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "400": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9803921580314636,
-            0.40784314274787903,
-            0.25882354378700256
-          ],
-          "alpha": 1,
-          "hex": "#FA6842"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #FA6842.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:57",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "500": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.8313725590705872,
-            0.1764705926179886,
-            0.007843137718737125
-          ],
-          "alpha": 1,
-          "hex": "#D42D02"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #D42D02.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:58",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "600": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.686274528503418,
-            0.1411764770746231,
-            0
-          ],
-          "alpha": 1,
-          "hex": "#AF2400"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #AF2400.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:59",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "700": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.5411764979362488,
-            0.11372549086809158,
-            0.003921568859368563
-          ],
-          "alpha": 1,
-          "hex": "#8A1D01"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #8A1D01.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:60",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "800": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.3803921639919281,
-            0.09803921729326248,
-            0.0235294122248888
-          ],
-          "alpha": 1,
-          "hex": "#611906"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #611906.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:61",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "900": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.21176470816135406,
-            0.07450980693101883,
-            0.03921568766236305
-          ],
-          "alpha": 1,
-          "hex": "#36130A"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #36130A.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:62",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      }
-    },
-    "Neutral": {
-      "50": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            1,
-            1,
-            1
-          ],
-          "alpha": 1,
-          "hex": "#FFFFFF"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #FFFFFF.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:63",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "100": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9686274528503418,
-            0.9686274528503418,
-            0.9686274528503418
-          ],
-          "alpha": 1,
-          "hex": "#F7F7F7"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F7F7F7.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:64",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "200": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9490196108818054,
-            0.9490196108818054,
-            0.9490196108818054
-          ],
-          "alpha": 1,
-          "hex": "#F2F2F2"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #F2F2F2.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:65",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "300": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9176470637321472,
-            0.9215686321258545,
-            0.9215686321258545
-          ],
-          "alpha": 1,
-          "hex": "#EAEBEB"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #EAEBEB.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:66",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "400": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.8666666746139526,
-            0.8705882430076599,
-            0.8745098114013672
-          ],
-          "alpha": 1,
-          "hex": "#DDDEDF"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #DDDEDF.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:67",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "500": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.9176470637321472,
-            0.9254902005195618,
-            0.9372549057006836
-          ],
-          "alpha": 1,
-          "hex": "#EAECEF"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #EAECEF.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:68",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "600": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.729411780834198,
-            0.7529411911964417,
-            0.7921568751335144
-          ],
-          "alpha": 1,
-          "hex": "#BAC0CA"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #BAC0CA.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:69",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "700": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.5490196347236633,
-            0.5921568870544434,
-            0.6549019813537598
-          ],
-          "alpha": 1,
-          "hex": "#8C97A7"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #8C97A7.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:70",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "800": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.3843137323856354,
-            0.4313725531101227,
-            0.5058823823928833
-          ],
-          "alpha": 1,
-          "hex": "#626E81"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #626E81.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:71",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
-      "900": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.239215686917305,
-            0.2705882489681244,
-            0.3176470696926117
-          ],
-          "alpha": 1,
-          "hex": "#3D4551"
-        },
-        "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #3D4551.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:4:72",
+          "com.figma.variableId": "VariableID:24:16",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1449,7 +1721,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #E5F1F2.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:2",
+          "com.figma.variableId": "VariableID:24:17",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1469,7 +1741,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #CBE8EC.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:3",
+          "com.figma.variableId": "VariableID:24:18",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1489,7 +1761,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #A6DFE8.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:4",
+          "com.figma.variableId": "VariableID:24:19",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1509,7 +1781,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #7ED8E7.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:5",
+          "com.figma.variableId": "VariableID:24:20",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1529,7 +1801,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #57D2E5.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:6",
+          "com.figma.variableId": "VariableID:24:21",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1549,7 +1821,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #CCF2F8.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:7",
+          "com.figma.variableId": "VariableID:24:22",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1569,7 +1841,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #82E2F1.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:8",
+          "com.figma.variableId": "VariableID:24:23",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1589,7 +1861,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #41CFE5.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:9",
+          "com.figma.variableId": "VariableID:24:24",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1609,7 +1881,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #22A2B7.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:10",
+          "com.figma.variableId": "VariableID:24:25",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1629,7 +1901,7 @@
         },
         "$description": "Valeur exacte de la capture utilisateur du 2 novembre 2026 : #205E68.",
         "$extensions": {
-          "com.figma.variableId": "VariableID:128:11",
+          "com.figma.variableId": "VariableID:24:26",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
@@ -1641,110 +1913,120 @@
     "Space01": {
       "$type": "number",
       "$value": 4,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:73",
+        "com.figma.variableId": "VariableID:3:73",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
     "Space02": {
       "$type": "number",
       "$value": 8,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:74",
+        "com.figma.variableId": "VariableID:3:74",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
     "Space03": {
       "$type": "number",
       "$value": 12,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:75",
+        "com.figma.variableId": "VariableID:3:75",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
     "Space04": {
       "$type": "number",
       "$value": 16,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:76",
+        "com.figma.variableId": "VariableID:3:76",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
     "Space05": {
       "$type": "number",
       "$value": 24,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:77",
+        "com.figma.variableId": "VariableID:3:77",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
     "Space06": {
       "$type": "number",
       "$value": 32,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:78",
+        "com.figma.variableId": "VariableID:3:78",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
     "Space07": {
       "$type": "number",
       "$value": 40,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:79",
+        "com.figma.variableId": "VariableID:3:79",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
     "Space08": {
       "$type": "number",
       "$value": 48,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:80",
+        "com.figma.variableId": "VariableID:3:80",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
     "Space09": {
       "$type": "number",
       "$value": 56,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:81",
+        "com.figma.variableId": "VariableID:3:81",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
     "Space10": {
       "$type": "number",
       "$value": 64,
-      "$description": "Espacement en px — capture utilisateur.",
+      "$description": "Espacement en px, repris de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:82",
+        "com.figma.variableId": "VariableID:3:82",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "WIDTH_HEIGHT",
+          "GAP"
         ]
       }
     },
@@ -1753,7 +2035,7 @@
       "$value": 0,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:2",
+        "com.figma.variableId": "VariableID:24:27",
         "com.figma.scopes": [
           "GAP"
         ]
@@ -1764,134 +2046,176 @@
     "font-family-1": {
       "$type": "string",
       "$value": "roboto",
-      "$description": "Famille de la capture.",
+      "$description": "Famille de texte, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:83",
+        "com.figma.variableId": "VariableID:3:83",
         "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
-        "com.figma.type": "string"
+          "FONT_FAMILY"
+        ]
       }
     },
     "font-family-2": {
       "$type": "string",
       "$value": "alatsi",
-      "$description": "Famille de la capture.",
+      "$description": "Famille de titres, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:84",
+        "com.figma.variableId": "VariableID:3:84",
         "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
-        "com.figma.type": "string"
+          "FONT_FAMILY"
+        ]
       }
     },
     "font-size-50": {
       "$type": "number",
       "$value": 12,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:85",
+        "com.figma.variableId": "VariableID:3:85",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
         ]
       }
     },
     "font-size-100": {
       "$type": "number",
       "$value": 14,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:86",
+        "com.figma.variableId": "VariableID:3:86",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
         ]
       }
     },
     "font-size-200": {
       "$type": "number",
       "$value": 16,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:87",
+        "com.figma.variableId": "VariableID:3:87",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
         ]
       }
     },
     "font-size-300": {
       "$type": "number",
       "$value": 18,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:88",
+        "com.figma.variableId": "VariableID:3:88",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
         ]
       }
     },
     "font-size-400": {
       "$type": "number",
       "$value": 20,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:89",
+        "com.figma.variableId": "VariableID:3:89",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
         ]
       }
     },
     "font-size-500": {
       "$type": "number",
       "$value": 22,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:90",
+        "com.figma.variableId": "VariableID:3:90",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
         ]
       }
     },
     "font-size-600": {
       "$type": "number",
       "$value": 24,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:91",
+        "com.figma.variableId": "VariableID:3:91",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
         ]
       }
     },
     "font-size-700": {
       "$type": "number",
       "$value": 28,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:92",
+        "com.figma.variableId": "VariableID:3:92",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
         ]
       }
     },
     "font-size-800": {
       "$type": "number",
       "$value": 36,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:93",
+        "com.figma.variableId": "VariableID:3:93",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
         ]
       }
     },
     "font-size-900": {
       "$type": "number",
       "$value": 48,
-      "$description": "Taille en px — capture utilisateur.",
+      "$description": "Taille en px, reprise de la capture.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:94",
+        "com.figma.variableId": "VariableID:3:94",
         "com.figma.scopes": [
-          "ALL_SCOPES"
+          "FONT_SIZE"
+        ]
+      }
+    },
+    "weight-regular": {
+      "$type": "number",
+      "$value": 400,
+      "$description": "Graisse numérique, reprise de la capture.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:95",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ]
+      }
+    },
+    "weight-medium": {
+      "$type": "number",
+      "$value": 500,
+      "$description": "Graisse numérique, reprise de la capture.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:96",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ]
+      }
+    },
+    "weight-semibold": {
+      "$type": "number",
+      "$value": 600,
+      "$description": "Graisse numérique, reprise de la capture.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:97",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ]
+      }
+    },
+    "weight-bold": {
+      "$type": "number",
+      "$value": 700,
+      "$description": "Graisse numérique, reprise de la capture.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:98",
+        "com.figma.scopes": [
+          "FONT_STYLE"
         ]
       }
     },
@@ -1900,7 +2224,7 @@
       "$value": 400,
       "$description": "Graisse — capture utilisateur.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:95",
+        "com.figma.variableId": "VariableID:24:28",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ]
@@ -1911,7 +2235,7 @@
       "$value": 500,
       "$description": "Graisse — capture utilisateur.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:96",
+        "com.figma.variableId": "VariableID:24:29",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ]
@@ -1922,7 +2246,7 @@
       "$value": 600,
       "$description": "Graisse — capture utilisateur.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:97",
+        "com.figma.variableId": "VariableID:24:30",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ]
@@ -1933,7 +2257,7 @@
       "$value": 700,
       "$description": "Graisse — capture utilisateur.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:4:98",
+        "com.figma.variableId": "VariableID:24:31",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ]
@@ -1946,7 +2270,7 @@
       "$value": 0,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:3",
+        "com.figma.variableId": "VariableID:24:32",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ]
@@ -1957,7 +2281,7 @@
       "$value": 4,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:4",
+        "com.figma.variableId": "VariableID:24:33",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ]
@@ -1968,7 +2292,7 @@
       "$value": 8,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:5",
+        "com.figma.variableId": "VariableID:24:34",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ]
@@ -1979,7 +2303,7 @@
       "$value": 16,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:6",
+        "com.figma.variableId": "VariableID:24:35",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ]
@@ -1990,7 +2314,7 @@
       "$value": 24,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:7",
+        "com.figma.variableId": "VariableID:24:36",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ]
@@ -2001,7 +2325,7 @@
       "$value": 9999,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:8",
+        "com.figma.variableId": "VariableID:24:37",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ]
@@ -2014,7 +2338,7 @@
       "$value": 1,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:9",
+        "com.figma.variableId": "VariableID:24:38",
         "com.figma.scopes": [
           "STROKE_FLOAT"
         ]
@@ -2025,7 +2349,7 @@
       "$value": 2,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:10",
+        "com.figma.variableId": "VariableID:24:39",
         "com.figma.scopes": [
           "STROKE_FLOAT"
         ]
@@ -2036,7 +2360,7 @@
       "$value": 4,
       "$description": "Valeur proposée : absente des captures utilisateur. À valider. Unité px.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:16:11",
+        "com.figma.variableId": "VariableID:24:40",
         "com.figma.scopes": [
           "STROKE_FLOAT"
         ]
@@ -2049,7 +2373,7 @@
       "$value": 16,
       "$description": "Taille d’icône en px, valeur exacte de la capture utilisateur.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:29:2",
+        "com.figma.variableId": "VariableID:24:41",
         "com.figma.scopes": [
           "WIDTH_HEIGHT"
         ]
@@ -2060,7 +2384,7 @@
       "$value": 20,
       "$description": "Taille d’icône en px, valeur exacte de la capture utilisateur.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:29:4",
+        "com.figma.variableId": "VariableID:24:42",
         "com.figma.scopes": [
           "WIDTH_HEIGHT"
         ]
@@ -2071,7 +2395,7 @@
       "$value": 32,
       "$description": "Taille d’icône en px, valeur exacte de la capture utilisateur.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:29:6",
+        "com.figma.variableId": "VariableID:24:43",
         "com.figma.scopes": [
           "WIDTH_HEIGHT"
         ]
@@ -2082,7 +2406,7 @@
       "$value": 66,
       "$description": "Taille d’icône en px, valeur exacte de la capture utilisateur.",
       "$extensions": {
-        "com.figma.variableId": "VariableID:29:8",
+        "com.figma.variableId": "VariableID:24:44",
         "com.figma.scopes": [
           "WIDTH_HEIGHT"
         ]
@@ -2094,7 +2418,7 @@
       "$type": "number",
       "$value": 16,
       "$extensions": {
-        "com.figma.variableId": "VariableID:293:466",
+        "com.figma.variableId": "VariableID:24:45",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ]
@@ -2104,7 +2428,7 @@
       "$type": "number",
       "$value": 32,
       "$extensions": {
-        "com.figma.variableId": "VariableID:293:467",
+        "com.figma.variableId": "VariableID:24:46",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ]
@@ -2114,7 +2438,7 @@
       "$type": "number",
       "$value": 48,
       "$extensions": {
-        "com.figma.variableId": "VariableID:293:468",
+        "com.figma.variableId": "VariableID:24:47",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ]
@@ -2122,6 +2446,6 @@
     }
   },
   "$extensions": {
-    "com.figma.modeName": "Valeurs"
+    "com.figma.modeName": "Default"
   }
 }

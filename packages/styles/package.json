@@ -13,6 +13,7 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "sass": "^1.107.1"
+    "sass": "^1.107.1",
+    "style-dictionary": "^5.7.1"
   }
 }

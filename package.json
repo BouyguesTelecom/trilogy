@@ -11,7 +11,7 @@
     "start:web": "pnpm --filter @trilogy-ds/cross-app start:web",
     "start:mobile": "pnpm --filter @trilogy-ds/cross-app start:mobile",
     "generate:scss": "pnpm --filter @trilogy-ds/styles generate:scss",
-    "figma:fetch": "node packages/figma/scripts/fetch-figma.js",
+    "figma:fetch": "pnpm --filter @trilogy-ds/figma fetch",
     "release": "turbo build && changeset publish",
     "start": "pnpm start:web"
   },

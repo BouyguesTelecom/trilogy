@@ -199,6 +199,9 @@ importers:
       sass:
         specifier: ^1.107.1
         version: 1.107.1
+      style-dictionary:
+        specifier: ^5.7.1
+        version: 5.7.1
 
 packages:
 

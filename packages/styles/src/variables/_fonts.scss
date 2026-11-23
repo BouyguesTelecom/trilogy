@@ -3,10 +3,6 @@
 :root {
   --font-family-primary: #{$font-family-1};
   --font-family-secondary: #{$font-family-2};
-  --font-weight-regular: #{$font-weight-100};
-  --font-weight-medium: #{$font-weight-200};
-  --font-weight-semibold: #{$font-weight-300};
-  --font-weight-bold: #{$font-weight-400};
   --font-size-xs: #{$font-size-50};
   --font-size-sm: #{$font-size-100};
   --font-size-base: #{$font-size-200};
@@ -16,4 +12,8 @@
   --font-size-xxl: #{$font-size-700};
   --font-size-xxxl: #{$font-size-800};
   --font-size-xxxxl: #{$font-size-900};
+  --font-weight-regular: #{$font-weight-100};
+  --font-weight-medium: #{$font-weight-200};
+  --font-weight-semibold: #{$font-weight-300};
+  --font-weight-bold: #{$font-weight-400};
 }
