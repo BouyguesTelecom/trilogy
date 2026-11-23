@@ -7,8 +7,7 @@ export enum AlertStatus {
   error = "error",
 }
 
-export interface AlertGeneratedProps {
-  toaster?: boolean
+export interface AlertUidProps {
   status?: AlertStatus
 }
 
@@ -21,6 +20,6 @@ export enum AlertMarkup {
   h6 = "h6",
 }
 
-export interface AlertProps extends AlertGeneratedProps, CommonProps {
+export interface AlertProps extends AlertUidProps, CommonProps {
   markup?: AlertMarkup
 }

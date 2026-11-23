@@ -4,7 +4,8 @@ import {
   PropsWithChildren,
   RefAttributes,
 } from "react"
-import { clsx, getClassName } from "@/utils"
+import { clsx } from "@/utils/clsx"
+import { getClassName } from "@/utils/getClassName"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
@@ -12,8 +13,8 @@ import {
   ButtonListAlignItems,
   ButtonListDirection,
   ButtonListJustifyContent,
-} from "./buttonList.generated"
-import { ButtonListProps } from "./buttonList.types"
+  ButtonListProps,
+} from "./buttonList.types"
 
 export type ButtonListRef = HTMLDivElement
 type Props = PropsWithChildren<ButtonListProps>

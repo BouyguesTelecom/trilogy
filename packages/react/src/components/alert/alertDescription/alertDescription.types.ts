@@ -2,6 +2,8 @@ import { CommonProps } from "@/interfaces/commonProps"
 
 export enum AlertDescriptionMarkup {
   p = "p",
+  span = "span",
+  div = "div",
   h2 = "h2",
   h3 = "h3",
   h4 = "h4",

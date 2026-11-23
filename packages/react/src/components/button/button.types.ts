@@ -3,7 +3,18 @@ import { AccessibilityProps } from "@/interfaces/accessibilityProps"
 import { CommonProps } from "@/interfaces/commonProps"
 import { OnClickProps } from "@/interfaces/onClickProps"
 
-import { ButtonGeneratedProps } from "./button.generated"
+export enum ButtonVariant {
+  primary = "primary",
+  secondary = "secondary",
+  ghost = "ghost",
+  conversion = "conversion",
+}
+
+export interface ButtonUiProps {
+  variant?: ButtonVariant
+  disabled?: boolean
+  fullwidth?: boolean
+}
 
 export enum ButtonMarkup {
   button = "button",
@@ -19,14 +30,12 @@ export enum ButtonType {
 }
 
 export interface ButtonProps
-  extends ButtonGeneratedProps, AccessibilityProps, CommonProps, OnClickProps {
+  extends ButtonUiProps, AccessibilityProps, CommonProps, OnClickProps {
   markup?: ButtonMarkup | `${ButtonMarkup}`
   loading?: boolean
-  disabled?: boolean
   href?: string
   to?: string
   name?: string
   routerLink?: ElementType
   type?: ButtonType | `${ButtonType}`
-  fullwidth?: boolean
 }

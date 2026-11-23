@@ -1,8 +1,8 @@
-// Do not edit directly, this file was auto-generated.
-import { theme } from "@trilogy-react/theme"
-import { StyleSheet, type TextStyle, type ViewStyle } from "react-native"
+import type { TextStyle, ViewStyle } from "react-native"
 
-export type ButtonVariantStyles = {
+import { makeStyle } from "@/hooks/useMakeStyle.native"
+
+type ButtonVariantStyles = {
   view: ViewStyle
   pressed: ViewStyle
   disabled: ViewStyle
@@ -10,112 +10,109 @@ export type ButtonVariantStyles = {
   disabledText: TextStyle
 }
 
-export type ButtonStyles = Record<
-  "light" | "dark",
-  Record<string, ButtonVariantStyles>
->
-
-type Colors = Record<keyof (typeof theme.colors)["light"], string>
-
-type ButtonBaseStyles = {
-  base: ViewStyle
+type ButtonStyles = {
+  base: {
+    layout: ViewStyle
+    button: ViewStyle
+  }
+  primary: ButtonVariantStyles
+  secondary: ButtonVariantStyles
+  ghost: ButtonVariantStyles
+  conversion: ButtonVariantStyles
 }
 
-// Valeurs identiques quel que soit le variant et le mode
-export const buttonBaseStyles: ButtonBaseStyles =
-  StyleSheet.create<ButtonBaseStyles>({
-    base: {
+export const useButtonStyles: () => ButtonStyles = makeStyle((theme) => ({
+  base: {
+    layout: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: theme.spacings.spacingSm,
+    },
+    button: {
       borderRadius: theme.radius.radiusSm,
       borderWidth: theme.borderWidths.borderWidthSm,
       height: theme.sizes.sizeMd,
       padding: theme.spacings.spacingSm,
     },
-  })
-
-// Appelé une fois par mode au chargement du module, pas au rendu
-const build = (colors: Colors): Record<string, ButtonVariantStyles> => ({
-  primary: StyleSheet.create<ButtonVariantStyles>({
+  },
+  primary: {
     view: {
-      backgroundColor: colors.backgroundSecondary,
-      borderColor: colors.borderMain,
+      backgroundColor: theme.colors.backgroundSecondary,
+      borderColor: theme.colors.borderMain,
     },
     pressed: {
-      backgroundColor: colors.backgroundSecondaryPressed,
-      borderColor: colors.borderMainPressed,
+      backgroundColor: theme.colors.backgroundSecondaryPressed,
+      borderColor: theme.colors.borderMainPressed,
     },
     disabled: {
-      backgroundColor: colors.backgroundField,
-      borderColor: colors.borderDisabled,
+      backgroundColor: theme.colors.backgroundField,
+      borderColor: theme.colors.borderDisabled,
     },
     text: {
-      color: colors.colorInverse,
+      color: theme.colors.colorInverse,
     },
     disabledText: {
-      color: colors.colorDisabled,
+      color: theme.colors.colorDisabled,
     },
-  }),
-  secondary: StyleSheet.create<ButtonVariantStyles>({
+  },
+  secondary: {
     view: {
-      backgroundColor: colors.backgroundPrimary,
-      borderColor: colors.borderPrimary,
+      backgroundColor: theme.colors.backgroundPrimary,
+      borderColor: theme.colors.borderPrimary,
     },
     pressed: {
-      backgroundColor: colors.backgroundPrimaryPressed,
-      borderColor: colors.borderMainPressed,
+      backgroundColor: theme.colors.backgroundPrimaryPressed,
+      borderColor: theme.colors.borderMainPressed,
     },
     disabled: {
-      backgroundColor: colors.backgroundField,
-      borderColor: colors.borderDisabled,
+      backgroundColor: theme.colors.backgroundField,
+      borderColor: theme.colors.borderDisabled,
     },
     text: {
-      color: colors.colorPrimary,
+      color: theme.colors.colorPrimary,
     },
     disabledText: {
-      color: colors.colorDisabled,
+      color: theme.colors.colorDisabled,
     },
-  }),
-  ghost: StyleSheet.create<ButtonVariantStyles>({
+  },
+  ghost: {
     view: {
-      backgroundColor: colors.backgroundTransparent,
-      borderColor: colors.borderTransparent,
+      backgroundColor: theme.colors.backgroundTransparent,
+      borderColor: theme.colors.borderTransparent,
     },
     pressed: {
-      backgroundColor: colors.backgroundPrimaryPressed,
+      backgroundColor: theme.colors.backgroundPrimaryPressed,
     },
     disabled: {
-      backgroundColor: colors.backgroundField,
-      borderColor: colors.borderDisabled,
+      backgroundColor: theme.colors.backgroundField,
+      borderColor: theme.colors.borderDisabled,
     },
     text: {
-      color: colors.colorPrimary,
+      color: theme.colors.colorPrimary,
     },
     disabledText: {
-      color: colors.colorDisabled,
+      color: theme.colors.colorDisabled,
     },
-  }),
-  conversion: StyleSheet.create<ButtonVariantStyles>({
+  },
+  conversion: {
     view: {
-      backgroundColor: colors.backgroundAccent,
-      borderColor: colors.borderAccent,
+      backgroundColor: theme.colors.backgroundAccent,
+      borderColor: theme.colors.borderAccent,
     },
     pressed: {
-      backgroundColor: colors.backgroundAccentPressed,
-      borderColor: colors.borderAccentPressed,
+      backgroundColor: theme.colors.backgroundAccentPressed,
+      borderColor: theme.colors.borderAccentPressed,
     },
     disabled: {
-      backgroundColor: colors.backgroundField,
-      borderColor: colors.borderDisabled,
+      backgroundColor: theme.colors.backgroundField,
+      borderColor: theme.colors.borderDisabled,
     },
     text: {
-      color: colors.colorInverse,
+      color: theme.colors.colorInverse,
     },
     disabledText: {
-      color: colors.colorDisabled,
+      color: theme.colors.colorDisabled,
     },
-  }),
-})
-
-export const buttonStyles: ButtonStyles = {
-  light: build(theme.colors.light),
-  dark: build(theme.colors.dark),
-}
+  },
+}))

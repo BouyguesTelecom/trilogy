@@ -6,21 +6,15 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { theme } from "@trilogy-react/theme"
-import {
-  StyleSheet,
-  Text,
-  useColorScheme,
-  type GestureResponderEvent,
-} from "react-native"
+import { Text, type GestureResponderEvent } from "react-native"
 
 import {
   Pressable,
   type PressableRef,
 } from "@/components/pressable/pressable.native"
 
-import { buttonBaseStyles, buttonStyles } from "./button.styles.native"
-import type { ButtonProps } from "./button.types"
+import { useButtonStyles } from "./button.styles.native"
+import { ButtonVariant, type ButtonProps } from "./button.types"
 
 export type ButtonNativeRef = PressableRef
 
@@ -30,7 +24,7 @@ export const Button: ForwardRefExoticComponent<
   (
     {
       children,
-      variant = "primary",
+      variant = ButtonVariant.primary,
       disabled = false,
       onClick,
       testId,
@@ -38,12 +32,8 @@ export const Button: ForwardRefExoticComponent<
     },
     ref
   ) => {
-    const mode = useColorScheme() === "dark" ? "dark" : "light"
-
-    const generatedStyles = useMemo(
-      () => buttonStyles[mode][variant],
-      [mode, variant]
-    )
+    const styles = useButtonStyles()
+    const generatedStyles = styles[variant]
 
     const textStyle = useMemo(
       () => [generatedStyles.text, disabled && generatedStyles.disabledText],
@@ -74,8 +64,8 @@ export const Button: ForwardRefExoticComponent<
         disabled={disabled}
         onPress={onClick as unknown as (event: GestureResponderEvent) => void}
         style={({ pressed }) => [
-          styles.layout,
-          buttonBaseStyles.base,
+          styles.base.layout,
+          styles.base.button,
           generatedStyles.view,
           pressed && !disabled && generatedStyles.pressed,
           disabled && generatedStyles.disabled,
@@ -88,12 +78,3 @@ export const Button: ForwardRefExoticComponent<
 )
 
 Button.displayName = "Button"
-
-const styles = StyleSheet.create({
-  layout: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: theme.spacings.spacingSm,
-  },
-})

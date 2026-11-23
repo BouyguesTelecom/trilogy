@@ -5,10 +5,9 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { Text, TextStyle } from "react-native"
+import { Text } from "react-native"
 
-import { makeStyle } from "@/hooks/useMakeStyle.native"
-
+import { useAlertDescriptionStyles } from "./alertDescription.styles.native"
 import type { AlertDescriptionProps } from "./alertDescription.types"
 
 export type AlertDescriptionNativeRef = ComponentRef<typeof Text>
@@ -20,7 +19,7 @@ export const AlertDescription: ForwardRefExoticComponent<
   AlertDescriptionNativeRef,
   PropsWithChildren<AlertDescriptionProps>
 >(({ children, id, testId }, ref) => {
-  const styles = useStyles()
+  const styles = useAlertDescriptionStyles()
 
   return (
     <Text
@@ -36,16 +35,3 @@ export const AlertDescription: ForwardRefExoticComponent<
 })
 
 AlertDescription.displayName = "AlertDescription"
-
-const useStyles = makeStyle((theme) => ({
-  base: {
-    text: {
-      fontFamily: theme.fonts.fontFamilyPrimary,
-      fontSize: theme.fonts.fontSizeSm,
-      fontWeight: String(
-        theme.fonts.fontWeightRegular
-      ) as TextStyle["fontWeight"],
-      color: theme.colors.colorPrimary,
-    },
-  },
-}))

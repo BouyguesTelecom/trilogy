@@ -4,8 +4,9 @@ import {
   PropsWithChildren,
   RefAttributes,
 } from "react"
-import { StyleSheet, View } from "react-native"
+import { View } from "react-native"
 
+import { buttonListStyles } from "./buttonList.styles.native"
 import { ButtonListProps } from "./buttonList.types"
 
 export type ButtonListRef = React.ComponentRef<typeof View>
@@ -25,10 +26,10 @@ export const ButtonList: ForwardRefExoticComponent<
         testID={testId}
         nativeID={testId}
         style={[
-          alignItems && styles[`align${alignItems}`],
-          justifyContent && styles[`justify${justifyContent}`],
-          direction && styles[`direction${direction}`],
-          wrap && styles[`wrap${wrap}`],
+          alignItems && buttonListStyles[`align${alignItems}`],
+          justifyContent && buttonListStyles[`justify${justifyContent}`],
+          direction && buttonListStyles[`direction${direction}`],
+          wrap && buttonListStyles[`wrap${wrap}`],
         ]}
       >
         {children}
@@ -38,45 +39,3 @@ export const ButtonList: ForwardRefExoticComponent<
 )
 
 ButtonList.displayName = "ButtonList"
-
-const styles = StyleSheet.create({
-  ["aligncenter"]: {
-    alignItems: "center",
-  },
-  ["alignflex-start"]: {
-    alignItems: "flex-start",
-  },
-  ["alignflex-end"]: {
-    alignItems: "flex-end",
-  },
-  ["alignstretch"]: {
-    alignItems: "stretch",
-  },
-  ["justifycenter"]: {
-    justifyContent: "center",
-  },
-  ["justifyflex-start"]: {
-    justifyContent: "flex-start",
-  },
-  ["justifyflex-end"]: {
-    justifyContent: "flex-end",
-  },
-  ["justifyspace-between"]: {
-    justifyContent: "space-between",
-  },
-  ["justifyspace-around"]: {
-    justifyContent: "space-around",
-  },
-  ["directionrow"]: {
-    flexDirection: "row",
-  },
-  ["directioncolumn"]: {
-    flexDirection: "column",
-  },
-  ["wrapwrap"]: {
-    flexWrap: "wrap",
-  },
-  ["wrapnowrap"]: {
-    flexWrap: "nowrap",
-  },
-})
