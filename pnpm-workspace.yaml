@@ -22,5 +22,5 @@ catalog:
 
 allowBuilds:
   "@parcel/watcher": false
-  esbuild: set this to true or false
+  esbuild: false
   unrs-resolver: true

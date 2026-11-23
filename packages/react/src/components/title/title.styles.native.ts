@@ -1,83 +1,89 @@
-// Do not edit directly, this file was auto-generated.
-import { theme } from "@trilogy-react/theme"
-import { StyleSheet, type TextStyle } from "react-native"
+import type { TextStyle } from "react-native"
 
-export type TitleVariantStyles = {
-  text: TextStyle
+import { makeStyle } from "@/hooks/useMakeStyle.native"
+
+import { TitleColor, TitleFontWeight, TitleLevel } from "./title.types"
+
+type TitleStyles = {
+  levels: Record<TitleLevel, TextStyle>
+  colors: Record<TitleColor, TextStyle>
+  weights: Record<TitleFontWeight, TextStyle>
 }
 
-export type TitleStyles = Record<
-  "light" | "dark",
-  Record<string, TitleVariantStyles>
->
-
-type Colors = Record<keyof (typeof theme.colors)["light"], string>
-
-// Appelé une fois par mode au chargement du module, pas au rendu
-const build = (colors: Colors): Record<string, TitleVariantStyles> => ({
-  one: StyleSheet.create<TitleVariantStyles>({
-    text: {
-      color: colors.colorPrimary,
+export const useTitleStyles: () => TitleStyles = makeStyle((theme) => ({
+  levels: {
+    [TitleLevel.one]: {
       fontFamily: theme.fonts.fontFamilySecondary,
       fontSize: theme.fonts.fontSizeXxxxl,
       fontWeight: String(
         theme.fonts.fontWeightMedium
       ) as TextStyle["fontWeight"],
     },
-  }),
-  two: StyleSheet.create<TitleVariantStyles>({
-    text: {
-      color: colors.colorPrimary,
+    [TitleLevel.two]: {
       fontFamily: theme.fonts.fontFamilySecondary,
       fontSize: theme.fonts.fontSizeXxxl,
       fontWeight: String(
         theme.fonts.fontWeightMedium
       ) as TextStyle["fontWeight"],
     },
-  }),
-  three: StyleSheet.create<TitleVariantStyles>({
-    text: {
-      color: colors.colorPrimary,
+    [TitleLevel.three]: {
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeXxl,
       fontWeight: String(
         theme.fonts.fontWeightSemibold
       ) as TextStyle["fontWeight"],
     },
-  }),
-  four: StyleSheet.create<TitleVariantStyles>({
-    text: {
-      color: colors.colorPrimary,
+    [TitleLevel.four]: {
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeXl,
       fontWeight: String(
         theme.fonts.fontWeightSemibold
       ) as TextStyle["fontWeight"],
     },
-  }),
-  five: StyleSheet.create<TitleVariantStyles>({
-    text: {
-      color: colors.colorPrimary,
+    [TitleLevel.five]: {
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeMd,
       fontWeight: String(
         theme.fonts.fontWeightSemibold
       ) as TextStyle["fontWeight"],
     },
-  }),
-  six: StyleSheet.create<TitleVariantStyles>({
-    text: {
-      color: colors.colorPrimary,
+    [TitleLevel.six]: {
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeBase,
       fontWeight: String(
         theme.fonts.fontWeightSemibold
       ) as TextStyle["fontWeight"],
     },
-  }),
-})
-
-export const titleStyles: TitleStyles = {
-  light: build(theme.colors.light),
-  dark: build(theme.colors.dark),
-}
+  },
+  colors: {
+    [TitleColor.primary]: { color: theme.colors.colorPrimary },
+    [TitleColor.secondary]: { color: theme.colors.colorSecondary },
+    [TitleColor.information]: { color: theme.colors.colorInformation },
+    [TitleColor.accent]: { color: theme.colors.colorAccent },
+    [TitleColor.success]: { color: theme.colors.colorSuccess },
+    [TitleColor.warning]: { color: theme.colors.colorWarning },
+    [TitleColor.error]: { color: theme.colors.colorError },
+    [TitleColor.brand]: { color: theme.colors.colorBrand },
+    [TitleColor.inverse]: { color: theme.colors.colorInverse },
+  },
+  weights: {
+    [TitleFontWeight.regular]: {
+      fontWeight: String(
+        theme.fonts.fontWeightRegular
+      ) as TextStyle["fontWeight"],
+    },
+    [TitleFontWeight.medium]: {
+      fontWeight: String(
+        theme.fonts.fontWeightMedium
+      ) as TextStyle["fontWeight"],
+    },
+    [TitleFontWeight.semibold]: {
+      fontWeight: String(
+        theme.fonts.fontWeightSemibold
+      ) as TextStyle["fontWeight"],
+    },
+    [TitleFontWeight.bold]: {
+      fontWeight: String(theme.fonts.fontWeightBold) as TextStyle["fontWeight"],
+    },
+  },
+}))

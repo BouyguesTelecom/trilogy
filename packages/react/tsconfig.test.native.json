@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "moduleSuffixes": [".native", ""]
+  },
+  "include": [
+    "src/components/**/*.native.test.ts",
+    "src/components/**/*.native.test.tsx"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

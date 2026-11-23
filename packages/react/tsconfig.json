@@ -15,7 +15,11 @@
       "@version": ["./version.json"],
       "@trilogy-react/theme": ["./src/constants/theme.ts"]
     },
-    "types": ["@figma/code-connect/figma-types"]
+    "types": [
+      "@figma/code-connect/figma-types",
+      "jest",
+      "@testing-library/jest-dom/vitest"
+    ]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "**/*.figma.ts"]
