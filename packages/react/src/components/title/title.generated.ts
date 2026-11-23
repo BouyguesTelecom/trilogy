@@ -1,10 +1,10 @@
 export enum TitleLevel {
-  one = "one",
-  two = "two",
-  three = "three",
-  four = "four",
-  five = "five",
-  six = "six",
+  one = 1,
+  two = 2,
+  three = 3,
+  four = 4,
+  five = 5,
+  six = 6,
 }
 
 export enum TitleTextAlign {

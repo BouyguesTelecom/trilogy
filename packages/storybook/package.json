@@ -1,0 +1,21 @@
+{
+  "name": "@trilogy-ds/storybook",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev --host 127.0.0.1 --port 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@trilogy-ds/react": "workspace:*",
+    "@trilogy-ds/styles": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^10.6.8",
+    "sass": "^1.107.1",
+    "storybook": "^10.6.8"
+  }
+}

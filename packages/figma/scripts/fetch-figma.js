@@ -148,9 +148,7 @@ function createVariableConverter(collections, variables) {
     }
 
     const value =
-      variable.resolvedType === "COLOR"
-        ? colorAsDtcgValue(resolved)
-        : resolved
+      variable.resolvedType === "COLOR" ? colorAsDtcgValue(resolved) : resolved
     const modeValue = variable.valuesByMode[modeId]
     const targetAlias =
       modeValue?.type === "VARIABLE_ALIAS"
@@ -263,9 +261,7 @@ async function writeTokenFiles(response) {
   for (const modeName of ["Light", "Dark"]) {
     const mode = colors.modes.find((item) => item.name === modeName)
     if (!mode) {
-      throw new Error(
-        `Figma Colors collection is missing "${modeName}" mode.`
-      )
+      throw new Error(`Figma Colors collection is missing "${modeName}" mode.`)
     }
     await writeTokenJson(
       path.join(variablesDir, `${modeName}.tokens.json`),
