@@ -2,7 +2,7 @@ import { createRef } from "react"
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 
-import { TextColor, TextFontWeight, TextLevel, TextMarkup } from "./text.types"
+import { TextColor, TextFontWeight, TextMarkup, TextSize } from "./text.types"
 import { Text } from "./text.web"
 
 describe("Text web", () => {
@@ -12,7 +12,7 @@ describe("Text web", () => {
     expect(text.tagName).toBe("P")
     expect(text).toHaveClass(
       "text",
-      "one",
+      "font-size-xxxxl",
       "font-family-secondary",
       "text-primary",
       "font-weight-regular"
@@ -20,15 +20,18 @@ describe("Text web", () => {
   })
 
   it.each([
-    [TextLevel.one, "one", "font-family-secondary"],
-    [TextLevel.two, "two", "font-family-secondary"],
-    [TextLevel.three, "three", "font-family-primary"],
-    [TextLevel.four, "four", "font-family-primary"],
-    [TextLevel.five, "five", "font-family-primary"],
-    [TextLevel.six, "six", "font-family-primary"],
-  ])("maps level %s to its classes", (level, levelClass, family) => {
-    render(<Text level={level}>Texte</Text>)
-    expect(screen.getByText("Texte")).toHaveClass(levelClass, family)
+    [TextSize.xs, "font-size-xs", "font-family-primary"],
+    [TextSize.sm, "font-size-sm", "font-family-primary"],
+    [TextSize.base, "font-size-base", "font-family-primary"],
+    [TextSize.md, "font-size-md", "font-family-primary"],
+    [TextSize.lg, "font-size-lg", "font-family-primary"],
+    [TextSize.xl, "font-size-xl", "font-family-primary"],
+    [TextSize.xxl, "font-size-xxl", "font-family-primary"],
+    [TextSize.xxxl, "font-size-xxxl", "font-family-secondary"],
+    [TextSize.xxxxl, "font-size-xxxxl", "font-family-secondary"],
+  ])("maps size %s to its helpers", (size, sizeClass, family) => {
+    render(<Text size={size}>Texte</Text>)
+    expect(screen.getByText("Texte")).toHaveClass(sizeClass, family)
   })
 
   it.each(Object.values(TextColor))(
@@ -71,13 +74,13 @@ describe("Text web", () => {
     expect(ref.current).toBe(text)
   })
 
-  it("falls back safely for an invalid level and markup", () => {
+  it("falls back safely for an invalid size and markup", () => {
     render(
-      <Text level={99 as TextLevel} markup={"invalid" as TextMarkup}>
+      <Text size={99 as unknown as TextSize} markup={"invalid" as TextMarkup}>
         Texte
       </Text>
     )
-    expect(screen.getByText("Texte")).toHaveClass("one")
+    expect(screen.getByText("Texte")).toHaveClass("font-size-xxxxl")
     expect(screen.getByText("Texte").tagName).toBe("P")
   })
 })

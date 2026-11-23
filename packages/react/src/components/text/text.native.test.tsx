@@ -4,7 +4,7 @@ import type { TextStyle } from "react-native"
 import { theme } from "../../constants/theme"
 import { TrilogyContextProvider } from "../../contexts/trilogyContext.native"
 import { Text } from "./text.native"
-import { TextColor, TextFontWeight, TextLevel } from "./text.types"
+import { TextColor, TextFontWeight, TextSize } from "./text.types"
 
 describe("Text native", () => {
   it("renders default styles and accessible content", async () => {
@@ -20,12 +20,31 @@ describe("Text native", () => {
     })
   })
 
-  it("applies level, color and weight in dark mode", async () => {
+  it.each([
+    [TextSize.xs, theme.fonts.fontSizeXs],
+    [TextSize.sm, theme.fonts.fontSizeSm],
+    [TextSize.base, theme.fonts.fontSizeBase],
+    [TextSize.md, theme.fonts.fontSizeMd],
+    [TextSize.lg, theme.fonts.fontSizeLg],
+    [TextSize.xl, theme.fonts.fontSizeXl],
+    [TextSize.xxl, theme.fonts.fontSizeXxl],
+    [TextSize.xxxl, theme.fonts.fontSizeXxxl],
+    [TextSize.xxxxl, theme.fonts.fontSizeXxxxl],
+  ])("applies size %s", async (size, fontSize) => {
+    await render(
+      <Text size={size} testId="text">
+        Texte
+      </Text>
+    )
+    expect(screen.getByTestId("text")).toHaveStyle({ fontSize })
+  })
+
+  it("applies size, color and weight in dark mode", async () => {
     await render(
       <TrilogyContextProvider mode="dark">
         <Text
           testId="text"
-          level={TextLevel.six}
+          size={TextSize.base}
           color={TextColor.secondary}
           fontWeight={TextFontWeight.bold}
         >
@@ -40,9 +59,9 @@ describe("Text native", () => {
     })
   })
 
-  it("falls back to the first level for invalid input", async () => {
+  it("falls back to size xxxxl for invalid input", async () => {
     await render(
-      <Text testId="text" level={99 as TextLevel}>
+      <Text testId="text" size={99 as unknown as TextSize}>
         Texte
       </Text>
     )

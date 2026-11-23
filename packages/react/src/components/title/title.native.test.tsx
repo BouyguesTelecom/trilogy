@@ -4,26 +4,29 @@ import type { TextStyle } from "react-native"
 import { theme } from "../../constants/theme"
 import { TrilogyContextProvider } from "../../contexts/trilogyContext.native"
 import { Title } from "./title.native"
-import { TitleColor, TitleFontWeight, TitleLevel } from "./title.types"
+import { TitleColor, TitleFontWeight, TitleSize } from "./title.types"
 
 describe("Title native", () => {
   it.each([
-    [TitleLevel.one, theme.fonts.fontSizeXxxxl],
-    [TitleLevel.two, theme.fonts.fontSizeXxxl],
-    [TitleLevel.three, theme.fonts.fontSizeXxl],
-    [TitleLevel.four, theme.fonts.fontSizeXl],
-    [TitleLevel.five, theme.fonts.fontSizeMd],
-    [TitleLevel.six, theme.fonts.fontSizeBase],
-  ])("applies level %s", async (level, fontSize) => {
+    [TitleSize.xs, theme.fonts.fontSizeXs],
+    [TitleSize.sm, theme.fonts.fontSizeSm],
+    [TitleSize.base, theme.fonts.fontSizeBase],
+    [TitleSize.md, theme.fonts.fontSizeMd],
+    [TitleSize.lg, theme.fonts.fontSizeLg],
+    [TitleSize.xl, theme.fonts.fontSizeXl],
+    [TitleSize.xxl, theme.fonts.fontSizeXxl],
+    [TitleSize.xxxl, theme.fonts.fontSizeXxxl],
+    [TitleSize.xxxxl, theme.fonts.fontSizeXxxxl],
+  ])("applies size %s", async (size, fontSize) => {
     await render(
-      <Title level={level} testId="title">
+      <Title size={size} testId="title">
         Titre
       </Title>
     )
     expect(screen.getByTestId("title")).toHaveStyle({
       fontSize,
       fontFamily:
-        level <= 2
+        size === TitleSize.xxxl || size === TitleSize.xxxxl
           ? theme.fonts.fontFamilySecondary
           : theme.fonts.fontFamilyPrimary,
     })
@@ -50,9 +53,9 @@ describe("Title native", () => {
     })
   })
 
-  it("uses level one for an invalid value", async () => {
+  it("uses size xxxxl for an invalid value", async () => {
     await render(
-      <Title level={99 as TitleLevel} testId="title">
+      <Title size={99 as unknown as TitleSize} testId="title">
         Titre
       </Title>
     )

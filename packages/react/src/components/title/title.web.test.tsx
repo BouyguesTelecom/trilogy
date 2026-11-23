@@ -5,26 +5,33 @@ import { describe, expect, it } from "vitest"
 import {
   TitleColor,
   TitleFontWeight,
-  TitleLevel,
   TitleMarkup,
+  TitleSize,
 } from "./title.types"
 import { Title } from "./title.web"
 
 describe("Title web", () => {
   it.each([
-    [TitleLevel.one, "one"],
-    [TitleLevel.two, "two"],
-    [TitleLevel.three, "three"],
-    [TitleLevel.four, "four"],
-    [TitleLevel.five, "five"],
-    [TitleLevel.six, "six"],
-  ])("renders level %s with matching heading and helpers", (level, name) => {
-    render(<Title level={level}>Titre</Title>)
-    expect(screen.getByRole("heading", { level })).toHaveClass(
+    [TitleSize.xs, "font-size-xs"],
+    [TitleSize.sm, "font-size-sm"],
+    [TitleSize.base, "font-size-base"],
+    [TitleSize.md, "font-size-md"],
+    [TitleSize.lg, "font-size-lg"],
+    [TitleSize.xl, "font-size-xl"],
+    [TitleSize.xxl, "font-size-xxl"],
+    [TitleSize.xxxl, "font-size-xxxl"],
+    [TitleSize.xxxxl, "font-size-xxxxl"],
+  ])("renders size %s with matching heading and helpers", (size, sizeClass) => {
+    render(<Title size={size}>Titre</Title>)
+    expect(screen.getByRole("heading", { level: 1 })).toHaveClass(
       "title",
-      name,
-      level <= 2 ? "font-family-secondary" : "font-family-primary",
-      level <= 2 ? "font-weight-medium" : "font-weight-semibold",
+      sizeClass,
+      size === TitleSize.xxxl || size === TitleSize.xxxxl
+        ? "font-family-secondary"
+        : "font-family-primary",
+      size === TitleSize.xxxl || size === TitleSize.xxxxl
+        ? "font-weight-medium"
+        : "font-weight-semibold",
       "text-primary"
     )
   })
@@ -61,8 +68,10 @@ describe("Title web", () => {
     expect(ref.current).toBe(title)
   })
 
-  it("falls back to level one", () => {
-    render(<Title level={99 as TitleLevel}>Titre</Title>)
-    expect(screen.getByRole("heading", { level: 1 })).toHaveClass("one")
+  it("falls back to size xxxxl", () => {
+    render(<Title size={99 as unknown as TitleSize}>Titre</Title>)
+    expect(screen.getByRole("heading", { level: 1 })).toHaveClass(
+      "font-size-xxxxl"
+    )
   })
 })

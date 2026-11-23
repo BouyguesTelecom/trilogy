@@ -50,15 +50,3 @@ $alert-variants: (
   align-items: flex-start;
   gap: var(--spacing-xs);
 }
-
-.alertDescription {
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
-}
-
-.alertTitle {
-  font-family: var(--font-family-secondary);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-bold);
-}

@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react"
 
-import { TitleColor, TitleFontWeight, TitleLevel } from "./title.types"
+import { TitleColor, TitleFontWeight, TitleSize } from "./title.types"
 import { Title } from "./title.web"
 
 type TitleArgs = ComponentProps<typeof Title>
@@ -16,11 +16,11 @@ const meta: {
   component: Title,
   args: {
     children: "Titre Trilogy",
-    level: TitleLevel.one,
+    size: TitleSize.xxxxl,
     color: TitleColor.primary,
   },
   argTypes: {
-    level: { control: "select", options: [1, 2, 3, 4, 5, 6] },
+    size: { control: "select", options: Object.values(TitleSize) },
     color: { control: "select", options: Object.values(TitleColor) },
     fontWeight: { control: "select", options: Object.values(TitleFontWeight) },
   },
@@ -28,18 +28,18 @@ const meta: {
 
 export default meta
 
-export const LevelOne: TitleStory = {}
+export const SizeXXXXL: TitleStory = {}
 
-export const LevelThreeAccent: TitleStory = {
+export const SizeXXLAccent: TitleStory = {
   args: {
-    level: TitleLevel.three,
+    size: TitleSize.xxl,
     color: TitleColor.accent,
     fontWeight: TitleFontWeight.bold,
   },
 }
 
-export const AllLevels: TitleStory = {
+export const AllSizes: TitleStory = {
   args: {
-    children: "Les six niveaux sont disponibles via la propriété level.",
+    children: "Les six tailles sont disponibles avec la propriété size.",
   },
 }

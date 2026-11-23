@@ -22,7 +22,15 @@ export const AlertDescription: ForwardRefExoticComponent<
   Props & RefAttributes<AlertDescriptionRef>
 > = forwardRef<AlertDescriptionRef, Props>(
   ({ testId, className, id, markup, children, ...others }, ref) => {
-    const classes = useHashClass(clsx("alertDescription", className))
+    const classes = useHashClass(
+      clsx(
+        "text",
+        "font-weight-regular",
+        "font-family-primary",
+        "font-size-sm",
+        className
+      )
+    )
 
     const Component: ElementType =
       markup &&

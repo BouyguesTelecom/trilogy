@@ -34,7 +34,13 @@ export default defineConfig(({ command }) => ({
   plugins: [trilogySourcePlugin(command === "serve"), react()],
   resolve: {
     dedupe: ["react", "react-dom"],
-    alias: [{ find: /^react-native$/, replacement: "react-native-web" }],
+    alias: [
+      {
+        find: /^@version$/,
+        replacement: path.join(trilogyRoot, "version.json"),
+      },
+      { find: /^react-native$/, replacement: "react-native-web" },
+    ],
     extensions: [
       ".web.tsx",
       ".web.ts",

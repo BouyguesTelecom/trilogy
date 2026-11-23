@@ -10,26 +10,17 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import { TextColor, TextLevel, TextMarkup, type TextProps } from "./text.types"
+import { TextColor, TextMarkup, TextSize, type TextProps } from "./text.types"
 
 export type TextRef = HTMLElement
 type Props = PropsWithChildren<TextProps>
-
-const levelClasses: Record<TextLevel, string> = {
-  [TextLevel.one]: "one",
-  [TextLevel.two]: "two",
-  [TextLevel.three]: "three",
-  [TextLevel.four]: "four",
-  [TextLevel.five]: "five",
-  [TextLevel.six]: "six",
-}
 
 export const Text: ForwardRefExoticComponent<Props & RefAttributes<TextRef>> =
   forwardRef<TextRef, Props>(
     (
       {
         children,
-        level = TextLevel.one,
+        size = TextSize.xxxxl,
         color = TextColor.primary,
         fontWeight,
         accessibilityLabel,
@@ -40,15 +31,17 @@ export const Text: ForwardRefExoticComponent<Props & RefAttributes<TextRef>> =
       },
       ref
     ) => {
-      const safeLevel = levelClasses[level] ? level : TextLevel.one
+      const safeSize = Object.values(TextSize).includes(size)
+        ? size
+        : TextSize.xxxxl
       const Component: ElementType = Object.values(TextMarkup).includes(markup)
         ? markup
         : TextMarkup.p
       const classes = useHashClass(
         clsx(
           "text",
-          levelClasses[safeLevel],
-          safeLevel === TextLevel.one || safeLevel === TextLevel.two
+          `font-size-${safeSize}`,
+          safeSize === TextSize.xxxxl || safeSize === TextSize.xxxl
             ? "font-family-secondary"
             : "font-family-primary",
           `text-${color}`,

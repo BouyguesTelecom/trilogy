@@ -8,7 +8,12 @@ import {
 import { Text as NativeText } from "react-native"
 
 import { useTextStyles } from "./text.styles.native"
-import { TextColor, TextLevel, type TextProps } from "./text.types"
+import {
+  TextColor,
+  TextFontWeight,
+  TextSize,
+  type TextProps,
+} from "./text.types"
 
 export type TextNativeRef = ComponentRef<typeof NativeText>
 
@@ -18,7 +23,7 @@ export const Text: ForwardRefExoticComponent<
   (
     {
       children,
-      level = TextLevel.one,
+      size = TextSize.xxxxl,
       color = TextColor.primary,
       fontWeight,
       accessibilityLabel,
@@ -28,7 +33,7 @@ export const Text: ForwardRefExoticComponent<
     ref
   ) => {
     const styles = useTextStyles()
-    const safeLevel = styles.levels[level] ? level : TextLevel.one
+    const safeSize = styles.sizes[size] ? size : TextSize.xxxxl
 
     return (
       <NativeText
@@ -39,9 +44,9 @@ export const Text: ForwardRefExoticComponent<
         accessibilityRole="text"
         accessibilityLabel={accessibilityLabel}
         style={[
-          styles.levels[safeLevel],
+          styles.sizes[safeSize],
           styles.colors[color],
-          fontWeight && styles.weights[fontWeight],
+          styles.weights[fontWeight ?? TextFontWeight.regular],
         ]}
       >
         {children}

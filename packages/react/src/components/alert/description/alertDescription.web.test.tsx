@@ -16,7 +16,7 @@ describe("AlertDescription web", () => {
       expect(screen.getByTestId("description").tagName.toLowerCase()).toBe(
         markup
       )
-      expect(screen.getByTestId("description")).toHaveClass("alertDescription")
+      expect(screen.getByTestId("description")).toHaveClass("text")
     }
   )
   it("falls back to a paragraph for invalid markup", () => {

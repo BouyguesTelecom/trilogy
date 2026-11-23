@@ -8,7 +8,7 @@ import {
 import { Text } from "react-native"
 
 import { useTitleStyles } from "./title.styles.native"
-import { TitleColor, TitleLevel, type TitleProps } from "./title.types"
+import { TitleColor, TitleSize, type TitleProps } from "./title.types"
 
 export type TitleNativeRef = ComponentRef<typeof Text>
 
@@ -18,7 +18,7 @@ export const Title: ForwardRefExoticComponent<
   (
     {
       children,
-      level = TitleLevel.one,
+      size = TitleSize.xxxxl,
       color = TitleColor.primary,
       fontWeight,
       accessibilityLabel,
@@ -28,7 +28,7 @@ export const Title: ForwardRefExoticComponent<
     ref
   ) => {
     const styles = useTitleStyles()
-    const safeLevel = styles.levels[level] ? level : TitleLevel.one
+    const safeSize = styles.sizes[size] ? size : TitleSize.xxxxl
 
     return (
       <Text
@@ -39,7 +39,7 @@ export const Title: ForwardRefExoticComponent<
         accessibilityRole="header"
         accessibilityLabel={accessibilityLabel}
         style={[
-          styles.levels[safeLevel],
+          styles.sizes[safeSize],
           styles.colors[color],
           fontWeight && styles.weights[fontWeight],
         ]}

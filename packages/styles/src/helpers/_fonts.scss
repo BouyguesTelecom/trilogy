@@ -7,6 +7,18 @@ $font-weights: (
   font-weight-bold
 );
 
+$font-sizes: (
+  font-size-xs,
+  font-size-sm,
+  font-size-base,
+  font-size-md,
+  font-size-lg,
+  font-size-xl,
+  font-size-xxl,
+  font-size-xxxl,
+  font-size-xxxxl
+);
+
 @each $token in $font-families {
   .#{$token} {
     font-family: var(--#{$token});
@@ -16,5 +28,11 @@ $font-weights: (
 @each $token in $font-weights {
   .#{$token} {
     font-weight: var(--#{$token});
+  }
+}
+
+@each $token in $font-sizes {
+  .#{$token} {
+    font-size: var(--#{$token});
   }
 }

@@ -10,26 +10,17 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import { TitleColor, TitleLevel, type TitleProps } from "./title.types"
+import { TitleColor, TitleSize, type TitleProps } from "./title.types"
 
 export type TitleRef = HTMLHeadingElement
 type Props = PropsWithChildren<TitleProps>
-
-const levelClasses: Record<TitleLevel, string> = {
-  [TitleLevel.one]: "one",
-  [TitleLevel.two]: "two",
-  [TitleLevel.three]: "three",
-  [TitleLevel.four]: "four",
-  [TitleLevel.five]: "five",
-  [TitleLevel.six]: "six",
-}
 
 export const Title: ForwardRefExoticComponent<Props & RefAttributes<TitleRef>> =
   forwardRef<TitleRef, Props>(
     (
       {
         children,
-        level = TitleLevel.one,
+        size = TitleSize.xxxxl,
         color = TitleColor.primary,
         fontWeight,
         accessibilityLabel,
@@ -40,21 +31,23 @@ export const Title: ForwardRefExoticComponent<Props & RefAttributes<TitleRef>> =
       },
       ref
     ) => {
-      const safeLevel = levelClasses[level] ? level : TitleLevel.one
-      const Component: ElementType = markup ?? `h${safeLevel}`
+      const safeSize = Object.values(TitleSize).includes(size)
+        ? size
+        : TitleSize.xxxxl
+      const Component: ElementType = markup ?? "h1"
       const fontFamily =
-        safeLevel === TitleLevel.one || safeLevel === TitleLevel.two
+        safeSize === TitleSize.xxxxl || safeSize === TitleSize.xxxl
           ? "font-family-secondary"
           : "font-family-primary"
       const effectiveFontWeight =
         fontWeight ??
-        (safeLevel === TitleLevel.one || safeLevel === TitleLevel.two
+        (safeSize === TitleSize.xxxxl || safeSize === TitleSize.xxxl
           ? "medium"
           : "semibold")
       const classes = useHashClass(
         clsx(
           "title",
-          levelClasses[safeLevel],
+          `font-size-${safeSize}`,
           fontFamily,
           `text-${color}`,
           `font-weight-${effectiveFontWeight}`,

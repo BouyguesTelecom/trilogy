@@ -1,13 +1,16 @@
 import type { AccessibilityProps } from "@/interfaces/accessibilityProps"
 import type { CommonProps } from "@/interfaces/commonProps"
 
-export enum TitleLevel {
-  one = 1,
-  two = 2,
-  three = 3,
-  four = 4,
-  five = 5,
-  six = 6,
+export enum TitleSize {
+  xs = "xs",
+  sm = "sm",
+  base = "base",
+  md = "md",
+  lg = "lg",
+  xl = "xl",
+  xxl = "xxl",
+  xxxl = "xxxl",
+  xxxxl = "xxxxl",
 }
 
 export enum TitleColor {
@@ -42,7 +45,7 @@ export enum TitleMarkup {
 }
 
 export interface TitleUiProps {
-  level?: TitleLevel
+  size?: TitleSize
   color?: TitleColor
   fontWeight?: TitleFontWeight
 }

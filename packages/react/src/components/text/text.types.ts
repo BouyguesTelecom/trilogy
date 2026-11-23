@@ -1,13 +1,16 @@
 import type { AccessibilityProps } from "@/interfaces/accessibilityProps"
 import type { CommonProps } from "@/interfaces/commonProps"
 
-export enum TextLevel {
-  one = 1,
-  two = 2,
-  three = 3,
-  four = 4,
-  five = 5,
-  six = 6,
+export enum TextSize {
+  xs = "xs",
+  sm = "sm",
+  base = "base",
+  md = "md",
+  lg = "lg",
+  xl = "xl",
+  xxl = "xxl",
+  xxxl = "xxxl",
+  xxxxl = "xxxxl",
 }
 
 export enum TextColor {
@@ -42,7 +45,7 @@ export enum TextMarkup {
 }
 
 export interface TextUiProps {
-  level?: TextLevel
+  size?: TextSize
   color?: TextColor
   fontWeight?: TextFontWeight
 }

@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react"
 
-import { TextColor, TextFontWeight, TextLevel } from "./text.types"
+import { TextColor, TextFontWeight, TextSize } from "./text.types"
 import { Text } from "./text.web"
 
 type TextArgs = ComponentProps<typeof Text>
@@ -16,12 +16,12 @@ const meta: {
   component: Text,
   args: {
     children: "Texte Trilogy",
-    level: TextLevel.one,
+    size: TextSize.xxxxl,
     color: TextColor.primary,
     fontWeight: TextFontWeight.regular,
   },
   argTypes: {
-    level: { control: "select", options: [1, 2, 3, 4, 5, 6] },
+    size: { control: "select", options: Object.values(TextSize) },
     color: { control: "select", options: Object.values(TextColor) },
     fontWeight: { control: "select", options: Object.values(TextFontWeight) },
   },
@@ -31,9 +31,9 @@ export default meta
 
 export const Default: TextStory = {}
 
-export const LevelSixSecondary: TextStory = {
+export const SizeSMSecondary: TextStory = {
   args: {
-    level: TextLevel.six,
+    size: TextSize.sm,
     color: TextColor.secondary,
   },
 }

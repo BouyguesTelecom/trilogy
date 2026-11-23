@@ -2,57 +2,51 @@ import type { TextStyle } from "react-native"
 
 import { makeStyle } from "@/hooks/useMakeStyle.native"
 
-import { TextColor, TextFontWeight, TextLevel } from "./text.types"
+import { TextColor, TextFontWeight, TextSize } from "./text.types"
 
 type TextStyles = {
-  levels: Record<TextLevel, TextStyle>
+  sizes: Record<TextSize, TextStyle>
   colors: Record<TextColor, TextStyle>
   weights: Record<TextFontWeight, TextStyle>
 }
 
 export const useTextStyles: () => TextStyles = makeStyle((theme) => ({
-  levels: {
-    [TextLevel.one]: {
-      fontFamily: theme.fonts.fontFamilySecondary,
-      fontSize: theme.fonts.fontSizeXxxxl,
-      fontWeight: String(
-        theme.fonts.fontWeightRegular
-      ) as TextStyle["fontWeight"],
-    },
-    [TextLevel.two]: {
-      fontFamily: theme.fonts.fontFamilySecondary,
-      fontSize: theme.fonts.fontSizeXxxl,
-      fontWeight: String(
-        theme.fonts.fontWeightRegular
-      ) as TextStyle["fontWeight"],
-    },
-    [TextLevel.three]: {
+  sizes: {
+    [TextSize.xs]: {
       fontFamily: theme.fonts.fontFamilyPrimary,
-      fontSize: theme.fonts.fontSizeXxl,
-      fontWeight: String(
-        theme.fonts.fontWeightRegular
-      ) as TextStyle["fontWeight"],
+      fontSize: theme.fonts.fontSizeXs,
     },
-    [TextLevel.four]: {
+    [TextSize.sm]: {
       fontFamily: theme.fonts.fontFamilyPrimary,
-      fontSize: theme.fonts.fontSizeXl,
-      fontWeight: String(
-        theme.fonts.fontWeightRegular
-      ) as TextStyle["fontWeight"],
+      fontSize: theme.fonts.fontSizeSm,
     },
-    [TextLevel.five]: {
-      fontFamily: theme.fonts.fontFamilyPrimary,
-      fontSize: theme.fonts.fontSizeMd,
-      fontWeight: String(
-        theme.fonts.fontWeightRegular
-      ) as TextStyle["fontWeight"],
-    },
-    [TextLevel.six]: {
+    [TextSize.base]: {
       fontFamily: theme.fonts.fontFamilyPrimary,
       fontSize: theme.fonts.fontSizeBase,
-      fontWeight: String(
-        theme.fonts.fontWeightRegular
-      ) as TextStyle["fontWeight"],
+    },
+    [TextSize.md]: {
+      fontFamily: theme.fonts.fontFamilyPrimary,
+      fontSize: theme.fonts.fontSizeMd,
+    },
+    [TextSize.lg]: {
+      fontFamily: theme.fonts.fontFamilyPrimary,
+      fontSize: theme.fonts.fontSizeLg,
+    },
+    [TextSize.xl]: {
+      fontFamily: theme.fonts.fontFamilyPrimary,
+      fontSize: theme.fonts.fontSizeXl,
+    },
+    [TextSize.xxl]: {
+      fontFamily: theme.fonts.fontFamilyPrimary,
+      fontSize: theme.fonts.fontSizeXxl,
+    },
+    [TextSize.xxxl]: {
+      fontFamily: theme.fonts.fontFamilySecondary,
+      fontSize: theme.fonts.fontSizeXxxl,
+    },
+    [TextSize.xxxxl]: {
+      fontFamily: theme.fonts.fontFamilySecondary,
+      fontSize: theme.fonts.fontSizeXxxxl,
     },
   },
   colors: {
