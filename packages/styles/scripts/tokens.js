@@ -1,0 +1,192 @@
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises"
+import { tmpdir } from "node:os"
+import path from "node:path"
+import { fileURLToPath } from "node:url"
+import StyleDictionary from "style-dictionary"
+
+const scriptDir = path.dirname(fileURLToPath(import.meta.url))
+const repoRoot = path.resolve(scriptDir, "../..")
+const figmaDir = path.join(repoRoot, "packages/figma/src")
+const outputDir = path.join(repoRoot, "packages/styles/src/variables")
+
+const tokenSources = {
+  primitives: {
+    source: path.join(figmaDir, "primitives.json"),
+    selector: ":root",
+    unitStrategy: "primitives",
+  },
+  light: {
+    source: path.join(figmaDir, "variables/Light.tokens.json"),
+    selector: ':root, [data-theme="light"]',
+    unitStrategy: "none",
+  },
+  dark: {
+    source: path.join(figmaDir, "variables/Dark.tokens.json"),
+    selector: '[data-theme="dark"]',
+    unitStrategy: "none",
+  },
+  dimensions: {
+    source: path.join(figmaDir, "variables/Dimensions.tokens.json"),
+    selector: ":root",
+    unitStrategy: "dimensions",
+  },
+  fonts: {
+    source: path.join(figmaDir, "variables/Fonts.tokens.json"),
+    selector: ":root",
+    unitStrategy: "fonts",
+  },
+}
+
+const kebabCase = (part) =>
+  part
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replace(/[^a-zA-Z0-9-]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .toLowerCase()
+
+function cssVariableName(token) {
+  const codeSyntax = token.original?.$extensions?.["com.figma.codeSyntax"]?.WEB
+  const explicitName = codeSyntax?.match(/^var\(--([\w-]+)\)$/)?.[1]
+  if (explicitName) return `--${explicitName}`
+
+  const [category, ...rest] = token.path
+  const normalizedCategory = String(category).toLowerCase()
+  const normalizedRest = rest.map(kebabCase).filter(Boolean)
+  const prefixByCategory = {
+    border: "border",
+    color: "color",
+    font: "",
+    icon: "icon",
+    radius: "radius",
+    size: "size",
+    spacing: "spacing",
+  }
+  const prefix = prefixByCategory[normalizedCategory] ?? normalizedCategory
+  const tokenPath = normalizedRest
+  if (prefix && tokenPath[0]?.startsWith(`${prefix}-`)) {
+    tokenPath[0] = tokenPath[0].slice(prefix.length + 1)
+  }
+  return `--${[prefix, ...tokenPath].filter(Boolean).join("-")}`
+}
+
+function cssValue(token, unitStrategy) {
+  const value = token.original?.$value ?? token.value
+  const type = token.original?.$type ?? token.type
+
+  if (type === "color" && value && typeof value === "object") {
+    if (value.alpha === 0) return "transparent"
+    if (typeof value.hex === "string") return value.hex.toLowerCase()
+  }
+
+  if (typeof value === "number") {
+    const path = token.path.map((part) => String(part).toLowerCase())
+    const isPixelValue =
+      unitStrategy === "dimensions" ||
+      (unitStrategy === "fonts" && path[0] === "size") ||
+      (unitStrategy === "primitives" &&
+        (path[0] !== "font" || path[1]?.startsWith("font-size-")))
+
+    return isPixelValue && value !== 0 ? `${value}px` : String(value)
+  }
+
+  return String(value)
+}
+
+function createCssVariablesFormat() {
+  return ({ dictionary, options }) => {
+    const declarations = dictionary.allTokens
+      .map(
+        (token) =>
+          `  ${cssVariableName(token)}: ${cssValue(token, options.unitStrategy)};`
+      )
+      .join("\n")
+
+    return `${options.selector} {\n${declarations}\n}\n`
+  }
+}
+
+const styleDictionaryHooks = {
+  transforms: {
+    "figma/css-name": {
+      type: "name",
+      transform: (token) => cssVariableName(token).slice(2),
+    },
+  },
+  formats: {
+    "figma/css-variables": createCssVariablesFormat(),
+  },
+}
+
+async function buildSource(source, selector, unitStrategy) {
+  const tempDir = await mkdtemp(path.join(tmpdir(), "trilogy-tokens-"))
+  try {
+    const dictionary = new StyleDictionary({
+      source: [source],
+      hooks: styleDictionaryHooks,
+      platforms: {
+        css: {
+          transforms: ["figma/css-name"],
+          buildPath: `${tempDir}${path.sep}`,
+          files: [
+            {
+              destination: "tokens.scss",
+              format: "figma/css-variables",
+              options: { selector, unitStrategy },
+            },
+          ],
+        },
+      },
+      log: { warnings: "error" },
+    })
+
+    await dictionary.buildAllPlatforms()
+    return await readFile(path.join(tempDir, "tokens.scss"), "utf8")
+  } finally {
+    await rm(tempDir, { recursive: true, force: true })
+  }
+}
+
+async function main() {
+  await mkdir(outputDir, { recursive: true })
+
+  const primitives = await buildSource(
+    tokenSources.primitives.source,
+    tokenSources.primitives.selector,
+    tokenSources.primitives.unitStrategy
+  )
+  const light = await buildSource(
+    tokenSources.light.source,
+    tokenSources.light.selector,
+    tokenSources.light.unitStrategy
+  )
+  const dark = await buildSource(
+    tokenSources.dark.source,
+    tokenSources.dark.selector,
+    tokenSources.dark.unitStrategy
+  )
+  const dimensions = await buildSource(
+    tokenSources.dimensions.source,
+    tokenSources.dimensions.selector,
+    tokenSources.dimensions.unitStrategy
+  )
+  const fonts = await buildSource(
+    tokenSources.fonts.source,
+    tokenSources.fonts.selector,
+    tokenSources.fonts.unitStrategy
+  )
+
+  await Promise.all([
+    writeFile(path.join(outputDir, "_primitives.scss"), primitives),
+    writeFile(path.join(outputDir, "_colors.scss"), `${light}\n${dark}`),
+    writeFile(path.join(outputDir, "_dimensions.scss"), dimensions),
+    writeFile(path.join(outputDir, "_fonts.scss"), fonts),
+  ])
+
+  console.log(`CSS custom properties written to ${outputDir}`)
+}
+
+main().catch((error) => {
+  console.error("Token generation failed:", error.message)
+  process.exitCode = 1
+})

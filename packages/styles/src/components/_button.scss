@@ -1,9 +1,90 @@
+@use "sass:map";
+
+$button-variants: (
+  primary: (
+    background: var(--background-secondary),
+    border: var(--border-main),
+    text: var(--color-inverse),
+    hover-background: var(--background-secondary-hover),
+    hover-border: var(--border-main-hover),
+    pressed-background: var(--background-secondary-pressed),
+    pressed-border: var(--border-main-pressed),
+  ),
+  secondary: (
+    background: var(--background-primary),
+    border: var(--border-primary),
+    text: var(--color-primary),
+    hover-background: var(--background-primary-hover),
+    hover-border: var(--border-main-hover),
+    pressed-background: var(--background-primary-pressed),
+    pressed-border: var(--border-main-pressed),
+  ),
+  ghost: (
+    background: var(--background-transparent),
+    border: var(--border-transparent),
+    text: var(--color-primary),
+    hover-background: var(--background-primary-hover),
+    pressed-background: var(--background-primary-pressed),
+  ),
+  conversion: (
+    background: var(--background-accent),
+    border: var(--border-accent),
+    text: var(--color-inverse),
+    hover-background: var(--background-accent-hover),
+    hover-border: var(--border-accent-hover),
+    pressed-background: var(--background-accent-pressed),
+    pressed-border: var(--border-accent-pressed),
+  ),
+);
+
 .button {
-  white-space: nowrap;
   display: inline-flex;
-  justify-content: center;
-  text-align: center;
   align-items: center;
+  justify-content: center;
   vertical-align: middle;
   gap: var(--spacing-sm);
+  white-space: nowrap;
+  text-align: center;
+  height: var(--size-md);
+  padding: var(--spacing-sm);
+  border: var(--border-width-sm) solid;
+  border-radius: var(--radius-sm);
+
+  @each $variant, $properties in $button-variants {
+    &.#{$variant} {
+      background-color: map.get($properties, background);
+      border-color: map.get($properties, border);
+      color: map.get($properties, text);
+
+      &:hover {
+        @if map.has-key($properties, hover-background) {
+          background-color: map.get($properties, hover-background);
+        }
+        @if map.has-key($properties, hover-border) {
+          border-color: map.get($properties, hover-border);
+        }
+      }
+
+      &:active {
+        @if map.has-key($properties, pressed-background) {
+          background-color: map.get($properties, pressed-background);
+        }
+        @if map.has-key($properties, pressed-border) {
+          border-color: map.get($properties, pressed-border);
+        }
+      }
+
+      &:disabled,
+      &[aria-disabled="true"] {
+        background-color: var(--background-field);
+        border-color: var(--border-disabled);
+        color: var(--color-disabled);
+      }
+    }
+  }
+}
+
+.buttonList {
+  display: flex;
+  gap: var(--spacing-md);
 }

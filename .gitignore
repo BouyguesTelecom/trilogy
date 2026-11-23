@@ -39,3 +39,6 @@ yarn-error.log*
 .env
 .vscode
 .Expo
+
+# Downloaded Figma API payloads
+packages/figma/.cache/

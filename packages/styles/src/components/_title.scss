@@ -1,0 +1,46 @@
+@use "sass:map";
+
+$title-variants: (
+  one: (
+    font-family: var(--font-family-secondary),
+    font-size: var(--font-size-xxxxl),
+    font-weight: var(--font-weight-medium),
+  ),
+  two: (
+    font-family: var(--font-family-secondary),
+    font-size: var(--font-size-xxxl),
+    font-weight: var(--font-weight-medium),
+  ),
+  three: (
+    font-family: var(--font-family-primary),
+    font-size: var(--font-size-xxl),
+    font-weight: var(--font-weight-semibold),
+  ),
+  four: (
+    font-family: var(--font-family-primary),
+    font-size: var(--font-size-xl),
+    font-weight: var(--font-weight-semibold),
+  ),
+  five: (
+    font-family: var(--font-family-primary),
+    font-size: var(--font-size-md),
+    font-weight: var(--font-weight-semibold),
+  ),
+  six: (
+    font-family: var(--font-family-primary),
+    font-size: var(--font-size-base),
+    font-weight: var(--font-weight-semibold),
+  ),
+);
+
+.title {
+  color: var(--color-primary);
+
+  @each $level, $properties in $title-variants {
+    &.#{$level} {
+      font-family: map.get($properties, font-family);
+      font-size: map.get($properties, font-size);
+      font-weight: map.get($properties, font-weight);
+    }
+  }
+}

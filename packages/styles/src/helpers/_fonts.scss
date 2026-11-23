@@ -1,16 +1,10 @@
-
-// Do not edit directly, this file was auto-generated.
-
-$font-families: (
-  font-family-primary,
-  font-family-secondary,
-);
+$font-families: (font-family-primary, font-family-secondary);
 
 $font-weights: (
   font-weight-regular,
   font-weight-medium,
   font-weight-semibold,
-  font-weight-bold,
+  font-weight-bold
 );
 
 @each $token in $font-families {

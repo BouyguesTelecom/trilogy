@@ -1,6 +1,3 @@
-
-// Do not edit directly, this file was auto-generated.
-
 @use "sass:string";
 
 $backgrounds: (
@@ -44,7 +41,7 @@ $backgrounds: (
   background-field-disabled,
   background-field-focus,
   background-field-pressed,
-  background-transparent,
+  background-transparent
 );
 
 $text-colors: (
@@ -59,7 +56,7 @@ $text-colors: (
   color-inverse,
   color-accent,
   color-disabled,
-  color-brand,
+  color-brand
 );
 
 $border-colors: (
@@ -78,24 +75,21 @@ $border-colors: (
   border-main-hover,
   border-accent-hover,
   border-main-pressed,
-  border-accent-pressed,
+  border-accent-pressed
 );
 
-// background-primary -> .bg-primary
 @each $token in $backgrounds {
   .bg#{string.slice($token, 11)} {
     background-color: var(--#{$token});
   }
 }
 
-// color-primary -> .text-primary
 @each $token in $text-colors {
   .text#{string.slice($token, 6)} {
     color: var(--#{$token});
   }
 }
 
-// border-primary -> .border-primary
 @each $token in $border-colors {
   .border#{string.slice($token, 7)} {
     border-color: var(--#{$token});

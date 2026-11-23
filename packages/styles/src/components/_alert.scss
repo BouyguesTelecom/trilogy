@@ -1,4 +1,64 @@
-.alert > svg,
-.alert > .icon {
-  flex-shrink: 0;
+@use "sass:map";
+
+$alert-variants: (
+  information: (
+    background: var(--background-information-subtle),
+    border: var(--border-information),
+  ),
+  success: (
+    background: var(--background-success-subtle),
+    border: var(--border-success),
+  ),
+  error: (
+    background: var(--background-error-subtle),
+    border: var(--border-error),
+  ),
+  warning: (
+    background: var(--background-warning-subtle),
+    border: var(--border-warning),
+  ),
+);
+
+.alert {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: var(--border-width-sm) solid;
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+
+  @each $variant, $properties in $alert-variants {
+    &.#{$variant} {
+      background-color: map.get($properties, background);
+      border-color: map.get($properties, border);
+    }
+  }
+
+  > svg,
+  > .icon {
+    flex-shrink: 0;
+  }
+}
+
+.alertContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+}
+
+.alertDescription {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+.alertTitle {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
 }

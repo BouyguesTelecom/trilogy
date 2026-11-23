@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "upload-files": "node ./scripts/upload-files.js"
+    "upload-files": "node ./scripts/upload-files.js",
+    "fetch": "node ./scripts/fetch-figma.js"
   },
   "keywords": [],
   "author": "",
