@@ -1,9 +1,15 @@
+import { existsSync } from "node:fs"
 import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const repoRoot = path.resolve(scriptDir, "../../..")
+const envFile = path.join(repoRoot, ".env")
+
+if (existsSync(envFile)) {
+  process.loadEnvFile(envFile)
+}
 
 function parseArgs(args) {
   const options = {
@@ -32,7 +38,8 @@ Usage:
   pnpm figma:fetch --file-key <key> [--variables] [--output-dir <path>]
 
 Environment:
-  FIGMA_ACCESS_TOKEN  Required Figma personal access token (kept out of source).
+  FIGMA_ACCESS_TOKEN  Preferred Figma personal access token variable.
+  FIGMA_API_KEY       Also accepted for existing .env files.
   FIGMA_FILE_KEY      Optional default file key.
 
 Options:
@@ -66,10 +73,11 @@ async function main() {
   const options = parseArgs(process.argv.slice(2))
   if (options.help) return printHelp()
 
-  const accessToken = process.env.FIGMA_ACCESS_TOKEN
+  const accessToken =
+    process.env.FIGMA_ACCESS_TOKEN ?? process.env.FIGMA_API_KEY
   if (!accessToken) {
     throw new Error(
-      "Set FIGMA_ACCESS_TOKEN in your environment before fetching."
+      "Set FIGMA_ACCESS_TOKEN or FIGMA_API_KEY in your environment before fetching."
     )
   }
   if (!options.fileKey || !/^[a-zA-Z0-9]{22,128}$/.test(options.fileKey)) {

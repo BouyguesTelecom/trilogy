@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url"
 import StyleDictionary from "style-dictionary"
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
-const repoRoot = path.resolve(scriptDir, "../..")
+const repoRoot = path.resolve(scriptDir, "../../..")
 const figmaDir = path.join(repoRoot, "packages/figma/src")
 const outputDir = path.join(repoRoot, "packages/styles/src/variables")
 
@@ -45,13 +45,9 @@ const kebabCase = (part) =>
     .replace(/^-|-$/g, "")
     .toLowerCase()
 
-function cssVariableName(token) {
-  const codeSyntax = token.original?.$extensions?.["com.figma.codeSyntax"]?.WEB
-  const explicitName = codeSyntax?.match(/^var\(--([\w-]+)\)$/)?.[1]
-  if (explicitName) return `--${explicitName}`
-
-  const [category, ...rest] = token.path
-  const normalizedCategory = String(category).toLowerCase()
+function tokenNameFromPath(parts) {
+  const [category, ...rest] = parts
+  const normalizedCategory = kebabCase(String(category))
   const normalizedRest = rest.map(kebabCase).filter(Boolean)
   const prefixByCategory = {
     border: "border",
@@ -67,10 +63,25 @@ function cssVariableName(token) {
   if (prefix && tokenPath[0]?.startsWith(`${prefix}-`)) {
     tokenPath[0] = tokenPath[0].slice(prefix.length + 1)
   }
-  return `--${[prefix, ...tokenPath].filter(Boolean).join("-")}`
+  return [prefix, ...tokenPath].filter(Boolean).join("-")
+}
+
+function cssVariableName(token) {
+  const codeSyntax = token.original?.$extensions?.["com.figma.codeSyntax"]?.WEB
+  const explicitName = codeSyntax?.match(/^var\(--([\w-]+)\)$/)?.[1]
+  if (explicitName) return explicitName
+
+  return tokenNameFromPath(token.path)
 }
 
 function cssValue(token, unitStrategy) {
+  const aliasName =
+    token.original?.$extensions?.["com.figma.aliasData"]?.targetVariableName
+  if (aliasName) {
+    const alias = tokenNameFromPath(aliasName.split("/"))
+    return `#{\$${alias}}`
+  }
+
   const value = token.original?.$value ?? token.value
   const type = token.original?.$type ?? token.type
 
@@ -96,13 +107,18 @@ function cssValue(token, unitStrategy) {
 function createCssVariablesFormat() {
   return ({ dictionary, options }) => {
     const declarations = dictionary.allTokens
-      .map(
-        (token) =>
-          `  ${cssVariableName(token)}: ${cssValue(token, options.unitStrategy)};`
-      )
+      .map((token) => {
+        const name = cssVariableName(token)
+        const value = cssValue(token, options.unitStrategy)
+        return options.sassVariables
+          ? `$${name}: ${value};`
+          : `  --${name}: ${value};`
+      })
       .join("\n")
 
-    return `${options.selector} {\n${declarations}\n}\n`
+    return options.sassVariables
+      ? `${declarations}\n`
+      : `${options.selector} {\n${declarations}\n}\n`
   }
 }
 
@@ -110,7 +126,7 @@ const styleDictionaryHooks = {
   transforms: {
     "figma/css-name": {
       type: "name",
-      transform: (token) => cssVariableName(token).slice(2),
+      transform: (token) => cssVariableName(token),
     },
   },
   formats: {
@@ -132,7 +148,11 @@ async function buildSource(source, selector, unitStrategy) {
             {
               destination: "tokens.scss",
               format: "figma/css-variables",
-              options: { selector, unitStrategy },
+              options: {
+                selector,
+                unitStrategy,
+                sassVariables: source === tokenSources.primitives.source,
+              },
             },
           ],
         },
@@ -178,12 +198,23 @@ async function main() {
 
   await Promise.all([
     writeFile(path.join(outputDir, "_primitives.scss"), primitives),
-    writeFile(path.join(outputDir, "_colors.scss"), `${light}\n${dark}`),
-    writeFile(path.join(outputDir, "_dimensions.scss"), dimensions),
-    writeFile(path.join(outputDir, "_fonts.scss"), fonts),
+    writeFile(
+      path.join(outputDir, "_colors.scss"),
+      `@use "primitives" as *;\n\n${light}\n${dark}`
+    ),
+    writeFile(
+      path.join(outputDir, "_dimensions.scss"),
+      `@use "primitives" as *;\n\n${dimensions}`
+    ),
+    writeFile(
+      path.join(outputDir, "_fonts.scss"),
+      `@use "primitives" as *;\n\n${fonts}`
+    ),
   ])
 
-  console.log(`CSS custom properties written to ${outputDir}`)
+  console.log(
+    `Sass primitives and CSS custom properties written to ${outputDir}`
+  )
 }
 
 main().catch((error) => {

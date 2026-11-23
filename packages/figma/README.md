@@ -1,28 +1,23 @@
-# Figma assets and design tokens
+# Package Figma
 
-## Generate CSS custom properties
+Ce package centralise les fichiers de tokens Figma et les scripts permettant de récupérer les données depuis l’API Figma afin de les réutiliser ou de les uploader dans le dépôt.
 
-The Style Dictionary pipeline reads the DTCG token files in `src/` and writes the Sass partials imported by `packages/styles`:
+## Récupérer les données Figma
 
-```sh
-pnpm generate:tokens
-```
+Le script `fetch` télécharge le fichier Figma en JSON. Avec `--variables`, il récupère aussi les variables locales du fichier.
 
-The generated partials contain CSS custom properties and retain Figma `WEB` code-syntax names when available. Edit the token JSON files, then regenerate; do not hand-edit the token partials.
-
-## Download a Figma file
-
-Set a Figma personal access token in the environment (do not commit it), then provide a file key:
+Le script charge automatiquement le fichier `.env` à la racine du dépôt. Configurez-y `FIGMA_API_KEY` (ou `FIGMA_ACCESS_TOKEN`) et, si souhaité, `FIGMA_FILE_KEY`. Les variables déjà présentes dans le shell sont prioritaires.
 
 ```sh
-export FIGMA_ACCESS_TOKEN="..."
-pnpm figma:fetch --file-key <figma-file-key>
+pnpm figma:fetch
 ```
 
-You can set `FIGMA_FILE_KEY` instead of passing `--file-key`. Downloaded responses are written to the ignored `packages/figma/.cache/` directory. To also request the local variables endpoint, add `--variables`; the Figma token must have the required API access for that endpoint:
+Une clé peut également être fournie directement :
 
 ```sh
 pnpm figma:fetch --file-key <figma-file-key> --variables
 ```
 
-The file endpoint response and local variables endpoint response are saved as raw JSON. They are separate from the DTCG token files consumed by the Style Dictionary build.
+Les réponses de l’API sont enregistrées en JSON dans `packages/figma/.cache/`, un dossier ignoré par Git. `--output-dir <path>` permet de choisir un autre dossier.
+
+Les fichiers de tokens Figma conservés dans `src/` constituent les données de référence du package. Le fetch récupère les données de l’API ; il ne les modifie pas et ne les publie pas automatiquement dans Figma.

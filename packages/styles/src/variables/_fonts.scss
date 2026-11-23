@@ -1,17 +1,19 @@
+@use "primitives" as *;
+
 :root {
-  --font-family-primary: roboto;
-  --font-family-secondary: alatsi;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-md: 20px;
-  --font-size-lg: 22px;
-  --font-size-xl: 24px;
-  --font-size-xxl: 28px;
-  --font-size-xxxl: 36px;
-  --font-size-xxxxl: 48px;
+  --font-family-primary: #{$font-family-1};
+  --font-family-secondary: #{$font-family-2};
+  --font-weight-regular: #{$font-weight-100};
+  --font-weight-medium: #{$font-weight-200};
+  --font-weight-semibold: #{$font-weight-300};
+  --font-weight-bold: #{$font-weight-400};
+  --font-size-xs: #{$font-size-50};
+  --font-size-sm: #{$font-size-100};
+  --font-size-base: #{$font-size-200};
+  --font-size-md: #{$font-size-400};
+  --font-size-lg: #{$font-size-500};
+  --font-size-xl: #{$font-size-600};
+  --font-size-xxl: #{$font-size-700};
+  --font-size-xxxl: #{$font-size-800};
+  --font-size-xxxxl: #{$font-size-900};
 }
