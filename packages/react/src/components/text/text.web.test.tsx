@@ -1,4 +1,5 @@
 import { createRef } from "react"
+import { TrilogyContextProvider } from "@/contexts/trilogyContext.web"
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 
@@ -6,32 +7,31 @@ import { TextColor, TextFontWeight, TextMarkup, TextSize } from "./text.types"
 import { Text } from "./text.web"
 
 describe("Text web", () => {
-  it("renders children and default helpers on a paragraph", () => {
+  it("renders default variant without helper overrides", () => {
     render(<Text>Bonjour</Text>)
     const text = screen.getByText("Bonjour")
     expect(text.tagName).toBe("P")
-    expect(text).toHaveClass(
-      "text",
+    expect(text).toHaveClass("text", "text-size-xxxxl")
+    expect(text).not.toHaveClass(
       "font-size-xxxxl",
-      "font-family-secondary",
       "text-primary",
       "font-weight-regular"
     )
   })
 
   it.each([
-    [TextSize.xs, "font-size-xs", "font-family-primary"],
-    [TextSize.sm, "font-size-sm", "font-family-primary"],
-    [TextSize.base, "font-size-base", "font-family-primary"],
-    [TextSize.md, "font-size-md", "font-family-primary"],
-    [TextSize.lg, "font-size-lg", "font-family-primary"],
-    [TextSize.xl, "font-size-xl", "font-family-primary"],
-    [TextSize.xxl, "font-size-xxl", "font-family-primary"],
-    [TextSize.xxxl, "font-size-xxxl", "font-family-secondary"],
-    [TextSize.xxxxl, "font-size-xxxxl", "font-family-secondary"],
-  ])("maps size %s to its helpers", (size, sizeClass, family) => {
+    [TextSize.xs, "text-size-xs"],
+    [TextSize.sm, "text-size-sm"],
+    [TextSize.base, "text-size-base"],
+    [TextSize.md, "text-size-md"],
+    [TextSize.lg, "text-size-lg"],
+    [TextSize.xl, "text-size-xl"],
+    [TextSize.xxl, "text-size-xxl"],
+    [TextSize.xxxl, "text-size-xxxl"],
+    [TextSize.xxxxl, "text-size-xxxxl"],
+  ])("maps size %s to its variant class", (size, sizeClass) => {
     render(<Text size={size}>Texte</Text>)
-    expect(screen.getByText("Texte")).toHaveClass(sizeClass, family)
+    expect(screen.getByText("Texte")).toHaveClass(sizeClass)
   })
 
   it.each(Object.values(TextColor))(
@@ -80,7 +80,31 @@ describe("Text web", () => {
         Texte
       </Text>
     )
-    expect(screen.getByText("Texte")).toHaveClass("font-size-xxxxl")
+    expect(screen.getByText("Texte")).toHaveClass("text-size-xxxxl")
     expect(screen.getByText("Texte").tagName).toBe("P")
+  })
+
+  it("adds explicit overrides and hashes once", () => {
+    render(
+      <TrilogyContextProvider mangled hash="test">
+        <Text
+          size={TextSize.xxl}
+          fontSize={TextSize.sm}
+          color={TextColor.error}
+          fontWeight={TextFontWeight.bold}
+          className="extra"
+        >
+          Texte
+        </Text>
+      </TrilogyContextProvider>
+    )
+    expect(screen.getByText("Texte")).toHaveClass(
+      "text_test",
+      "text-size-xxl_test",
+      "font-size-sm_test",
+      "text-error_test",
+      "font-weight-bold_test",
+      "extra_test"
+    )
   })
 })

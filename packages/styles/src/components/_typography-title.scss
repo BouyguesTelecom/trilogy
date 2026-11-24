@@ -1,0 +1,18 @@
+$title-sizes: (xs, sm, base, md, lg, xl, xxl, xxxl, xxxxl);
+
+.title {
+  color: var(--color-primary);
+}
+
+@each $size in $title-sizes {
+  .title-size-#{$size} {
+    font-size: var(--font-size-#{$size});
+    @if $size == xxxl or $size == xxxxl {
+      font-family: var(--font-family-secondary);
+      font-weight: var(--font-weight-medium);
+    } @else {
+      font-family: var(--font-family-primary);
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+}

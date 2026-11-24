@@ -17,10 +17,10 @@ const meta: {
   args: {
     children: "Titre Trilogy",
     size: TitleSize.xxxxl,
-    color: TitleColor.primary,
   },
   argTypes: {
     size: { control: "select", options: Object.values(TitleSize) },
+    fontSize: { control: "select", options: Object.values(TitleSize) },
     color: { control: "select", options: Object.values(TitleColor) },
     fontWeight: { control: "select", options: Object.values(TitleFontWeight) },
   },
@@ -40,6 +40,10 @@ export const SizeXXLAccent: TitleStory = {
 
 export const AllSizes: TitleStory = {
   args: {
-    children: "Les six tailles sont disponibles avec la propriété size.",
+    children: "Les tailles sont disponibles avec la propriété size.",
   },
+}
+
+export const SizeOverride: TitleStory = {
+  args: { size: TitleSize.xxxxl, fontSize: TitleSize.sm },
 }

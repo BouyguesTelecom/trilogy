@@ -1,0 +1,17 @@
+$text-sizes: (xs, sm, base, md, lg, xl, xxl, xxxl, xxxxl);
+
+.text {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-regular);
+}
+
+@each $size in $text-sizes {
+  .text-size-#{$size} {
+    font-size: var(--font-size-#{$size});
+    @if $size == xxxl or $size == xxxxl {
+      font-family: var(--font-family-secondary);
+    } @else {
+      font-family: var(--font-family-primary);
+    }
+  }
+}

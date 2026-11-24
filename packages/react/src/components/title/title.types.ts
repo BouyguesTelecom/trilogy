@@ -53,4 +53,6 @@ export interface TitleUiProps {
 export interface TitleProps
   extends TitleUiProps, AccessibilityProps, CommonProps {
   markup?: TitleMarkup
+  /** Surcharge explicite de la taille de police, indépendante de la variante. */
+  fontSize?: TitleSize
 }

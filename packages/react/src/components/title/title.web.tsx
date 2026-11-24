@@ -10,7 +10,7 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import { TitleColor, TitleSize, type TitleProps } from "./title.types"
+import { TitleSize, type TitleProps } from "./title.types"
 
 export type TitleRef = HTMLHeadingElement
 type Props = PropsWithChildren<TitleProps>
@@ -21,7 +21,8 @@ export const Title: ForwardRefExoticComponent<Props & RefAttributes<TitleRef>> =
       {
         children,
         size = TitleSize.xxxxl,
-        color = TitleColor.primary,
+        color,
+        fontSize,
         fontWeight,
         accessibilityLabel,
         className,
@@ -35,22 +36,13 @@ export const Title: ForwardRefExoticComponent<Props & RefAttributes<TitleRef>> =
         ? size
         : TitleSize.xxxxl
       const Component: ElementType = markup ?? "h1"
-      const fontFamily =
-        safeSize === TitleSize.xxxxl || safeSize === TitleSize.xxxl
-          ? "font-family-secondary"
-          : "font-family-primary"
-      const effectiveFontWeight =
-        fontWeight ??
-        (safeSize === TitleSize.xxxxl || safeSize === TitleSize.xxxl
-          ? "medium"
-          : "semibold")
       const classes = useHashClass(
         clsx(
           "title",
-          `font-size-${safeSize}`,
-          fontFamily,
-          `text-${color}`,
-          `font-weight-${effectiveFontWeight}`,
+          `title-size-${safeSize}`,
+          fontSize && `font-size-${fontSize}`,
+          color && `text-${color}`,
+          fontWeight && `font-weight-${fontWeight}`,
           className
         )
       )

@@ -29,6 +29,11 @@ describe("Title native", () => {
         size === TitleSize.xxxl || size === TitleSize.xxxxl
           ? theme.fonts.fontFamilySecondary
           : theme.fonts.fontFamilyPrimary,
+      fontWeight: String(
+        size === TitleSize.xxxl || size === TitleSize.xxxxl
+          ? theme.fonts.fontWeightMedium
+          : theme.fonts.fontWeightSemibold
+      ) as TextStyle["fontWeight"],
     })
     expect(screen.getByTestId("title").props.accessibilityRole).toBe("header")
   })
@@ -61,6 +66,21 @@ describe("Title native", () => {
     )
     expect(screen.getByTestId("title")).toHaveStyle({
       fontSize: theme.fonts.fontSizeXxxxl,
+    })
+  })
+
+  it("overrides font size without changing the variant family or weight", async () => {
+    await render(
+      <Title size={TitleSize.xxxxl} fontSize={TitleSize.sm} testId="title">
+        Titre
+      </Title>
+    )
+    expect(screen.getByTestId("title")).toHaveStyle({
+      fontSize: theme.fonts.fontSizeSm,
+      fontFamily: theme.fonts.fontFamilySecondary,
+      fontWeight: String(
+        theme.fonts.fontWeightMedium
+      ) as TextStyle["fontWeight"],
     })
   })
 })

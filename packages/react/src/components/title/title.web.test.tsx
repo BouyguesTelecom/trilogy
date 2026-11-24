@@ -1,4 +1,5 @@
 import { createRef } from "react"
+import { TrilogyContextProvider } from "@/contexts/trilogyContext.web"
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 
@@ -12,27 +13,26 @@ import { Title } from "./title.web"
 
 describe("Title web", () => {
   it.each([
-    [TitleSize.xs, "font-size-xs"],
-    [TitleSize.sm, "font-size-sm"],
-    [TitleSize.base, "font-size-base"],
-    [TitleSize.md, "font-size-md"],
-    [TitleSize.lg, "font-size-lg"],
-    [TitleSize.xl, "font-size-xl"],
-    [TitleSize.xxl, "font-size-xxl"],
-    [TitleSize.xxxl, "font-size-xxxl"],
-    [TitleSize.xxxxl, "font-size-xxxxl"],
-  ])("renders size %s with matching heading and helpers", (size, sizeClass) => {
+    [TitleSize.xs, "title-size-xs"],
+    [TitleSize.sm, "title-size-sm"],
+    [TitleSize.base, "title-size-base"],
+    [TitleSize.md, "title-size-md"],
+    [TitleSize.lg, "title-size-lg"],
+    [TitleSize.xl, "title-size-xl"],
+    [TitleSize.xxl, "title-size-xxl"],
+    [TitleSize.xxxl, "title-size-xxxl"],
+    [TitleSize.xxxxl, "title-size-xxxxl"],
+  ])("renders size %s with no implicit helper", (size, sizeClass) => {
     render(<Title size={size}>Titre</Title>)
     expect(screen.getByRole("heading", { level: 1 })).toHaveClass(
       "title",
-      sizeClass,
-      size === TitleSize.xxxl || size === TitleSize.xxxxl
-        ? "font-family-secondary"
-        : "font-family-primary",
-      size === TitleSize.xxxl || size === TitleSize.xxxxl
-        ? "font-weight-medium"
-        : "font-weight-semibold",
-      "text-primary"
+      sizeClass
+    )
+    expect(screen.getByText("Titre")).not.toHaveClass(
+      `font-size-${size}`,
+      "text-primary",
+      "font-weight-semibold",
+      "font-weight-medium"
     )
   })
 
@@ -71,7 +71,31 @@ describe("Title web", () => {
   it("falls back to size xxxxl", () => {
     render(<Title size={99 as unknown as TitleSize}>Titre</Title>)
     expect(screen.getByRole("heading", { level: 1 })).toHaveClass(
-      "font-size-xxxxl"
+      "title-size-xxxxl"
+    )
+  })
+
+  it("adds only explicitly supplied overrides and hashes once", () => {
+    render(
+      <TrilogyContextProvider mangled hash="test">
+        <Title
+          size={TitleSize.xxl}
+          fontSize={TitleSize.sm}
+          color={TitleColor.error}
+          fontWeight={TitleFontWeight.bold}
+          className="extra"
+        >
+          Titre
+        </Title>
+      </TrilogyContextProvider>
+    )
+    expect(screen.getByText("Titre")).toHaveClass(
+      "title_test",
+      "title-size-xxl_test",
+      "font-size-sm_test",
+      "text-error_test",
+      "font-weight-bold_test",
+      "extra_test"
     )
   })
 })

@@ -1,0 +1,13 @@
+---
+name: trilogy-component-tests
+description: "Créer, maintenir et exécuter les tests unitaires web et natifs, stories et vérifications des composants Trilogy, dans les deux sens de synchronisation Figma et React."
+---
+
+# Tests et validation des composants Trilogy
+
+- Pour tout composant ou sous-composant créé ou modifié en code, ajoute ou adapte ses tests unitaires web et natifs dans son propre dossier, au même niveau que l'implémentation : `<nom>.web.test.tsx` et `<nom>.native.test.tsx`. Utilise l'infrastructure existante : Vitest et Testing Library web, Jest avec Expo et React Native Testing Library. Ne remplace pas l'infrastructure sans raison.
+- Couvre autant de cas pertinents que possible : enfants et ordre, valeurs et variantes UI par tests paramétrés, défauts et limites, classes et styles propres au composant web, styles et thèmes light/dark natifs, accessibilité, refs, événements et états désactivés, composition et non-régression des props fonctionnelles. Teste les comportements observables ; ne simule pas le composant testé ou son comportement principal. Les styles calculés nécessitent un environnement qui charge effectivement les styles.
+- Pour le web, vérifie la correspondance entre classes rendues et sélecteurs SCSS du composant, en modes normal et haché. Pour la composition avec un enfant qui hache son `className`, vérifie que les classes transmises sont hachées une seule fois et que les variantes et classes personnalisées restent présentes.
+- Vérifie pour chaque variante ses styles par défaut complets, l'absence de classes helpers quand les props de surcharge ne sont pas fournies, puis chaque helper fourni seul et combiné : la surcharge doit effectivement primer sur la propriété concernée sans altérer les autres. Vérifie la même précédence sur React Native. Utilise les styles compilés et, pour la cascade et les styles calculés, un environnement qui les charge réellement.
+- Ajoute ou adapte les stories, notamment une composition complète pour un composant composé. Lance `pnpm test`, `pnpm --filter @trilogy-ds/react typecheck:tests` et, lorsque pertinent, `pnpm test:coverage`. Complète les branches significatives sans assertions artificielles ; signale les commandes, échecs et cas impossibles à vérifier. Vérifie la cascade des styles du composant et préserve le fonctionnement des helpers utilisés par les consommateurs.
+- Pour une synchronisation code vers Figma **sans modification du code**, inspecte les stories et tests existants comme sources d'information et exécute les vérifications pertinentes si possible ; ne crée ni ne modifie des tests, stories ou comportements sans demande ou autorisation explicite. Signale les lacunes et divergences observées.

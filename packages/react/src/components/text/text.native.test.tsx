@@ -69,4 +69,19 @@ describe("Text native", () => {
       fontSize: theme.fonts.fontSizeXxxxl,
     })
   })
+
+  it("overrides font size without changing the variant family or default weight", async () => {
+    await render(
+      <Text size={TextSize.xxxxl} fontSize={TextSize.sm} testId="text">
+        Texte
+      </Text>
+    )
+    expect(screen.getByTestId("text")).toHaveStyle({
+      fontSize: theme.fonts.fontSizeSm,
+      fontFamily: theme.fonts.fontFamilySecondary,
+      fontWeight: String(
+        theme.fonts.fontWeightRegular
+      ) as TextStyle["fontWeight"],
+    })
+  })
 })

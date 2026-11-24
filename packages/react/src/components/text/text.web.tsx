@@ -10,7 +10,7 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import { TextColor, TextMarkup, TextSize, type TextProps } from "./text.types"
+import { TextMarkup, TextSize, type TextProps } from "./text.types"
 
 export type TextRef = HTMLElement
 type Props = PropsWithChildren<TextProps>
@@ -21,7 +21,8 @@ export const Text: ForwardRefExoticComponent<Props & RefAttributes<TextRef>> =
       {
         children,
         size = TextSize.xxxxl,
-        color = TextColor.primary,
+        color,
+        fontSize,
         fontWeight,
         accessibilityLabel,
         className,
@@ -40,12 +41,10 @@ export const Text: ForwardRefExoticComponent<Props & RefAttributes<TextRef>> =
       const classes = useHashClass(
         clsx(
           "text",
-          `font-size-${safeSize}`,
-          safeSize === TextSize.xxxxl || safeSize === TextSize.xxxl
-            ? "font-family-secondary"
-            : "font-family-primary",
-          `text-${color}`,
-          `font-weight-${fontWeight ?? "regular"}`,
+          `text-size-${safeSize}`,
+          fontSize && `font-size-${fontSize}`,
+          color && `text-${color}`,
+          fontWeight && `font-weight-${fontWeight}`,
           className
         )
       )
