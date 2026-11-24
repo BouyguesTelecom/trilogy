@@ -42,4 +42,3 @@ export const BoldAccent: TextStory = {
     fontWeight: TextFontWeight.bold,
   },
 }
-

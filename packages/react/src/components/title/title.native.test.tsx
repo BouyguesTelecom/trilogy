@@ -71,7 +71,11 @@ describe("Title native", () => {
 
   it("overrides weight without changing the variant size or family", async () => {
     await render(
-      <Title size={TitleSize.xxxxl} fontWeight={TitleFontWeight.bold} testId="title">
+      <Title
+        size={TitleSize.xxxxl}
+        fontWeight={TitleFontWeight.bold}
+        testId="title"
+      >
         Titre
       </Title>
     )

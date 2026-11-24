@@ -22,4 +22,6 @@ Charge et applique intégralement :
 - [Styles et tokens Trilogy](../trilogy-styles-tokens/SKILL.md) pour les styles propres au composant, styles natifs et variables sémantiques.
 - [Tests des composants Trilogy](../trilogy-component-tests/SKILL.md) pour les tests, stories et vérifications des composants créés ou modifiés.
 
+Code Connect est suspendu : ne crée, ne modifie, ne publie et ne consulte pas de mapping ni de fichier `.figma.ts` dans ce workflow, sauf si l'utilisateur réactive explicitement Code Connect dans une demande ultérieure. Les tests et la synchronisation UI restent obligatoires.
+
 Résume les fichiers modifiés, les props UI réellement prises en charge, les comportements fonctionnels préservés, la composition retenue, les vérifications et les limites. Ne présente pas une étape bloquée comme terminée.

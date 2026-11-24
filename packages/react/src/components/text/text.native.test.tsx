@@ -72,7 +72,11 @@ describe("Text native", () => {
 
   it("overrides weight without changing the variant size or family", async () => {
     await render(
-      <Text size={TextSize.xxxxl} fontWeight={TextFontWeight.bold} testId="text">
+      <Text
+        size={TextSize.xxxxl}
+        fontWeight={TextFontWeight.bold}
+        testId="text"
+      >
         Texte
       </Text>
     )

@@ -42,4 +42,3 @@ export const AllSizes: TitleStory = {
     children: "Les tailles sont disponibles avec la propriété size.",
   },
 }
-

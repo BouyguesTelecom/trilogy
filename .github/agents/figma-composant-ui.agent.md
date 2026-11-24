@@ -14,4 +14,6 @@ Charge également les skills partagés [architecture](../skills/trilogy-componen
 
 Utilise Figma MCP et réutilise la même session pour les deux étapes. Si la demande est limitée explicitement à une seule étape, exécute seulement celle-ci. Si le design ne peut pas être vérifié, ne le remplace pas par une hypothèse et ne lance pas la synchronisation depuis un design fictif. Ne présente pas une étape bloquée comme terminée.
 
+Code Connect est suspendu : ne crée, ne modifie, ne publie et ne consulte aucun mapping ni fichier `.figma.ts` tant que l'utilisateur ne le réactive pas explicitement.
+
 Résume le lien Figma, les props UI, les fichiers et tokens concernés, les comportements fonctionnels préservés, les vérifications exécutées et les éventuelles décisions ou limites restantes.
