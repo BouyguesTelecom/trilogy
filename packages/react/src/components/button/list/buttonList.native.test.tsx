@@ -57,4 +57,9 @@ describe("ButtonList native", () => {
       })
     }
   )
+
+  it("applies a caller-provided native style", async () => {
+    await render(<ButtonList testId="list" style={{ opacity: 0.5 }} />)
+    expect(screen.getByTestId("list")).toHaveStyle({ opacity: 0.5 })
+  })
 })

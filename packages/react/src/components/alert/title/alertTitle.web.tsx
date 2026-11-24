@@ -1,5 +1,6 @@
 import {
   forwardRef,
+  type CSSProperties,
   type ElementType,
   type ForwardRefExoticComponent,
   type PropsWithChildren,
@@ -20,6 +21,7 @@ type Props = PropsWithChildren<AlertTitleProps>
  * @param children {ReactNode} Alert title content
  * @param id {string} Custom element identifier
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {AlertTitleMarkup} HTML element: `p`, `h2`, `h3`, `h4`, `h5`, or `h6`; defaults to `p`
  * @param className {string} Additional CSS classes
@@ -29,7 +31,7 @@ type Props = PropsWithChildren<AlertTitleProps>
 export const AlertTitle: ForwardRefExoticComponent<
   Props & RefAttributes<AlertTitleRef>
 > = forwardRef<AlertTitleRef, Props>(
-  ({ testId, className, id, markup, children, ...others }, ref) => {
+  ({ testId, className, id, markup, style, children, ...others }, ref) => {
     const classes = useHashClass(clsx("title", "title-size-base", className))
 
     const Component: ElementType =
@@ -44,6 +46,7 @@ export const AlertTitle: ForwardRefExoticComponent<
         ref={ref as Ref<any>}
         id={id}
         className={classes}
+        style={style as CSSProperties}
         {...others}
       >
         {children}

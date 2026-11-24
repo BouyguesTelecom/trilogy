@@ -50,4 +50,15 @@ describe("Alert web", () => {
     )
     expect(screen.getByTestId("alert").tagName).toBe("DIV")
   })
+
+  it("forwards a custom inline style", () => {
+    render(
+      <Alert testId="alert" style={{ color: "red" }}>
+        Message
+      </Alert>
+    )
+    expect(screen.getByTestId("alert")).toHaveStyle({
+      color: "rgb(255, 0, 0)",
+    })
+  })
 })

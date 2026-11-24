@@ -17,4 +17,13 @@ describe("AlertDescription native", () => {
     })
     expect(screen.getByTestId("description").props.id).toBe("description-id")
   })
+
+  it("applies a caller-provided native style", async () => {
+    await render(
+      <AlertDescription testId="description" style={{ opacity: 0.5 }}>
+        Description
+      </AlertDescription>
+    )
+    expect(screen.getByTestId("description")).toHaveStyle({ opacity: 0.5 })
+  })
 })

@@ -1,0 +1,30 @@
+{
+  "name": "@trilogy-ds/doc",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:deps": "pnpm --filter @trilogy-ds/styles build && pnpm --filter @trilogy-ds/react build",
+    "dev": "pnpm build:deps && next dev --port 3001",
+    "build": "pnpm build:deps && next build",
+    "start": "next start --port 3001",
+    "check-types": "tsc --noEmit && node scripts/check-component-docs.mjs"
+  },
+  "dependencies": {
+    "@trilogy-ds/react": "workspace:*",
+    "@trilogy-ds/styles": "workspace:*",
+    "lucide-react": "^1.71.0",
+    "next": "^16.0.5",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-live": "^5.0.1",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.2",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "typescript": "catalog:"
+  }
+}

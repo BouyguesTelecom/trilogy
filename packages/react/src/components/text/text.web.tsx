@@ -1,5 +1,6 @@
 import {
   forwardRef,
+  type CSSProperties,
   type ElementType,
   type ForwardRefExoticComponent,
   type PropsWithChildren,
@@ -24,6 +25,7 @@ type Props = PropsWithChildren<TextProps>
  * @param accessibilityLabel {string} Accessible label announced by assistive technology
  * @param id {string} Custom element identifier
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {TextMarkup} HTML element: `h1`–`h6`, `p`, `span`, or `div`; defaults to `p`
  * @param className {string} Additional CSS classes
@@ -40,6 +42,7 @@ export const Text: ForwardRefExoticComponent<Props & RefAttributes<TextRef>> =
         fontWeight,
         accessibilityLabel,
         className,
+        style,
         id,
         testId,
         markup = TextMarkup.p,
@@ -68,6 +71,7 @@ export const Text: ForwardRefExoticComponent<Props & RefAttributes<TextRef>> =
           ref={ref as Ref<any>}
           id={id}
           className={classes}
+          style={style as CSSProperties}
           aria-label={accessibilityLabel}
         >
           {children}

@@ -24,4 +24,9 @@ describe("AlertContent web", () => {
     expect(content).toHaveTextContent("PremierSecond")
     expect(ref.current).toBe(content)
   })
+
+  it("forwards a custom inline style", () => {
+    render(<AlertContent testId="content" style={{ opacity: 0.5 }} />)
+    expect(screen.getByTestId("content")).toHaveStyle({ opacity: "0.5" })
+  })
 })

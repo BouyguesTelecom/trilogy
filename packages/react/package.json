@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "expo lint",
     "build": "tsdown",
+    "check-docs": "node ../../apps/doc/scripts/check-component-docs.mjs",
     "test": "pnpm test:web && pnpm test:native",
     "test:web": "vitest run",
     "test:native": "jest --config jest.config.cjs --runInBand",

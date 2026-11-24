@@ -63,4 +63,13 @@ describe("Alert native", () => {
     expect(screen.getByText("Titre")).toBeTruthy()
     expect(screen.getByText("Description")).toBeTruthy()
   })
+
+  it("applies a caller-provided native style after component styles", async () => {
+    await render(
+      <Alert testId="alert" style={{ opacity: 0.5 }}>
+        Message
+      </Alert>
+    )
+    expect(screen.getByTestId("alert")).toHaveStyle({ opacity: 0.5 })
+  })
 })

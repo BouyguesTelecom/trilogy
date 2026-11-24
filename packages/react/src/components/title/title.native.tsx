@@ -5,7 +5,7 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { Text } from "react-native"
+import { Text, type StyleProp, type TextStyle } from "react-native"
 
 import { useTitleStyles } from "./title.styles.native"
 import { TitleColor, TitleSize, type TitleProps } from "./title.types"
@@ -21,6 +21,7 @@ export type TitleNativeRef = ComponentRef<typeof Text>
  * @param accessibilityLabel {string} Accessible label announced by assistive technology
  * @param id {string} Custom native text identifier
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {TitleMarkup} HTML element: `h1`–`h6`, `p`, `span`, or `div`; defaults to `h1`
  * @param className {string} Additional CSS classes
@@ -39,6 +40,7 @@ export const Title: ForwardRefExoticComponent<
       accessibilityLabel,
       id,
       testId,
+      style,
     },
     ref
   ) => {
@@ -58,6 +60,7 @@ export const Title: ForwardRefExoticComponent<
           styles.colors[TitleColor.primary],
           color && styles.colors[color],
           fontWeight && styles.weights[fontWeight],
+          style as StyleProp<TextStyle>,
         ]}
       >
         {children}

@@ -3,6 +3,7 @@ import {
   ForwardRefExoticComponent,
   PropsWithChildren,
   RefAttributes,
+  type CSSProperties,
 } from "react"
 import { clsx } from "@/utils/clsx"
 import { getClassName } from "@/utils/getClassName"
@@ -29,6 +30,7 @@ type Props = PropsWithChildren<ButtonListProps>
  * @param accessibilityLabel {string} Accepted by the type but not forwarded on either platform
  * @param id {string} Custom element identifier
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS classes
  * - ------------------------- NATIVE PROPERTIES -----------------------------
@@ -43,6 +45,7 @@ export const ButtonList: ForwardRefExoticComponent<
       direction = ButtonListDirection.column,
       justifyContent = ButtonListJustifyContent.center,
       className,
+      style,
       id,
       testId,
       children,
@@ -62,7 +65,13 @@ export const ButtonList: ForwardRefExoticComponent<
     )
 
     return (
-      <div data-testid={testId} ref={ref} id={id} className={classes}>
+      <div
+        data-testid={testId}
+        ref={ref}
+        id={id}
+        className={classes}
+        style={style as CSSProperties}
+      >
         {children}
       </div>
     )

@@ -27,4 +27,15 @@ describe("AlertDescription web", () => {
     )
     expect(screen.getByText("Message").tagName).toBe("P")
   })
+
+  it("forwards a custom inline style", () => {
+    render(
+      <AlertDescription testId="description" style={{ color: "red" }}>
+        Message
+      </AlertDescription>
+    )
+    expect(screen.getByTestId("description")).toHaveStyle({
+      color: "rgb(255, 0, 0)",
+    })
+  })
 })

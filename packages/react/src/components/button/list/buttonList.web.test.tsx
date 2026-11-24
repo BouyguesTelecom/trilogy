@@ -57,4 +57,9 @@ describe("ButtonList web", () => {
       )
     }
   )
+
+  it("forwards a custom inline style", () => {
+    render(<ButtonList testId="list" style={{ opacity: 0.5 }} />)
+    expect(screen.getByTestId("list")).toHaveStyle({ opacity: "0.5" })
+  })
 })

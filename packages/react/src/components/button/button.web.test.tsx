@@ -58,4 +58,11 @@ describe("Button web", () => {
     expect(screen.getByTestId("submit")).toHaveValue("Envoyer")
     expect(screen.getByTestId("submit")).toHaveAttribute("type", "submit")
   })
+
+  it("forwards a custom inline style", () => {
+    render(<Button style={{ color: "red" }}>Styled</Button>)
+    expect(screen.getByRole("button", { name: "Styled" })).toHaveStyle({
+      color: "rgb(255, 0, 0)",
+    })
+  })
 })

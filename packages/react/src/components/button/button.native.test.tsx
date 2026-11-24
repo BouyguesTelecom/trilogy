@@ -28,4 +28,13 @@ describe("Button native", () => {
     await fireEvent.press(button)
     expect(onClick).not.toHaveBeenCalled()
   })
+
+  it("applies a caller-provided native style after button state styles", async () => {
+    await render(
+      <Button testId="button" style={{ opacity: 0.5 }}>
+        Styled
+      </Button>
+    )
+    expect(screen.getByTestId("button")).toHaveStyle({ opacity: 0.5 })
+  })
 })

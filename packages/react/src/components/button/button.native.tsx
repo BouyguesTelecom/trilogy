@@ -6,7 +6,12 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { Text, type GestureResponderEvent } from "react-native"
+import {
+  Text,
+  type GestureResponderEvent,
+  type StyleProp,
+  type ViewStyle,
+} from "react-native"
 
 import {
   Pressable,
@@ -26,6 +31,7 @@ export type ButtonNativeRef = PressableRef
  * @param onClick {(event: GestureResponderEvent) => void} Press handler
  * @param accessibilityLabel {string} Accessible label announced by assistive technology
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {ButtonMarkup} HTML element: `button`, `input`, `a`, or `div`
  * @param loading {boolean} Adds a `loading` class; ignored on Native
@@ -51,6 +57,7 @@ export const Button: ForwardRefExoticComponent<
       onClick,
       testId,
       accessibilityLabel,
+      style,
     },
     ref
   ) => {
@@ -91,6 +98,7 @@ export const Button: ForwardRefExoticComponent<
           generatedStyles.view,
           pressed && !disabled && generatedStyles.pressed,
           disabled && generatedStyles.disabled,
+          style as StyleProp<ViewStyle>,
         ]}
       >
         {content}

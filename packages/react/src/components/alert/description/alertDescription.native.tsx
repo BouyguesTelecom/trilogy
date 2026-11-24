@@ -5,7 +5,7 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { Text } from "react-native"
+import { Text, type StyleProp, type TextStyle } from "react-native"
 
 import { useAlertDescriptionStyles } from "./alertDescription.styles.native"
 import type { AlertDescriptionProps } from "./alertDescription.types"
@@ -17,6 +17,7 @@ export type AlertDescriptionNativeRef = ComponentRef<typeof Text>
  * @param children {ReactNode} Alert description content
  * @param id {string} Custom native text identifier
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {AlertDescriptionMarkup} HTML element: `p`, `span`, `div`, `h2`, `h3`, `h4`, `h5`, or `h6`; defaults to `p`
  * @param className {string} Additional CSS classes
@@ -29,7 +30,7 @@ export const AlertDescription: ForwardRefExoticComponent<
 > = forwardRef<
   AlertDescriptionNativeRef,
   PropsWithChildren<AlertDescriptionProps>
->(({ children, id, testId }, ref) => {
+>(({ children, id, testId, style }, ref) => {
   const styles = useAlertDescriptionStyles()
 
   return (
@@ -38,7 +39,7 @@ export const AlertDescription: ForwardRefExoticComponent<
       id={id}
       testID={testId}
       nativeID={testId}
-      style={[styles.base.text]}
+      style={[styles.base.text, style as StyleProp<TextStyle>]}
     >
       {children}
     </Text>

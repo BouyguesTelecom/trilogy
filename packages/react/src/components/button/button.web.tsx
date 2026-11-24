@@ -1,6 +1,7 @@
 import {
   forwardRef,
   useCallback,
+  type CSSProperties,
   type ElementType,
   type ForwardRefExoticComponent,
   type PropsWithChildren,
@@ -25,6 +26,7 @@ type Props = PropsWithChildren<ButtonProps>
  * @param onClick {(event: ClickEvent) => void} Activation handler
  * @param accessibilityLabel {string} Accessible label announced by assistive technology
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param markup {ButtonMarkup} HTML element: `button`, `input`, `a`, or `div`; defaults to `button` unless `href` or `to` selects a link
  * @param loading {boolean} Adds a `loading` class without disabling activation; defaults to `false`
@@ -53,6 +55,7 @@ export const Button: ForwardRefExoticComponent<
       fullwidth,
       children,
       className,
+      style,
       to,
       accessibilityLabel,
       onClick,
@@ -96,6 +99,7 @@ export const Button: ForwardRefExoticComponent<
           id={id}
           name={name}
           className={classes}
+          style={style as CSSProperties}
           aria-label={accessibilityLabel}
           disabled={disabled}
           type={type ?? "submit"}
@@ -133,6 +137,7 @@ export const Button: ForwardRefExoticComponent<
         id={id}
         name={name}
         className={classes}
+        style={style as CSSProperties}
         aria-label={accessibilityLabel}
         disabled={isButton ? disabled : undefined}
         aria-disabled={!isButton && disabled ? true : undefined}

@@ -4,7 +4,7 @@ import {
   PropsWithChildren,
   RefAttributes,
 } from "react"
-import { View } from "react-native"
+import { View, type StyleProp, type ViewStyle } from "react-native"
 
 import { buttonListStyles } from "./buttonList.styles.native"
 import { ButtonListProps } from "./buttonList.types"
@@ -22,6 +22,7 @@ type Props = PropsWithChildren<ButtonListProps>
  * @param accessibilityLabel {string} Accepted by the type but not forwarded on either platform
  * @param id {string} Custom native view identifier
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS classes
  * - ------------------------- NATIVE PROPERTIES -----------------------------
@@ -31,7 +32,16 @@ export const ButtonList: ForwardRefExoticComponent<
   Props & RefAttributes<ButtonListRef>
 > = forwardRef<ButtonListRef, Props>(
   (
-    { alignItems, direction, justifyContent, id, testId, children, wrap },
+    {
+      alignItems,
+      direction,
+      justifyContent,
+      id,
+      testId,
+      children,
+      wrap,
+      style,
+    },
     ref
   ) => {
     return (
@@ -45,6 +55,7 @@ export const ButtonList: ForwardRefExoticComponent<
           justifyContent && buttonListStyles[`justify${justifyContent}`],
           direction && buttonListStyles[`direction${direction}`],
           wrap && buttonListStyles[`wrap${wrap}`],
+          style as StyleProp<ViewStyle>,
         ]}
       >
         {children}

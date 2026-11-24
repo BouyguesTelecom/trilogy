@@ -7,7 +7,7 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { Text, View } from "react-native"
+import { Text, View, type StyleProp, type ViewStyle } from "react-native"
 
 import { useAlertStyles } from "./alert.styles.native"
 import { AlertStatus } from "./alert.types"
@@ -21,6 +21,7 @@ export type AlertNativeRef = ComponentRef<typeof View>
  * @param status {AlertStatus} Status variant: `information`, `warning`, `success`, or `error`; defaults to `information`
  * @param id {string} Custom native view identifier
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param className {string} Additional CSS classes
  * @param markup {AlertMarkup} HTML element: `p`, `h2`, `h3`, `h4`, `h5`, or `h6`; defaults to `div`
@@ -30,7 +31,7 @@ export type AlertNativeRef = ComponentRef<typeof View>
 export const Alert: ForwardRefExoticComponent<
   PropsWithChildren<AlertProps> & RefAttributes<AlertNativeRef>
 > = forwardRef<AlertNativeRef, PropsWithChildren<AlertProps>>(
-  ({ children, status = AlertStatus.information, id, testId }, ref) => {
+  ({ children, status = AlertStatus.information, id, testId, style }, ref) => {
     const styles = useAlertStyles()
     const generatedStyles = styles[status]
 
@@ -53,7 +54,11 @@ export const Alert: ForwardRefExoticComponent<
         testID={testId}
         nativeID={testId}
         accessibilityRole="alert"
-        style={[styles.base.container, generatedStyles.view]}
+        style={[
+          styles.base.container,
+          generatedStyles.view,
+          style as StyleProp<ViewStyle>,
+        ]}
       >
         {content}
       </View>

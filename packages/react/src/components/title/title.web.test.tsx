@@ -96,4 +96,11 @@ describe("Title web", () => {
       "extra_test"
     )
   })
+
+  it("forwards a custom inline style", () => {
+    render(<Title style={{ color: "red" }}>Styled title</Title>)
+    expect(screen.getByText("Styled title")).toHaveStyle({
+      color: "rgb(255, 0, 0)",
+    })
+  })
 })

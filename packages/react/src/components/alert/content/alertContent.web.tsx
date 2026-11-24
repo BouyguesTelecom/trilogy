@@ -1,5 +1,6 @@
 import {
   forwardRef,
+  type CSSProperties,
   type ForwardRefExoticComponent,
   type PropsWithChildren,
   type Ref,
@@ -18,6 +19,7 @@ type Props = PropsWithChildren<AlertContentProps>
  * AlertContent Component
  * @param children {ReactNode} Content grouped inside the alert
  * @param testId {string} Test identifier
+ * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Inline CSS style on Web or React Native style on Native
  * - -------------------------- WEB PROPERTIES -------------------------------
  * @param id {string} Custom element identifier
  * @param className {string} Additional CSS classes
@@ -27,7 +29,7 @@ type Props = PropsWithChildren<AlertContentProps>
 export const AlertContent: ForwardRefExoticComponent<
   Props & RefAttributes<AlertContentRef>
 > = forwardRef<AlertContentRef, Props>(
-  ({ testId, className, id, children, ...others }, ref) => {
+  ({ testId, className, id, style, children, ...others }, ref) => {
     const classes = useHashClass(clsx("alertContent", className))
 
     return (
@@ -36,6 +38,7 @@ export const AlertContent: ForwardRefExoticComponent<
         ref={ref as Ref<any>}
         id={id}
         className={classes}
+        style={style as CSSProperties}
         {...others}
       >
         {children}

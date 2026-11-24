@@ -85,4 +85,13 @@ describe("Title native", () => {
       fontWeight: String(theme.fonts.fontWeightBold) as TextStyle["fontWeight"],
     })
   })
+
+  it("applies a caller-provided native style after typography styles", async () => {
+    await render(
+      <Title testId="title" style={{ opacity: 0.5 }}>
+        Styled
+      </Title>
+    )
+    expect(screen.getByTestId("title")).toHaveStyle({ opacity: 0.5 })
+  })
 })

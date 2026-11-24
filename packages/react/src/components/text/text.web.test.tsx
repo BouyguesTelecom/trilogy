@@ -105,4 +105,11 @@ describe("Text web", () => {
       "extra_test"
     )
   })
+
+  it("forwards a custom inline style", () => {
+    render(<Text style={{ color: "red" }}>Styled text</Text>)
+    expect(screen.getByText("Styled text")).toHaveStyle({
+      color: "rgb(255, 0, 0)",
+    })
+  })
 })

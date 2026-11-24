@@ -12,6 +12,8 @@
     "version": "changeset version",
     "start:web": "pnpm --filter @trilogy-ds/cross-app start:web",
     "start:mobile": "pnpm --filter @trilogy-ds/cross-app start:mobile",
+    "docs:dev": "pnpm --filter @trilogy-ds/doc dev",
+    "docs:build": "pnpm --filter @trilogy-ds/doc build",
     "generate:scss": "pnpm --filter @trilogy-ds/styles generate:scss",
     "generate:interfaces": "node packages/styles/scripts/tokens.js interfaces",
     "figma:fetch": "pnpm --filter @trilogy-ds/figma fetch",

@@ -17,4 +17,13 @@ describe("AlertTitle native", () => {
     })
     expect(screen.getByTestId("title").props.id).toBe("title-id")
   })
+
+  it("applies a caller-provided native style", async () => {
+    await render(
+      <AlertTitle testId="title" style={{ opacity: 0.5 }}>
+        Title
+      </AlertTitle>
+    )
+    expect(screen.getByTestId("title")).toHaveStyle({ opacity: 0.5 })
+  })
 })

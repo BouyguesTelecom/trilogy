@@ -12,12 +12,23 @@ describe("AlertTitle web", () => {
       </AlertTitle>
     )
     expect(screen.getByTestId("title").tagName.toLowerCase()).toBe(markup)
-    expect(screen.getByTestId("title")).toHaveClass("text")
+    expect(screen.getByTestId("title")).toHaveClass("title", "title-size-base")
   })
   it("falls back to a paragraph for invalid markup", () => {
     render(
       <AlertTitle markup={"invalid" as AlertTitleMarkup}>Titre</AlertTitle>
     )
     expect(screen.getByText("Titre").tagName).toBe("P")
+  })
+
+  it("forwards a custom inline style", () => {
+    render(
+      <AlertTitle testId="title" style={{ color: "red" }}>
+        Title
+      </AlertTitle>
+    )
+    expect(screen.getByTestId("title")).toHaveStyle({
+      color: "rgb(255, 0, 0)",
+    })
   })
 })
