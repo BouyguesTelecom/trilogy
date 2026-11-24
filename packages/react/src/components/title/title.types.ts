@@ -45,12 +45,16 @@ export enum TitleMarkup {
 }
 
 export interface TitleUiProps {
+  /** Selects the typography size. Values: `xs`, `sm`, `base`, `md`, `lg`, `xl`, `xxl`, `xxxl`, `xxxxl`. Default: `xxxxl`. */
   size?: TitleSize
+  /** Selects the text color. Values: `primary`, `secondary`, `information`, `accent`, `success`, `warning`, `error`, `brand`, `inverse`. Default: `primary`. */
   color?: TitleColor
+  /** Overrides the size-based weight. Values: `regular`, `medium`, `semibold`, `bold`. Default: `medium` for `xxxl`/`xxxxl`, otherwise `semibold`. */
   fontWeight?: TitleFontWeight
 }
 
 export interface TitleProps
   extends TitleUiProps, AccessibilityProps, CommonProps {
+  /** Selects the heading element on Web. Values: `h1`–`h6`, `p`, `span`, `div`. Default: `h1`; ignored on Native. */
   markup?: TitleMarkup
 }

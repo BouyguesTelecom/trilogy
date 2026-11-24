@@ -12,6 +12,21 @@ import { ButtonListProps } from "./buttonList.types"
 export type ButtonListRef = React.ComponentRef<typeof View>
 type Props = PropsWithChildren<ButtonListProps>
 
+/**
+ * ButtonList Component
+ * @param children {ReactNode} Actions arranged in the list
+ * @param alignItems {ButtonListAlignItems} Cross-axis alignment; React Native default is `stretch`
+ * @param justifyContent {ButtonListJustifyContent} Main-axis distribution; React Native default is `flex-start`
+ * @param direction {ButtonListDirection} Layout direction: `column` or `row`; defaults to `column`
+ * @param wrap {"wrap" | "nowrap"} Whether children wrap; defaults to `nowrap`
+ * @param accessibilityLabel {string} Accepted by the type but not forwarded on either platform
+ * @param id {string} Custom native view identifier
+ * @param testId {string} Test identifier
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS classes
+ * - ------------------------- NATIVE PROPERTIES -----------------------------
+ * None.
+ */
 export const ButtonList: ForwardRefExoticComponent<
   Props & RefAttributes<ButtonListRef>
 > = forwardRef<ButtonListRef, Props>(

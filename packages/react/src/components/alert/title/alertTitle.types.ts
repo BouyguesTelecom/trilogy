@@ -9,5 +9,6 @@ export enum AlertTitleMarkup {
   h6 = "h6",
 }
 export interface AlertTitleProps extends CommonProps {
+  /** Selects the HTML element on Web. Values: `p`, `h2`–`h6`. Default: `p`; ignored on Native. */
   markup?: AlertTitleMarkup
 }

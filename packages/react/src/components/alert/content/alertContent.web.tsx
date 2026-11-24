@@ -14,6 +14,16 @@ import { type AlertContentProps } from "./alertContent.types"
 export type AlertContentRef = HTMLElement
 type Props = PropsWithChildren<AlertContentProps>
 
+/**
+ * AlertContent Component
+ * @param children {ReactNode} Content grouped inside the alert
+ * @param testId {string} Test identifier
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param id {string} Custom element identifier
+ * @param className {string} Additional CSS classes
+ * - ------------------------- NATIVE PROPERTIES -----------------------------
+ * None.
+ */
 export const AlertContent: ForwardRefExoticComponent<
   Props & RefAttributes<AlertContentRef>
 > = forwardRef<AlertContentRef, Props>(

@@ -15,6 +15,18 @@ import { AlertMarkup, type AlertProps } from "./alert.types"
 export type AlertRef = HTMLElement
 type Props = PropsWithChildren<AlertProps>
 
+/**
+ * Alert Component
+ * @param children {ReactNode} Alert content
+ * @param status {AlertStatus} Status variant: `information`, `warning`, `success`, or `error`; unset by default on Web
+ * @param testId {string} Test identifier
+ * @param id {string} Custom element identifier
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS classes
+ * @param markup {AlertMarkup} HTML element: `p`, `h2`, `h3`, `h4`, `h5`, or `h6`; defaults to `div`
+ * - ------------------------- NATIVE PROPERTIES -----------------------------
+ * None.
+ */
 export const Alert: ForwardRefExoticComponent<Props & RefAttributes<AlertRef>> =
   forwardRef<AlertRef, Props>(
     ({ status, testId, className, id, markup, children, ...others }, ref) => {

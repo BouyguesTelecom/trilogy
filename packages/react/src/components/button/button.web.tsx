@@ -17,6 +17,28 @@ export type ButtonRef =
   HTMLAnchorElement | HTMLElement | HTMLInputElement | HTMLButtonElement
 type Props = PropsWithChildren<ButtonProps>
 
+/**
+ * Button Component
+ * @param children {ReactNode} Button label or content
+ * @param variant {ButtonVariant} Visual variant: `primary`, `secondary`, `ghost`, or `conversion`; defaults to `primary`
+ * @param disabled {boolean} Prevents activation; defaults to `false`
+ * @param onClick {(event: ClickEvent) => void} Activation handler
+ * @param accessibilityLabel {string} Accessible label announced by assistive technology
+ * @param testId {string} Test identifier
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param markup {ButtonMarkup} HTML element: `button`, `input`, `a`, or `div`; defaults to `button` unless `href` or `to` selects a link
+ * @param loading {boolean} Adds a `loading` class without disabling activation; defaults to `false`
+ * @param fullwidth {boolean} Adds a `fullwidth` class; defaults to `false`
+ * @param href {string} Link destination
+ * @param to {string} Router destination
+ * @param name {string} HTML element name
+ * @param routerLink {ElementType} Router link component used with `to`
+ * @param type {ButtonType} HTML button type: `button`, `reset`, or `submit`; defaults to `button` (`submit` for `input`)
+ * @param id {string} Custom element identifier
+ * @param className {string} Additional CSS classes
+ * - ------------------------- NATIVE PROPERTIES -----------------------------
+ * None.
+ */
 export const Button: ForwardRefExoticComponent<
   Props & RefAttributes<ButtonRef>
 > = forwardRef<ButtonRef, Props>(

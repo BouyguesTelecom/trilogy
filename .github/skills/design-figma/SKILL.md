@@ -1,33 +1,33 @@
 ---
 name: design-figma
-description: "Créer ou modifier un composant Figma Trilogy avec ses propriétés UI, une page par composant et des variables sémantiques. À utiliser pour concevoir ou actualiser un composant dans Figma via Figma MCP."
-argument-hint: "Nom du composant, propriétés UI et spécifications visuelles"
+description: "Create or update a Trilogy Figma component with its UI properties, a dedicated family page, and semantic variables. Use to design or update a component in Figma through Figma MCP."
+argument-hint: "Component name, UI properties, and visual requirements"
 ---
 
-# Design de composant Figma
+# Figma Component Design
 
-## Objectif et limites
+## Goal and boundaries
 
-Créer ou modifier le composant demandé dans le véritable fichier Figma à l'aide de Figma MCP. Le livrable comporte exclusivement des propriétés **UI** : variantes, états visuels et propriétés d'instance nécessaires au design. Ne crée pas de props fonctionnelles telles que les callbacks, la navigation ou la logique métier ; ne confonds pas variables, propriétés de variantes et propriétés d'instance. Respecte les spécifications explicites de l'utilisateur.
+Create or update the requested component in the actual Figma file using Figma MCP. The deliverable contains only **UI** properties: variants, visual states, and instance properties required by the design. Do not create functional props such as callbacks, navigation, or business logic; do not confuse variables, variant properties, and instance properties. Follow the user's explicit requirements.
 
-## Fichier et outils
+## File and tools
 
-1. Utilise la clé ou l'URL explicitement fournie ; sinon, utilise `FIGMA_FILE_KEY` dans le `.env` à la racine du dépôt, puis dans l'environnement si elle est absente du fichier. Si aucune cible n'est disponible, demande-la. Lis seulement la clé de fichier nécessaire : ne révèle, ne journalise et ne transmets jamais un jeton ou autre secret dans les messages ou appels d'outils.
-2. Utilise le serveur Figma MCP configuré dans le projet. Crée une session dès que la clé est connue avant tout accès au fichier et réutilise-la pour toute la tâche. Charge les guides officiels Figma requis par les outils disponibles, notamment `figma-use` et `figma-generate-library` pour une création ou modification de composant ; respecte leurs prérequis, leur recherche et leur validation. Réutilise la session fournie si cette étape fait partie d'un workflow déjà commencé.
-3. Inspecte d'abord les pages, composants locaux, bibliothèques liées, variables et styles pertinents. Recherche un composant existant avant d'en créer un. Si plusieurs candidats sont plausibles, demande lequel utiliser ; ne crée pas de doublon. N'édite pas une bibliothèque externe sans autorisation.
+1. Use the explicitly supplied key or URL. Otherwise, use `FIGMA_FILE_KEY` from the repository root `.env`, then from the environment if it is absent from the file. Ask for a target if none is available. Read only the required file key; never reveal, log, or pass a token or other secret in messages or tool calls.
+2. Use the Figma MCP server configured for the project. Create a session as soon as the key is known, before accessing the file, and reuse it for the entire task. Load the official Figma guides required by available tools, including `figma-use` and `figma-generate-library` when creating or updating a component; follow their prerequisites, discovery, and validation rules. Reuse an existing session when continuing an active workflow.
+3. First inspect relevant pages, local components, linked libraries, variables, and styles. Search for an existing component before creating one. If multiple candidates are plausible, ask which to use; do not create a duplicate. Do not edit an external library without authorization.
 
-## Organisation et variables
+## Organization and variables
 
-- Une **page Figma dédiée par famille de composant**, nommée d'après le composant principal. Ses variantes, états, exemples et sous-composants publics liés partagent cette page : par exemple `AlertContent`, `AlertTitle` et `AlertDescription` sur `Alert`, et `ButtonList` sur `Button`. Recherche et réutilise la page de famille existante ; ne regroupe pas des familles autonomes différentes sur une page commune. Ne déplace pas une définition existante sans vérifier ses usages et obtenir l'accord si nécessaire.
-- Si le composant existe sur une page partagée, ne le duplique pas et ne le déplace pas automatiquement : signale la situation et demande confirmation avant un déplacement pouvant affecter ses références ou usages. Pour plusieurs composants, applique cette règle à chacun.
-- Lie directement les propriétés visuelles aux **variables sémantiques** du design system, jamais directement aux variables primitives : couleurs de texte et de fond, bordures et leur épaisseur, padding et espacements, tailles, rayons, familles et tailles de police, graisses, et toute autre propriété pertinente et prise en charge par Figma. Les variables sémantiques peuvent elles-mêmes être des alias vers des primitives : conserve ces alias.
-- Recherche d'abord les variables sémantiques locales ou de bibliothèque et leurs valeurs, modes et scopes. Respecte les modes, y compris light/dark, et évite les valeurs codées en dur lorsqu'une variable sémantique appropriée existe. Ne modifie pas les primitives ni les variables partagées pour adapter un seul composant.
-- Si aucune variable sémantique adaptée n'existe, si une propriété ne peut pas être liée par l'API Figma, si une police ou un mode manque, ou si l'équivalence est incertaine : indique la propriété et le blocage, puis demande une décision avant d'inventer une valeur, d'utiliser une primitive directement ou de créer/modifier un token partagé.
+- Use **one dedicated Figma page per component family**, named after its main component. Its variants, states, examples, and related public subcomponents share that page: for example, `AlertContent`, `AlertTitle`, and `AlertDescription` on `Alert`, and `ButtonList` on `Button`. Find and reuse the existing family page; do not group unrelated standalone families on a shared page. Do not move an existing definition without checking its usage and obtaining approval when needed.
+- If a component exists on a shared page, do not automatically duplicate or move it. Report the situation and ask before a move that could affect its references or usage. Apply this rule to each component when handling multiple components.
+- Bind visual properties directly to **semantic variables** in the design system, never directly to primitive variables: text and background colors, borders and border widths, padding and spacing, sizes, radii, font families and sizes, weights, and any other relevant property supported by Figma. Semantic variables may themselves alias primitives; preserve those aliases.
+- First search for local or library semantic variables and inspect their values, modes, and scopes. Respect modes, including Light/Dark, and avoid hardcoded values where a suitable semantic variable exists. Do not change primitives or shared variables to adapt a single component.
+- If no suitable semantic variable exists, a property cannot be bound through the Figma API, a font or mode is missing, or equivalence is uncertain, report the property and blocker. Ask before inventing a value, using a primitive directly, or creating/changing a shared token.
 
-## Création, modification et validation
+## Creation, updates, and validation
 
-1. Analyse la demande et identifie les propriétés UI, valeurs, états, contenu éditable, valeurs par défaut et structure attendus. Ne crée pas de variantes ou propriétés non demandées sans justification.
-2. Crée le composant manquant ou modifie de façon ciblée le composant local existant, sans le recréer inutilement. Une demande de modification autorise les modifications ciblées nécessaires ; demande confirmation avant une suppression, un remplacement complet ou une modification incompatible non explicitement demandés.
-3. Utilise les composants, styles et variables sémantiques pertinents du design system. Pour une famille composée, conserve ses sous-composants publics comme composants réutilisables sur la page de famille et intègre, lorsque pertinent et possible, leurs instances dans le composant principal ou un exemple d'assemblage visible. Par exemple, une `Alert` peut montrer `AlertTitle` et `AlertDescription` ; ne représente pas ce contenu comme obligatoire en React si le parent accepte des `children` libres. Préserve l'édition du contenu, les variantes et les bindings ; signale les limites d'intégration. Ne découpe pas artificiellement un composant simple.
-4. Vérifie le composant Figma réellement obtenu : page, structure, propriétés UI et valeurs, variantes, modes, bindings sémantiques et rendu. Signale les liaisons impossibles à réaliser ; ne prétends pas qu'un design incomplet est vérifié. En cas d'accès ou d'outil manquant, précise le blocage et arrête au lieu de simuler la modification.
-5. Transmets à l'étape suivante le lien Figma avec identifiant du composant, la page, les propriétés UI et leurs valeurs par défaut, les variables sémantiques utilisées, les modes et les éventuelles limites. Ne modifie pas le code React dans ce skill.
+1. Analyze the request and identify expected UI properties, values, states, editable content, defaults, and structure. Do not create unjustified variants or properties that were not requested.
+2. Create a missing component or make a focused update to an existing local component without recreating it unnecessarily. A modification request authorizes the focused changes required; ask before deletion, full replacement, or an incompatible change that was not explicitly requested.
+3. Use relevant design-system components, styles, and semantic variables. For a component family, keep its public subcomponents as reusable components on the family page and, when relevant and supported, include their instances in the main component or a visible assembly example. For example, an `Alert` may show `AlertTitle` and `AlertDescription`; do not represent them as required React content when the parent accepts arbitrary `children`. Preserve editable content, variants, and bindings; report integration limitations. Do not artificially split simple components.
+4. Verify the actual Figma result: page, structure, UI properties and values, variants, modes, semantic bindings, and rendering. Report impossible bindings; do not claim an incomplete design is verified. If access or a required tool is unavailable, state the blocker and stop rather than simulating the change.
+5. Pass the next workflow step the Figma link and component ID, page, UI properties and defaults, semantic variables, modes, and limitations. Do not modify React code in this skill.

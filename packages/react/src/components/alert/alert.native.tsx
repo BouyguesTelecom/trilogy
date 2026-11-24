@@ -15,6 +15,18 @@ import type { AlertProps } from "./alert.types"
 
 export type AlertNativeRef = ComponentRef<typeof View>
 
+/**
+ * Alert Component
+ * @param children {ReactNode} Alert content
+ * @param status {AlertStatus} Status variant: `information`, `warning`, `success`, or `error`; defaults to `information`
+ * @param id {string} Custom native view identifier
+ * @param testId {string} Test identifier
+ * - -------------------------- WEB PROPERTIES -------------------------------
+ * @param className {string} Additional CSS classes
+ * @param markup {AlertMarkup} HTML element: `p`, `h2`, `h3`, `h4`, `h5`, or `h6`; defaults to `div`
+ * - ------------------------- NATIVE PROPERTIES -----------------------------
+ * None.
+ */
 export const Alert: ForwardRefExoticComponent<
   PropsWithChildren<AlertProps> & RefAttributes<AlertNativeRef>
 > = forwardRef<AlertNativeRef, PropsWithChildren<AlertProps>>(

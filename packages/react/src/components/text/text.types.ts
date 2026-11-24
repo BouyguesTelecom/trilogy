@@ -45,12 +45,16 @@ export enum TextMarkup {
 }
 
 export interface TextUiProps {
+  /** Selects the typography size. Values: `xs`, `sm`, `base`, `md`, `lg`, `xl`, `xxl`, `xxxl`, `xxxxl`. Default: `xxxxl`. */
   size?: TextSize
+  /** Selects the text color. Values: `primary`, `secondary`, `information`, `accent`, `success`, `warning`, `error`, `brand`, `inverse`. Default: `primary`. */
   color?: TextColor
+  /** Selects the font weight. Values: `regular`, `medium`, `semibold`, `bold`. Default: `regular`. */
   fontWeight?: TextFontWeight
 }
 
 export interface TextProps
   extends TextUiProps, AccessibilityProps, CommonProps {
+  /** Selects the HTML element on Web. Values: `h1`–`h6`, `p`, `span`, `div`. Default: `p`; ignored on Native. */
   markup?: TextMarkup
 }
