@@ -1,7 +1,7 @@
 "use client"
 
 import type { DocSection } from "@/lib/components"
-import { LiveExample } from "@/components/live-example"
+import { InteractiveCodeExample } from "@/components/interactive-code-example"
 import { MarkdownContent } from "@/components/markdown-content"
 
 function splitExample(markdown: string) {
@@ -16,16 +16,22 @@ function splitExample(markdown: string) {
   }
 }
 
-export function ExampleCard({ section }: { section: DocSection }) {
+export function ComponentExample({
+  section,
+  showDescription = true,
+}: {
+  section: DocSection
+  showDescription?: boolean
+}) {
   const { prose, language, source } = splitExample(section.markdown)
   return (
     <article className="example-card">
-      {prose && (
+      {showDescription && prose && (
         <div className="example-description">
           <MarkdownContent source={prose} />
         </div>
       )}
-      {source && <LiveExample code={source} language={language} />}
+      {source && <InteractiveCodeExample code={source} language={language} />}
     </article>
   )
 }

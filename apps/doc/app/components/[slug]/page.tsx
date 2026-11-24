@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
-import { notFound } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 
-import { getComponentDoc, getComponentDocs } from "@/lib/components"
-import { ComponentArticle } from "@/components/component-article"
+import { getComponentDoc, getFamilyDoc, getFamilyDocs } from "@/lib/components"
+import { FamilyArticle } from "@/components/component-article"
 
 export function generateStaticParams() {
-  return getComponentDocs().map(({ slug }) => ({ slug }))
+  return getFamilyDocs().map(({ slug }) => ({ slug }))
 }
 
 export async function generateMetadata({
@@ -14,18 +14,25 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const doc = getComponentDoc(slug)
-  if (!doc) return { title: "Component not found" }
-  return { title: doc.name, description: doc.description }
+  const family = getFamilyDoc(slug)
+  if (!family) return { title: "Component family not found" }
+  return { title: family.name, description: family.description }
 }
 
-export default async function ComponentPage({
+export default async function FamilyPage({
   params,
 }: {
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const doc = getComponentDoc(slug)
-  if (!doc) notFound()
-  return <ComponentArticle doc={doc} />
+  const family = getFamilyDoc(slug)
+  if (family) return <FamilyArticle family={family} />
+
+  const component = getComponentDoc(slug)
+  const componentFamily = getFamilyDocs().find(
+    (item) => item.name === component?.family
+  )
+  if (component && componentFamily)
+    permanentRedirect(`/components/${componentFamily.slug}/${component.slug}`)
+  notFound()
 }

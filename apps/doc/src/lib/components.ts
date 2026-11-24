@@ -162,6 +162,17 @@ export function getFamilyDoc(slug: string): FamilyDoc | undefined {
   return getFamilyDocs().find((family) => family.slug === slug)
 }
 
+export function getComponentDocInFamily(
+  familySlug: string,
+  componentSlug: string
+): ComponentDoc | undefined {
+  const family = getFamilyDoc(familySlug)
+  if (!family) return undefined
+  return getComponentDocs().find(
+    (doc) => doc.slug === componentSlug && doc.family === family.name
+  )
+}
+
 export function getComponentFamilies(): ComponentFamily[] {
   const docs = getComponentDocs()
   const familyDocs = getFamilyDocs()

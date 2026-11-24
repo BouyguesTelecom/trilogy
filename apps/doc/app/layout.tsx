@@ -4,7 +4,7 @@ import "../../../packages/styles/dist/default/trilogy.css"
 import "./globals.css"
 
 import { getComponentFamilies } from "@/lib/components"
-import { DocsShell } from "@/components/docs-shell"
+import { DocumentationLayout } from "@/components/documentation-layout"
 
 export const metadata: Metadata = {
   title: {
@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <html className="docs-root" lang="en" data-scroll-behavior="smooth">
       <body className="docs-body-root">
-        <DocsShell families={getComponentFamilies()}>{children}</DocsShell>
+        <DocumentationLayout families={getComponentFamilies()}>
+          {children}
+        </DocumentationLayout>
       </body>
     </html>
   )

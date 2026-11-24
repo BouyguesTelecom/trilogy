@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import type { ComponentGuidance } from "@/lib/component-guidance"
 import type {
   ComponentDoc,
   ComponentFamily,
@@ -12,7 +13,7 @@ import {
   splitDocumentSections,
 } from "@/lib/components"
 import { ApiReference } from "@/components/api-reference"
-import { ExampleCard } from "@/components/example-card"
+import { ComponentExample } from "@/components/component-example"
 import { MarkdownContent } from "@/components/markdown-content"
 import { TableOfContents, type TocItem } from "@/components/table-of-contents"
 
@@ -22,9 +23,38 @@ function getToc(sections: DocSection[]): TocItem[] {
     .map(({ title, id, level }) => ({ title, id, level }))
 }
 
-export function ComponentArticle({ doc }: { doc: ComponentDoc }) {
+export function ComponentArticle({
+  doc,
+  family,
+  guidance,
+}: {
+  doc: ComponentDoc
+  family: FamilyDoc
+  guidance: ComponentGuidance | null
+}) {
   const sections = splitDocumentSections(doc.markdown)
-  const toc = getToc(sections)
+  const basic = sections.find((section) => section.id === "basic")
+  const remainingSections = sections.filter(
+    (section) => section.id !== "examples" && section !== basic
+  )
+  const nextSectionIndex = remainingSections.findIndex(
+    (section) => section.level === 2
+  )
+  const examples = remainingSections.slice(
+    0,
+    nextSectionIndex === -1 ? undefined : nextSectionIndex
+  )
+  const otherSections =
+    nextSectionIndex === -1 ? [] : remainingSections.slice(nextSectionIndex)
+  const toc: TocItem[] = [
+    { title: "Usage", id: "usage", level: 2 },
+    ...(examples.length
+      ? [{ title: "Examples", id: "examples", level: 2 as const }]
+      : []),
+    ...getToc(examples),
+    { title: "Do & Don't", id: "do-dont", level: 2 },
+    ...getToc(otherSections),
+  ]
 
   return (
     <div className="article-layout">
@@ -32,7 +62,7 @@ export function ComponentArticle({ doc }: { doc: ComponentDoc }) {
         <nav aria-label="Breadcrumb" className="breadcrumbs">
           <Link href="/components">Components</Link>
           <span aria-hidden="true">/</span>
-          <span>{doc.family}</span>
+          <Link href={`/components/${family.slug}`}>{family.name}</Link>
           <span aria-hidden="true">/</span>
           <span aria-current="page">{doc.name}</span>
         </nav>
@@ -46,38 +76,83 @@ export function ComponentArticle({ doc }: { doc: ComponentDoc }) {
           </div>
           <h1>{doc.name}</h1>
           <p className="article-description">{doc.description}</p>
-          <div className="article-header-meta">
-            <span className="stable-pill">
-              <i /> Stable
-            </span>
-            <span className="meta-divider" />
-            <span>Web + Native</span>
-          </div>
         </header>
 
         <div className="article-sections">
-          {sections.map((section) =>
-            section.id === "examples" ? null : (
-              <section
-                className={`doc-section level-${section.level}`}
-                id={section.id}
-                key={section.id}
-              >
-                {section.level === 2 ? (
-                  <h2>{section.title}</h2>
-                ) : (
-                  <h3>{section.title}</h3>
-                )}
-                {section.level === 3 ? (
-                  <ExampleCard section={section} />
-                ) : section.id === "api-reference" ? (
-                  <ApiReference markdown={section.markdown} />
-                ) : (
-                  <MarkdownContent source={section.markdown} />
-                )}
-              </section>
-            )
+          {basic && (
+            <div className="primary-example">
+              <ComponentExample section={basic} showDescription={false} />
+            </div>
           )}
+          <section className="doc-section level-2" id="usage">
+            <h2>Usage</h2>
+            {guidance?.usage ? (
+              <MarkdownContent source={guidance.usage} excludeImages />
+            ) : (
+              <p>No usage guidance is available for this component.</p>
+            )}
+          </section>
+          {examples.length > 0 && (
+            <section className="doc-section examples-heading" id="examples">
+              <h2>Examples</h2>
+            </section>
+          )}
+          {examples.map((section) => (
+            <section
+              className={`doc-section level-${section.level}`}
+              id={section.id}
+              key={section.id}
+            >
+              <h3>{section.title}</h3>
+              <ComponentExample section={section} />
+            </section>
+          ))}
+          <section className="doc-section level-2" id="do-dont">
+            <h2>Do &amp; Don&apos;t</h2>
+            {guidance?.rules.length ? (
+              <div className="guidance-rules">
+                {guidance.rules.map((rule, index) => (
+                  <article
+                    className="guidance-rule"
+                    key={`${rule.title}-${index}`}
+                  >
+                    <h3>{rule.title}</h3>
+                    {rule.description && (
+                      <MarkdownContent
+                        source={rule.description}
+                        excludeImages
+                      />
+                    )}
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <p>
+                No do and don&apos;t guidelines are available for this
+                component.
+              </p>
+            )}
+          </section>
+          {otherSections.map((section) => (
+            <section
+              className={`doc-section level-${section.level}`}
+              id={section.id}
+              key={section.id}
+            >
+              {section.level === 2 ? (
+                <h2>{section.title}</h2>
+              ) : (
+                <h3>{section.title}</h3>
+              )}
+              {section.level === 3 ? (
+                <ComponentExample section={section} />
+              ) : section.id === "api-reference" ? (
+                <ApiReference markdown={section.markdown} />
+              ) : (
+                <MarkdownContent source={section.markdown} />
+              )}
+            </section>
+          ))}
         </div>
         <footer className="article-footer">
           <span>Part of the Trilogy design system</span>
@@ -138,7 +213,7 @@ export function ComponentsIndex({ families }: { families: ComponentFamily[] }) {
               <div className="family-card-grid">
                 <Link
                   className="component-card family-card"
-                  href={`/components/families/${family.slug}`}
+                  href={`/components/${family.slug}`}
                 >
                   <div className="component-card-top">
                     <span className="component-card-icon">
@@ -208,7 +283,7 @@ export function FamilyArticle({ family }: { family: FamilyDoc }) {
                     {familyComponents.map((item) => (
                       <Link
                         className="family-component-link"
-                        href={`/components/${item.slug}`}
+                        href={`/components/${family.slug}/${item.slug}`}
                         key={item.slug}
                       >
                         <span className="component-card-icon">

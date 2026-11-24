@@ -51,9 +51,20 @@ const components: Components = {
   ),
 }
 
-export function MarkdownContent({ source }: { source: string }) {
+export function MarkdownContent({
+  source,
+  excludeImages = false,
+}: {
+  source: string
+  excludeImages?: boolean
+}) {
   return (
-    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={
+        excludeImages ? { ...components, img: () => null } : components
+      }
+    >
       {source}
     </ReactMarkdown>
   )

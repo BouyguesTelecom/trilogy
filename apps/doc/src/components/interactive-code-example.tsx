@@ -10,7 +10,7 @@ import { CodeBlock } from "@/components/code-block"
 
 const trilogyScope = { ...Trilogy, CheckCircle2 }
 
-function LiveExampleContent({
+function InteractiveCodeExampleContent({
   code,
   language,
   children,
@@ -35,7 +35,7 @@ function LiveExampleContent({
   )
 }
 
-export function LiveExample({
+export function InteractiveCodeExample({
   code,
   language,
 }: {
@@ -44,10 +44,10 @@ export function LiveExample({
 }) {
   return (
     <LiveProvider code={code} scope={trilogyScope}>
-      <LiveExampleContent code={code} language={language}>
+      <InteractiveCodeExampleContent code={code} language={language}>
         <LivePreview />
         <LiveError className="live-example-error" />
-      </LiveExampleContent>
+      </InteractiveCodeExampleContent>
     </LiveProvider>
   )
 }

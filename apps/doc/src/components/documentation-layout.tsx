@@ -6,34 +6,41 @@ import { usePathname } from "next/navigation"
 
 import type { ComponentFamily, ComponentNavItem } from "@/lib/components"
 
-function isCurrentItem(item: ComponentNavItem, pathname: string): boolean {
+function isCurrentItem(
+  item: ComponentNavItem,
+  pathname: string,
+  familySlug: string
+): boolean {
   return (
-    pathname === `/components/${item.slug}` ||
-    item.children.some((child) => isCurrentItem(child, pathname))
+    pathname === `/components/${familySlug}/${item.slug}` ||
+    item.children.some((child) => isCurrentItem(child, pathname, familySlug))
   )
 }
 
 function ComponentLink({
   item,
   pathname,
+  familySlug,
   level = 0,
   onNavigate,
 }: {
   item: ComponentNavItem
   pathname: string
+  familySlug: string
   level?: number
   onNavigate: () => void
 }) {
-  const active = pathname === `/components/${item.slug}`
+  const active = pathname === `/components/${familySlug}/${item.slug}`
   const expanded =
-    active || item.children.some((child) => isCurrentItem(child, pathname))
+    active ||
+    item.children.some((child) => isCurrentItem(child, pathname, familySlug))
 
   return (
     <div className="nav-tree-item">
       <Link
         aria-current={active ? "page" : undefined}
         className={`component-nav-link${active ? " is-active" : ""}`}
-        href={`/components/${item.slug}`}
+        href={`/components/${familySlug}/${item.slug}`}
         onClick={onNavigate}
         style={{ paddingLeft: `${12 + level * 14}px` }}
       >
@@ -46,6 +53,7 @@ function ComponentLink({
             <ComponentLink
               item={child}
               key={child.slug}
+              familySlug={familySlug}
               level={level + 1}
               pathname={pathname}
               onNavigate={onNavigate}
@@ -57,7 +65,7 @@ function ComponentLink({
   )
 }
 
-export function DocsShell({
+export function DocumentationLayout({
   families,
   children,
 }: {
@@ -142,12 +150,12 @@ export function DocsShell({
               <section className="family-section" key={family.name}>
                 <Link
                   aria-current={
-                    pathname === `/components/families/${family.slug}`
+                    pathname === `/components/${family.slug}`
                       ? "page"
                       : undefined
                   }
-                  className={`family-heading-link${pathname === `/components/families/${family.slug}` ? " is-active" : ""}`}
-                  href={`/components/families/${family.slug}`}
+                  className={`family-heading-link${pathname === `/components/${family.slug}` ? " is-active" : ""}`}
+                  href={`/components/${family.slug}`}
                   onClick={closeMobileNav}
                 >
                   {family.name}
@@ -157,6 +165,7 @@ export function DocsShell({
                     <ComponentLink
                       item={item}
                       key={item.slug}
+                      familySlug={family.slug}
                       pathname={pathname}
                       onNavigate={closeMobileNav}
                     />

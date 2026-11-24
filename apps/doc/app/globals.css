@@ -449,6 +449,12 @@ body.docs-body-root {
 .article-sections {
   padding-top: 6px;
 }
+.primary-example {
+  padding-top: 12px;
+}
+.primary-example .example-card {
+  margin-bottom: 0;
+}
 .doc-section {
   padding-top: 33px;
   scroll-margin-top: 84px;
@@ -456,6 +462,14 @@ body.docs-body-root {
 .doc-section + .doc-section {
   margin-top: 23px;
   border-top: 1px solid rgba(255, 255, 255, 0.045);
+}
+.examples-heading + .doc-section {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.examples-heading + .doc-section > h3 {
+  margin-top: 0;
 }
 .doc-section > h2 {
   margin: 0 0 18px;
@@ -583,6 +597,16 @@ body.docs-body-root {
   margin: 0;
 }
 
+.guidance-rules {
+  display: grid;
+  gap: 30px;
+}
+.guidance-rule h3 {
+  margin: 0 0 10px;
+  color: #e2e4e8;
+  font-size: 16px;
+  font-weight: 600;
+}
 .live-example-preview {
   display: flex;
   align-items: center;
