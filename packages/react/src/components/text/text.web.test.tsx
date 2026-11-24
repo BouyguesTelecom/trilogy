@@ -89,7 +89,6 @@ describe("Text web", () => {
       <TrilogyContextProvider mangled hash="test">
         <Text
           size={TextSize.xxl}
-          fontSize={TextSize.sm}
           color={TextColor.error}
           fontWeight={TextFontWeight.bold}
           className="extra"
@@ -101,7 +100,6 @@ describe("Text web", () => {
     expect(screen.getByText("Texte")).toHaveClass(
       "text_test",
       "text-size-xxl_test",
-      "font-size-sm_test",
       "text-error_test",
       "font-weight-bold_test",
       "extra_test"

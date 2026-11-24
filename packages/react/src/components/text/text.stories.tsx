@@ -20,7 +20,6 @@ const meta: {
   },
   argTypes: {
     size: { control: "select", options: Object.values(TextSize) },
-    fontSize: { control: "select", options: Object.values(TextSize) },
     color: { control: "select", options: Object.values(TextColor) },
     fontWeight: { control: "select", options: Object.values(TextFontWeight) },
   },
@@ -44,6 +43,3 @@ export const BoldAccent: TextStory = {
   },
 }
 
-export const SizeOverride: TextStory = {
-  args: { size: TextSize.xxxxl, fontSize: TextSize.sm },
-}

@@ -22,7 +22,6 @@ export const Text: ForwardRefExoticComponent<Props & RefAttributes<TextRef>> =
         children,
         size = TextSize.xxxxl,
         color,
-        fontSize,
         fontWeight,
         accessibilityLabel,
         className,
@@ -42,7 +41,6 @@ export const Text: ForwardRefExoticComponent<Props & RefAttributes<TextRef>> =
         clsx(
           "text",
           `text-size-${safeSize}`,
-          fontSize && `font-size-${fontSize}`,
           color && `text-${color}`,
           fontWeight && `font-weight-${fontWeight}`,
           className

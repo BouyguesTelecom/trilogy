@@ -69,18 +69,16 @@ describe("Title native", () => {
     })
   })
 
-  it("overrides font size without changing the variant family or weight", async () => {
+  it("overrides weight without changing the variant size or family", async () => {
     await render(
-      <Title size={TitleSize.xxxxl} fontSize={TitleSize.sm} testId="title">
+      <Title size={TitleSize.xxxxl} fontWeight={TitleFontWeight.bold} testId="title">
         Titre
       </Title>
     )
     expect(screen.getByTestId("title")).toHaveStyle({
-      fontSize: theme.fonts.fontSizeSm,
+      fontSize: theme.fonts.fontSizeXxxxl,
       fontFamily: theme.fonts.fontFamilySecondary,
-      fontWeight: String(
-        theme.fonts.fontWeightMedium
-      ) as TextStyle["fontWeight"],
+      fontWeight: String(theme.fonts.fontWeightBold) as TextStyle["fontWeight"],
     })
   })
 })

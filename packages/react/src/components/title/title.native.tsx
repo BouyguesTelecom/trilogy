@@ -20,7 +20,6 @@ export const Title: ForwardRefExoticComponent<
       children,
       size = TitleSize.xxxxl,
       color,
-      fontSize,
       fontWeight,
       accessibilityLabel,
       id,
@@ -42,10 +41,6 @@ export const Title: ForwardRefExoticComponent<
         style={[
           styles.sizes[safeSize],
           styles.colors[TitleColor.primary],
-          fontSize &&
-            styles.sizes[fontSize] && {
-              fontSize: styles.sizes[fontSize].fontSize,
-            },
           color && styles.colors[color],
           fontWeight && styles.weights[fontWeight],
         ]}

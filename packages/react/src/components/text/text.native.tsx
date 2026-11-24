@@ -25,7 +25,6 @@ export const Text: ForwardRefExoticComponent<
       children,
       size = TextSize.xxxxl,
       color,
-      fontSize,
       fontWeight,
       accessibilityLabel,
       id,
@@ -48,10 +47,6 @@ export const Text: ForwardRefExoticComponent<
           styles.sizes[safeSize],
           styles.colors[TextColor.primary],
           styles.weights[TextFontWeight.regular],
-          fontSize &&
-            styles.sizes[fontSize] && {
-              fontSize: styles.sizes[fontSize].fontSize,
-            },
           color && styles.colors[color],
           fontWeight && styles.weights[fontWeight],
         ]}

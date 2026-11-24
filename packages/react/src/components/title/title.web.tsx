@@ -22,7 +22,6 @@ export const Title: ForwardRefExoticComponent<Props & RefAttributes<TitleRef>> =
         children,
         size = TitleSize.xxxxl,
         color,
-        fontSize,
         fontWeight,
         accessibilityLabel,
         className,
@@ -40,7 +39,6 @@ export const Title: ForwardRefExoticComponent<Props & RefAttributes<TitleRef>> =
         clsx(
           "title",
           `title-size-${safeSize}`,
-          fontSize && `font-size-${fontSize}`,
           color && `text-${color}`,
           fontWeight && `font-weight-${fontWeight}`,
           className

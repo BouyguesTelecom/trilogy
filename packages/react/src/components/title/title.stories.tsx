@@ -20,7 +20,6 @@ const meta: {
   },
   argTypes: {
     size: { control: "select", options: Object.values(TitleSize) },
-    fontSize: { control: "select", options: Object.values(TitleSize) },
     color: { control: "select", options: Object.values(TitleColor) },
     fontWeight: { control: "select", options: Object.values(TitleFontWeight) },
   },
@@ -44,6 +43,3 @@ export const AllSizes: TitleStory = {
   },
 }
 
-export const SizeOverride: TitleStory = {
-  args: { size: TitleSize.xxxxl, fontSize: TitleSize.sm },
-}

@@ -53,6 +53,4 @@ export interface TextUiProps {
 export interface TextProps
   extends TextUiProps, AccessibilityProps, CommonProps {
   markup?: TextMarkup
-  /** Surcharge explicite de la taille de police, indépendante de la variante. */
-  fontSize?: TextSize
 }
