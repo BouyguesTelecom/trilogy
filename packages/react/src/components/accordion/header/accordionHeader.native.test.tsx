@@ -21,6 +21,20 @@ it("exposes and toggles the expanded accessibility state", async () => {
   ).toBeTruthy()
 })
 
+it("uses the theme's bold font weight for a plain text header", async () => {
+  await render(
+    <AccordionItem>
+      <AccordionHeader>Details</AccordionHeader>
+    </AccordionItem>
+  )
+  expect(screen.getByText("Details")).toHaveStyle({
+    fontFamily: theme.fonts.fontFamilyPrimary,
+    fontSize: theme.fonts.fontSizeBase,
+    fontWeight: "700",
+    color: theme.colors.light.colorPrimary,
+  })
+})
+
 it("keeps the item unpadded and makes the padded header interactive", async () => {
   await render(
     <AccordionItem testId="item">

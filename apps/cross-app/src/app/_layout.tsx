@@ -11,7 +11,10 @@ SplashScreen.preventAutoHideAsync()
 
 export default function TabLayout() {
   const { top } = useSafeAreaInsets()
-  const [loaded, error] = useFonts({ ...nativeIconFonts, ...nativeThemeFonts })
+  const [themeLoaded, themeError] = useFonts(nativeThemeFonts)
+  const [iconsLoaded, iconsError] = useFonts(nativeIconFonts)
+  const loaded = themeLoaded && iconsLoaded
+  const error = themeError ?? iconsError
 
   useEffect(() => {
     if (loaded || error) void SplashScreen.hideAsync()
