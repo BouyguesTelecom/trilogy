@@ -8,6 +8,7 @@
     "dev": "pnpm build:deps && next dev --port 3001",
     "build": "pnpm build:deps && next build",
     "start": "next start --port 3001",
+    "test:preview": "node --test scripts/test-preview-browser.mjs",
     "check-types": "tsc --noEmit && node scripts/check-component-docs.mjs"
   },
   "dependencies": {

@@ -8,7 +8,7 @@ argument-hint: "Name of the Trilogy component to document"
 
 ## When to apply
 
-Apply this skill to every public component or subcomponent whose code is created or modified. In a React-to-Figma synchronization workflow, also inspect and update JSDoc for requested public components and subcomponents. This authorization applies to documentation only, not implementation.
+Apply this skill to every public component or subcomponent whose code is created or modified. In a React-to-Figma workflow, also inspect and update JSDoc for requested public components and subcomponents. This skill governs documentation only; implementation changes are governed by the selected workflow and the user's request.
 
 ## Required placement and order
 

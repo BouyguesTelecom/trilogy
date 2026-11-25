@@ -45,7 +45,7 @@ export function InteractiveCodeExample({
   return (
     <LiveProvider code={code} scope={trilogyScope}>
       <InteractiveCodeExampleContent code={code} language={language}>
-        <LivePreview />
+        <LivePreview className="live-example-canvas" />
         <LiveError className="live-example-error" />
       </InteractiveCodeExampleContent>
     </LiveProvider>

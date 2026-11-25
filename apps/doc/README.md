@@ -13,3 +13,8 @@ Configurer la variable serveur `DIRECTUS_SERVER_HOST` dans le fichier
 dans l'environnement de déploiement. Elle doit contenir l'URL de base de
 l'instance Directus. Sans cette configuration, les recommandations restent
 indisponibles. Les règles affichent uniquement leur contenu textuel.
+
+Le test `pnpm --filter @trilogy-ds/doc test:preview` compare les aperçus au
+rendu normal des composants dans Chrome. Il nécessite le serveur de documentation
+en cours d'exécution sur le port 3001. Les variables `CHROME_PATH` et `DOCS_URL`
+permettent de choisir un autre navigateur Chromium ou une autre adresse.

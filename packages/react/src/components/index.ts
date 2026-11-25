@@ -1,4 +1,5 @@
 export * from "./button"
+export * from "./accordion"
 export * from "./alert"
 export * from "./title"
 export * from "./text"

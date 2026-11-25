@@ -41,22 +41,19 @@ body.docs-body-root {
 }
 
 /* prettier-ignore */
-@scope (.docs-app) {
-  .live-example-preview {
+@scope (.docs-app) to (.live-example-preview) {
+  * {
     box-sizing: border-box;
   }
-  *:not(.live-example-preview, .live-example-preview *) {
-    box-sizing: border-box;
-  }
-  button:not(.live-example-preview button),
-  input:not(.live-example-preview input) {
+  button,
+  input {
     font: inherit;
   }
-  a:not(.live-example-preview a) {
+  a {
     color: inherit;
     text-decoration: none;
   }
-  button:not(.live-example-preview button) {
+  button {
     color: inherit;
   }
   ::selection {
@@ -607,35 +604,6 @@ body.docs-body-root {
   font-size: 16px;
   font-weight: 600;
 }
-.live-example-preview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 260px;
-  padding: 42px;
-  overflow: hidden;
-  background: #09090b;
-}
-.live-example-preview > div {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-.preview-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-.preview-stack {
-  display: grid;
-  width: min(100%, 520px);
-  gap: 12px;
-}
-.preview-typography {
-  justify-items: start;
-}
 .example-card {
   margin: 0 0 22px;
   scroll-margin-top: 84px;
@@ -661,12 +629,6 @@ body.docs-body-root {
 }
 .code-block-example .code-format-tabs {
   margin: 14px 18px 0;
-}
-.code-block-example .live-example-preview {
-  min-height: 260px;
-}
-.code-block-example .live-example-preview .alert {
-  width: 100%;
 }
 .code-block-source {
   position: relative;
@@ -1061,10 +1023,6 @@ body.docs-body-root {
   .family-card-grid {
     grid-template-columns: 1fr;
   }
-  .live-example-preview {
-    min-height: 160px;
-    padding: 20px 14px;
-  }
   .doc-section table {
     display: block;
     overflow-x: auto;
@@ -1078,4 +1036,51 @@ body.docs-body-root {
     min-width: 210px;
   }
 }
+}
+
+/* Only the preview container and its opt-in example layouts are styled here.
+   Components inside retain the same styles and normal flow as outside the docs. */
+.docs-app .live-example-preview {
+  display: flex;
+  min-width: 0;
+  min-height: 260px;
+  align-items: flex-start;
+  padding: 42px;
+  overflow: auto;
+  background: var(--background);
+  color: var(--color-primary);
+  color-scheme: light;
+  font-family: var(--font-family-primary), system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+.docs-app .live-example-canvas {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+.docs-app .live-example-preview .preview-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.docs-app .live-example-preview .preview-stack {
+  display: grid;
+  width: min(100%, 520px);
+  gap: 12px;
+}
+.docs-app .live-example-preview .preview-typography {
+  justify-items: start;
+}
+@media (max-width: 760px) {
+  .docs-app .live-example-preview {
+    min-height: 160px;
+    padding: 20px 14px;
+  }
 }
