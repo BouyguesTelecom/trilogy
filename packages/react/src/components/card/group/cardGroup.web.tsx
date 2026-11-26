@@ -9,7 +9,7 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { CardGroupProps } from "../card.types"
+import type { CardGroupProps } from "./cardGroup.types"
 
 /** CardGroup Component.
  * @param children {ReactNode} A Card and its CardGroupAddOn siblings

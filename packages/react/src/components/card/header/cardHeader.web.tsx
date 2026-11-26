@@ -9,7 +9,7 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { CardSectionProps } from "../card.types"
+import type { CardHeaderProps } from "./cardHeader.types"
 
 /** CardHeader Component.
  * @param children {ReactNode} Header content
@@ -23,8 +23,8 @@ import type { CardSectionProps } from "../card.types"
  * None.
  */
 export const CardHeader: ForwardRefExoticComponent<
-  PropsWithChildren<CardSectionProps> & RefAttributes<HTMLDivElement>
-> = forwardRef<HTMLDivElement, PropsWithChildren<CardSectionProps>>(
+  PropsWithChildren<CardHeaderProps> & RefAttributes<HTMLDivElement>
+> = forwardRef<HTMLDivElement, PropsWithChildren<CardHeaderProps>>(
   ({ children, background, id, testId, className, style }, ref) => {
     const classes = useHashClass(
       clsx(

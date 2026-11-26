@@ -6,9 +6,9 @@ import {
 } from "react"
 import { Image, type ImageStyle, type StyleProp } from "react-native"
 
-import type { CardImageProps } from "../card.types"
 import { useCardOrientation } from "../cardOrientation.native"
 import { useCardImageStyles } from "./cardImage.styles.native"
+import type { CardImageProps } from "./cardImage.types"
 import { useImageRatio } from "./cardImageRatio.native"
 
 export type CardImageNativeRef = ComponentRef<typeof Image>

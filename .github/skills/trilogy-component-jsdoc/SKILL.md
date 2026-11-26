@@ -15,7 +15,7 @@ Apply this skill to every public component or subcomponent whose code is created
 1. Put the main JSDoc block immediately above each public component export in its implementation file. State the component's purpose in one short sentence, then document parameters in this order: shared props, Web-only props, Native-only props.
 2. Use individual `@param` tags with the prop name, type, and concise description. Inherited props may be referenced collectively by their source interface (for example, `CommonProps`) when repeating each inherited property would add no useful detail.
 3. Separate platform-specific sections with clear divider lines. Omit a platform section only when that platform has no unique props; if both platforms share the same API, state that explicitly.
-4. In the `*.types.ts` file, add a brief JSDoc comment to every directly declared prop so its effect appears in IntelliSense. Do not create artificial Web/Native interfaces or reorganize exports and types solely for documentation.
+4. In the component's own colocated `<name>.types.ts` file (each component and each subcomponent has its own), add a brief JSDoc comment to every directly declared prop so its effect appears in IntelliSense. Do not create artificial Web/Native interfaces or reorganize exports and types solely for documentation.
 5. If a shared prop behaves differently by platform, preserve the contract and document both behaviors and defaults accurately.
 
 ## Component JSDoc template

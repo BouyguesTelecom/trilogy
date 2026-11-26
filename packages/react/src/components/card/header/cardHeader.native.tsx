@@ -8,9 +8,9 @@ import {
 } from "react"
 import { Text, View, type StyleProp, type ViewStyle } from "react-native"
 
-import type { CardSectionProps } from "../card.types"
 import { useCardBackground } from "../cardBackground.native"
 import { useCardHeaderStyles } from "./cardHeader.styles.native"
+import type { CardHeaderProps } from "./cardHeader.types"
 
 export type CardHeaderNativeRef = ComponentRef<typeof View>
 /** CardHeader Component.
@@ -25,8 +25,8 @@ export type CardHeaderNativeRef = ComponentRef<typeof View>
  * None.
  */
 export const CardHeader: ForwardRefExoticComponent<
-  PropsWithChildren<CardSectionProps> & RefAttributes<CardHeaderNativeRef>
-> = forwardRef<CardHeaderNativeRef, PropsWithChildren<CardSectionProps>>(
+  PropsWithChildren<CardHeaderProps> & RefAttributes<CardHeaderNativeRef>
+> = forwardRef<CardHeaderNativeRef, PropsWithChildren<CardHeaderProps>>(
   ({ children, background, id, testId, style }, ref) => {
     const styles = useCardHeaderStyles()
     const color = useCardBackground(background)

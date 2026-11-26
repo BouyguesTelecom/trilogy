@@ -13,8 +13,8 @@ import {
   type ViewStyle,
 } from "react-native"
 
-import type { CardGroupAddOnProps } from "../card.types"
 import { useCardGroupAddOnStyles } from "./cardGroupAddOn.styles.native"
+import type { CardGroupAddOnProps } from "./cardGroupAddOn.types"
 
 export type CardGroupAddOnNativeRef = ComponentRef<typeof View>
 /** CardGroupAddOn Component.

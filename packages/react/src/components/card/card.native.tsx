@@ -17,6 +17,7 @@ export type CardNativeRef = ComponentRef<typeof View>
  * @param appearance {CardAppearance} Surface treatment; defaults to shadow
  * @param orientation {CardOrientation} Layout direction: `vertical` or `horizontal`; defaults to vertical
  * @param borderRadius {CardBorderRadius} Corner radius token (`full`, `lg`, `md`, `sm`, `xs`, `none`); omitted keeps `lg`
+ * @param padding {CardPadding} Padding spacing token (`xxxl` to `none`); omitted adds none
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override
@@ -34,6 +35,7 @@ export const Card: ForwardRefExoticComponent<
       appearance = "shadow",
       orientation = "vertical",
       borderRadius,
+      padding,
       id,
       testId,
       style,
@@ -51,6 +53,7 @@ export const Card: ForwardRefExoticComponent<
           styles.orientation[orientation],
           styles.appearance[appearance],
           borderRadius && styles.borderRadius[borderRadius],
+          padding && styles.padding[padding],
           style as StyleProp<ViewStyle>,
         ]}
       >

@@ -16,6 +16,7 @@ import type { CardProps } from "./card.types"
  * @param appearance {CardAppearance} Surface treatment; defaults to shadow
  * @param orientation {CardOrientation} Layout direction: `vertical` or `horizontal`; defaults to vertical
  * @param borderRadius {CardBorderRadius} Corner radius token (`full`, `lg`, `md`, `sm`, `xs`, `none`); omitted keeps `lg`
+ * @param padding {CardPadding} Padding spacing token (`xxxl` to `none`); omitted adds none
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override
@@ -33,6 +34,7 @@ export const Card: ForwardRefExoticComponent<
       appearance = "shadow",
       orientation = "vertical",
       borderRadius,
+      padding,
       id,
       testId,
       className,
@@ -46,6 +48,7 @@ export const Card: ForwardRefExoticComponent<
         `card-${appearance}`,
         `card-${orientation}`,
         borderRadius && `radius-${borderRadius}`,
+        padding && `spacing-${padding}`,
         className
       )
     )

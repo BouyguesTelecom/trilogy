@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest"
 
 import { TrilogyContextProvider } from "../../contexts/trilogyContext.web"
 import { Card } from "./card.web"
+import { CardContent } from "./content/cardContent.web"
 
 describe("Card web", () => {
   it("forwards its ref and style and keeps children in order", () => {
@@ -59,28 +60,31 @@ describe("Card web", () => {
     }
   )
 
-  it("adds no helper class without borderRadius", () => {
+  it("adds no helper class without borderRadius or padding", () => {
     render(<Card testId="card">Content</Card>)
     expect(screen.getByTestId("card").className).not.toMatch(/radius-|spacing-/)
   })
 
-  it("maps borderRadius to its helper class", () => {
+  it.each([
+    ["borderRadius", "md", "radius-md"],
+    ["padding", "lg", "spacing-lg"],
+  ] as const)("maps %s to its helper class", (prop, value, helper) => {
     render(
-      <Card testId="card" borderRadius="md">
+      <Card testId="card" {...{ [prop]: value }}>
         Content
       </Card>
     )
     expect(screen.getByTestId("card")).toHaveClass(
       "card",
       "card-shadow",
-      "radius-md"
+      helper
     )
   })
 
-  it("hashes the helper class exactly once", () => {
+  it("hashes the helper classes exactly once", () => {
     render(
       <TrilogyContextProvider mangled hash="test">
-        <Card testId="card" borderRadius="sm" className="extra">
+        <Card testId="card" borderRadius="sm" padding="xs" className="extra">
           Content
         </Card>
       </TrilogyContextProvider>
@@ -88,6 +92,7 @@ describe("Card web", () => {
     expect(screen.getByTestId("card")).toHaveClass(
       "card_test",
       "radius-sm_test",
+      "spacing-xs_test",
       "extra_test"
     )
   })
@@ -109,7 +114,7 @@ describe("Card web compiled styles", () => {
   })
   afterEach(() => stylesheet.remove())
 
-  it("keeps the default radius without helpers", () => {
+  it("keeps the default radius and no padding without helpers", () => {
     render(<Card testId="card">Content</Card>)
     const style = getComputedStyle(screen.getByTestId("card"))
     expect(style.borderRadius).toBe("24px")
@@ -137,14 +142,47 @@ describe("Card web compiled styles", () => {
     }
   )
 
-  it("keeps the caller style after the radius helper", () => {
+  it.each([
+    ["xs", "8px"],
+    ["md", "16px"],
+    ["none", "0px"],
+  ] as const)(
+    "applies the %s padding helper without changing the radius",
+    (padding, expected) => {
+      render(
+        <Card testId="card" padding={padding}>
+          Content
+        </Card>
+      )
+      const style = getComputedStyle(screen.getByTestId("card"))
+      expect(style.padding).toBe(expected)
+      expect(style.borderRadius).toBe("24px")
+    }
+  )
+
+  it("does not change the padding of its CardContent", () => {
     render(
-      <Card testId="card" borderRadius="sm" style={{ borderRadius: 3 }}>
+      <Card testId="card" padding="md">
+        <CardContent testId="content">Content</CardContent>
+      </Card>
+    )
+    expect(getComputedStyle(screen.getByTestId("card")).padding).toBe("16px")
+    expect(getComputedStyle(screen.getByTestId("content")).padding).toBe("24px")
+  })
+
+  it("keeps the caller style after the helpers", () => {
+    render(
+      <Card
+        testId="card"
+        borderRadius="sm"
+        padding="lg"
+        style={{ borderRadius: 3 }}
+      >
         Content
       </Card>
     )
-    expect(getComputedStyle(screen.getByTestId("card")).borderRadius).toBe(
-      "3px"
-    )
+    const style = getComputedStyle(screen.getByTestId("card"))
+    expect(style.padding).toBe("24px")
+    expect(style.borderRadius).toBe("3px")
   })
 })

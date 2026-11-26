@@ -7,7 +7,7 @@ import {
 } from "react"
 import { View, type StyleProp, type ViewStyle } from "react-native"
 
-import type { CardGroupProps } from "../card.types"
+import type { CardGroupProps } from "./cardGroup.types"
 
 export type CardGroupNativeRef = ComponentRef<typeof View>
 /** CardGroup Component.

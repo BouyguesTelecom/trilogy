@@ -8,10 +8,10 @@ import {
 } from "react"
 import { Text, View, type StyleProp, type ViewStyle } from "react-native"
 
-import type { CardContentProps } from "../card.types"
 import { useCardBackground } from "../cardBackground.native"
 import { useCardOrientation } from "../cardOrientation.native"
 import { useCardContentStyles } from "./cardContent.styles.native"
+import type { CardContentProps } from "./cardContent.types"
 
 export type CardContentNativeRef = ComponentRef<typeof View>
 /** CardContent Component.

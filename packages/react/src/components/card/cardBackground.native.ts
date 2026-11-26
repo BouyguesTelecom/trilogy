@@ -1,9 +1,9 @@
+import type { BackgroundColors } from "@/interfaces/backgroundColors"
+
 import { useTrilogyContext } from "@/hooks/useTrilogyContext.native"
 
-import type { CardSectionProps } from "./card.types"
-
 export function useCardBackground(
-  background: CardSectionProps["background"]
+  background: BackgroundColors | `${BackgroundColors}` | undefined
 ): string | undefined {
   const { colors, mode } = useTrilogyContext()
   if (!background) return undefined

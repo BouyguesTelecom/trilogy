@@ -33,7 +33,7 @@ export default function CardScreen() {
           />
         </Card>
 
-        <Card orientation="horizontal">
+        <Card orientation="horizontal" padding="none">
           <CardContent>
             <Text size="sm">image inset</Text>
           </CardContent>

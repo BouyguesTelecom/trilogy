@@ -6,7 +6,7 @@ import { Card } from "./card.native"
 import { CardContent } from "./content/cardContent.native"
 import { CardImage } from "./image/cardImage.native"
 
-it("keeps the default radius without helpers", async () => {
+it("keeps the default radius and adds no padding without helpers", async () => {
   await render(
     <Card testId="card">
       <Text>Content</Text>
@@ -36,6 +36,51 @@ it.each([
     expect(style.overflow).toBe("hidden")
   }
 )
+
+it.each([
+  ["xxxl", theme.spacings.spacingXxxl],
+  ["md", theme.spacings.spacingMd],
+  ["xs", theme.spacings.spacingXs],
+  ["none", theme.spacings.spacingNone],
+] as const)(
+  "adds the %s padding without changing the radius",
+  async (padding, expected) => {
+    await render(
+      <Card testId="card" padding={padding}>
+        <Text>Content</Text>
+      </Card>
+    )
+    const style = StyleSheet.flatten(screen.getByTestId("card").props.style)
+    expect(style.padding).toBe(expected)
+    expect(style.borderRadius).toBe(theme.radius.radiusLg)
+  }
+)
+
+it("does not change the padding of its CardContent", async () => {
+  await render(
+    <Card padding="xs">
+      <CardContent testId="content">Content</CardContent>
+    </Card>
+  )
+  const style = StyleSheet.flatten(screen.getByTestId("content").props.style)
+  expect(style.padding).toBe(theme.spacings.spacingLg)
+})
+
+it("keeps the caller style after the helpers", async () => {
+  await render(
+    <Card
+      testId="card"
+      borderRadius="sm"
+      padding="lg"
+      style={{ borderRadius: 3 }}
+    >
+      <Text>Content</Text>
+    </Card>
+  )
+  const style = StyleSheet.flatten(screen.getByTestId("card").props.style)
+  expect(style.borderRadius).toBe(3)
+  expect(style.padding).toBe(theme.spacings.spacingLg)
+})
 
 it("keeps the caller style after the radius helper", async () => {
   await render(

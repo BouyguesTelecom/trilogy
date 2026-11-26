@@ -9,7 +9,7 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { CardGroupAddOnProps } from "../card.types"
+import type { CardGroupAddOnProps } from "./cardGroupAddOn.types"
 
 /** CardGroupAddOn Component.
  * @param children {ReactNode} Content straddling the edge of the adjacent Card

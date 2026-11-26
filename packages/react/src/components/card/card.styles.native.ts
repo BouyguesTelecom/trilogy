@@ -2,7 +2,7 @@ import type { ViewStyle } from "react-native"
 
 import { makeStyle } from "@/hooks/useMakeStyle.native"
 
-import type { CardBorderRadius } from "./card.types"
+import type { CardBorderRadius, CardPadding } from "./card.types"
 import { tokenStyles } from "./cardTokens.native"
 
 type CardStyles = {
@@ -10,6 +10,7 @@ type CardStyles = {
   orientation: Record<"vertical" | "horizontal", ViewStyle>
   appearance: Record<"shadow" | "outlined" | "accent-start", ViewStyle>
   borderRadius: Record<CardBorderRadius, ViewStyle>
+  padding: Record<CardPadding, ViewStyle>
 }
 
 export const useCardStyles: () => CardStyles = makeStyle((theme) => ({
@@ -38,4 +39,7 @@ export const useCardStyles: () => CardStyles = makeStyle((theme) => ({
     "radius",
     (borderRadius) => ({ borderRadius })
   ),
+  padding: tokenStyles<CardPadding>(theme.spacings, "spacing", (padding) => ({
+    padding,
+  })),
 }))

@@ -9,7 +9,7 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { CardContentProps } from "../card.types"
+import type { CardContentProps } from "./cardContent.types"
 
 /** CardContent Component.
  * @param children {ReactNode} Card content

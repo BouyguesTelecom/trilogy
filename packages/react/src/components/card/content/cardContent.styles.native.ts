@@ -2,8 +2,8 @@ import type { TextStyle, ViewStyle } from "react-native"
 
 import { makeStyle } from "@/hooks/useMakeStyle.native"
 
-import type { CardContentPadding } from "../card.types"
 import { tokenStyles } from "../cardTokens.native"
+import type { CardContentPadding } from "./cardContent.types"
 
 export const useCardContentStyles: () => {
   base: { view: ViewStyle; text: TextStyle }

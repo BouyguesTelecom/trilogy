@@ -8,7 +8,7 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { CardImageProps } from "../card.types"
+import type { CardImageProps } from "./cardImage.types"
 
 /** CardImage Component.
  * @param src {string} Image URI
