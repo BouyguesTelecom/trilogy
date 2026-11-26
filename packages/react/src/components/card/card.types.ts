@@ -2,7 +2,7 @@ import type { BackgroundColors } from "@/interfaces/backgroundColors"
 import type { CommonProps } from "@/interfaces/commonProps"
 
 export type CardAppearance = "shadow" | "outlined" | "accent-start"
-export type CardOverlayAlign = "start" | "center" | "end"
+export type CardGroupAddOnAlign = "start" | "center" | "end"
 export interface CardUiProps {
   /** Surface treatment; defaults to shadow. */
   appearance?: CardAppearance
@@ -20,7 +20,8 @@ export interface CardImageProps extends CommonProps {
   /** Width-to-height ratio; defaults to 2. */
   aspectRatio?: number
 }
-export interface CardOverlayProps extends CommonProps {
-  /** Horizontal alignment; defaults to center. */
-  align?: CardOverlayAlign
+export interface CardGroupProps extends CommonProps {}
+export interface CardGroupAddOnProps extends CommonProps {
+  /** Logical horizontal alignment; defaults to center. */
+  align?: CardGroupAddOnAlign
 }

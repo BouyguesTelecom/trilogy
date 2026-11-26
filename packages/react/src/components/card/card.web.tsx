@@ -12,7 +12,7 @@ import { useHashClass } from "@/hooks/useHashClass.web"
 import type { CardProps } from "./card.types"
 
 /** Card Component
- * @param children {ReactNode} Card sections and optional direct CardOverlay children
+ * @param children {ReactNode} Card sections: CardHeader, CardImage and CardContent
  * @param appearance {CardAppearance} Surface treatment; defaults to shadow
  * @param id {string} Element identifier
  * @param testId {string} Test identifier

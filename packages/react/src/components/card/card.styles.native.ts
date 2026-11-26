@@ -9,9 +9,9 @@ type CardStyles = {
 export const useCardStyles: () => CardStyles = makeStyle((theme) => ({
   base: {
     view: {
-      position: "relative",
       borderRadius: theme.radius.radiusLg,
       backgroundColor: theme.colors.backgroundPrimary,
+      overflow: "hidden",
     },
   },
   appearance: {

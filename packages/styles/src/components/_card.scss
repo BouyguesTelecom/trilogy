@@ -28,42 +28,32 @@
   background-color: var(--background-primary);
 }
 
-.card > .cardImage {
-  position: relative;
-  isolation: isolate;
-  box-sizing: border-box;
+.cardImage {
   display: block;
-  flex: 0 0 100%;
   width: 100%;
-  max-width: 100%;
-  min-width: 0;
   height: auto;
-  margin: 0;
-  overflow: hidden;
   object-fit: cover;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  vertical-align: top;
 }
 
-.cardOverlay {
-  position: absolute;
-  z-index: 1;
-  inset-inline: 0;
-  top: 0;
-  transform: translateY(-50%);
+.cardGroup {
   display: flex;
+  flex-direction: column;
+}
+/* Zero height keeps the add-on in the flow while its content straddles the card edge. */
+.cardGroupAddOn {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 0;
   padding-inline: var(--spacing-md);
-  pointer-events: none;
 }
-.cardOverlay > * {
-  pointer-events: auto;
-}
-.cardOverlay-center {
+.cardGroupAddOn-center {
   justify-content: center;
 }
-.cardOverlay-start {
+.cardGroupAddOn-start {
   justify-content: flex-start;
 }
-.cardOverlay-end {
+.cardGroupAddOn-end {
   justify-content: flex-end;
 }

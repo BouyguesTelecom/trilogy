@@ -35,20 +35,7 @@ export const CardImage: ForwardRefExoticComponent<
         className={classes}
         src={src}
         alt={alt}
-        style={{
-          display: "block",
-          boxSizing: "border-box",
-          width: "100%",
-          maxWidth: "100%",
-          minWidth: 0,
-          height: "auto",
-          margin: 0,
-          overflow: "hidden",
-          objectFit: "cover",
-          borderRadius: "var(--radius-lg) var(--radius-lg) 0 0",
-          aspectRatio,
-          ...(style as CSSProperties),
-        }}
+        style={{ aspectRatio, ...(style as CSSProperties) }}
       />
     )
   }

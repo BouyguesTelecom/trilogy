@@ -9,8 +9,6 @@ export const useCardContentStyles: () => {
     view: {
       padding: theme.spacings.spacingLg,
       backgroundColor: theme.colors.backgroundPrimary,
-      borderBottomStartRadius: theme.radius.radiusLg,
-      borderBottomEndRadius: theme.radius.radiusLg,
     },
     text: { color: theme.colors.colorPrimary },
   },

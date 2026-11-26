@@ -1,8 +1,9 @@
 import { Card } from "./card.web"
 import { CardContent } from "./content/cardContent.web"
+import { CardGroup } from "./group/cardGroup.web"
+import { CardGroupAddOn } from "./groupAddOn/cardGroupAddOn.web"
 import { CardHeader } from "./header/cardHeader.web"
 import { CardImage } from "./image/cardImage.web"
-import { CardOverlay } from "./overlay/cardOverlay.web"
 
 const meta: { title: string; component: typeof Card } = {
   title: "Components/Card",
@@ -12,13 +13,15 @@ export default meta
 
 export const Composition: { render: () => React.JSX.Element } = {
   render: () => (
-    <Card>
-      <CardOverlay align="center">
+    <CardGroup>
+      <CardGroupAddOn align="center">
         <span>New</span>
-      </CardOverlay>
-      <CardImage src="https://placehold.co/600x300" alt="Example" />
-      <CardContent>Card content</CardContent>
-    </Card>
+      </CardGroupAddOn>
+      <Card>
+        <CardImage src="https://placehold.co/600x300" alt="Example" />
+        <CardContent>Card content</CardContent>
+      </Card>
+    </CardGroup>
   ),
 }
 export const Outlined: { render: () => React.JSX.Element } = {

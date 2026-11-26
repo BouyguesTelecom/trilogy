@@ -9,11 +9,10 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { CardOverlayProps } from "../card.types"
+import type { CardGroupProps } from "../card.types"
 
-/** CardOverlay Component.
- * @param children {ReactNode} Overlay content
- * @param align {CardOverlayAlign} Alignment; defaults to center
+/** CardGroup Component.
+ * @param children {ReactNode} A Card and its CardGroupAddOn siblings
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override
@@ -22,13 +21,11 @@ import type { CardOverlayProps } from "../card.types"
  * - ------------------------- NATIVE PROPERTIES -----------------------------
  * None.
  */
-export const CardOverlay: ForwardRefExoticComponent<
-  PropsWithChildren<CardOverlayProps> & RefAttributes<HTMLDivElement>
-> = forwardRef<HTMLDivElement, PropsWithChildren<CardOverlayProps>>(
-  ({ children, align = "center", id, testId, className, style }, ref) => {
-    const classes = useHashClass(
-      clsx("cardOverlay", `cardOverlay-${align}`, className)
-    )
+export const CardGroup: ForwardRefExoticComponent<
+  PropsWithChildren<CardGroupProps> & RefAttributes<HTMLDivElement>
+> = forwardRef<HTMLDivElement, PropsWithChildren<CardGroupProps>>(
+  ({ children, id, testId, className, style }, ref) => {
+    const classes = useHashClass(clsx("cardGroup", className))
     return (
       <div
         ref={ref}
@@ -42,4 +39,4 @@ export const CardOverlay: ForwardRefExoticComponent<
     )
   }
 )
-CardOverlay.displayName = "CardOverlay"
+CardGroup.displayName = "CardGroup"

@@ -9,8 +9,6 @@ export const useCardHeaderStyles: () => {
     view: {
       padding: theme.spacings.spacingMd,
       backgroundColor: theme.colors.backgroundSecondary,
-      borderTopStartRadius: theme.radius.radiusLg,
-      borderTopEndRadius: theme.radius.radiusLg,
     },
     text: { color: theme.colors.colorInverse },
   },

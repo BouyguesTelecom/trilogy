@@ -38,7 +38,7 @@ export const CardImage: ForwardRefExoticComponent<
         resizeMode="cover"
         style={[
           styles.base.image,
-          { aspectRatio, width: "100%", maxWidth: "100%", overflow: "hidden" },
+          { aspectRatio },
           style as StyleProp<ImageStyle>,
         ]}
       />

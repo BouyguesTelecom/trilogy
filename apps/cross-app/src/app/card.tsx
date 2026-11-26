@@ -1,9 +1,10 @@
 import {
   Card,
   CardContent,
+  CardGroup,
+  CardGroupAddOn,
   CardHeader,
   CardImage,
-  CardOverlay,
   Text,
   Title,
 } from "@trilogy-ds/react"
@@ -25,6 +26,7 @@ export default function CardScreen() {
         <Card>
           <CardImage
             src="https://www.bouyguestelecom.fr/static/wbm/media/hub/Actu-1-WiFi-N1.webp"
+            alt="Wi-Fi"
             aspectRatio={3}
           />
           <CardContent>
@@ -32,15 +34,21 @@ export default function CardScreen() {
           </CardContent>
         </Card>
 
-        <Card appearance="outlined">
-          <CardOverlay>
+        <CardGroup>
+          <CardGroupAddOn>
             <Title size="base">Black friday</Title>
-          </CardOverlay>
-          <CardImage src="https://via.placeholder.com/150" aspectRatio={3} />
-          <CardContent>
-            <Text size="sm">lorem ipsum</Text>
-          </CardContent>
-        </Card>
+          </CardGroupAddOn>
+          <Card appearance="outlined">
+            <CardImage
+              src="https://via.placeholder.com/150"
+              alt="Black friday"
+              aspectRatio={3}
+            />
+            <CardContent>
+              <Text size="sm">lorem ipsum</Text>
+            </CardContent>
+          </Card>
+        </CardGroup>
 
         <Card appearance="accent-start">
           <CardContent>
@@ -48,24 +56,32 @@ export default function CardScreen() {
           </CardContent>
         </Card>
 
-        <Card appearance="accent-start">
-          <CardOverlay>
+        <CardGroup>
+          <CardGroupAddOn>
             <Title size="base">Black friday</Title>
-          </CardOverlay>
-          <CardImage src="https://via.placeholder.com/150" aspectRatio={3} />
-          <CardContent>
-            <Text size="sm">lorem ipsum</Text>
-          </CardContent>
-        </Card>
+          </CardGroupAddOn>
+          <Card appearance="accent-start">
+            <CardImage
+              src="https://via.placeholder.com/150"
+              alt="Black friday"
+              aspectRatio={3}
+            />
+            <CardContent>
+              <Text size="sm">lorem ipsum</Text>
+            </CardContent>
+          </Card>
+        </CardGroup>
 
-        <Card appearance="accent-start">
-          <CardOverlay>
+        <CardGroup>
+          <CardGroupAddOn>
             <Title size="base">Black friday</Title>
-          </CardOverlay>
-          <CardContent>
-            <Text size="sm">lorem ipsum</Text>
-          </CardContent>
-        </Card>
+          </CardGroupAddOn>
+          <Card appearance="accent-start">
+            <CardContent>
+              <Text size="sm">lorem ipsum</Text>
+            </CardContent>
+          </Card>
+        </CardGroup>
 
         <Card appearance="accent-start">
           <CardHeader>

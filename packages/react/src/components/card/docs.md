@@ -32,10 +32,10 @@ Choose a surface treatment without changing its layout.
 
 ## API Reference
 
-Place `CardOverlay` directly inside `Card` so it can extend beyond the card. The overlay is rendered in front of the other children, which retain their relative order. A section's background override does not automatically change the color of its text.
+Place `CardGroup` around a `Card` to attach a `CardGroupAddOn` to its top or bottom edge. A section's background override does not automatically change the color of its text.
 
-| Prop         | Type                                     | Default  | Support      | Description                                |
-| ------------ | ---------------------------------------- | -------- | ------------ | ------------------------------------------ |
-| `appearance` | `shadow` / `outlined` / `accent-start`   | `shadow` | Web · Mobile | Surface treatment.                         |
-| `children`   | `ReactNode`                              | —        | Web · Mobile | Card sections and optional direct overlay. |
-| `style`      | `CSSProperties` / `StyleProp<ViewStyle>` | —        | Web · Mobile | Style override.                            |
+| Prop         | Type                                     | Default  | Support      | Description        |
+| ------------ | ---------------------------------------- | -------- | ------------ | ------------------ |
+| `appearance` | `shadow` / `outlined` / `accent-start`   | `shadow` | Web · Mobile | Surface treatment. |
+| `children`   | `ReactNode`                              | —        | Web · Mobile | Card sections.     |
+| `style`      | `CSSProperties` / `StyleProp<ViewStyle>` | —        | Web · Mobile | Style override.    |
