@@ -1,0 +1,38 @@
+/* Low specificity so the bg-* and text-* helpers can override the default colors. */
+:where(.sticker) {
+  background-color: var(--background-secondary);
+  color: var(--color-inverse);
+}
+.sticker {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+/* Fixed sizes: neither the content nor the surrounding layout can change the height. */
+.sticker-default {
+  height: var(--size-sm);
+  padding-inline: var(--spacing-md);
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-base);
+}
+.sticker-small {
+  height: var(--spacing-lg);
+  padding-inline: var(--spacing-sm);
+  gap: var(--spacing-xxs);
+  font-size: var(--font-size-xs);
+}
+.sticker > svg,
+.sticker > img {
+  flex: none;
+  width: 1em;
+  height: 1em;
+}

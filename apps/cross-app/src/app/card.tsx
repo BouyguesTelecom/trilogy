@@ -6,6 +6,7 @@ import {
   CardGroupAddOn,
   CardHeader,
   CardImage,
+  Sticker,
   Text,
   Title,
 } from "@trilogy-ds/react"
@@ -51,16 +52,21 @@ export default function CardScreen() {
           </CardContent>
         </Card>
 
-        <Card appearance="shadow">
-          <CardImage
-            src="https://www.bouyguestelecom.fr/static/wbm/media/hub/Actu-1-WiFi-N1.webp"
-            alt="Wi-Fi"
-            aspectRatio={3}
-          />
-          <CardContent>
-            <Text size="sm">lorem ipsum</Text>
-          </CardContent>
-        </Card>
+        <CardGroup>
+          <CardGroupAddOn>
+            <Sticker background="accent">Black friday</Sticker>
+          </CardGroupAddOn>
+          <Card appearance="shadow">
+            <CardImage
+              src="https://www.bouyguestelecom.fr/static/wbm/media/hub/Actu-1-WiFi-N1.webp"
+              alt="Wi-Fi"
+              aspectRatio={3}
+            />
+            <CardContent>
+              <Text size="sm">lorem ipsum</Text>
+            </CardContent>
+          </Card>
+        </CardGroup>
 
         <CardGroup>
           <CardGroupAddOn>
