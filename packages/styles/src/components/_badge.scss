@@ -1,0 +1,69 @@
+/* Low specificity so the bg-* and text-* helpers can override the default colors. */
+:where(.badge) {
+  background-color: var(--background-secondary);
+  color: var(--color-inverse);
+}
+.badge {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding-inline: var(--spacing-xxs);
+  gap: var(--spacing-xxs);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+/* Fixed sizes: a single character or an icon gives a circle, longer content a pill. */
+.badge-default {
+  height: var(--spacing-lg);
+  min-width: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+}
+.badge-small {
+  height: var(--size-xs);
+  min-width: var(--size-xs);
+  font-size: var(--font-size-xs);
+}
+.badge > svg,
+.badge > img {
+  flex: none;
+  width: 1em;
+  height: 1em;
+}
+
+.badgeAnchor {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: fit-content;
+}
+/* The badge center sits a quarter of its own size inside the corner of the anchored element. */
+.badgeAnchor > .badge {
+  position: absolute;
+}
+.badgeAnchor-top-left > .badge {
+  top: 0;
+  left: 0;
+  transform: translate(-25%, -25%);
+}
+.badgeAnchor-top-right > .badge {
+  top: 0;
+  right: 0;
+  transform: translate(25%, -25%);
+}
+.badgeAnchor-bottom-left > .badge {
+  bottom: 0;
+  left: 0;
+  transform: translate(-25%, 25%);
+}
+.badgeAnchor-bottom-right > .badge {
+  right: 0;
+  bottom: 0;
+  transform: translate(25%, 25%);
+}

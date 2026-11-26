@@ -2,8 +2,15 @@ import type { theme } from "@/constants/theme"
 import type { CommonProps } from "@/interfaces/commonProps"
 import type { ThemeTokenSuffix } from "@/interfaces/themeTokens"
 
-export type CardAppearance = "shadow" | "outlined" | "accent-start"
-export type CardOrientation = "vertical" | "horizontal"
+export enum CardAppearance {
+  shadow = "shadow",
+  outlined = "outlined",
+  accentStart = "accent-start",
+}
+export enum CardOrientation {
+  vertical = "vertical",
+  horizontal = "horizontal",
+}
 /** Radius token names from the theme, without the `radius` prefix (for example `md`). */
 export type CardBorderRadius = ThemeTokenSuffix<
   keyof typeof theme.radius,
@@ -16,9 +23,9 @@ export type CardPadding = ThemeTokenSuffix<
 >
 export interface CardUiProps {
   /** Surface treatment; omitted adds none. */
-  appearance?: CardAppearance
+  appearance?: CardAppearance | `${CardAppearance}`
   /** Stacks sections top to bottom (`vertical`) or side by side (`horizontal`); defaults to vertical. */
-  orientation?: CardOrientation
+  orientation?: CardOrientation | `${CardOrientation}`
 }
 export interface CardHelperProps {
   /** Overrides the corner radius with a theme radius token; omitted keeps the `lg` radius. */

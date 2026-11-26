@@ -7,12 +7,12 @@ import {
 } from "react"
 import { theme } from "@/constants/theme"
 import { clsx } from "@/utils/clsx"
+import { getBackgroundThemeKey } from "@/utils/getBackgroundThemeKey"
 import { getTextColorFromBackground } from "@/utils/getTextColorFromBackground"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { StickerProps } from "./sticker.types"
-import { getStickerBackgroundKey } from "./stickerColor"
+import { StickerSize, type StickerProps } from "./sticker.types"
 
 /** Sticker Component.
  * @param children {ReactNode} Short content: text, optionally with an icon; never wraps
@@ -32,7 +32,7 @@ export const Sticker: ForwardRefExoticComponent<
   (
     {
       children,
-      size = "default",
+      size = StickerSize.default,
       background = "secondary",
       id,
       testId,
@@ -43,7 +43,7 @@ export const Sticker: ForwardRefExoticComponent<
   ) => {
     // Web has no JS theme mode, so the text color is computed from the light theme colors.
     const textColor = getTextColorFromBackground(
-      theme.colors.light[getStickerBackgroundKey(background)]
+      theme.colors.light[getBackgroundThemeKey(background)]
     )
     const classes = useHashClass(
       clsx(

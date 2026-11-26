@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text } from "react-native"
 
 import { theme } from "../../constants/theme"
 import { Card } from "./card.native"
+import { CardAppearance, CardOrientation } from "./card.types"
 import { CardContent } from "./content/cardContent.native"
 import { CardImage } from "./image/cardImage.native"
 
@@ -93,8 +94,8 @@ it("keeps the caller style after the radius helper", async () => {
 })
 
 it.each([
-  ["vertical", "column"],
-  ["horizontal", "row"],
+  [CardOrientation.vertical, "column"],
+  [CardOrientation.horizontal, "row"],
 ] as const)("lays out %s cards as a %s", async (orientation, flexDirection) => {
   await render(
     <Card testId="card" orientation={orientation}>
@@ -119,7 +120,7 @@ it("shares the horizontal orientation with its image and content", async () => {
     .spyOn(Image, "getSize")
     .mockImplementation((() => {}) as unknown as typeof Image.getSize)
   await render(
-    <Card orientation="horizontal">
+    <Card orientation={CardOrientation.horizontal}>
       <CardContent testId="content">Content</CardContent>
       <CardImage testId="image" src="https://example.com/a.png" alt="A" />
     </Card>
@@ -133,9 +134,9 @@ it("shares the horizontal orientation with its image and content", async () => {
 })
 
 it.each([
-  ["shadow", "boxShadow"],
-  ["outlined", "boxShadow"],
-  ["accent-start", "boxShadow"],
+  [CardAppearance.shadow, "boxShadow"],
+  [CardAppearance.outlined, "boxShadow"],
+  [CardAppearance.accentStart, "boxShadow"],
 ] as const)(
   "renders content with the %s appearance",
   async (appearance, key) => {

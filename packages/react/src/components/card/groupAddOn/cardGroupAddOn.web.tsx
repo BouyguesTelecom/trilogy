@@ -9,7 +9,10 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { CardGroupAddOnProps } from "./cardGroupAddOn.types"
+import {
+  CardGroupAddOnAlign,
+  type CardGroupAddOnProps,
+} from "./cardGroupAddOn.types"
 
 /** CardGroupAddOn Component.
  * @param children {ReactNode} Content straddling the edge of the adjacent Card
@@ -25,7 +28,17 @@ import type { CardGroupAddOnProps } from "./cardGroupAddOn.types"
 export const CardGroupAddOn: ForwardRefExoticComponent<
   PropsWithChildren<CardGroupAddOnProps> & RefAttributes<HTMLDivElement>
 > = forwardRef<HTMLDivElement, PropsWithChildren<CardGroupAddOnProps>>(
-  ({ children, align = "center", id, testId, className, style }, ref) => {
+  (
+    {
+      children,
+      align = CardGroupAddOnAlign.center,
+      id,
+      testId,
+      className,
+      style,
+    },
+    ref
+  ) => {
     const classes = useHashClass(
       clsx("cardGroupAddOn", `cardGroupAddOn-${align}`, className)
     )

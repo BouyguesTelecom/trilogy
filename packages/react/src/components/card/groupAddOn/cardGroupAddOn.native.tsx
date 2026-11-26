@@ -14,7 +14,10 @@ import {
 } from "react-native"
 
 import { useCardGroupAddOnStyles } from "./cardGroupAddOn.styles.native"
-import type { CardGroupAddOnProps } from "./cardGroupAddOn.types"
+import {
+  CardGroupAddOnAlign,
+  type CardGroupAddOnProps,
+} from "./cardGroupAddOn.types"
 
 export type CardGroupAddOnNativeRef = ComponentRef<typeof View>
 /** CardGroupAddOn Component.
@@ -32,7 +35,10 @@ export const CardGroupAddOn: ForwardRefExoticComponent<
   PropsWithChildren<CardGroupAddOnProps> &
     RefAttributes<CardGroupAddOnNativeRef>
 > = forwardRef<CardGroupAddOnNativeRef, PropsWithChildren<CardGroupAddOnProps>>(
-  ({ children, align = "center", id, testId, style }, ref) => {
+  (
+    { children, align = CardGroupAddOnAlign.center, id, testId, style },
+    ref
+  ) => {
     const styles = useCardGroupAddOnStyles()
     const [height, setHeight] = useState(0)
     const onLayout = (event: LayoutChangeEvent) =>

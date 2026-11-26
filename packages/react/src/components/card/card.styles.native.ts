@@ -2,13 +2,18 @@ import type { ViewStyle } from "react-native"
 
 import { makeStyle } from "@/hooks/useMakeStyle.native"
 
-import type { CardBorderRadius, CardPadding } from "./card.types"
+import type {
+  CardAppearance,
+  CardBorderRadius,
+  CardOrientation,
+  CardPadding,
+} from "./card.types"
 import { tokenStyles } from "./cardTokens.native"
 
 type CardStyles = {
   base: { view: ViewStyle }
-  orientation: Record<"vertical" | "horizontal", ViewStyle>
-  appearance: Record<"shadow" | "outlined" | "accent-start", ViewStyle>
+  orientation: Record<CardOrientation, ViewStyle>
+  appearance: Record<CardAppearance, ViewStyle>
   borderRadius: Record<CardBorderRadius, ViewStyle>
   padding: Record<CardPadding, ViewStyle>
 }

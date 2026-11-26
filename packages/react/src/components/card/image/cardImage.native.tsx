@@ -6,6 +6,7 @@ import {
 } from "react"
 import { Image, type ImageStyle, type StyleProp } from "react-native"
 
+import { CardOrientation } from "../card.types"
 import { useCardOrientation } from "../cardOrientation.native"
 import { useCardImageStyles } from "./cardImage.styles.native"
 import type { CardImageProps } from "./cardImage.types"
@@ -30,7 +31,7 @@ export const CardImage: ForwardRefExoticComponent<
 > = forwardRef<CardImageNativeRef, CardImageProps>(
   ({ src, alt, aspectRatio, inset = false, id, testId, style }, ref) => {
     const styles = useCardImageStyles()
-    const horizontal = useCardOrientation() === "horizontal"
+    const horizontal = useCardOrientation() === CardOrientation.horizontal
     const naturalRatio = useImageRatio(
       src,
       horizontal && aspectRatio === undefined

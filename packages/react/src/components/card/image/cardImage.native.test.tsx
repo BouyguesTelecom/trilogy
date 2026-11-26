@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react-native"
 import { Image, StyleSheet } from "react-native"
 
 import { Card } from "../card.native"
+import { CardOrientation } from "../card.types"
 import { CardImage } from "./cardImage.native"
 
 const mockNaturalSize = (width: number, height: number): jest.SpyInstance =>
@@ -53,7 +54,7 @@ it("detaches from the card edges with inset", async () => {
 it("uses the natural ratio of the image when the card is horizontal", async () => {
   const getSize = mockNaturalSize(300, 100)
   await render(
-    <Card orientation="horizontal">
+    <Card orientation={CardOrientation.horizontal}>
       <CardImage src="https://example.com/a.png" alt="A" testId="image" />
     </Card>
   )
@@ -70,7 +71,7 @@ it("uses the natural ratio of the image when the card is horizontal", async () =
 it("lets an explicit aspectRatio win and skips the lookup", async () => {
   const getSize = mockNaturalSize(300, 100)
   await render(
-    <Card orientation="horizontal">
+    <Card orientation={CardOrientation.horizontal}>
       <CardImage
         src="https://example.com/a.png"
         alt="A"

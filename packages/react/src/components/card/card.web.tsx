@@ -9,7 +9,7 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { CardProps } from "./card.types"
+import { CardOrientation, type CardProps } from "./card.types"
 
 /** Card Component
  * @param children {ReactNode} Card sections: CardHeader, CardImage and CardContent
@@ -32,7 +32,7 @@ export const Card: ForwardRefExoticComponent<
     {
       children,
       appearance,
-      orientation = "vertical",
+      orientation = CardOrientation.vertical,
       borderRadius,
       padding,
       id,

@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native"
 import { theme } from "../../constants/theme"
 import { TrilogyContextProvider } from "../../contexts/trilogyContext.native"
 import { Sticker } from "./sticker.native"
+import { StickerSize } from "./sticker.types"
 
 const flat = (testId: string) =>
   StyleSheet.flatten(screen.getByTestId(testId).props.style)
@@ -35,7 +36,7 @@ it("never wraps the text", async () => {
 
 it("renders the small size with its own fixed height", async () => {
   await render(
-    <Sticker testId="sticker" size="small">
+    <Sticker testId="sticker" size={StickerSize.small}>
       Promo
     </Sticker>
   )

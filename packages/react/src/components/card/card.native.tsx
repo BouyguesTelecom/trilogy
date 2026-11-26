@@ -8,7 +8,7 @@ import {
 import { View, type StyleProp, type ViewStyle } from "react-native"
 
 import { useCardStyles } from "./card.styles.native"
-import type { CardProps } from "./card.types"
+import { CardOrientation, type CardProps } from "./card.types"
 import { CardOrientationProvider } from "./cardOrientation.native"
 
 export type CardNativeRef = ComponentRef<typeof View>
@@ -33,7 +33,7 @@ export const Card: ForwardRefExoticComponent<
     {
       children,
       appearance,
-      orientation = "vertical",
+      orientation = CardOrientation.vertical,
       borderRadius,
       padding,
       id,

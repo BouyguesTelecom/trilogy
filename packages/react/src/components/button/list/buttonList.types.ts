@@ -21,6 +21,11 @@ export enum ButtonListDirection {
   row = "row",
 }
 
+export enum ButtonListWrap {
+  wrap = "wrap",
+  nowrap = "nowrap",
+}
+
 export interface ButtonListUiProps {
   /** Aligns children on the cross axis. Values: `center`, `flex-start`, `flex-end`, `stretch`. Defaults: `center` on Web, `stretch` on Native. */
   alignItems?: ButtonListAlignItems
@@ -33,5 +38,5 @@ export interface ButtonListUiProps {
 export interface ButtonListProps
   extends ButtonListUiProps, AccessibilityProps, CommonProps {
   /** Controls whether children wrap. Values: `wrap`, `nowrap`. Default: `nowrap` on both platforms. */
-  wrap?: "wrap" | "nowrap"
+  wrap?: ButtonListWrap | `${ButtonListWrap}`
 }

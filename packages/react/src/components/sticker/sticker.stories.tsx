@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react"
 
 import { BackgroundColors } from "../../interfaces/backgroundColors"
+import { StickerSize } from "./sticker.types"
 import { Sticker } from "./sticker.web"
 
 type StickerArgs = ComponentProps<typeof Sticker>
@@ -16,7 +17,7 @@ const meta: {
   component: Sticker,
   args: { children: "Information" },
   argTypes: {
-    size: { control: "select", options: ["default", "small"] },
+    size: { control: "select", options: Object.values(StickerSize) },
     background: { control: "select", options: Object.values(BackgroundColors) },
   },
 }
@@ -26,7 +27,7 @@ export default meta
 export const Default: StickerStory = {}
 
 export const Small: StickerStory = {
-  args: { size: "small" },
+  args: { size: StickerSize.small },
 }
 
 export const Accent: StickerStory = {

@@ -6,14 +6,14 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
+import { getBackgroundThemeKey } from "@/utils/getBackgroundThemeKey"
 import { getTextColorFromBackground } from "@/utils/getTextColorFromBackground"
 import { Text, View, type StyleProp, type ViewStyle } from "react-native"
 
 import { useTrilogyContext } from "@/hooks/useTrilogyContext.native"
 
 import { useStickerStyles } from "./sticker.styles.native"
-import type { StickerProps } from "./sticker.types"
-import { getStickerBackgroundKey } from "./stickerColor"
+import { StickerSize, type StickerProps } from "./sticker.types"
 
 export type StickerNativeRef = ComponentRef<typeof View>
 /** Sticker Component.
@@ -32,12 +32,19 @@ export const Sticker: ForwardRefExoticComponent<
   PropsWithChildren<StickerProps> & RefAttributes<StickerNativeRef>
 > = forwardRef<StickerNativeRef, PropsWithChildren<StickerProps>>(
   (
-    { children, size = "default", background = "secondary", id, testId, style },
+    {
+      children,
+      size = StickerSize.default,
+      background = "secondary",
+      id,
+      testId,
+      style,
+    },
     ref
   ) => {
     const styles = useStickerStyles()
     const { colors, mode } = useTrilogyContext()
-    const backgroundColor = colors[mode][getStickerBackgroundKey(background)]
+    const backgroundColor = colors[mode][getBackgroundThemeKey(background)]
     const textColor = getTextColorFromBackground(backgroundColor)
     return (
       <View

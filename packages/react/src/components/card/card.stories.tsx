@@ -1,3 +1,4 @@
+import { CardAppearance, CardOrientation } from "./card.types"
 import { Card } from "./card.web"
 import { CardContent } from "./content/cardContent.web"
 import { CardGroup } from "./group/cardGroup.web"
@@ -26,7 +27,7 @@ export const Composition: { render: () => React.JSX.Element } = {
 }
 export const Horizontal: { render: () => React.JSX.Element } = {
   render: () => (
-    <Card orientation="horizontal">
+    <Card orientation={CardOrientation.horizontal}>
       <CardContent>Card content</CardContent>
       <CardImage src="https://placehold.co/600x300" alt="Example" inset />
     </Card>
@@ -34,7 +35,7 @@ export const Horizontal: { render: () => React.JSX.Element } = {
 }
 export const Outlined: { render: () => React.JSX.Element } = {
   render: () => (
-    <Card appearance="outlined">
+    <Card appearance={CardAppearance.outlined}>
       <CardHeader>Header</CardHeader>
       <CardContent>Content</CardContent>
     </Card>
@@ -42,7 +43,7 @@ export const Outlined: { render: () => React.JSX.Element } = {
 }
 export const AccentStart: { render: () => React.JSX.Element } = {
   render: () => (
-    <Card appearance="accent-start">
+    <Card appearance={CardAppearance.accentStart}>
       <CardHeader>Header</CardHeader>
       <CardContent>Content</CardContent>
     </Card>

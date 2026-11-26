@@ -5,6 +5,7 @@ import { render, screen } from "@testing-library/react"
 import { afterEach, beforeEach, describe, expect, it } from "vitest"
 
 import { TrilogyContextProvider } from "../../contexts/trilogyContext.web"
+import { StickerSize } from "./sticker.types"
 import { Sticker } from "./sticker.web"
 
 describe("Sticker web", () => {
@@ -40,7 +41,7 @@ describe("Sticker web", () => {
 
   it("maps the small size", () => {
     render(
-      <Sticker testId="sticker" size="small">
+      <Sticker testId="sticker" size={StickerSize.small}>
         Promo
       </Sticker>
     )
@@ -87,7 +88,7 @@ describe("Sticker web", () => {
       <TrilogyContextProvider mangled hash="test">
         <Sticker
           testId="sticker"
-          size="small"
+          size={StickerSize.small}
           background="accent"
           className="extra"
         >
@@ -137,7 +138,7 @@ describe("Sticker web compiled styles", () => {
 
   it("is a fixed 24px pill in the small size", () => {
     render(
-      <Sticker testId="sticker" size="small">
+      <Sticker testId="sticker" size={StickerSize.small}>
         Promo
       </Sticker>
     )

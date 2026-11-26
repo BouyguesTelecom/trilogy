@@ -8,6 +8,7 @@ import {
 } from "react"
 import { Text, View, type StyleProp, type ViewStyle } from "react-native"
 
+import { CardOrientation } from "../card.types"
 import { useCardBackground } from "../cardBackground.native"
 import { useCardOrientation } from "../cardOrientation.native"
 import { useCardContentStyles } from "./cardContent.styles.native"
@@ -41,7 +42,7 @@ export const CardContent: ForwardRefExoticComponent<
         style={[
           styles.base.view,
           padding && styles.padding[padding],
-          orientation === "horizontal" && styles.horizontal.view,
+          orientation === CardOrientation.horizontal && styles.horizontal.view,
           color && { backgroundColor: color },
           style as StyleProp<ViewStyle>,
         ]}

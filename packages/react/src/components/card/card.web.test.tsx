@@ -5,6 +5,7 @@ import { render, screen } from "@testing-library/react"
 import { afterEach, beforeEach, describe, expect, it } from "vitest"
 
 import { TrilogyContextProvider } from "../../contexts/trilogyContext.web"
+import { CardAppearance, CardOrientation } from "./card.types"
 import { Card } from "./card.web"
 import { CardContent } from "./content/cardContent.web"
 
@@ -27,7 +28,7 @@ describe("Card web", () => {
     expect(screen.getByText("First").parentElement).toBe(card)
   })
 
-  it.each(["shadow", "outlined", "accent-start"] as const)(
+  it.each(Object.values(CardAppearance))(
     "renders the %s appearance",
     (appearance) => {
       render(
@@ -52,11 +53,15 @@ describe("Card web", () => {
     )
   })
 
-  it.each(["vertical", "horizontal"] as const)(
+  it.each(Object.values(CardOrientation))(
     "renders the %s orientation without changing the appearance",
     (orientation) => {
       render(
-        <Card orientation={orientation} appearance="outlined" testId="card">
+        <Card
+          orientation={orientation}
+          appearance={CardAppearance.outlined}
+          testId="card"
+        >
           Content
         </Card>
       )

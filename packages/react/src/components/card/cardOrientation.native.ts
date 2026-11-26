@@ -1,11 +1,14 @@
 import { createContext, useContext, type Context, type Provider } from "react"
 
-import type { CardOrientation } from "./card.types"
+import { CardOrientation } from "./card.types"
 
-const CardOrientationContext: Context<CardOrientation> =
-  createContext<CardOrientation>("vertical")
+type Orientation = CardOrientation | `${CardOrientation}`
 
-export const CardOrientationProvider: Provider<CardOrientation> =
+const CardOrientationContext: Context<Orientation> = createContext<Orientation>(
+  CardOrientation.vertical
+)
+
+export const CardOrientationProvider: Provider<Orientation> =
   CardOrientationContext.Provider
-export const useCardOrientation = (): CardOrientation =>
+export const useCardOrientation = (): Orientation =>
   useContext(CardOrientationContext)

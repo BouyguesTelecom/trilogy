@@ -2,9 +2,11 @@ import type { ViewStyle } from "react-native"
 
 import { makeStyle } from "@/hooks/useMakeStyle.native"
 
+import type { CardGroupAddOnAlign } from "./cardGroupAddOn.types"
+
 export const useCardGroupAddOnStyles: () => {
   base: { view: ViewStyle }
-  align: Record<"start" | "center" | "end", ViewStyle>
+  align: Record<CardGroupAddOnAlign, ViewStyle>
 } = makeStyle((theme) => ({
   base: {
     // A zero-height box collapses its text on iOS, so the component offsets half its measured height instead.

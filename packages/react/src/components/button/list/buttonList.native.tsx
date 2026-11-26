@@ -18,7 +18,7 @@ type Props = PropsWithChildren<ButtonListProps>
  * @param alignItems {ButtonListAlignItems} Cross-axis alignment; React Native default is `stretch`
  * @param justifyContent {ButtonListJustifyContent} Main-axis distribution; React Native default is `flex-start`
  * @param direction {ButtonListDirection} Layout direction: `column` or `row`; defaults to `column`
- * @param wrap {"wrap" | "nowrap"} Whether children wrap; defaults to `nowrap`
+ * @param wrap {ButtonListWrap} Whether children wrap; defaults to `nowrap`
  * @param accessibilityLabel {string} Accepted by the type but not forwarded on either platform
  * @param id {string} Custom native view identifier
  * @param testId {string} Test identifier

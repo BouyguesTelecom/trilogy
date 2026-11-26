@@ -4,4 +4,5 @@ export const SCREEN_ROUTES = [
   "accordion",
   "card",
   "sticker",
+  "badge",
 ] as const
