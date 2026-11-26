@@ -37,8 +37,17 @@
   color: var(--color-inverse);
 }
 :where(.cardContent) {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   background-color: var(--background-primary);
+}
+:where(.cardFooter) {
+  padding: var(--spacing-md);
+  background-color: var(--background-primary);
+  border-top: var(--border-width-sm) solid var(--border-primary);
+}
+/* A transparent border lets the footer background show through, so the border matches it. */
+.cardFooter-filled {
+  border-top-color: transparent;
 }
 
 .cardImage {

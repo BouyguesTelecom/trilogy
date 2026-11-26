@@ -57,7 +57,7 @@ Place `CardGroup` around a `Card` to attach a `CardGroupAddOn` to its top or bot
 
 | Prop           | Type                                                               | Default    | Support      | Description                                          |
 | -------------- | ------------------------------------------------------------------ | ---------- | ------------ | ---------------------------------------------------- |
-| `appearance`   | `shadow` / `outlined` / `accent-start`                             | `shadow`   | Web · Mobile | Surface treatment.                                   |
+| `appearance`   | `shadow` / `outlined` / `accent-start`                             | —          | Web · Mobile | Surface treatment.                                   |
 | `orientation`  | `vertical` / `horizontal`                                          | `vertical` | Web · Mobile | Stacks sections top to bottom or side by side.       |
 | `borderRadius` | `full` / `lg` / `md` / `sm` / `xs` / `none`                        | `lg`       | Web · Mobile | Overrides the corner radius with a theme token.      |
 | `padding`      | `xxxl` / `xxl` / `xl` / `lg` / `md` / `sm` / `xs` / `xxs` / `none` | none       | Web · Mobile | Adds padding around the sections with a theme token. |

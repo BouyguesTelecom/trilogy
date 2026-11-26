@@ -13,7 +13,7 @@ import type { CardProps } from "./card.types"
 
 /** Card Component
  * @param children {ReactNode} Card sections: CardHeader, CardImage and CardContent
- * @param appearance {CardAppearance} Surface treatment; defaults to shadow
+ * @param appearance {CardAppearance} Surface treatment: `shadow`, `outlined` or `accent-start`; omitted adds none
  * @param orientation {CardOrientation} Layout direction: `vertical` or `horizontal`; defaults to vertical
  * @param borderRadius {CardBorderRadius} Corner radius token (`full`, `lg`, `md`, `sm`, `xs`, `none`); omitted keeps `lg`
  * @param padding {CardPadding} Padding spacing token (`xxxl` to `none`); omitted adds none
@@ -31,7 +31,7 @@ export const Card: ForwardRefExoticComponent<
   (
     {
       children,
-      appearance = "shadow",
+      appearance,
       orientation = "vertical",
       borderRadius,
       padding,
@@ -45,7 +45,7 @@ export const Card: ForwardRefExoticComponent<
     const classes = useHashClass(
       clsx(
         "card",
-        `card-${appearance}`,
+        appearance && `card-${appearance}`,
         `card-${orientation}`,
         borderRadius && `radius-${borderRadius}`,
         padding && `spacing-${padding}`,

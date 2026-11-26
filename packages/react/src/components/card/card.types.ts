@@ -15,7 +15,7 @@ export type CardPadding = ThemeTokenSuffix<
   "spacing"
 >
 export interface CardUiProps {
-  /** Surface treatment; defaults to shadow. */
+  /** Surface treatment; omitted adds none. */
   appearance?: CardAppearance
   /** Stacks sections top to bottom (`vertical`) or side by side (`horizontal`); defaults to vertical. */
   orientation?: CardOrientation

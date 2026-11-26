@@ -12,7 +12,7 @@ export const useCardContentStyles: () => {
 } = makeStyle((theme) => ({
   base: {
     view: {
-      padding: theme.spacings.spacingLg,
+      padding: theme.spacings.spacingMd,
       backgroundColor: theme.colors.backgroundPrimary,
     },
     text: { color: theme.colors.colorPrimary },

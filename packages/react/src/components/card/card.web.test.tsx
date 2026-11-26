@@ -19,7 +19,7 @@ describe("Card web", () => {
     )
     const card = screen.getByTestId("card")
     expect(ref.current).toBe(card)
-    expect(card).toHaveClass("card", "card-shadow")
+    expect(card).toHaveClass("card", "card-vertical")
     expect(card).toHaveStyle({ opacity: "0.5" })
     expect(screen.getByText("First").nextElementSibling).toBe(
       screen.getByText("Second")
@@ -43,6 +43,13 @@ describe("Card web", () => {
     render(<Card testId="card">Content</Card>)
     expect(screen.getByTestId("card")).toHaveClass("card-vertical")
     expect(screen.getByTestId("card")).not.toHaveClass("card-horizontal")
+  })
+
+  it("adds no appearance class by default", () => {
+    render(<Card testId="card">Content</Card>)
+    expect(screen.getByTestId("card").className).not.toMatch(
+      /card-(shadow|outlined|accent-start)/
+    )
   })
 
   it.each(["vertical", "horizontal"] as const)(
@@ -74,11 +81,7 @@ describe("Card web", () => {
         Content
       </Card>
     )
-    expect(screen.getByTestId("card")).toHaveClass(
-      "card",
-      "card-shadow",
-      helper
-    )
+    expect(screen.getByTestId("card")).toHaveClass("card", helper)
   })
 
   it("hashes the helper classes exactly once", () => {
@@ -167,7 +170,7 @@ describe("Card web compiled styles", () => {
       </Card>
     )
     expect(getComputedStyle(screen.getByTestId("card")).padding).toBe("16px")
-    expect(getComputedStyle(screen.getByTestId("content")).padding).toBe("24px")
+    expect(getComputedStyle(screen.getByTestId("content")).padding).toBe("16px")
   })
 
   it("keeps the caller style after the helpers", () => {

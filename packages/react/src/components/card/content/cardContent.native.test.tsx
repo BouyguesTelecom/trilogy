@@ -16,10 +16,10 @@ it("renders content and themed background", async () => {
   expect(screen.getByText("Content")).toBeTruthy()
 })
 
-it("keeps the lg padding without helper", async () => {
+it("keeps the md padding without helper", async () => {
   await render(<CardContent testId="content">Content</CardContent>)
   const style = StyleSheet.flatten(screen.getByTestId("content").props.style)
-  expect(style.padding).toBe(theme.spacings.spacingLg)
+  expect(style.padding).toBe(theme.spacings.spacingMd)
 })
 
 it.each([

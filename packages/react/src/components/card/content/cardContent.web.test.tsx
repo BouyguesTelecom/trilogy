@@ -62,10 +62,10 @@ describe("CardContent web compiled styles", () => {
   })
   afterEach(() => stylesheet.remove())
 
-  it("keeps the lg padding and primary background without helpers", () => {
+  it("keeps the md padding and primary background without helpers", () => {
     render(<CardContent testId="content">Content</CardContent>)
     const style = getComputedStyle(screen.getByTestId("content"))
-    expect(style.padding).toBe("24px")
+    expect(style.padding).toBe("16px")
     expect(style.backgroundColor).toBe("rgb(255, 255, 255)")
   })
 

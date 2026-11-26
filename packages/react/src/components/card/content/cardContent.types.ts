@@ -13,6 +13,6 @@ export type CardContentPadding = ThemeTokenSuffix<
 export interface CardContentProps extends CommonProps {
   /** Semantic background color; omitted uses the component default. */
   background?: BackgroundColors | `${BackgroundColors}`
-  /** Overrides the padding with a theme spacing token; omitted keeps the `lg` padding. */
+  /** Overrides the padding with a theme spacing token; omitted keeps the `md` padding. */
   padding?: CardContentPadding
 }

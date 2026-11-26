@@ -14,7 +14,7 @@ import { CardOrientationProvider } from "./cardOrientation.native"
 export type CardNativeRef = ComponentRef<typeof View>
 /** Card Component.
  * @param children {ReactNode} Card sections: CardHeader, CardImage and CardContent
- * @param appearance {CardAppearance} Surface treatment; defaults to shadow
+ * @param appearance {CardAppearance} Surface treatment: `shadow`, `outlined` or `accent-start`; omitted adds none
  * @param orientation {CardOrientation} Layout direction: `vertical` or `horizontal`; defaults to vertical
  * @param borderRadius {CardBorderRadius} Corner radius token (`full`, `lg`, `md`, `sm`, `xs`, `none`); omitted keeps `lg`
  * @param padding {CardPadding} Padding spacing token (`xxxl` to `none`); omitted adds none
@@ -32,7 +32,7 @@ export const Card: ForwardRefExoticComponent<
   (
     {
       children,
-      appearance = "shadow",
+      appearance,
       orientation = "vertical",
       borderRadius,
       padding,
@@ -51,7 +51,7 @@ export const Card: ForwardRefExoticComponent<
         style={[
           styles.base.view,
           styles.orientation[orientation],
-          styles.appearance[appearance],
+          appearance && styles.appearance[appearance],
           borderRadius && styles.borderRadius[borderRadius],
           padding && styles.padding[padding],
           style as StyleProp<ViewStyle>,

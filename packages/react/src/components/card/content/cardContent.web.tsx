@@ -14,7 +14,7 @@ import type { CardContentProps } from "./cardContent.types"
 /** CardContent Component.
  * @param children {ReactNode} Card content
  * @param background {BackgroundColors} Optional semantic background
- * @param padding {CardContentPadding} Padding token (`xxxl` to `none`); omitted keeps `lg`
+ * @param padding {CardContentPadding} Padding token (`xxxl` to `none`); omitted keeps `md`
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override

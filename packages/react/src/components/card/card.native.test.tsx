@@ -63,7 +63,7 @@ it("does not change the padding of its CardContent", async () => {
     </Card>
   )
   const style = StyleSheet.flatten(screen.getByTestId("content").props.style)
-  expect(style.padding).toBe(theme.spacings.spacingLg)
+  expect(style.padding).toBe(theme.spacings.spacingMd)
 })
 
 it("keeps the caller style after the helpers", async () => {

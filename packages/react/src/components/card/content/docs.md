@@ -35,5 +35,5 @@ Override the default padding with a theme token.
 | Prop         | Type                                                               | Default | Support      | Description                               |
 | ------------ | ------------------------------------------------------------------ | ------- | ------------ | ----------------------------------------- |
 | `background` | `BackgroundColors`                                                 | —       | Web · Mobile | Optional semantic background.             |
-| `padding`    | `xxxl` / `xxl` / `xl` / `lg` / `md` / `sm` / `xs` / `xxs` / `none` | `lg`    | Web · Mobile | Overrides the padding with a theme token. |
+| `padding`    | `xxxl` / `xxl` / `xl` / `lg` / `md` / `sm` / `xs` / `xxs` / `none` | `md`    | Web · Mobile | Overrides the padding with a theme token. |
 | `children`   | `ReactNode`                                                        | —       | Web · Mobile | Card content.                             |
