@@ -29,7 +29,7 @@ const Breadcrumb = forwardRef<BreadcrumbRef, BreadcrumbWebProps>(
         aria-label={translation.accessibilityLabel}
         {...others}
       >
-        <ul>{children}</ul>
+        <ol>{children}</ol>
       </nav>
     )
   },
