@@ -24,6 +24,14 @@ export const Composition: { render: () => React.JSX.Element } = {
     </CardGroup>
   ),
 }
+export const Horizontal: { render: () => React.JSX.Element } = {
+  render: () => (
+    <Card orientation="horizontal">
+      <CardContent>Card content</CardContent>
+      <CardImage src="https://placehold.co/600x300" alt="Example" inset />
+    </Card>
+  ),
+}
 export const Outlined: { render: () => React.JSX.Element } = {
   render: () => (
     <Card appearance="outlined">

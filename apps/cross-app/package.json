@@ -44,6 +44,7 @@
     "start:mobile": "EXPO_UNSAFE_DOTENV_KEYS=NODE_TLS_REJECT_UNAUTHORIZED expo start",
     "start:android": "expo start --android",
     "start:ios": "expo start --ios",
+    "ios:trust-ca": "bash scripts/trust-simulator-ca.sh",
     "start:web": "vite --host 0.0.0.0",
     "web:build": "vite build",
     "web:preview": "vite preview --host 0.0.0.0",

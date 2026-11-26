@@ -4,6 +4,7 @@ import { makeStyle } from "@/hooks/useMakeStyle.native"
 
 type CardStyles = {
   base: { view: ViewStyle }
+  orientation: Record<"vertical" | "horizontal", ViewStyle>
   appearance: Record<"shadow" | "outlined" | "accent-start", ViewStyle>
 }
 export const useCardStyles: () => CardStyles = makeStyle((theme) => ({
@@ -13,6 +14,10 @@ export const useCardStyles: () => CardStyles = makeStyle((theme) => ({
       backgroundColor: theme.colors.backgroundPrimary,
       overflow: "hidden",
     },
+  },
+  orientation: {
+    vertical: { flexDirection: "column" },
+    horizontal: { flexDirection: "row" },
   },
   appearance: {
     shadow: { boxShadow: "0px 4px 12px rgba(0,0,0,0.14)" },

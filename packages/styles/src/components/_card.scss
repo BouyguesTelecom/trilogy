@@ -1,9 +1,19 @@
 .card {
   position: relative;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   border-radius: var(--radius-lg);
   background: var(--background-primary);
   overflow: hidden;
+}
+.card-horizontal {
+  flex-direction: row;
+}
+.card-horizontal > .cardContent,
+.card-horizontal > .cardImage {
+  flex: 1 1 0;
+  min-width: 0;
 }
 .card-shadow {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
@@ -30,9 +40,17 @@
 
 .cardImage {
   display: block;
-  width: 100%;
-  height: auto;
+  box-sizing: border-box;
+  max-width: 100%;
+  aspect-ratio: 2;
   object-fit: cover;
+}
+.card-horizontal > .cardImage {
+  aspect-ratio: auto;
+}
+.cardImage-inset {
+  margin: var(--spacing-md);
+  border-radius: var(--radius-md);
 }
 
 .cardGroup {

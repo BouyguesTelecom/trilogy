@@ -14,6 +14,7 @@ import type { CardProps } from "./card.types"
 /** Card Component
  * @param children {ReactNode} Card sections: CardHeader, CardImage and CardContent
  * @param appearance {CardAppearance} Surface treatment; defaults to shadow
+ * @param orientation {CardOrientation} Layout direction: `vertical` or `horizontal`; defaults to vertical
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override
@@ -25,8 +26,21 @@ import type { CardProps } from "./card.types"
 export const Card: ForwardRefExoticComponent<
   PropsWithChildren<CardProps> & RefAttributes<HTMLDivElement>
 > = forwardRef<HTMLDivElement, PropsWithChildren<CardProps>>(
-  ({ children, appearance = "shadow", id, testId, className, style }, ref) => {
-    const classes = useHashClass(clsx("card", `card-${appearance}`, className))
+  (
+    {
+      children,
+      appearance = "shadow",
+      orientation = "vertical",
+      id,
+      testId,
+      className,
+      style,
+    },
+    ref
+  ) => {
+    const classes = useHashClass(
+      clsx("card", `card-${appearance}`, `card-${orientation}`, className)
+    )
     return (
       <div
         ref={ref}

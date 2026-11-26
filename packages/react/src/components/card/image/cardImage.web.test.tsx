@@ -23,3 +23,20 @@ it("forwards its source and lets style override the default ratio", () => {
   expect(screen.getByTestId("image")).toHaveAttribute("alt", "")
   expect(screen.getByTestId("image")).toHaveStyle({ aspectRatio: "3" })
 })
+
+it("sets no inline ratio by default so the card orientation decides", () => {
+  render(<CardImage src="/image.png" alt="Example" testId="image" />)
+  expect(screen.getByTestId("image").style.aspectRatio).toBe("")
+})
+
+it("touches the card edges by default and detaches with inset", () => {
+  const { rerender } = render(
+    <CardImage src="/image.png" alt="Example" testId="image" />
+  )
+  expect(screen.getByTestId("image")).not.toHaveClass("cardImage-inset")
+  rerender(<CardImage src="/image.png" alt="Example" testId="image" inset />)
+  expect(screen.getByTestId("image")).toHaveClass(
+    "cardImage",
+    "cardImage-inset"
+  )
+})

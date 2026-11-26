@@ -4,6 +4,7 @@ import { makeStyle } from "@/hooks/useMakeStyle.native"
 
 export const useCardContentStyles: () => {
   base: { view: ViewStyle; text: TextStyle }
+  horizontal: { view: ViewStyle }
 } = makeStyle((theme) => ({
   base: {
     view: {
@@ -12,4 +13,5 @@ export const useCardContentStyles: () => {
     },
     text: { color: theme.colors.colorPrimary },
   },
+  horizontal: { view: { flex: 1, minWidth: 0 } },
 }))

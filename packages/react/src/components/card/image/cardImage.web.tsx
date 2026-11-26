@@ -13,7 +13,8 @@ import type { CardImageProps } from "../card.types"
 /** CardImage Component.
  * @param src {string} Image URI
  * @param alt {string} Accessible description
- * @param aspectRatio {number} Width-to-height ratio; defaults to 2
+ * @param aspectRatio {number} Width-to-height ratio; defaults to 2 when vertical and fills the card height when horizontal
+ * @param inset {boolean} Detaches the image from the card edges; defaults to false
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override
@@ -25,8 +26,13 @@ import type { CardImageProps } from "../card.types"
 export const CardImage: ForwardRefExoticComponent<
   CardImageProps & RefAttributes<HTMLImageElement>
 > = forwardRef<HTMLImageElement, CardImageProps>(
-  ({ src, alt, aspectRatio = 2, id, testId, className, style }, ref) => {
-    const classes = useHashClass(clsx("cardImage", className))
+  (
+    { src, alt, aspectRatio, inset = false, id, testId, className, style },
+    ref
+  ) => {
+    const classes = useHashClass(
+      clsx("cardImage", inset && "cardImage-inset", className)
+    )
     return (
       <img
         ref={ref}
@@ -35,7 +41,10 @@ export const CardImage: ForwardRefExoticComponent<
         className={classes}
         src={src}
         alt={alt}
-        style={{ aspectRatio, ...(style as CSSProperties) }}
+        style={{
+          ...(aspectRatio !== undefined && { aspectRatio }),
+          ...(style as CSSProperties),
+        }}
       />
     )
   }

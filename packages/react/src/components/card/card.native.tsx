@@ -9,11 +9,13 @@ import { View, type StyleProp, type ViewStyle } from "react-native"
 
 import { useCardStyles } from "./card.styles.native"
 import type { CardProps } from "./card.types"
+import { CardOrientationProvider } from "./cardOrientation.native"
 
 export type CardNativeRef = ComponentRef<typeof View>
 /** Card Component.
  * @param children {ReactNode} Card sections: CardHeader, CardImage and CardContent
  * @param appearance {CardAppearance} Surface treatment; defaults to shadow
+ * @param orientation {CardOrientation} Layout direction: `vertical` or `horizontal`; defaults to vertical
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override
@@ -25,7 +27,17 @@ export type CardNativeRef = ComponentRef<typeof View>
 export const Card: ForwardRefExoticComponent<
   PropsWithChildren<CardProps> & RefAttributes<CardNativeRef>
 > = forwardRef<CardNativeRef, PropsWithChildren<CardProps>>(
-  ({ children, appearance = "shadow", id, testId, style }, ref) => {
+  (
+    {
+      children,
+      appearance = "shadow",
+      orientation = "vertical",
+      id,
+      testId,
+      style,
+    },
+    ref
+  ) => {
     const styles = useCardStyles()
     return (
       <View
@@ -34,11 +46,14 @@ export const Card: ForwardRefExoticComponent<
         testID={testId}
         style={[
           styles.base.view,
+          styles.orientation[orientation],
           styles.appearance[appearance],
           style as StyleProp<ViewStyle>,
         ]}
       >
-        {children}
+        <CardOrientationProvider value={orientation}>
+          {children}
+        </CardOrientationProvider>
       </View>
     )
   }

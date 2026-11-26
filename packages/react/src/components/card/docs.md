@@ -30,12 +30,24 @@ Choose a surface treatment without changing its layout.
 </Card>
 ```
 
+### Horizontal
+
+Place the sections side by side instead of stacking them.
+
+```tsx
+<Card orientation="horizontal">
+  <CardContent>Card content</CardContent>
+  <CardImage src="https://placehold.co/600x300" alt="Example" inset />
+</Card>
+```
+
 ## API Reference
 
 Place `CardGroup` around a `Card` to attach a `CardGroupAddOn` to its top or bottom edge. A section's background override does not automatically change the color of its text.
 
-| Prop         | Type                                     | Default  | Support      | Description        |
-| ------------ | ---------------------------------------- | -------- | ------------ | ------------------ |
-| `appearance` | `shadow` / `outlined` / `accent-start`   | `shadow` | Web · Mobile | Surface treatment. |
-| `children`   | `ReactNode`                              | —        | Web · Mobile | Card sections.     |
-| `style`      | `CSSProperties` / `StyleProp<ViewStyle>` | —        | Web · Mobile | Style override.    |
+| Prop          | Type                                     | Default    | Support      | Description                                    |
+| ------------- | ---------------------------------------- | ---------- | ------------ | ---------------------------------------------- |
+| `appearance`  | `shadow` / `outlined` / `accent-start`   | `shadow`   | Web · Mobile | Surface treatment.                             |
+| `orientation` | `vertical` / `horizontal`                | `vertical` | Web · Mobile | Stacks sections top to bottom or side by side. |
+| `children`    | `ReactNode`                              | —          | Web · Mobile | Card sections.                                 |
+| `style`       | `CSSProperties` / `StyleProp<ViewStyle>` | —          | Web · Mobile | Style override.                                |

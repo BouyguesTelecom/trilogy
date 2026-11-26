@@ -10,6 +10,7 @@ import { Text, View, type StyleProp, type ViewStyle } from "react-native"
 
 import type { CardSectionProps } from "../card.types"
 import { useCardBackground } from "../cardBackground.native"
+import { useCardOrientation } from "../cardOrientation.native"
 import { useCardContentStyles } from "./cardContent.styles.native"
 
 export type CardContentNativeRef = ComponentRef<typeof View>
@@ -30,6 +31,7 @@ export const CardContent: ForwardRefExoticComponent<
   ({ children, background, id, testId, style }, ref) => {
     const styles = useCardContentStyles()
     const color = useCardBackground(background)
+    const orientation = useCardOrientation()
     return (
       <View
         ref={ref}
@@ -37,6 +39,7 @@ export const CardContent: ForwardRefExoticComponent<
         testID={testId}
         style={[
           styles.base.view,
+          orientation === "horizontal" && styles.horizontal.view,
           color && { backgroundColor: color },
           style as StyleProp<ViewStyle>,
         ]}

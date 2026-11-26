@@ -34,4 +34,25 @@ describe("Card web", () => {
       expect(screen.getByTestId("card")).toHaveClass(`card-${appearance}`)
     }
   )
+
+  it("is vertical by default", () => {
+    render(<Card testId="card">Content</Card>)
+    expect(screen.getByTestId("card")).toHaveClass("card-vertical")
+    expect(screen.getByTestId("card")).not.toHaveClass("card-horizontal")
+  })
+
+  it.each(["vertical", "horizontal"] as const)(
+    "renders the %s orientation without changing the appearance",
+    (orientation) => {
+      render(
+        <Card orientation={orientation} appearance="outlined" testId="card">
+          Content
+        </Card>
+      )
+      expect(screen.getByTestId("card")).toHaveClass(
+        `card-${orientation}`,
+        "card-outlined"
+      )
+    }
+  )
 })

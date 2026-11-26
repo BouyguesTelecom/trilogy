@@ -21,10 +21,22 @@ Provide an image URI and an accessible description.
 </Card>
 ```
 
+### Inset
+
+Detach the image from the card edges with a margin and rounded corners.
+
+```tsx
+<Card>
+  <CardImage src="https://placehold.co/600x300" alt="Example" inset />
+  <CardContent>Content</CardContent>
+</Card>
+```
+
 ## API Reference
 
-| Prop          | Type     | Default | Support      | Description             |
-| ------------- | -------- | ------- | ------------ | ----------------------- |
-| `src`         | `string` | —       | Web · Mobile | Image URI.              |
-| `alt`         | `string` | —       | Web · Mobile | Accessible description. |
-| `aspectRatio` | `number` | `2`     | Web · Mobile | Width-to-height ratio.  |
+| Prop          | Type      | Default                                                  | Support      | Description                                                               |
+| ------------- | --------- | -------------------------------------------------------- | ------------ | ------------------------------------------------------------------------- |
+| `src`         | `string`  | —                                                        | Web · Mobile | Image URI.                                                                |
+| `alt`         | `string`  | —                                                        | Web · Mobile | Accessible description.                                                   |
+| `aspectRatio` | `number`  | `2` when vertical; fills the card height when horizontal | Web · Mobile | Width-to-height ratio.                                                    |
+| `inset`       | `boolean` | `false`                                                  | Web · Mobile | Detaches the image from the card edges with a margin and rounded corners. |

@@ -17,6 +17,27 @@ export default function CardScreen() {
   return (
     <ScrollView>
       <Wrapper title="Card">
+        <Card orientation="horizontal">
+          <CardContent>
+            <Text size="sm">image collée au bord</Text>
+          </CardContent>
+          <CardImage
+            src="https://www.bouyguestelecom.fr/static/wbm/media/hub/Actu-1-WiFi-N1.webp"
+            alt="Wi-Fi"
+          />
+        </Card>
+
+        <Card orientation="horizontal">
+          <CardContent>
+            <Text size="sm">image inset</Text>
+          </CardContent>
+          <CardImage
+            src="https://www.bouyguestelecom.fr/static/wbm/media/hub/Actu-1-WiFi-N1.webp"
+            alt="Wi-Fi"
+            inset
+          />
+        </Card>
+
         <Card appearance="outlined">
           <CardContent>
             <Text size="sm">lorem ipsum</Text>

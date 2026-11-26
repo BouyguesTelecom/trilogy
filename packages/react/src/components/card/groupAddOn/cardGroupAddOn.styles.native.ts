@@ -7,9 +7,8 @@ export const useCardGroupAddOnStyles: () => {
   align: Record<"start" | "center" | "end", ViewStyle>
 } = makeStyle((theme) => ({
   base: {
-    // Zero height keeps the add-on in the flow while its content straddles the card edge.
+    // A zero-height box collapses its text on iOS, so the component offsets half its measured height instead.
     view: {
-      height: 0,
       zIndex: 1,
       flexDirection: "row",
       alignItems: "center",
