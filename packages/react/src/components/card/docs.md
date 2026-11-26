@@ -41,13 +41,24 @@ Place the sections side by side instead of stacking them.
 </Card>
 ```
 
+### Radius
+
+Override the corner radius with a theme token.
+
+```tsx
+<Card borderRadius="sm">
+  <CardContent>Compact card</CardContent>
+</Card>
+```
+
 ## API Reference
 
 Place `CardGroup` around a `Card` to attach a `CardGroupAddOn` to its top or bottom edge. A section's background override does not automatically change the color of its text.
 
-| Prop          | Type                                     | Default    | Support      | Description                                    |
-| ------------- | ---------------------------------------- | ---------- | ------------ | ---------------------------------------------- |
-| `appearance`  | `shadow` / `outlined` / `accent-start`   | `shadow`   | Web · Mobile | Surface treatment.                             |
-| `orientation` | `vertical` / `horizontal`                | `vertical` | Web · Mobile | Stacks sections top to bottom or side by side. |
-| `children`    | `ReactNode`                              | —          | Web · Mobile | Card sections.                                 |
-| `style`       | `CSSProperties` / `StyleProp<ViewStyle>` | —          | Web · Mobile | Style override.                                |
+| Prop           | Type                                        | Default    | Support      | Description                                     |
+| -------------- | ------------------------------------------- | ---------- | ------------ | ----------------------------------------------- |
+| `appearance`   | `shadow` / `outlined` / `accent-start`      | `shadow`   | Web · Mobile | Surface treatment.                              |
+| `orientation`  | `vertical` / `horizontal`                   | `vertical` | Web · Mobile | Stacks sections top to bottom or side by side.  |
+| `borderRadius` | `full` / `lg` / `md` / `sm` / `xs` / `none` | `lg`       | Web · Mobile | Overrides the corner radius with a theme token. |
+| `children`     | `ReactNode`                                 | —          | Web · Mobile | Card sections.                                  |
+| `style`        | `CSSProperties` / `StyleProp<ViewStyle>`    | —          | Web · Mobile | Style override.                                 |

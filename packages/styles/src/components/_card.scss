@@ -3,9 +3,12 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  border-radius: var(--radius-lg);
   background: var(--background-primary);
   overflow: hidden;
+}
+/* Low specificity so the radius-* helper can override the default radius. */
+:where(.card) {
+  border-radius: var(--radius-lg);
 }
 .card-horizontal {
   flex-direction: row;

@@ -20,9 +20,20 @@ Compose arbitrary card content.
 </Card>
 ```
 
+### Padding
+
+Override the default padding with a theme token.
+
+```tsx
+<Card>
+  <CardContent padding="md">Compact content</CardContent>
+</Card>
+```
+
 ## API Reference
 
-| Prop         | Type               | Default | Support      | Description                   |
-| ------------ | ------------------ | ------- | ------------ | ----------------------------- |
-| `background` | `BackgroundColors` | —       | Web · Mobile | Optional semantic background. |
-| `children`   | `ReactNode`        | —       | Web · Mobile | Card content.                 |
+| Prop         | Type                                                               | Default | Support      | Description                               |
+| ------------ | ------------------------------------------------------------------ | ------- | ------------ | ----------------------------------------- |
+| `background` | `BackgroundColors`                                                 | —       | Web · Mobile | Optional semantic background.             |
+| `padding`    | `xxxl` / `xxl` / `xl` / `lg` / `md` / `sm` / `xs` / `xxs` / `none` | `lg`    | Web · Mobile | Overrides the padding with a theme token. |
+| `children`   | `ReactNode`                                                        | —       | Web · Mobile | Card content.                             |

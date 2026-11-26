@@ -17,6 +17,12 @@ export default function CardScreen() {
   return (
     <ScrollView>
       <Wrapper title="Card">
+        <Card borderRadius="sm">
+          <CardContent padding="md">
+            <Text size="sm">borderRadius sm + padding md</Text>
+          </CardContent>
+        </Card>
+
         <Card orientation="horizontal">
           <CardContent>
             <Text size="sm">image collée au bord</Text>
@@ -108,7 +114,7 @@ export default function CardScreen() {
           <CardHeader>
             <Title size="base">Black friday</Title>
           </CardHeader>
-          <CardContent>
+          <CardContent padding="xl">
             <Text size="sm">lorem ipsum</Text>
           </CardContent>
         </Card>

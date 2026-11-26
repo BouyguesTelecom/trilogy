@@ -34,9 +34,9 @@ Detach the image from the card edges with a margin and rounded corners.
 
 ## API Reference
 
-| Prop          | Type      | Default                                                  | Support      | Description                                                               |
-| ------------- | --------- | -------------------------------------------------------- | ------------ | ------------------------------------------------------------------------- |
-| `src`         | `string`  | —                                                        | Web · Mobile | Image URI.                                                                |
-| `alt`         | `string`  | —                                                        | Web · Mobile | Accessible description.                                                   |
-| `aspectRatio` | `number`  | `2` when vertical; fills the card height when horizontal | Web · Mobile | Width-to-height ratio.                                                    |
-| `inset`       | `boolean` | `false`                                                  | Web · Mobile | Detaches the image from the card edges with a margin and rounded corners. |
+| Prop          | Type      | Default                                                | Support      | Description                                                               |
+| ------------- | --------- | ------------------------------------------------------ | ------------ | ------------------------------------------------------------------------- |
+| `src`         | `string`  | —                                                      | Web · Mobile | Image URI.                                                                |
+| `alt`         | `string`  | —                                                      | Web · Mobile | Accessible description.                                                   |
+| `aspectRatio` | `number`  | `2` when vertical; natural image ratio when horizontal | Web · Mobile | Width-to-height ratio.                                                    |
+| `inset`       | `boolean` | `false`                                                | Web · Mobile | Detaches the image from the card edges with a margin and rounded corners. |

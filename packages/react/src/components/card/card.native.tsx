@@ -16,6 +16,7 @@ export type CardNativeRef = ComponentRef<typeof View>
  * @param children {ReactNode} Card sections: CardHeader, CardImage and CardContent
  * @param appearance {CardAppearance} Surface treatment; defaults to shadow
  * @param orientation {CardOrientation} Layout direction: `vertical` or `horizontal`; defaults to vertical
+ * @param borderRadius {CardBorderRadius} Corner radius token (`full`, `lg`, `md`, `sm`, `xs`, `none`); omitted keeps `lg`
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override
@@ -32,6 +33,7 @@ export const Card: ForwardRefExoticComponent<
       children,
       appearance = "shadow",
       orientation = "vertical",
+      borderRadius,
       id,
       testId,
       style,
@@ -48,6 +50,7 @@ export const Card: ForwardRefExoticComponent<
           styles.base.view,
           styles.orientation[orientation],
           styles.appearance[appearance],
+          borderRadius && styles.borderRadius[borderRadius],
           style as StyleProp<ViewStyle>,
         ]}
       >

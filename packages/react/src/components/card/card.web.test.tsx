@@ -1,7 +1,10 @@
+import { createRequire } from "node:module"
+import { resolve } from "node:path"
 import { createRef } from "react"
 import { render, screen } from "@testing-library/react"
-import { describe, expect, it } from "vitest"
+import { afterEach, beforeEach, describe, expect, it } from "vitest"
 
+import { TrilogyContextProvider } from "../../contexts/trilogyContext.web"
 import { Card } from "./card.web"
 
 describe("Card web", () => {
@@ -55,4 +58,93 @@ describe("Card web", () => {
       )
     }
   )
+
+  it("adds no helper class without borderRadius", () => {
+    render(<Card testId="card">Content</Card>)
+    expect(screen.getByTestId("card").className).not.toMatch(/radius-|spacing-/)
+  })
+
+  it("maps borderRadius to its helper class", () => {
+    render(
+      <Card testId="card" borderRadius="md">
+        Content
+      </Card>
+    )
+    expect(screen.getByTestId("card")).toHaveClass(
+      "card",
+      "card-shadow",
+      "radius-md"
+    )
+  })
+
+  it("hashes the helper class exactly once", () => {
+    render(
+      <TrilogyContextProvider mangled hash="test">
+        <Card testId="card" borderRadius="sm" className="extra">
+          Content
+        </Card>
+      </TrilogyContextProvider>
+    )
+    expect(screen.getByTestId("card")).toHaveClass(
+      "card_test",
+      "radius-sm_test",
+      "extra_test"
+    )
+  })
+})
+
+describe("Card web compiled styles", () => {
+  let stylesheet: HTMLStyleElement
+  beforeEach(() => {
+    const stylesRoot = resolve(process.cwd(), "../styles")
+    const require = createRequire(resolve(stylesRoot, "package.json"))
+    const sass = require("sass") as {
+      compile: (path: string) => { css: string }
+    }
+    stylesheet = document.createElement("style")
+    stylesheet.textContent = sass.compile(
+      resolve(stylesRoot, "src/trilogy.scss")
+    ).css
+    document.head.append(stylesheet)
+  })
+  afterEach(() => stylesheet.remove())
+
+  it("keeps the default radius without helpers", () => {
+    render(<Card testId="card">Content</Card>)
+    const style = getComputedStyle(screen.getByTestId("card"))
+    expect(style.borderRadius).toBe("24px")
+    expect(style.padding).toBe("0px")
+  })
+
+  it.each([
+    ["full", "9999px"],
+    ["md", "16px"],
+    ["sm", "8px"],
+    ["none", "0px"],
+  ] as const)(
+    "lets the %s radius helper override the default radius only",
+    (borderRadius, expected) => {
+      render(
+        <Card testId="card" borderRadius={borderRadius}>
+          Content
+        </Card>
+      )
+      const style = getComputedStyle(screen.getByTestId("card"))
+      expect(style.borderRadius).toBe(expected)
+      expect(style.padding).toBe("0px")
+      expect(style.overflow).toBe("hidden")
+      expect(style.display).toBe("flex")
+    }
+  )
+
+  it("keeps the caller style after the radius helper", () => {
+    render(
+      <Card testId="card" borderRadius="sm" style={{ borderRadius: 3 }}>
+        Content
+      </Card>
+    )
+    expect(getComputedStyle(screen.getByTestId("card")).borderRadius).toBe(
+      "3px"
+    )
+  })
 })

@@ -2,11 +2,16 @@ import type { ViewStyle } from "react-native"
 
 import { makeStyle } from "@/hooks/useMakeStyle.native"
 
+import type { CardBorderRadius } from "./card.types"
+import { tokenStyles } from "./cardTokens.native"
+
 type CardStyles = {
   base: { view: ViewStyle }
   orientation: Record<"vertical" | "horizontal", ViewStyle>
   appearance: Record<"shadow" | "outlined" | "accent-start", ViewStyle>
+  borderRadius: Record<CardBorderRadius, ViewStyle>
 }
+
 export const useCardStyles: () => CardStyles = makeStyle((theme) => ({
   base: {
     view: {
@@ -28,4 +33,9 @@ export const useCardStyles: () => CardStyles = makeStyle((theme) => ({
       boxShadow: `${-theme.borderWidths.borderWidthLg}px 0px 0px ${theme.colors.borderMain}`,
     },
   },
+  borderRadius: tokenStyles<CardBorderRadius>(
+    theme.radius,
+    "radius",
+    (borderRadius) => ({ borderRadius })
+  ),
 }))

@@ -8,7 +8,7 @@ import {
 } from "react"
 import { Text, View, type StyleProp, type ViewStyle } from "react-native"
 
-import type { CardSectionProps } from "../card.types"
+import type { CardContentProps } from "../card.types"
 import { useCardBackground } from "../cardBackground.native"
 import { useCardOrientation } from "../cardOrientation.native"
 import { useCardContentStyles } from "./cardContent.styles.native"
@@ -17,6 +17,7 @@ export type CardContentNativeRef = ComponentRef<typeof View>
 /** CardContent Component.
  * @param children {ReactNode} Card content
  * @param background {BackgroundColors} Optional semantic background
+ * @param padding {CardContentPadding} Padding token (`xxxl` to `none`); omitted keeps `lg`
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override
@@ -26,9 +27,9 @@ export type CardContentNativeRef = ComponentRef<typeof View>
  * None.
  */
 export const CardContent: ForwardRefExoticComponent<
-  PropsWithChildren<CardSectionProps> & RefAttributes<CardContentNativeRef>
-> = forwardRef<CardContentNativeRef, PropsWithChildren<CardSectionProps>>(
-  ({ children, background, id, testId, style }, ref) => {
+  PropsWithChildren<CardContentProps> & RefAttributes<CardContentNativeRef>
+> = forwardRef<CardContentNativeRef, PropsWithChildren<CardContentProps>>(
+  ({ children, background, padding, id, testId, style }, ref) => {
     const styles = useCardContentStyles()
     const color = useCardBackground(background)
     const orientation = useCardOrientation()
@@ -39,6 +40,7 @@ export const CardContent: ForwardRefExoticComponent<
         testID={testId}
         style={[
           styles.base.view,
+          padding && styles.padding[padding],
           orientation === "horizontal" && styles.horizontal.view,
           color && { backgroundColor: color },
           style as StyleProp<ViewStyle>,

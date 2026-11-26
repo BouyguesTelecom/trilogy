@@ -9,11 +9,12 @@ import { clsx } from "@/utils/clsx"
 
 import { useHashClass } from "@/hooks/useHashClass.web"
 
-import type { CardSectionProps } from "../card.types"
+import type { CardContentProps } from "../card.types"
 
 /** CardContent Component.
  * @param children {ReactNode} Card content
  * @param background {BackgroundColors} Optional semantic background
+ * @param padding {CardContentPadding} Padding token (`xxxl` to `none`); omitted keeps `lg`
  * @param id {string} Element identifier
  * @param testId {string} Test identifier
  * @param style {CSSProperties | StyleProp<ViewStyle | TextStyle>} Style override
@@ -23,13 +24,14 @@ import type { CardSectionProps } from "../card.types"
  * None.
  */
 export const CardContent: ForwardRefExoticComponent<
-  PropsWithChildren<CardSectionProps> & RefAttributes<HTMLDivElement>
-> = forwardRef<HTMLDivElement, PropsWithChildren<CardSectionProps>>(
-  ({ children, background, id, testId, className, style }, ref) => {
+  PropsWithChildren<CardContentProps> & RefAttributes<HTMLDivElement>
+> = forwardRef<HTMLDivElement, PropsWithChildren<CardContentProps>>(
+  ({ children, background, padding, id, testId, className, style }, ref) => {
     const classes = useHashClass(
       clsx(
         "cardContent",
         background && (background === "background" ? "bg" : `bg-${background}`),
+        padding && `spacing-${padding}`,
         className
       )
     )

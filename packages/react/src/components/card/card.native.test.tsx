@@ -1,9 +1,51 @@
 import { render, screen } from "@testing-library/react-native"
-import { StyleSheet, Text } from "react-native"
+import { Image, StyleSheet, Text } from "react-native"
 
+import { theme } from "../../constants/theme"
 import { Card } from "./card.native"
 import { CardContent } from "./content/cardContent.native"
 import { CardImage } from "./image/cardImage.native"
+
+it("keeps the default radius without helpers", async () => {
+  await render(
+    <Card testId="card">
+      <Text>Content</Text>
+    </Card>
+  )
+  const style = StyleSheet.flatten(screen.getByTestId("card").props.style)
+  expect(style.borderRadius).toBe(theme.radius.radiusLg)
+  expect(style.padding).toBeUndefined()
+})
+
+it.each([
+  ["full", theme.radius.radiusFull],
+  ["md", theme.radius.radiusMd],
+  ["sm", theme.radius.radiusSm],
+  ["none", theme.radius.radiusNone],
+] as const)(
+  "overrides only the radius with the %s token",
+  async (borderRadius, expected) => {
+    await render(
+      <Card testId="card" borderRadius={borderRadius}>
+        <Text>Content</Text>
+      </Card>
+    )
+    const style = StyleSheet.flatten(screen.getByTestId("card").props.style)
+    expect(style.borderRadius).toBe(expected)
+    expect(style.padding).toBeUndefined()
+    expect(style.overflow).toBe("hidden")
+  }
+)
+
+it("keeps the caller style after the radius helper", async () => {
+  await render(
+    <Card testId="card" borderRadius="sm" style={{ borderRadius: 3 }}>
+      <Text>Content</Text>
+    </Card>
+  )
+  const style = StyleSheet.flatten(screen.getByTestId("card").props.style)
+  expect(style.borderRadius).toBe(3)
+})
 
 it.each([
   ["vertical", "column"],
@@ -27,6 +69,10 @@ it("defaults to a vertical card", async () => {
 })
 
 it("shares the horizontal orientation with its image and content", async () => {
+  // The size lookup never resolves, so the image has no ratio yet.
+  jest
+    .spyOn(Image, "getSize")
+    .mockImplementation((() => {}) as unknown as typeof Image.getSize)
   await render(
     <Card orientation="horizontal">
       <CardContent testId="content">Content</CardContent>
@@ -38,6 +84,7 @@ it("shares the horizontal orientation with its image and content", async () => {
   expect(
     StyleSheet.flatten(screen.getByTestId("image").props.style).aspectRatio
   ).toBeUndefined()
+  jest.restoreAllMocks()
 })
 
 it.each([
