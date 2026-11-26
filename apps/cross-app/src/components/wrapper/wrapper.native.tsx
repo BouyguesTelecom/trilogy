@@ -16,7 +16,7 @@ export const Wrapper = ({
         shadowRadius: 3.84,
         elevation: 5,
         gap: 16,
-        backgroundColor: "#fff",
+        backgroundColor: "#d3d2d2",
         padding: 16,
         borderRadius: 8,
         marginBottom: 16,
