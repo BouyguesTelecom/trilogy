@@ -3,7 +3,6 @@ import {
   Accordion,
   AccordionBody,
   AccordionHeader,
-  AccordionIndicator,
   AccordionItem,
 } from "@trilogy-ds/react"
 
@@ -15,20 +14,14 @@ export default function AccordionScreen() {
       <Wrapper title="Accordion">
         <Accordion>
           <AccordionItem>
-            <AccordionHeader>
+            <AccordionHeader expandIcon={<IconChevronDown />}>
               Details
-              <AccordionIndicator>
-                <IconChevronDown />
-              </AccordionIndicator>
             </AccordionHeader>
             <AccordionBody>More information about this item.</AccordionBody>
           </AccordionItem>
           <AccordionItem disabled>
-            <AccordionHeader>
+            <AccordionHeader expandIcon={<IconChevronDown />}>
               Details
-              <AccordionIndicator>
-                <IconChevronDown />
-              </AccordionIndicator>
             </AccordionHeader>
           </AccordionItem>
         </Accordion>

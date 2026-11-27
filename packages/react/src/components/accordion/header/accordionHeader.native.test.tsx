@@ -1,9 +1,42 @@
 import { fireEvent, render, screen } from "@testing-library/react-native"
+import { View } from "react-native"
 
 import { theme } from "../../../constants/theme"
 import { TrilogyContextProvider } from "../../../contexts/trilogyContext.native"
 import { AccordionItem } from "../item/accordionItem.native"
 import { AccordionHeader } from "./accordionHeader.native"
+
+it("hides the decorative icon from accessibility and rotates it on open and close", async () => {
+  await render(
+    <AccordionItem>
+      <AccordionHeader expandIcon={<View testID="icon" />}>
+        Details
+      </AccordionHeader>
+    </AccordionItem>
+  )
+  const icon = screen.getByTestId("icon", { includeHiddenElements: true })
+  const wrapper = icon.parent!
+  expect(wrapper.props.accessibilityElementsHidden).toBe(true)
+  expect(wrapper.props.importantForAccessibility).toBe("no-hide-descendants")
+  const button = screen.getByRole("button", { name: "Details" })
+  await fireEvent.press(button)
+  expect(wrapper).toHaveStyle({ transform: [{ rotate: "180deg" }] })
+  await fireEvent.press(button)
+  expect(wrapper).not.toHaveStyle({ transform: [{ rotate: "180deg" }] })
+})
+
+it("does not rotate an icon when the item is disabled", async () => {
+  await render(
+    <AccordionItem disabled>
+      <AccordionHeader expandIcon={<View testID="icon" />}>
+        Details
+      </AccordionHeader>
+    </AccordionItem>
+  )
+  await fireEvent.press(screen.getByRole("button", { name: "Details" }))
+  const icon = screen.getByTestId("icon", { includeHiddenElements: true })
+  expect(icon.parent!).not.toHaveStyle({ transform: [{ rotate: "180deg" }] })
+})
 
 it("exposes and toggles the expanded accessibility state", async () => {
   await render(

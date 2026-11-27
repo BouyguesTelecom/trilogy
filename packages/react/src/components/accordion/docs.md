@@ -11,14 +11,13 @@ description: Organizes independently expandable sections of content.
 
 ### Basic
 
-Compose an item with a header, an indicator and a body.
+Compose an item with a header, an optional expand icon and a body.
 
 ```tsx
 <Accordion>
   <AccordionItem>
-    <AccordionHeader>
-      Details
-      <AccordionIndicator>
+    <AccordionHeader
+      expandIcon={
         <svg
           width="16"
           height="16"
@@ -29,7 +28,9 @@ Compose an item with a header, an indicator and a body.
         >
           <path d="m6 9 6 6 6-6" />
         </svg>
-      </AccordionIndicator>
+      }
+    >
+      Details
     </AccordionHeader>
     <AccordionBody>More information about this item.</AccordionBody>
   </AccordionItem>
@@ -43,14 +44,12 @@ Items open independently; multiple bodies may remain visible.
 ```tsx
 <Accordion>
   <AccordionItem defaultOpen>
-    <AccordionHeader>
-      First section <AccordionIndicator>⌄</AccordionIndicator>
-    </AccordionHeader>
+    <AccordionHeader expandIcon={<span>⌄</span>}>First section</AccordionHeader>
     <AccordionBody>First content.</AccordionBody>
   </AccordionItem>
   <AccordionItem>
-    <AccordionHeader>
-      Second section <AccordionIndicator>⌄</AccordionIndicator>
+    <AccordionHeader expandIcon={<span>⌄</span>}>
+      Second section
     </AccordionHeader>
     <AccordionBody>Second content.</AccordionBody>
   </AccordionItem>

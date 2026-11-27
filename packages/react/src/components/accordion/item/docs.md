@@ -20,9 +20,7 @@ On Web, each item renders a native `details` element and its header renders a
 ```tsx
 <Accordion>
   <AccordionItem defaultOpen>
-    <AccordionHeader>
-      Details <AccordionIndicator>⌄</AccordionIndicator>
-    </AccordionHeader>
+    <AccordionHeader expandIcon={<span>⌄</span>}>Details</AccordionHeader>
     <AccordionBody>Expanded content.</AccordionBody>
   </AccordionItem>
 </Accordion>
@@ -35,9 +33,7 @@ Disabled items do not change state when activated.
 ```tsx
 <Accordion>
   <AccordionItem disabled>
-    <AccordionHeader>
-      Unavailable <AccordionIndicator>⌄</AccordionIndicator>
-    </AccordionHeader>
+    <AccordionHeader expandIcon={<span>⌄</span>}>Unavailable</AccordionHeader>
     <AccordionBody>Content.</AccordionBody>
   </AccordionItem>
 </Accordion>

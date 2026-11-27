@@ -7,7 +7,13 @@ import {
   type PropsWithChildren,
   type RefAttributes,
 } from "react"
-import { Pressable, Text, type StyleProp, type ViewStyle } from "react-native"
+import {
+  Pressable,
+  Text,
+  View,
+  type StyleProp,
+  type ViewStyle,
+} from "react-native"
 
 import { useAccordionItem } from "../accordionContext"
 import { useAccordionHeaderStyles } from "./accordionHeader.styles.native"
@@ -17,7 +23,8 @@ export type AccordionHeaderNativeRef = ComponentRef<typeof Pressable>
 
 /**
  * AccordionHeader Component
- * @param children {ReactNode} Header content including an optional AccordionIndicator
+ * @param children {ReactNode} Header content
+ * @param expandIcon {ReactNode} Optional decorative icon rotated when open
  * @param accessibilityLabel {string} Accessible toggle name
  * @param testId {string} Test identifier
  * @param id {string} Toggle identifier
@@ -33,7 +40,7 @@ export const AccordionHeader: ForwardRefExoticComponent<
 > = forwardRef<
   AccordionHeaderNativeRef,
   PropsWithChildren<AccordionHeaderProps>
->(({ children, id, testId, style, accessibilityLabel }, ref) => {
+>(({ children, expandIcon, id, testId, style, accessibilityLabel }, ref) => {
   const state = useAccordionItem()
   const styles = useAccordionHeaderStyles()
   const content = useMemo(
@@ -67,6 +74,15 @@ export const AccordionHeader: ForwardRefExoticComponent<
       style={[styles.header.view, style as StyleProp<ViewStyle>]}
     >
       {content}
+      {expandIcon != null && (
+        <View
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+          style={[styles.icon.view, state.open && styles.icon.open]}
+        >
+          {expandIcon}
+        </View>
+      )}
     </Pressable>
   )
 })

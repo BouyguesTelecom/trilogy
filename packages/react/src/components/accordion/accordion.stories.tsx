@@ -1,7 +1,6 @@
 import { Accordion } from "./accordion.web"
 import { AccordionBody } from "./body/accordionBody.web"
 import { AccordionHeader } from "./header/accordionHeader.web"
-import { AccordionIndicator } from "./indicator/accordionIndicator.web"
 import { AccordionItem } from "./item/accordionItem.web"
 
 const meta: {
@@ -11,7 +10,6 @@ const meta: {
     AccordionItem: typeof AccordionItem
     AccordionHeader: typeof AccordionHeader
     AccordionBody: typeof AccordionBody
-    AccordionIndicator: typeof AccordionIndicator
   }
 } = {
   title: "Components/Accordion",
@@ -20,7 +18,6 @@ const meta: {
     AccordionItem,
     AccordionHeader,
     AccordionBody,
-    AccordionIndicator,
   },
 }
 export default meta
@@ -43,20 +40,14 @@ export const Composition: { render: () => React.JSX.Element } = {
   render: () => (
     <Accordion>
       <AccordionItem defaultOpen>
-        <AccordionHeader>
-          First section{" "}
-          <AccordionIndicator>
-            <Chevron />
-          </AccordionIndicator>
+        <AccordionHeader expandIcon={<Chevron />}>
+          First section
         </AccordionHeader>
         <AccordionBody>First content.</AccordionBody>
       </AccordionItem>
       <AccordionItem>
-        <AccordionHeader>
-          Second section{" "}
-          <AccordionIndicator>
-            <Chevron />
-          </AccordionIndicator>
+        <AccordionHeader expandIcon={<Chevron />}>
+          Second section
         </AccordionHeader>
         <AccordionBody>Second content.</AccordionBody>
       </AccordionItem>
@@ -68,12 +59,7 @@ export const Disabled: { render: () => React.JSX.Element } = {
   render: () => (
     <Accordion>
       <AccordionItem disabled>
-        <AccordionHeader>
-          Disabled{" "}
-          <AccordionIndicator>
-            <Chevron />
-          </AccordionIndicator>
-        </AccordionHeader>
+        <AccordionHeader expandIcon={<Chevron />}>Disabled</AccordionHeader>
         <AccordionBody>Unavailable content.</AccordionBody>
       </AccordionItem>
     </Accordion>

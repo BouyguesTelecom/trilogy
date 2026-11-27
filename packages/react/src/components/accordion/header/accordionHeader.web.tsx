@@ -14,7 +14,8 @@ import type { AccordionHeaderProps } from "./accordionHeader.types"
 
 /**
  * AccordionHeader Component, rendered as a `summary` element on Web.
- * @param children {ReactNode} Header content including an optional AccordionIndicator
+ * @param children {ReactNode} Header content
+ * @param expandIcon {ReactNode} Optional decorative icon rotated when open
  * @param accessibilityLabel {string} Accessible toggle name
  * @param testId {string} Test identifier
  * @param id {string} Toggle identifier; generated when omitted
@@ -28,9 +29,13 @@ import type { AccordionHeaderProps } from "./accordionHeader.types"
 export const AccordionHeader: ForwardRefExoticComponent<
   PropsWithChildren<AccordionHeaderProps> & RefAttributes<HTMLElement>
 > = forwardRef<HTMLElement, PropsWithChildren<AccordionHeaderProps>>(
-  ({ children, id, testId, className, style, accessibilityLabel }, ref) => {
+  (
+    { children, expandIcon, id, testId, className, style, accessibilityLabel },
+    ref
+  ) => {
     const state = useAccordionItem()
     const classes = useHashClass(clsx("accordionHeader", className))
+    const iconClasses = useHashClass("accordionHeaderIcon")
     return (
       <summary
         ref={ref}
@@ -56,6 +61,15 @@ export const AccordionHeader: ForwardRefExoticComponent<
         }}
       >
         {children}
+        {expandIcon != null && (
+          <span
+            className={iconClasses}
+            aria-hidden="true"
+            data-open={state.open || undefined}
+          >
+            {expandIcon}
+          </span>
+        )}
       </summary>
     )
   }

@@ -60,7 +60,7 @@
   }
 }
 
-.accordionIndicator {
+.accordionHeaderIcon {
   display: inline-flex;
   flex: none;
   margin-left: auto;
@@ -72,7 +72,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .accordionIndicator {
+  .accordionHeaderIcon {
     transition: none;
   }
 }

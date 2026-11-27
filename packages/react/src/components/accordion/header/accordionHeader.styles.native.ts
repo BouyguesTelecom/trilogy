@@ -4,6 +4,7 @@ import { makeStyle } from "@/hooks/useMakeStyle.native"
 
 type AccordionHeaderStyles = {
   header: { view: ViewStyle; text: TextStyle; disabledText: TextStyle }
+  icon: { view: ViewStyle; open: ViewStyle }
 }
 
 export const useAccordionHeaderStyles: () => AccordionHeaderStyles = makeStyle(
@@ -26,6 +27,10 @@ export const useAccordionHeaderStyles: () => AccordionHeaderStyles = makeStyle(
         flexShrink: 1,
       },
       disabledText: { color: theme.colors.colorDisabled },
+    },
+    icon: {
+      view: { marginLeft: "auto", flexShrink: 0 },
+      open: { transform: [{ rotate: "180deg" }] },
     },
   })
 )
